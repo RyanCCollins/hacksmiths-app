@@ -2,10 +2,6 @@
 The official iOS for the hacksmiths project
 
 
-# HackSmith Front End
-Implement a frontend solution for the HackSmith project.
-
-
 - Developer: Ryan Collins 
 
 ## Project Setup
