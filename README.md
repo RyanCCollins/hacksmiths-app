@@ -1,4 +1,4 @@
-# hacksmiths-app
+# Hacksmiths iOS App
 The official iOS for the hacksmiths project
 
 
