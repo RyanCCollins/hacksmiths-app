@@ -1,33 +1,30 @@
-# Hacksmiths iOS App
-The official iOS for the hacksmiths project
+# Hacksmiths App
+
+The official Hacksmiths iOS APp
+
+## Getting Started
 
 
-# HackSmith Front End
-Implement a frontend solution for the HackSmith project.
+
+### Installing
 
 
-- Developer: Ryan Collins 
 
-## Project Setup
-- To install, download the project and run in XCode version 7.0+
-- Runs best on an iPhone 6 or later with Swift 2.0 and iOS version 8.0+
+## Deployment
 
 
-## Project Links
-TBA
-
-## Technical Deliverables
-TBA
-
-## Technical Considerations/Restrictions
-TBA
-
-## API
-TBA
-
-## Technical Flow
-TBA
+## Built With
 
 
-## Major Milestones
-TBA
+
+## Authors
+
+* **Ryan Collins**
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgments
+
+<div>Icon made by <a href="http://www.icomoon.io" title="Icomoon">Icomoon</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed under <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a></div>

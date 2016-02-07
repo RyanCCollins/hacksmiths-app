@@ -6,6 +6,9 @@
 //  Copyright © 2016 Tech Rapport. All rights reserved.
 //
 
+// Note: Spring is a great animation library created by a designer turned iOS Dev
+// See here: 
+
 import UIKit
 import Spring
 

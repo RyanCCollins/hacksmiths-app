@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F44B1BA1C5DDAB9004E196D /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F44B1B91C5DDAB9004E196D /* CoreDataStackManager.swift */; };
 		1FA5A4E41C53581F00722E55 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA5A4E31C53581F00722E55 /* ProfileViewController.swift */; };
 		1FA5A4E61C53584D00722E55 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA5A4E51C53584D00722E55 /* ScheduleViewController.swift */; };
 		1FA5A4E81C53585500722E55 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA5A4E71C53585500722E55 /* SettingsViewController.swift */; };
@@ -63,6 +64,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1F44B1B91C5DDAB9004E196D /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
 		1FA5A4E31C53581F00722E55 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		1FA5A4E51C53584D00722E55 /* ScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		1FA5A4E71C53585500722E55 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -144,6 +146,29 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		1F44B1BB1C5DDAC9004E196D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1FA5A4EF1C535D6C00722E55 /* LoginViewController.swift */,
+				1FA5A4ED1C535A9500722E55 /* ExtendsUIViewController.swift */,
+				1FA5A4E31C53581F00722E55 /* ProfileViewController.swift */,
+				1FA5A4E71C53585500722E55 /* SettingsViewController.swift */,
+				1FA5A4E51C53584D00722E55 /* ScheduleViewController.swift */,
+				1FA5A4E91C53585E00722E55 /* InfoViewController.swift */,
+				1FA5A4EB1C53586D00722E55 /* CommunityViewController.swift */,
+				1FA9FC9A1C53563700B993BC /* EventViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		1F44B1BC1C5DDB35004E196D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1F44B1B91C5DDAB9004E196D /* CoreDataStackManager.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		1FA5A5151C5360FA00722E55 /* roboto */ = {
 			isa = PBXGroup;
 			children = (
@@ -206,15 +231,9 @@
 			children = (
 				1FA9FC691C534E5900B993BC /* AppDelegate.swift */,
 				1FA9FC6B1C534E5900B993BC /* ViewController.swift */,
+				1F44B1BC1C5DDB35004E196D /* Model */,
+				1F44B1BB1C5DDAC9004E196D /* Controller */,
 				1FA9FC6D1C534E5A00B993BC /* Main.storyboard */,
-				1FA5A4EF1C535D6C00722E55 /* LoginViewController.swift */,
-				1FA5A4ED1C535A9500722E55 /* ExtendsUIViewController.swift */,
-				1FA5A4E31C53581F00722E55 /* ProfileViewController.swift */,
-				1FA5A4E71C53585500722E55 /* SettingsViewController.swift */,
-				1FA5A4E51C53584D00722E55 /* ScheduleViewController.swift */,
-				1FA5A4E91C53585E00722E55 /* InfoViewController.swift */,
-				1FA5A4EB1C53586D00722E55 /* CommunityViewController.swift */,
-				1FA9FC9A1C53563700B993BC /* EventViewController.swift */,
 				1FA9FC731C534E5A00B993BC /* Assets.xcassets */,
 				1FA9FC751C534E5A00B993BC /* LaunchScreen.storyboard */,
 				1FA9FC781C534E5A00B993BC /* Info.plist */,
@@ -455,6 +474,7 @@
 				1FA5A4EC1C53586D00722E55 /* CommunityViewController.swift in Sources */,
 				1FA5A4E81C53585500722E55 /* SettingsViewController.swift in Sources */,
 				1FA5A4E41C53581F00722E55 /* ProfileViewController.swift in Sources */,
+				1F44B1BA1C5DDAB9004E196D /* CoreDataStackManager.swift in Sources */,
 				1FA5A4E61C53584D00722E55 /* ScheduleViewController.swift in Sources */,
 				1FA5A4EE1C535A9500722E55 /* ExtendsUIViewController.swift in Sources */,
 				1FA9FC721C534E5A00B993BC /* hacksmiths.xcdatamodeld in Sources */,
