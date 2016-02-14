@@ -7,16 +7,18 @@
 //
 
 import CoreData
+import UIKit
 
 @objc(User)
 
 class User: NSManagedObject {
     
-    @NSManaged var titleString: String
+    @NSManaged var name: String
     @NSManaged var filePath : String?
-    @NSManaged var url_m: String?
+    @NSManaged var desctiption: String
     @NSManaged var fullImageURL : String?
-    @NSManaged var thumbnailURL : String?
+    @NSManaged var about : String?
+    @NSManaged var role: String?
     
     
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {

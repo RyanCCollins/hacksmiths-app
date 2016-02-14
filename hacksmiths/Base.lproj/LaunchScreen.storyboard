@@ -2,7 +2,14 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="EHf-IW-A2E">
@@ -15,7 +22,35 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" alpha="0.30000001192092896" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background-gradient" translatesAutoresizingMaskIntoConstraints="NO" id="btr-vg-TTr">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hacksmiths" translatesAutoresizingMaskIntoConstraints="NO" id="8S0-bO-M5W">
+                                <rect key="frame" x="235" y="235" width="130" height="130"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="130" id="8mi-Aj-YEk"/>
+                                    <constraint firstAttribute="width" secondItem="8S0-bO-M5W" secondAttribute="height" multiplier="1:1" id="Yka-zR-Hwc"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="HACKSMITHS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lcK-Vd-RMg">
+                                <rect key="frame" x="146" y="373" width="309" height="41"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="37"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.27058823529999998" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.37254901959999998" green="0.6705882353" blue="0.68235294120000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="btr-vg-TTr" secondAttribute="bottom" id="7Me-0U-cHG"/>
+                            <constraint firstItem="lcK-Vd-RMg" firstAttribute="centerX" secondItem="btr-vg-TTr" secondAttribute="centerX" id="JMU-wk-9Dj"/>
+                            <constraint firstItem="lcK-Vd-RMg" firstAttribute="top" secondItem="8S0-bO-M5W" secondAttribute="bottom" constant="8" id="L4T-35-P4d"/>
+                            <constraint firstItem="8S0-bO-M5W" firstAttribute="centerX" secondItem="btr-vg-TTr" secondAttribute="centerX" id="RZu-kD-bGA"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="btr-vg-TTr" secondAttribute="trailing" constant="-20" id="SCA-gS-btL"/>
+                            <constraint firstItem="btr-vg-TTr" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="-20" id="hHK-qy-rFA"/>
+                            <constraint firstItem="8S0-bO-M5W" firstAttribute="centerY" secondItem="btr-vg-TTr" secondAttribute="centerY" id="tSy-yi-Hkb"/>
+                            <constraint firstItem="btr-vg-TTr" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" id="wTn-vs-cqj"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -23,4 +58,8 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="background-gradient" width="750" height="1334"/>
+        <image name="hacksmiths" width="300" height="300"/>
+    </resources>
 </document>
