@@ -1,6 +1,6 @@
 //
 //  CoreDataStackManager.swift
-//  FavoriteActors
+//  Hacksmiths
 //
 //  Created by Ryan Collins on 12/30/15.
 //  Copyright (c) 2015 Udacity. All rights reserved.
@@ -34,19 +34,16 @@ class CoreDataStackManager {
         
         print("Instantiating the applicationDocumentsDirectory property")
         
+        // The directory the application uses to store the Core Data store file. This code uses a directory named "com.TechRapport.hacksmiths" in the application's documents Application Support directory.
         let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
         return urls[urls.count-1]
     }()
     
     lazy var managedObjectModel: NSManagedObjectModel = {
         // The managed object model for the application. This property is not optional. It is a fatal error for the application not to be able to find and load its model.
-        
-        print("Instantiating the managedObjectModel property")
-        
-        let modelURL = NSBundle.mainBundle().URLForResource("Virtual_Tourist", withExtension: "momd")!
+        let modelURL = NSBundle.mainBundle().URLForResource("hacksmiths", withExtension: "momd")!
         return NSManagedObjectModel(contentsOfURL: modelURL)!
     }()
-    
     /**
      * The Persistent Store Coordinator is an object that the Context uses to interact with the underlying file system. Usually
      * the persistent store coordinator object uses an SQLite database file to save the managed objects. But it is possible to
@@ -80,7 +77,7 @@ class CoreDataStackManager {
             dict[NSLocalizedFailureReasonErrorKey] = failureReason
             
             dict[NSUnderlyingErrorKey] = error as NSError
-            let wrappedError = NSError(domain: "Virtual_Tourist", code: 9999, userInfo: dict)
+            let wrappedError = NSError(domain: "hacksmiths", code: 9999, userInfo: dict)
             // Replace this with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
             NSLog("Unresolved error \(wrappedError), \(wrappedError.userInfo)")

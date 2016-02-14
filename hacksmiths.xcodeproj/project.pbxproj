@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		1F44B1BA1C5DDAB9004E196D /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F44B1B91C5DDAB9004E196D /* CoreDataStackManager.swift */; };
+		1FA2E55B1C67FF020085FC7D /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA2E55A1C67FF020085FC7D /* GlobalConstants.swift */; };
+		1FA2E55D1C67FF550085FC7D /* HacksmithsAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA2E55C1C67FF550085FC7D /* HacksmithsAPIClient.swift */; };
+		1FA2E55F1C6802680085FC7D /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA2E55E1C6802680085FC7D /* ImageCache.swift */; };
+		1FA2E5611C68029C0085FC7D /* HacksmithsAPIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA2E5601C68029C0085FC7D /* HacksmithsAPIConstants.swift */; };
+		1FA2E5631C6802AC0085FC7D /* HacksmithsAPIConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA2E5621C6802AC0085FC7D /* HacksmithsAPIConvenience.swift */; };
 		1FA5A4E41C53581F00722E55 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA5A4E31C53581F00722E55 /* ProfileViewController.swift */; };
 		1FA5A4E61C53584D00722E55 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA5A4E51C53584D00722E55 /* ScheduleViewController.swift */; };
 		1FA5A4E81C53585500722E55 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA5A4E71C53585500722E55 /* SettingsViewController.swift */; };
@@ -43,6 +48,14 @@
 		1FA9FC821C534E5B00B993BC /* hacksmithsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA9FC811C534E5B00B993BC /* hacksmithsTests.swift */; };
 		1FA9FC8D1C534E5B00B993BC /* hacksmithsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA9FC8C1C534E5B00B993BC /* hacksmithsUITests.swift */; };
 		1FA9FC9B1C53563700B993BC /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA9FC9A1C53563700B993BC /* EventViewController.swift */; };
+		1FE4B30D1C6ADAC10011ECAE /* octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1FE4B30C1C6ADAC10011ECAE /* octicons.ttf */; };
+		1FE4B3131C6ADE050011ECAE /* PersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE4B3121C6ADE050011ECAE /* PersonViewController.swift */; };
+		1FF998921C6EB359003D98B2 /* MainTabBarControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF998911C6EB359003D98B2 /* MainTabBarControllerViewController.swift */; };
+		1FF998971C6FAE3E003D98B2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF998961C6FAE3E003D98B2 /* User.swift */; };
+		1FF998991C6FAEDE003D98B2 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF998981C6FAEDE003D98B2 /* Event.swift */; };
+		1FF9989B1C6FB04B003D98B2 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF9989A1C6FB04B003D98B2 /* Team.swift */; };
+		1FF9989D1C6FB060003D98B2 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF9989C1C6FB060003D98B2 /* Organization.swift */; };
+		1FF9989F1C6FB068003D98B2 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF9989E1C6FB068003D98B2 /* Project.swift */; };
 		E11C0836866FA3F830ABB22F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F01D804491290ED3ADAFE2E /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +78,11 @@
 
 /* Begin PBXFileReference section */
 		1F44B1B91C5DDAB9004E196D /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
+		1FA2E55A1C67FF020085FC7D /* GlobalConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
+		1FA2E55C1C67FF550085FC7D /* HacksmithsAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HacksmithsAPIClient.swift; sourceTree = "<group>"; };
+		1FA2E55E1C6802680085FC7D /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		1FA2E5601C68029C0085FC7D /* HacksmithsAPIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HacksmithsAPIConstants.swift; sourceTree = "<group>"; };
+		1FA2E5621C6802AC0085FC7D /* HacksmithsAPIConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HacksmithsAPIConvenience.swift; sourceTree = "<group>"; };
 		1FA5A4E31C53581F00722E55 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		1FA5A4E51C53584D00722E55 /* ScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		1FA5A4E71C53585500722E55 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +124,14 @@
 		1FA9FC8C1C534E5B00B993BC /* hacksmithsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hacksmithsUITests.swift; sourceTree = "<group>"; };
 		1FA9FC8E1C534E5B00B993BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1FA9FC9A1C53563700B993BC /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
+		1FE4B30C1C6ADAC10011ECAE /* octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = octicons.ttf; path = hacksmiths/octicons.ttf; sourceTree = "<group>"; };
+		1FE4B3121C6ADE050011ECAE /* PersonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonViewController.swift; sourceTree = "<group>"; };
+		1FF998911C6EB359003D98B2 /* MainTabBarControllerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarControllerViewController.swift; sourceTree = "<group>"; };
+		1FF998961C6FAE3E003D98B2 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		1FF998981C6FAEDE003D98B2 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		1FF9989A1C6FB04B003D98B2 /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		1FF9989C1C6FB060003D98B2 /* Organization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
+		1FF9989E1C6FB068003D98B2 /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		2191EFCDC3E224734A81AEB7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		2F01D804491290ED3ADAFE2E /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA5C00C756EC56DE13602503 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -149,8 +175,10 @@
 		1F44B1BB1C5DDAC9004E196D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				1FF998911C6EB359003D98B2 /* MainTabBarControllerViewController.swift */,
 				1FA5A4EF1C535D6C00722E55 /* LoginViewController.swift */,
 				1FA5A4ED1C535A9500722E55 /* ExtendsUIViewController.swift */,
+				1FE4B3121C6ADE050011ECAE /* PersonViewController.swift */,
 				1FA5A4E31C53581F00722E55 /* ProfileViewController.swift */,
 				1FA5A4E71C53585500722E55 /* SettingsViewController.swift */,
 				1FA5A4E51C53584D00722E55 /* ScheduleViewController.swift */,
@@ -164,9 +192,22 @@
 		1F44B1BC1C5DDB35004E196D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1FF998951C6FAD98003D98B2 /* Managed Object Models */,
 				1F44B1B91C5DDAB9004E196D /* CoreDataStackManager.swift */,
+				1FA2E55E1C6802680085FC7D /* ImageCache.swift */,
+				1FA2E5641C6802B30085FC7D /* HacksmithsAPI */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		1FA2E5641C6802B30085FC7D /* HacksmithsAPI */ = {
+			isa = PBXGroup;
+			children = (
+				1FA2E55C1C67FF550085FC7D /* HacksmithsAPIClient.swift */,
+				1FA2E5601C68029C0085FC7D /* HacksmithsAPIConstants.swift */,
+				1FA2E5621C6802AC0085FC7D /* HacksmithsAPIConvenience.swift */,
+			);
+			name = HacksmithsAPI;
 			sourceTree = "<group>";
 		};
 		1FA5A5151C5360FA00722E55 /* roboto */ = {
@@ -198,6 +239,7 @@
 		1FA5A53C1C53610300722E55 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1FE4B30C1C6ADAC10011ECAE /* octicons.ttf */,
 				1FA5A5151C5360FA00722E55 /* roboto */,
 			);
 			name = Resources;
@@ -231,9 +273,10 @@
 			children = (
 				1FA9FC691C534E5900B993BC /* AppDelegate.swift */,
 				1FA9FC6B1C534E5900B993BC /* ViewController.swift */,
+				1FA2E55A1C67FF020085FC7D /* GlobalConstants.swift */,
 				1F44B1BC1C5DDB35004E196D /* Model */,
-				1F44B1BB1C5DDAC9004E196D /* Controller */,
 				1FA9FC6D1C534E5A00B993BC /* Main.storyboard */,
+				1F44B1BB1C5DDAC9004E196D /* Controller */,
 				1FA9FC731C534E5A00B993BC /* Assets.xcassets */,
 				1FA9FC751C534E5A00B993BC /* LaunchScreen.storyboard */,
 				1FA9FC781C534E5A00B993BC /* Info.plist */,
@@ -258,6 +301,18 @@
 				1FA9FC8E1C534E5B00B993BC /* Info.plist */,
 			);
 			path = hacksmithsUITests;
+			sourceTree = "<group>";
+		};
+		1FF998951C6FAD98003D98B2 /* Managed Object Models */ = {
+			isa = PBXGroup;
+			children = (
+				1FF998961C6FAE3E003D98B2 /* User.swift */,
+				1FF998981C6FAEDE003D98B2 /* Event.swift */,
+				1FF9989C1C6FB060003D98B2 /* Organization.swift */,
+				1FF9989E1C6FB068003D98B2 /* Project.swift */,
+				1FF9989A1C6FB04B003D98B2 /* Team.swift */,
+			);
+			name = "Managed Object Models";
 			sourceTree = "<group>";
 		};
 		5CE27C4E7B61BD7247A81BCC /* Frameworks */ = {
@@ -391,6 +446,7 @@
 				1FA5A5291C5360FA00722E55 /* Apache License.txt in Resources */,
 				1FA5A53B1C5360FA00722E55 /* RobotoCondensed-Regular.ttf in Resources */,
 				1FA5A5311C5360FA00722E55 /* Roboto-Medium.ttf in Resources */,
+				1FE4B30D1C6ADAC10011ECAE /* octicons.ttf in Resources */,
 				1FA5A5391C5360FA00722E55 /* RobotoCondensed-Light.ttf in Resources */,
 				1FA5A5351C5360FA00722E55 /* Roboto-ThinItalic.ttf in Resources */,
 				1FA5A5361C5360FA00722E55 /* RobotoCondensed-Bold.ttf in Resources */,
@@ -469,18 +525,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FA2E55F1C6802680085FC7D /* ImageCache.swift in Sources */,
 				1FA9FC6C1C534E5900B993BC /* ViewController.swift in Sources */,
 				1FA9FC9B1C53563700B993BC /* EventViewController.swift in Sources */,
+				1FF9989F1C6FB068003D98B2 /* Project.swift in Sources */,
 				1FA5A4EC1C53586D00722E55 /* CommunityViewController.swift in Sources */,
 				1FA5A4E81C53585500722E55 /* SettingsViewController.swift in Sources */,
 				1FA5A4E41C53581F00722E55 /* ProfileViewController.swift in Sources */,
+				1FA2E55B1C67FF020085FC7D /* GlobalConstants.swift in Sources */,
+				1FE4B3131C6ADE050011ECAE /* PersonViewController.swift in Sources */,
+				1FA2E55D1C67FF550085FC7D /* HacksmithsAPIClient.swift in Sources */,
 				1F44B1BA1C5DDAB9004E196D /* CoreDataStackManager.swift in Sources */,
 				1FA5A4E61C53584D00722E55 /* ScheduleViewController.swift in Sources */,
+				1FF9989D1C6FB060003D98B2 /* Organization.swift in Sources */,
+				1FF998991C6FAEDE003D98B2 /* Event.swift in Sources */,
 				1FA5A4EE1C535A9500722E55 /* ExtendsUIViewController.swift in Sources */,
 				1FA9FC721C534E5A00B993BC /* hacksmiths.xcdatamodeld in Sources */,
 				1FA5A4EA1C53585E00722E55 /* InfoViewController.swift in Sources */,
+				1FA2E5631C6802AC0085FC7D /* HacksmithsAPIConvenience.swift in Sources */,
+				1FA2E5611C68029C0085FC7D /* HacksmithsAPIConstants.swift in Sources */,
+				1FF998921C6EB359003D98B2 /* MainTabBarControllerViewController.swift in Sources */,
+				1FF9989B1C6FB04B003D98B2 /* Team.swift in Sources */,
 				1FA9FC6A1C534E5900B993BC /* AppDelegate.swift in Sources */,
 				1FA5A4F01C535D6C00722E55 /* LoginViewController.swift in Sources */,
+				1FF998971C6FAE3E003D98B2 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -622,6 +690,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = hacksmiths/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.TechRapport.hacksmiths;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -634,6 +703,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = hacksmiths/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.TechRapport.hacksmiths;
 				PRODUCT_NAME = "$(TARGET_NAME)";

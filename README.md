@@ -1,9 +1,6 @@
 # Hacksmiths App
 
-The official Hacksmiths iOS APp
-
 ## Getting Started
-
 
 
 ### Installing

@@ -8,8 +8,14 @@
 
 import UIKit
 
-class CommunityViewController: UIViewController {
+class CommunityViewController: UITableViewController {
 
+    @IBOutlet weak var personDescriptionLabel: UILabel!
+    @IBOutlet weak var personNameLabel: UILabel!
+    @IBOutlet weak var personImage: UIImageView!
+    var teamLeaders = [User]()
+    var hacksmiths = [User]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,6 +26,7 @@ class CommunityViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     
 
     /*
@@ -32,4 +39,36 @@ class CommunityViewController: UIViewController {
     }
     */
 
+}
+
+
+/* Extension for UITableViewDataSource and Delegate methods */
+extension CommunityViewController {
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 3
+    }
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return teamLeaders.count
+        } else if section == 1 {
+            return 
+        }
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+    }
+    
+    override func tableView(tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int {
+        
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+    }
 }
