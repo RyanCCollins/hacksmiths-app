@@ -10,3 +10,5 @@ pod 'JBChartView', :inhibit_warnings => true
 pod 'Fabric', :inhibit_warnings => true
 pod 'Crashlytics', :inhibit_warnings => true
 pod 'SwiftSpinner', :inhibit_warnings => true
+pod 'SwiftyButton'
+pod 'SwiftyButton/CustomContent'
