@@ -13,11 +13,23 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var authenticated: Bool = false
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        showLoginView()
         return true
+    }
+    
+    func showLoginView() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        if !authenticated {
+            let loginViewController = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+            window?.rootViewController = loginViewController
+            window?.makeKeyAndVisible()
+        }
     }
 
     func applicationWillResignActive(application: UIApplication) {

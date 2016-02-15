@@ -12,19 +12,33 @@ import Foundation
 extension HacksmithsAPIClient {
     
         struct Constants {
-            static let BaseUrl = "http://hacksmiths.com/api/"
-            static let TestURL = "http://localhost:4000/api/v1/"
+            static let URL = "http://hacksmiths.io"
+            static let BaseUrl = "http://hacksmiths.io/api/"
+            static let TestURL = "http://localhost:4000/api/"
             static let BaseUrlSecure = "http://hacksmiths.com/api/v1/"
         }
     
+    struct Routes {
+        static let Stats = "stats"
+        static let App = "app"
+        static let Status = "status"
+        static let rsvp = "rsvp"
+        static let SigninEmail = "signin-email"
+        static let SignupEmail = "signup-email"
+        static let SigninService = "signin-service"
+        static let SigninServiceCheck = "signin-service-check"
+        static let SigninRecover = "signin-recover"
+        
+    }
+    
         struct Keys {
-
+            
         }
         
         struct Values {
 
             struct Methods {
-                static let SEARCH = "flickr.photos.search"
+                
             }
         }
     
