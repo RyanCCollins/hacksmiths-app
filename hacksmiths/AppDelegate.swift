@@ -25,7 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func showLoginView(animated: Bool) {
         
-        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let loginViewController = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
             window?.makeKeyAndVisible()

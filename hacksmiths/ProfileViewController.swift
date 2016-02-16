@@ -21,6 +21,13 @@ class ProfileViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func didTapSettingsButtonUpInside(sender: AnyObject) {
+        /* Instantiate the settings view controller for showing the settings view */
+        let controller = storyboard?.instantiateViewControllerWithIdentifier("SettingsViewController") as! SettingsViewController
+        
+        /* Set us as the controllers delegate */
+        self.presentViewController(controller, animated: true, completion: nil) 
+    }
 
     /*
     // MARK: - Navigation

@@ -16,12 +16,15 @@ class LoginViewController: UIViewController {
     let createLoginButtonTag = 0
     let loginButtonTag = 1
     
+    @IBOutlet weak var loginButtonView: UIView!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var debugLabel: UILabel!
-    @IBOutlet var loginButton: SwiftyCustomContentButton!
+
     @IBOutlet weak var touchIDButton: UIButton!
     @IBOutlet weak var onepasswordButton: UIButton!
+    
+    let loginButton = SwiftyCustomContentButton()
     
     /* One password and touch ID variables */
     var context = LAContext()
@@ -39,6 +42,14 @@ class LoginViewController: UIViewController {
     }
     
     func configureLoginButtons() {
+        
+        loginButtonView.addSubview(loginButton)
+        loginButton.autoPinEdgesToSuperviewEdges()
+        loginButton.buttonColor = UIColor(red: 52/255, green: 152/255, blue: 219/255, alpha: 1)
+        loginButton.shadowColor = UIColor(red: 41/255, green: 128/255, blue: 185/255, alpha: 1)
+        
+        loginButton.addTarget(self, action: "loginOrRegisterAction:", forControlEvents: UIControlEvents.TouchUpInside)
+        
         let hasLogin = NSUserDefaults.standardUserDefaults().boolForKey("hasLoginKey")
         
         if hasLogin {
@@ -64,23 +75,22 @@ class LoginViewController: UIViewController {
     }
     
     func setButtonLoading(message: String) {
-        let indicator = UIActivityIndicatorView(activityIndicatorStyle: .White)
         
-        
-        indicator.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: 10, left: 15, bottom: 10, right: 0), excludingEdge: .Right)
-        indicator.startAnimating()
-        
-        let label = UILabel()
-        
-        label.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 10), excludingEdge: .Left)
-        label.autoPinEdge(.Left, toEdge: .Right, ofView: indicator, withOffset: 10)
-        label.text = message
-        label.textColor = UIColor.whiteColor()
         
         dispatch_async(GlobalMainQueue, {
+            let indicator = UIActivityIndicatorView(activityIndicatorStyle: .White)
             self.loginButton.customContentView.addSubview(indicator)
+            indicator.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: 10, left: 15, bottom: 10, right: 0), excludingEdge: .Right)
+            indicator.startAnimating()
+            
+            let label = UILabel()
             self.loginButton.customContentView.addSubview(label)
+            label.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 10), excludingEdge: .Left)
+            label.autoPinEdge(.Left, toEdge: .Right, ofView: indicator, withOffset: 10)
+            label.text = message
+            label.textColor = UIColor.whiteColor()
         })
+
     }
     
     func configureTouchID() {
@@ -247,10 +257,6 @@ class LoginViewController: UIViewController {
             }
 
         })
-    }
-    
-    @IBAction func didTapLoginButtonUpInside(sender: AnyObject) {
-        loginOrRegisterAction(sender)
     }
     
     func saveLoginTo1Password(sender: AnyObject) {
