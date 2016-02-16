@@ -8,6 +8,7 @@
 
 import UIKit
 import LocalAuthentication
+import SwiftyButton
 
 class LoginViewController: UIViewController {
     
@@ -18,44 +19,68 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var debugLabel: UILabel!
-    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet var loginButton: SwiftyCustomContentButton!
     @IBOutlet weak var touchIDButton: UIButton!
-    @IBOutlet weak var onePasswordButton: UIButton!
+    @IBOutlet weak var onepasswordButton: UIButton!
     
     /* One password and touch ID variables */
     var context = LAContext()
-    let MyOnePassword = OnePasswordExtension()
-    var has1PasswordLogin: Bool = false
 
-    @IBOutlet weak var onepasswordButton: UIButton!
+    var has1PasswordLogin: Bool = false
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        /* Configure buttons based on availability */
         configureLoginButtons()
         configureTouchID()
         configureOnePasswordButton()
     }
     
     func configureLoginButtons() {
-        
         let hasLogin = NSUserDefaults.standardUserDefaults().boolForKey("hasLoginKey")
         
         if hasLogin {
             loginButton.setTitle("Login", forState: UIControlState.Normal)
             loginButton.tag = loginButtonTag
             debugLabel.hidden = true
-            onePasswordButton.enabled = true
+            onepasswordButton.enabled = true
         } else {
             loginButton.setTitle("Create", forState: UIControlState.Normal)
             loginButton.tag = createLoginButtonTag
             debugLabel.hidden = false
-            onePasswordButton.enabled = false
+            onepasswordButton.enabled = false
         }
         
         
         if let storedUsername = NSUserDefaults.standardUserDefaults().valueForKey("username") as? String {
             usernameTextField.text = storedUsername as String
         }
+    }
+    
+    @IBAction func didTapSkipUpInside(sender: AnyObject) {
+        dismissLoginView(false)
+    }
+    
+    func setButtonLoading(message: String) {
+        let indicator = UIActivityIndicatorView(activityIndicatorStyle: .White)
+        
+        
+        indicator.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: 10, left: 15, bottom: 10, right: 0), excludingEdge: .Right)
+        indicator.startAnimating()
+        
+        let label = UILabel()
+        
+        label.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 10), excludingEdge: .Left)
+        label.autoPinEdge(.Left, toEdge: .Right, ofView: indicator, withOffset: 10)
+        label.text = message
+        label.textColor = UIColor.whiteColor()
+        
+        dispatch_async(GlobalMainQueue, {
+            self.loginButton.customContentView.addSubview(indicator)
+            self.loginButton.customContentView.addSubview(label)
+        })
     }
     
     func configureTouchID() {
@@ -67,12 +92,12 @@ class LoginViewController: UIViewController {
     }
     
     func configureOnePasswordButton() {
-        /* Hide 1Password Button if not installed -- NOTE: DISABLED FOR REVIEWER TO SHOW THAT IT'S THERE */
-        self.onepasswordButton.hidden = (false == OnePasswordExtension.sharedExtension().isAppExtensionAvailable())
+        /* Hide 1Password Button if not installed */
+        self.onepasswordButton.hidden = !OnePasswordExtension.sharedExtension().isAppExtensionAvailable()
     }
     
     @IBAction func didTapOnePasswordButtonUpInside(sender: AnyObject) {
-        
+        findLoginFrom1Password(sender)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -92,7 +117,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func didTapTouchIDButtonUpInside(sender: AnyObject) {
-        loginOrRegisterAction(sender)
+        authenticateWithTouchID()
     }
     
     func authenticateWithTouchID() {
@@ -106,7 +131,7 @@ class LoginViewController: UIViewController {
                     dispatch_async(dispatch_get_main_queue(), {
                         
                         if success {
-                            self.dismissLoginViewController()
+                            self.dismissLoginView(true)
                         }
                         
                         if error != nil {
@@ -151,7 +176,14 @@ class LoginViewController: UIViewController {
         }
     }
     
-    func dismissLoginViewController() {
+    func dismissLoginView(loginWasSuccessful: Bool) {
+        
+        /* If we successfully logged in, send a notification that says the login was successful */
+        if loginWasSuccessful {
+            let loginWasSuccessful = NSNotification(name: Notifications.LoginWasSuccessful, object: self)
+            NSNotificationCenter.defaultCenter().postNotification(loginWasSuccessful)
+        }
+        /* Dismiss the login view with animation */
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -165,37 +197,39 @@ class LoginViewController: UIViewController {
         usernameTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
         if sender.tag == createLoginButtonTag {
-        let hasLoginKey = NSUserDefaults.standardUserDefaults().boolForKey("hasLoginKey")
             
-        if hasLoginKey == false {
-            NSUserDefaults.standardUserDefaults().setValue(self.usernameTextField.text, forKey: "username")
-        }
+            let hasLoginKey = NSUserDefaults.standardUserDefaults().boolForKey("hasLoginKey")
+            
+            if hasLoginKey == false {
+                NSUserDefaults.standardUserDefaults().setValue(self.usernameTextField.text, forKey: "username")
+            }
         
-            // 5.
+
             AKeychainWrapper.mySetObject(passwordTextField.text, forKey:kSecValueData)
             AKeychainWrapper.writeToKeychain()
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: "hasLoginKey")
             NSUserDefaults.standardUserDefaults().synchronize()
             loginButton.tag = loginButtonTag
             
-            dismissViewControllerAnimated(true, completion: nil)
+            dismissLoginView(true)
         } else if sender.tag == loginButtonTag {
-            // 6.
+            
+            setButtonLoading("Logging in...")
+            
             if checkLogin(usernameTextField.text!, password: passwordTextField.text!) {
-                performSegueWithIdentifier("dismissLogin", sender: self)
+                
+                dismissLoginView(true)
+            
             } else {
-                // 7.
-                let alertView = UIAlertController(title: "Login Problem",
-                    message: "Wrong username or password." as String, preferredStyle:.Alert)
-                let okAction = UIAlertAction(title: "Foiled Again!", style: .Default, handler: nil)
-                alertView.addAction(okAction)
-                self.presentViewController(alertView, animated: true, completion: nil)
+                
+                alertController(withTitles: ["OK"], message: "There was an issue logging you in.  Please check your username and password and try again.", callbackHandler: [nil])
+
             }
         }
     }
     
-    @IBAction func findLoginFrom1Password(sender:AnyObject) -> Void {
-        OnePasswordExtension.sharedExtension().findLoginForURLString("https://www.udacity.com", forViewController: self, sender: sender, completion: { (loginDictionary, error) -> Void in
+    func findLoginFrom1Password(sender:AnyObject) -> Void {
+        OnePasswordExtension.sharedExtension().findLoginForURLString("http://hacksmiths.io", forViewController: self, sender: sender, completion: { (loginDictionary, error) -> Void in
             if loginDictionary == nil {
                 if error!.code != Int(AppExtensionErrorCodeCancelledByUser) {
                     
@@ -213,6 +247,10 @@ class LoginViewController: UIViewController {
             }
 
         })
+    }
+    
+    @IBAction func didTapLoginButtonUpInside(sender: AnyObject) {
+        loginOrRegisterAction(sender)
     }
     
     func saveLoginTo1Password(sender: AnyObject) {
@@ -274,16 +312,6 @@ class LoginViewController: UIViewController {
             return true
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 

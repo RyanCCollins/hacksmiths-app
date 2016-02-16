@@ -64,8 +64,7 @@ struct ErrorMessages {
 
 /* Our notifications for when the pin is finished loading */
 struct Notifications {
-    static let PinDidFinishLoading = "PinDidFinishLoading"
-    static let PinDidFinishLoadingWithErrors = "PinDidFinishLoadingWithErrors"
+    static let LoginWasSuccessful = "LoginWasSuccessful"
 }
 
 /* Helper function to construct errors project wide */

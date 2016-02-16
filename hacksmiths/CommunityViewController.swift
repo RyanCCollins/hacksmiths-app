@@ -11,8 +11,6 @@ import CoreData
 
 class CommunityViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
-    var userList = [User]()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,7 +20,7 @@ class CommunityViewController: UITableViewController, NSFetchedResultsController
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
     }
     
     /* Show loading indicator while performing fetch */
@@ -36,7 +34,7 @@ class CommunityViewController: UITableViewController, NSFetchedResultsController
     }
 
     func configureDisplay() {
-        
+        tableView.reloadData()
     }
     
     /* Perform our fetch with the fetched results controller */

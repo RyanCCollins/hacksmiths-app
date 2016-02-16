@@ -1,5 +1,5 @@
 //
-//  MainTabBarControllerViewController.swift
+//  MainTabBarController.swift
 //  hacksmiths
 //
 //  Created by Ryan Collins on 2/12/16.
@@ -9,7 +9,7 @@
 import UIKit
 import SwiftRaisedTab
 
-class MainTabBarControllerViewController: RaisedTabBarController {
+class MainTabBarController: RaisedTabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

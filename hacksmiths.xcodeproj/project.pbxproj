@@ -54,7 +54,7 @@
 		1FA9FC9B1C53563700B993BC /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA9FC9A1C53563700B993BC /* EventViewController.swift */; };
 		1FE4B30D1C6ADAC10011ECAE /* octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1FE4B30C1C6ADAC10011ECAE /* octicons.ttf */; };
 		1FE4B3131C6ADE050011ECAE /* PersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE4B3121C6ADE050011ECAE /* PersonViewController.swift */; };
-		1FF998921C6EB359003D98B2 /* MainTabBarControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF998911C6EB359003D98B2 /* MainTabBarControllerViewController.swift */; };
+		1FF998921C6EB359003D98B2 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF998911C6EB359003D98B2 /* MainTabBarController.swift */; };
 		1FF998971C6FAE3E003D98B2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF998961C6FAE3E003D98B2 /* User.swift */; };
 		1FF998991C6FAEDE003D98B2 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF998981C6FAEDE003D98B2 /* Event.swift */; };
 		1FF9989B1C6FB04B003D98B2 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF9989A1C6FB04B003D98B2 /* Team.swift */; };
@@ -139,7 +139,7 @@
 		1FA9FC9A1C53563700B993BC /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		1FE4B30C1C6ADAC10011ECAE /* octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = octicons.ttf; path = hacksmiths/octicons.ttf; sourceTree = "<group>"; };
 		1FE4B3121C6ADE050011ECAE /* PersonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonViewController.swift; sourceTree = "<group>"; };
-		1FF998911C6EB359003D98B2 /* MainTabBarControllerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarControllerViewController.swift; sourceTree = "<group>"; };
+		1FF998911C6EB359003D98B2 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		1FF998961C6FAE3E003D98B2 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1FF998981C6FAEDE003D98B2 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		1FF9989A1C6FB04B003D98B2 /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
@@ -190,7 +190,7 @@
 		1F44B1BB1C5DDAC9004E196D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				1FF998911C6EB359003D98B2 /* MainTabBarControllerViewController.swift */,
+				1FF998911C6EB359003D98B2 /* MainTabBarController.swift */,
 				1FA5A4EF1C535D6C00722E55 /* LoginViewController.swift */,
 				1FA5A4ED1C535A9500722E55 /* ExtendsUIViewController.swift */,
 				1FE4B3121C6ADE050011ECAE /* PersonViewController.swift */,
@@ -581,7 +581,7 @@
 				1FA2E5631C6802AC0085FC7D /* HacksmithsAPIConvenience.swift in Sources */,
 				1FF998A11C71387C003D98B2 /* PersonTableViewCell.swift in Sources */,
 				1FA2E5611C68029C0085FC7D /* HacksmithsAPIConstants.swift in Sources */,
-				1FF998921C6EB359003D98B2 /* MainTabBarControllerViewController.swift in Sources */,
+				1FF998921C6EB359003D98B2 /* MainTabBarController.swift in Sources */,
 				1FF9989B1C6FB04B003D98B2 /* Team.swift in Sources */,
 				1FA9FC6A1C534E5900B993BC /* AppDelegate.swift in Sources */,
 				1F4B4DFB1C72581D00A75F5D /* KeychainWrapper.m in Sources */,

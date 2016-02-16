@@ -17,19 +17,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        
-        showLoginView()
+        if !authenticated {
+            showLoginView(false)
+        }
         return true
     }
     
-    func showLoginView() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    func showLoginView(animated: Bool) {
         
-        if !authenticated {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let loginViewController = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
-            window?.rootViewController = loginViewController
             window?.makeKeyAndVisible()
-        }
+            window?.rootViewController?.presentViewController(loginViewController, animated: animated, completion: nil)
+
+    }
+    
+    func logout() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let mainTabBarController = storyboard.instantiateViewControllerWithIdentifier("MainTabBarController") as! MainTabBarController
+        window?.rootViewController = mainTabBarController
+        
+        showLoginView(true)
     }
 
     func applicationWillResignActive(application: UIApplication) {
