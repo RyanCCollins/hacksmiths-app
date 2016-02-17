@@ -12,6 +12,7 @@
 		1F4B4DF81C72574700A75F5D /* OnePasswordExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4B4DF61C72574700A75F5D /* OnePasswordExtension.m */; };
 		1F4B4DFB1C72581D00A75F5D /* KeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4B4DFA1C72581D00A75F5D /* KeychainWrapper.m */; };
 		1F4B4DFD1C7258BD00A75F5D /* KechainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4B4DFC1C7258BD00A75F5D /* KechainWrapper.swift */; };
+		1F4B4DFF1C73A60400A75F5D /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4B4DFE1C73A60400A75F5D /* UserData.swift */; };
 		1FA2E55B1C67FF020085FC7D /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA2E55A1C67FF020085FC7D /* GlobalConstants.swift */; };
 		1FA2E55D1C67FF550085FC7D /* HacksmithsAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA2E55C1C67FF550085FC7D /* HacksmithsAPIClient.swift */; };
 		1FA2E55F1C6802680085FC7D /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA2E55E1C6802680085FC7D /* ImageCache.swift */; };
@@ -91,6 +92,7 @@
 		1F4B4DF91C72581D00A75F5D /* KeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainWrapper.h; sourceTree = "<group>"; };
 		1F4B4DFA1C72581D00A75F5D /* KeychainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainWrapper.m; sourceTree = "<group>"; };
 		1F4B4DFC1C7258BD00A75F5D /* KechainWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KechainWrapper.swift; sourceTree = "<group>"; };
+		1F4B4DFE1C73A60400A75F5D /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		1FA2E55A1C67FF020085FC7D /* GlobalConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
 		1FA2E55C1C67FF550085FC7D /* HacksmithsAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HacksmithsAPIClient.swift; sourceTree = "<group>"; };
 		1FA2E55E1C6802680085FC7D /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
@@ -329,6 +331,7 @@
 		1FF998951C6FAD98003D98B2 /* Managed Object Models */ = {
 			isa = PBXGroup;
 			children = (
+				1F4B4DFE1C73A60400A75F5D /* UserData.swift */,
 				1FF998961C6FAE3E003D98B2 /* User.swift */,
 				1FF998981C6FAEDE003D98B2 /* Event.swift */,
 				1FF9989C1C6FB060003D98B2 /* Organization.swift */,
@@ -576,6 +579,7 @@
 				1FF9989D1C6FB060003D98B2 /* Organization.swift in Sources */,
 				1FF998991C6FAEDE003D98B2 /* Event.swift in Sources */,
 				1FA5A4EE1C535A9500722E55 /* ExtendsUIViewController.swift in Sources */,
+				1F4B4DFF1C73A60400A75F5D /* UserData.swift in Sources */,
 				1FA9FC721C534E5A00B993BC /* hacksmiths.xcdatamodeld in Sources */,
 				1FA5A4EA1C53585E00722E55 /* InfoViewController.swift in Sources */,
 				1FA2E5631C6802AC0085FC7D /* HacksmithsAPIConvenience.swift in Sources */,

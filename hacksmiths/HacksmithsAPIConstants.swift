@@ -32,7 +32,8 @@ extension HacksmithsAPIClient {
     }
     
         struct Keys {
-            
+            static let Username = "username"
+            static let Body = "body"
         }
         
         struct Values {

@@ -118,7 +118,7 @@ class HacksmithsAPIClient: NSObject {
     
     /* Task returned for POSTing data from the Parse server */
     func taskForPOSTMethod (method: String, JSONBody: [String : AnyObject], completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
-        let urlString = Constants.BaseUrlSecure + method
+        let urlString = Constants.TestURL + method
         let request = NSMutableURLRequest(URL: NSURL(string: urlString)!)
         
         request.HTTPMethod = HTTPRequest.POST

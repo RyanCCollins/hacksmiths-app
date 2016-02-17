@@ -58,7 +58,7 @@ class LoginViewController: UIViewController {
             debugLabel.hidden = true
             onepasswordButton.enabled = true
         } else {
-            loginButton.setTitle("Create", forState: UIControlState.Normal)
+            loginButton.setTitle("Register", forState: UIControlState.Normal)
             loginButton.tag = createLoginButtonTag
             debugLabel.hidden = false
             onepasswordButton.enabled = false
@@ -76,7 +76,6 @@ class LoginViewController: UIViewController {
     
     func setButtonLoading(message: String) {
         
-        
         dispatch_async(GlobalMainQueue, {
             let indicator = UIActivityIndicatorView(activityIndicatorStyle: .White)
             self.loginButton.customContentView.addSubview(indicator)
@@ -84,6 +83,8 @@ class LoginViewController: UIViewController {
             indicator.startAnimating()
             
             let label = UILabel()
+            self.loginButton.titleLabel?.text = ""
+            
             self.loginButton.customContentView.addSubview(label)
             label.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 10), excludingEdge: .Left)
             label.autoPinEdge(.Left, toEdge: .Right, ofView: indicator, withOffset: 10)
@@ -221,19 +222,30 @@ class LoginViewController: UIViewController {
             NSUserDefaults.standardUserDefaults().synchronize()
             loginButton.tag = loginButtonTag
             
-            dismissLoginView(true)
+
         } else if sender.tag == loginButtonTag {
             
             setButtonLoading("Logging in...")
             
             if checkLogin(usernameTextField.text!, password: passwordTextField.text!) {
                 
-                dismissLoginView(true)
+                HacksmithsAPIClient.sharedInstance().authenticateWithCredentials(usernameTextField.text!, password: passwordTextField.text!, completionHandler: {success, error in
+                    
+                    if error != nil {
+                        self.alertController(withTitles: ["OK"], message: "We were unable to authenticate your account.  Please check your password and try again.", callbackHandler: [nil])
+                    }
+                    
+                    if success {
+                        
+                        self.dismissLoginView(true)
+                    }
+                    
+                })
             
             } else {
                 
                 alertController(withTitles: ["OK"], message: "There was an issue logging you in.  Please check your username and password and try again.", callbackHandler: [nil])
-
+                
             }
         }
     }
