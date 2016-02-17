@@ -21,6 +21,27 @@ class MainTabBarController: RaisedTabBarController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func showLoginView(animated: Bool) {
+        
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let loginViewController = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+//        window?.makeKeyAndVisible()
+//        window?.rootViewController?.presentViewController(loginViewController, animated: animated, completion: nil)
+        
+    }
+    
+    func updateData() {
+       
+    }
+    
+    func logout() {
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let mainTabBarController = storyboard.instantiateViewControllerWithIdentifier("MainTabBarController") as! MainTabBarController
+//        window?.rootViewController = mainTabBarController
+//        
+//        showLoginView(true)
+    }
 
     /*
     // MARK: - Navigation

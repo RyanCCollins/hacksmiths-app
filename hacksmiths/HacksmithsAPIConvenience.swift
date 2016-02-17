@@ -14,12 +14,12 @@ extension HacksmithsAPIClient {
         
     }
     
-    func registerWithCredentials(username: String, body: [String: AnyObject], completionHandler: CallbackHandler) {
+    func registerWithCredentials(username: String, password: String, completionHandler: CallbackHandler) {
         let method = Routes.SignupEmail
         
-        let postDict: [String: AnyObject] = [Keys.Username: username, Keys.Body: body]
+        let body = [Keys.Username: username, Keys.Password: password]
         
-        taskForPOSTMethod(method, JSONBody: postDict, completionHandler: {result, error in
+        taskForPOSTMethod(method, JSONBody: body, completionHandler: {result, error in
             if error != nil {
                 print(error)
                 completionHandler(success: false, error: error)
@@ -34,9 +34,9 @@ extension HacksmithsAPIClient {
     func authenticateWithCredentials(username: String, password: String, completionHandler: CallbackHandler) {
         let method = Routes.SigninEmail
         
-        let postDict = [username: username, password: password]
+        let body = [Keys.Username: username, Keys.Password: password]
         
-        taskForPOSTMethod(method, JSONBody: postDict, completionHandler: {result, error in
+        taskForPOSTMethod(method, JSONBody: body, completionHandler: {result, error in
             if error != nil {
                 print(error)
                 completionHandler(success: false, error: error)
@@ -47,6 +47,20 @@ extension HacksmithsAPIClient {
             
         })
         
+    }
+    
+    func checkAPIStatus(body: [String: AnyObject], completionHandler: CallbackHandler) {
+        let method = Routes.Status
+        
+        taskForGETMethod(method, parameters: body, completionHandler: {result, error in
+            
+            if error != nil {
+                print(error)
+            } else {
+                print(result)
+            }
+            
+        })
     }
     
 }

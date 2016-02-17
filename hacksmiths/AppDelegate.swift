@@ -17,28 +17,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        if !authenticated {
-            showLoginView(false)
-        }
+        
+        /* If the user has a login key, then set authenticated and log in */
+        authenticated = NSUserDefaults.standardUserDefaults().boolForKey("hasLoginKey")
+        
         return true
     }
     
-    func showLoginView(animated: Bool) {
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let loginViewController = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
-            window?.makeKeyAndVisible()
-            window?.rootViewController?.presentViewController(loginViewController, animated: animated, completion: nil)
 
-    }
-    
-    func logout() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let mainTabBarController = storyboard.instantiateViewControllerWithIdentifier("MainTabBarController") as! MainTabBarController
-        window?.rootViewController = mainTabBarController
-        
-        showLoginView(true)
-    }
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

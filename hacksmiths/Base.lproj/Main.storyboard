@@ -266,7 +266,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Syi-QG-Mot" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1254" y="1608"/>
+            <point key="canvasLocation" x="1234" y="1980"/>
         </scene>
         <!--Person View Controller-->
         <scene sceneID="jMt-3z-wxb">
@@ -347,7 +347,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RER-W1-fAP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="533" y="1608"/>
+            <point key="canvasLocation" x="530" y="1973"/>
         </scene>
         <!--More-->
         <scene sceneID="Ucn-TV-ZzK">
@@ -368,10 +368,10 @@
             </objects>
             <point key="canvasLocation" x="261" y="-151"/>
         </scene>
-        <!--View Controller-->
+        <!--Register View Controller-->
         <scene sceneID="yqc-pg-OFi">
             <objects>
-                <viewController id="u8j-9g-DTf" sceneMemberID="viewController">
+                <viewController id="u8j-9g-DTf" customClass="RegisterViewController" customModule="hacksmiths" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="HsR-7a-IeU"/>
                         <viewControllerLayoutGuide type="bottom" id="ZyZ-US-Sm6"/>
@@ -469,7 +469,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wxF-30-Ijh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2202" y="964"/>
+            <point key="canvasLocation" x="2228" y="1491"/>
         </scene>
         <!--Me-->
         <scene sceneID="Y1c-GH-P24">
@@ -532,7 +532,7 @@
         <!--Register-->
         <scene sceneID="q5h-dY-qcL">
             <objects>
-                <viewController id="8E9-ee-mxd" sceneMemberID="viewController">
+                <viewController id="8E9-ee-mxd" customClass="JoinViewController" customModule="hacksmiths" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Lb2-Wf-IOg"/>
                         <viewControllerLayoutGuide type="bottom" id="KSl-2f-VTe"/>
@@ -578,18 +578,22 @@
                                         </constraints>
                                         <state key="normal" image="multiple-circle-white"/>
                                     </button>
-                                    <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="gjM-yC-Ilj">
-                                        <rect key="frame" x="439" y="682" width="153" height="61"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="gjM-yC-Ilj">
+                                        <rect key="frame" x="223" y="483" width="153" height="61"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Already Registered?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fJW-zs-alJ">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already Registered?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fJW-zs-alJ">
                                                 <rect key="frame" x="0.0" y="0.0" width="153" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.79607843137254897" green="0.94117647058823528" blue="0.86274509803921573" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vWq-Vh-e9y">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vWq-Vh-e9y">
                                                 <rect key="frame" x="53" y="31" width="47" height="30"/>
                                                 <state key="normal" title="Sign in"/>
+                                                <connections>
+                                                    <action selector="didTapSigninUpInside:" destination="8E9-ee-mxd" eventType="touchUpInside" id="hOZ-9k-BOR"/>
+                                                    <segue destination="WN5-vs-oyA" kind="presentation" modalTransitionStyle="flipHorizontal" id="idI-gn-l6U"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -633,6 +637,30 @@
                                             </imageView>
                                         </subviews>
                                     </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Map-cD-aLi" customClass="SwiftyButton" customModule="SwiftyButton">
+                                        <rect key="frame" x="193" y="425" width="214" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="Cr8-cX-h5r"/>
+                                            <constraint firstAttribute="width" constant="214" id="Ms7-h4-BzZ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
+                                        <state key="normal" title="Sign me up!">
+                                            <color key="titleColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="buttonColor">
+                                                <color key="value" red="0.30980392156862746" green="0.61176470588235299" blue="0.61960784313725492" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                <color key="value" red="0.42655369640000002" green="0.475846082" blue="0.4802647531" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="didTapSignupButtonUpInside:" destination="8E9-ee-mxd" eventType="touchUpInside" id="5Qr-1Q-PAL"/>
+                                            <action selector="didTapSkipUpInside:" destination="WN5-vs-oyA" eventType="touchUpInside" id="KBh-fs-EmM"/>
+                                            <segue destination="u8j-9g-DTf" kind="presentation" identifier="ShowRegistration" id="RSb-we-dKQ"/>
+                                        </connections>
+                                    </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="ia8-GS-h7P">
                                         <rect key="frame" x="171" y="234" width="257" height="165"/>
                                         <subviews>
@@ -668,33 +696,6 @@
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Dht-0u-N2u">
-                                        <rect key="frame" x="16" y="682" width="173" height="61"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Visit our site" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5A5-uY-jqR">
-                                                <rect key="frame" x="39" y="0.0" width="95" height="21"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.7803921568627451" green="0.91764705882352937" blue="0.84313725490196079" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="OYx-sD-8qd">
-                                                <rect key="frame" x="0.0" y="31" width="173" height="30"/>
-                                                <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="link-white" translatesAutoresizingMaskIntoConstraints="NO" id="VLd-hN-M59">
-                                                        <rect key="frame" x="0.0" y="2" width="26" height="26"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="26" id="F1g-id-p58"/>
-                                                            <constraint firstAttribute="height" constant="26" id="kR9-1Y-Jyf"/>
-                                                        </constraints>
-                                                    </imageView>
-                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WNS-js-K1d">
-                                                        <rect key="frame" x="36" y="0.0" width="137" height="30"/>
-                                                        <state key="normal" title="http://hacksmiths.io"/>
-                                                    </button>
-                                                </subviews>
-                                            </stackView>
-                                        </subviews>
-                                    </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Join us!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p7E-U6-DaI">
                                         <rect key="frame" x="219" y="9" width="161" height="46"/>
                                         <constraints>
@@ -705,36 +706,43 @@
                                         <color key="textColor" red="0.77254901960784317" green="0.9137254901960784" blue="0.83921568627450982" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Map-cD-aLi" customClass="SwiftyButton" customModule="SwiftyButton">
-                                        <rect key="frame" x="193" y="425" width="214" height="50"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="Cr8-cX-h5r"/>
-                                            <constraint firstAttribute="width" constant="214" id="Ms7-h4-BzZ"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
-                                        <state key="normal" title="Sign me up!">
-                                            <color key="titleColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="buttonColor">
-                                                <color key="value" red="0.30980392156862746" green="0.61176470588235299" blue="0.61960784313725492" alpha="1" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                <color key="value" red="0.42655369640000002" green="0.475846082" blue="0.4802647531" alpha="1" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="didTapSkipUpInside:" destination="WN5-vs-oyA" eventType="touchUpInside" id="KBh-fs-EmM"/>
-                                            <segue destination="u8j-9g-DTf" kind="presentation" id="RSb-we-dKQ"/>
-                                        </connections>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Dht-0u-N2u">
+                                        <rect key="frame" x="213" y="558" width="173" height="61"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Visit our site" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5A5-uY-jqR">
+                                                <rect key="frame" x="39" y="0.0" width="95" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.7803921568627451" green="0.91764705882352937" blue="0.84313725490196079" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="OYx-sD-8qd">
+                                                <rect key="frame" x="0.0" y="31" width="173" height="30"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="link-white" translatesAutoresizingMaskIntoConstraints="NO" id="VLd-hN-M59">
+                                                        <rect key="frame" x="0.0" y="2" width="26" height="26"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="26" id="F1g-id-p58"/>
+                                                            <constraint firstAttribute="height" constant="26" id="kR9-1Y-Jyf"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WNS-js-K1d">
+                                                        <rect key="frame" x="36" y="0.0" width="137" height="30"/>
+                                                        <state key="normal" title="http://hacksmiths.io"/>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="Dht-0u-N2u" firstAttribute="top" secondItem="gjM-yC-Ilj" secondAttribute="bottom" constant="14" id="5QL-Nm-KBK"/>
                                     <constraint firstAttribute="trailing" secondItem="O3G-Fp-gQp" secondAttribute="trailing" constant="17" id="5rv-Rj-kR9"/>
                                     <constraint firstItem="bSc-Oe-eE0" firstAttribute="top" secondItem="O3G-Fp-gQp" secondAttribute="bottom" constant="8" id="Eyc-Dl-4HP"/>
                                     <constraint firstItem="p7E-U6-DaI" firstAttribute="top" secondItem="RF3-x7-Bbl" secondAttribute="top" constant="9" id="Hdz-62-wiX"/>
                                     <constraint firstAttribute="trailing" secondItem="R7K-M9-xhA" secondAttribute="trailing" constant="19" id="Hwz-tI-wOJ"/>
+                                    <constraint firstItem="gjM-yC-Ilj" firstAttribute="top" secondItem="Map-cD-aLi" secondAttribute="bottom" constant="8" id="MTM-tC-NOZ"/>
                                     <constraint firstItem="O3G-Fp-gQp" firstAttribute="top" secondItem="R7K-M9-xhA" secondAttribute="bottom" constant="8" symbolic="YES" id="VCk-qG-9c2"/>
+                                    <constraint firstItem="Dht-0u-N2u" firstAttribute="centerX" secondItem="RF3-x7-Bbl" secondAttribute="centerX" id="ZFB-Q2-XZq"/>
                                     <constraint firstItem="O3G-Fp-gQp" firstAttribute="leading" secondItem="RF3-x7-Bbl" secondAttribute="leading" constant="18" id="c4n-VF-J9e"/>
                                     <constraint firstItem="bSc-Oe-eE0" firstAttribute="centerX" secondItem="RF3-x7-Bbl" secondAttribute="centerX" id="dzJ-Lq-TLh"/>
                                     <constraint firstItem="ia8-GS-h7P" firstAttribute="centerX" secondItem="RF3-x7-Bbl" secondAttribute="centerX" id="fSx-z0-RTy"/>
@@ -743,6 +751,7 @@
                                     <constraint firstItem="Map-cD-aLi" firstAttribute="top" secondItem="ia8-GS-h7P" secondAttribute="bottom" constant="26" id="jgH-gs-sjO"/>
                                     <constraint firstAttribute="bottom" secondItem="bSc-Oe-eE0" secondAttribute="bottom" constant="506" id="ld7-G0-UyU"/>
                                     <constraint firstItem="Map-cD-aLi" firstAttribute="centerX" secondItem="RF3-x7-Bbl" secondAttribute="centerX" id="pU3-uL-uAY"/>
+                                    <constraint firstItem="gjM-yC-Ilj" firstAttribute="centerX" secondItem="RF3-x7-Bbl" secondAttribute="centerX" id="pVW-u9-6y3"/>
                                     <constraint firstItem="ia8-GS-h7P" firstAttribute="leading" secondItem="pZc-tf-OVT" secondAttribute="trailing" constant="8" id="pyl-ue-MHq"/>
                                     <constraint firstItem="O3G-Fp-gQp" firstAttribute="top" secondItem="p7E-U6-DaI" secondAttribute="bottom" constant="8" id="vhg-0Y-lwl"/>
                                     <constraint firstItem="pZc-tf-OVT" firstAttribute="centerY" secondItem="ia8-GS-h7P" secondAttribute="centerY" id="z7J-3W-bkk"/>
@@ -770,7 +779,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PiW-Oc-Hwm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1554" y="568"/>
+            <point key="canvasLocation" x="1586" y="554"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="LYR-NH-UTH">
@@ -920,7 +929,7 @@
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="buttonColor">
-                                                <color key="value" red="0.17077735066413879" green="0.30895513296127319" blue="0.37797331809997559" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="value" red="0.1215686275" green="0.12549019610000001" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
                                                 <color key="value" red="0.42655369640000002" green="0.475846082" blue="0.4802647531" alpha="1" colorSpace="calibratedRGB"/>
@@ -997,13 +1006,26 @@
                                             <constraint firstAttribute="height" constant="50" id="RBQ-BO-hEn"/>
                                         </constraints>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T4a-6W-P8j">
+                                        <rect key="frame" x="565" y="20" width="27" height="27"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="27" id="er9-Je-nZ2"/>
+                                            <constraint firstAttribute="width" constant="27" id="nBR-N8-BcV"/>
+                                        </constraints>
+                                        <state key="normal" image="multiple-circle-white"/>
+                                        <connections>
+                                            <action selector="didTapSkipUpInside:" destination="WN5-vs-oyA" eventType="touchUpInside" id="MRd-lV-tfs"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.37254901960784315" green="0.6705882352941176" blue="0.68235294117647061" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="gQ0-av-red" firstAttribute="leading" secondItem="9ik-Q5-lj8" secondAttribute="trailing" constant="8" id="1Px-Kc-DgC"/>
                                     <constraint firstItem="9ik-Q5-lj8" firstAttribute="centerY" secondItem="18M-tO-Zgj" secondAttribute="centerY" id="4QV-IF-GlW"/>
                                     <constraint firstItem="9ik-Q5-lj8" firstAttribute="leading" secondItem="18M-tO-Zgj" secondAttribute="trailing" constant="8" id="6nq-mh-doa"/>
+                                    <constraint firstAttribute="trailing" secondItem="T4a-6W-P8j" secondAttribute="trailing" constant="8" id="AHV-7Z-Ep6"/>
                                     <constraint firstItem="9ik-Q5-lj8" firstAttribute="width" secondItem="TA8-lw-KPZ" secondAttribute="width" id="BmC-4G-Vkm"/>
+                                    <constraint firstItem="T4a-6W-P8j" firstAttribute="top" secondItem="6ZL-5y-9Rr" secondAttribute="top" constant="20" id="CgM-Ou-W1o"/>
                                     <constraint firstItem="Qwj-jV-UKm" firstAttribute="centerX" secondItem="JKA-Ms-3U6" secondAttribute="centerX" id="Eos-aE-MAg"/>
                                     <constraint firstItem="eZn-0N-BZD" firstAttribute="centerY" secondItem="Qwj-jV-UKm" secondAttribute="centerY" id="FsH-np-c1O"/>
                                     <constraint firstAttribute="bottom" secondItem="Qwj-jV-UKm" secondAttribute="bottom" id="GH0-EC-grn"/>
@@ -1036,12 +1058,11 @@
                         <outlet property="passwordTextField" destination="Wsb-H3-dPN" id="gNQ-K2-vkd"/>
                         <outlet property="touchIDButton" destination="gQ0-av-red" id="Equ-rA-ZiJ"/>
                         <outlet property="usernameTextField" destination="ugf-j5-Hds" id="ts3-Sf-GaN"/>
-                        <segue destination="mpf-Ib-Wgf" kind="presentation" identifier="dismissLogin" modalTransitionStyle="flipHorizontal" id="8zJ-1n-4VN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jT7-sf-Y6t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-769" y="574"/>
+            <point key="canvasLocation" x="865" y="1315"/>
         </scene>
         <!--Main Tab Bar Controller-->
         <scene sceneID="Pls-B9-eE6">

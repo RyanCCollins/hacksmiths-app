@@ -45,24 +45,29 @@ class LoginViewController: UIViewController {
         
         loginButtonView.addSubview(loginButton)
         loginButton.autoPinEdgesToSuperviewEdges()
-        loginButton.buttonColor = UIColor(red: 52/255, green: 152/255, blue: 219/255, alpha: 1)
-        loginButton.shadowColor = UIColor(red: 41/255, green: 128/255, blue: 185/255, alpha: 1)
+        
+        setButtonLoading("Login", loading: false)
+        
+        loginButton.buttonColor = UIColor(hex: "#25293c")
+        loginButton.shadowColor = UIColor(hex: "#808c8d")
         
         loginButton.addTarget(self, action: "loginOrRegisterAction:", forControlEvents: UIControlEvents.TouchUpInside)
         
-        let hasLogin = NSUserDefaults.standardUserDefaults().boolForKey("hasLoginKey")
+        loginButton.tag = loginButtonTag
+        debugLabel.hidden = true
+        onepasswordButton.enabled = true
         
-        if hasLogin {
-            loginButton.setTitle("Login", forState: UIControlState.Normal)
-            loginButton.tag = loginButtonTag
-            debugLabel.hidden = true
-            onepasswordButton.enabled = true
-        } else {
-            loginButton.setTitle("Register", forState: UIControlState.Normal)
-            loginButton.tag = createLoginButtonTag
-            debugLabel.hidden = false
-            onepasswordButton.enabled = false
-        }
+//        if hasLogin {
+//            loginButton.setTitle("Login", forState: UIControlState.Normal)
+//            loginButton.tag = loginButtonTag
+//            debugLabel.hidden = true
+//            onepasswordButton.enabled = true
+//        } else {
+//            loginButton.setTitle("Register", forState: UIControlState.Normal)
+//            loginButton.tag = createLoginButtonTag
+//            debugLabel.hidden = false
+//            onepasswordButton.enabled = false
+//        }
         
         
         if let storedUsername = NSUserDefaults.standardUserDefaults().valueForKey("username") as? String {
@@ -74,23 +79,35 @@ class LoginViewController: UIViewController {
         dismissLoginView(false)
     }
     
-    func setButtonLoading(message: String) {
+    func setButtonLoading(message: String, loading: Bool) {
+        let indicator = UIActivityIndicatorView(activityIndicatorStyle: .White)
         
-        dispatch_async(GlobalMainQueue, {
-            let indicator = UIActivityIndicatorView(activityIndicatorStyle: .White)
-            self.loginButton.customContentView.addSubview(indicator)
-            indicator.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: 10, left: 15, bottom: 10, right: 0), excludingEdge: .Right)
-            indicator.startAnimating()
+        if loading == true {
             
-            let label = UILabel()
-            self.loginButton.titleLabel?.text = ""
-            
-            self.loginButton.customContentView.addSubview(label)
-            label.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 10), excludingEdge: .Left)
-            label.autoPinEdge(.Left, toEdge: .Right, ofView: indicator, withOffset: 10)
-            label.text = message
-            label.textColor = UIColor.whiteColor()
-        })
+            dispatch_async(GlobalMainQueue, {
+                
+                self.loginButton.customContentView.addSubview(indicator)
+                indicator.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: 10, left: 15, bottom: 10, right: 0), excludingEdge: .Right)
+                indicator.startAnimating()
+                
+                let label = UILabel()
+                self.loginButton.titleLabel?.text = ""
+                
+                self.loginButton.customContentView.addSubview(label)
+                label.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 10), excludingEdge: .Left)
+                label.autoPinEdge(.Left, toEdge: .Right, ofView: indicator, withOffset: 10)
+                label.text = message
+                label.textColor = UIColor.whiteColor()
+            })
+        } else {
+            /* Remove the custom content view */
+            dispatch_async(GlobalMainQueue, {
+                self.loginButton.customContentView.hideLoading()
+                
+                self.loginButton.titleLabel!.text = message
+            })
+        }
+
 
     }
     
@@ -207,31 +224,32 @@ class LoginViewController: UIViewController {
         
         usernameTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
-        if sender.tag == createLoginButtonTag {
-            
-            let hasLoginKey = NSUserDefaults.standardUserDefaults().boolForKey("hasLoginKey")
-            
-            if hasLoginKey == false {
-                NSUserDefaults.standardUserDefaults().setValue(self.usernameTextField.text, forKey: "username")
-            }
+//        if sender.tag == createLoginButtonTag {
+//            
+//            let hasLoginKey = NSUserDefaults.standardUserDefaults().boolForKey("hasLoginKey")
+//            
+//            if hasLoginKey == false {
+//                NSUserDefaults.standardUserDefaults().setValue(self.usernameTextField.text, forKey: "username")
+//            }
+//        
+//
+//            AKeychainWrapper.mySetObject(passwordTextField.text, forKey:kSecValueData)
+//            AKeychainWrapper.writeToKeychain()
+//            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "hasLoginKey")
+//            NSUserDefaults.standardUserDefaults().synchronize()
+//            loginButton.tag = loginButtonTag
         
 
-            AKeychainWrapper.mySetObject(passwordTextField.text, forKey:kSecValueData)
-            AKeychainWrapper.writeToKeychain()
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "hasLoginKey")
-            NSUserDefaults.standardUserDefaults().synchronize()
-            loginButton.tag = loginButtonTag
-            
-
-        } else if sender.tag == loginButtonTag {
-            
-            setButtonLoading("Logging in...")
+//        } else if sender.tag == loginButtonTag {
+        
+            setButtonLoading("Logging in...", loading: true)
             
             if checkLogin(usernameTextField.text!, password: passwordTextField.text!) {
                 
                 HacksmithsAPIClient.sharedInstance().authenticateWithCredentials(usernameTextField.text!, password: passwordTextField.text!, completionHandler: {success, error in
                     
                     if error != nil {
+                        self.setButtonLoading("Login", loading: false)
                         self.alertController(withTitles: ["OK"], message: "We were unable to authenticate your account.  Please check your password and try again.", callbackHandler: [nil])
                     }
                     
@@ -247,7 +265,7 @@ class LoginViewController: UIViewController {
                 alertController(withTitles: ["OK"], message: "There was an issue logging you in.  Please check your username and password and try again.", callbackHandler: [nil])
                 
             }
-        }
+//        }
     }
     
     func findLoginFrom1Password(sender:AnyObject) -> Void {
@@ -288,7 +306,7 @@ class LoginViewController: UIViewController {
         ]
         
         // 3.
-        OnePasswordExtension.sharedExtension().storeLoginForURLString(HacksmithsAPIClient.Constants.URL, loginDetails: newLoginDictionary, passwordGenerationOptions: passwordDetailsDictionary, forViewController: self, sender: sender, completion: {(loginDictionary, error) -> Void in
+        OnePasswordExtension.sharedExtension().storeLoginForURLString(HacksmithsAPIClient.Constants.BaseURL, loginDetails: newLoginDictionary, passwordGenerationOptions: passwordDetailsDictionary, forViewController: self, sender: sender, completion: {(loginDictionary, error) -> Void in
             
             if loginDictionary == nil {
                 if (error!.code != Int(AppExtensionErrorCodeCancelledByUser))  {

@@ -118,7 +118,7 @@ class HacksmithsAPIClient: NSObject {
     
     /* Task returned for POSTing data from the Parse server */
     func taskForPOSTMethod (method: String, JSONBody: [String : AnyObject], completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
-        let urlString = Constants.TestURL + method
+        let urlString = Constants.APIURL + method
         let request = NSMutableURLRequest(URL: NSURL(string: urlString)!)
         
         request.HTTPMethod = HTTPRequest.POST
@@ -171,7 +171,7 @@ class HacksmithsAPIClient: NSObject {
     /* Update a user's location */
     func taskForPUTMethod(method: String, objectId: String, JSONBody : [String : AnyObject], completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         
-        let urlString = Constants.BaseUrlSecure + method + "/" + objectId
+        let urlString = Constants.APIURL + method + "/" + objectId
         
         let request = NSMutableURLRequest(URL: NSURL(string: urlString)!)
         
