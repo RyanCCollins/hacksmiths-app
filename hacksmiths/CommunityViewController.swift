@@ -23,6 +23,10 @@ class CommunityViewController: UITableViewController, NSFetchedResultsController
         
     }
     
+    func syncNetworkData() {
+        
+    }
+    
     /* Show loading indicator while performing fetch */
     func performInitialFetch() {
         sharedContext.performBlockAndWait({
