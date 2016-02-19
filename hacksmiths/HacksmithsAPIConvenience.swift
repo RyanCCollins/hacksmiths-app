@@ -19,7 +19,7 @@ extension HacksmithsAPIClient {
         
         let body = [Keys.Username: username, Keys.Password: password]
         
-        taskForPOSTMethod(method, JSONBody: body, completionHandler: {result, error in
+        taskForPOSTMethod(method, JSONBody: body, completionHandler: {success, result, error in
             if error != nil {
                 print(error)
                 completionHandler(success: false, error: error)
@@ -36,7 +36,7 @@ extension HacksmithsAPIClient {
         
         let body = [Keys.Username: username, Keys.Password: password]
         
-        taskForPOSTMethod(method, JSONBody: body, completionHandler: {result, error in
+        taskForPOSTMethod(method, JSONBody: body, completionHandler: {success, result, error in
             if error != nil {
                 print(error)
                 completionHandler(success: false, error: error)
@@ -49,10 +49,10 @@ extension HacksmithsAPIClient {
         
     }
     
-    func checkAPIStatus(body: [String: AnyObject], completionHandler: CallbackHandler) {
+    func getDataFromAPI(body: [String: AnyObject], completionHandler: CallbackHandler) {
         let method = Routes.Status
         
-        taskForGETMethod(method, parameters: body, completionHandler: {result, error in
+        taskForGETMethod(method, parameters: body, completionHandler: {success, result, error in
             
             if error != nil {
                 print(error)
@@ -62,5 +62,24 @@ extension HacksmithsAPIClient {
             
         })
     }
+    
+    func getMemberList(body: [String :AnyObject], completionHandler: CallbackHandler) {
+        let method = Routes.Members
+        
+        taskForGETMethod(method, parameters: body, completionHandler: {success, result, error in
+            
+            if error != nil {
+                completionHandler(success: false, error: error)
+            } else {
+                
+                if let membersArray = result[HacksmithsAPIClient.JSONResponseKeys.Members] as? [String : AnyObject] {
+                    print(membersArray)
+                }
+                
+            }
+            
+        })
+    }
+    
     
 }

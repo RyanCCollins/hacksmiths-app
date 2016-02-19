@@ -16,6 +16,7 @@ class CommunityViewController: UITableViewController, NSFetchedResultsController
 
         // Set this view to be the fetchedResultsControllerDelegate
         fetchedResultsController.delegate = self
+        syncNetworkData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -24,7 +25,18 @@ class CommunityViewController: UITableViewController, NSFetchedResultsController
     }
     
     func syncNetworkData() {
-        
+        let body = [String : AnyObject]()
+        HacksmithsAPIClient.sharedInstance().getMemberList(body, completionHandler: {result, error in
+            
+            if error != nil {
+                
+                self.alertController(withTitles: ["OK", "Retry"], message: "Sorry, but an error occured while downloading networked data.", callbackHandler: [nil, nil])
+                
+            } else {
+                print(result)
+            }
+            
+        })
     }
     
     /* Show loading indicator while performing fetch */
@@ -102,10 +114,10 @@ extension CommunityViewController {
         
         cell.personImageView.image = UIImage(contentsOfFile: "person")
         
-        if let user = fetchedResultsController.fetchedObjects![indexPath.section] as? User {
+        if let user = fetchedResultsController.fetchedObjects![indexPath.section] as? Person {
             cell.personImageView.image = user.image
             cell.nameLabel.text = user.name
-            cell.aboutLabel.text = user.about
+            cell.aboutLabel.text = user.bio
         }
         return cell
     }

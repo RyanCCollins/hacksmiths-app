@@ -12,7 +12,8 @@ import CoreData
 
 class HacksmithsAPIClient: NSObject {
 
-    typealias CompletionHandler = (result: AnyObject!, error: NSError?) -> Void
+    typealias CompletionHandlerWithResult = (success: Bool, result: AnyObject!, error: NSError?) -> Void
+    typealias CompletionHandler = (success: Bool, result: Bool) -> Void
     
     
     /* The HacksmithsAPIClient class totally abstracts away all logic for connecting to the HACKSMITHS API for the purposes of
@@ -20,7 +21,7 @@ class HacksmithsAPIClient: NSObject {
     */
     
     /* Task returned for GETting data from the server */
-    func taskForGETMethod(var urlString: String, parameters: [String : AnyObject]?, completionHandler: CompletionHandler) -> NSURLSessionDataTask {
+    func taskForGETMethod(var urlString: String, parameters: [String : AnyObject]?, completionHandler: CompletionHandlerWithResult) -> NSURLSessionDataTask {
         
         /* If our request includes parameters, add those parameters to our URL */
         if parameters != nil {
@@ -45,7 +46,7 @@ class HacksmithsAPIClient: NSObject {
             if error != nil {
                 
                 print(error)
-                completionHandler(result: nil, error: Errors.constructError(domain: "HacksmithsAPIClient", userMessage: ErrorMessages.Status.Network))
+                completionHandler(success: false, result: nil, error: Errors.constructError(domain: "HacksmithsAPIClient", userMessage: ErrorMessages.Status.Network))
                 
             } else {
                 
@@ -54,7 +55,7 @@ class HacksmithsAPIClient: NSObject {
                     
                     if error != nil {
                         print(response)
-                        completionHandler(result: nil, error: error)
+                        completionHandler(success: false, result: nil, error: error)
                         
                     }
                 }
@@ -117,7 +118,7 @@ class HacksmithsAPIClient: NSObject {
     }
     
     /* Task returned for POSTing data from the Parse server */
-    func taskForPOSTMethod (method: String, JSONBody: [String : AnyObject], completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+    func taskForPOSTMethod (method: String, JSONBody: [String : AnyObject], completionHandler: CompletionHandlerWithResult) -> NSURLSessionDataTask {
         let urlString = Constants.APIURL + method
         let request = NSMutableURLRequest(URL: NSURL(string: urlString)!)
         
@@ -134,7 +135,7 @@ class HacksmithsAPIClient: NSObject {
         } catch {
             
             request.HTTPBody = nil
-            completionHandler(result: nil, error: Errors.constructError(domain: "HacksmithsAPI", userMessage: ErrorMessages.JSONSerialization))
+            completionHandler(success: false, result: nil, error: Errors.constructError(domain: "HacksmithsAPI", userMessage: ErrorMessages.JSONSerialization))
             
         }
         
@@ -145,7 +146,7 @@ class HacksmithsAPIClient: NSObject {
             
             if error != nil {
                 
-                completionHandler(result: nil, error: Errors.constructError(domain: "HacksmithsAPI", userMessage: ErrorMessages.Status.Network))
+                completionHandler(success: false, result: nil, error: Errors.constructError(domain: "HacksmithsAPI", userMessage: ErrorMessages.Status.Network))
                 
             } else {
                 
@@ -153,7 +154,7 @@ class HacksmithsAPIClient: NSObject {
                 self.guardForHTTPResponses(response as? NSHTTPURLResponse) {proceed, error in
                     if error != nil {
                         
-                        completionHandler(result: nil, error: error)
+                        completionHandler(success: false, result: nil, error: error)
                         
                     }
                 }
@@ -169,7 +170,7 @@ class HacksmithsAPIClient: NSObject {
     
     
     /* Update a user's location */
-    func taskForPUTMethod(method: String, objectId: String, JSONBody : [String : AnyObject], completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+    func taskForPUTMethod(method: String, objectId: String, JSONBody : [String : AnyObject], completionHandler: CompletionHandlerWithResult) -> NSURLSessionDataTask {
         
         let urlString = Constants.APIURL + method + "/" + objectId
         
@@ -188,7 +189,7 @@ class HacksmithsAPIClient: NSObject {
             
         } catch {
             request.HTTPBody = nil
-            completionHandler(result: nil, error: Errors.constructError(domain: "ParseClient", userMessage: ErrorMessages.JSONSerialization))
+            completionHandler(success: false, result: nil, error: Errors.constructError(domain: "HacksmithsAPIClient", userMessage: ErrorMessages.JSONSerialization))
             
         }
         
@@ -199,7 +200,7 @@ class HacksmithsAPIClient: NSObject {
             
             if error != nil {
                 
-                completionHandler(result: nil, error: Errors.constructError(domain: "ParseClient", userMessage: ErrorMessages.Status.Network))
+                completionHandler(success: false, result: nil, error: Errors.constructError(domain: "HacksmithsAPIClient", userMessage: ErrorMessages.Status.Network))
                 
             } else {
                 
@@ -207,7 +208,7 @@ class HacksmithsAPIClient: NSObject {
                 self.guardForHTTPResponses(response as? NSHTTPURLResponse) {proceed, error in
                     if error != nil {
                         
-                        completionHandler(result: nil, error: error)
+                        completionHandler(success: false, result: nil, error: error)
                         
                     }
                 }
@@ -224,19 +225,19 @@ class HacksmithsAPIClient: NSObject {
     
     
     /* Helper Function: Convert JSON to a Foundation object */
-    class func parseJSONDataWithCompletionHandler(data: NSData, completionHandler: (result: AnyObject!, error: NSError?) -> Void) {
+    class func parseJSONDataWithCompletionHandler(data: NSData, completionHandler: CompletionHandlerWithResult) {
         
         var parsedResult: AnyObject?
         do {
             parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
             
         } catch {
-            completionHandler(result: nil, error: Errors.constructError(domain: "HacksmithsAPI", userMessage: ErrorMessages.Parse))
+            completionHandler(success: false, result: nil, error: Errors.constructError(domain: "HacksmithsAPI", userMessage: ErrorMessages.Parse))
         }
         
         
         
-        completionHandler(result: parsedResult, error: nil)
+        completionHandler(success: true, result: parsedResult, error: nil)
     }
     
     
