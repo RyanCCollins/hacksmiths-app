@@ -26,8 +26,8 @@ extension HacksmithsAPIClient {
     struct Routes {
         static let Stats = "stats/"
         
-        static let Status = "status/"
-        static let rsvp = "rsvp/"
+        static let EventStatus = "event-status/"
+        static let RSVP = "rsvp/"
         static let SigninEmail = "signin-email/"
         static let SignupEmail = "signup-email"
         static let SigninService = "signin-service/"
@@ -44,7 +44,7 @@ extension HacksmithsAPIClient {
         }
         
         struct Values {
-
+            
             struct Methods {
                 
             }
@@ -58,7 +58,16 @@ extension HacksmithsAPIClient {
         static let Code = "code"
         static let Members = "members"
         
+        struct Auth {
+            static let success = "success"
+            static let session = "session"
+            static let date = "date"
+            static let userId = "userId"
+            static let message = "message"
+        }
+        
         struct MemberData {
+            
             static let _id = "_id"
             static let key = "key"
             static let name = "name"
@@ -164,6 +173,7 @@ extension HacksmithsAPIClient {
         }
 
         struct Event {
+            static let id = "id"
             static let title = "title"
             static let organization = "organization"
             static let project = "project"
@@ -171,14 +181,16 @@ extension HacksmithsAPIClient {
             static let marketingInfo = "marketingInfo"
             static let sponsors = "sponsors"
             static let teams = "teams"
-            static let regitrationStartDate = "regitrationStartDate"
-            static let regirstionEndDate = "regirstionEndDate"
+            static let registrationStartDate = "registrationStartDate"
+            static let registrationEndDate = "registrationEndDate"
             static let startDate = "startDate"
             static let endDate = "endDate"
             static let place = "place"
             static let map = "map"
             static let maxRSVPs = "maxRSVPs"
             static let totalRSVPs = "totalRSVPs"
+            static let spotsAvailable = "spotsAvailable"
+            static let spotsRemaining = "spotsRemaining"
             static let state = "state"
             static let publishedDate = "publishedDate"
         }

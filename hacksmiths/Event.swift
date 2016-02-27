@@ -13,6 +13,7 @@ import CoreData
 
 class Event: NSManagedObject {
     
+    @NSManaged var id: String
     @NSManaged var title: String
     @NSManaged var organization : String?
     @NSManaged var descriptionString: String?
@@ -24,6 +25,9 @@ class Event: NSManagedObject {
     @NSManaged var endDate: NSDate
     @NSManaged var maxRSVPS: NSNumber
     @NSManaged var totalRSVPS: NSNumber
+    @NSManaged var spotsAvailable: Bool
+    @NSManaged var spotsRemaining: NSNumber
+    
     @NSManaged var project: Project
     @NSManaged var marketingInfo: String
     

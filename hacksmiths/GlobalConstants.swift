@@ -32,7 +32,9 @@ var GlobalBackgroundQueue: dispatch_queue_t {
 }
 
 /* typealias for completion block handlers */
-typealias CallbackHandler = (success: Bool, error: NSError?) -> Void
+typealias CompletionHandlerWithResult = (success: Bool, result: AnyObject!, error: NSError?) -> Void
+typealias CompletionHandler = (success: Bool, error: NSError?) -> Void
+typealias CompletionHandlerWithImage = (image: UIImage?, error: NSError?) -> Void
 
 /* Define global errors */
 struct GlobalErrors : ErrorType {

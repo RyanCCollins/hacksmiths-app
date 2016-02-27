@@ -11,10 +11,6 @@ import Foundation
 import CoreData
 
 class HacksmithsAPIClient: NSObject {
-
-    typealias CompletionHandlerWithResult = (success: Bool, result: AnyObject!, error: NSError?) -> Void
-    typealias CompletionHandler = (success: Bool, result: Bool) -> Void
-    
     
     /* The HacksmithsAPIClient class totally abstracts away all logic for connecting to the HACKSMITHS API for the purposes of
     * downloading data
@@ -71,7 +67,7 @@ class HacksmithsAPIClient: NSObject {
     
     /* Abtraction that returns a UIImage from a URL from HacksmithsAPIClient
     Making our life a bit easier for photo processing */
-    func taskForGETImageFromURL(url: String, completionHandler: (image: UIImage?, error: NSError?)-> Void) -> NSURLSessionDataTask {
+    func taskForGETImageFromURL(url: String, completionHandler: CompletionHandlerWithImage) -> NSURLSessionDataTask {
         
         let url = NSURL(string: url)!
         

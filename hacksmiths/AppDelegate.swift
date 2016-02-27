@@ -13,13 +13,13 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var authenticated: Bool = false
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
         /* If the user has a login key, then set authenticated and log in */
-        authenticated = NSUserDefaults.standardUserDefaults().boolForKey("hasLoginKey")
+
+        UserData.sharedInstance().getDataFromUserDefaults()
         
         return true
     }

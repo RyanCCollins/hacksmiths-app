@@ -1,13 +1,10 @@
 PODS:
-  - CorePlot (2.0)
   - Crashlytics (3.6.0):
     - Fabric (~> 1.6.3)
   - Fabric (1.6.5)
   - FontAwesome-iOS (0.0.4)
-  - JBChartView (3.0.6)
   - PureLayout (3.0.1)
   - Spring (1.0.3)
-  - Stencils (1.0.0)
   - SwiftRaisedTab (0.2.0)
   - SwiftSpinner (0.8.0)
   - SwiftyButton (0.4.0):
@@ -16,13 +13,10 @@ PODS:
     - PureLayout (~> 3.0)
 
 DEPENDENCIES:
-  - CorePlot
   - Crashlytics
   - Fabric
   - FontAwesome-iOS
-  - JBChartView
   - Spring (from `https://github.com/MengTo/Spring.git`, branch `swift2`)
-  - Stencils
   - SwiftRaisedTab (~> 0.2.0)
   - SwiftSpinner
   - SwiftyButton
@@ -39,14 +33,11 @@ CHECKOUT OPTIONS:
     :git: https://github.com/MengTo/Spring.git
 
 SPEC CHECKSUMS:
-  CorePlot: b7f422ad363f2b0e48152471d6da45ce232eb8c6
   Crashlytics: e4e8d02914f2608fbc7bf42b1a7af838b0db67a2
   Fabric: 338ffd3c2afcab120638907b4251189de9ad17b3
   FontAwesome-iOS: 0fd503f7ae46780e17c2dd98e70fed30b5f90322
-  JBChartView: 5e4ab567158a45184bc26b295b06e7cb9cf38349
   PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
   Spring: 3f02b5dc3308572ef177b3cad0fa7bbc4b0706f7
-  Stencils: aff2d3068d0c2bfed904d7e0a8d4b9e4f838b72e
   SwiftRaisedTab: 7550a96a4c6aeacf438e27ac9ab1c2a2545efb39
   SwiftSpinner: 11c2c5ec7443d92f3026d3067ca8a91d4adef13f
   SwiftyButton: fffcc0d82b2b5f9ec1681f20ee9c67bed0d5c73b

@@ -75,7 +75,6 @@ class CommunityViewController: UITableViewController, NSFetchedResultsController
         
         fetch.sortDescriptors = [roleSort, lastNameSort]
         
-        
         let fetchResultsController = NSFetchedResultsController(fetchRequest: fetch, managedObjectContext: self.sharedContext, sectionNameKeyPath: nil, cacheName: nil)
         
         do {
