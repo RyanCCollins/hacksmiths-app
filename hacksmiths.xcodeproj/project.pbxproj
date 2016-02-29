@@ -65,6 +65,7 @@
 		1FF9989F1C6FB068003D98B2 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF9989E1C6FB068003D98B2 /* Project.swift */; };
 		1FF998A11C71387C003D98B2 /* PersonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF998A01C71387C003D98B2 /* PersonTableViewCell.swift */; };
 		1FF998A41C713931003D98B2 /* LeaderBoardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF998A31C713931003D98B2 /* LeaderBoardTableViewCell.swift */; };
+		A65026EBE1199B338A849E3D /* Pods_hacksmiths.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF110D8B960F24ED20D7AB4A /* Pods_hacksmiths.framework */; };
 		E11C0836866FA3F830ABB22F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F01D804491290ED3ADAFE2E /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -155,6 +156,7 @@
 		1FF998A31C713931003D98B2 /* LeaderBoardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderBoardTableViewCell.swift; sourceTree = "<group>"; };
 		2191EFCDC3E224734A81AEB7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		2F01D804491290ED3ADAFE2E /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF110D8B960F24ED20D7AB4A /* Pods_hacksmiths.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hacksmiths.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA5C00C756EC56DE13602503 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -164,6 +166,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E11C0836866FA3F830ABB22F /* Pods.framework in Frameworks */,
+				A65026EBE1199B338A849E3D /* Pods_hacksmiths.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,6 +363,7 @@
 			isa = PBXGroup;
 			children = (
 				2F01D804491290ED3ADAFE2E /* Pods.framework */,
+				AF110D8B960F24ED20D7AB4A /* Pods_hacksmiths.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -542,7 +546,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-hacksmiths/Pods-hacksmiths-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C11D7ED81861E686D1E330D8 /* Copy Pods Resources */ = {
