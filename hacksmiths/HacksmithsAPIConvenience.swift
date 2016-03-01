@@ -49,7 +49,7 @@ extension HacksmithsAPIClient {
                         let date = result[JSONResponseKeys.Auth.date] as! NSDate
                         
                         UserData.sharedInstance().userId = userId
-                        
+                        UserData.sharedInstance().dateAuthenticated = date
                         completionHandler(success: true, error: nil)
                     
                     }

@@ -12,8 +12,8 @@ import Foundation
 extension HacksmithsAPIClient {
     
         struct Constants {
-            static let BaseURL = "http://localhost:4000/"
-            static let APIURL = "http://localhost:4000/api/app/"
+            static let BaseURL = "http://hacksmiths.io/"
+            static let APIURL = "http://hacksmiths.io/api/app/"
             static let App = "app/"
             
         }
@@ -71,24 +71,7 @@ extension HacksmithsAPIClient {
             static let _id = "_id"
             static let key = "key"
             static let name = "name"
-            
-            
             static let email = "email"
-            
-            
-            struct Permissions {
-                static let isAdmin = "isAdmin"
-                static let isTeamLeader = "isTeamLeader"
-                static let isMember = "isMember"
-            }
-            
-            struct Memberships {
-                static let enrollments = "enrollments"
-                static let enrollmentStatus = "enrollmentStatus"
-                static let teams = "teams"
-                static let organization = "organization"
-            }
-            
             
             struct Profile {
                 static let isPublic = "isPublic"
@@ -102,9 +85,29 @@ extension HacksmithsAPIClient {
                 static let avatarUrl = "avatarUrl"
             }
             
+            struct Notifications {
+                static let notifications = "notifications"
+                static let posts = "posts"
+                static let projects = "projects"
+                static let events = "events"
+            }
+            
+
+            
             struct EventInvolvement {
                 struct availability {
                     static let daysAvailable = "daysAvailable"
+                    
+                    struct days {
+                        static let monday = "monday"
+                        static let tuesday = "tuesday"
+                        static let friday = "friday"
+                        static let wednesday = "wednesday"
+                        static let thursday = "thursday"
+                        static let saturday = "saturday"
+                        static let sunday = "sunday"
+                    }
+                    
                     static let isAvailableForEvents = "isAvailableForEvents"
                     static let explanation = "explanation"
                 }
@@ -114,6 +117,19 @@ extension HacksmithsAPIClient {
                 static let skillExplanation = "skillExplanation"
                 static let rolesToFill = "rolesToFill"
                 static let projectInterests = "projectInterests"
+            }
+            
+            struct Memberships {
+                static let enrollments = "enrollments"
+                static let enrollmentStatus = "enrollmentStatus"
+                static let teams = "teams"
+                static let organization = "organization"
+            }
+            
+            struct Permissions {
+                static let isAdmin = "isAdmin"
+                static let isTeamLeader = "isTeamLeader"
+                static let isMember = "isMember"
             }
             
             struct Services {
@@ -143,12 +159,7 @@ extension HacksmithsAPIClient {
                 }
             }
             
-            struct Notifications {
-                static let notifications = "notifications"
-                static let posts = "posts"
-                static let projects = "projects"
-                static let events = "events"
-            }
+
             
             struct Settings {
                 static let settings = "settings"
@@ -159,7 +170,7 @@ extension HacksmithsAPIClient {
                 static let sortPriority = "sortPriority"
                 static let rank = "rank"
                 static let lastRSVP = "lastRSVP"
-                static let projectsContributedTo = "projectsContributedTo"
+                static let projects = "projects"
             }
             
         }
@@ -189,6 +200,8 @@ extension HacksmithsAPIClient {
             static let map = "map"
             static let maxRSVPs = "maxRSVPs"
             static let totalRSVPs = "totalRSVPs"
+            
+            /* The spots available returns Bool, where remaining returns a number*/
             static let spotsAvailable = "spotsAvailable"
             static let spotsRemaining = "spotsRemaining"
             static let state = "state"

@@ -1,7 +1,7 @@
 PODS:
-  - Crashlytics (3.6.0):
+  - Crashlytics (3.7.0):
     - Fabric (~> 1.6.3)
-  - Fabric (1.6.5)
+  - Fabric (1.6.6)
   - FontAwesome-iOS (0.0.4)
   - PureLayout (3.0.1)
   - Spring (1.0.3)
@@ -33,8 +33,8 @@ CHECKOUT OPTIONS:
     :git: https://github.com/MengTo/Spring.git
 
 SPEC CHECKSUMS:
-  Crashlytics: e4e8d02914f2608fbc7bf42b1a7af838b0db67a2
-  Fabric: 338ffd3c2afcab120638907b4251189de9ad17b3
+  Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
+  Fabric: 1abc1e59f11fa39ede6f690ef7309d8563e3ec59
   FontAwesome-iOS: 0fd503f7ae46780e17c2dd98e70fed30b5f90322
   PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
   Spring: 3f02b5dc3308572ef177b3cad0fa7bbc4b0706f7

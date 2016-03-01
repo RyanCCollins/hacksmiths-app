@@ -13,7 +13,8 @@ import UIKit
 
 class Person: NSManagedObject {
     
-    @NSManaged var name: String
+    @NSManaged var firstName: String
+    @NSManaged var lastName: String
     @NSManaged var email : String?
     @NSManaged var bio: String?
     @NSManaged var isPublic: Bool
@@ -25,7 +26,6 @@ class Person: NSManagedObject {
     @NSManaged var twitterUsername: String?
     @NSManaged var sortPriority: NSNumber?
     @NSManaged var rank: NSNumber?
-    
     
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
@@ -41,7 +41,10 @@ class Person: NSManagedObject {
         super.init(entity: entity!, insertIntoManagedObjectContext: context)
         
         /* Assign our properties */
-        name = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.name] as! String
+        let name = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.name] as! [String : AnyObject]
+        firstName = name["first"] as! String
+        lastName = name["last"] as! String
+        
         if let userEmail = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.email] as? String {
             email = userEmail
         }

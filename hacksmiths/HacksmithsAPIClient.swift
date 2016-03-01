@@ -26,7 +26,6 @@ class HacksmithsAPIClient: NSObject {
                 
                 urlString += HacksmithsAPIClient.stringByEscapingParameters(parameters)
                 
-                print(urlString)
             }
         }
         
@@ -70,7 +69,6 @@ class HacksmithsAPIClient: NSObject {
     func taskForGETImageFromURL(url: String, completionHandler: CompletionHandlerWithImage) -> NSURLSessionDataTask {
         
         let url = NSURL(string: url)!
-        
         let request = NSMutableURLRequest(URL: url)
         
         request.HTTPMethod = HTTPRequest.GET

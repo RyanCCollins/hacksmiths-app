@@ -29,7 +29,7 @@ class CommunityViewController: UITableViewController, NSFetchedResultsController
         HacksmithsAPIClient.sharedInstance().getMemberList(body, completionHandler: {result, error in
             
             if error != nil {
-                
+                print(error)
                 self.alertController(withTitles: ["OK", "Retry"], message: "Sorry, but an error occured while downloading networked data.", callbackHandler: [nil, nil])
                 
             } else {
@@ -69,7 +69,7 @@ class CommunityViewController: UITableViewController, NSFetchedResultsController
     }
     
     lazy var fetchedResultsController: NSFetchedResultsController = {
-        let fetch = NSFetchRequest(entityName: "User")
+        let fetch = NSFetchRequest(entityName: "Person")
         let roleSort = NSSortDescriptor(key: "role.title", ascending: true)
         let lastNameSort = NSSortDescriptor(key: "lastName", ascending: true)
         
@@ -115,7 +115,8 @@ extension CommunityViewController {
         
         if let user = fetchedResultsController.fetchedObjects![indexPath.section] as? Person {
             cell.personImageView.image = user.image
-            cell.nameLabel.text = user.name
+            let name = user.firstName + " " + user.lastName
+            cell.nameLabel.text = name
             cell.aboutLabel.text = user.bio
         }
         return cell
