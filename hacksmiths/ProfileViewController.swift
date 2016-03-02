@@ -9,11 +9,15 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
-
+    var person: Person? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        if person != nil {
+            
+        }
     }
 
     override func didReceiveMemoryWarning() {

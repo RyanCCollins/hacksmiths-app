@@ -9,7 +9,8 @@
 import UIKit
 
 class PersonTableViewCell: UITableViewCell {
-
+    let person: Person? = nil
+    
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var aboutLabel: UILabel!
     @IBOutlet weak var personImageView: UIImageView!

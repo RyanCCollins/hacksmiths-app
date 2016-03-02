@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyButton
 
 class EventViewController: UIViewController {
     @IBOutlet weak var eventImageView: UIImageView!

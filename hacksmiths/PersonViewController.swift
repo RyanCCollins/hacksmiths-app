@@ -9,28 +9,45 @@
 import UIKit
 
 class PersonViewController: UIViewController {
+    let person: Person? = nil
+    
+    @IBOutlet weak var personImageView: UIImageView!
+    @IBOutlet weak var personNameLabel: UILabel!
+    @IBOutlet weak var personDescriptionLabel: UITextView!
+    @IBOutlet weak var personTwitterLabel: UILabel!
+    @IBOutlet weak var personGithubLabel: UILabel!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        personTwitterLabel.hidden = true
+        personGithubLabel.hidden = true
+        
+        configurePersonView()
+    }
+    
+    func configurePersonView() {
+        if let person = person {
+            personImageView.image = person.image
+            personNameLabel.text = person.firstName + " " + person.lastName
+            personDescriptionLabel.text = person.description
+            
+            if let twitterUsername = person.twitterUsername {
+                personTwitterLabel.text = twitterUsername
+                personTwitterLabel.hidden = false
+            }
+            
+            if let githubUserName = person.githubUsername {
+                personGithubLabel.text = githubUserName
+                personGithubLabel.hidden = false
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

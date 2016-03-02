@@ -123,7 +123,12 @@ extension CommunityViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let profileView = storyboard?.instantiateInitialViewController()
+        let cell = tableView.dequeueReusableCellWithIdentifier("PersonTableViewCell") as! PersonTableViewCell
+        let profileView = storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController") as! ProfileViewController
+        if let person = cell.person {
+            profileView.person = person
+            navigationController?.pushViewController(profileView, animated: true)
+        }
     }
 
 }

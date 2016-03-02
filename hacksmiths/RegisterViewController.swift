@@ -7,9 +7,16 @@
 //
 
 import UIKit
+import SwiftyButton
 
 class RegisterViewController: UIViewController {
+    @IBOutlet var signMeUpButton: SwiftyButton!
+    @IBOutlet weak var firstNameTextField: UITextField!
+    @IBOutlet weak var lastNameTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
 
+    @IBOutlet weak var closeButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
 
