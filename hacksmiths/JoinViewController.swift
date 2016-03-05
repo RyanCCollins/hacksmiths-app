@@ -20,7 +20,9 @@ class JoinViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     @IBAction func didTapSigninUpInside(sender: AnyObject) {
+        
     }
 
     @IBAction func didTapSignupButtonUpInside(sender: AnyObject) {
