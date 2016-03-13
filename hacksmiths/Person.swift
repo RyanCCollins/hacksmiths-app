@@ -19,13 +19,14 @@ class Person: NSManagedObject {
     @NSManaged var bio: String?
     @NSManaged var isPublic: Bool
     @NSManaged var isLeader: Bool
+    @NSManaged var isTopContributor: Bool
     @NSManaged var avatarURL: String?
     @NSManaged var avatarFilePath: String?
     @NSManaged var website: String?
     @NSManaged var githubUsername: String?
     @NSManaged var twitterUsername: String?
     @NSManaged var sortPriority: NSNumber?
-    @NSManaged var rank: NSNumber?
+    //@NSManaged var rank: NSNumber?
     
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
@@ -35,7 +36,7 @@ class Person: NSManagedObject {
     init(dictionary: [String : AnyObject], context: NSManagedObjectContext) {
         
         /* Get associated entity from our context */
-        let entity = NSEntityDescription.entityForName("User", inManagedObjectContext: context)
+        let entity = NSEntityDescription.entityForName("Person", inManagedObjectContext: context)
         
         /* Super, get to work! */
         super.init(entity: entity!, insertIntoManagedObjectContext: context)
@@ -57,6 +58,11 @@ class Person: NSManagedObject {
             avatarURL = avatar
         }
         
+        isLeader = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.isLeader] as! Bool
+        isPublic = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.isPublic] as! Bool
+        isTopContributor = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Meta.isTopContributor] as! Bool
+        sortPriority = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Meta.sortPriority] as? NSNumber
+        
     }
     
     var image: UIImage? {
@@ -64,7 +70,7 @@ class Person: NSManagedObject {
             guard avatarFilePath != nil else {
                 return nil
             }
-            
+            print(self)
             return HacksmithsAPIClient.Caches.imageCache.imageWithIdentifier(avatarFilePath!)
         }
         set {

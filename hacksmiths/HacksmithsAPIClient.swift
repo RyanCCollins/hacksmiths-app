@@ -17,7 +17,10 @@ class HacksmithsAPIClient: NSObject {
     */
     
     /* Task returned for GETting data from the server */
-    func taskForGETMethod(var urlString: String, parameters: [String : AnyObject]?, completionHandler: CompletionHandlerWithResult) -> NSURLSessionDataTask {
+    func taskForGETMethod(method: String, parameters: [String : AnyObject]?, completionHandler: CompletionHandlerWithResult) -> NSURLSessionDataTask {
+        
+        var urlString = Constants.APIURL + method
+        print(urlString)
         
         /* If our request includes parameters, add those parameters to our URL */
         if parameters != nil {
@@ -57,7 +60,7 @@ class HacksmithsAPIClient: NSObject {
                 
                 /* Parse the results and return in the completion handler with an error if there is one. */
                 HacksmithsAPIClient.parseJSONDataWithCompletionHandler(data!, completionHandler: completionHandler)
-                
+
             }
         }
         task.resume()

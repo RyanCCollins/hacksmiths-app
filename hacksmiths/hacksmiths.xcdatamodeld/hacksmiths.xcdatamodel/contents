@@ -25,10 +25,18 @@
         <attribute name="website" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Person" representedClassName="User" syncable="YES">
+        <attribute name="avatarFilePath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="avatarURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="bio" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="githubUsername" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isLeader" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isPublic" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isTopContributor" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sortPriority" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="twitterUsername" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="website" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="role" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Roles" syncable="YES"/>
         <relationship name="teams" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Team" inverseName="users" inverseEntity="Team" syncable="YES"/>
@@ -54,7 +62,7 @@
     <elements>
         <element name="Event" positionX="-54" positionY="18" width="128" height="30"/>
         <element name="Organization" positionX="-18" positionY="63" width="128" height="105"/>
-        <element name="Person" positionX="-63" positionY="-18" width="128" height="150"/>
+        <element name="Person" positionX="-63" positionY="-18" width="128" height="270"/>
         <element name="Project" positionX="-27" positionY="63" width="128" height="120"/>
         <element name="Roles" positionX="-18" positionY="90" width="128" height="60"/>
         <element name="Team" positionX="-36" positionY="54" width="128" height="135"/>

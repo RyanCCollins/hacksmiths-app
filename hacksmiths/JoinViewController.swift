@@ -10,6 +10,7 @@ import UIKit
 
 class JoinViewController: UIViewController {
 
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,10 +22,16 @@ class JoinViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
     @IBAction func didTapSigninUpInside(sender: AnyObject) {
-        
+        performSegueWithIdentifier("ShowLogin", sender: self)
     }
 
+    @IBAction func didTapVisitSiteUpInside(sender: AnyObject) {
+        let url = NSURL(string: "hacksmiths.io")
+        UIApplication.sharedApplication().openURL(url!)
+    }
+    
     @IBAction func didTapSignupButtonUpInside(sender: AnyObject) {
         performSegueWithIdentifier("ShowRegistration", sender: self)
     }

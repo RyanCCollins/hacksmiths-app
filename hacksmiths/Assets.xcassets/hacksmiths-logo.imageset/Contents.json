@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "hacksmiths.png",
+      "filename" : "hacksmiths-logo.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "hacksmiths@2x.png",
+      "filename" : "hacksmiths-logo@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "hacksmiths@3x.png",
+      "filename" : "hacksmiths-logo@3x.png",
       "scale" : "3x"
     }
   ],

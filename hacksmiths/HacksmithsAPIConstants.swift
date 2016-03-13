@@ -12,8 +12,8 @@ import Foundation
 extension HacksmithsAPIClient {
     
         struct Constants {
-            static let BaseURL = "http://hacksmiths.io/"
-            static let APIURL = "http://hacksmiths.io/api/app/"
+            static let BaseURL = "http://hacksmiths.herokuapp.com/"
+            static let APIURL = BaseURL + "api/app/"
             static let App = "app/"
             
         }
@@ -91,8 +91,6 @@ extension HacksmithsAPIClient {
                 static let projects = "projects"
                 static let events = "events"
             }
-            
-
             
             struct EventInvolvement {
                 struct availability {

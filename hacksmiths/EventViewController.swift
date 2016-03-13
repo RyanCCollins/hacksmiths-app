@@ -23,6 +23,10 @@ class EventViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
+    
+    func getchEventData() {
+        
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

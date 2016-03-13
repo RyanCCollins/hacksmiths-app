@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 extension HacksmithsAPIClient {
     
@@ -83,15 +84,24 @@ extension HacksmithsAPIClient {
             if error != nil {
                 completionHandler(success: false, error: error)
             } else {
-                
-                if let membersArray = result[HacksmithsAPIClient.JSONResponseKeys.Members] as? [String : AnyObject] {
-                    print(membersArray)
+
+                if let membersArray = result["members"] as? [[String : AnyObject]] {
+                    for member in membersArray {
+                        let person = Person(dictionary: member, context: self.sharedContext)
+                        
+                    }
+                    self.sharedContext.performBlockAndWait({
+                        CoreDataStackManager.sharedInstance().saveContext()
+                    })
+                    
+                    
                 }
                 
             }
             
         })
     }
+    
     
     func checkAPIStatus(body: [String: AnyObject], completionHandler: CompletionHandler) {
         let method = Routes.EventStatus

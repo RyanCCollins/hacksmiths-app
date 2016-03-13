@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import SwiftSpinner
 
 class CommunityViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
@@ -26,14 +27,17 @@ class CommunityViewController: UITableViewController, NSFetchedResultsController
     
     func syncNetworkData() {
         let body = [String : AnyObject]()
+//        SwiftSpinner.showWithDelay(1.0, title: "Loading").addTapHandler({
+//            SwiftSpinner.hide()
+//        })
         HacksmithsAPIClient.sharedInstance().getMemberList(body, completionHandler: {result, error in
             
             if error != nil {
-                print(error)
+
                 self.alertController(withTitles: ["OK", "Retry"], message: "Sorry, but an error occured while downloading networked data.", callbackHandler: [nil, nil])
                 
             } else {
-                print(result)
+                self.tableView.reloadData()
             }
             
         })
@@ -59,6 +63,7 @@ class CommunityViewController: UITableViewController, NSFetchedResultsController
         do {
             
             try self.fetchedResultsController.performFetch()
+            try self.communityFetchResultsController.performFetch()
             
         } catch let error as NSError {
             self.alertController(withTitles: ["OK", "Retry"], message: error.localizedDescription, callbackHandler: [nil, {Void in
@@ -69,13 +74,40 @@ class CommunityViewController: UITableViewController, NSFetchedResultsController
     }
     
     lazy var fetchedResultsController: NSFetchedResultsController = {
-        let fetch = NSFetchRequest(entityName: "Person")
-        let roleSort = NSSortDescriptor(key: "role.title", ascending: true)
-        let lastNameSort = NSSortDescriptor(key: "lastName", ascending: true)
         
-        fetch.sortDescriptors = [roleSort, lastNameSort]
+ 
+        let sortPriority = NSSortDescriptor(key: "sortPriority", ascending: true)
         
-        let fetchResultsController = NSFetchedResultsController(fetchRequest: fetch, managedObjectContext: self.sharedContext, sectionNameKeyPath: nil, cacheName: nil)
+        // Leader fetch for getting team leaders
+        // Set predicate to equal isPublic and isLeader both true
+        let isLeaderPredicate = NSPredicate(format: "isLeader == %@ && isPublic == %@", NSNumber(bool: true), NSNumber(bool: true))
+        let leaderFetch = NSFetchRequest(entityName: "Person")
+        leaderFetch.predicate = isLeaderPredicate
+        leaderFetch.sortDescriptors = [sortPriority]
+        
+
+        
+        
+        let fetchResultsController = NSFetchedResultsController(fetchRequest: leaderFetch, managedObjectContext: self.sharedContext, sectionNameKeyPath: "Leaders", cacheName: nil)
+
+        do {
+            try fetchResultsController.performFetch()
+        } catch let error {
+            print(error)
+        }
+        
+        return fetchResultsController
+    }()
+    
+    lazy var communityFetchResultsController: NSFetchedResultsController = {
+        let sortPriority = NSSortDescriptor(key: "sortPriority", ascending: true)
+        
+        let isPublicButNotLeaderPredicate = NSPredicate(format: "isPublic == %@ && isLeader == %@", NSNumber(bool: true), NSNumber(bool: false))
+        let isPublicButNotLeaderFetch = NSFetchRequest(entityName: "Person")
+        isPublicButNotLeaderFetch.sortDescriptors = [sortPriority]
+        isPublicButNotLeaderFetch.predicate = isPublicButNotLeaderPredicate
+        
+        let fetchResultsController = NSFetchedResultsController(fetchRequest: isPublicButNotLeaderFetch, managedObjectContext: self.sharedContext, sectionNameKeyPath: "Community", cacheName: nil)
         
         do {
             try fetchResultsController.performFetch()
@@ -96,11 +128,19 @@ class CommunityViewController: UITableViewController, NSFetchedResultsController
 /* Extension for UITableViewDataSource and Delegate methods */
 extension CommunityViewController {
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        // Set count to 0
+        var count = 0
+        /* Increment the count by the number of sections in the first FRC */
         if let sections = fetchedResultsController.sections?.count {
-            return sections
+            count += sections
         }
         
-        return 0
+        /* Increment the count by the number of sections in the community */
+        if let communitySections = communityFetchResultsController.sections?.count {
+            count += communitySections
+        }
+        
+        return count
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -114,7 +154,7 @@ extension CommunityViewController {
         cell.personImageView.image = UIImage(contentsOfFile: "person")
         
         if let user = fetchedResultsController.fetchedObjects![indexPath.section] as? Person {
-            cell.personImageView.image = user.image
+            //cell.personImageView.image = user.image
             let name = user.firstName + " " + user.lastName
             cell.nameLabel.text = name
             cell.aboutLabel.text = user.bio
@@ -131,4 +171,8 @@ extension CommunityViewController {
         }
     }
 
+}
+
+enum Sections {
+    
 }
