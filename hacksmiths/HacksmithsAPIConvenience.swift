@@ -38,7 +38,7 @@ extension HacksmithsAPIClient {
         
         taskForPOSTMethod(method, JSONBody: body, completionHandler: {success, result, error in
             if error != nil {
-                print(error)
+   
                 completionHandler(success: false, error: error)
             } else {
                 /* If we receive a successful response and the server responds with success == true, carry on parsing the data */

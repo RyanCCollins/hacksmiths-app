@@ -27,16 +27,17 @@ class CommunityViewController: UITableViewController, NSFetchedResultsController
     
     func syncNetworkData() {
         let body = [String : AnyObject]()
-//        SwiftSpinner.showWithDelay(1.0, title: "Loading").addTapHandler({
-//            SwiftSpinner.hide()
-//        })
+        
+        view.showLoading()
+        
         HacksmithsAPIClient.sharedInstance().getMemberList(body, completionHandler: {result, error in
             
             if error != nil {
-
+                self.view.hideLoading()
                 self.alertController(withTitles: ["OK", "Retry"], message: "Sorry, but an error occured while downloading networked data.", callbackHandler: [nil, nil])
                 
             } else {
+                self.view.hideLoading()
                 self.tableView.reloadData()
             }
             
@@ -88,7 +89,7 @@ class CommunityViewController: UITableViewController, NSFetchedResultsController
 
         
         
-        let fetchResultsController = NSFetchedResultsController(fetchRequest: leaderFetch, managedObjectContext: self.sharedContext, sectionNameKeyPath: "Leaders", cacheName: nil)
+        let fetchResultsController = NSFetchedResultsController(fetchRequest: leaderFetch, managedObjectContext: self.sharedContext, sectionNameKeyPath: nil, cacheName: nil)
 
         do {
             try fetchResultsController.performFetch()
@@ -107,7 +108,7 @@ class CommunityViewController: UITableViewController, NSFetchedResultsController
         isPublicButNotLeaderFetch.sortDescriptors = [sortPriority]
         isPublicButNotLeaderFetch.predicate = isPublicButNotLeaderPredicate
         
-        let fetchResultsController = NSFetchedResultsController(fetchRequest: isPublicButNotLeaderFetch, managedObjectContext: self.sharedContext, sectionNameKeyPath: "Community", cacheName: nil)
+        let fetchResultsController = NSFetchedResultsController(fetchRequest: isPublicButNotLeaderFetch, managedObjectContext: self.sharedContext, sectionNameKeyPath: nil, cacheName: nil)
         
         do {
             try fetchResultsController.performFetch()
@@ -128,37 +129,69 @@ class CommunityViewController: UITableViewController, NSFetchedResultsController
 /* Extension for UITableViewDataSource and Delegate methods */
 extension CommunityViewController {
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // Set count to 0
-        var count = 0
-        /* Increment the count by the number of sections in the first FRC */
-        if let sections = fetchedResultsController.sections?.count {
-            count += sections
-        }
+//        // Set count to 0
+//        var count = 0
+//        /* Increment the count by the number of sections in the first FRC */
+//        if let sections = fetchedResultsController.sections?.count {
+//            count += sections
+//        }
+//        
+//        /* Increment the count by the number of sections in the community */
+//        if let communitySections = communityFetchResultsController.sections?.count {
+//            count += communitySections
+//        }
         
-        /* Increment the count by the number of sections in the community */
-        if let communitySections = communityFetchResultsController.sections?.count {
-            count += communitySections
+        return 2
+    }
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return "Leaders"
         }
-        
-        return count
+        if section == 1 {
+            return "Community"
+        }
+        return nil
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let sectionInfo = fetchedResultsController.sections![section]
-        return sectionInfo.numberOfObjects
+        if section == Sections.Leaders {
+            let sectionInfo = fetchedResultsController.sections![section]
+            return sectionInfo.numberOfObjects
+        }
+        if section == Sections.Community {
+            let sectionInfo = communityFetchResultsController.sections![section]
+            return sectionInfo.numberOfObjects
+        }
+        
+        return 0
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("PersonTableViewCell") as! PersonTableViewCell
         
-        cell.personImageView.image = UIImage(contentsOfFile: "person")
+        var user: Person? = nil
         
-        if let user = fetchedResultsController.fetchedObjects![indexPath.section] as? Person {
-            //cell.personImageView.image = user.image
-            let name = user.firstName + " " + user.lastName
-            cell.nameLabel.text = name
-            cell.aboutLabel.text = user.bio
+        if indexPath.section == Sections.Leaders {
+            if let person = fetchedResultsController.fetchedObjects![indexPath.section] as? Person {
+                
+                user = person
+            }
+        } else {
+            
+            if let person = fetchedResultsController.fetchedObjects![indexPath.section] as? Person {
+                user = person
+            }
+            
         }
+        
+        if user != nil {
+            //cell.personImageView.image = user.image
+            let name = user!.firstName + " " + user!.lastName
+            cell.nameLabel.text = name
+            cell.aboutLabel.text = user!.bio
+        }
+        
         return cell
     }
     
@@ -174,5 +207,6 @@ extension CommunityViewController {
 }
 
 enum Sections {
-    
+    static let Leaders = 0
+    static let Community = 1
 }
