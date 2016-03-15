@@ -231,6 +231,7 @@ class LoginViewController: UIViewController {
                     
                     if success {
                         self.setButtonLoading("Login", loading: false)
+
                         self.dismissLoginView(true)
                     }
                     

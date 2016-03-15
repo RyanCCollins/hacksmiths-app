@@ -45,6 +45,9 @@ class Event: NSManagedObject {
         super.init(entity: entity!, insertIntoManagedObjectContext: context)
         
         /* Assign our properties */
+        id = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.id] as! String
+        title = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.title] as! String
+        descriptionString = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.description] as! String
         
     }
     

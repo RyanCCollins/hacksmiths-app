@@ -123,8 +123,8 @@ class HacksmithsAPIClient: NSObject {
 //        request.addValue(Constants.app_id, forHTTPHeaderField: "X-Parse-Application-Id")
 //        request.addValue(Constants.api_key, forHTTPHeaderField: "X-Parse-REST-API-Key")
 //        
-//        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-//        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
         
         do {
             
@@ -174,8 +174,7 @@ class HacksmithsAPIClient: NSObject {
         let request = NSMutableURLRequest(URL: NSURL(string: urlString)!)
         
         request.HTTPMethod = HTTPRequest.PUT
-//        request.addValue(Constants.app_id, forHTTPHeaderField: "X-Parse-Application-Id")
-//        request.addValue(Constants.api_key, forHTTPHeaderField: "X-Parse-REST-API-Key")
+
         
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")

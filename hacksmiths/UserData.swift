@@ -9,7 +9,7 @@
 import UIKit
 
 class UserData: NSObject {
-    var userId: Int?
+    var userId: String?
     var dateAuthenticated: NSDate?
     
     /* Singleton shared instance of */
@@ -39,7 +39,7 @@ class UserData: NSObject {
         let authenticated = NSUserDefaults.standardUserDefaults().boolForKey("authenticated")
 
         if authenticated == true {
-            if let id = NSUserDefaults.standardUserDefaults().valueForKey("userId") as? Int {
+            if let id = NSUserDefaults.standardUserDefaults().valueForKey("userId") as? String {
                 
                 userId = id
             

@@ -1,7 +1,7 @@
 //
 //  HacksmithsAPIConvenience.swift
 //  hacksmiths
-//
+//S
 //  Created by Ryan Collins on 2/7/16.
 //  Copyright © 2016 Tech Rapport. All rights reserved.
 //
@@ -40,18 +40,36 @@ extension HacksmithsAPIClient {
             if error != nil {
    
                 completionHandler(success: false, error: error)
+                
             } else {
                 /* If we receive a successful response and the server responds with success == true, carry on parsing the data */
                 if let success = result[JSONResponseKeys.Auth.success] as? Bool {
                     if success == false {
                     completionHandler(success: false, error: Errors.constructError(domain: "HacksmithsAPIClient", userMessage: "Sorry, but we were unable to sign you in.  Please check your password and try again."))
                     } else {
-                        let userId = result[JSONResponseKeys.Auth.userId] as! Int
-                        let date = result[JSONResponseKeys.Auth.date] as! NSDate
+                        print(result)
                         
-                        UserData.sharedInstance().userId = userId
-                        UserData.sharedInstance().dateAuthenticated = date
-                        completionHandler(success: true, error: nil)
+                        if let success = result["success"] as? Int, session = result["session"] as? Int {
+                            if success ==  1 && session == 1 {
+                                
+                                let userId = result[JSONResponseKeys.Auth.userId] as! String
+                                UserData.sharedInstance().authenticated = true
+                                UserData.sharedInstance().userId = userId
+                                UserData.sharedInstance().saveDataToUserDefaults()
+                                completionHandler(success: true, error: nil)
+                                
+                            } else {
+                                
+                                var message = result[JSONResponseKeys.Auth.message] as? String
+                                
+                                if message == nil {
+                                    message = "Unable to login due to unknown reasons.  Please try again."
+                                }
+                                completionHandler(success: false, error: Errors.constructError(domain: "HacksmithsAPIClient", userMessage: message!))
+                                
+                                
+                            }
+                        }
                     
                     }
                 }
@@ -110,21 +128,59 @@ extension HacksmithsAPIClient {
             if error != nil {
                 completionHandler(success: false, error: error)
             } else {
-                if let status = result[HacksmithsAPIClient.JSONResponseKeys.Status] as? [String : AnyObject] {
-                    let success = status["success"] as! Bool
-                    if success != true {
-                        completionHandler(success: false, error: Errors.constructError(domain: "HacksmithsAPIClient", userMessage: "Error while connecting to the networked API.  Please make sure you are logged in and try again."))
-                    } else {
+                if let result = result[HacksmithsAPIClient.JSONResponseKeys.Status] as? [String : AnyObject] {
+                    if let success = result[HacksmithsAPIClient.JSONResponseKeys.Success] as? Bool, events = result[HacksmithsAPIClient.JSONResponseKeys.Event.events] as? [String:AnyObject] {
                         
-                        let events = status["events"] as! [String : AnyObject]
-                        
-                        
+                        if success != true {
+                            
+                            
+                            completionHandler(success: false, error: Errors.constructError(domain: "HacksmithsAPIClient", userMessage: "Error while connecting to the networked API.  Please make sure you are logged in and try again."))
+                            
+                            
+                        } else {
+                            
+                            /* Check that the last and next event exist and then parse and save */
+                            let lastEvent = events["last"]
+                            let nextEvent = events["next"]
+                            
+                            /* Check to see that we don't get false or nil */
+                            if lastEvent != nil || false {
+                                
+                                /* Force cast to [String : AnyObject] since logic above protects against bad data */
+                                let lastEventDictionary = lastEvent as! [String : AnyObject]
+                                /* Create an event with dictionary */
+                                let event = Event(dictionary: self.dictionaryForEvent(lastEventDictionary), context: self.sharedContext)
+                                
+                            }
+                            
+                            if nextEvent != nil || false {
+                                let nextEventDictionary = nextEvent as! [String: AnyObject]
+                                let next = Event(dictionary: self.dictionaryForEvent(nextEventDictionary), context: self.sharedContext)
+                            }
+                            
+                            /*  Save our new events */
+                            self.sharedContext.performBlockAndWait( {
+                                CoreDataStackManager.sharedInstance().saveContext()
+                            })
+                            
+                        }
                         
                     }
+                    
                 }
             }
         })
         
     }
     
+    /* Takes an event dictionary and returns a dictionary for creating an event */
+    func dictionaryForEvent (event: [String : AnyObject]) -> [String : AnyObject]{
+        let dictionary: [String : AnyObject] = [
+            "id" : event[HacksmithsAPIClient.JSONResponseKeys.Event.id],
+            "title" : event[HacksmithsAPIClient.JSONResponseKeys.Event.title],
+            "description" : event[HacksmithsAPIClient.JSONResponseKeys.Event.description],
+            "startDate" : event[HacksmithsAPIClient.JSONResponseKeys.Event.starts],
+            "endDate" : event[HacksmithsAPIClient.JSONResponseKeys.Event.ends]
+        ]
+    }
 }

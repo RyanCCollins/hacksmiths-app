@@ -175,6 +175,7 @@ extension HacksmithsAPIClient {
         
         struct RSVP {
             static let event = "event"
+            
             static let who = "who"
             static let attending = "attending"
             static let createdAt = "createdAt"
@@ -182,6 +183,7 @@ extension HacksmithsAPIClient {
         }
 
         struct Event {
+            static let events = "events"
             static let id = "id"
             static let title = "title"
             static let organization = "organization"
@@ -192,8 +194,8 @@ extension HacksmithsAPIClient {
             static let teams = "teams"
             static let registrationStartDate = "registrationStartDate"
             static let registrationEndDate = "registrationEndDate"
-            static let startDate = "startDate"
-            static let endDate = "endDate"
+            static let starts = "starts"
+            static let ends = "ends"
             static let place = "place"
             static let map = "map"
             static let maxRSVPs = "maxRSVPs"
