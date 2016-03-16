@@ -17,7 +17,33 @@ class CommunityViewController: UITableViewController, NSFetchedResultsController
 
         // Set this view to be the fetchedResultsControllerDelegate
         fetchedResultsController.delegate = self
-        syncNetworkData()
+        configureRefreshControl()
+        refreshDataFromAPI(self)
+    }
+    
+    func configureRefreshControl() {
+        refreshControl = UIRefreshControl()
+        refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl?.addTarget(self, action: "refreshDataFromAPI:", forControlEvents: .ValueChanged)
+        tableView.addSubview(refreshControl!)
+    }
+    
+    func refreshDataFromAPI(sender: AnyObject) {
+        let body = [String : AnyObject]()
+        
+        
+        HacksmithsAPIClient.sharedInstance().getMemberList(body, completionHandler: {result, error in
+            
+            if error != nil {
+                
+                self.alertController(withTitles: ["OK", "Retry"], message: "Sorry, but an error occured while downloading networked data.", callbackHandler: [nil, nil])
+                
+            } else {
+                self.refreshControl!.endRefreshing()
+                self.tableView.reloadData()
+            }
+            
+        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -25,24 +51,6 @@ class CommunityViewController: UITableViewController, NSFetchedResultsController
         
     }
     
-    func syncNetworkData() {
-        let body = [String : AnyObject]()
-        
-        view.showLoading()
-        
-        HacksmithsAPIClient.sharedInstance().getMemberList(body, completionHandler: {result, error in
-            
-            if error != nil {
-                self.view.hideLoading()
-                self.alertController(withTitles: ["OK", "Retry"], message: "Sorry, but an error occured while downloading networked data.", callbackHandler: [nil, nil])
-                
-            } else {
-                self.view.hideLoading()
-                self.tableView.reloadData()
-            }
-            
-        })
-    }
     
     /* Show loading indicator while performing fetch */
     func performInitialFetch() {
@@ -85,10 +93,7 @@ class CommunityViewController: UITableViewController, NSFetchedResultsController
         let leaderFetch = NSFetchRequest(entityName: "Person")
         leaderFetch.predicate = isLeaderPredicate
         leaderFetch.sortDescriptors = [sortPriority]
-        
 
-        
-        
         let fetchResultsController = NSFetchedResultsController(fetchRequest: leaderFetch, managedObjectContext: self.sharedContext, sectionNameKeyPath: nil, cacheName: nil)
 
         do {
@@ -129,19 +134,11 @@ class CommunityViewController: UITableViewController, NSFetchedResultsController
 /* Extension for UITableViewDataSource and Delegate methods */
 extension CommunityViewController {
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-//        // Set count to 0
-//        var count = 0
-//        /* Increment the count by the number of sections in the first FRC */
-//        if let sections = fetchedResultsController.sections?.count {
-//            count += sections
-//        }
-//        
-//        /* Increment the count by the number of sections in the community */
-//        if let communitySections = communityFetchResultsController.sections?.count {
-//            count += communitySections
-//        }
-        
         return 2
+    }
+    
+    override func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
+        return nil
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -153,18 +150,33 @@ extension CommunityViewController {
         }
         return nil
     }
+    
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // Initialize count with zero
+        var count = 0
         if section == Sections.Leaders {
-            let sectionInfo = fetchedResultsController.sections![section]
-            return sectionInfo.numberOfObjects
+            count = (fetchedResultsController.fetchedObjects?.count)!
+
         }
         if section == Sections.Community {
-            let sectionInfo = communityFetchResultsController.sections![section]
-            return sectionInfo.numberOfObjects
+            
+            count = (communityFetchResultsController.fetchedObjects?.count)!
+            
         }
         
-        return 0
+        if count == 0 {
+            let messageLabel = UILabel(frame: CGRectMake(0,0, self.view.bounds.width, self.view.bounds.height))
+            messageLabel.text = "No data is currently available.  Please pull down to refresh."
+            messageLabel.textColor = UIColor.blackColor()
+            messageLabel.font = UIFont(name: "Roboto", size: 20)
+            messageLabel.sizeToFit()
+            
+            tableView.backgroundView = messageLabel
+            tableView.separatorStyle = .None
+        }
+        
+        return count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -173,20 +185,21 @@ extension CommunityViewController {
         var user: Person? = nil
         
         if indexPath.section == Sections.Leaders {
-            if let person = fetchedResultsController.fetchedObjects![indexPath.section] as? Person {
+            if let person = fetchedResultsController.fetchedObjects![indexPath.row] as? Person {
                 
                 user = person
             }
         } else {
             
-            if let person = fetchedResultsController.fetchedObjects![indexPath.section] as? Person {
+            if let person = communityFetchResultsController.fetchedObjects![indexPath.row] as? Person {
                 user = person
             }
             
         }
         
         if user != nil {
-            //cell.personImageView.image = user.image
+            cell.person = user
+            cell.personImageView.image = user!.image
             let name = user!.firstName + " " + user!.lastName
             cell.nameLabel.text = name
             cell.aboutLabel.text = user!.bio
@@ -197,12 +210,14 @@ extension CommunityViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.dequeueReusableCellWithIdentifier("PersonTableViewCell") as! PersonTableViewCell
-        let profileView = storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController") as! ProfileViewController
-        if let person = cell.person {
-            profileView.person = person
-            navigationController?.pushViewController(profileView, animated: true)
-        }
+        let personView = storyboard?.instantiateViewControllerWithIdentifier("PersonViewController") as! PersonViewController
+        let person = cell.person
+        personView.person = person
+        navigationController?.pushViewController(personView, animated: true)
+
     }
+    
+    
 
 }
 

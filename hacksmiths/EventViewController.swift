@@ -22,10 +22,20 @@ class EventViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        getEventData()
     }
     
-    func getchEventData() {
-        
+    func getEventData() {
+        view.showLoading()
+        HacksmithsAPIClient.sharedInstance().checkAPIForEvents({success, error in
+            if error != nil {
+                self.view.hideLoading()
+                self.alertController(withTitles: ["OK"], message: (error?.localizedDescription)!, callbackHandler: [nil])
+                
+            } else {
+                self.view.hideLoading()
+            }
+        })
     }
 
     override func didReceiveMemoryWarning() {

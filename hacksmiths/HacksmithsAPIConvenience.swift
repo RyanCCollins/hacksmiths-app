@@ -100,29 +100,48 @@ extension HacksmithsAPIClient {
         taskForGETMethod(method, parameters: body, completionHandler: {success, result, error in
             
             if error != nil {
+                
                 completionHandler(success: false, error: error)
+                
             } else {
 
                 if let membersArray = result["members"] as? [[String : AnyObject]] {
                     for member in membersArray {
+                        
+                        /* Create a person and save the context */
                         let person = Person(dictionary: member, context: self.sharedContext)
                         
+                        self.sharedContext.performBlockAndWait({
+                            CoreDataStackManager.sharedInstance().saveContext()
+                        })
+                        
+                        /* Fetch the images and then save the context again at the end.  Return an error if there is one. */
+                        person.fetchImages({success, error in
+                            
+                            if error != nil {
+                                
+                                completionHandler(success: false, error: error)
+                            
+                            }
+                            
+                        })
                     }
-                    self.sharedContext.performBlockAndWait({
-                        CoreDataStackManager.sharedInstance().saveContext()
-                    })
-                    
-                    
+
                 }
+                
+                self.sharedContext.performBlockAndWait({
+                    CoreDataStackManager.sharedInstance().saveContext()
+                })
+                completionHandler(success: true, error: nil)
                 
             }
             
         })
     }
     
-    
-    func checkAPIStatus(body: [String: AnyObject], completionHandler: CompletionHandler) {
+    func checkAPIForEvents(completionHandler: CompletionHandler) {
         let method = Routes.EventStatus
+        let body = [String :AnyObject]()
         
         taskForGETMethod(method, parameters: body, completionHandler: {success, result, error in
             if error != nil {
@@ -176,11 +195,12 @@ extension HacksmithsAPIClient {
     /* Takes an event dictionary and returns a dictionary for creating an event */
     func dictionaryForEvent (event: [String : AnyObject]) -> [String : AnyObject]{
         let dictionary: [String : AnyObject] = [
-            "id" : event[HacksmithsAPIClient.JSONResponseKeys.Event.id],
-            "title" : event[HacksmithsAPIClient.JSONResponseKeys.Event.title],
-            "description" : event[HacksmithsAPIClient.JSONResponseKeys.Event.description],
-            "startDate" : event[HacksmithsAPIClient.JSONResponseKeys.Event.starts],
-            "endDate" : event[HacksmithsAPIClient.JSONResponseKeys.Event.ends]
+            "id" : event[HacksmithsAPIClient.JSONResponseKeys.Event.id]!,
+            "title" : event[HacksmithsAPIClient.JSONResponseKeys.Event.title]!,
+            "description" : event[HacksmithsAPIClient.JSONResponseKeys.Event.description]!,
+            "startDate" : event[HacksmithsAPIClient.JSONResponseKeys.Event.starts]!,
+            "endDate" : event[HacksmithsAPIClient.JSONResponseKeys.Event.ends]!
         ]
+        return dictionary
     }
 }

@@ -24,6 +24,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+    func changeStateForAuthenticated() {
+        
+    }
+    
 
 
     func applicationWillResignActive(application: UIApplication) {

@@ -9,7 +9,7 @@
 import UIKit
 
 class PersonTableViewCell: UITableViewCell {
-    let person: Person? = nil
+    var person: Person? = nil
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var aboutLabel: UILabel!
@@ -17,7 +17,11 @@ class PersonTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        // Set the corner radius to make the image view circular
+        personImageView?.layer.cornerRadius = personImageView!.frame.size.width / 2
+        personImageView?.clipsToBounds = true
+        personImageView?.layer.borderWidth = 3.0
+        personImageView.layer.borderColor = UIColor.whiteColor().CGColor
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

@@ -12,7 +12,7 @@ import UIKit
 @objc(User)
 
 class Person: NSManagedObject {
-    
+    @NSManaged var id: String
     @NSManaged var firstName: String
     @NSManaged var lastName: String
     @NSManaged var email : String?
@@ -46,16 +46,22 @@ class Person: NSManagedObject {
         firstName = name["first"] as! String
         lastName = name["last"] as! String
         
+        id = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData._id] as! String
+        
         if let userEmail = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.email] as? String {
             email = userEmail
         }
         
-        if let userBio = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.bio] as? String {
-            bio = userBio
+        //* Bio comes in markdown, although that should likely be changed.
+        if let userBio = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.bio] as? [String : AnyObject] {
+            let mdBio = userBio["md"] as! String
+            bio = mdBio
         }
         
-        if let avatar = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.avatarUrl] as? String {
-            avatarURL = avatar
+        if let photoDictionary = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.photo] as? [String : AnyObject] {
+            avatarURL = photoDictionary["url"] as? String
+            avatarFilePath = avatarURL?.lastPathComponent
+            print(">>>Saving photo with url of \(avatarURL) with filepath of \(avatarFilePath)")
         }
         
         isLeader = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.isLeader] as! Bool
@@ -65,12 +71,30 @@ class Person: NSManagedObject {
         
     }
     
+    func fetchImages(completionHandler: CompletionHandler) {
+        guard avatarURL != nil else {
+            return
+        }
+        
+        HacksmithsAPIClient.sharedInstance().taskForGETImageFromURL(avatarURL!, completionHandler: {image, error in
+            
+            if error != nil {
+                completionHandler(success: false, error: error)
+            } else {
+                
+                self.image = image
+            
+            }
+            
+        })
+    }
+    
     var image: UIImage? {
         get {
             guard avatarFilePath != nil else {
                 return nil
             }
-            print(self)
+            
             return HacksmithsAPIClient.Caches.imageCache.imageWithIdentifier(avatarFilePath!)
         }
         set {

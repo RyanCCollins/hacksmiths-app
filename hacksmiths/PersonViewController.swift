@@ -9,7 +9,7 @@
 import UIKit
 
 class PersonViewController: UIViewController {
-    let person: Person? = nil
+    var person: Person? = nil
     
     @IBOutlet weak var personImageView: UIImageView!
     @IBOutlet weak var personNameLabel: UILabel!
@@ -17,31 +17,64 @@ class PersonViewController: UIViewController {
     @IBOutlet weak var personTwitterLabel: UILabel!
     @IBOutlet weak var personGithubLabel: UILabel!
     
+    @IBOutlet weak var noDataFoundLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        personTwitterLabel.hidden = true
-        personGithubLabel.hidden = true
-        
+        setViewObjectsHidden(true)
+        makeImageViewCircular()
         configurePersonView()
+        
+    }
+    
+    func setViewObjectsHidden(hidden: Bool) {
+
+        personNameLabel.hidden = hidden
+        personDescriptionLabel.hidden = hidden
+        personImageView.hidden = hidden
+        noDataFoundLabel.hidden = hidden
+    }
+    
+    func makeImageViewCircular() {
+        personImageView?.layer.cornerRadius = personImageView!.frame.size.width / 2
+        personImageView?.clipsToBounds = true
+        personImageView?.layer.borderWidth = 3.0
+        personImageView.layer.borderColor = UIColor.whiteColor().CGColor
     }
     
     func configurePersonView() {
-        if let person = person {
-            personImageView.image = person.image
-            personNameLabel.text = person.firstName + " " + person.lastName
-            personDescriptionLabel.text = person.description
+        if person != nil {
+            if person!.image != nil {
+                personImageView.image = person!.image
+            } else {
+                personImageView.image = 
+            }
             
-            if let twitterUsername = person.twitterUsername {
+            personNameLabel.text = person!.firstName + " " + person!.lastName
+            personDescriptionLabel.text = person!.description
+            
+            setViewObjectsHidden(false)
+            
+            if let twitterUsername = person!.twitterUsername {
                 personTwitterLabel.text = twitterUsername
                 personTwitterLabel.hidden = false
             }
             
-            if let githubUserName = person.githubUsername {
+            if let githubUserName = person!.githubUsername {
                 personGithubLabel.text = githubUserName
                 personGithubLabel.hidden = false
             }
+        } else {
+            
         }
+    }
+    
+    @IBAction func didTapSettingsButtonUpInside(sender: AnyObject) {
+        /* Instantiate the settings view controller for showing the settings view */
+        let controller = storyboard?.instantiateViewControllerWithIdentifier("SettingsViewController") as! SettingsViewController
+        
+        /* Set us as the controllers delegate */
+        self.presentViewController(controller, animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {

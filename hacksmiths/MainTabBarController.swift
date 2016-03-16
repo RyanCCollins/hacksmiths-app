@@ -10,16 +10,23 @@ import UIKit
 import SwiftRaisedTab
 
 class MainTabBarController: RaisedTabBarController {
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func swapViewsForAuthenticatedState() {
+        if UserData.sharedInstance().authenticated == true {
+            self.tabBarController?.viewControllers
+        }
     }
     
     func showLoginView(animated: Bool) {
