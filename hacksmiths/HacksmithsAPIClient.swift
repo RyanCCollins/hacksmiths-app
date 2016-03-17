@@ -11,6 +11,7 @@ import Foundation
 import CoreData
 
 class HacksmithsAPIClient: NSObject {
+    var syncInProgress: Bool = false
     
     /* The HacksmithsAPIClient class totally abstracts away all logic for connecting to the HACKSMITHS API for the purposes of
     * downloading data

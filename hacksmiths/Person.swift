@@ -63,8 +63,13 @@ class Person: NSManagedObject {
             avatarFilePath = avatarURL?.lastPathComponent
             print(">>>Saving photo with url of \(avatarURL) with filepath of \(avatarFilePath)")
         }
+        if let leadershipStatus = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.isLeader] as? Bool {
+            isLeader = leadershipStatus
+        } else {
+            isLeader = false
+        }
         
-        isLeader = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.isLeader] as! Bool
+        // Will never be nil since default is set for these.
         isPublic = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.isPublic] as! Bool
         isTopContributor = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Meta.isTopContributor] as! Bool
         sortPriority = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Meta.sortPriority] as? NSNumber

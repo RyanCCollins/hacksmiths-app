@@ -32,7 +32,7 @@ class PersonViewController: UIViewController {
         personNameLabel.hidden = hidden
         personDescriptionLabel.hidden = hidden
         personImageView.hidden = hidden
-        noDataFoundLabel.hidden = hidden
+        noDataFoundLabel.hidden = !hidden
     }
     
     func makeImageViewCircular() {
@@ -47,11 +47,12 @@ class PersonViewController: UIViewController {
             if person!.image != nil {
                 personImageView.image = person!.image
             } else {
-                personImageView.image = 
+                // Set the default image view image to show a missing image
+                personImageView.image = UIImage(named: "avatar-missing")
             }
             
             personNameLabel.text = person!.firstName + " " + person!.lastName
-            personDescriptionLabel.text = person!.description
+            personDescriptionLabel.text = person!.bio
             
             setViewObjectsHidden(false)
             
@@ -66,6 +67,7 @@ class PersonViewController: UIViewController {
             }
         } else {
             
+            setViewObjectsHidden(true)
         }
     }
     

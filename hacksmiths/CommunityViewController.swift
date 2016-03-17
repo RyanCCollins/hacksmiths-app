@@ -182,37 +182,57 @@ extension CommunityViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("PersonTableViewCell") as! PersonTableViewCell
         
-        var user: Person? = nil
+        var person: Person? = nil
         
         if indexPath.section == Sections.Leaders {
-            if let person = fetchedResultsController.fetchedObjects![indexPath.row] as? Person {
+            if let thePerson = fetchedResultsController.fetchedObjects![indexPath.row] as? Person {
                 
-                user = person
+                person = thePerson
             }
         } else {
             
-            if let person = communityFetchResultsController.fetchedObjects![indexPath.row] as? Person {
-                user = person
+            if let thePerson = communityFetchResultsController.fetchedObjects![indexPath.row] as? Person {
+                person = thePerson
             }
             
         }
         
-        if user != nil {
-            cell.person = user
-            cell.personImageView.image = user!.image
-            let name = user!.firstName + " " + user!.lastName
+        if person != nil {
+            cell.person = person
+            
+            // Set the default image if the user is missing an image
+            if person!.image == nil {
+                cell.personImageView.image = UIImage(named: "avatar-missing")
+            } else {
+              cell.personImageView.image = person!.image
+            }
+            
+            let name = person!.firstName + " " + person!.lastName
             cell.nameLabel.text = name
-            cell.aboutLabel.text = user!.bio
+            cell.aboutLabel.text = person!.bio
         }
         
         return cell
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        var person: Person? = nil
+        
+        if indexPath.section == Sections.Leaders {
+            
+            person = fetchedResultsController.objectAtIndexPath(indexPath) as? Person
+            
+            
+        } else if indexPath.section == Sections.Community {
+            
+            person = communityFetchResultsController.objectAtIndexPath(indexPath) as? Person
+            
+        }
+        
         let cell = tableView.dequeueReusableCellWithIdentifier("PersonTableViewCell") as! PersonTableViewCell
         let personView = storyboard?.instantiateViewControllerWithIdentifier("PersonViewController") as! PersonViewController
-        let person = cell.person
         personView.person = person
+        
         navigationController?.pushViewController(personView, animated: true)
 
     }

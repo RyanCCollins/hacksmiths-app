@@ -38,14 +38,14 @@ extension HacksmithsAPIClient {
         
         taskForPOSTMethod(method, JSONBody: body, completionHandler: {success, result, error in
             if error != nil {
-   
+                self.syncInProgress = false
                 completionHandler(success: false, error: error)
                 
             } else {
                 /* If we receive a successful response and the server responds with success == true, carry on parsing the data */
                 if let success = result[JSONResponseKeys.Auth.success] as? Bool {
                     if success == false {
-                    completionHandler(success: false, error: Errors.constructError(domain: "HacksmithsAPIClient", userMessage: "Sorry, but we were unable to sign you in.  Please check your password and try again."))
+                        completionHandler(success: false, error: Errors.constructError(domain: "HacksmithsAPIClient", userMessage: "Sorry, but we were unable to sign you in.  Please check your password and try again."))
                     } else {
                         print(result)
                         
@@ -97,10 +97,12 @@ extension HacksmithsAPIClient {
     func getMemberList(body: [String :AnyObject], completionHandler: CompletionHandler) {
         let method = Routes.Members
         
+        syncInProgress = true
+        
         taskForGETMethod(method, parameters: body, completionHandler: {success, result, error in
             
             if error != nil {
-                
+                self.syncInProgress = false
                 completionHandler(success: false, error: error)
                 
             } else {
@@ -132,6 +134,7 @@ extension HacksmithsAPIClient {
                 self.sharedContext.performBlockAndWait({
                     CoreDataStackManager.sharedInstance().saveContext()
                 })
+                self.syncInProgress = false
                 completionHandler(success: true, error: nil)
                 
             }
