@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import ChameleonFramework
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

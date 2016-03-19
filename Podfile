@@ -9,5 +9,6 @@ target 'hacksmiths' do
     pod 'SwiftSpinner', :inhibit_warnings => false
     pod 'SwiftyButton'
     pod 'SwiftyButton/CustomContent'
-    pod 'chameleon'
+    pod 'ChameleonFramework'
 end
+

@@ -1,11 +1,13 @@
 PODS:
+  - ChameleonFramework (2.1.0):
+    - ChameleonFramework/Default (= 2.1.0)
+  - ChameleonFramework/Default (2.1.0)
   - Crashlytics (3.7.0):
     - Fabric (~> 1.6.3)
   - Fabric (1.6.6)
   - FontAwesome-iOS (0.0.4)
   - PureLayout (3.0.1)
   - Spring (1.0.3)
-  - SwiftRaisedTab (0.2.0)
   - SwiftSpinner (0.8.0)
   - SwiftyButton (0.4.0):
     - SwiftyButton/CustomContent (= 0.4.0)
@@ -13,11 +15,11 @@ PODS:
     - PureLayout (~> 3.0)
 
 DEPENDENCIES:
+  - ChameleonFramework
   - Crashlytics
   - Fabric
   - FontAwesome-iOS
   - Spring (from `https://github.com/MengTo/Spring.git`, branch `swift2`)
-  - SwiftRaisedTab (~> 0.2.0)
   - SwiftSpinner
   - SwiftyButton
   - SwiftyButton/CustomContent
@@ -33,12 +35,12 @@ CHECKOUT OPTIONS:
     :git: https://github.com/MengTo/Spring.git
 
 SPEC CHECKSUMS:
+  ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
   Fabric: 1abc1e59f11fa39ede6f690ef7309d8563e3ec59
   FontAwesome-iOS: 0fd503f7ae46780e17c2dd98e70fed30b5f90322
   PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
   Spring: 3f02b5dc3308572ef177b3cad0fa7bbc4b0706f7
-  SwiftRaisedTab: 7550a96a4c6aeacf438e27ac9ab1c2a2545efb39
   SwiftSpinner: 11c2c5ec7443d92f3026d3067ca8a91d4adef13f
   SwiftyButton: fffcc0d82b2b5f9ec1681f20ee9c67bed0d5c73b
 
