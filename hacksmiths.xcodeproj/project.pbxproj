@@ -61,6 +61,7 @@
 		1FA9FC821C534E5B00B993BC /* hacksmithsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA9FC811C534E5B00B993BC /* hacksmithsTests.swift */; };
 		1FA9FC8D1C534E5B00B993BC /* hacksmithsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA9FC8C1C534E5B00B993BC /* hacksmithsUITests.swift */; };
 		1FA9FC9B1C53563700B993BC /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA9FC9A1C53563700B993BC /* EventViewController.swift */; };
+		1FC6DE3E1C9F36BF000E8159 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC6DE3D1C9F36BF000E8159 /* EditProfileViewController.swift */; };
 		1FE4B30D1C6ADAC10011ECAE /* octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1FE4B30C1C6ADAC10011ECAE /* octicons.ttf */; };
 		1FE4B3131C6ADE050011ECAE /* PersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE4B3121C6ADE050011ECAE /* PersonViewController.swift */; };
 		1FF998921C6EB359003D98B2 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF998911C6EB359003D98B2 /* MainTabBarController.swift */; };
@@ -155,6 +156,7 @@
 		1FA9FC8C1C534E5B00B993BC /* hacksmithsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hacksmithsUITests.swift; sourceTree = "<group>"; };
 		1FA9FC8E1C534E5B00B993BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1FA9FC9A1C53563700B993BC /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
+		1FC6DE3D1C9F36BF000E8159 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		1FE4B30C1C6ADAC10011ECAE /* octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = octicons.ttf; path = hacksmiths/octicons.ttf; sourceTree = "<group>"; };
 		1FE4B3121C6ADE050011ECAE /* PersonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonViewController.swift; sourceTree = "<group>"; };
 		1FF998911C6EB359003D98B2 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -339,6 +341,7 @@
 				1FF998A21C713888003D98B2 /* View */,
 				1F44B1BB1C5DDAC9004E196D /* Controller */,
 				1FA9FC6D1C534E5A00B993BC /* Main.storyboard */,
+				1FC6DE3D1C9F36BF000E8159 /* EditProfileViewController.swift */,
 				1FA9FC731C534E5A00B993BC /* Assets.xcassets */,
 				1FA9FC751C534E5A00B993BC /* LaunchScreen.storyboard */,
 				1FA9FC781C534E5A00B993BC /* Info.plist */,
@@ -616,6 +619,7 @@
 				1FA2E55B1C67FF020085FC7D /* GlobalConstants.swift in Sources */,
 				1FE4B3131C6ADE050011ECAE /* PersonViewController.swift in Sources */,
 				1FA2E55D1C67FF550085FC7D /* HacksmithsAPIClient.swift in Sources */,
+				1FC6DE3E1C9F36BF000E8159 /* EditProfileViewController.swift in Sources */,
 				1F44B1BA1C5DDAB9004E196D /* CoreDataStackManager.swift in Sources */,
 				1FF998A41C713931003D98B2 /* LeaderBoardTableViewCell.swift in Sources */,
 				1F4B4DF81C72574700A75F5D /* OnePasswordExtension.m in Sources */,

@@ -9,8 +9,7 @@
 import UIKit
 
 class UserData: NSObject {
-    var userId: String?
-    var dateAuthenticated: NSDate?
+
     
     /* Singleton shared instance of */
     class func sharedInstance() -> UserData {
@@ -25,29 +24,26 @@ class UserData: NSObject {
             return NSUserDefaults.standardUserDefaults().boolForKey("authenticated")
         }
         set {
-            NSUserDefaults.standardUserDefaults().valueForKey("authenticated")
+            NSUserDefaults.standardUserDefaults().setValue(newValue, forKey: "authenticated")
         }
     }
     
-    func saveDataToUserDefaults() {
-        NSUserDefaults.standardUserDefaults().setValue(userId, forKey: "userId")
-        NSUserDefaults.standardUserDefaults().setValue(authenticated, forKey: "authenticated")
-        NSUserDefaults.standardUserDefaults().setValue(dateAuthenticated, forKey: "dateAuthenticated")
-    }
-    
-    func getDataFromUserDefaults() {
-        let authenticated = NSUserDefaults.standardUserDefaults().boolForKey("authenticated")
-
-        if authenticated == true {
-            if let id = NSUserDefaults.standardUserDefaults().valueForKey("userId") as? String {
-                
-                userId = id
-            
-            } else {
-             
-                userId = nil
-            
-            }
+    var userId: String? {
+        get {
+            return NSUserDefaults.standardUserDefaults().valueForKey("userId") as? String
+        }
+        set {
+            NSUserDefaults.standardUserDefaults().setValue(newValue, forKey: "userId")
         }
     }
+    
+    var dateAuthenticated: NSDate? {
+        get {
+            return NSUserDefaults.standardUserDefaults().valueForKey("dateAuthenticated") as? NSDate
+        }
+        set {
+            NSUserDefaults.standardUserDefaults().setValue(newValue, forKey: "dateAuthenticated")
+        }
+    }
+    
 }

@@ -230,6 +230,9 @@ class LoginViewController: UIViewController {
                     }
                     
                     if success {
+                        
+                        NSUserDefaults.standardUserDefaults().setValue(self.usernameTextField.text, forKey: "username")
+                        
                         self.setButtonLoading("Login", loading: false)
 
                         self.dismissLoginView(true)

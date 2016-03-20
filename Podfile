@@ -10,4 +10,5 @@ target 'hacksmiths' do
     pod 'SwiftyButton'
     pod 'SwiftyButton/CustomContent'
     pod 'ChameleonFramework'
+    pod 'TextFieldEffects', :inhibit_warnings => true
 end

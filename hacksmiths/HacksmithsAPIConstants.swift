@@ -41,16 +41,11 @@ extension HacksmithsAPIClient {
             static let Username = "username"
             static let Body = "body"
             static let Password = "password"
+            static let Email = "email"
+            static let FirstName = "firstName"
+            static let LastName = "lastName"
+            static let authUser = "authUser"
         }
-        
-        struct Values {
-            
-            struct Methods {
-                
-            }
-        }
-    
-    
     
     struct JSONResponseKeys {
         static let Status = "status"
@@ -84,6 +79,7 @@ extension HacksmithsAPIClient {
                 // This is the URL for their photo
                 static let avatarUrl = "avatarUrl"
             }
+            
             
             struct Notifications {
                 static let notifications = "notifications"

@@ -13,7 +13,7 @@ class MainTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.tabBar.selectedImageTintColor = UIColor(hex: "#7ACFF0")
 
     }
 

@@ -11,23 +11,78 @@ import CoreData
 
 extension HacksmithsAPIClient {
     
-    func checkService() {
+    func checkService(body: [String : AnyObject], completionHandler: CompletionHandler) {
+        let method = Routes.SigninServiceCheck
         
+        taskForPOSTMethod(method, JSONBody: body, completionHandler: {sucess, result, error in
+            
+            if error != nil {
+                
+                completionHandler(success: false, error: error)
+                
+            } else {
+                
+                if let success = result["success"] as? Int, session = result["session"] as? Int {
+                    if success ==  1 && session == 1 {
+                        
+                        let userId = result[JSONResponseKeys.Auth.userId] as! String
+                        UserData.sharedInstance().authenticated = true
+                        UserData.sharedInstance().userId = userId
+                        UserData.sharedInstance().dateAuthenticated = NSDate()
+                        completionHandler(success: true, error: nil)
+                        
+                    } else {
+                        
+                        var message = result[JSONResponseKeys.Auth.message] as? String
+                        
+                        if message == nil {
+                            message = "Unable to register due to unknown reasons.  Please try again."
+                        }
+                        completionHandler(success: false, error: Errors.constructError(domain: "HacksmithsAPIClient", userMessage: message!))
+                        
+                        
+                    }
+                }
+                
+            }
+            
+        })
     }
     
-    func registerWithCredentials(username: String, password: String, completionHandler: CompletionHandler) {
+    func registerWithEmail(body: [String : AnyObject], completionHandler: CompletionHandler) {
         let method = Routes.SignupEmail
-        
-        let body = [Keys.Username: username, Keys.Password: password]
         
         taskForPOSTMethod(method, JSONBody: body, completionHandler: {success, result, error in
             if error != nil {
-                print(error)
+                
                 completionHandler(success: false, error: error)
+                
             } else {
-                print(result)
-                completionHandler(success: true, error: nil)
+                
+                if let success = result["success"] as? Int, session = result["session"] as? Int {
+                    if success ==  1 && session == 1 {
+                        
+                        let userId = result[JSONResponseKeys.Auth.userId] as! String
+                        UserData.sharedInstance().authenticated = true
+                        UserData.sharedInstance().userId = userId
+                        UserData.sharedInstance().dateAuthenticated = NSDate()
+                        completionHandler(success: true, error: nil)
+                        
+                    } else {
+                        
+                        var message = result[JSONResponseKeys.Auth.message] as? String
+                        
+                        if message == nil {
+                            message = "Unable to register due to unknown reasons.  Please try again."
+                        }
+                        completionHandler(success: false, error: Errors.constructError(domain: "HacksmithsAPIClient", userMessage: message!))
+                        
+                        
+                    }
+                }
+                
             }
+
         })
     }
 
@@ -47,7 +102,7 @@ extension HacksmithsAPIClient {
                     if success == false {
                         completionHandler(success: false, error: Errors.constructError(domain: "HacksmithsAPIClient", userMessage: "Sorry, but we were unable to sign you in.  Please check your password and try again."))
                     } else {
-                        print(result)
+
                         
                         if let success = result["success"] as? Int, session = result["session"] as? Int {
                             if success ==  1 && session == 1 {
@@ -55,7 +110,7 @@ extension HacksmithsAPIClient {
                                 let userId = result[JSONResponseKeys.Auth.userId] as! String
                                 UserData.sharedInstance().authenticated = true
                                 UserData.sharedInstance().userId = userId
-                                UserData.sharedInstance().saveDataToUserDefaults()
+                                UserData.sharedInstance().dateAuthenticated = NSDate()
                                 completionHandler(success: true, error: nil)
                                 
                             } else {

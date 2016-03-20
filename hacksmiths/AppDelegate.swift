@@ -18,20 +18,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-        /* If the user has a login key, then set authenticated and log in */
-
-        UserData.sharedInstance().getDataFromUserDefaults()
-        
         return true
     }
     
-    func changeStateForAuthenticated() {
-        
+    func showInitialRegistrationScreen() {
+        let showRegistration = NSUserDefaults.standardUserDefaults().valueForKey("showRegistration")
+        if showRegistration == nil {
+          NSUserDefaults.standardUserDefaults().setValue(false, forKey: "showRegistration")
+            
+        }
     }
     
     let primaryColor = UIColor.flatNavyBlueColorDark()
     let secondary = UIColor(hex: "#7ACFF0")
-
 
 
     func applicationWillResignActive(application: UIApplication) {
