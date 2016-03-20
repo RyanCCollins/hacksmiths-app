@@ -21,8 +21,9 @@ class Event: NSManagedObject {
     @NSManaged var registrationEnd : NSDate?
     @NSManaged var sponsors: [Organization]
     @NSManaged var teams: [Team]
-    @NSManaged var startDate: NSDate
-    @NSManaged var endDate: NSDate
+    @NSManaged var startDate: NSDate?
+    @NSManaged var endDate: NSDate?
+    
     @NSManaged var maxRSVPS: NSNumber
     @NSManaged var totalRSVPS: NSNumber
     @NSManaged var spotsAvailable: Bool
@@ -30,6 +31,9 @@ class Event: NSManagedObject {
     
     @NSManaged var project: Project
     @NSManaged var marketingInfo: String
+    
+    @NSManaged var featureImageURL: String?
+    @NSManaged var featureImageFilePath: String?
     
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
@@ -48,7 +52,48 @@ class Event: NSManagedObject {
         id = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.id] as! String
         title = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.title] as! String
         descriptionString = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.description] as! String
+        let dateStringStart = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.starts] as! String
+        let dateStringEnd = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.ends] as! String
+        if let start = dateFromString(dateStringStart), end = dateFromString(dateStringEnd) {
+            startDate = start
+            endDate = end
+        }
+        
+        if let spots = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.spotsRemaining] as? Int {
+            spotsRemaining = spots
+            if spots > 0 {
+                spotsAvailable = true
+            } else {
+                spotsAvailable = false
+            }
+        }
+        
         
     }
     
+    var image: UIImage? {
+        get {
+            guard featureImageFilePath != nil else {
+                return nil
+            }
+            
+            return HacksmithsAPIClient.Caches.imageCache.imageWithIdentifier(featureImageFilePath!)
+        }
+        set {
+            HacksmithsAPIClient.Caches.imageCache.storeImage(newValue, withIdentifier: featureImageFilePath!)
+        }
+    }
+
+    
+    func dateFromString(dateString: String) -> NSDate? {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+        let date = dateFormatter.dateFromString(dateString)
+        if let date = date {
+            return date
+        }
+        return nil
+    }
+    
 }
+

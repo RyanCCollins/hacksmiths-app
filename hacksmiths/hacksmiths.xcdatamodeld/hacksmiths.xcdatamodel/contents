@@ -2,21 +2,25 @@
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15B42" minimumToolsVersion="Automatic">
     <entity name="Event" representedClassName="Event" syncable="YES">
         <attribute name="about" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="attending" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="featureImageFilePath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="featureImageURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="next" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="registrationEndDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="registrationStartDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="responded" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="spotsRemaining" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="spotsAvailable" optional="YES" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
+        <attribute name="spotsRemaining" optional="YES" attributeType="Integer 16" defaultValueString="YES" syncable="YES"/>
         <attribute name="startDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="totalRemainingSpots" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="organization" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Organization" syncable="YES"/>
         <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Project" syncable="YES"/>
         <relationship name="sponsors" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Organization" syncable="YES"/>
         <relationship name="teams" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Team" syncable="YES"/>
+        <compoundIndexes>
+            <compoundIndex>
+                <index value="id"/>
+            </compoundIndex>
+        </compoundIndexes>
     </entity>
     <entity name="Organization" representedClassName="Organization" syncable="YES">
         <attribute name="about" optional="YES" attributeType="String" syncable="YES"/>
@@ -66,11 +70,11 @@
         <relationship name="users" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Person" inverseName="teams" inverseEntity="Person" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Event" positionX="-54" positionY="18" width="128" height="30"/>
-        <element name="Organization" positionX="-18" positionY="63" width="128" height="105"/>
-        <element name="Person" positionX="-63" positionY="-18" width="128" height="285"/>
-        <element name="Project" positionX="-27" positionY="63" width="128" height="120"/>
-        <element name="Roles" positionX="-18" positionY="90" width="128" height="60"/>
-        <element name="Team" positionX="-36" positionY="54" width="128" height="135"/>
+        <element name="Event" positionX="90" positionY="27" width="128" height="268"/>
+        <element name="Organization" positionX="-92" positionY="72" width="128" height="105"/>
+        <element name="Person" positionX="313" positionY="246" width="128" height="285"/>
+        <element name="Project" positionX="196" positionY="-117" width="128" height="120"/>
+        <element name="Roles" positionX="36" positionY="405" width="128" height="60"/>
+        <element name="Team" positionX="457" positionY="-18" width="128" height="135"/>
     </elements>
 </model>

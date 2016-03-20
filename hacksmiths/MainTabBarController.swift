@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import SwiftRaisedTab
 
-class MainTabBarController: RaisedTabBarController {
+class MainTabBarController: UITabBarController {
     
 
     override func viewDidLoad() {
@@ -25,7 +24,13 @@ class MainTabBarController: RaisedTabBarController {
     
     func swapViewsForAuthenticatedState() {
         if UserData.sharedInstance().authenticated == true {
-            self.tabBarController?.viewControllers
+//        
+//            self.tabBarController?.viewControllers
+//            let newControllers = NSMutableArray(array: tabBarController?.viewControllers)
+            
+            
+        } else {
+            
         }
     }
     

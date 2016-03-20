@@ -177,6 +177,7 @@ extension HacksmithsAPIClient {
                             
                             if nextEvent != nil || false {
                                 let nextEventDictionary = nextEvent as! [String: AnyObject]
+
                                 let next = Event(dictionary: self.dictionaryForEvent(nextEventDictionary), context: self.sharedContext)
                             }
                             

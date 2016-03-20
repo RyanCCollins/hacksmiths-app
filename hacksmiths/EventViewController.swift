@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyButton
+import CoreData
 
 class EventViewController: UIViewController {
     @IBOutlet weak var eventImageView: UIImageView!
@@ -23,24 +24,57 @@ class EventViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         getEventData()
+        
     }
     
     func getEventData() {
-        view.showLoading()
         HacksmithsAPIClient.sharedInstance().checkAPIForEvents({success, error in
             if error != nil {
                 self.view.hideLoading()
                 self.alertController(withTitles: ["OK"], message: (error?.localizedDescription)!, callbackHandler: [nil])
                 
             } else {
-                self.view.hideLoading()
+                print("Success")
+                self.performEventFetch()
             }
         })
     }
+    
+    lazy var fetchedResultsController: NSFetchedResultsController = {
+        
+        
+        let sortPriority = NSSortDescriptor(key: "startDate", ascending: false)
+        
+        
+        let nextEventFetch = NSFetchRequest(entityName: "Event")
+        nextEventFetch.sortDescriptors = [sortPriority]
+        
+        let fetchResultsController = NSFetchedResultsController(fetchRequest: nextEventFetch, managedObjectContext: self.sharedContext, sectionNameKeyPath: nil, cacheName: nil)
+        
+        do {
+            try fetchResultsController.performFetch()
+        } catch let error {
+            print(error)
+        }
+        
+        return fetchResultsController
+    }()
+    
+    func performEventFetch() {
+        do {
+            
+            try fetchedResultsController.performFetch()
+            
+        } catch let error as NSError {
+            self.alertController(withTitles: ["OK", "Retry"], message: error.localizedDescription, callbackHandler: [nil, {Void in
+                self.performEventFetch()
+            }])
+        }
+    }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    var sharedContext: NSManagedObjectContext {
+        return CoreDataStackManager.sharedInstance().managedObjectContext
     }
 
 }

@@ -29,6 +29,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
+    let primaryColor = UIColor.flatNavyBlueColorDark()
+    let secondary = UIColor(hex: "#7ACFF0")
+
 
 
     func applicationWillResignActive(application: UIApplication) {

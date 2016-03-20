@@ -13,7 +13,7 @@ class PersonViewController: UIViewController {
     
     @IBOutlet weak var personImageView: UIImageView!
     @IBOutlet weak var personNameLabel: UILabel!
-    @IBOutlet weak var personDescriptionLabel: UITextView!
+    @IBOutlet weak var personDescriptionLabel: UILabel!
     @IBOutlet weak var personTwitterLabel: UILabel!
     @IBOutlet weak var personGithubLabel: UILabel!
     

@@ -206,6 +206,8 @@ extension HacksmithsAPIClient {
             static let spotsRemaining = "spotsRemaining"
             static let state = "state"
             static let publishedDate = "publishedDate"
+            
+            static let featureImage = "featureImage"
         }
         
         struct Project {
