@@ -9,64 +9,46 @@
 import UIKit
 import SwiftyButton
 
-class RegisterViewController: UIViewController {
-    @IBOutlet var signMeUpButton: SwiftyButton!
+class RegistrationStartViewController: UIViewController {
+   
     @IBOutlet weak var firstNameTextField: UITextField!
-    @IBOutlet weak var lastNameTextField: UITextField!
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-
-    @IBOutlet weak var closeButton: UIButton!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         subscribeToKeyboardNotification()
+        
+        setupView()
+        
     }
-
+    
     override func viewWillDisappear(animated: Bool) {
         unsubsribeToKeyboardNotification()
     }
     
-    @IBAction func didTapSignUpUpInside(sender: AnyObject) {
-        submitForm()
+    func setupView() {
+        firstNameTextField.becomeFirstResponder()
+        navigationController?.toolbar.tintColor = view.backgroundColor
+        let rightBarButtonItem = UIBarButtonItem(title: "Next", style: .Plain, target: self, action: "goToNext:")
+        let xImage = UIImage(named: "x-in-square")
+        let leftBarButtonItem = UIBarButtonItem(image: xImage, style: .Plain, target: self, action: "dismissView:")
+        navigationItem.rightBarButtonItem = rightBarButtonItem
+        navigationItem.leftBarButtonItem = leftBarButtonItem
     }
-    
-    func submitForm() {
-        if formIsValid() {
-            let body: [String : AnyObject] = [HacksmithsAPIClient.Keys.Email : emailTextField.text!,
-                HacksmithsAPIClient.Keys.Password : passwordTextField.text!,
-                HacksmithsAPIClient.Keys.FirstName : firstNameTextField.text!,
-                HacksmithsAPIClient.Keys.LastName : lastNameTextField.text!
-            ]
-            HacksmithsAPIClient.sharedInstance().registerWithEmail(body, completionHandler: {success, error in
-                
-            })
-        }
-    }
-    
-    func formIsValid() -> Bool {
-        // Check to see that all fields are filled in.  If not, then alert the user,
-        // Note that no other checking is done here.  We will have to check to see that the fields are indeed valid.
-        
-        if firstNameTextField.text == nil || lastNameTextField.text == nil {
-            alertController(withTitles: ["OK"], message: "Please enter your first and last name", callbackHandler: [nil])
-            return false
-        }
-        
-        if emailTextField.text == nil || passwordTextField.text == nil {
-            alertController(withTitles: ["OK"], message: "Please enter a valid email and password.", callbackHandler: [nil])
-            return false
-        }
-        
-        return true
 
+    
+    func goToNext(sender: AnyObject) {
+        let nextViewController = storyboard?.instantiateViewControllerWithIdentifier("LastNameViewController") as! LastNameViewController
+        
+        navigationController?.pushViewController(nextViewController, animated: true)
     }
     
-    @IBAction func didTapDismissUpInside(sender: AnyObject) {
+    func dismissView(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
     }
 }
 
-extension RegisterViewController: UITextFieldDelegate {
+extension RegistrationStartViewController: UITextFieldDelegate {
     /* Configure and deselect text fields when return is pressed */
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         
@@ -94,13 +76,13 @@ extension RegisterViewController: UITextFieldDelegate {
     func keyboardWillShow(notification: NSNotification) {
         /* Slide the view up when keyboard appears, using notifications */
         
-        view.frame.origin.y = -getKeyboardHeight(notification)
+        //view.frame.origin.y = -getKeyboardHeight(notification)
         
     }
     
     /* Reset view origin when keyboard hides */
     func keyboardWillHide(notification: NSNotification) {
-        view.frame.origin.y = 0
+        //view.frame.origin.y = 0
     }
     
     /* Get the height of the keyboard from the user info dictionary */

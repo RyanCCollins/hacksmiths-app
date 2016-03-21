@@ -13,9 +13,17 @@ class MainTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tabBar.selectedImageTintColor = UIColor(hex: "#7ACFF0")
+        self.tabBar.tintColor = UIColor(hex: "#7ACFF0")
 
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Check if the user is authenticated and swap the views if so.
+        swapViewsForAuthenticatedState()
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -23,36 +31,14 @@ class MainTabBarController: UITabBarController {
     }
     
     func swapViewsForAuthenticatedState() {
+
         if UserData.sharedInstance().authenticated == true {
-//        
-//            self.tabBarController?.viewControllers
-//            let newControllers = NSMutableArray(array: tabBarController?.viewControllers)
-            
-            
-        } else {
-            
-        }
-    }
-    
-    func showLoginView(animated: Bool) {
-        
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let loginViewController = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
-//        window?.makeKeyAndVisible()
-//        window?.rootViewController?.presentViewController(loginViewController, animated: animated, completion: nil)
-        
-    }
-    
-    func updateData() {
-       
-    }
-    
-    func logout() {
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let mainTabBarController = storyboard.instantiateViewControllerWithIdentifier("MainTabBarController") as! MainTabBarController
-//        window?.rootViewController = mainTabBarController
-//        
-//        showLoginView(true)
+            let profileViewController = storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController")
+            var viewControllers = tabBarController?.viewControllers
+            viewControllers?.removeFirst()
+            viewControllers?.insert(profileViewController!, atIndex: 0)
+            tabBarController?.setViewControllers(viewControllers, animated: true)
+        } 
     }
 
 }
