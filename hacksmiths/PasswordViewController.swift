@@ -19,11 +19,19 @@ class PasswordViewController: UIViewController {
     
     func setupView() {
         passwordTextField.becomeFirstResponder()
+        let backwardArrow = UIImage(named: "backward-arrow")
+        configureNavigationBar("Next", barButtonImage: backwardArrow!)
+ 
+    }
+    
+    func configureNavigationBar(title: String, barButtonImage: UIImage) {
         navigationController?.navigationBar.barTintColor = view.backgroundColor
         navigationController?.toolbar.barTintColor = view.backgroundColor
-        let rightBarButtonItem = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: "submitForm")
-        let backwardArrow = UIImage(named: "backward-arrow")
-        let backButton = UIBarButtonItem(image: backwardArrow, style: .Plain, target: self, action: "goToLastView:")
+        
+        let rightBarButtonItem = UIBarButtonItem(title: title, style: .Plain, target: self, action: "submitForm")
+
+        let backButton = UIBarButtonItem(image: barButtonImage, style: .Plain, target: self, action: "goToLastView:")
+        // Set the color and then apply the items
         rightBarButtonItem.tintColor = UIColor.whiteColor()
         backButton.tintColor = UIColor.whiteColor()
         navigationItem.rightBarButtonItem = rightBarButtonItem
@@ -64,3 +72,5 @@ class PasswordViewController: UIViewController {
     
 
 }
+
+
