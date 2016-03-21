@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F26C3F71CA0B232001596D2 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F26C3F61CA0B232001596D2 /* AboutViewController.swift */; };
 		1F44B1BA1C5DDAB9004E196D /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F44B1B91C5DDAB9004E196D /* CoreDataStackManager.swift */; };
 		1F4B4DF71C72574700A75F5D /* 1Password.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F4B4DF41C72574700A75F5D /* 1Password.xcassets */; };
 		1F4B4DF81C72574700A75F5D /* OnePasswordExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4B4DF61C72574700A75F5D /* OnePasswordExtension.m */; };
@@ -97,6 +98,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1F26C3F61CA0B232001596D2 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		1F44B1B91C5DDAB9004E196D /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
 		1F4B4DF31C72574600A75F5D /* hacksmiths-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "hacksmiths-Bridging-Header.h"; sourceTree = "<group>"; };
 		1F4B4DF41C72574700A75F5D /* 1Password.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = 1Password.xcassets; sourceTree = "<group>"; };
@@ -225,6 +227,8 @@
 			children = (
 				1FC6DE451C9F59EB000E8159 /* Registration */,
 				1FF998911C6EB359003D98B2 /* MainTabBarController.swift */,
+				1F26C3F61CA0B232001596D2 /* AboutViewController.swift */,
+				1FC6DE3D1C9F36BF000E8159 /* EditProfileViewController.swift */,
 				1FA5A4EF1C535D6C00722E55 /* LoginViewController.swift */,
 				1FA5A4ED1C535A9500722E55 /* ExtendsUIViewController.swift */,
 				1FE4B3121C6ADE050011ECAE /* PersonViewController.swift */,
@@ -349,7 +353,6 @@
 				1FF998A21C713888003D98B2 /* View */,
 				1F44B1BB1C5DDAC9004E196D /* Controller */,
 				1FA9FC6D1C534E5A00B993BC /* Main.storyboard */,
-				1FC6DE3D1C9F36BF000E8159 /* EditProfileViewController.swift */,
 				1FA9FC731C534E5A00B993BC /* Assets.xcassets */,
 				1FA9FC751C534E5A00B993BC /* LaunchScreen.storyboard */,
 				1FA9FC781C534E5A00B993BC /* Info.plist */,
@@ -656,6 +659,7 @@
 				1FA2E5631C6802AC0085FC7D /* HacksmithsAPIConvenience.swift in Sources */,
 				1FF998A11C71387C003D98B2 /* PersonTableViewCell.swift in Sources */,
 				1F4B4E011C74FCC400A75F5D /* JoinViewController.swift in Sources */,
+				1F26C3F71CA0B232001596D2 /* AboutViewController.swift in Sources */,
 				1FA2E5611C68029C0085FC7D /* HacksmithsAPIConstants.swift in Sources */,
 				1FF998921C6EB359003D98B2 /* MainTabBarController.swift in Sources */,
 				1FF9989B1C6FB04B003D98B2 /* Team.swift in Sources */,
