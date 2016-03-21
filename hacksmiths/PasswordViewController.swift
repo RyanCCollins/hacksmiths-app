@@ -12,24 +12,20 @@ class PasswordViewController: UIViewController {
     
     @IBOutlet weak var passwordTextField: UITextField!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        //subscribeToKeyboardNotification()
-        
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         setupView()
-        
-    }
-    override func viewWillDisappear(animated: Bool) {
-        //unsubsribeToKeyboardNotification()
     }
     
     func setupView() {
         passwordTextField.becomeFirstResponder()
-        
-        navigationController?.toolbar.tintColor = view.backgroundColor
+        navigationController?.navigationBar.barTintColor = view.backgroundColor
+        navigationController?.toolbar.barTintColor = view.backgroundColor
         let rightBarButtonItem = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: "submitForm")
         let backwardArrow = UIImage(named: "backward-arrow")
-        let backButton = UIBarButtonItem(image: backwardArrow, style: .Plain, target: self, action: "goBackToLastView:")
+        let backButton = UIBarButtonItem(image: backwardArrow, style: .Plain, target: self, action: "goToLastView:")
+        rightBarButtonItem.tintColor = UIColor.whiteColor()
+        backButton.tintColor = UIColor.whiteColor()
         navigationItem.rightBarButtonItem = rightBarButtonItem
         navigationItem.setLeftBarButtonItem(backButton, animated: true)
     }

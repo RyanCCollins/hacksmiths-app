@@ -10,26 +10,24 @@ import UIKit
 
 class LastNameViewController: UIViewController {
     @IBOutlet weak var lastNameTextField: UITextField!
+
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        //subscribeToKeyboardNotification()
-        
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         setupView()
-        
-    }
-    override func viewWillDisappear(animated: Bool) {
-        //unsubsribeToKeyboardNotification()
     }
     
     func setupView() {
         lastNameTextField.becomeFirstResponder()
-        navigationController?.toolbar.tintColor = view.backgroundColor
+        navigationController?.navigationBar.barTintColor = view.backgroundColor
+        navigationController?.toolbar.barTintColor = view.backgroundColor
         let rightBarButtonItem = UIBarButtonItem(title: "Next", style: .Plain, target: self, action: "goToNextView:")
         let backwardArrow = UIImage(named: "backward-arrow")
-        let backButton = UIBarButtonItem(image: backwardArrow, style: .Plain, target: self, action: "goBackToLastView:")
+        let backButton = UIBarButtonItem(image: backwardArrow, style: .Plain, target: self, action: "goToLastView:")
         navigationItem.rightBarButtonItem = rightBarButtonItem
         navigationItem.setLeftBarButtonItem(backButton, animated: true)
+        rightBarButtonItem.tintColor = UIColor.whiteColor()
+        backButton.tintColor = UIColor.whiteColor()
     }
     
     
