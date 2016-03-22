@@ -61,7 +61,7 @@
         <!--Leaderboard-->
         <scene sceneID="IES-SG-quP">
             <objects>
-                <viewController id="VXv-Ge-WOo" customClass="ScheduleViewController" customModule="hacksmiths" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="VXv-Ge-WOo" customClass="LeaderboardTableViewController" customModule="hacksmiths" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cLh-vd-RoE"/>
                         <viewControllerLayoutGuide type="bottom" id="cC3-hO-ZSP"/>
@@ -577,17 +577,17 @@ We build tools designed to help non-profit organizations streamline their philan
                                                         <color key="textColor" red="0.74509803919999995" green="0.75294117650000003" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="D2b-HP-4JA">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="D2b-HP-4JA">
                                                         <rect key="frame" x="0.0" y="31" width="174" height="30"/>
                                                         <subviews>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="link-white" translatesAutoresizingMaskIntoConstraints="NO" id="Doz-Pi-70y">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="link-white" translatesAutoresizingMaskIntoConstraints="NO" id="Doz-Pi-70y">
                                                                 <rect key="frame" x="0.0" y="2" width="27" height="26"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="26" id="Tm2-Rq-7nF"/>
                                                                     <constraint firstAttribute="height" constant="26" id="q2m-dg-Yuf"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fWe-Dm-IwA">
+                                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fWe-Dm-IwA">
                                                                 <rect key="frame" x="37" y="0.0" width="137" height="30"/>
                                                                 <state key="normal" title="http://hacksmiths.io"/>
                                                                 <connections>

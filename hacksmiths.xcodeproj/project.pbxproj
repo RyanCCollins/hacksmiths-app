@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1F26C3F71CA0B232001596D2 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F26C3F61CA0B232001596D2 /* AboutViewController.swift */; };
+		1F26C3F91CA1958E001596D2 /* LeaderboardTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F26C3F81CA1958E001596D2 /* LeaderboardTableViewController.swift */; };
 		1F44B1BA1C5DDAB9004E196D /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F44B1B91C5DDAB9004E196D /* CoreDataStackManager.swift */; };
 		1F4B4DF71C72574700A75F5D /* 1Password.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F4B4DF41C72574700A75F5D /* 1Password.xcassets */; };
 		1F4B4DF81C72574700A75F5D /* OnePasswordExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4B4DF61C72574700A75F5D /* OnePasswordExtension.m */; };
@@ -97,6 +98,7 @@
 
 /* Begin PBXFileReference section */
 		1F26C3F61CA0B232001596D2 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		1F26C3F81CA1958E001596D2 /* LeaderboardTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardTableViewController.swift; sourceTree = "<group>"; };
 		1F44B1B91C5DDAB9004E196D /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
 		1F4B4DF31C72574600A75F5D /* hacksmiths-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "hacksmiths-Bridging-Header.h"; sourceTree = "<group>"; };
 		1F4B4DF41C72574700A75F5D /* 1Password.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = 1Password.xcassets; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 				1FF998911C6EB359003D98B2 /* MainTabBarController.swift */,
 				1F26C3F61CA0B232001596D2 /* AboutViewController.swift */,
 				1FC6DE3D1C9F36BF000E8159 /* EditProfileViewController.swift */,
+				1F26C3F81CA1958E001596D2 /* LeaderboardTableViewController.swift */,
 				1FA5A4EF1C535D6C00722E55 /* LoginViewController.swift */,
 				1FA5A4ED1C535A9500722E55 /* ExtendsUIViewController.swift */,
 				1FE4B3121C6ADE050011ECAE /* PersonViewController.swift */,
@@ -648,6 +651,7 @@
 				1FA5A4EE1C535A9500722E55 /* ExtendsUIViewController.swift in Sources */,
 				1F4B4DFF1C73A60400A75F5D /* UserData.swift in Sources */,
 				1FA9FC721C534E5A00B993BC /* hacksmiths.xcdatamodeld in Sources */,
+				1F26C3F91CA1958E001596D2 /* LeaderboardTableViewController.swift in Sources */,
 				1FA2E5631C6802AC0085FC7D /* HacksmithsAPIConvenience.swift in Sources */,
 				1FF998A11C71387C003D98B2 /* PersonTableViewCell.swift in Sources */,
 				1F4B4E011C74FCC400A75F5D /* JoinViewController.swift in Sources */,
