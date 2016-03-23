@@ -20,22 +20,18 @@ class LeaderboardTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    // MARK: - Table view data source
+    
+    
+    
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return leaderFetchResultsController.sections![section].numberOfObjects
     }
 
 
@@ -49,7 +45,7 @@ class LeaderboardTableViewController: UITableViewController {
  
     
     lazy var leaderFetchResultsController: NSFetchedResultsController = {
-        let sortPriority = NSSortDescriptor(key: "sortPriority", ascending: true)
+        let sortPriority = NSSortDescriptor(key: "rank", ascending: true)
         
         let isPublicButNotLeaderPredicate = NSPredicate(format: "isPublic == %@ && isTopContributor == %@", NSNumber(bool: true), NSNumber(bool: false))
         let isPublicButNotLeaderFetch = NSFetchRequest(entityName: "Person")
@@ -66,6 +62,10 @@ class LeaderboardTableViewController: UITableViewController {
         
         return fetchResultsController
     }()
+    
+    var sharedContext: NSManagedObjectContext {
+        return CoreDataStackManager.sharedInstance().managedObjectContext
+    }
     
 
     // Override to support conditional editing of the table view.
