@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EditProfileViewController: UIViewController {
+class ProfileViewController: UIViewController {
     
     
     @IBOutlet weak var nameLabel: UILabel!

@@ -14,31 +14,52 @@ class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBar.tintColor = UIColor(hex: "#7ACFF0")
-
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
         
-        // Check if the user is authenticated and swap the views if so.
+        // Call the swap views for authenticated state when first loaded to avoid any situation where the
+        // View would not show.
         swapViewsForAuthenticatedState()
     }
     
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    // Run a check for swapping the view when a tabbar item is selected.
+    override func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
+        swapViewsForAuthenticatedState()
     }
     
+    
+    // Checks if the user is authenticated and sets the proper tab bar items based
+    // If they are authenticated, they should not see the JoinViewController
+    // If they are not authenticated, they should not see the ProfileViewController.
     func swapViewsForAuthenticatedState() {
 
         if UserData.sharedInstance().authenticated == true {
-            let profileViewController = storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController")
+            print("User is authenticated")
+            let profileViewController = storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController") as! ProfileViewController
             var viewControllers = tabBarController?.viewControllers
-            viewControllers?.removeFirst()
-            viewControllers?.insert(profileViewController!, atIndex: 0)
-            tabBarController?.setViewControllers(viewControllers, animated: true)
-        } 
+            
+            // Make sure that the first view controller does not contain the joinviewcontroller
+            if viewControllers?.first is JoinViewController {
+                print("attempting to swap out the first view controller\(viewControllers!.first)")
+                viewControllers?.removeAtIndex(0)
+                viewControllers?.insert(profileViewController, atIndex: 0)
+            }
+            
+            viewControllers?.insert(profileViewController, atIndex: 0)
+            tabBarController?.setViewControllers(viewControllers, animated: false)
+        } else {
+            
+            print("User is not authenticated")
+            let joinViewController = storyboard?.instantiateViewControllerWithIdentifier("JoinViewController") as! JoinViewController
+            
+            var viewControllers = tabBarController?.viewControllers
+            
+            // Remove the first element if it is profile view controller
+            if viewControllers!.first is ProfileViewController {
+                viewControllers?.removeFirst()
+            }
+            
+            viewControllers?.insert(joinViewController, atIndex: 0)
+            tabBarController?.setViewControllers(viewControllers, animated: false)
+        }
     }
 
 }

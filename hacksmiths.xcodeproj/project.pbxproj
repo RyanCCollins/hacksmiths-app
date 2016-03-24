@@ -61,7 +61,7 @@
 		1FA9FC821C534E5B00B993BC /* hacksmithsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA9FC811C534E5B00B993BC /* hacksmithsTests.swift */; };
 		1FA9FC8D1C534E5B00B993BC /* hacksmithsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA9FC8C1C534E5B00B993BC /* hacksmithsUITests.swift */; };
 		1FA9FC9B1C53563700B993BC /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA9FC9A1C53563700B993BC /* EventViewController.swift */; };
-		1FC6DE3E1C9F36BF000E8159 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC6DE3D1C9F36BF000E8159 /* EditProfileViewController.swift */; };
+		1FC6DE3E1C9F36BF000E8159 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC6DE3D1C9F36BF000E8159 /* ProfileViewController.swift */; };
 		1FC6DE401C9F5978000E8159 /* LastNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC6DE3F1C9F5978000E8159 /* LastNameViewController.swift */; };
 		1FC6DE421C9F599B000E8159 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC6DE411C9F599B000E8159 /* PasswordViewController.swift */; };
 		1FC6DE441C9F59A6000E8159 /* EmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC6DE431C9F59A6000E8159 /* EmailViewController.swift */; };
@@ -160,7 +160,7 @@
 		1FA9FC8C1C534E5B00B993BC /* hacksmithsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hacksmithsUITests.swift; sourceTree = "<group>"; };
 		1FA9FC8E1C534E5B00B993BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1FA9FC9A1C53563700B993BC /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
-		1FC6DE3D1C9F36BF000E8159 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		1FC6DE3D1C9F36BF000E8159 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		1FC6DE3F1C9F5978000E8159 /* LastNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LastNameViewController.swift; sourceTree = "<group>"; };
 		1FC6DE411C9F599B000E8159 /* PasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
 		1FC6DE431C9F59A6000E8159 /* EmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailViewController.swift; sourceTree = "<group>"; };
@@ -226,7 +226,7 @@
 				1FC6DE451C9F59EB000E8159 /* Registration */,
 				1FF998911C6EB359003D98B2 /* MainTabBarController.swift */,
 				1F26C3F61CA0B232001596D2 /* AboutViewController.swift */,
-				1FC6DE3D1C9F36BF000E8159 /* EditProfileViewController.swift */,
+				1FC6DE3D1C9F36BF000E8159 /* ProfileViewController.swift */,
 				1F26C3F81CA1958E001596D2 /* LeaderboardTableViewController.swift */,
 				1FA5A4EF1C535D6C00722E55 /* LoginViewController.swift */,
 				1FA5A4ED1C535A9500722E55 /* ExtendsUIViewController.swift */,
@@ -640,7 +640,7 @@
 				1FC6DE401C9F5978000E8159 /* LastNameViewController.swift in Sources */,
 				1FE4B3131C6ADE050011ECAE /* PersonViewController.swift in Sources */,
 				1FA2E55D1C67FF550085FC7D /* HacksmithsAPIClient.swift in Sources */,
-				1FC6DE3E1C9F36BF000E8159 /* EditProfileViewController.swift in Sources */,
+				1FC6DE3E1C9F36BF000E8159 /* ProfileViewController.swift in Sources */,
 				1F44B1BA1C5DDAB9004E196D /* CoreDataStackManager.swift in Sources */,
 				1FF998A41C713931003D98B2 /* LeaderBoardTableViewCell.swift in Sources */,
 				1F4B4DF81C72574700A75F5D /* OnePasswordExtension.m in Sources */,

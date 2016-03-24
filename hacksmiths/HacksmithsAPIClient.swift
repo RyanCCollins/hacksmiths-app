@@ -59,6 +59,11 @@ class HacksmithsAPIClient: NSObject {
                     }
                 }
                 
+                guard data != nil else {
+                    completionHandler(success: false, result: nil, error: Errors.constructError(domain: "HacksmithsAPIClient", userMessage: ErrorMessages.Status.Network))
+                    return
+                }
+                
                 /* Parse the results and return in the completion handler with an error if there is one. */
                 HacksmithsAPIClient.parseJSONDataWithCompletionHandler(data!, completionHandler: completionHandler)
 
@@ -121,9 +126,7 @@ class HacksmithsAPIClient: NSObject {
         let request = NSMutableURLRequest(URL: NSURL(string: urlString)!)
         
         request.HTTPMethod = HTTPRequest.POST
-//        request.addValue(Constants.app_id, forHTTPHeaderField: "X-Parse-Application-Id")
-//        request.addValue(Constants.api_key, forHTTPHeaderField: "X-Parse-REST-API-Key")
-//        
+    
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         

@@ -206,7 +206,8 @@ extension HacksmithsAPIClient {
             if error != nil {
                 completionHandler(success: false, error: error)
             } else {
-                if let result = result[HacksmithsAPIClient.JSONResponseKeys.Status] as? [String : AnyObject] {
+                if result != nil {
+                     
                     if let success = result[HacksmithsAPIClient.JSONResponseKeys.Success] as? Bool, events = result[HacksmithsAPIClient.JSONResponseKeys.Event.events] as? [String:AnyObject] {
                         
                         if success != true {
@@ -233,7 +234,7 @@ extension HacksmithsAPIClient {
                             
                             if nextEvent != nil || false {
                                 let nextEventDictionary = nextEvent as! [String: AnyObject]
-
+                                
                                 let next = Event(dictionary: self.dictionaryForEvent(nextEventDictionary), context: self.sharedContext)
                             }
                             
@@ -247,8 +248,10 @@ extension HacksmithsAPIClient {
                     }
                     
                 }
+                    
             }
-        })
+            
+         })
         
     }
     
