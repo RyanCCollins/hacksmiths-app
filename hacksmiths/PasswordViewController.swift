@@ -69,8 +69,4 @@ class PasswordViewController: UIViewController {
             })
         }
     }
-    
-
 }
-
-

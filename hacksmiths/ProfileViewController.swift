@@ -14,7 +14,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     
     @IBOutlet weak var editButton: UIBarButtonItem!
-    @IBOutlet weak var imageView: UIImageView!
+
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var twitterLabel: UILabel!
@@ -24,6 +24,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var twitterUsernameTextField: UITextField!
     @IBOutlet weak var githubUsernameTextField: UITextField!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
+    @IBOutlet weak var noDataFoundLabel: UILabel!
     
     @IBOutlet weak var githubLabel: UILabel!
     override func viewDidLoad() {

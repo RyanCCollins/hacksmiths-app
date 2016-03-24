@@ -22,8 +22,7 @@ class LoginViewController: UIViewController {
 
     @IBOutlet weak var touchIDButton: UIButton!
     @IBOutlet weak var onepasswordButton: UIButton!
-    let buttonLabel = UILabel()
-    let indicator = UIActivityIndicatorView(activityIndicatorStyle: .White)
+
     
     let loginButton = SwiftyCustomContentButton()
     
@@ -46,25 +45,7 @@ class LoginViewController: UIViewController {
 
     func configureLoginButtons() {
         
-        loginButton.customContentView.addSubview(self.buttonLabel)
-        buttonLabel.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 10), excludingEdge: .Left)
-        loginButton.customContentView.addSubview(indicator)
-        buttonLabel.autoPinEdge(.Left, toEdge: .Right, ofView: indicator, withOffset: 10)
         
-        indicator.autoPinEdgesToSuperviewEdgesWithInsets(UIEdgeInsets(top: 10, left: 15, bottom: 10, right: 0), excludingEdge: .Right)
-        buttonLabel.textColor = UIColor.whiteColor()
-        loginButtonView.addSubview(loginButton)
-        loginButton.autoPinEdgesToSuperviewEdges()
-        
-        setButtonLoading("Login", loading: false)
-        
-        loginButton.buttonColor = UIColor(hex: "#25293c")
-        loginButton.shadowColor = UIColor(hex: "#808c8d")
-        
-        loginButton.addTarget(self, action: "loginOrRegisterAction:", forControlEvents: UIControlEvents.TouchUpInside)
-        
-        loginButton.tag = loginButtonTag
-
         onepasswordButton.enabled = true
         
         
@@ -79,30 +60,7 @@ class LoginViewController: UIViewController {
     @IBAction func didTapSkipUpInside(sender: AnyObject) {
         dismissLoginView(false)
     }
-    
-    func setButtonLoading(message: String, loading: Bool) {
-        
-        /* Remove the button label from superview */
-        
-        if loading == true {
-            
-            view.showLoading()
 
-        } else {
-
-
-            view.hideLoading()
-
-        }
-        
-
-        self.buttonLabel.text = message
-
-    }
-    
-    func setupButton() {
-
-    }
     
     func configureTouchID() {
         touchIDButton.hidden = true
@@ -208,8 +166,7 @@ class LoginViewController: UIViewController {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func loginOrRegisterAction(sender: AnyObject){
-        
+    @IBAction func didTapLoginButtonUpInside(sender: AnyObject) {
         if !credentialsAreValid() {
             alertController(withTitles: ["OK"], message: "Please enter a valid username and password", callbackHandler: [nil])
             return
@@ -217,29 +174,28 @@ class LoginViewController: UIViewController {
         
         usernameTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
-
         
-            setButtonLoading("Logging in...", loading: true)
         
-                HacksmithsAPIClient.sharedInstance().authenticateWithCredentials(usernameTextField.text!, password: passwordTextField.text!, completionHandler: {success, error in
-                    
-                    if error != nil {
-                        
-                        self.alertController(withTitles: ["OK"], message: "We were unable to authenticate your account.  Please check your password and try again.", callbackHandler: [nil])
-                        self.setButtonLoading("Login", loading: false)
-                    }
-                    
-                    if success {
-                        
-                        NSUserDefaults.standardUserDefaults().setValue(self.usernameTextField.text, forKey: "username")
-                        
-                        self.setButtonLoading("Login", loading: false)
-
-                        self.dismissLoginView(true)
-                    }
-                    
-                })
-
+        
+        
+        HacksmithsAPIClient.sharedInstance().authenticateWithCredentials(usernameTextField.text!, password: passwordTextField.text!, completionHandler: {success, error in
+            
+            if error != nil {
+                
+                self.alertController(withTitles: ["OK"], message: "We were unable to authenticate your account.  Please check your password and try again.", callbackHandler: [nil])
+                
+            }
+            
+            if success {
+                
+                NSUserDefaults.standardUserDefaults().setValue(self.usernameTextField.text, forKey: "username")
+                
+                
+                
+                self.dismissLoginView(true)
+            }
+            
+        })
     }
 
     
@@ -260,11 +216,11 @@ class LoginViewController: UIViewController {
                     if error != nil {
                         
                         self.alertController(withTitles: ["OK"], message: "We were unable to authenticate your account.  Please check your password and try again.", callbackHandler: [nil])
-                        self.setButtonLoading("Login", loading: false)
+
                     }
                     
                     if success {
-                        self.setButtonLoading("Login", loading: false)
+
                         self.dismissLoginView(true)
                     }
                     
@@ -307,13 +263,13 @@ class LoginViewController: UIViewController {
                 if error != nil {
 
                     self.alertController(withTitles: ["OK"], message: "We were unable to authenticate your account.  Please check your password and try again.", callbackHandler: [nil])
-                    self.setButtonLoading("Login", loading: false)
+
                 }
                 
                 if success {
                     
                     self.dismissLoginView(true)
-                    self.setButtonLoading("Login", loading: false)
+
                 }
                 
             })

@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:RegistrationPageViewController.swift">
+   </FileRef>
+   <FileRef
+      location = "group:RegistrationPageViewController.xib">
+   </FileRef>
+   <FileRef
       location = "group:hacksmiths.xcodeproj">
    </FileRef>
    <FileRef

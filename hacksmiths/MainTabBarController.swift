@@ -34,31 +34,30 @@ class MainTabBarController: UITabBarController {
         if UserData.sharedInstance().authenticated == true {
             print("User is authenticated")
             let profileViewController = storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController") as! ProfileViewController
-            var viewControllers = tabBarController?.viewControllers
             
             // Make sure that the first view controller does not contain the joinviewcontroller
-            if viewControllers?.first is JoinViewController {
+            if viewControllers!.first is JoinViewController {
                 print("attempting to swap out the first view controller\(viewControllers!.first)")
-                viewControllers?.removeAtIndex(0)
+                viewControllers?.removeFirst()
                 viewControllers?.insert(profileViewController, atIndex: 0)
+                tabBarController?.setViewControllers(viewControllers, animated: false)
             }
             
-            viewControllers?.insert(profileViewController, atIndex: 0)
-            tabBarController?.setViewControllers(viewControllers, animated: false)
+
         } else {
             
             print("User is not authenticated")
             let joinViewController = storyboard?.instantiateViewControllerWithIdentifier("JoinViewController") as! JoinViewController
             
-            var viewControllers = tabBarController?.viewControllers
             
             // Remove the first element if it is profile view controller
             if viewControllers!.first is ProfileViewController {
                 viewControllers?.removeFirst()
+                viewControllers?.insert(joinViewController, atIndex: 0)
+                tabBarController?.setViewControllers(viewControllers, animated: false)
             }
             
-            viewControllers?.insert(joinViewController, atIndex: 0)
-            tabBarController?.setViewControllers(viewControllers, animated: false)
+
         }
     }
 
