@@ -21,8 +21,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var profileTextView: UITextView!
     @IBOutlet weak var descriptionTextField: UITextView!
-    @IBOutlet weak var twitterUsernameTextField: UITextField!
-    @IBOutlet weak var githubUsernameTextField: UITextField!
+
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var noDataFoundLabel: UILabel!
     
@@ -63,7 +62,7 @@ class ProfileViewController: UIViewController {
         descriptionLabel.hidden = editing
         descriptionTextField.hidden = !editing
         twitterLabel.hidden = editing
-        twitterUsernameTextField.hidden = !editing
+        githubLabel.hidden = editing
         
     }
     

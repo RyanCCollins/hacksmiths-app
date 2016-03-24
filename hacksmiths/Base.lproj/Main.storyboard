@@ -45,9 +45,6 @@
             <string>Montserrat-Regular</string>
             <string>Montserrat-Regular</string>
             <string>Montserrat-Regular</string>
-            <string>Montserrat-Regular</string>
-            <string>Montserrat-Regular</string>
-            <string>Montserrat-Regular</string>
         </mutableArray>
         <mutableArray key="Roboto-Regular.ttf">
             <string>Roboto-Regular</string>
@@ -1636,7 +1633,7 @@ We build tools designed to help non-profit organizations streamline their philan
                                     <constraint firstAttribute="height" constant="150" id="bCz-BH-aRH"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t4f-gb-Ibm">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t4f-gb-Ibm">
                                 <rect key="frame" x="20" y="242" width="560" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="mhS-1D-oIO"/>
@@ -1663,7 +1660,7 @@ We build tools designed to help non-profit organizations streamline their philan
                                 <color key="textColor" red="0.40000000000000002" green="0.76862745099999996" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fli-sT-3IZ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fli-sT-3IZ">
                                 <rect key="frame" x="20" y="278" width="560" height="130"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="130" id="PES-b3-o6z"/>
@@ -1672,7 +1669,7 @@ We build tools designed to help non-profit organizations streamline their philan
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tep-wo-uVn">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tep-wo-uVn" customClass="HoshiTextField" customModule="TextFieldEffects">
                                 <rect key="frame" x="20" y="240" width="560" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="uRM-dz-3bF"/>
@@ -1680,27 +1677,20 @@ We build tools designed to help non-profit organizations streamline their philan
                                 <color key="textColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="22"/>
                                 <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9gw-lM-DE0">
-                                <rect key="frame" x="20" y="416" width="560" height="30"/>
-                                <color key="textColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h7t-nF-Y0g">
-                                <rect key="frame" x="20" y="454" width="560" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="02V-A6-k0V"/>
-                                </constraints>
-                                <color key="textColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="inactiveColor">
+                                        <color key="value" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="activeColor">
+                                        <color key="value" red="0.40000000000000002" green="0.76862745099999996" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="SfU-lV-Vsa">
                                 <rect key="frame" x="20" y="278" width="560" height="130"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="textColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hqh-H5-abc">
@@ -1760,17 +1750,13 @@ We build tools designed to help non-profit organizations streamline their philan
                             <constraint firstItem="hqh-H5-abc" firstAttribute="centerY" secondItem="Wv5-zA-FdI" secondAttribute="centerY" id="5ez-tM-RzX"/>
                             <constraint firstItem="uZG-il-uPz" firstAttribute="centerX" secondItem="Wv5-zA-FdI" secondAttribute="centerX" id="5zS-V1-ihb"/>
                             <constraint firstItem="HNZ-b7-7rb" firstAttribute="top" secondItem="7Yl-4S-efW" secondAttribute="bottom" constant="8" id="72Q-0M-gp5"/>
-                            <constraint firstItem="h7t-nF-Y0g" firstAttribute="leading" secondItem="Wv5-zA-FdI" secondAttribute="leadingMargin" id="9Cq-yh-9PG"/>
                             <constraint firstItem="Tep-wo-uVn" firstAttribute="centerX" secondItem="Wv5-zA-FdI" secondAttribute="centerX" id="BI9-Ul-0bU"/>
-                            <constraint firstItem="h7t-nF-Y0g" firstAttribute="trailing" secondItem="Wv5-zA-FdI" secondAttribute="trailingMargin" id="COr-aZ-iuK"/>
                             <constraint firstItem="SfU-lV-Vsa" firstAttribute="leading" secondItem="Wv5-zA-FdI" secondAttribute="leadingMargin" id="CiL-ww-5JZ"/>
                             <constraint firstItem="Fli-sT-3IZ" firstAttribute="leading" secondItem="Wv5-zA-FdI" secondAttribute="leadingMargin" id="DoU-s7-kYw"/>
                             <constraint firstItem="7Yl-4S-efW" firstAttribute="top" secondItem="SfU-lV-Vsa" secondAttribute="bottom" constant="8" id="DqV-em-8Zt"/>
                             <constraint firstItem="epB-CU-w2O" firstAttribute="top" secondItem="Wv5-zA-FdI" secondAttribute="topMargin" id="FBQ-hI-1Kt"/>
-                            <constraint firstItem="HNZ-b7-7rb" firstAttribute="top" secondItem="9gw-lM-DE0" secondAttribute="bottom" constant="8" id="IyW-WA-YaK"/>
                             <constraint firstAttribute="trailingMargin" secondItem="yBi-Tx-dP5" secondAttribute="trailing" constant="-20" id="KPs-Fq-Ute"/>
                             <constraint firstItem="7Yl-4S-efW" firstAttribute="trailing" secondItem="Wv5-zA-FdI" secondAttribute="trailingMargin" id="KqV-YY-wRm"/>
-                            <constraint firstItem="9gw-lM-DE0" firstAttribute="leading" secondItem="Wv5-zA-FdI" secondAttribute="leadingMargin" id="Pb8-uE-V7U"/>
                             <constraint firstItem="7Yl-4S-efW" firstAttribute="top" secondItem="Fli-sT-3IZ" secondAttribute="bottom" constant="8" id="Q9K-sS-0cc"/>
                             <constraint firstItem="t4f-gb-Ibm" firstAttribute="top" secondItem="uZG-il-uPz" secondAttribute="bottom" constant="8" id="R8l-H3-Ncd"/>
                             <constraint firstItem="SfU-lV-Vsa" firstAttribute="top" secondItem="Tep-wo-uVn" secondAttribute="bottom" constant="8" id="Rzt-dd-ue2"/>
@@ -1778,8 +1764,6 @@ We build tools designed to help non-profit organizations streamline their philan
                             <constraint firstItem="yBi-Tx-dP5" firstAttribute="leading" secondItem="Wv5-zA-FdI" secondAttribute="leadingMargin" constant="-20" id="W4z-rN-czG"/>
                             <constraint firstItem="t4f-gb-Ibm" firstAttribute="leading" secondItem="Wv5-zA-FdI" secondAttribute="leadingMargin" id="Wt1-zC-K8q"/>
                             <constraint firstItem="SfU-lV-Vsa" firstAttribute="trailing" secondItem="Wv5-zA-FdI" secondAttribute="trailingMargin" id="XD3-9K-jGM"/>
-                            <constraint firstItem="9gw-lM-DE0" firstAttribute="top" secondItem="SfU-lV-Vsa" secondAttribute="bottom" constant="8" id="Xbb-QM-NGH"/>
-                            <constraint firstItem="9gw-lM-DE0" firstAttribute="centerX" secondItem="Wv5-zA-FdI" secondAttribute="centerX" id="aGP-AK-CGD"/>
                             <constraint firstItem="uZG-il-uPz" firstAttribute="top" secondItem="yBi-Tx-dP5" secondAttribute="bottom" constant="20" id="aLP-dS-lTR"/>
                             <constraint firstItem="Tep-wo-uVn" firstAttribute="top" secondItem="uZG-il-uPz" secondAttribute="bottom" constant="6" id="aWc-Bt-GRF"/>
                             <constraint firstItem="t4f-gb-Ibm" firstAttribute="trailing" secondItem="Wv5-zA-FdI" secondAttribute="trailingMargin" id="b2z-GQ-Qc3"/>
@@ -1788,9 +1772,7 @@ We build tools designed to help non-profit organizations streamline their philan
                             <constraint firstItem="HNZ-b7-7rb" firstAttribute="leading" secondItem="Wv5-zA-FdI" secondAttribute="leadingMargin" id="i49-5M-Cby"/>
                             <constraint firstItem="SfU-lV-Vsa" firstAttribute="centerX" secondItem="Wv5-zA-FdI" secondAttribute="centerX" id="mO9-wx-eUr"/>
                             <constraint firstItem="yBi-Tx-dP5" firstAttribute="top" secondItem="Mlj-bI-860" secondAttribute="bottom" id="n7Q-yz-qWm"/>
-                            <constraint firstItem="9gw-lM-DE0" firstAttribute="trailing" secondItem="Wv5-zA-FdI" secondAttribute="trailingMargin" id="olz-h3-LfQ"/>
                             <constraint firstItem="t4f-gb-Ibm" firstAttribute="top" secondItem="uZG-il-uPz" secondAttribute="bottom" constant="8" id="qL2-s7-95Q"/>
-                            <constraint firstItem="h7t-nF-Y0g" firstAttribute="top" secondItem="9gw-lM-DE0" secondAttribute="bottom" constant="8" id="uEV-7w-HEA"/>
                             <constraint firstItem="epB-CU-w2O" firstAttribute="leading" secondItem="Wv5-zA-FdI" secondAttribute="leadingMargin" constant="-20" id="x18-bq-dN8"/>
                             <constraint firstItem="HNZ-b7-7rb" firstAttribute="trailing" secondItem="Wv5-zA-FdI" secondAttribute="trailingMargin" id="xXy-2z-Eu8"/>
                             <constraint firstItem="Tep-wo-uVn" firstAttribute="trailing" secondItem="Wv5-zA-FdI" secondAttribute="trailingMargin" id="yFv-Vx-Ktk"/>
@@ -1805,14 +1787,12 @@ We build tools designed to help non-profit organizations streamline their philan
                         <outlet property="descriptionTextField" destination="SfU-lV-Vsa" id="MyN-ST-g1L"/>
                         <outlet property="editButton" destination="S1L-KC-4jr" id="hKC-YQ-u58"/>
                         <outlet property="githubLabel" destination="HNZ-b7-7rb" id="10A-J6-GP1"/>
-                        <outlet property="githubUsernameTextField" destination="h7t-nF-Y0g" id="SVx-7a-Tww"/>
                         <outlet property="nameLabel" destination="t4f-gb-Ibm" id="04e-jI-SyK"/>
                         <outlet property="nameTextField" destination="Tep-wo-uVn" id="4oQ-Z3-hdq"/>
                         <outlet property="noDataFoundLabel" destination="hqh-H5-abc" id="n1s-0Q-J0G"/>
                         <outlet property="profileImageView" destination="uZG-il-uPz" id="TjV-Bq-o0U"/>
                         <outlet property="profileTextView" destination="SfU-lV-Vsa" id="IAU-m9-aPa"/>
                         <outlet property="twitterLabel" destination="7Yl-4S-efW" id="6St-aI-D8z"/>
-                        <outlet property="twitterUsernameTextField" destination="9gw-lM-DE0" id="Ef5-me-ccJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VI5-jM-w2s" userLabel="First Responder" sceneMemberID="firstResponder"/>
