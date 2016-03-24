@@ -26,9 +26,9 @@ extension HacksmithsAPIClient {
                     if success ==  1 && session == 1 {
                         
                         let userId = result[JSONResponseKeys.Auth.userId] as! String
-                        UserData.sharedInstance().authenticated = true
-                        UserData.sharedInstance().userId = userId
-                        UserData.sharedInstance().dateAuthenticated = NSDate()
+                        UserDefaults.sharedInstance().authenticated = true
+                        UserDefaults.sharedInstance().userId = userId
+                        UserDefaults.sharedInstance().dateAuthenticated = NSDate()
                         completionHandler(success: true, error: nil)
                         
                     } else {
@@ -109,9 +109,9 @@ extension HacksmithsAPIClient {
                             if success ==  1 && session == 1 {
                                 
                                 let userId = result[JSONResponseKeys.Auth.userId] as! String
-                                UserData.sharedInstance().authenticated = true
-                                UserData.sharedInstance().userId = userId
-                                UserData.sharedInstance().dateAuthenticated = NSDate()
+                                UserDefaults.sharedInstance().authenticated = true
+                                UserDefaults.sharedInstance().userId = userId
+                                UserDefaults.sharedInstance().dateAuthenticated = NSDate()
                                 completionHandler(success: true, error: nil)
                                 
                             } else {

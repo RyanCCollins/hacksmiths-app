@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController, UIImagePickerControllerDelegate {
+class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     
     @IBOutlet weak var cameraButton: UIButton!
@@ -29,10 +29,25 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate {
     @IBOutlet weak var noDataFoundLabel: UILabel!
     
     @IBOutlet weak var githubLabel: UILabel!
+    
+    var imageToUpload: UIImage? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Toggle the UI state when view appears to insure that the right elements are hidden.
+        toggleEditMode(editing)
+        
+        // Set the profile image view image to the avatar missing if there is no photo.
+        if profileImageView.image == nil {
+            profileImageView.image = UIImage(named: "avatar-missing")
+        }
     }
     
     func addTouchRecognizer() {
@@ -40,10 +55,9 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate {
         profilePhotoViewOverlay.addGestureRecognizer(fingerTouchGestureRecognizer)
     }
     
-    func hideUIElements() {
-        profilePhotoViewOverlay.hidden = true
-        cameraButton.hidden = true
-        tapToEditPhotoLabel.hidden = true
+    func setUIDefaults() {
+
+        
     }
     
     func didTapEditPhoto(sender: UIGestureRecognizer) {
@@ -57,7 +71,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate {
         
         // We check that the user is authenticated and enable the edit button
         // Based on their status.
-        editButton.enabled = UserData.sharedInstance().authenticated
+        editButton.enabled = UserDefaults.sharedInstance().authenticated
 
     }
     
@@ -85,16 +99,47 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate {
         nameLabel.hidden = editing
         nameTextField.hidden = !editing
 
-        descriptionTextField.hidden = !editing
+        profilePhotoViewOverlay.hidden = !editing
+        cameraButton.hidden = !editing
+        tapToEditPhotoLabel.hidden = !editing
         
+        descriptionTextField.editable = editing
+        descriptionTextField.editable = editing
+        
+        profilePhotoViewOverlay.hidden = !editing
+        cameraButton.hidden = !editing
+        tapToEditPhotoLabel.hidden = !editing
     }
     
     func editProfileImagePhoto() {
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
-        
+        presentViewController(imagePickerController, animated: true, completion: nil)
+    }
+    
+    func commitChangesToProfile() {
+        // TODO: Upload changes to the profile to the server.
+        toggleEditMode(false)
     }
     
     
+}
 
+// Extension for profile view controller delegate methods
+extension ProfileViewController {
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+        dismissViewControllerAnimated(true, completion: {
+            // Set image to upload so that we can handle uploading it later.
+            self.profileImageView.image = image
+            self.imageToUpload = image
+        
+        })
+    }
+    
+    /* Hide keyboard when view is tapped */
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        if editing {
+            view.endEditing(true)
+        }
+    }
 }

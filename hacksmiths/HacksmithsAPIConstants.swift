@@ -45,6 +45,7 @@ extension HacksmithsAPIClient {
             static let FirstName = "firstName"
             static let LastName = "lastName"
             static let authUser = "authUser"
+     
         }
     
     struct JSONResponseKeys {

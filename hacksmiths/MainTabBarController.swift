@@ -31,7 +31,7 @@ class MainTabBarController: UITabBarController {
     // If they are not authenticated, they should not see the ProfileViewController.
     func swapViewsForAuthenticatedState() {
 
-        if UserData.sharedInstance().authenticated == true {
+        if UserDefaults.sharedInstance().authenticated == true {
             print("User is authenticated")
             let profileViewController = storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController") as! ProfileViewController
             

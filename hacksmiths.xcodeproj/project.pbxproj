@@ -10,11 +10,12 @@
 		1F26C3F71CA0B232001596D2 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F26C3F61CA0B232001596D2 /* AboutViewController.swift */; };
 		1F26C3F91CA1958E001596D2 /* LeaderboardTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F26C3F81CA1958E001596D2 /* LeaderboardTableViewController.swift */; };
 		1F44B1BA1C5DDAB9004E196D /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F44B1B91C5DDAB9004E196D /* CoreDataStackManager.swift */; };
+		1F46B9EC1CA467250065D50D /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F46B9EB1CA467250065D50D /* UserData.swift */; };
 		1F4B4DF71C72574700A75F5D /* 1Password.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F4B4DF41C72574700A75F5D /* 1Password.xcassets */; };
 		1F4B4DF81C72574700A75F5D /* OnePasswordExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4B4DF61C72574700A75F5D /* OnePasswordExtension.m */; };
 		1F4B4DFB1C72581D00A75F5D /* KeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4B4DFA1C72581D00A75F5D /* KeychainWrapper.m */; };
 		1F4B4DFD1C7258BD00A75F5D /* KechainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4B4DFC1C7258BD00A75F5D /* KechainWrapper.swift */; };
-		1F4B4DFF1C73A60400A75F5D /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4B4DFE1C73A60400A75F5D /* UserData.swift */; };
+		1F4B4DFF1C73A60400A75F5D /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4B4DFE1C73A60400A75F5D /* UserDefaults.swift */; };
 		1F4B4E011C74FCC400A75F5D /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4B4E001C74FCC400A75F5D /* JoinViewController.swift */; };
 		1F4B4E031C74FCE600A75F5D /* RegistrationStartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4B4E021C74FCE600A75F5D /* RegistrationStartViewController.swift */; };
 		1F7701C21C84B532006FBCE0 /* Montserrat-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1F7701BC1C84B532006FBCE0 /* Montserrat-Black.otf */; };
@@ -100,6 +101,7 @@
 		1F26C3F61CA0B232001596D2 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		1F26C3F81CA1958E001596D2 /* LeaderboardTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardTableViewController.swift; sourceTree = "<group>"; };
 		1F44B1B91C5DDAB9004E196D /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
+		1F46B9EB1CA467250065D50D /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		1F4B4DF31C72574600A75F5D /* hacksmiths-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "hacksmiths-Bridging-Header.h"; sourceTree = "<group>"; };
 		1F4B4DF41C72574700A75F5D /* 1Password.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = 1Password.xcassets; sourceTree = "<group>"; };
 		1F4B4DF51C72574700A75F5D /* OnePasswordExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnePasswordExtension.h; sourceTree = "<group>"; };
@@ -107,7 +109,7 @@
 		1F4B4DF91C72581D00A75F5D /* KeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainWrapper.h; sourceTree = "<group>"; };
 		1F4B4DFA1C72581D00A75F5D /* KeychainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainWrapper.m; sourceTree = "<group>"; };
 		1F4B4DFC1C7258BD00A75F5D /* KechainWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KechainWrapper.swift; sourceTree = "<group>"; };
-		1F4B4DFE1C73A60400A75F5D /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		1F4B4DFE1C73A60400A75F5D /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		1F4B4E001C74FCC400A75F5D /* JoinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinViewController.swift; sourceTree = "<group>"; };
 		1F4B4E021C74FCE600A75F5D /* RegistrationStartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationStartViewController.swift; sourceTree = "<group>"; };
 		1F7701BC1C84B532006FBCE0 /* Montserrat-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Black.otf"; sourceTree = "<group>"; };
@@ -390,7 +392,8 @@
 		1FF998951C6FAD98003D98B2 /* Managed Object Models */ = {
 			isa = PBXGroup;
 			children = (
-				1F4B4DFE1C73A60400A75F5D /* UserData.swift */,
+				1F4B4DFE1C73A60400A75F5D /* UserDefaults.swift */,
+				1F46B9EB1CA467250065D50D /* UserData.swift */,
 				1FC6DE461C9F6DC5000E8159 /* RegistrationData.swift */,
 				1FF998961C6FAE3E003D98B2 /* Person.swift */,
 				1FF998981C6FAEDE003D98B2 /* Event.swift */,
@@ -649,7 +652,8 @@
 				1FC6DE441C9F59A6000E8159 /* EmailViewController.swift in Sources */,
 				1FC6DE471C9F6DC5000E8159 /* RegistrationData.swift in Sources */,
 				1FA5A4EE1C535A9500722E55 /* ExtendsUIViewController.swift in Sources */,
-				1F4B4DFF1C73A60400A75F5D /* UserData.swift in Sources */,
+				1F4B4DFF1C73A60400A75F5D /* UserDefaults.swift in Sources */,
+				1F46B9EC1CA467250065D50D /* UserData.swift in Sources */,
 				1FA9FC721C534E5A00B993BC /* hacksmiths.xcdatamodeld in Sources */,
 				1F26C3F91CA1958E001596D2 /* LeaderboardTableViewController.swift in Sources */,
 				1FA2E5631C6802AC0085FC7D /* HacksmithsAPIConvenience.swift in Sources */,

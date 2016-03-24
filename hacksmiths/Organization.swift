@@ -16,7 +16,7 @@ class Organization: NSManagedObject {
     @NSManaged var website: String?
     @NSManaged var isHiring : Bool
     @NSManaged var descriptionString : String?
-    @NSManaged var user: UserData
+
 
     
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
