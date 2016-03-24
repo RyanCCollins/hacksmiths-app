@@ -24,24 +24,20 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        modalView.transform = CGAffineTransformMakeTranslation(-300, 0)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
         
         modalView.animate()
         
-        UIApplication.sharedApplication().sendAction("minimizeView:", to: nil, from: self, forEvent: nil)
+        presentingViewController!.view.transformOut(self)
     }
     
     @IBAction func closeButtonPressed(sender: AnyObject) {
-        UIApplication.sharedApplication().sendAction("maximizeView:", to: nil, from: self, forEvent: nil)
+        presentingViewController!.view.transformIn(self)
         
         modalView.animation = "slideRight"
         modalView.animateFrom = false
