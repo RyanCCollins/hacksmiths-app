@@ -13,10 +13,12 @@ extension HacksmithsAPIClient {
     
         struct Constants {
             static let BaseURL = "http://hacksmiths.io/"
-            static let APIURL = "\(BaseURL)api/app/"
+            static let APIURL = "\(BaseURL)api/"
             static let App = "app/"
             static let Me = "me/"
-            static let InfoPage = "\(BaseURL)/about"
+            // Right now, this will direct to the plain `ol baseurl/homepage,
+            // But we can alter it in order to go to an about us page
+            static let InfoPage = BaseURL
         }
     
     struct Secrets {

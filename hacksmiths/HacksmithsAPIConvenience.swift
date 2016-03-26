@@ -154,28 +154,34 @@ extension HacksmithsAPIClient {
                     
                     } else {
                         
-                        if let profileDict = result[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.dictKey] as? [String : AnyObject] {
+                        guard result != nil else {
                             
-                            
-                            
-                            let userDict = self.dictionaryForUserData(profileDict)
-                            
-                            let userData = UserData(dictionary: userDict, context: self.sharedContext)
-                            
-                            self.sharedContext.performBlockAndWait({
-                                
-                                CoreDataStackManager.sharedInstance().saveContext()
-                                
-                            })
-                            
-                            completionHandler(success: true, error: nil)
-                        
-                        } else {
-                        
-                            completionHandler(success: false, error: Errors.constructError(domain: "Hacksmiths API Client", userMessage: "Sorry, but an error occured while loading data from the network."))
-                            
+                            completionHandler(success: false, error: Errors.constructError(domain: "HacksmithsAPIClient", userMessage: "Error downloading data to the network.  Please try again."))
+                            return
                         }
+                        
+                        
+                        if let success = result["success"] as? Bool {
+                            
+                            if let profileDict = result[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.dictKey] as? [String : AnyObject] {
+                                
+                                let userDict = self.dictionaryForUserData(profileDict)
+                                let userData = UserData(dictionary: userDict, context: self.sharedContext)
+                        
+                                self.sharedContext.performBlockAndWait({
+                                    CoreDataStackManager.sharedInstance().saveContext()
+                                })
+                                
+                                completionHandler(success: true, error: nil)
+                                
+                            } else {
+                                completionHandler(success: false, error: Errors.constructError(domain: "Hacksmiths API Client", userMessage: "Sorry, but an error occured while loading data from the network."))
+                            }
+                        }
+                            
                     }
+                        
+
                 })
             }
         }
@@ -197,10 +203,7 @@ extension HacksmithsAPIClient {
                 completionHandler(success: false, error: error)
                 
             } else {
-                guard result != nil else {
-                    completionHandler(success: false, error: Errors.constructError(domain: "HacksmithsAPIClient", userMessage: "Error returned from server.  Please check your connection and try again."))
-                    return
-                }
+                
                 if let membersArray = result["members"] as? [[String : AnyObject]] {
                     for member in membersArray {
                         
