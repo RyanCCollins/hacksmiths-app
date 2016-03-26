@@ -154,10 +154,11 @@ extension HacksmithsAPIClient {
                     
                     } else {
                         
-                        
                         if let profileDict = result[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.dictKey] as? [String : AnyObject] {
-   
-                            let userDict = dictionaryForUserData(profileDict)
+                            
+                            
+                            
+                            let userDict = self.dictionaryForUserData(profileDict)
                             
                             let userData = UserData(dictionary: userDict, context: self.sharedContext)
                             
@@ -196,7 +197,10 @@ extension HacksmithsAPIClient {
                 completionHandler(success: false, error: error)
                 
             } else {
-
+                guard result != nil else {
+                    completionHandler(success: false, error: Errors.constructError(domain: "HacksmithsAPIClient", userMessage: "Error returned from server.  Please check your connection and try again."))
+                    return
+                }
                 if let membersArray = result["members"] as? [[String : AnyObject]] {
                     for member in membersArray {
                         
@@ -291,17 +295,17 @@ extension HacksmithsAPIClient {
     
     func dictionaryForUserData(user: [String : AnyObject]) -> [String : AnyObject] {
         let dictionary: [String : AnyObject] = [
-            "name" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.name],
-            "bio" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.bio],
-            "photo" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.photo],
-            "website" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.website],
-            "email" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.email],
-            "isPublic" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.isPublic],
-            "totalHatTips" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.totalHatTips],
-            "rank" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Meta.rank],
-            "notications" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Notifications.notifications],
-            "mentoring" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.mentoring.dictionaryKey],
-            "availability" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.EventInvolvement.dictKey],
+            "name" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.name]!,
+            "bio" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.bio]!,
+            "photo" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.photo]!,
+            "website" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.website]!,
+            "email" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.email]!,
+            "isPublic" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.isPublic]!,
+            "totalHatTips" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.totalHatTips]!,
+            "rank" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Meta.rank]!,
+            "notications" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Notifications.notifications]!,
+            "mentoring" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.mentoring.dictionaryKey]!,
+            "availability" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.EventInvolvement.dictKey]!,
             
         ]
         return dictionary

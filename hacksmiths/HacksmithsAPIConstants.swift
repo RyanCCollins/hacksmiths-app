@@ -15,6 +15,7 @@ extension HacksmithsAPIClient {
             static let BaseURL = "http://hacksmiths.io/"
             static let APIURL = "\(BaseURL)api/app/"
             static let App = "app/"
+            static let Me = "me/"
             static let InfoPage = "\(BaseURL)/about"
         }
     
@@ -26,17 +27,19 @@ extension HacksmithsAPIClient {
     struct Routes {
         static let Stats = "stats/"
         
-        static let EventStatus = "event-status/"
-        static let RSVP = "rsvp/"
-        static let SigninEmail = "signin-email/"
-        static let SignupEmail = "signup-email"
-        static let SigninService = "signin-service/"
-        static let SigninServiceCheck = "signin-service-check/"
-        static let SigninRecover = "signin-recover/"
-        static let Members = "members/"
-        static let Profile = "profile/"
+        static let EventStatus = Constants.App +  "event-status/"
+        static let RSVP = Constants.App + "rsvp/"
+        static let SigninEmail = Constants.App + "signin-email/"
+        static let SignupEmail = Constants.App + "signup-email"
+        static let SigninService = Constants.App + "signin-service/"
+        static let SigninServiceCheck = Constants.App + "signin-service-check/"
+        static let SigninRecover = Constants.App + "signin-recover/"
+        static let Members = Constants.App + "members/"
+        static let Profile = Constants.Me + "profile/"
         
     }
+    
+    
     
         struct Keys {
             static let Username = "username"
