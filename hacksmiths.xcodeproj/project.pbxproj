@@ -248,6 +248,7 @@
 				1FF998951C6FAD98003D98B2 /* Managed Object Models */,
 				1F44B1B91C5DDAB9004E196D /* CoreDataStackManager.swift */,
 				1FA2E55E1C6802680085FC7D /* ImageCache.swift */,
+				1FC6DE461C9F6DC5000E8159 /* RegistrationData.swift */,
 				1FA2E5641C6802B30085FC7D /* HacksmithsAPI */,
 			);
 			name = Model;
@@ -394,7 +395,6 @@
 			children = (
 				1F4B4DFE1C73A60400A75F5D /* UserDefaults.swift */,
 				1F46B9EB1CA467250065D50D /* UserData.swift */,
-				1FC6DE461C9F6DC5000E8159 /* RegistrationData.swift */,
 				1FF998961C6FAE3E003D98B2 /* Person.swift */,
 				1FF998981C6FAEDE003D98B2 /* Event.swift */,
 				1FF9989C1C6FB060003D98B2 /* Organization.swift */,

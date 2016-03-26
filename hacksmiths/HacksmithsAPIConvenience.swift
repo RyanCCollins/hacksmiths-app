@@ -63,10 +63,10 @@ extension HacksmithsAPIClient {
                     if success ==  1 && session == 1 {
                         
                         let userId = result[JSONResponseKeys.Auth.userId] as! String
-                        UserData.sharedInstance().authenticated = true
-                        UserData.sharedInstance().userId = userId
+                        UserDefaults.sharedInstance().authenticated = true
+                        UserDefaults.sharedInstance().userId = userId
                         let date = NSDate()
-                        UserData.sharedInstance().dateAuthenticated = date
+                        UserDefaults.sharedInstance().dateAuthenticated = date
                         completionHandler(success: true, error: nil)
                         
                     } else {
@@ -136,18 +136,60 @@ extension HacksmithsAPIClient {
         
     }
     
-    func getDataFromAPI(body: [String: AnyObject], completionHandler: CompletionHandler) {
-        let method = Routes.EventStatus
+    // Make a request to get user's profile data from the API.
+    func getUserDataFromAPI(body: [String: AnyObject], completionHandler: CompletionHandler) {
+        let method = HacksmithsAPIClient.Routes.Profile
         
-        taskForGETMethod(method, parameters: body, completionHandler: {success, result, error in
+        if UserDefaults.sharedInstance().authenticated {
             
-            if error != nil {
-                print(error)
-            } else {
-                print(result)
+            if let userID = UserDefaults.sharedInstance().userId {
+                let params: [String : AnyObject] = [
+                    HacksmithsAPIClient.Keys.user : userID
+                ]
+                HacksmithsAPIClient.sharedInstance().taskForGETMethod(method, parameters: params, completionHandler: {success, result, error in
+                    
+                    if error != nil {
+                        
+                        completionHandler(success: false, error: error)
+                    
+                    } else {
+                        
+                        
+                        if let name = result[HacksmithsAPIClient.JSONResponseKeys.MemberData.name] as? [String : AnyObject] {
+                            let firstName = name[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.first]
+                            let lastName = name[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.last]
+                            let bio = result[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.bio] as! String
+                        
+                        
+                            let userDict: [String :AnyObject] = [
+                                "name" : "\(firstName) \(lastName)",
+                                "bio" : bio
+                                
+                            ]
+                            
+                            let userData = UserData(dictionary: userDict, context: self.sharedContext)
+                            
+                            self.sharedContext.performBlockAndWait({
+                                
+                                CoreDataStackManager.sharedInstance().saveContext()
+                                
+                            })
+                            
+                            completionHandler(success: true, error: nil)
+                        
+                        } else {
+                        
+                            completionHandler(success: false, error: Errors.constructError(domain: "Hacksmiths API Client", userMessage: "Sorry, but an error occured while loading data from the network."))
+                            
+                        }
+                    }
+                })
             }
-            
-        })
+        }
+        
+        completionHandler(success: false, error: Errors.constructError(domain: "HacksmithsAPIClient", userMessage: "Please make sure you are authenticated before making that request."))
+        
+        
     }
     
     func getMemberList(body: [String :AnyObject], completionHandler: CompletionHandler) {

@@ -43,7 +43,6 @@
         <attribute name="sortPriority" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="twitterUsername" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="website" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="role" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Roles" syncable="YES"/>
         <relationship name="teams" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Team" inverseName="users" inverseEntity="Team" syncable="YES"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
@@ -58,9 +57,6 @@
         <attribute name="website" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="teams" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Team" syncable="YES"/>
     </entity>
-    <entity name="Roles" syncable="YES">
-        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-    </entity>
     <entity name="Team" representedClassName="Team" syncable="YES">
         <attribute name="about" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="logo" optional="YES" attributeType="String" syncable="YES"/>
@@ -69,12 +65,18 @@
         <relationship name="leaders" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Person" syncable="YES"/>
         <relationship name="users" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Person" inverseName="teams" inverseEntity="Person" syncable="YES"/>
     </entity>
+    <entity name="User" syncable="YES">
+        <attribute name="bio" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageFilePath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <elements>
         <element name="Event" positionX="90" positionY="27" width="128" height="268"/>
         <element name="Organization" positionX="-92" positionY="72" width="128" height="105"/>
-        <element name="Person" positionX="313" positionY="246" width="128" height="285"/>
+        <element name="Person" positionX="313" positionY="246" width="128" height="270"/>
         <element name="Project" positionX="196" positionY="-117" width="128" height="120"/>
-        <element name="Roles" positionX="36" positionY="405" width="128" height="60"/>
         <element name="Team" positionX="457" positionY="-18" width="128" height="135"/>
+        <element name="User" positionX="126" positionY="45" width="128" height="105"/>
     </elements>
 </model>

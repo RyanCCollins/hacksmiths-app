@@ -34,6 +34,7 @@ extension HacksmithsAPIClient {
         static let SigninServiceCheck = "signin-service-check/"
         static let SigninRecover = "signin-recover/"
         static let Members = "members/"
+        static let Profile = "profile/"
         
     }
     
@@ -45,7 +46,7 @@ extension HacksmithsAPIClient {
             static let FirstName = "firstName"
             static let LastName = "lastName"
             static let authUser = "authUser"
-     
+            static let user = "user"
         }
     
     struct JSONResponseKeys {
@@ -76,6 +77,13 @@ extension HacksmithsAPIClient {
                 static let website = "website"
                 static let gravatar = "gravatar"
                 static let bio = "bio"
+                static let bioMD = "md"
+                
+                static let first = "first"
+                static let last = "last"
+                
+                static let totalHatTips = "totalHatTips"
+                
                 
                 // This is the URL for their photo
                 static let avatarUrl = "avatarUrl"
@@ -85,11 +93,13 @@ extension HacksmithsAPIClient {
             struct Notifications {
                 static let notifications = "notifications"
                 static let posts = "posts"
-                static let projects = "projects"
+                static let mobile = "mobile"
                 static let events = "events"
             }
             
             struct EventInvolvement {
+                static let section = "availability"
+                
                 struct availability {
                     static let daysAvailable = "daysAvailable"
                     
@@ -128,6 +138,7 @@ extension HacksmithsAPIClient {
             }
             
             struct Services {
+                static let key = "services"
                 static let github = "github"
                 static let twitter = "twitter"
                 
@@ -154,7 +165,14 @@ extension HacksmithsAPIClient {
                 }
             }
             
-
+            struct mentoring {
+                static let dictionaryKey = "mentoring"
+                
+                static let available = "available"
+                static let needsAMentor = ""
+                static let experience = "experience"
+                static let want = "want"
+            }
             
             struct Settings {
                 static let settings = "settings"
