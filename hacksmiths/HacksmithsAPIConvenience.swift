@@ -297,10 +297,12 @@ extension HacksmithsAPIClient {
     }
     
     func dictionaryForUserData(user: [String : AnyObject]) -> [String : AnyObject] {
-        let dictionary: [String : AnyObject] = [
+        
+
+        
+        var dictionary: [String : AnyObject] = [
             "name" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.name]!,
             "bio" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.bio]!,
-            "photo" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.photo]!,
             "website" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.website]!,
             "email" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.email]!,
             "isPublic" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.isPublic]!,
@@ -311,6 +313,13 @@ extension HacksmithsAPIClient {
             "availability" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.EventInvolvement.dictKey]!,
             
         ]
+        
+        //Photo can be nil, so we need to protect against that
+        if let photo = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.photo] {
+            dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.photo] = photo
+        }
+        
+        
         return dictionary
     }
     
