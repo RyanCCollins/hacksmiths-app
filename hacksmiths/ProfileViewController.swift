@@ -35,6 +35,27 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        getMostUpToDateDataFromAPI()
+    }
+    
+    func getMostUpToDateDataFromAPI() {
+        if UserDefaults.sharedInstance().authenticated == true {
+            let userID = UserDefaults.sharedInstance().userId
+            let dictionary: [String : AnyObject] = [ "user" : userID! ]
+            HacksmithsAPIClient.sharedInstance().getUserDataFromAPI(dictionary, completionHandler: {success, error in
+                
+                if error != nil {
+                    self.alertController(withTitles: ["Ok", "Retry"], message: error!.localizedDescription, callbackHandler: [nil,{Void in
+                            self.getMostUpToDateDataFromAPI()
+                    }])
+                } else {
+                    
+                    print("Successfuly updated user data")
+                    
+                }
+                
+            })
+        }
         
     }
     

@@ -155,17 +155,9 @@ extension HacksmithsAPIClient {
                     } else {
                         
                         
-                        if let name = result[HacksmithsAPIClient.JSONResponseKeys.MemberData.name] as? [String : AnyObject] {
-                            let firstName = name[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.first]
-                            let lastName = name[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.last]
-                            let bio = result[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.bio] as! String
-                        
-                        
-                            let userDict: [String :AnyObject] = [
-                                "name" : "\(firstName) \(lastName)",
-                                "bio" : bio
-                                
-                            ]
+                        if let profileDict = result[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.dictKey] as? [String : AnyObject] {
+   
+                            let userDict = dictionaryForUserData(profileDict)
                             
                             let userData = UserData(dictionary: userDict, context: self.sharedContext)
                             
@@ -295,6 +287,24 @@ extension HacksmithsAPIClient {
             
          })
         
+    }
+    
+    func dictionaryForUserData(user: [String : AnyObject]) -> [String : AnyObject] {
+        let dictionary: [String : AnyObject] = [
+            "name" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.name],
+            "bio" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.bio],
+            "photo" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.photo],
+            "website" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.website],
+            "email" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.email],
+            "isPublic" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.isPublic],
+            "totalHatTips" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.totalHatTips],
+            "rank" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Meta.rank],
+            "notications" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Notifications.notifications],
+            "mentoring" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.mentoring.dictionaryKey],
+            "availability" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.EventInvolvement.dictKey],
+            
+        ]
+        return dictionary
     }
     
     /* Takes an event dictionary and returns a dictionary for creating an event */

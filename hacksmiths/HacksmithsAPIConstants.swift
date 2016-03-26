@@ -71,6 +71,7 @@ extension HacksmithsAPIClient {
             static let email = "email"
             
             struct Profile {
+                static let dictKey = "profile"
                 static let isPublic = "isPublic"
                 static let isLeader = "isLeader"
                 static let photo = "photo"
@@ -98,7 +99,7 @@ extension HacksmithsAPIClient {
             }
             
             struct EventInvolvement {
-                static let section = "availability"
+                static let dictKey = "availability"
                 
                 struct availability {
                     static let daysAvailable = "daysAvailable"
