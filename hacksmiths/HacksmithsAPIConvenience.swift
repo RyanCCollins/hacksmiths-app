@@ -146,7 +146,7 @@ extension HacksmithsAPIClient {
                 let params: [String : AnyObject] = [
                     HacksmithsAPIClient.Keys.user : userID
                 ]
-                HacksmithsAPIClient.sharedInstance().taskForGETMethod(method, parameters: params, completionHandler: {success, result, error in
+                HacksmithsAPIClient.sharedInstance().taskForPOSTMethod(method, JSONBody: params, completionHandler: {success, result, error in
                     
                     if error != nil {
                         

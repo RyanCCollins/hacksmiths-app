@@ -44,7 +44,6 @@ class HacksmithsAPIClient: NSObject {
             
             if error != nil {
                 
-                print(error)
                 completionHandler(success: false, result: nil, error: Errors.constructError(domain: "HacksmithsAPIClient", userMessage: ErrorMessages.Status.Network))
                 
             } else {
@@ -124,6 +123,8 @@ class HacksmithsAPIClient: NSObject {
     func taskForPOSTMethod (method: String, JSONBody: [String : AnyObject], completionHandler: CompletionHandlerWithResult) -> NSURLSessionDataTask {
         let urlString = Constants.BaseURL + method
         let request = NSMutableURLRequest(URL: NSURL(string: urlString)!)
+        
+        print(urlString)
         
         request.HTTPMethod = HTTPRequest.POST
     
