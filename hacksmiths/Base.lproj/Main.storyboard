@@ -368,6 +368,13 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9pp-lb-1Iq">
+                                <rect key="frame" x="548" y="20" width="32" height="32"/>
+                                <color key="tintColor" red="0.40000000000000002" green="0.76862745099999996" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" image="star-1">
+                                    <color key="titleColor" red="0.050980392159999999" green="0.086274509799999996" blue="0.16078431369999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.15868747234344482" green="0.21822044253349304" blue="0.30320093035697937" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -376,10 +383,12 @@
                             <constraint firstItem="o5y-BV-VHr" firstAttribute="leading" secondItem="krA-C3-AJh" secondAttribute="leadingMargin" id="DLW-5A-Mbx"/>
                             <constraint firstItem="Z0k-GJ-2YI" firstAttribute="centerX" secondItem="krA-C3-AJh" secondAttribute="centerX" id="GeN-CK-AWO"/>
                             <constraint firstItem="2Wj-ZQ-afu" firstAttribute="top" secondItem="1F9-dx-ANU" secondAttribute="bottom" constant="8" id="Gs0-Ev-sjN"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="9pp-lb-1Iq" secondAttribute="trailing" id="Lls-fh-CBw"/>
                             <constraint firstItem="7Hs-bX-1Sp" firstAttribute="top" secondItem="Z0k-GJ-2YI" secondAttribute="bottom" constant="8" id="Mmv-rF-cdt"/>
                             <constraint firstItem="2Wj-ZQ-afu" firstAttribute="trailing" secondItem="krA-C3-AJh" secondAttribute="trailingMargin" id="OYi-UT-GdA"/>
                             <constraint firstItem="7Hs-bX-1Sp" firstAttribute="top" secondItem="Z0k-GJ-2YI" secondAttribute="bottom" constant="8" id="SGx-LV-S7c"/>
                             <constraint firstItem="o5y-BV-VHr" firstAttribute="trailing" secondItem="krA-C3-AJh" secondAttribute="trailingMargin" id="SRW-wt-2fv"/>
+                            <constraint firstItem="9pp-lb-1Iq" firstAttribute="top" secondItem="lEX-o7-4cK" secondAttribute="bottom" id="dKd-D2-RBc"/>
                             <constraint firstItem="Z0k-GJ-2YI" firstAttribute="top" secondItem="lEX-o7-4cK" secondAttribute="bottom" constant="8" id="hu4-cq-zWN"/>
                             <constraint firstItem="o5y-BV-VHr" firstAttribute="top" secondItem="2Wj-ZQ-afu" secondAttribute="bottom" constant="8" id="huV-zc-5XY"/>
                             <constraint firstItem="1F9-dx-ANU" firstAttribute="leading" secondItem="krA-C3-AJh" secondAttribute="leadingMargin" id="nRT-JL-Dgt"/>
@@ -2108,6 +2117,7 @@ We build tools designed to help non-profit organizations streamline their philan
         <image name="person" width="22" height="32"/>
         <image name="ryan" width="359" height="359"/>
         <image name="sean" width="321" height="321"/>
+        <image name="star-1" width="32" height="32"/>
         <image name="trophy" width="32" height="30"/>
         <image name="trophy-white" width="32" height="30"/>
         <image name="twitter-logo" width="170" height="139"/>
