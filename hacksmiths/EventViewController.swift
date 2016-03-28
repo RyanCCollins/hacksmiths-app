@@ -34,10 +34,22 @@ class EventViewController: UIViewController {
                 self.alertController(withTitles: ["OK"], message: (error?.localizedDescription)!, callbackHandler: [nil])
                 
             } else {
-                print("Success")
+
                 self.performEventFetch()
             }
         })
+    }
+    
+    func updateUIWithNetworkData() {
+        if let event = fetchedResultsController.fetchedObjects![0] as? Event {
+            
+            eventImageView.image = event.image
+            headerLabel.text = event.title
+            whoLabel.text = event.organization
+            aboutTextView.text = event.descriptionString
+            
+        }
+        
     }
     
     lazy var fetchedResultsController: NSFetchedResultsController = {

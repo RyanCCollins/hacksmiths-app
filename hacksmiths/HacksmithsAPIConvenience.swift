@@ -264,7 +264,7 @@ extension HacksmithsAPIClient {
                             let nextEvent = events["next"]
                             
                             /* Check to see that we don't get false or nil */
-                            if lastEvent != nil || false {
+                            if lastEvent != nil || lastEvent as? Bool != false {
                                 
                                 /* Force cast to [String : AnyObject] since logic above protects against bad data */
                                 let lastEventDictionary = lastEvent as! [String : AnyObject]
@@ -273,7 +273,7 @@ extension HacksmithsAPIClient {
                                 
                             }
                             
-                            if nextEvent != nil || false {
+                            if nextEvent != nil || nextEvent as? Bool != false {
                                 let nextEventDictionary = nextEvent as! [String: AnyObject]
                                 
                                 let next = Event(dictionary: self.dictionaryForEvent(nextEventDictionary), context: self.sharedContext)

@@ -22,7 +22,6 @@ class HacksmithsAPIClient: NSObject {
         
         var urlString = Constants.APIURL + method
 
-        
         /* If our request includes parameters, add those parameters to our URL */
         if parameters != nil {
             
@@ -121,7 +120,7 @@ class HacksmithsAPIClient: NSObject {
     
     /* Task returned for POSTing data from the Parse server */
     func taskForPOSTMethod (method: String, JSONBody: [String : AnyObject], completionHandler: CompletionHandlerWithResult) -> NSURLSessionDataTask {
-        let urlString = Constants.BaseURL + method
+        let urlString = Constants.APIURL + method
         let request = NSMutableURLRequest(URL: NSURL(string: urlString)!)
         
         print(urlString)

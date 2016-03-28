@@ -43,7 +43,6 @@
             <string>Montserrat-Regular</string>
             <string>Montserrat-Regular</string>
             <string>Montserrat-Regular</string>
-            <string>Montserrat-Regular</string>
         </mutableArray>
         <mutableArray key="Roboto-Regular.ttf">
             <string>Roboto-Regular</string>
@@ -1022,7 +1021,7 @@ We build tools designed to help non-profit organizations streamline their philan
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="About" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EJR-yi-Gos">
-                                        <rect key="frame" x="8" y="382" width="584" height="31"/>
+                                        <rect key="frame" x="8" y="365" width="584" height="31"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="31" id="sb6-BJ-ppH"/>
                                         </constraints>
@@ -1031,7 +1030,7 @@ We build tools designed to help non-profit organizations streamline their philan
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Vn8-e6-SfX">
-                                        <rect key="frame" x="14" y="313" width="578" height="51"/>
+                                        <rect key="frame" x="14" y="313" width="578" height="34"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="when" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tBE-aP-qdy">
                                                 <rect key="frame" x="0.0" y="0.0" width="578" height="17"/>
@@ -1045,30 +1044,24 @@ We build tools designed to help non-profit organizations streamline their philan
                                                 <color key="textColor" red="0.42655369640000002" green="0.475846082" blue="0.4802647531" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="where" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7cu-8d-fTG">
-                                                <rect key="frame" x="0.0" y="34" width="578" height="17"/>
-                                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
-                                                <color key="textColor" red="0.42655369640000002" green="0.475846082" blue="0.4802647531" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nST-lF-I5r">
-                                        <rect key="frame" x="40" y="372" width="520" height="2"/>
+                                        <rect key="frame" x="40" y="355" width="520" height="2"/>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="2" id="ufX-Ds-Akq"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yun-Ud-2rc">
-                                        <rect key="frame" x="40" y="421" width="520" height="2"/>
+                                        <rect key="frame" x="40" y="404" width="520" height="2"/>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="2" id="Cgg-YS-iIU"/>
                                         </constraints>
                                     </view>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RW4-oj-2rJ">
-                                        <rect key="frame" x="125" y="431" width="350" height="118"/>
+                                        <rect key="frame" x="125" y="414" width="350" height="118"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="118" id="3I9-XM-Vb9"/>
@@ -1087,7 +1080,7 @@ We build tools designed to help non-profit organizations streamline their philan
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Sponsors" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Eh-Sd-FWR">
-                                        <rect key="frame" x="8" y="625" width="584" height="31"/>
+                                        <rect key="frame" x="8" y="608" width="584" height="31"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="31" id="DOt-rL-Nki"/>
                                         </constraints>
@@ -1096,14 +1089,14 @@ We build tools designed to help non-profit organizations streamline their philan
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SID-a8-NR0">
-                                        <rect key="frame" x="40" y="615" width="520" height="2"/>
+                                        <rect key="frame" x="40" y="598" width="520" height="2"/>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="2" id="Wgm-RI-mOt"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bkR-v5-mAt">
-                                        <rect key="frame" x="40" y="664" width="520" height="2"/>
+                                        <rect key="frame" x="40" y="647" width="520" height="2"/>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="2" id="CGB-vF-X1d"/>
@@ -1142,7 +1135,7 @@ We build tools designed to help non-profit organizations streamline their philan
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C3o-5y-gCb" customClass="SwiftyButton" customModule="SwiftyButton">
-                                        <rect key="frame" x="193" y="557" width="214" height="50"/>
+                                        <rect key="frame" x="193" y="540" width="214" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="214" id="N6k-Oc-qcg"/>
                                             <constraint firstAttribute="height" constant="50" id="zrD-ut-i60"/>
@@ -1171,7 +1164,6 @@ We build tools designed to help non-profit organizations streamline their philan
                                     <constraint firstItem="Src-aF-bz5" firstAttribute="leading" secondItem="VHh-Hr-Cdd" secondAttribute="leading" id="2UT-Ew-FaD"/>
                                     <constraint firstItem="RW4-oj-2rJ" firstAttribute="centerX" secondItem="VHh-Hr-Cdd" secondAttribute="centerX" id="2t1-Wc-hDt"/>
                                     <constraint firstItem="SID-a8-NR0" firstAttribute="top" secondItem="C3o-5y-gCb" secondAttribute="bottom" constant="8" id="3At-Mz-RJZ"/>
-                                    <constraint firstItem="nST-lF-I5r" firstAttribute="top" secondItem="7cu-8d-fTG" secondAttribute="bottom" constant="8" id="3fs-N6-uUU"/>
                                     <constraint firstItem="yun-Ud-2rc" firstAttribute="top" secondItem="EJR-yi-Gos" secondAttribute="bottom" constant="8" id="48t-Qm-tH6"/>
                                     <constraint firstAttribute="trailing" secondItem="EJR-yi-Gos" secondAttribute="trailing" constant="8" id="6aF-uN-xpr"/>
                                     <constraint firstAttribute="trailing" secondItem="HfK-rW-YbI" secondAttribute="trailing" constant="8" id="6tP-0o-tgg"/>
@@ -1234,7 +1226,6 @@ We build tools designed to help non-profit organizations streamline their philan
                         <outlet property="headerLabel" destination="HfK-rW-YbI" id="ef4-i2-5ea"/>
                         <outlet property="registerSignupButton" destination="C3o-5y-gCb" id="3JF-7m-BZr"/>
                         <outlet property="whenLabel" destination="tBE-aP-qdy" id="H2a-Ht-2Nr"/>
-                        <outlet property="whereLabel" destination="7cu-8d-fTG" id="Brn-Ih-9PG"/>
                         <outlet property="whoLabel" destination="zx4-zt-d46" id="Pya-iN-cDl"/>
                     </connections>
                 </viewController>
@@ -1278,17 +1269,6 @@ We build tools designed to help non-profit organizations streamline their philan
                                             <constraint firstAttribute="width" secondItem="Lca-8H-5m4" secondAttribute="height" multiplier="1:1" id="zBY-qQ-hED"/>
                                         </constraints>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gQ0-av-red">
-                                        <rect key="frame" x="415" y="542" width="50" height="50"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="gQ0-av-red" secondAttribute="height" multiplier="1:1" id="PgG-s1-D4b"/>
-                                            <constraint firstAttribute="height" constant="50" id="UaW-zM-wob"/>
-                                        </constraints>
-                                        <state key="normal" title="Button" image="Touch-icon-lg"/>
-                                        <connections>
-                                            <action selector="didTapTouchIDButtonUpInside:" destination="WN5-vs-oyA" eventType="touchUpInside" id="xYf-Ze-BKv"/>
-                                        </connections>
-                                    </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9ik-Q5-lj8">
                                         <rect key="frame" x="193" y="542" width="214" height="50"/>
                                         <subviews>
@@ -1404,7 +1384,6 @@ We build tools designed to help non-profit organizations streamline their philan
                                 </subviews>
                                 <color key="backgroundColor" red="0.37254901960784315" green="0.6705882352941176" blue="0.68235294117647061" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="gQ0-av-red" firstAttribute="leading" secondItem="9ik-Q5-lj8" secondAttribute="trailing" constant="8" id="1Px-Kc-DgC"/>
                                     <constraint firstItem="9ik-Q5-lj8" firstAttribute="centerY" secondItem="18M-tO-Zgj" secondAttribute="centerY" id="4QV-IF-GlW"/>
                                     <constraint firstItem="bQS-jy-J3I" firstAttribute="top" secondItem="8yI-b7-lov" secondAttribute="bottom" constant="8" id="6Ru-8O-2ph"/>
                                     <constraint firstItem="9ik-Q5-lj8" firstAttribute="leading" secondItem="18M-tO-Zgj" secondAttribute="trailing" constant="8" id="6nq-mh-doa"/>
@@ -1418,7 +1397,6 @@ We build tools designed to help non-profit organizations streamline their philan
                                     <constraint firstItem="6tJ-u5-2QH" firstAttribute="centerX" secondItem="Qwj-jV-UKm" secondAttribute="centerX" id="grd-fq-rad"/>
                                     <constraint firstItem="Qwj-jV-UKm" firstAttribute="top" secondItem="Lca-8H-5m4" secondAttribute="top" constant="-20" id="ivA-Cf-n80"/>
                                     <constraint firstItem="2kn-eB-8AM" firstAttribute="centerX" secondItem="Lca-8H-5m4" secondAttribute="centerX" id="kZk-CT-gYm"/>
-                                    <constraint firstItem="9ik-Q5-lj8" firstAttribute="centerY" secondItem="gQ0-av-red" secondAttribute="centerY" id="l5O-YB-wZB"/>
                                     <constraint firstItem="9ik-Q5-lj8" firstAttribute="centerX" secondItem="Qwj-jV-UKm" secondAttribute="centerX" id="mVb-uY-m2b"/>
                                     <constraint firstItem="NaY-C1-Wv6" firstAttribute="leading" secondItem="6ZL-5y-9Rr" secondAttribute="leading" constant="20" id="pvX-dC-xeX"/>
                                     <constraint firstItem="9ik-Q5-lj8" firstAttribute="top" secondItem="6tJ-u5-2QH" secondAttribute="bottom" constant="8" id="r0g-VM-1Pr"/>
@@ -1442,7 +1420,6 @@ We build tools designed to help non-profit organizations streamline their philan
                         <outlet property="loginButtonView" destination="9ik-Q5-lj8" id="tpQ-FP-m75"/>
                         <outlet property="onepasswordButton" destination="18M-tO-Zgj" id="Lct-5a-7wL"/>
                         <outlet property="passwordTextField" destination="8yI-b7-lov" id="fPH-Ug-drj"/>
-                        <outlet property="touchIDButton" destination="gQ0-av-red" id="Equ-rA-ZiJ"/>
                         <outlet property="usernameTextField" destination="rPo-c9-z7X" id="MF5-SN-ygu"/>
                     </connections>
                 </viewController>
@@ -2087,7 +2064,6 @@ We build tools designed to help non-profit organizations streamline their philan
         </scene>
     </scenes>
     <resources>
-        <image name="Touch-icon-lg" width="138" height="138"/>
         <image name="bg" width="640" height="400"/>
         <image name="camera" width="32" height="28"/>
         <image name="circle-picture" width="170" height="170"/>

@@ -26,9 +26,6 @@ class LoginViewController: UIViewController {
     
     let loginButton = SwiftyCustomContentButton()
     
-    /* One password and touch ID variables */
-    var context = LAContext()
-
     var has1PasswordLogin: Bool = false
     
     override func viewDidLoad() {
@@ -37,7 +34,7 @@ class LoginViewController: UIViewController {
         
         /* Configure buttons based on availability */
         configureLoginButtons()
-        configureTouchID()
+
         configureOnePasswordButton()
         
     }
@@ -49,26 +46,15 @@ class LoginViewController: UIViewController {
         onepasswordButton.enabled = true
         
         
-        if let storedUsername = NSUserDefaults.standardUserDefaults().valueForKey("username") as? String {
-            usernameTextField.text = storedUsername as String
-        }
+        usernameTextField.text = UserDefaults.sharedInstance().username
     }
     
-    @IBAction func didTapRegisterUpInside(sender: AnyObject) {
-        
-    }
+
     @IBAction func didTapSkipUpInside(sender: AnyObject) {
         dismissLoginView(false)
     }
 
     
-    func configureTouchID() {
-        touchIDButton.hidden = true
-        
-        if context.canEvaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, error: nil) {
-            touchIDButton.hidden = false
-        }
-    }
     
     func configureOnePasswordButton() {
         /* Hide 1Password Button if not installed */
@@ -85,75 +71,13 @@ class LoginViewController: UIViewController {
     }
     
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         unsubsribeToKeyboardNotification()
     }
+
     
-    @IBAction func didTapTouchIDButtonUpInside(sender: AnyObject) {
-        authenticateWithTouchID()
-    }
-    
-    func authenticateWithTouchID() {
-         /* If we can evaluate with touch ID sensor, carry on*/
-        if context.canEvaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, error:nil) {
-            
-            /* If we can evaluate with touch ID sensor, carry on*/
-            context.evaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, localizedReason: "Logging in with Touch ID", reply: { success, error in
-                    
-                    /* Dismiss the login view controller and continue if successful */
-                    dispatch_async(dispatch_get_main_queue(), {
-                        
-                        if success {
-                            self.dismissLoginView(true)
-                        }
-                        
-                        if error != nil {
-                            
-                            /* To do: refactor to user global errors */
-                            var message = ""
-                            var shouldShowAlert = false
-                            
-                            /* Check if there is an error code and create an error message for it. */
-                            switch(error!.code) {
-                            case LAError.AuthenticationFailed.rawValue:
-                                message = "There was a problem verifying your identity."
-                                shouldShowAlert = true
-                                break;
-                            case LAError.UserCancel.rawValue:
-                                message = "You pressed cancel."
-                                shouldShowAlert = true
-                                break;
-                            case LAError.UserFallback.rawValue:
-                                message = "You pressed password."
-                                shouldShowAlert = true
-                                break;
-                            default:
-                                shouldShowAlert = true
-                                message = "Touch ID may not be configured"
-                                break;
-                            }
-                            
-                            if shouldShowAlert {
-                                self.alertController(withTitles: ["OK"], message: message, callbackHandler: [nil])
-                            }
-                            
-                            
-                        }
-                    })
-                    
-            })
-        } else {
-            
-            self.alertController(withTitles: ["OK"], message: "Unable to use TouchID on your device.", callbackHandler: [nil])
-            
-        }
-    }
     
     func dismissLoginView(loginWasSuccessful: Bool) {
         
@@ -175,10 +99,13 @@ class LoginViewController: UIViewController {
         usernameTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
         
+        authenticateUser(usernameTextField.text!, password: passwordTextField.text!)
         
-        
-        
-        HacksmithsAPIClient.sharedInstance().authenticateWithCredentials(usernameTextField.text!, password: passwordTextField.text!, completionHandler: {success, error in
+
+    }
+    
+    func authenticateUser(username: String, password: String) {
+        HacksmithsAPIClient.sharedInstance().authenticateWithCredentials(username, password: password, completionHandler: {success, error in
             
             if error != nil {
                 
@@ -188,9 +115,7 @@ class LoginViewController: UIViewController {
             
             if success {
                 
-                NSUserDefaults.standardUserDefaults().setValue(self.usernameTextField.text, forKey: "username")
-                
-                
+                UserDefaults.sharedInstance().username = self.usernameTextField.text
                 
                 self.dismissLoginView(true)
             }
@@ -211,20 +136,11 @@ class LoginViewController: UIViewController {
             
             if let foundUsername = loginDictionary?[AppExtensionUsernameKey] as? String, foundPassword = loginDictionary?[AppExtensionPasswordKey] as? String {
                 
-                HacksmithsAPIClient.sharedInstance().authenticateWithCredentials(foundUsername, password: foundPassword, completionHandler: {success, error in
-                    
-                    if error != nil {
-                        
-                        self.alertController(withTitles: ["OK"], message: "We were unable to authenticate your account.  Please check your password and try again.", callbackHandler: [nil])
-
-                    }
-                    
-                    if success {
-
-                        self.dismissLoginView(true)
-                    }
-                    
-                })
+                self.passwordTextField.text = foundPassword
+                self.usernameTextField.text = foundUsername
+                
+                self.authenticateUser(foundUsername, password: foundPassword)
+                
             }
         })
     }
