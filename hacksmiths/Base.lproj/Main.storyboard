@@ -203,16 +203,16 @@
         <!--Community-->
         <scene sceneID="EKZ-Ys-fzW">
             <objects>
-                <tableViewController title="Community" id="RPn-Ub-BF9" customClass="CommunityViewController" customModule="hacksmiths" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Community" automaticallyAdjustsScrollViewInsets="NO" id="RPn-Ub-BF9" customClass="CommunityViewController" customModule="hacksmiths" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" id="yEa-F2-Ems">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="separatorColor" red="0.1529411765" green="0.20784313730000001" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="sectionIndexBackgroundColor" red="0.1529411765" green="0.20784313730000001" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="PersonTableViewCell" rowHeight="100" id="UUs-uz-4i1" customClass="PersonTableViewCell" customModule="hacksmiths" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="600" height="100"/>
+                                <rect key="frame" x="0.0" y="28" width="600" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UUs-uz-4i1" id="OI0-ZW-6hY">
                                     <rect key="frame" x="0.0" y="0.0" width="567" height="99"/>
@@ -280,6 +280,7 @@
                             <outlet property="delegate" destination="RPn-Ub-BF9" id="f6t-9X-5Qc"/>
                         </connections>
                     </tableView>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Community" id="tD7-ms-hoz"/>
                     <connections>
                         <segue destination="tSP-Xd-Jd2" kind="showDetail" identifier="ShowPersonDetail" id="UBi-r6-Yqe"/>
