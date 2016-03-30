@@ -297,9 +297,6 @@ extension HacksmithsAPIClient {
     }
     
     func dictionaryForUserData(user: [String : AnyObject]) -> [String : AnyObject] {
-        
-
-        
         var dictionary: [String : AnyObject] = [
             "name" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.name]!,
             "bio" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.bio]!,

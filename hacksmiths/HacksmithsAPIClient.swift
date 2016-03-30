@@ -19,16 +19,11 @@ class HacksmithsAPIClient: NSObject {
     
     /* Task returned for GETting data from the server */
     func taskForGETMethod(method: String, parameters: [String : AnyObject]?, completionHandler: CompletionHandlerWithResult) -> NSURLSessionDataTask {
-        
         var urlString = Constants.APIURL + method
-
         /* If our request includes parameters, add those parameters to our URL */
         if parameters != nil {
-            
             if let parameters = parameters {
-                
                 urlString += HacksmithsAPIClient.stringByEscapingParameters(parameters)
-                
             }
         }
         
@@ -40,16 +35,11 @@ class HacksmithsAPIClient: NSObject {
         /*Create a session and then a task */
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithRequest(request) { data, response, error in
-            
             if error != nil {
-                
                 completionHandler(success: false, result: nil, error: Errors.constructError(domain: "HacksmithsAPIClient", userMessage: ErrorMessages.Status.Network))
-                
             } else {
-                
                 /* GUARD: Did we get a successful response code of 2XX? */
                 self.guardForHTTPResponses(response as? NSHTTPURLResponse) {proceed, error in
-                    
                     if error != nil {
                         print(response)
                         completionHandler(success: false, result: nil, error: error)
@@ -74,34 +64,27 @@ class HacksmithsAPIClient: NSObject {
     /* Abtraction that returns a UIImage from a URL from HacksmithsAPIClient
     Making our life a bit easier for photo processing */
     func taskForGETImageFromURL(url: String, completionHandler: CompletionHandlerWithImage) -> NSURLSessionDataTask {
-        
         let url = NSURL(string: url)!
         let request = NSMutableURLRequest(URL: url)
-        
         request.HTTPMethod = HTTPRequest.GET
         
         /*Create a session and then a task */
         let session = NSURLSession.sharedSession()
-        
         let task = session.dataTaskWithRequest(request) {data, response, error in
             if error != nil {
                 print(error)
                 completionHandler(image: nil, error: Errors.constructError(domain: "HacksmithsAPI", userMessage: ErrorMessages.Status.Network))
                 
             } else {
-                
                 /* GUARD: Did we get a successful response code of 2XX? and return error if not found */
                 self.guardForHTTPResponses(response as? NSHTTPURLResponse) {proceed, error in
                     if error != nil {
-                        
                         completionHandler(image: nil, error: error!)
-                        
                     }
                 }
                 
                 /* Here we are simply creating an image and returning it via the completionhandler */
                 if let imageData = data {
-                    
                     if let imageToReturn = UIImage(data: imageData) {
                         completionHandler(image: imageToReturn, error: nil)
                     }
@@ -174,19 +157,14 @@ class HacksmithsAPIClient: NSObject {
     func taskForPUTMethod(method: String, objectId: String, JSONBody : [String : AnyObject], completionHandler: CompletionHandlerWithResult) -> NSURLSessionDataTask {
         
         let urlString = Constants.APIURL + method + "/" + objectId
-        
         let request = NSMutableURLRequest(URL: NSURL(string: urlString)!)
-        
         request.HTTPMethod = HTTPRequest.PUT
 
-        
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
         do {
-            
             request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(JSONBody, options: .PrettyPrinted)
-            
         } catch {
             request.HTTPBody = nil
             completionHandler(success: false, result: nil, error: Errors.constructError(domain: "HacksmithsAPIClient", userMessage: ErrorMessages.JSONSerialization))
@@ -195,21 +173,14 @@ class HacksmithsAPIClient: NSObject {
         
         /*Create a session and then a task.  Parse results if no error. */
         let session = NSURLSession.sharedSession()
-        
         let task = session.dataTaskWithRequest(request) { data, response, error in
-            
             if error != nil {
-                
                 completionHandler(success: false, result: nil, error: Errors.constructError(domain: "HacksmithsAPIClient", userMessage: ErrorMessages.Status.Network))
-                
             } else {
-                
                 /* GUARD: Did we get a successful response code of 2XX? */
                 self.guardForHTTPResponses(response as? NSHTTPURLResponse) {proceed, error in
                     if error != nil {
-                        
                         completionHandler(success: false, result: nil, error: error)
-                        
                     }
                 }
                 
@@ -226,11 +197,9 @@ class HacksmithsAPIClient: NSObject {
     
     /* Helper Function: Convert JSON to a Foundation object */
     class func parseJSONDataWithCompletionHandler(data: NSData, completionHandler: CompletionHandlerWithResult) {
-        
         var parsedResult: AnyObject?
         do {
             parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
-            
         } catch {
             completionHandler(success: false, result: nil, error: Errors.constructError(domain: "HacksmithsAPI", userMessage: ErrorMessages.Parse))
         }

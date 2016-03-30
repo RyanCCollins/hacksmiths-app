@@ -13,7 +13,7 @@ import CoreData
 
 class Event: NSManagedObject {
     
-    @NSManaged var id: String
+    @NSManaged var eventID: String
     @NSManaged var title: String
     @NSManaged var organization : String?
     @NSManaged var descriptionString: String?
@@ -49,7 +49,7 @@ class Event: NSManagedObject {
         super.init(entity: entity!, insertIntoManagedObjectContext: context)
         
         /* Assign our properties */
-        id = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.id] as! String
+        eventID = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.id] as! String
         title = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.title] as! String
         descriptionString = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.description] as! String
         let dateStringStart = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.starts] as! String
