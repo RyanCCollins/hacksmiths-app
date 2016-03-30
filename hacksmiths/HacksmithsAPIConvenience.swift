@@ -260,19 +260,19 @@ extension HacksmithsAPIClient {
                         } else {
                             
                             /* Check that the last and next event exist and then parse and save */
-                            let lastEvent = events["last"]
+                            //let lastEvent = events["last"]
                             let nextEvent = events["next"]
                             
-                            /* Check to see that we don't get false or nil */
-                            if lastEvent != nil || lastEvent as? Bool != false {
-                                
-                                /* Force cast to [String : AnyObject] since logic above protects against bad data */
-                                let lastEventDictionary = lastEvent as! [String : AnyObject]
-                                /* Create an event with dictionary */
-                                let event = Event(dictionary: self.dictionaryForEvent(lastEventDictionary), context: self.sharedContext)
-                                
-                            }
-                            
+//                            /* Check to see that we don't get false or nil */
+//                            if lastEvent != nil || lastEvent as? Bool != false {
+//                                
+//                                /* Force cast to [String : AnyObject] since logic above protects against bad data */
+//                                let lastEventDictionary = lastEvent as! [String : AnyObject]
+//                                /* Create an event with dictionary */
+//                                let event = Event(dictionary: self.dictionaryForEvent(lastEventDictionary), context: self.sharedContext)
+//                                
+//                            }
+//                            
                             if nextEvent != nil || nextEvent as? Bool != false {
                                 let nextEventDictionary = nextEvent as! [String: AnyObject]
                                 

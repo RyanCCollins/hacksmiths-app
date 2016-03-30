@@ -24,7 +24,6 @@ class EventViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         getEventData()
-        
     }
     
     func getEventData() {
@@ -54,9 +53,7 @@ class EventViewController: UIViewController {
     
     lazy var fetchedResultsController: NSFetchedResultsController = {
         
-        
         let sortPriority = NSSortDescriptor(key: "startDate", ascending: false)
-        
         
         let nextEventFetch = NSFetchRequest(entityName: "Event")
         nextEventFetch.sortDescriptors = [sortPriority]
