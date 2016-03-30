@@ -14,7 +14,6 @@ class EventViewController: UIViewController {
     @IBOutlet weak var eventImageView: UIImageView!
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var whoLabel: UILabel!
-    @IBOutlet weak var whereLabel: UILabel!
     @IBOutlet weak var aboutTextView: UITextView!
     @IBOutlet weak var registerSignupButton: SwiftyButton!
 

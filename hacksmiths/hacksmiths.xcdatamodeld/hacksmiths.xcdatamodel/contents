@@ -6,6 +6,7 @@
         <attribute name="eventID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="featureImageFilePath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="featureImageURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="registrationEndDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="registrationStartDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="spotsAvailable" optional="YES" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
@@ -18,7 +19,7 @@
         <relationship name="teams" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Team" syncable="YES"/>
         <compoundIndexes>
             <compoundIndex>
-                <index value="id"/>
+                <index value="eventID"/>
             </compoundIndex>
         </compoundIndexes>
     </entity>
@@ -82,7 +83,7 @@
         <attribute name="website" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Event" positionX="90" positionY="27" width="128" height="270"/>
+        <element name="Event" positionX="90" positionY="27" width="128" height="285"/>
         <element name="Organization" positionX="-92" positionY="72" width="128" height="105"/>
         <element name="Person" positionX="313" positionY="246" width="128" height="270"/>
         <element name="Project" positionX="196" positionY="-117" width="128" height="120"/>

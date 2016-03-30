@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -58,6 +59,12 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         }
         
     }
+    
+    func updateUIForPerson() {
+        
+    }
+    
+    
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -141,6 +148,41 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     func commitChangesToProfile() {
         // TODO: Upload changes to the profile to the server.
         toggleEditMode(false)
+    }
+    
+    lazy var fetchedResultsController: NSFetchedResultsController = {
+        
+        let sortPriority = NSSortDescriptor(key: "startDate", ascending: false)
+        
+        let nextEventFetch = NSFetchRequest(entityName: "Event")
+        nextEventFetch.sortDescriptors = [sortPriority]
+        
+        let fetchResultsController = NSFetchedResultsController(fetchRequest: nextEventFetch, managedObjectContext: self.sharedContext, sectionNameKeyPath: nil, cacheName: nil)
+        
+        do {
+            try fetchResultsController.performFetch()
+        } catch let error {
+            print(error)
+        }
+        
+        return fetchResultsController
+    }()
+    
+    func performEventFetch() {
+        do {
+            
+            try fetchedResultsController.performFetch()
+            
+        } catch let error as NSError {
+            self.alertController(withTitles: ["OK", "Retry"], message: error.localizedDescription, callbackHandler: [nil, {Void in
+                self.performEventFetch()
+                }])
+        }
+    }
+    
+    
+    var sharedContext: NSManagedObjectContext {
+        return CoreDataStackManager.sharedInstance().managedObjectContext
     }
     
     
