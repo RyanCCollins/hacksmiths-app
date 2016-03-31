@@ -326,8 +326,11 @@ extension HacksmithsAPIClient {
             "id" : event[HacksmithsAPIClient.JSONResponseKeys.Event.id]!,
             "title" : event[HacksmithsAPIClient.JSONResponseKeys.Event.title]!,
             "description" : event[HacksmithsAPIClient.JSONResponseKeys.Event.description]!,
-            "startDate" : event[HacksmithsAPIClient.JSONResponseKeys.Event.starts]!,
-            "endDate" : event[HacksmithsAPIClient.JSONResponseKeys.Event.ends]!
+            "starts" : event[HacksmithsAPIClient.JSONResponseKeys.Event.starts]!,
+            "ends" : event[HacksmithsAPIClient.JSONResponseKeys.Event.ends]!,
+            "spotsRemaining": event["spotsRemaining"]!,
+            "place" : event["place"]!
+            
         ]
         return dictionary
     }

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15B42" minimumToolsVersion="Automatic">
     <entity name="Event" representedClassName="Event" syncable="YES">
-        <attribute name="about" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="descriptionString" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="eventID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="featureImageFilePath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="featureImageURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="place" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="registrationEndDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="registrationStartDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="spotsAvailable" optional="YES" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
@@ -83,7 +84,7 @@
         <attribute name="website" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Event" positionX="90" positionY="27" width="128" height="285"/>
+        <element name="Event" positionX="90" positionY="27" width="128" height="300"/>
         <element name="Organization" positionX="-92" positionY="72" width="128" height="105"/>
         <element name="Person" positionX="313" positionY="246" width="128" height="270"/>
         <element name="Project" positionX="196" positionY="-117" width="128" height="120"/>

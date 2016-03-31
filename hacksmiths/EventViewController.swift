@@ -34,6 +34,7 @@ class EventViewController: UIViewController {
             } else {
 
                 self.performEventFetch()
+                self.updateUIWithNetworkData()
             }
         })
     }
@@ -51,9 +52,7 @@ class EventViewController: UIViewController {
     }
     
     lazy var fetchedResultsController: NSFetchedResultsController = {
-        
         let sortPriority = NSSortDescriptor(key: "startDate", ascending: false)
-        
         let nextEventFetch = NSFetchRequest(entityName: "Event")
         nextEventFetch.sortDescriptors = [sortPriority]
         
