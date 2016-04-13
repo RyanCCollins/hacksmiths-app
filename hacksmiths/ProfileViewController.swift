@@ -40,9 +40,18 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     func getMostUpToDateDataFromAPI() {
+        
+        // If the user is authenticated then create a request to get the profile data:
         if UserDefaults.sharedInstance().authenticated == true {
             let userID = UserDefaults.sharedInstance().userId
+            
+            // Protect against the UserID being nil, for some reason
+            guard userID != nil || userID != "" else {
+                return
+            }
+            
             let dictionary: [String : AnyObject] = [ "user" : userID! ]
+            print(userID!)
             HacksmithsAPIClient.sharedInstance().getUserDataFromAPI(dictionary, completionHandler: {success, error in
                 
                 if error != nil {
@@ -51,7 +60,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
                     }])
                 } else {
                     
-                    print("Successfuly updated user data")
+                    self.updateUIForPerson()
                     
                 }
                 

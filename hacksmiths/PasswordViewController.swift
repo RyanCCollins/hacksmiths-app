@@ -70,3 +70,24 @@ class PasswordViewController: UIViewController {
         }
     }
 }
+
+extension PasswordViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if passwordTextField.text == nil || passwordTextField.text == "" {
+            
+            return false
+        }
+        // Go to the next screen
+        submitForm()
+        return true
+    }
+    
+    func validationPassword(password: String) -> Bool{
+        if password.length < 8 {
+            return false
+        }
+        
+        if password.
+    }
+    
+}

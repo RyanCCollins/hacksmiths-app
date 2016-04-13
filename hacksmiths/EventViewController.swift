@@ -16,6 +16,9 @@ class EventViewController: UIViewController {
     @IBOutlet weak var whoLabel: UILabel!
     @IBOutlet weak var aboutTextView: UITextView!
     @IBOutlet weak var registerSignupButton: SwiftyButton!
+    @IBOutlet weak var organizationImageView: UIImageView!
+    @IBOutlet weak var organizationTitleLabel: UILabel!
+    @IBOutlet weak var organizationDescriptionLabel: UILabel!
 
     @IBOutlet weak var whenLabel: UILabel!
     override func viewDidLoad() {
@@ -40,6 +43,7 @@ class EventViewController: UIViewController {
     }
     
     func updateUIWithNetworkData() {
+        // Pick the first event
         if let event = fetchedResultsController.fetchedObjects![0] as? Event {
             
             eventImageView.image = event.image

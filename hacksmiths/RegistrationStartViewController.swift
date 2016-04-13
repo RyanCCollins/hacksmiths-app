@@ -90,38 +90,3 @@ extension RegistrationStartViewController: UITextFieldDelegate {
     
 }
 
-class RegistrationFormViewController: UIViewController {
-    
-    var textField: UITextField?
-    
-    convenience init() {
-        self.init(textField: nil)
-    }
-    
-    init(textField: UITextField?) {
-        self.textField = textField
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-    }
-    
-    func configureView() {
-        
-    }
-    
-    func setFirstResponder(textField: UITextField) {
-        textField.becomeFirstResponder()
-    }
-    
-    
-    
-}
-
-

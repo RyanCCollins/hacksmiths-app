@@ -249,7 +249,7 @@ extension HacksmithsAPIClient {
             } else {
                 if result != nil {
                      
-                    if let success = result[HacksmithsAPIClient.JSONResponseKeys.Success] as? Bool, events = result[HacksmithsAPIClient.JSONResponseKeys.Event.events] as? [String:AnyObject] {
+                    if let success = result[HacksmithsAPIClient.JSONResponseKeys.Success] as? Bool, event = result[HacksmithsAPIClient.JSONResponseKeys.Event.event] as? [String:AnyObject] {
                         
                         if success != true {
                             
@@ -259,25 +259,9 @@ extension HacksmithsAPIClient {
                             
                         } else {
                             
-                            /* Check that the last and next event exist and then parse and save */
-                            //let lastEvent = events["last"]
-                            let nextEvent = events["next"]
+                            let event = Event(dictionary: self.dictionaryForEvent(event), context: self.sharedContext)
                             
-//                            /* Check to see that we don't get false or nil */
-//                            if lastEvent != nil || lastEvent as? Bool != false {
-//                                
-//                                /* Force cast to [String : AnyObject] since logic above protects against bad data */
-//                                let lastEventDictionary = lastEvent as! [String : AnyObject]
-//                                /* Create an event with dictionary */
-//                                let event = Event(dictionary: self.dictionaryForEvent(lastEventDictionary), context: self.sharedContext)
-//                                
-//                            }
-//                            
-                            if nextEvent != nil || nextEvent as? Bool != false {
-                                let nextEventDictionary = nextEvent as! [String: AnyObject]
-                                
-                                let next = Event(dictionary: self.dictionaryForEvent(nextEventDictionary), context: self.sharedContext)
-                            }
+                            
                             
                             /*  Save our new events */
                             self.sharedContext.performBlockAndWait( {
@@ -324,13 +308,13 @@ extension HacksmithsAPIClient {
     func dictionaryForEvent (event: [String : AnyObject]) -> [String : AnyObject]{
         let dictionary: [String : AnyObject] = [
             "id" : event[HacksmithsAPIClient.JSONResponseKeys.Event.id]!,
+            "active" : event[HacksmithsAPIClient.JSONResponseKeys.Event.active]!,
             "title" : event[HacksmithsAPIClient.JSONResponseKeys.Event.title]!,
             "description" : event[HacksmithsAPIClient.JSONResponseKeys.Event.description]!,
             "starts" : event[HacksmithsAPIClient.JSONResponseKeys.Event.starts]!,
             "ends" : event[HacksmithsAPIClient.JSONResponseKeys.Event.ends]!,
-            "spotsRemaining": event["spotsRemaining"]!,
-            "place" : event["place"]!
-            
+            "spotsRemaining": event[HacksmithsAPIClient.JSONResponseKeys.Event.spotsRemaining]!,
+            "featureImage" : event[HacksmithsAPIClient.JSONResponseKeys.Event.featureImage]!
         ]
         return dictionary
     }

@@ -68,8 +68,32 @@ class Event: NSManagedObject {
             }
         }
         
+        if let image = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.featureImage] as? [String : AnyObject] {
+            featureImageURL = image["url"] as? String
+            featureImageFilePath = featureImageURL?.lastPathComponent
+        }
         
     }
+    
+    
+    func fetchImages(completionHandler: CompletionHandler) {
+        guard featureImageURL != nil else {
+            return
+        }
+        
+        HacksmithsAPIClient.sharedInstance().taskForGETImageFromURL(featureImageURL!, completionHandler: {image, error in
+            
+            if error != nil {
+                completionHandler(success: false, error: error)
+            } else {
+                
+                self.image = image
+                
+            }
+            
+        })
+    }
+    
     
     var image: UIImage? {
         get {

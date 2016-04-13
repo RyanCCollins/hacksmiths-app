@@ -11,4 +11,5 @@ target 'hacksmiths' do
     pod 'SwiftyButton/CustomContent'
     pod 'ChameleonFramework'
     pod 'TextFieldEffects', :inhibit_warnings => true
+    pod 'SwiftValidator', '3.0.3'
 end
