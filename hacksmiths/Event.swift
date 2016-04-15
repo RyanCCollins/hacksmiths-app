@@ -20,7 +20,6 @@ class Event: NSManagedObject {
     @NSManaged var registrationStart : NSDate
     @NSManaged var registrationEnd : NSDate?
     @NSManaged var sponsors: [Organization]
-    @NSManaged var teams: [Team]
     @NSManaged var startDate: NSDate?
     @NSManaged var endDate: NSDate?
     
@@ -29,7 +28,6 @@ class Event: NSManagedObject {
     @NSManaged var spotsAvailable: Bool
     @NSManaged var spotsRemaining: NSNumber
     
-    @NSManaged var project: Project
     @NSManaged var marketingInfo: String
     
     @NSManaged var featureImageURL: String?

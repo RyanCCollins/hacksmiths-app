@@ -73,9 +73,7 @@
 		1FF998921C6EB359003D98B2 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF998911C6EB359003D98B2 /* MainTabBarController.swift */; };
 		1FF998971C6FAE3E003D98B2 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF998961C6FAE3E003D98B2 /* Person.swift */; };
 		1FF998991C6FAEDE003D98B2 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF998981C6FAEDE003D98B2 /* Event.swift */; };
-		1FF9989B1C6FB04B003D98B2 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF9989A1C6FB04B003D98B2 /* Team.swift */; };
 		1FF9989D1C6FB060003D98B2 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF9989C1C6FB060003D98B2 /* Organization.swift */; };
-		1FF9989F1C6FB068003D98B2 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF9989E1C6FB068003D98B2 /* Project.swift */; };
 		1FF998A11C71387C003D98B2 /* PersonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF998A01C71387C003D98B2 /* PersonTableViewCell.swift */; };
 		1FF998A41C713931003D98B2 /* LeaderBoardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF998A31C713931003D98B2 /* LeaderBoardTableViewCell.swift */; };
 		944BA94349C31AD439B9CB55 /* Pods_hacksmiths.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1D439823755832D7DEC3CC3 /* Pods_hacksmiths.framework */; };
@@ -174,9 +172,7 @@
 		1FF998911C6EB359003D98B2 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		1FF998961C6FAE3E003D98B2 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		1FF998981C6FAEDE003D98B2 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
-		1FF9989A1C6FB04B003D98B2 /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		1FF9989C1C6FB060003D98B2 /* Organization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
-		1FF9989E1C6FB068003D98B2 /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		1FF998A01C71387C003D98B2 /* PersonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonTableViewCell.swift; sourceTree = "<group>"; };
 		1FF998A31C713931003D98B2 /* LeaderBoardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderBoardTableViewCell.swift; sourceTree = "<group>"; };
 		2191EFCDC3E224734A81AEB7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -401,8 +397,6 @@
 				1FF998961C6FAE3E003D98B2 /* Person.swift */,
 				1FF998981C6FAEDE003D98B2 /* Event.swift */,
 				1FF9989C1C6FB060003D98B2 /* Organization.swift */,
-				1FF9989E1C6FB068003D98B2 /* Project.swift */,
-				1FF9989A1C6FB04B003D98B2 /* Team.swift */,
 			);
 			name = "Managed Object Models";
 			sourceTree = "<group>";
@@ -638,7 +632,6 @@
 				1F7701C91C850441006FBCE0 /* SponsorTableViewCell.swift in Sources */,
 				1FA9FC6C1C534E5900B993BC /* ViewController.swift in Sources */,
 				1FA9FC9B1C53563700B993BC /* EventViewController.swift in Sources */,
-				1FF9989F1C6FB068003D98B2 /* Project.swift in Sources */,
 				1F4B4DFD1C7258BD00A75F5D /* KechainWrapper.swift in Sources */,
 				1FA5A4EC1C53586D00722E55 /* CommunityViewController.swift in Sources */,
 				1FA5A4E81C53585500722E55 /* SettingsViewController.swift in Sources */,
@@ -665,7 +658,6 @@
 				1F26C3F71CA0B232001596D2 /* AboutViewController.swift in Sources */,
 				1FA2E5611C68029C0085FC7D /* HacksmithsAPIConstants.swift in Sources */,
 				1FF998921C6EB359003D98B2 /* MainTabBarController.swift in Sources */,
-				1FF9989B1C6FB04B003D98B2 /* Team.swift in Sources */,
 				1F4B4E031C74FCE600A75F5D /* RegistrationStartViewController.swift in Sources */,
 				1FA9FC6A1C534E5900B993BC /* AppDelegate.swift in Sources */,
 				1FC6DE421C9F599B000E8159 /* PasswordViewController.swift in Sources */,
