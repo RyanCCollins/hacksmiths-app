@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F115B4A1CC0060900DC434E /* RegistrationPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F115B491CC0060900DC434E /* RegistrationPageViewController.swift */; };
 		1F26C3F71CA0B232001596D2 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F26C3F61CA0B232001596D2 /* AboutViewController.swift */; };
 		1F26C3F91CA1958E001596D2 /* LeaderboardTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F26C3F81CA1958E001596D2 /* LeaderboardTableViewController.swift */; };
 		1F44B1BA1C5DDAB9004E196D /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F44B1B91C5DDAB9004E196D /* CoreDataStackManager.swift */; };
@@ -98,6 +99,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1F115B491CC0060900DC434E /* RegistrationPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationPageViewController.swift; sourceTree = "<group>"; };
 		1F26C3F61CA0B232001596D2 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		1F26C3F81CA1958E001596D2 /* LeaderboardTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardTableViewController.swift; sourceTree = "<group>"; };
 		1F44B1B91C5DDAB9004E196D /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
@@ -383,6 +385,7 @@
 			isa = PBXGroup;
 			children = (
 				1F4B4E021C74FCE600A75F5D /* RegistrationStartViewController.swift */,
+				1F115B491CC0060900DC434E /* RegistrationPageViewController.swift */,
 				1FC6DE411C9F599B000E8159 /* PasswordViewController.swift */,
 				1FC6DE431C9F59A6000E8159 /* EmailViewController.swift */,
 				1FC6DE3F1C9F5978000E8159 /* LastNameViewController.swift */,
@@ -669,6 +672,7 @@
 				1F4B4DFB1C72581D00A75F5D /* KeychainWrapper.m in Sources */,
 				1FA5A4F01C535D6C00722E55 /* LoginViewController.swift in Sources */,
 				1FF998971C6FAE3E003D98B2 /* Person.swift in Sources */,
+				1F115B4A1CC0060900DC434E /* RegistrationPageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

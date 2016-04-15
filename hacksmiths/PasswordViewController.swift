@@ -82,12 +82,13 @@ extension PasswordViewController: UITextFieldDelegate {
         return true
     }
     
-    func validationPassword(password: String) -> Bool{
-        if password.length < 8 {
+    func validationPassword(password: String?) -> Bool{
+        if password == nil || (password != nil && password!.length < 8)  {
+            // Return false if any of the conditions above are not yet met.
             return false
         }
-        
-        if password.
+
+        return true
     }
     
 }

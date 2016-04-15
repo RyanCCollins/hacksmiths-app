@@ -135,10 +135,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         cancelButton.enabled = editing
         nameLabel.hidden = editing
         nameTextField.hidden = !editing
-
-        profilePhotoViewOverlay.hidden = !editing
-        cameraButton.hidden = !editing
-        tapToEditPhotoLabel.hidden = !editing
         
         descriptionTextField.editable = editing
         descriptionTextField.editable = editing
