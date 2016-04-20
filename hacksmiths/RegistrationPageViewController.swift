@@ -7,47 +7,45 @@
 //
 
 import UIKit
+import TextFieldEffects
+
 
 class RegistrationPageViewController: UIViewController {
-    
-    var textField: UITextField!
-    var debugLabel: UILabel!
-    
-    enum Fields: String {
-        case FirstName = "FirstName"
-        case LastName = "LastName"
-        case Email = "Email"
-        case Password = "Password"
-    }
+    @IBOutlet weak var headerLabel: UILabel!
+    @IBOutlet weak var firstNameTextField: IsaoTextField!
+    @IBOutlet weak var lastNameTextField: IsaoTextField!
+    @IBOutlet weak var emailTextField: IsaoTextField!
+    @IBOutlet weak var passwordTextField: IsaoTextField!
+    @IBOutlet weak var debugLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setupView()
     }
     
     func setupView() {
-        textField.delegate = self
-        textField.addTarget(self, action: "validateTextEntry:", forControlEvents: UIControlEvents.EditingChanged)
-        textField.becomeFirstResponder()
+        setupTextFields()
         navigationController?.navigationBar.barTintColor = view.backgroundColor
         navigationController?.navigationBar.backgroundColor = UIColor.clearColor();
-        let rightBarButtonItem = UIBarButtonItem(title: "Next", style: .Plain, target: self, action: "goToNext:")
+        let rightBarButtonItem = UIBarButtonItem(title: "Next", style: .Plain, target: self, action: #selector(RegistrationPageViewController.goToNextView(_:)))
         rightBarButtonItem.tintColor = UIColor.whiteColor()
         let xImage = UIImage(named: "x-in-square")
-        let leftBarButtonItem = UIBarButtonItem(image: xImage, style: .Plain, target: self, action: "dismissView:")
+        let leftBarButtonItem = UIBarButtonItem(image: xImage, style: .Plain, target: self, action: #selector(RegistrationPageViewController.dismissViewController(_:)))
         leftBarButtonItem.tintColor = UIColor.whiteColor()
         navigationItem.rightBarButtonItem = rightBarButtonItem
         navigationItem.rightBarButtonItem?.enabled = false
-        
         navigationItem.leftBarButtonItem = leftBarButtonItem
     }
     
-    func setKeyboard() {
-        
+    func setupTextFields(){
+        firstNameTextField.addTarget(self, action: #selector(RegistrationPageViewController.validateTextEntry), forControlEvents: UIControlEvents.EditingChanged)
+        firstNameTextField.becomeFirstResponder()
+        firstNameTextField.delegate = self
     }
+
     
-    func validateTextEntry(sender: UITextField) {
-        
+    func validateTextEntry() -> Bool {
+        return true
     }
     
     func submitAndContinue() {
@@ -55,12 +53,22 @@ class RegistrationPageViewController: UIViewController {
     }
     
     func goToNextView(sender: AnyObject) {
-        
+        if validateTextEntry() == true {
+            let nextViewController = storyboard?.instantiateViewControllerWithIdentifier("RegistrationPageViewController") as! RegistrationPageViewController
+            navigationController?.pushViewController(nextViewController, animated: true)
+        }
     }
     
+    func dismissViewController(sender: AnyObject) {
+        if navigationController?.viewControllers.count > 1 {
+            navigationController?.popViewControllerAnimated(true)
+        } else {
+            dismissViewControllerAnimated(true, completion: nil)
+        }
+    }
 }
 
-extension RegistrationPageViewController {
+extension RegistrationPageViewController: UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         if textField.text == nil || textField.text == "" {
             
