@@ -60,20 +60,22 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
                     }])
                 } else {
                     
+                    self.performPersonFetch()
                     self.updateUIForPerson()
-                    
                 }
-                
             })
         }
-        
     }
     
     func updateUIForPerson() {
-        
+        if let person = fetchedResultsController.fetchedObjects![0] as? Person {
+            nameLabel.text = "\(person.firstName) \(person.lastName)"
+            descriptionTextField.text = person.bio
+            twitterLabel.text = person.twitterUsername
+            githubLabel.text = person.githubUsername
+            profileImageView.image = person.image
+        }
     }
-    
-    
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -88,7 +90,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     func addTouchRecognizer() {
-        let fingerTouchGestureRecognizer = UIGestureRecognizer(target: profilePhotoViewOverlay, action: "didTapEditPhoto:")
+        let fingerTouchGestureRecognizer = UIGestureRecognizer(target: profilePhotoViewOverlay, action: #selector(ProfileViewController.didTapEditPhoto(_:)))
         profilePhotoViewOverlay.addGestureRecognizer(fingerTouchGestureRecognizer)
     }
     
@@ -137,11 +139,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         nameTextField.hidden = !editing
         
         descriptionTextField.editable = editing
-        descriptionTextField.editable = editing
         
-        profilePhotoViewOverlay.hidden = !editing
-        cameraButton.hidden = !editing
-        tapToEditPhotoLabel.hidden = !editing
     }
     
     func editProfileImagePhoto() {
@@ -156,10 +154,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     lazy var fetchedResultsController: NSFetchedResultsController = {
-        
-        let sortPriority = NSSortDescriptor(key: "startDate", ascending: false)
-        
-        let nextEventFetch = NSFetchRequest(entityName: "Event")
+        let sortPriority = NSSortDescriptor(key: "dateUpdated", ascending: false)
+        let nextEventFetch = NSFetchRequest(entityName: "UserData")
         nextEventFetch.sortDescriptors = [sortPriority]
         
         let fetchResultsController = NSFetchedResultsController(fetchRequest: nextEventFetch, managedObjectContext: self.sharedContext, sectionNameKeyPath: nil, cacheName: nil)
@@ -173,23 +169,21 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         return fetchResultsController
     }()
     
-    func performEventFetch() {
+    func performPersonFetch() {
         do {
             
             try fetchedResultsController.performFetch()
             
         } catch let error as NSError {
             self.alertController(withTitles: ["OK", "Retry"], message: error.localizedDescription, callbackHandler: [nil, {Void in
-                self.performEventFetch()
+                self.performPersonFetch()
                 }])
         }
     }
     
-    
     var sharedContext: NSManagedObjectContext {
         return CoreDataStackManager.sharedInstance().managedObjectContext
     }
-    
     
 }
 

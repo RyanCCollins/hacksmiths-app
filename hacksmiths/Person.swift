@@ -43,10 +43,21 @@ class Person: NSManagedObject {
         
         /* Assign our properties */
         let name = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.name] as! [String : AnyObject]
-        firstName = name["first"] as! String
-        lastName = name["last"] as! String
-        
         id = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData._id] as! String
+        
+        // In case the API incidentally does not have a firstname or lastname field.
+        // Protect against nil values.
+        if let lname = name["last"] as? String, fname = name["first"] as? String {
+            lastName = lname
+        } else {
+            lastName = ""
+        }
+        
+        if let fname = name["first"] as? String {
+            firstName = fname
+        } else {
+            firstName = ""
+        }
         
         if let userEmail = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.email] as? String {
             email = userEmail
