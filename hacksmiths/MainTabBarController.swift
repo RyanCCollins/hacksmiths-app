@@ -20,6 +20,11 @@ class MainTabBarController: UITabBarController {
         swapViewsForAuthenticatedState()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        swapViewsForAuthenticatedState()
+    }
+    
     // Run a check for swapping the view when a tabbar item is selected.
     override func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
         swapViewsForAuthenticatedState()
@@ -42,10 +47,8 @@ class MainTabBarController: UITabBarController {
                 viewControllers?.insert(profileViewController, atIndex: 0)
                 tabBarController?.setViewControllers(viewControllers, animated: false)
             }
-            
-
         } else {
-            
+        
             print("User is not authenticated")
             let joinViewController = storyboard?.instantiateViewControllerWithIdentifier("JoinViewController") as! JoinViewController
             

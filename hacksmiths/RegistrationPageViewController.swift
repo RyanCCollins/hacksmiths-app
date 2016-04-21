@@ -8,7 +8,7 @@
 
 import UIKit
 import TextFieldEffects
-
+import ChameleonFramework
 
 class RegistrationPageViewController: UIViewController {
     @IBOutlet weak var headerLabel: UILabel!
@@ -19,11 +19,15 @@ class RegistrationPageViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         setupView()
-        setNavigationControllerItems()
     }
     
     func setupView() {
+        setNavigationControllerItems()
         setupViewForNextField()
         navigationController?.navigationBar.barTintColor = view.backgroundColor
         navigationController?.navigationBar.backgroundColor = UIColor.clearColor();
@@ -36,7 +40,7 @@ class RegistrationPageViewController: UIViewController {
         
         var image: UIImage!
         //Set the image to the x in square if it's the first field, otherwise, the back button.
-        if RegistrationData.sharedInstance.nextField == .FullName {
+        if RegistrationData.sharedInstance.currentField == .FullName {
         
             image = UIImage(named: "x-in-square")
             
@@ -46,7 +50,7 @@ class RegistrationPageViewController: UIViewController {
         }
         
         // Set the right bar button title to Done if we are on the last text field.
-        if RegistrationData.sharedInstance.nextField == .None {
+        if RegistrationData.sharedInstance.currentField == .None {
             rightBarButtonItem.title = "Done"
         }
         
@@ -71,54 +75,61 @@ class RegistrationPageViewController: UIViewController {
     
     func submitAndContinue(sender: AnyObject) {
         
-        if RegistrationData.sharedInstance.nextField == .FullName {
+        if RegistrationData.sharedInstance.currentField == .FullName {
 
             if RegistrationData.sharedInstance.didFinishRegisteringAndCanContinue(withFieldRawValue: 0, value: fullNameTextField.text!) {
                 goToNextView(self)
             } 
-        } else if RegistrationData.sharedInstance.nextField == .Email {
+        } else if RegistrationData.sharedInstance.currentField == .Email {
             
             RegistrationData.sharedInstance.didFinishRegisteringAndCanContinue(withFieldRawValue: 1, value: emailTextField.text!)
             goToNextView(self)
             
-        } else if RegistrationData.sharedInstance.nextField == .Password {
+        } else if RegistrationData.sharedInstance.currentField == .Password {
             
             RegistrationData.sharedInstance.didFinishRegisteringAndCanContinue(withFieldRawValue: 2, value: passwordTextField.text!)
-            goToNextView(self)
             
-        } else if RegistrationData.sharedInstance.nextField == .None {
-            RegistrationData.sharedInstance.submitRegistrationData({success, error in
-                if error != nil {
-                    self.alertController(withTitles: ["Ok"], message: "Sorry, but we were unable to create your accont.  Please try again.", callbackHandler: [nil])
-                
-                } else {
-                    self.dismissViewControllerAnimated(true, completion: nil)
-                    
-                }
-            })
+            completeRegistration()
         }
     }
     
     
+    func completeRegistration() {
+        RegistrationData.sharedInstance.submitRegistrationData({success, error in
+            if error != nil {
+                
+                self.alertController(withTitles: ["Ok"], message: (error?.localizedDescription)!, callbackHandler: [nil])
+                
+            } else {
+                
+                self.dismissViewControllerAnimated(true, completion: {void in
+                    
+                })
+            }
+        })
+
+    }
+    
     // Responsible for making changes to the UI that rely specifically
     // On the value of the next field
     func setupViewForNextField() {
-        if let nextField = RegistrationData.sharedInstance.nextField {
-            switch nextField {
+        if let currentField = RegistrationData.sharedInstance.currentField {
+            switch currentField {
             case .FullName:
+                view.backgroundColor = UIColor.flatSkyBlueColor()
                 emailTextField.hidden = true
                 passwordTextField.hidden = true
                 fullNameTextField.hidden = false
                 setupTextField(fullNameTextField)
             case .Email:
-                view.backgroundColor = UIColor.redColor()
+                view.backgroundColor = UIColor.flatRedColor()
                 fullNameTextField.hidden = true
                 passwordTextField.hidden = true
                 emailTextField.hidden = false
                 headerLabel.text = "What is your email?"
                 setupTextField(emailTextField)
             case .Password:
-                view.backgroundColor = UIColor.greenColor()
+                view.backgroundColor = UIColor.flatMintColorDark()
                 fullNameTextField.hidden = true
                 emailTextField.hidden = true
                 passwordTextField.hidden = false

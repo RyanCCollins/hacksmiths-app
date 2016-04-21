@@ -18,7 +18,7 @@ class RegistrationData: RegistrationDelegate {
     
     typealias jsonDict = [String : AnyObject]
     
-    var nextField = NextField(rawValue: 0)
+    var currentField = NextField(rawValue: 0)
     static let sharedInstance = RegistrationData()
     
     // Mark: Regular expression for email
@@ -33,9 +33,8 @@ class RegistrationData: RegistrationDelegate {
         
         if let theField = NextField.init(rawValue: fieldRawValue) {
             //Set our class variable for current field
-            nextField = theField
+            currentField = theField
             
-            print("Called did finish registering with a field: \(theField)")
             
             // Work through the various fields and set the value for the submitted field.
             // Then, set current field to the next field.
@@ -43,21 +42,21 @@ class RegistrationData: RegistrationDelegate {
             case .FullName:
                 if isValidEmail(value) {
                     fullName = value
-                    nextField = .Email
+                    currentField = .Email
                     isValid = true
                 }
             case .Email:
                 if isValidEmail(value) {
                     email = value
-                    nextField = .Password
+                    currentField = .Password
                     isValid = true
                 }
             case .Password:
                 if isValidPassword(value) {
                     password = value
-                    nextField = .None
+                    currentField = .None
                 }
-            default:
+            case .None:
                 return isValid
             }
         }

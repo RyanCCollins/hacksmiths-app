@@ -25,7 +25,7 @@ class UserData: NSManagedObject {
     @NSManaged var isAvailableAsAMentor: Bool
     @NSManaged var needsAMentor: Bool
     @NSManaged var totalHatTips: NSNumber
-    
+    @NSManaged var dateUpdated: NSDate
     
     // Standard required init for the entity
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
@@ -99,7 +99,23 @@ class UserData: NSManagedObject {
                 needsAMentor = mentoringDictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.mentoring.needsAMentor] as! Bool
             }
             
+            if let updatedAt = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.updatedAt] as? String {
+                if let dateUpdatedAt = dateFromString(updatedAt) {
+                    dateUpdated = dateUpdatedAt
+                }
+            }
+            
         }
+    }
+    
+    func dateFromString(dateString: String) -> NSDate? {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+        let date = dateFormatter.dateFromString(dateString)
+        if let date = date {
+            return date
+        }
+        return nil
     }
     
     func fetchImages(completionHandler: CompletionHandler) {

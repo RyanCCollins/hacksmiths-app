@@ -160,9 +160,7 @@ extension HacksmithsAPIClient {
                             return
                         }
                         
-                        
                         if let success = result["success"] as? Bool {
-                            
                             if let profileDict = result[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.dictKey] as? [String : AnyObject] {
                                 
                                 let userDict = self.dictionaryForUserData(profileDict)
@@ -178,10 +176,7 @@ extension HacksmithsAPIClient {
                                 completionHandler(success: false, error: Errors.constructError(domain: "Hacksmiths API Client", userMessage: "Sorry, but an error occured while loading data from the network."))
                             }
                         }
-                            
                     }
-                        
-
                 })
             }
         }
@@ -281,6 +276,15 @@ extension HacksmithsAPIClient {
     }
     
     func dictionaryForUserData(user: [String : AnyObject]) -> [String : AnyObject] {
+        
+        if let name = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.name] as? String,
+                bio = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.bio] as? String,
+            website = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.website] as? String {
+            
+            
+        }
+        
+        
         var dictionary: [String : AnyObject] = [
             "name" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.name]!,
             "bio" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.bio]!,
@@ -290,8 +294,7 @@ extension HacksmithsAPIClient {
             "totalHatTips" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.totalHatTips]!,
             "rank" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Meta.rank]!,
             "notications" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Notifications.notifications]!,
-            "mentoring" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.mentoring.dictionaryKey]!,
-            "availability" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.EventInvolvement.dictKey]!,
+            "mentoring" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.mentoring.dictionaryKey]!
             
         ]
         

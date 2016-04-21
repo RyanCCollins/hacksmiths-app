@@ -380,9 +380,9 @@
 		1FF998951C6FAD98003D98B2 /* Managed Object Models */ = {
 			isa = PBXGroup;
 			children = (
-				1F4B4DFE1C73A60400A75F5D /* UserDefaults.swift */,
 				1F46B9EB1CA467250065D50D /* UserData.swift */,
 				1FF998961C6FAE3E003D98B2 /* Person.swift */,
+				1F4B4DFE1C73A60400A75F5D /* UserDefaults.swift */,
 				1FF998981C6FAEDE003D98B2 /* Event.swift */,
 				1FF9989C1C6FB060003D98B2 /* Organization.swift */,
 			);

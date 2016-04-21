@@ -74,6 +74,8 @@ extension HacksmithsAPIClient {
             static let key = "key"
             static let name = "name"
             static let email = "email"
+            static let updatedAt = "updatedAt"
+            static let createdAt = "createdAt"
             
             struct Profile {
                 static let dictKey = "profile"
