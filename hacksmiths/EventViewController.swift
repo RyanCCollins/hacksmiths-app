@@ -23,8 +23,12 @@ class EventViewController: UIViewController {
     @IBOutlet weak var whenLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
         getEventData()
     }
     
