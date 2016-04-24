@@ -239,33 +239,94 @@ extension HacksmithsAPIClient {
             } else {
                 if result != nil {
                      
-                    if let success = result[HacksmithsAPIClient.JSONResponseKeys.Success] as? Bool, event = result[HacksmithsAPIClient.JSONResponseKeys.Event.event] as? [String:AnyObject] {
+                    if let success = result[HacksmithsAPIClient.JSONResponseKeys.Success] as? Bool,
+                           eventDict = result[HacksmithsAPIClient.JSONResponseKeys.Event.event] as? JsonDict {
                         
                         if success != true {
                             
-                            
                             completionHandler(success: false, error: Errors.constructError(domain: "HacksmithsAPIClient", userMessage: "Error while connecting to the networked API.  Please make sure you are logged in and try again."))
-                            
                             
                         } else {
                             
-                            let event = Event(dictionary: self.dictionaryForEvent(event), context: self.sharedContext)
+                            let event = Event(dictionary: self.dictionaryForEvent(eventDict), context: self.sharedContext)
                             
-                            /*  Save our new events */
+                            let organization = Organization(dictionary: self.dictionaryForOrganization(eventDict), context: self.sharedContext)
+                            
+                            /*  Save our new event and our organization */
                             self.sharedContext.performBlockAndWait( {
                                 CoreDataStackManager.sharedInstance().saveContext()
                             })
                             
+                            // Set the organization for the event and then carry on
+                            event.organization = organization
+                            
+                            self.sharedContext.performBlock({
+                                CoreDataStackManager.sharedInstance().saveContext()
+                            })
+                            completionHandler(success: true, error: nil)
                         }
-                        
                     }
-                    
                 }
-                    
+            }
+        })
+    }
+    
+    func fetchAttendees(forEventId eventId: String, completionHandler: CompletionHandler) {
+        let method = Routes.EventAttendees + eventId
+        
+        taskForGETMethod(method, parameters: nil, completionHandler: {success, result, error in
+            
+            if error != nil {
+                
+                
+            } else {
+                
+                
             }
             
-         })
+        })
+    }
+    
+    func dictionaryForOrganization(eventJsonDict: JsonDict) -> JsonDict {
         
+        // Initialize the main properties for the return dictionary
+        var orgId = "",
+            orgName = "",
+            orgLogoUrl = "",
+            orgIsHiring = false,
+            orgAbout = "",
+            orgWebsite = ""
+        
+        // A whole lot of if let's because we really don't know for sure if we will get data back from the API
+        if let organization = eventJsonDict[HacksmithsAPIClient.JSONResponseKeys.Organization.dictKey] as? JsonDict {
+            if let logoDict = organization[HacksmithsAPIClient.JSONResponseKeys.Organization.logo] as? JsonDict,
+                aboutDict = organization[HacksmithsAPIClient.JSONResponseKeys.Organization.description] as? JsonDict {
+                
+                if let id = organization[HacksmithsAPIClient.JSONResponseKeys.Organization.id] as? String,
+                    name = organization[HacksmithsAPIClient.JSONResponseKeys.Organization.name] as? String,
+                    about = aboutDict[HacksmithsAPIClient.JSONResponseKeys.Organization.md] as? String,
+                    logoUrl = logoDict[HacksmithsAPIClient.JSONResponseKeys.Organization.url] as? String,
+                    website = organization[HacksmithsAPIClient.JSONResponseKeys.Organization.website] as? String,
+                    isHiring = organization[HacksmithsAPIClient.JSONResponseKeys.Organization.isHiring] as? Bool {
+                    
+                    // Set our properties
+                    orgId = id
+                    orgName = name
+                    orgLogoUrl = logoUrl
+                    orgIsHiring = isHiring
+                    orgAbout = about
+                    orgWebsite = website
+                }
+            }
+        }
+        
+        let returnDict: JsonDict = [
+            "id" : orgId, "name": orgName,
+            "logoUrl": orgLogoUrl, "isHiring" : orgIsHiring,
+            "about" : orgAbout, "website" : orgWebsite
+        ]
+        
+        return returnDict
     }
     
     func dictionaryForUserData(user: [String : AnyObject]) -> [String : AnyObject] {

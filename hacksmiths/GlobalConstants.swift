@@ -36,6 +36,9 @@ typealias CompletionHandlerWithResult = (success: Bool, result: AnyObject!, erro
 typealias CompletionHandler = (success: Bool, error: NSError?) -> Void
 typealias CompletionHandlerWithImage = (image: UIImage?, error: NSError?) -> Void
 
+// Shortcut type alias for Json Dictionary
+typealias JsonDict = [String : AnyObject]
+
 /* Define global errors */
 struct GlobalErrors : ErrorType {
     

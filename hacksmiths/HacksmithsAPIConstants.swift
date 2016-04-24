@@ -38,6 +38,7 @@ extension HacksmithsAPIClient {
         static let SigninRecover = Constants.App + "signin-recover/"
         static let Members = Constants.App + "members/"
         static let Profile = Constants.Me + "profile/"
+        static let EventAttendees = "event/"
         
     }
     
@@ -258,12 +259,17 @@ extension HacksmithsAPIClient {
         }
         
         struct Organization {
+            static let dictKey = "organization"
+            
+            static let id = "id"
             static let name = "name"
             static let logo = "logo"
             static let logoUrl = "logoUrl"
             static let isHiring = "isHiring"
             static let description = "description"
-            static let location = "location"
+            static let website = "website"
+            static let md = "md"
+            static let url = "url"
         }
         
         struct StatusMessage {

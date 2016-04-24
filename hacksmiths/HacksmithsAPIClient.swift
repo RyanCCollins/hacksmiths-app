@@ -203,9 +203,7 @@ class HacksmithsAPIClient: NSObject {
         } catch {
             completionHandler(success: false, result: nil, error: Errors.constructError(domain: "HacksmithsAPI", userMessage: ErrorMessages.Parse))
         }
-        
-        
-        
+    
         completionHandler(success: true, result: parsedResult, error: nil)
     }
     

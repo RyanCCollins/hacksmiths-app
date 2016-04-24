@@ -15,11 +15,10 @@ class Event: NSManagedObject {
     
     @NSManaged var eventID: String
     @NSManaged var title: String
-    @NSManaged var organization : String?
+    @NSManaged var organization : Organization
     @NSManaged var descriptionString: String?
     @NSManaged var registrationStart : NSDate
     @NSManaged var registrationEnd : NSDate?
-    @NSManaged var sponsors: [Organization]
     @NSManaged var startDate: NSDate?
     @NSManaged var endDate: NSDate?
     
@@ -32,6 +31,8 @@ class Event: NSManagedObject {
     
     @NSManaged var featureImageURL: String?
     @NSManaged var featureImageFilePath: String?
+    @NSManaged var peopleHelping: [Person]
+    
     
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)

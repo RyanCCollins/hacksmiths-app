@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import CoreData
 
-private let reuseIdentifier = "Cell"
+private let reuseIdentifier = "PersonTableViewCell"
 
 class PeopleCollectionViewController: UICollectionViewController {
 
@@ -42,8 +43,7 @@ class PeopleCollectionViewController: UICollectionViewController {
     // MARK: UICollectionViewDataSource
 
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
 
@@ -59,6 +59,14 @@ class PeopleCollectionViewController: UICollectionViewController {
     
         return cell
     }
+    
+    lazy var fetchedResultsController: NSFetchedResultsController = {
+        let fetchRequest = NSFetchRequest(entityName: "Person")
+        
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.sharedContext, sectionNameKeyPath: nil, cacheName: nil)
+        
+        return fetchedResultsController
+    }()
 
     // MARK: UICollectionViewDelegate
 

@@ -19,6 +19,8 @@
 		1F4B4DFF1C73A60400A75F5D /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4B4DFE1C73A60400A75F5D /* UserDefaults.swift */; };
 		1F4B4E011C74FCC400A75F5D /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4B4E001C74FCC400A75F5D /* JoinViewController.swift */; };
 		1F6C69E61CCC627B00F15247 /* PeopleCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6C69E51CCC627B00F15247 /* PeopleCollectionViewController.swift */; };
+		1F6C69E81CCC6BB700F15247 /* PersonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6C69E71CCC6BB700F15247 /* PersonCollectionViewCell.swift */; };
+		1F6C69EA1CCC72EA00F15247 /* EventHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6C69E91CCC72EA00F15247 /* EventHelpers.swift */; };
 		1F7701C21C84B532006FBCE0 /* Montserrat-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1F7701BC1C84B532006FBCE0 /* Montserrat-Black.otf */; };
 		1F7701C31C84B532006FBCE0 /* Montserrat-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1F7701BD1C84B532006FBCE0 /* Montserrat-Bold.otf */; };
 		1F7701C41C84B532006FBCE0 /* Montserrat-Hairline.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1F7701BE1C84B532006FBCE0 /* Montserrat-Hairline.otf */; };
@@ -55,7 +57,6 @@
 		1FA5A53A1C5360FA00722E55 /* RobotoCondensed-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1FA5A5271C5360FA00722E55 /* RobotoCondensed-LightItalic.ttf */; };
 		1FA5A53B1C5360FA00722E55 /* RobotoCondensed-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1FA5A5281C5360FA00722E55 /* RobotoCondensed-Regular.ttf */; };
 		1FA9FC6A1C534E5900B993BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA9FC691C534E5900B993BC /* AppDelegate.swift */; };
-		1FA9FC6C1C534E5900B993BC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA9FC6B1C534E5900B993BC /* ViewController.swift */; };
 		1FA9FC6F1C534E5A00B993BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FA9FC6D1C534E5A00B993BC /* Main.storyboard */; };
 		1FA9FC721C534E5A00B993BC /* hacksmiths.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1FA9FC701C534E5A00B993BC /* hacksmiths.xcdatamodeld */; };
 		1FA9FC741C534E5A00B993BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FA9FC731C534E5A00B993BC /* Assets.xcassets */; };
@@ -109,6 +110,8 @@
 		1F4B4DFE1C73A60400A75F5D /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		1F4B4E001C74FCC400A75F5D /* JoinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinViewController.swift; sourceTree = "<group>"; };
 		1F6C69E51CCC627B00F15247 /* PeopleCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleCollectionViewController.swift; sourceTree = "<group>"; };
+		1F6C69E71CCC6BB700F15247 /* PersonCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonCollectionViewCell.swift; sourceTree = "<group>"; };
+		1F6C69E91CCC72EA00F15247 /* EventHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventHelpers.swift; sourceTree = "<group>"; };
 		1F7701BC1C84B532006FBCE0 /* Montserrat-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Black.otf"; sourceTree = "<group>"; };
 		1F7701BD1C84B532006FBCE0 /* Montserrat-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.otf"; sourceTree = "<group>"; };
 		1F7701BE1C84B532006FBCE0 /* Montserrat-Hairline.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Hairline.otf"; sourceTree = "<group>"; };
@@ -146,7 +149,6 @@
 		1FA5A5281C5360FA00722E55 /* RobotoCondensed-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Regular.ttf"; sourceTree = "<group>"; };
 		1FA9FC661C534E5800B993BC /* hacksmiths.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hacksmiths.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FA9FC691C534E5900B993BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1FA9FC6B1C534E5900B993BC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1FA9FC6E1C534E5A00B993BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1FA9FC711C534E5A00B993BC /* hacksmiths.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = hacksmiths.xcdatamodel; sourceTree = "<group>"; };
 		1FA9FC731C534E5A00B993BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 		1F44B1BB1C5DDAC9004E196D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				1F6C69E51CCC627B00F15247 /* PeopleCollectionViewController.swift */,
 				1FC6DE451C9F59EB000E8159 /* Registration */,
 				1FF998911C6EB359003D98B2 /* MainTabBarController.swift */,
 				1F26C3F61CA0B232001596D2 /* AboutViewController.swift */,
@@ -339,13 +342,11 @@
 			isa = PBXGroup;
 			children = (
 				1FA9FC691C534E5900B993BC /* AppDelegate.swift */,
-				1FA9FC6B1C534E5900B993BC /* ViewController.swift */,
 				1FA2E55A1C67FF020085FC7D /* GlobalConstants.swift */,
 				1F44B1BC1C5DDB35004E196D /* Model */,
 				1FF998A21C713888003D98B2 /* View */,
 				1F44B1BB1C5DDAC9004E196D /* Controller */,
 				1FA9FC6D1C534E5A00B993BC /* Main.storyboard */,
-				1F6C69E51CCC627B00F15247 /* PeopleCollectionViewController.swift */,
 				1FA9FC731C534E5A00B993BC /* Assets.xcassets */,
 				1FA9FC751C534E5A00B993BC /* LaunchScreen.storyboard */,
 				1FA9FC781C534E5A00B993BC /* Info.plist */,
@@ -388,6 +389,7 @@
 				1F4B4DFE1C73A60400A75F5D /* UserDefaults.swift */,
 				1FF998981C6FAEDE003D98B2 /* Event.swift */,
 				1FF9989C1C6FB060003D98B2 /* Organization.swift */,
+				1F6C69E91CCC72EA00F15247 /* EventHelpers.swift */,
 			);
 			name = "Managed Object Models";
 			sourceTree = "<group>";
@@ -395,6 +397,7 @@
 		1FF998A21C713888003D98B2 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1F6C69E71CCC6BB700F15247 /* PersonCollectionViewCell.swift */,
 				1FF998A01C71387C003D98B2 /* PersonTableViewCell.swift */,
 				1FF998A31C713931003D98B2 /* LeaderBoardTableViewCell.swift */,
 			);
@@ -621,7 +624,6 @@
 			files = (
 				1FA2E55F1C6802680085FC7D /* ImageCache.swift in Sources */,
 				1F7701C91C850441006FBCE0 /* SponsorTableViewCell.swift in Sources */,
-				1FA9FC6C1C534E5900B993BC /* ViewController.swift in Sources */,
 				1FA9FC9B1C53563700B993BC /* EventViewController.swift in Sources */,
 				1F4B4DFD1C7258BD00A75F5D /* KechainWrapper.swift in Sources */,
 				1FA5A4EC1C53586D00722E55 /* CommunityViewController.swift in Sources */,
@@ -629,8 +631,10 @@
 				1FA2E55B1C67FF020085FC7D /* GlobalConstants.swift in Sources */,
 				1FE4B3131C6ADE050011ECAE /* PersonViewController.swift in Sources */,
 				1FA2E55D1C67FF550085FC7D /* HacksmithsAPIClient.swift in Sources */,
+				1F6C69E81CCC6BB700F15247 /* PersonCollectionViewCell.swift in Sources */,
 				1FC6DE3E1C9F36BF000E8159 /* ProfileViewController.swift in Sources */,
 				1F6C69E61CCC627B00F15247 /* PeopleCollectionViewController.swift in Sources */,
+				1F6C69EA1CCC72EA00F15247 /* EventHelpers.swift in Sources */,
 				1F44B1BA1C5DDAB9004E196D /* CoreDataStackManager.swift in Sources */,
 				1FF998A41C713931003D98B2 /* LeaderBoardTableViewCell.swift in Sources */,
 				1F4B4DF81C72574700A75F5D /* OnePasswordExtension.m in Sources */,

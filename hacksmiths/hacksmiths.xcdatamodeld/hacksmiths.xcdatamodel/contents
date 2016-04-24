@@ -14,19 +14,30 @@
         <attribute name="spotsRemaining" optional="YES" attributeType="Integer 16" defaultValueString="YES" syncable="YES"/>
         <attribute name="startDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="organization" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Organization" syncable="YES"/>
-        <relationship name="sponsors" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Organization" syncable="YES"/>
+        <relationship name="eventRSVPs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="EventRSVP" inverseName="event" inverseEntity="EventRSVP" syncable="YES"/>
+        <relationship name="organization" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Organization" inverseName="event" inverseEntity="Organization" syncable="YES"/>
+        <relationship name="peopleHelping" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Person" syncable="YES"/>
         <compoundIndexes>
             <compoundIndex>
                 <index value="eventID"/>
             </compoundIndex>
         </compoundIndexes>
     </entity>
+    <entity name="EventRSVP" syncable="YES">
+        <attribute name="helping" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="event" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="eventRSVPs" inverseEntity="Event" syncable="YES"/>
+        <relationship name="who" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="rsvps" inverseEntity="Person" syncable="YES"/>
+    </entity>
     <entity name="Organization" representedClassName="Organization" syncable="YES">
         <attribute name="about" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="logo" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isHiring" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="logoFilename" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="logoUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="website" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="event" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="organization" inverseEntity="Event" syncable="YES"/>
     </entity>
     <entity name="Person" representedClassName="User" syncable="YES">
         <attribute name="avatarFilePath" optional="YES" attributeType="String" syncable="YES"/>
@@ -43,6 +54,7 @@
         <attribute name="sortPriority" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="twitterUsername" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="website" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="rsvps" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="EventRSVP" inverseName="who" inverseEntity="EventRSVP" syncable="YES"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="id"/>
@@ -67,9 +79,10 @@
         <attribute name="website" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Event" positionX="90" positionY="27" width="128" height="270"/>
-        <element name="Organization" positionX="-92" positionY="72" width="128" height="105"/>
-        <element name="Person" positionX="313" positionY="246" width="128" height="255"/>
+        <element name="Event" positionX="90" positionY="27" width="128" height="285"/>
+        <element name="Organization" positionX="-92" positionY="72" width="128" height="165"/>
+        <element name="Person" positionX="313" positionY="246" width="128" height="270"/>
         <element name="User" positionX="126" positionY="45" width="128" height="270"/>
+        <element name="EventRSVP" positionX="108" positionY="180" width="128" height="105"/>
     </elements>
 </model>

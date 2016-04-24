@@ -11,13 +11,14 @@ import CoreData
 @objc(Organization)
 
 class Organization: NSManagedObject {
+    @NSManaged var id: String
     @NSManaged var name: String
-    @NSManaged var logo : String?
+    @NSManaged var logoUrl: String?
+    @NSManaged var logoFilename: String?
     @NSManaged var website: String?
     @NSManaged var isHiring : Bool
-    @NSManaged var descriptionString : String?
-
-
+    @NSManaged var about : String?
+    @NSManaged var events: [Event]?
     
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
@@ -33,6 +34,13 @@ class Organization: NSManagedObject {
         super.init(entity: entity!, insertIntoManagedObjectContext: context)
         
         /* Assign our properties */
+        id = dictionary[HacksmithsAPIClient.JSONResponseKeys.Organization.id] as! String
+        name = dictionary[HacksmithsAPIClient.JSONResponseKeys.Organization.name] as! String
+        website = dictionary[HacksmithsAPIClient.JSONResponseKeys.Organization.website] as! String
+        about = dictionary[HacksmithsAPIClient.JSONResponseKeys.Organization.md] as! String
+        logoUrl = dictionary[HacksmithsAPIClient.JSONResponseKeys.Organization.logoUrl] as! String
+        logoFilename = logoUrl?.lastPathComponent
+        isHiring = dictionary[HacksmithsAPIClient.JSONResponseKeys.Organization.isHiring] as! Bool
         
     }
     
