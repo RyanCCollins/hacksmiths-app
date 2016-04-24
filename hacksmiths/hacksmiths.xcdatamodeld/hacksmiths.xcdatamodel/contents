@@ -24,9 +24,8 @@
         </compoundIndexes>
     </entity>
     <entity name="EventRSVP" syncable="YES">
-        <attribute name="eventId" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="helping" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="personId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="eventId" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="personId" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="event" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="eventRSVPs" inverseEntity="Event" syncable="YES"/>
         <relationship name="who" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="rsvps" inverseEntity="Person" syncable="YES"/>
@@ -85,6 +84,6 @@
         <element name="Organization" positionX="-92" positionY="72" width="128" height="165"/>
         <element name="Person" positionX="313" positionY="246" width="128" height="270"/>
         <element name="User" positionX="126" positionY="45" width="128" height="270"/>
-        <element name="EventRSVP" positionX="108" positionY="180" width="128" height="135"/>
+        <element name="EventRSVP" positionX="108" positionY="180" width="128" height="120"/>
     </elements>
 </model>

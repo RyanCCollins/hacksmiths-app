@@ -35,4 +35,25 @@ class EventRSVP: NSManagedObject {
         updatedAt = dictionary[HacksmithsAPIClient.JSONResponseKeys.EventRSVP.updatedAt] as! NSDate
         
     }
+    
+    func batchDeleteAllRSVPS(completionHandler: CompletionHandler) {
+        let fetchRequest = NSFetchRequest(entityName: "EventRSVP")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        do {
+            try CoreDataStackManager.sharedInstance().persistentStoreCoordinator?.executeRequest(deleteRequest, withContext: self.sharedContext)
+            sharedContext.performBlockAndWait({
+                CoreDataStackManager.sharedInstance().saveContext()
+            })
+            
+        completionHandler(success: true, error: nil)
+            
+        } catch let error as NSError {
+            completionHandler(success: false, error: error)
+        }
+    }
+    
+    var sharedContext: NSManagedObjectContext {
+        return CoreDataStackManager.sharedInstance().managedObjectContext
+    }
+    
 }
