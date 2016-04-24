@@ -18,6 +18,7 @@
 		1F4B4DFD1C7258BD00A75F5D /* KechainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4B4DFC1C7258BD00A75F5D /* KechainWrapper.swift */; };
 		1F4B4DFF1C73A60400A75F5D /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4B4DFE1C73A60400A75F5D /* UserDefaults.swift */; };
 		1F4B4E011C74FCC400A75F5D /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4B4E001C74FCC400A75F5D /* JoinViewController.swift */; };
+		1F6C69E61CCC627B00F15247 /* PeopleCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6C69E51CCC627B00F15247 /* PeopleCollectionViewController.swift */; };
 		1F7701C21C84B532006FBCE0 /* Montserrat-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1F7701BC1C84B532006FBCE0 /* Montserrat-Black.otf */; };
 		1F7701C31C84B532006FBCE0 /* Montserrat-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1F7701BD1C84B532006FBCE0 /* Montserrat-Bold.otf */; };
 		1F7701C41C84B532006FBCE0 /* Montserrat-Hairline.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1F7701BE1C84B532006FBCE0 /* Montserrat-Hairline.otf */; };
@@ -107,6 +108,7 @@
 		1F4B4DFC1C7258BD00A75F5D /* KechainWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KechainWrapper.swift; sourceTree = "<group>"; };
 		1F4B4DFE1C73A60400A75F5D /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		1F4B4E001C74FCC400A75F5D /* JoinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinViewController.swift; sourceTree = "<group>"; };
+		1F6C69E51CCC627B00F15247 /* PeopleCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleCollectionViewController.swift; sourceTree = "<group>"; };
 		1F7701BC1C84B532006FBCE0 /* Montserrat-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Black.otf"; sourceTree = "<group>"; };
 		1F7701BD1C84B532006FBCE0 /* Montserrat-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.otf"; sourceTree = "<group>"; };
 		1F7701BE1C84B532006FBCE0 /* Montserrat-Hairline.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Hairline.otf"; sourceTree = "<group>"; };
@@ -343,6 +345,7 @@
 				1FF998A21C713888003D98B2 /* View */,
 				1F44B1BB1C5DDAC9004E196D /* Controller */,
 				1FA9FC6D1C534E5A00B993BC /* Main.storyboard */,
+				1F6C69E51CCC627B00F15247 /* PeopleCollectionViewController.swift */,
 				1FA9FC731C534E5A00B993BC /* Assets.xcassets */,
 				1FA9FC751C534E5A00B993BC /* LaunchScreen.storyboard */,
 				1FA9FC781C534E5A00B993BC /* Info.plist */,
@@ -627,6 +630,7 @@
 				1FE4B3131C6ADE050011ECAE /* PersonViewController.swift in Sources */,
 				1FA2E55D1C67FF550085FC7D /* HacksmithsAPIClient.swift in Sources */,
 				1FC6DE3E1C9F36BF000E8159 /* ProfileViewController.swift in Sources */,
+				1F6C69E61CCC627B00F15247 /* PeopleCollectionViewController.swift in Sources */,
 				1F44B1BA1C5DDAB9004E196D /* CoreDataStackManager.swift in Sources */,
 				1FF998A41C713931003D98B2 /* LeaderBoardTableViewCell.swift in Sources */,
 				1F4B4DF81C72574700A75F5D /* OnePasswordExtension.m in Sources */,

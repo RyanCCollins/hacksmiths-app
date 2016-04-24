@@ -15,13 +15,9 @@ extension HacksmithsAPIClient {
         let method = Routes.SigninServiceCheck
         
         taskForPOSTMethod(method, JSONBody: body, completionHandler: {sucess, result, error in
-            
             if error != nil {
-                
                 completionHandler(success: false, error: error)
-                
             } else {
-                
                 if let success = result["success"] as? Int, session = result["session"] as? Int {
                     if success ==  1 && session == 1 {
                         
@@ -89,7 +85,6 @@ extension HacksmithsAPIClient {
 
     func authenticateWithCredentials(username: String, password: String, completionHandler: CompletionHandler) {
         let method = Routes.SigninEmail
-        
         let body = [Keys.Username: username, Keys.Password: password]
         
         taskForPOSTMethod(method, JSONBody: body, completionHandler: {success, result, error in
@@ -256,8 +251,6 @@ extension HacksmithsAPIClient {
                             
                             let event = Event(dictionary: self.dictionaryForEvent(event), context: self.sharedContext)
                             
-                            
-                            
                             /*  Save our new events */
                             self.sharedContext.performBlockAndWait( {
                                 CoreDataStackManager.sharedInstance().saveContext()
@@ -283,8 +276,7 @@ extension HacksmithsAPIClient {
             
             
         }
-        
-        
+    
         var dictionary: [String : AnyObject] = [
             "name" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.name]!,
             "bio" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.bio]!,

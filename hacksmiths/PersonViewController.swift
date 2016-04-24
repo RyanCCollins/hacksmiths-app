@@ -27,6 +27,7 @@ class PersonViewController: UIViewController {
         
     }
     
+    
     func setViewObjectsHidden(hidden: Bool) {
 
         personNameLabel.hidden = hidden

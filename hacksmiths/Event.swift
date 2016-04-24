@@ -52,7 +52,9 @@ class Event: NSManagedObject {
         descriptionString = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.description] as! String
         let dateStringStart = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.starts] as! String
         let dateStringEnd = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.ends] as! String
+ 
         if let start = dateFromString(dateStringStart), end = dateFromString(dateStringEnd) {
+            
             startDate = start
             endDate = end
         }
@@ -109,12 +111,10 @@ class Event: NSManagedObject {
     
     func dateFromString(dateString: String) -> NSDate? {
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm.ssZZZZZ"
         let date = dateFormatter.dateFromString(dateString)
-        if let date = date {
-            return date
-        }
-        return nil
+        
+        return date
     }
     
 }
