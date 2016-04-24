@@ -76,7 +76,6 @@ class Event: NSManagedObject {
         
     }
     
-    
     func fetchImages(completionHandler: CompletionHandler) {
         guard featureImageURL != nil else {
             return

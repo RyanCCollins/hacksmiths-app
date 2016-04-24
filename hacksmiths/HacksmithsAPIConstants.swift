@@ -209,7 +209,9 @@ extension HacksmithsAPIClient {
         struct Event {
             static let event = "event"
             static let active = "active"
+            static let attendees = "attendees"
             
+            static let _id = "_id"
             static let id = "id"
             static let title = "title"
             static let organization = "organization"
@@ -234,6 +236,12 @@ extension HacksmithsAPIClient {
             static let publishedDate = "publishedDate"
             
             static let featureImage = "featureImage"
+        }
+        
+        struct EventRSVP {
+            static let eventId = "eventId"
+            static let personId = "personId"
+            static let updatedAt = "updatedAt"
         }
         
         struct Project {

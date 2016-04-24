@@ -9,12 +9,13 @@
 import UIKit
 import CoreData
 
-@objc(EventHelpers)
-class EventHelpers: NSManagedObject {
+@objc(EventRSVP)
+class EventRSVP: NSManagedObject {
     @NSManaged var event: Event
     @NSManaged var who : Person
-    @NSManaged var helping: Bool
-    @NSManaged var lastUpdated : NSDate
+    @NSManaged var eventId: String
+    @NSManaged var personId: String
+    @NSManaged var updatedAt: NSDate
     
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
@@ -28,6 +29,10 @@ class EventHelpers: NSManagedObject {
         
         /* Super, get to work! */
         super.init(entity: entity!, insertIntoManagedObjectContext: context)
+        
+        eventId = dictionary[HacksmithsAPIClient.JSONResponseKeys.EventRSVP.eventId] as! String
+        personId = dictionary[HacksmithsAPIClient.JSONResponseKeys.EventRSVP.personId] as! String
+        updatedAt = dictionary[HacksmithsAPIClient.JSONResponseKeys.EventRSVP.updatedAt] as! NSDate
         
     }
 }

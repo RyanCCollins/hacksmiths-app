@@ -274,16 +274,38 @@ extension HacksmithsAPIClient {
     func fetchAttendees(forEventId eventId: String, completionHandler: CompletionHandler) {
         let method = Routes.EventAttendees + eventId
         
-        taskForGETMethod(method, parameters: nil, completionHandler: {success, result, error in
+        taskForGETMethod(method, parameters: nil, completionHandler: {success, results, error in
             
             if error != nil {
                 
                 
             } else {
                 
-                
+                if results != nil {
+                    if let eventDict = results[HacksmithsAPIClient.JSONResponseKeys.Event.event] as? JsonDict {
+                        let eventId = eventDict[HacksmithsAPIClient.JSONResponseKeys.Event._id] as! String
+                        let attendeesArray = results[HacksmithsAPIClient.JSONResponseKeys.Event.attendees] as! [JsonDict]
+                        
+                        attendeesArray.map({attendeeDict in
+                            
+                            let personId = attendeeDict["id"] as! String
+                            
+                            let newRSVP: JsonDict = [
+                                "eventId": eventId,
+                                "personId": personId
+                            ]
+                            let eventRSVP = EventRSVP(dictionary: newRSVP, context: self.sharedContext)
+                        })
+                        
+                        // Save the context after creating the eventRSVPS.
+                        self.sharedContext.performBlockAndWait({
+                            CoreDataStackManager.sharedInstance().saveContext()
+                        })
+                        
+                        completionHandler(success: true, error: nil)
+                    }
+                }
             }
-            
         })
     }
     
