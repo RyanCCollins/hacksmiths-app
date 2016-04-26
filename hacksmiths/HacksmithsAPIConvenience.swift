@@ -278,6 +278,7 @@ extension HacksmithsAPIClient {
             
             if error != nil {
                 
+                completionHandler(success: false, error: error)
                 
             } else {
                 
@@ -286,13 +287,22 @@ extension HacksmithsAPIClient {
                         let eventId = eventDict[HacksmithsAPIClient.JSONResponseKeys.Event._id] as! String
                         let attendeesArray = results[HacksmithsAPIClient.JSONResponseKeys.Event.attendees] as! [JsonDict]
                         
+                        
+                        // Batch delete the RSVPs before creating new ones.
+                        self.batchDeleteAllRSVPS({success, error in
+                            
+                            if error != nil {
+                                completionHandler(success: false, error: error)
+                            }
+                        })
+                        
                         attendeesArray.map({attendeeDict in
                             
                             let personId = attendeeDict["id"] as! String
                             
                             let newRSVP: JsonDict = [
                                 "eventId": eventId,
-                                "personId": personId
+                                "personId": personId,
                             ]
                             let eventRSVP = EventRSVP(dictionary: newRSVP, context: self.sharedContext)
                         })
@@ -307,6 +317,49 @@ extension HacksmithsAPIClient {
                 }
             }
         })
+    }
+    
+    func updateProfile(body: JsonDict, completionHandler: CompletionHandler) {
+        
+        let method = Routes.UpdateProfile
+        if UserDefaults.sharedInstance().authenticated {
+            let userId = UserDefaults.sharedInstance().userId
+            
+            let body: JsonDict = [
+                "userId" : userId!
+            ]
+            
+            HacksmithsAPIClient.sharedInstance().taskForPOSTMethod(method, JSONBody: body, completionHandler: {succeess, result, error in
+                
+                if error != nil {
+                    completionHandler(success: false, error: error)
+                } else {
+                    
+                    completionHandler(success: true, error: nil)
+                    
+                }
+                
+            })
+            
+        } else {
+            completionHandler(success: false, error: Errors.constructError(domain: "Hacksmiths API Client", userMessage: ""))
+        }
+    }
+    
+    func batchDeleteAllRSVPS(completionHandler: CompletionHandler) {
+        let fetchRequest = NSFetchRequest(entityName: "EventRSVP")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        do {
+            try CoreDataStackManager.sharedInstance().persistentStoreCoordinator?.executeRequest(deleteRequest, withContext: self.sharedContext)
+            sharedContext.performBlockAndWait({
+                CoreDataStackManager.sharedInstance().saveContext()
+            })
+            
+            completionHandler(success: true, error: nil)
+            
+        } catch let error as NSError {
+            completionHandler(success: false, error: error)
+        }
     }
     
     func dictionaryForOrganization(eventJsonDict: JsonDict) -> JsonDict {
@@ -353,24 +406,44 @@ extension HacksmithsAPIClient {
     
     func dictionaryForUserData(user: [String : AnyObject]) -> [String : AnyObject] {
         
-        if let name = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.name] as? String,
-                bio = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.bio] as? String,
-            website = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.website] as? String {
-            
-            
+        let name = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.name] as? JsonDict ?? ["first" : "", "last": ""]
+        let firstName = name!["first"] as? String ?? ""
+        let lastName = name!["last"] as? String ?? ""
+        let fullName = "\(firstName) \(lastName)"
+        let bio = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.bio] as? JsonDict ?? ["md" : ""]
+        let bioText = bio!["md"]
+        
+        let website = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.website] as? String ?? ""
+        let email = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.email] as! String
+        let isPublic = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.isPublic] ?? false
+        let notifications = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Notifications.notifications] as? JsonDict
+        
+        // Initialize the mentoring values to false to protect against bad data
+        var isAvailableAsAMentor = false,
+            needsAMentor = false
+        if let mentoringDictionary = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.mentoring.dictionaryKey] {
+            isAvailableAsAMentor = mentoringDictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.mentoring.available]
+            needsAMentor = mentoringDictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.mentoring.needsAMentor]
         }
-    
+        
+        let totalHatTips = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.totalHatTips] ?? 0
+        let rank = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Meta.rank] ?? 0
+        let availabilityDict = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.EventInvolvement.dictKey] as? JsonDict ?? ["isAvailableForEvent" : false]
+        let updatedAt = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.updatedAt] as? String ?? ""
+        
         var dictionary: [String : AnyObject] = [
-            "name" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.name]!,
-            "bio" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.bio]!,
-            "website" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.website]!,
-            "email" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.email]!,
-            "isPublic" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.isPublic]!,
-            "totalHatTips" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.totalHatTips]!,
-            "rank" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Meta.rank]!,
-            "notications" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Notifications.notifications]!,
-            "mentoring" : user[HacksmithsAPIClient.JSONResponseKeys.MemberData.mentoring.dictionaryKey]!
-            
+            "name" : fullName,
+            "bio" : bioText!,
+            "website" : website,
+            "email" : email,
+            "isPublic" : isPublic!,
+            "totalHatTips" : totalHatTips!,
+            "rank" : rank!,
+            "notications" : notifications!,
+            "isAvailableAsAMentor": isAvailableAsAMentor,
+            "needsAMentor" : needsAMentor,
+            "availability": availabilityDict!,
+            "updatedAt": updatedAt
         ]
         
         //Photo can be nil, so we need to protect against that

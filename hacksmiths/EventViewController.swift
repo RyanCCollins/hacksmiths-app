@@ -39,7 +39,7 @@ class EventViewController: UIViewController {
                 self.alertController(withTitles: ["OK"], message: (error?.localizedDescription)!, callbackHandler: [nil])
                 
             } else {
-
+                
                 self.performEventFetch()
                 self.updateUIWithNetworkData()
             }
@@ -52,7 +52,7 @@ class EventViewController: UIViewController {
             
             eventImageView.image = event.image
             headerLabel.text = event.title
-            whoLabel.text = event.organization
+            
             aboutTextView.text = event.descriptionString
             
         }

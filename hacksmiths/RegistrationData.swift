@@ -18,7 +18,7 @@ class RegistrationData: RegistrationDelegate {
     
     typealias jsonDict = [String : AnyObject]
     
-    var currentField = NextField(rawValue: 0)
+    var currentField = Field(rawValue: 0)
     static let sharedInstance = RegistrationData()
     
     // Mark: Regular expression for email
@@ -31,7 +31,7 @@ class RegistrationData: RegistrationDelegate {
         // Field to return
         var isValid = false
         
-        if let theField = NextField.init(rawValue: fieldRawValue) {
+        if let theField = Field.init(rawValue: fieldRawValue) {
             //Set our class variable for current field
             currentField = theField
             
@@ -61,6 +61,13 @@ class RegistrationData: RegistrationDelegate {
             }
         }
         return isValid
+    }
+    
+    // Useful for decrementing the current field if the user needs to go back.
+    func decrementCurrentField() {
+        if currentField?.rawValue > 0 {
+            currentField = Field.init(rawValue: (currentField?.rawValue)! - 1)
+        }
     }
     
     private func isValidPassword(thePassword: String)-> Bool {
@@ -132,7 +139,7 @@ extension RegistrationData {
     }
     
     // Enumeration that holds the current field for determining what data is not yet filled in
-    enum NextField: Int {
+    enum Field: Int {
         case FullName = 0
         case Email = 1
         case Password = 2

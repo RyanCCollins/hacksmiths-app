@@ -38,6 +38,7 @@ extension HacksmithsAPIClient {
         static let SigninRecover = Constants.App + "signin-recover/"
         static let Members = Constants.App + "members/"
         static let Profile = Constants.Me + "profile/"
+        static let UpdateProfile = Profile + "/update"
         static let EventAttendees = "event/"
         
     }

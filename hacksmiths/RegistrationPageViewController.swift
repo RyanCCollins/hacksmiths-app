@@ -152,6 +152,8 @@ class RegistrationPageViewController: UIViewController {
     
     func dismissViewController(sender: AnyObject) {
         if navigationController?.viewControllers.count > 1 {
+            
+            RegistrationData.sharedInstance.decrementCurrentField()
             navigationController?.popViewControllerAnimated(true)
         } else {
             dismissViewControllerAnimated(true, completion: nil)

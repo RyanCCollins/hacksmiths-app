@@ -11,10 +11,10 @@ import CoreData
 
 @objc(EventRSVP)
 class EventRSVP: NSManagedObject {
-    @NSManaged var event: Event
-    @NSManaged var who : Person
-    @NSManaged var eventId: String
-    @NSManaged var personId: String
+    // Note: for the time being, we are just storing the eventID and personId
+    // But we should keep the model with the relationships for later use
+    @NSManaged var event: Event?
+    @NSManaged var who : Person?
     @NSManaged var updatedAt: NSDate
     
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
@@ -30,25 +30,43 @@ class EventRSVP: NSManagedObject {
         /* Super, get to work! */
         super.init(entity: entity!, insertIntoManagedObjectContext: context)
         
-        eventId = dictionary[HacksmithsAPIClient.JSONResponseKeys.EventRSVP.eventId] as! String
-        personId = dictionary[HacksmithsAPIClient.JSONResponseKeys.EventRSVP.personId] as! String
-        updatedAt = dictionary[HacksmithsAPIClient.JSONResponseKeys.EventRSVP.updatedAt] as! NSDate
+        let eventId = dictionary[HacksmithsAPIClient.JSONResponseKeys.EventRSVP.eventId] as! String
+        let personId = dictionary[HacksmithsAPIClient.JSONResponseKeys.EventRSVP.personId] as! String
+        
+        if let person = findPerson(fromId: personId) {
+            who = person
+        }
+        
+        if let theEvent = findEvent(fromId: eventId) {
+            event = theEvent
+        }
         
     }
     
-    func batchDeleteAllRSVPS(completionHandler: CompletionHandler) {
-        let fetchRequest = NSFetchRequest(entityName: "EventRSVP")
-        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-        do {
-            try CoreDataStackManager.sharedInstance().persistentStoreCoordinator?.executeRequest(deleteRequest, withContext: self.sharedContext)
-            sharedContext.performBlockAndWait({
-                CoreDataStackManager.sharedInstance().saveContext()
-            })
-            
-        completionHandler(success: true, error: nil)
-            
-        } catch let error as NSError {
-            completionHandler(success: false, error: error)
+    func findEvent(fromId id: String)-> Event?{
+        let fetchPredicate = NSPredicate(format: "eventID == %@", id)
+        let fetchRequest = NSFetchRequest(entityName: "Event")
+        fetchRequest.predicate = fetchPredicate
+        
+        let fetchedObjects = sharedContext.executeFetchRequest(fetchRequest)
+        
+        if fetchedObjects.count > 0 {
+            return fetchedObjects[0]
+        } else {
+            return nil
+        }
+    }
+    
+    func findPerson(fromId id: String) -> Person? {
+        let fetchPredicate = NSPredicate(format: "id == %@", id)
+        let fetchRequest = NSFetchRequest(entityName: "Person")
+        fetchRequest.predicate = fetchPredicate
+        let fetchedObjects = sharedContext.executeFetchRequest(fetchRequest)
+        
+        if fetchedObjects.count > 0 {
+            return fetchedObjects[0]
+        } else {
+            return nil
         }
     }
     

@@ -24,8 +24,6 @@
         </compoundIndexes>
     </entity>
     <entity name="EventRSVP" syncable="YES">
-        <attribute name="eventId" attributeType="String" indexed="YES" syncable="YES"/>
-        <attribute name="personId" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="event" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="eventRSVPs" inverseEntity="Event" syncable="YES"/>
         <relationship name="who" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="rsvps" inverseEntity="Person" syncable="YES"/>
@@ -80,10 +78,10 @@
         <attribute name="website" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Event" positionX="90" positionY="27" width="128" height="285"/>
+        <element name="Event" positionX="-27" positionY="450" width="128" height="285"/>
         <element name="Organization" positionX="-92" positionY="72" width="128" height="165"/>
-        <element name="Person" positionX="313" positionY="246" width="128" height="270"/>
+        <element name="Person" positionX="358" positionY="243" width="128" height="270"/>
         <element name="User" positionX="126" positionY="45" width="128" height="270"/>
-        <element name="EventRSVP" positionX="108" positionY="180" width="128" height="120"/>
+        <element name="EventRSVP" positionX="511" positionY="618" width="128" height="88"/>
     </elements>
 </model>
