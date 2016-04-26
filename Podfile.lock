@@ -9,6 +9,7 @@ PODS:
   - PureLayout (3.0.1)
   - Spring (1.0.3)
   - SwiftSpinner (0.8.0)
+  - SwiftValidator (3.0.3)
   - SwiftyButton (0.4.0):
     - SwiftyButton/CustomContent (= 0.4.0)
   - SwiftyButton/CustomContent (0.4.0):
@@ -22,6 +23,7 @@ DEPENDENCIES:
   - FontAwesome-iOS
   - Spring (from `https://github.com/MengTo/Spring.git`, branch `swift2`)
   - SwiftSpinner
+  - SwiftValidator (= 3.0.3)
   - SwiftyButton
   - SwiftyButton/CustomContent
   - TextFieldEffects
@@ -44,6 +46,7 @@ SPEC CHECKSUMS:
   PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
   Spring: 3f02b5dc3308572ef177b3cad0fa7bbc4b0706f7
   SwiftSpinner: 11c2c5ec7443d92f3026d3067ca8a91d4adef13f
+  SwiftValidator: 0b6a48bf10364411b0d64c97f78665ff87ca9f8b
   SwiftyButton: fffcc0d82b2b5f9ec1681f20ee9c67bed0d5c73b
   TextFieldEffects: a1a78efeb93b65c611ad287b28a068c9a4a5f5b4
 

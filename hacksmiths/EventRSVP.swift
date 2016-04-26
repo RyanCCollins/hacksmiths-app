@@ -48,26 +48,49 @@ class EventRSVP: NSManagedObject {
         let fetchRequest = NSFetchRequest(entityName: "Event")
         fetchRequest.predicate = fetchPredicate
         
-        let fetchedObjects = sharedContext.executeFetchRequest(fetchRequest)
-        
-        if fetchedObjects.count > 0 {
-            return fetchedObjects[0]
-        } else {
+        do {
+            let fetchedObjects = try sharedContext.executeFetchRequest(fetchRequest)
+            
+            if fetchedObjects.count > 0 {
+                
+                if let theEvent = fetchedObjects[0] as? Event {
+                    return theEvent
+                } else {
+                    
+                    return nil
+                }
+            
+            } else {
+                return nil
+            }
+            
+        } catch let error as NSError {
+            print("Error setting event in EventRSVPs")
             return nil
+            
         }
+    
     }
     
     func findPerson(fromId id: String) -> Person? {
         let fetchPredicate = NSPredicate(format: "id == %@", id)
         let fetchRequest = NSFetchRequest(entityName: "Person")
         fetchRequest.predicate = fetchPredicate
-        let fetchedObjects = sharedContext.executeFetchRequest(fetchRequest)
         
-        if fetchedObjects.count > 0 {
-            return fetchedObjects[0]
-        } else {
+        do {
+            let fetchedObjects = try sharedContext.executeFetchRequest(fetchRequest)
+            
+            if let thePerson = fetchedObjects[0] as? Person {
+                return thePerson
+            } else {
+                return nil
+            }
+            
+        } catch let error as NSError {
+            print("Error fetching events in EventRSVP")
             return nil
         }
+
     }
     
     var sharedContext: NSManagedObjectContext {

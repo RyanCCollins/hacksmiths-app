@@ -47,7 +47,7 @@ extension HacksmithsAPIClient {
                             })
                             
                             
-                            fetchAttendees(forEvent: event, completionHandler: {success, error in
+                            self.fetchAttendees(forEvent: event, completionHandler: {success, error in
                                 
                                 if error != nil {
                                     completionHandler(success: false, error: error)
@@ -86,7 +86,7 @@ extension HacksmithsAPIClient {
                         // Need to debug serverside, but this is a needed safety measure at this point.
                         guard success == true else {
                             completionHandler(success: false, error: Errors.constructError(domain: "HacksmithsAPIClient", userMessage: "The server returned an unknown error.  Please try again."))
-                            break
+                            return
                         }
                         
                         let eventId = eventDict[HacksmithsAPIClient.JSONResponseKeys.Event._id] as! String
