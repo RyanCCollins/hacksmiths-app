@@ -33,14 +33,9 @@ class EventRSVP: NSManagedObject {
         let eventId = dictionary[HacksmithsAPIClient.JSONResponseKeys.EventRSVP.eventId] as! String
         let personId = dictionary[HacksmithsAPIClient.JSONResponseKeys.EventRSVP.personId] as! String
         
-        if let person = findPerson(fromId: personId) {
+        if let person = findPerson(fromId: personId), let theEvent = findEvent(fromId: eventId) {
             who = person
         }
-        
-        if let theEvent = findEvent(fromId: eventId) {
-            event = theEvent
-        }
-        
     }
     
     func findEvent(fromId id: String)-> Event?{
@@ -72,6 +67,7 @@ class EventRSVP: NSManagedObject {
     
     }
     
+    // Takes a person's id and should query core data to find a person if one exists.  Otherwise, returns nil.
     func findPerson(fromId id: String) -> Person? {
         let fetchPredicate = NSPredicate(format: "id == %@", id)
         let fetchRequest = NSFetchRequest(entityName: "Person")
@@ -87,10 +83,9 @@ class EventRSVP: NSManagedObject {
             }
             
         } catch let error as NSError {
-            print("Error fetching events in EventRSVP")
+            print("Error fetching person in EventRSVP")
             return nil
         }
-
     }
     
     var sharedContext: NSManagedObjectContext {
