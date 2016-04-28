@@ -12,7 +12,7 @@ import Foundation
 extension HacksmithsAPIClient {
     
         struct Constants {
-            static let BaseURL = "http://hacksmiths.io/"
+            static let BaseURL = "https://hacksmiths.io/"
             static let APIURL = "\(BaseURL)api/"
             static let App = "app/"
             static let Me = "me/"

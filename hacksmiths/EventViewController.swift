@@ -22,6 +22,7 @@ class EventViewController: UIViewController {
     var currentEvent: Event?
     
     @IBOutlet weak var whenLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,10 +39,10 @@ class EventViewController: UIViewController {
         HacksmithsAPIClient.sharedInstance().checkAPIForEvents({success, error in
             if error != nil {
                 self.view.hideLoading()
-                self.alertController(withTitles: ["OK"], message: (error?.localizedDescription)!, callbackHandler: [nil])
+                self.alertController(withTitles: ["OK", "Retry"], message: (error?.localizedDescription)!, callbackHandler: [nil, {Void in self.getEventData()}])
                 
             } else {
-                
+                self.view.hideLoading()
                 self.performEventFetch()
                 self.updateUIWithNetworkData()
             }
@@ -54,7 +55,6 @@ class EventViewController: UIViewController {
             
             eventImageView.image = event.image
             headerLabel.text = event.title
-            
             aboutTextView.text = event.descriptionString
             
         }

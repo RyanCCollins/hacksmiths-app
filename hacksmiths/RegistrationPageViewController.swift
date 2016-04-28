@@ -29,6 +29,7 @@ class RegistrationPageViewController: UIViewController {
     func setupView() {
         setNavigationControllerItems()
         setupViewForNextField()
+        debugLabel.alpha = 0.0
         navigationController?.navigationBar.barTintColor = view.backgroundColor
         navigationController?.navigationBar.backgroundColor = UIColor.clearColor();
     }
@@ -79,18 +80,33 @@ class RegistrationPageViewController: UIViewController {
 
             if RegistrationData.sharedInstance.didFinishRegisteringAndCanContinue(withFieldRawValue: 0, value: fullNameTextField.text!) {
                 goToNextView(self)
-            } 
+            } else {
+                
+                showDebugLabel(withText: "Please enter your full name, both first and last")
+                
+            }
         } else if RegistrationData.sharedInstance.currentField == .Email {
             
-            RegistrationData.sharedInstance.didFinishRegisteringAndCanContinue(withFieldRawValue: 1, value: emailTextField.text!)
-            goToNextView(self)
+            if RegistrationData.sharedInstance.didFinishRegisteringAndCanContinue(withFieldRawValue: 1, value: emailTextField.text!) {
+                goToNextView(self)
+            } else {
+                showDebugLabel(withText: "Please enter a valid email address")
+            }
+            
             
         } else if RegistrationData.sharedInstance.currentField == .Password {
             
-            RegistrationData.sharedInstance.didFinishRegisteringAndCanContinue(withFieldRawValue: 2, value: passwordTextField.text!)
-            
-            completeRegistration()
+            if RegistrationData.sharedInstance.didFinishRegisteringAndCanContinue(withFieldRawValue: 2, value: passwordTextField.text!) {
+               completeRegistration()
+            } else {
+                showDebugLabel(withText: "Please ensure that your password is at least 8 characters.")
+            }
         }
+    }
+    
+    func showDebugLabel(withText text: String) {
+        debugLabel.text = text
+        debugLabel.fadeIn()
     }
     
     

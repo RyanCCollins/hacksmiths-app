@@ -15,7 +15,12 @@ extension HacksmithsAPIClient {
     // Fetch events, organization and attendees from the API
     func checkAPIForEvents(completionHandler: CompletionHandler) {
         let method = Routes.EventStatus
-        let body = [String :AnyObject]()
+        
+        var body: JsonDict? = nil
+        
+        if UserDefaults.sharedInstance().authenticated == true {
+            body!["user"] = UserDefaults.sharedInstance().userId
+        }
         
         taskForGETMethod(method, parameters: body, completionHandler: {success, result, error in
             if error != nil {

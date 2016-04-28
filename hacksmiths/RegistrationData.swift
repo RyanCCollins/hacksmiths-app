@@ -16,8 +16,6 @@ class RegistrationData: RegistrationDelegate {
     var email: String?
     var password: String?
     
-    typealias jsonDict = [String : AnyObject]
-    
     var currentField = Field(rawValue: 0)
     static let sharedInstance = RegistrationData()
     
@@ -63,6 +61,8 @@ class RegistrationData: RegistrationDelegate {
         return isValid
     }
     
+    
+    
     // Useful for decrementing the current field if the user needs to go back.
     func decrementCurrentField() {
         if currentField?.rawValue > 0 {
@@ -87,18 +87,17 @@ class RegistrationData: RegistrationDelegate {
         return isValid
     }
     
+    // From an open source project I worked on by Ian Gristock & Ivan Lares
+    // https://github.com/teamhacksmiths/food-drivr-ios/blob/b4571b58894be2ed29dbb1e32d1eacd587740ad5/hackathon-for-hunger/VSUserInfoViewController.swift
     private func isValidEmail(theEmail: String) -> Bool {
-        return true
+        let emailTest = NSPredicate(format: "SELF MATCHES %&", RegistrationData.emailRegEx)
+        return emailTest.evaluateWithObject(theEmail)
     }
     
     private func isValidFullname(theName: String) -> Bool {
-        // If Fullname is empty, return false
-        guard !theName.isEmpty else {
-            return false
-        }
         
         // If the length is greater than 3, return true, otherwise return false.
-        if theName.length > 3 {
+        if theName.rangeOfString(" ") != nil {
             return true
         } else {
             return false
@@ -109,18 +108,17 @@ class RegistrationData: RegistrationDelegate {
     func submitRegistrationData(completionHandler: CompletionHandler) {
         
         HacksmithsAPIClient.sharedInstance().registerWithEmail(bodyForRegistrationData(), completionHandler: {success, error in
-            
-            if success {
-                completionHandler(success: true, error: nil)
-            } else {
+            if error != nil {
                 completionHandler(success: false, error: error)
+            } else {
+                completionHandler(success: true, error: nil)
             }
             
         })
     }
     
-    private func bodyForRegistrationData() -> jsonDict {
-        let body: jsonDict = [
+    private func bodyForRegistrationData() -> JsonDict {
+        let body: JsonDict = [
             "fullname": fullName!,
             "email": email!,
             "password" : password!
