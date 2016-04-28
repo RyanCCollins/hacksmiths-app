@@ -315,45 +315,60 @@ extension HacksmithsAPIClient {
         return returnDict
     }
     
+    
+    // Unwrap all the data returned from the API, assuring that we have good data.all
+    // This is starting to get out of hand, so we should likely setup the server to only return good data.
     func dictionaryForUserData(user: [String : AnyObject]) -> [String : AnyObject] {
+        var fullName = "", bioText = "", email = "", isPublic = false, isAvailableAsAMentor = false,
+            needsAMentor = false, rank = 0, website = "", mobileNotifications = false
         
-        let name = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.name] as? JsonDict ?? ["first" : "", "last": ""]
-        let firstName = name!["first"] as? String ?? ""
-        let lastName = name!["last"] as? String ?? ""
-        let fullName = "\(firstName) \(lastName)"
-        let bio = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.bio] as? JsonDict ?? ["md" : ""]
-        let bioText = bio!["md"]
-        
-        let website = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.website] as? String ?? ""
-        let email = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.email] as! String
-        let isPublic = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.isPublic] ?? false
-        let notifications = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Notifications.notifications] as? JsonDict
-        
-        // Initialize the mentoring values to false to protect against bad data
-        var isAvailableAsAMentor = false,
-            needsAMentor = false
-        if let mentoringDictionary = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.mentoring.dictionaryKey] {
-            isAvailableAsAMentor = mentoringDictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.mentoring.available]
-            needsAMentor = mentoringDictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.mentoring.needsAMentor]
+        if let name = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.name] as? JsonDict {
+            let firstName = name["first"] as? String
+            let lastName = name["last"] as? String
+            fullName = "\(firstName) \(lastName)"
         }
         
-        let totalHatTips = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.totalHatTips] ?? 0
-        let rank = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Meta.rank] ?? 0
-        let availabilityDict = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.EventInvolvement.dictKey] as? JsonDict ?? ["isAvailableForEvent" : false]
-        let updatedAt = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.updatedAt] as? String ?? ""
+        if let bio = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.bio] as? JsonDict {
+            bioText = bio["md"]
+        }
+        
+        if let userWebsite = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.website] as? String {
+            website = userWebsite
+        }
+        
+        if let userEmail = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.email] as? String {
+            email = userEmail
+        }
+        
+        if let publicStatus = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.isPublic] as? Bool {
+            isPublic = publicStatus
+        }
+        
+        if let notifications = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Notifications.notifications] as? JsonDict {
+            mobileNotifications = notifications[HacksmithsAPIClient.JSONResponseKeys.MemberData.Notifications.mobile]
+        }
+        
+        if let mentoringDictionary = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.mentoring.dictionaryKey] {
+            isAvailableAsAMentor = mentoringDictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.mentoring.available] as! Bool
+            needsAMentor = mentoringDictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.mentoring.needsAMentor] as! Bool
+        }
+        
+        if let userRank = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Meta.rank] as? NSNumber {
+            rank = userRank
+        }
+
+        let updatedAt = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.updatedAt] as String ?? ""
         
         var dictionary: [String : AnyObject] = [
             "name" : fullName,
             "bio" : bioText!,
             "website" : website,
             "email" : email,
-            "isPublic" : isPublic!,
-            "totalHatTips" : totalHatTips!,
-            "rank" : rank!,
-            "notications" : notifications!,
+            "isPublic" : isPublic,
+            "rank" : rank,
+            "notications" : mobileNotifications,
             "isAvailableAsAMentor": isAvailableAsAMentor,
             "needsAMentor" : needsAMentor,
-            "availability": availabilityDict!,
             "updatedAt": updatedAt
         ]
         
@@ -362,7 +377,7 @@ extension HacksmithsAPIClient {
             dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.photo] = photo
         }
         
-        
+
         return dictionary
     }
     

@@ -12,4 +12,5 @@ target 'hacksmiths' do
     pod 'ChameleonFramework'
     pod 'TextFieldEffects', :inhibit_warnings => true
     pod 'SwiftValidator', '3.0.3'
+    pod 'Alamofire', '~> 3.3'
 end

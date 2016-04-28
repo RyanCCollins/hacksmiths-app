@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (3.3.1)
   - ChameleonFramework (2.1.0):
     - ChameleonFramework/Default (= 2.1.0)
   - ChameleonFramework/Default (2.1.0)
@@ -17,6 +18,7 @@ PODS:
   - TextFieldEffects (1.1.1)
 
 DEPENDENCIES:
+  - Alamofire (~> 3.3)
   - ChameleonFramework
   - Crashlytics
   - Fabric
@@ -39,6 +41,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/MengTo/Spring.git
 
 SPEC CHECKSUMS:
+  Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
   Fabric: 1abc1e59f11fa39ede6f690ef7309d8563e3ec59

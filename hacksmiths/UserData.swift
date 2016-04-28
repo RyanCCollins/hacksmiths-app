@@ -20,7 +20,6 @@ class UserData: NSManagedObject {
     @NSManaged var isPublic: Bool
     @NSManaged var isTopContributor: Bool
     @NSManaged var rank: NSNumber
-    @NSManaged var isAvailableForEvents: Bool
     @NSManaged var mobileNotifications: Bool
     @NSManaged var isAvailableAsAMentor: Bool
     @NSManaged var needsAMentor: Bool
@@ -47,8 +46,6 @@ class UserData: NSManagedObject {
         name = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.name] as? String
         bio = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.bio] as? String
         
-
-        
         // The image also comes as a dictionary object, so parse that out and get the URL
         if let image = dictionary["photo"] as? [String : AnyObject] {
             if let url = image["url"] as? String {
@@ -68,19 +65,11 @@ class UserData: NSManagedObject {
         totalHatTips = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.totalHatTips] as! NSNumber
         isTopContributor = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Meta.isTopContributor] as! Bool
         
-        // Availability comes as a dictionary object with dates available as well as a bool indicating if they are available.
-        let availabilityDictionary = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.EventInvolvement.dictKey] as! [String : AnyObject]
-        
-        // Drill down to the isAvailable bool within the availability dict.
-        isAvailableForEvents = availabilityDictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.EventInvolvement.availability.isAvailableForEvents] as! Bool
-        
         // Notifications is a dictionary object.  Parse it to get to the value for mobile notifs.
         let notificationDictionary = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Notifications.notifications] as! [String : AnyObject]
         
         if let mobileNotifs = notificationDictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Notifications.mobile] as? Bool {
-            
             mobileNotifications = mobileNotifs
-            
         }
         
         rank = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Meta.rank] as! NSNumber
@@ -88,15 +77,12 @@ class UserData: NSManagedObject {
         // Values are initialized as false, so will not be null.
         isAvailableAsAMentor = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.mentoring.available] as! Bool
         needsAMentor = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.mentoring.needsAMentor] as! Bool
-
         
         if let updatedAt = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.updatedAt] as? String {
             if let dateUpdatedAt = dateFromString(updatedAt) {
                 dateUpdated = dateUpdatedAt
             }
         }
-            
-
     }
     
     func dateFromString(dateString: String) -> NSDate? {
