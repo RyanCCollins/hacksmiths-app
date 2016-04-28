@@ -320,7 +320,7 @@ extension HacksmithsAPIClient {
     // This is starting to get out of hand, so we should likely setup the server to only return good data.
     func dictionaryForUserData(user: [String : AnyObject]) -> [String : AnyObject] {
         var fullName = "", bioText = "", email = "", isPublic = false, isAvailableAsAMentor = false,
-            needsAMentor = false, rank = 0, website = "", mobileNotifications = false
+        needsAMentor = false, rank: NSNumber = 0, website = "", mobileNotifications = false
         
         if let name = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.name] as? JsonDict {
             let firstName = name["first"] as? String
@@ -329,7 +329,7 @@ extension HacksmithsAPIClient {
         }
         
         if let bio = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.bio] as? JsonDict {
-            bioText = bio["md"]
+            bioText = bio["md"] as! String ?? ""
         }
         
         if let userWebsite = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.website] as? String {
@@ -345,7 +345,7 @@ extension HacksmithsAPIClient {
         }
         
         if let notifications = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Notifications.notifications] as? JsonDict {
-            mobileNotifications = notifications[HacksmithsAPIClient.JSONResponseKeys.MemberData.Notifications.mobile]
+            mobileNotifications = notifications[HacksmithsAPIClient.JSONResponseKeys.MemberData.Notifications.mobile] as! Bool
         }
         
         if let mentoringDictionary = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.mentoring.dictionaryKey] {
@@ -357,16 +357,16 @@ extension HacksmithsAPIClient {
             rank = userRank
         }
 
-        let updatedAt = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.updatedAt] as String ?? ""
+        let updatedAt = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.updatedAt] as! String ?? ""
         
         var dictionary: [String : AnyObject] = [
             "name" : fullName,
-            "bio" : bioText!,
+            "bio" : bioText,
             "website" : website,
             "email" : email,
             "isPublic" : isPublic,
             "rank" : rank,
-            "notications" : mobileNotifications,
+            "mobile" : mobileNotifications,
             "isAvailableAsAMentor": isAvailableAsAMentor,
             "needsAMentor" : needsAMentor,
             "updatedAt": updatedAt

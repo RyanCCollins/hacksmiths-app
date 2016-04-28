@@ -43,7 +43,7 @@ class UserData: NSManagedObject {
         // Name is a dictionary with first and last name
         // Bio is a dictionary object with HTML and MD (we are only concerned with MD
         
-        name = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.name] as? String
+        name = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.name] as! String
         bio = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.bio] as? String
         
         // The image also comes as a dictionary object, so parse that out and get the URL
@@ -52,36 +52,25 @@ class UserData: NSManagedObject {
                 avatarURL = url
                 avatarFilePath = avatarURL?.lastPathComponent
             }
-            
         }
-        
+        // The following properties should never be null because they are initialized with the results
+        // From the HacksmithsAPIClient.
         website = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.website] as? String
-        
-        if let emailAddress = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.email] as? String {
-            email = emailAddress
-        }
-        
+        email = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.email] as? String
         isPublic = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.isPublic] as! Bool
         totalHatTips = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.totalHatTips] as! NSNumber
         isTopContributor = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Meta.isTopContributor] as! Bool
-        
-        // Notifications is a dictionary object.  Parse it to get to the value for mobile notifs.
-        let notificationDictionary = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Notifications.notifications] as! [String : AnyObject]
-        
-        if let mobileNotifs = notificationDictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Notifications.mobile] as? Bool {
-            mobileNotifications = mobileNotifs
-        }
-        
+        mobileNotifications = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Notifications.mobile] as! Bool
         rank = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Meta.rank] as! NSNumber
         
         // Values are initialized as false, so will not be null.
         isAvailableAsAMentor = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.mentoring.available] as! Bool
         needsAMentor = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.mentoring.needsAMentor] as! Bool
         
-        if let updatedAt = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.updatedAt] as? String {
-            if let dateUpdatedAt = dateFromString(updatedAt) {
-                dateUpdated = dateUpdatedAt
-            }
+        let updatedAt = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.updatedAt] as? String
+        
+        if let updateDate = dateFromString(updatedAt!) {
+            dateUpdated = updateDate
         }
     }
     
