@@ -34,6 +34,7 @@ class EventViewController: UIViewController {
     }
     
     func getEventData() {
+        view.showLoading()
         HacksmithsAPIClient.sharedInstance().checkAPIForEvents({success, error in
             if error != nil {
                 self.view.hideLoading()

@@ -10,7 +10,9 @@ import UIKit
 
 // More convenience methods, specifically for fetching events.
 extension HacksmithsAPIClient {
-       
+    
+    
+    // Fetch events, organization and attendees from the API
     func checkAPIForEvents(completionHandler: CompletionHandler) {
         let method = Routes.EventStatus
         let body = [String :AnyObject]()
@@ -26,7 +28,7 @@ extension HacksmithsAPIClient {
                         
                         if success != true {
                             
-                            completionHandler(success: false, error: Errors.constructError(domain: "HacksmithsAPIClient", userMessage: "Error while connecting to the networked API.  Please make sure you are logged in and try again."))
+                            completionHandler(success: false, error: Errors.constructError(domain: "HacksmithsAPIClient", userMessage: "An unknown error occured while downloading data from the network.  Please try again."))
                             
                         } else {
                             
@@ -64,6 +66,8 @@ extension HacksmithsAPIClient {
                                             self.sharedContext.performBlockAndWait({
                                                 CoreDataStackManager.sharedInstance().saveContext()
                                             })
+                                            
+                                            completionHandler(success: true, error: nil)
                                         }
                                     })
                                 }

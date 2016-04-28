@@ -19,7 +19,7 @@ class PeopleCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
 
         // Register cell classes
-        self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView!.registerClass(PersonCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
 
     // MARK: UICollectionViewDataSource

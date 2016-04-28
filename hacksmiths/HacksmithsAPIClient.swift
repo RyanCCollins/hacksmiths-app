@@ -28,6 +28,7 @@ class HacksmithsAPIClient: NSObject {
         }
         
         let url = NSURL(string: urlString)!
+        print(">>> Making API Request with url: \(url)")
         let request = NSMutableURLRequest(URL: url)
         
         request.HTTPMethod = HTTPRequest.GET
