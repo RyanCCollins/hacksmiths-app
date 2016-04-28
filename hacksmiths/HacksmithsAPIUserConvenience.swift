@@ -35,13 +35,10 @@ extension HacksmithsAPIClient {
                             message = "Unable to register due to unknown reasons.  Please try again."
                         }
                         completionHandler(success: false, error: Errors.constructError(domain: "HacksmithsAPIClient", userMessage: message!))
-                        
-                        
+                    
                     }
                 }
-                
             }
-            
         })
     }
     
@@ -234,11 +231,8 @@ extension HacksmithsAPIClient {
         
         let method = Routes.UpdateProfile
         if UserDefaults.sharedInstance().authenticated {
-            let userId = UserDefaults.sharedInstance().userId
             
-            let body: JsonDict = [
-                "userId" : userId!
-            ]
+            let body = dictionaryForProfileUpdate()
             
             HacksmithsAPIClient.sharedInstance().taskForPOSTMethod(method, JSONBody: body, completionHandler: {succeess, result, error in
                 
@@ -255,6 +249,18 @@ extension HacksmithsAPIClient {
         } else {
             completionHandler(success: false, error: Errors.constructError(domain: "Hacksmiths API Client", userMessage: ""))
         }
+    }
+    
+    func dictionaryForProfileUpdate()-> JsonDict {
+        let userId = UserDefaults.sharedInstance().userId
+        
+        let notificationsDict: JsonDict = [ "mobile" : true ]
+        let body: JsonDict = ["notifications" : notificationsDict]
+        let profileDictionary: JsonDict = [
+            "user" : userId!,
+            "body": body
+        ]
+        return profileDictionary
     }
     
     func batchDeleteAllRSVPS(completionHandler: CompletionHandler) {
@@ -288,7 +294,7 @@ extension HacksmithsAPIClient {
         }
         
         if let bio = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.bio] as? JsonDict {
-            bioText = bio["md"] as! String ?? ""
+            bioText = bio[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.bioMD] as? String ?? ""
         }
         
         if let userWebsite = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.website] as? String {
@@ -316,7 +322,7 @@ extension HacksmithsAPIClient {
             rank = userRank
         }
 
-        let updatedAt = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.updatedAt] as! String ?? ""
+        let updatedAt = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.updatedAt] as? String ?? ""
         
         var dictionary: [String : AnyObject] = [
             "name" : fullName,

@@ -24,14 +24,13 @@ class CommunityViewController: UITableViewController, NSFetchedResultsController
     func configureRefreshControl() {
         refreshControl = UIRefreshControl()
         refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        refreshControl?.addTarget(self, action: "refreshDataFromAPI:", forControlEvents: .ValueChanged)
+        refreshControl?.addTarget(self, action: #selector(CommunityViewController.refreshDataFromAPI(_:)), forControlEvents: .ValueChanged)
         tableView.addSubview(refreshControl!)
     }
     
     func refreshDataFromAPI(sender: AnyObject) {
         let body = [String : AnyObject]()
-        
-        
+    
         HacksmithsAPIClient.sharedInstance().getMemberList(body, completionHandler: {result, error in
             
             if error != nil {
@@ -42,15 +41,8 @@ class CommunityViewController: UITableViewController, NSFetchedResultsController
                 self.refreshControl!.endRefreshing()
                 self.tableView.reloadData()
             }
-            
         })
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        
-    }
-    
     
     /* Show loading indicator while performing fetch */
     func performInitialFetch() {

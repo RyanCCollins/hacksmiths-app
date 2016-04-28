@@ -28,16 +28,6 @@ class UserDefaults: NSObject {
         }
     }
     
-    var username: String? {
-        get {
-            return NSUserDefaults.standardUserDefaults().valueForKey("username") as? String
-        }
-        set {
-            
-            NSUserDefaults.standardUserDefaults().setValue(newValue, forKey: "username")
-        }
-    }
-    
     var userId: String? {
         get {
             return NSUserDefaults.standardUserDefaults().valueForKey("userId") as? String

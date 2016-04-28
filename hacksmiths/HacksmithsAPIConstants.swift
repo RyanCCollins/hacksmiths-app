@@ -179,7 +179,7 @@ extension HacksmithsAPIClient {
                 static let dictionaryKey = "mentoring"
                 
                 static let available = "available"
-                static let needsAMentor = ""
+                static let needsAMentor = "needsAMentor"
                 static let experience = "experience"
                 static let want = "want"
             }

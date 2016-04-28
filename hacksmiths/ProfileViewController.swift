@@ -12,15 +12,12 @@ import CoreData
 class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     
-    @IBOutlet weak var cameraButton: UIButton!
     @IBOutlet weak var nameLabel: UILabel!
     
     @IBOutlet weak var editButton: UIBarButtonItem!
 
     @IBOutlet weak var nameTextField: UITextField!
 
-    @IBOutlet weak var tapToEditPhotoLabel: UILabel!
-    @IBOutlet weak var twitterLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var profileTextView: UITextView!
     @IBOutlet weak var descriptionTextField: UITextView!
@@ -28,8 +25,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var profilePhotoViewOverlay: UIView!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var noDataFoundLabel: UILabel!
-    
-    @IBOutlet weak var githubLabel: UILabel!
     
     var imageToUpload: UIImage? = nil
     
@@ -60,20 +55,18 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
                     }])
                 } else {
                     
-                    self.performPersonFetch()
-                    self.updateUIForPerson()
+                    self.performUserFetch()
+                    self.updateUIForUser()
                 }
             })
         }
     }
     
-    func updateUIForPerson() {
-        if let person = fetchedResultsController.fetchedObjects![0] as? Person {
-            nameLabel.text = "\(person.firstName) \(person.lastName)"
-            descriptionTextField.text = person.bio
-            twitterLabel.text = person.twitterUsername
-            githubLabel.text = person.githubUsername
-            profileImageView.image = person.image
+    func updateUIForUser() {
+        if let user = fetchedResultsController.fetchedObjects![0] as? UserData {
+            nameLabel.text = user.name
+            descriptionTextField.text = user.bio
+            profileImageView.image = user.image
         }
     }
     
@@ -89,22 +82,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         }
     }
     
-    func addTouchRecognizer() {
-        let fingerTouchGestureRecognizer = UIGestureRecognizer(target: profilePhotoViewOverlay, action: #selector(ProfileViewController.didTapEditPhoto(_:)))
-        profilePhotoViewOverlay.addGestureRecognizer(fingerTouchGestureRecognizer)
-    }
-    
-    func setUIDefaults() {
-
-        
-    }
-    
-    func didTapEditPhoto(sender: UIGestureRecognizer) {
-        if sender.numberOfTouches() == 1 && editing == true {
-            editProfileImagePhoto()
-        }
-    }
-
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -127,7 +104,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             
         }
     }
-    
     
     
     func toggleEditMode(editing: Bool) {
@@ -169,14 +145,14 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         return fetchResultsController
     }()
     
-    func performPersonFetch() {
+    func performUserFetch() {
         do {
             
             try fetchedResultsController.performFetch()
             
         } catch let error as NSError {
             self.alertController(withTitles: ["OK", "Retry"], message: error.localizedDescription, callbackHandler: [nil, {Void in
-                self.performPersonFetch()
+                self.performUserFetch()
                 }])
         }
     }
@@ -185,23 +161,4 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         return CoreDataStackManager.sharedInstance().managedObjectContext
     }
     
-}
-
-// Extension for profile view controller delegate methods
-extension ProfileViewController {
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-        dismissViewControllerAnimated(true, completion: {
-            // Set image to upload so that we can handle uploading it later.
-            self.profileImageView.image = image
-            self.imageToUpload = image
-        
-        })
-    }
-    
-    /* Hide keyboard when view is tapped */
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        if editing {
-            view.endEditing(true)
-        }
-    }
 }

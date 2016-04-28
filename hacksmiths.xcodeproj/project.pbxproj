@@ -33,7 +33,7 @@
 		1FA2E55D1C67FF550085FC7D /* HacksmithsAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA2E55C1C67FF550085FC7D /* HacksmithsAPIClient.swift */; };
 		1FA2E55F1C6802680085FC7D /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA2E55E1C6802680085FC7D /* ImageCache.swift */; };
 		1FA2E5611C68029C0085FC7D /* HacksmithsAPIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA2E5601C68029C0085FC7D /* HacksmithsAPIConstants.swift */; };
-		1FA2E5631C6802AC0085FC7D /* HacksmithsAPIConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA2E5621C6802AC0085FC7D /* HacksmithsAPIConvenience.swift */; };
+		1FA2E5631C6802AC0085FC7D /* HacksmithsAPIUserConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA2E5621C6802AC0085FC7D /* HacksmithsAPIUserConvenience.swift */; };
 		1FA5A4E81C53585500722E55 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA5A4E71C53585500722E55 /* SettingsViewController.swift */; };
 		1FA5A4EC1C53586D00722E55 /* CommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA5A4EB1C53586D00722E55 /* CommunityViewController.swift */; };
 		1FA5A4EE1C535A9500722E55 /* ExtendsUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA5A4ED1C535A9500722E55 /* ExtendsUIViewController.swift */; };
@@ -125,7 +125,7 @@
 		1FA2E55C1C67FF550085FC7D /* HacksmithsAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HacksmithsAPIClient.swift; sourceTree = "<group>"; };
 		1FA2E55E1C6802680085FC7D /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		1FA2E5601C68029C0085FC7D /* HacksmithsAPIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HacksmithsAPIConstants.swift; sourceTree = "<group>"; };
-		1FA2E5621C6802AC0085FC7D /* HacksmithsAPIConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HacksmithsAPIConvenience.swift; sourceTree = "<group>"; };
+		1FA2E5621C6802AC0085FC7D /* HacksmithsAPIUserConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HacksmithsAPIUserConvenience.swift; sourceTree = "<group>"; };
 		1FA5A4E71C53585500722E55 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		1FA5A4EB1C53586D00722E55 /* CommunityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
 		1FA5A4ED1C535A9500722E55 /* ExtendsUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendsUIViewController.swift; sourceTree = "<group>"; };
@@ -269,7 +269,7 @@
 			children = (
 				1FA2E55C1C67FF550085FC7D /* HacksmithsAPIClient.swift */,
 				1FA2E5601C68029C0085FC7D /* HacksmithsAPIConstants.swift */,
-				1FA2E5621C6802AC0085FC7D /* HacksmithsAPIConvenience.swift */,
+				1FA2E5621C6802AC0085FC7D /* HacksmithsAPIUserConvenience.swift */,
 				1F6C69EB1CCFAEE500F15247 /* HacksmithsEventAPIConvenience.swift */,
 			);
 			name = HacksmithsAPI;
@@ -650,7 +650,7 @@
 				1F46B9EC1CA467250065D50D /* UserData.swift in Sources */,
 				1FA9FC721C534E5A00B993BC /* hacksmiths.xcdatamodeld in Sources */,
 				1F26C3F91CA1958E001596D2 /* LeaderboardTableViewController.swift in Sources */,
-				1FA2E5631C6802AC0085FC7D /* HacksmithsAPIConvenience.swift in Sources */,
+				1FA2E5631C6802AC0085FC7D /* HacksmithsAPIUserConvenience.swift in Sources */,
 				1FF998A11C71387C003D98B2 /* PersonTableViewCell.swift in Sources */,
 				1F4B4E011C74FCC400A75F5D /* JoinViewController.swift in Sources */,
 				1F26C3F71CA0B232001596D2 /* AboutViewController.swift in Sources */,

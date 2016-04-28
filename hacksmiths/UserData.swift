@@ -43,7 +43,7 @@ class UserData: NSManagedObject {
         // Name is a dictionary with first and last name
         // Bio is a dictionary object with HTML and MD (we are only concerned with MD
         
-        name = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.name] as! String
+        name = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.name] as? String
         bio = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.bio] as? String
         
         // The image also comes as a dictionary object, so parse that out and get the URL

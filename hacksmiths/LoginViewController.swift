@@ -29,24 +29,15 @@ class LoginViewController: UIViewController {
     var has1PasswordLogin: Bool = false
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-        
         /* Configure buttons based on availability */
         configureLoginButtons()
-
         configureOnePasswordButton()
-        
     }
     
 
     func configureLoginButtons() {
-        
-        
         onepasswordButton.enabled = true
-        
-        
-        usernameTextField.text = UserDefaults.sharedInstance().username
     }
     
 
@@ -54,8 +45,6 @@ class LoginViewController: UIViewController {
         dismissLoginView(false)
     }
 
-    
-    
     func configureOnePasswordButton() {
         /* Hide 1Password Button if not installed */
         self.onepasswordButton.hidden = !OnePasswordExtension.sharedExtension().isAppExtensionAvailable()
@@ -70,17 +59,12 @@ class LoginViewController: UIViewController {
         subscribeToKeyboardNotification()
     }
     
-
-    
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         unsubsribeToKeyboardNotification()
     }
 
-    
-    
     func dismissLoginView(loginWasSuccessful: Bool) {
-        
         /* If we successfully logged in, send a notification that says the login was successful */
         if loginWasSuccessful {
             let loginWasSuccessful = NSNotification(name: Notifications.LoginWasSuccessful, object: self)
@@ -98,28 +82,18 @@ class LoginViewController: UIViewController {
         
         usernameTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
-        
         authenticateUser(usernameTextField.text!, password: passwordTextField.text!)
-        
-
     }
     
     func authenticateUser(username: String, password: String) {
         HacksmithsAPIClient.sharedInstance().authenticateWithCredentials(username, password: password, completionHandler: {success, error in
-            
             if error != nil {
-                
                 self.alertController(withTitles: ["OK"], message: "We were unable to authenticate your account.  Please check your password and try again.", callbackHandler: [nil])
-                
             }
             
             if success {
-                
-                UserDefaults.sharedInstance().username = self.usernameTextField.text
-                
                 self.dismissLoginView(true)
             }
-            
         })
     }
 
@@ -213,8 +187,8 @@ extension LoginViewController {
     
     /* Suscribe the view controller to the UIKeyboardWillShowNotification */
     func subscribeToKeyboardNotification() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
     }
     
     /* Unsubscribe the view controller to the UIKeyboardWillShowNotification */
