@@ -36,12 +36,42 @@ class Organization: NSManagedObject {
         /* Assign our properties */
         id = dictionary[HacksmithsAPIClient.JSONResponseKeys.Organization.id] as! String
         name = dictionary[HacksmithsAPIClient.JSONResponseKeys.Organization.name] as! String
-        website = dictionary[HacksmithsAPIClient.JSONResponseKeys.Organization.website] as! String
-        about = dictionary[HacksmithsAPIClient.JSONResponseKeys.Organization.md] as! String
-        logoUrl = dictionary[HacksmithsAPIClient.JSONResponseKeys.Organization.logoUrl] as! String
+        website = dictionary[HacksmithsAPIClient.JSONResponseKeys.Organization.website] as? String
+        about = dictionary[HacksmithsAPIClient.JSONResponseKeys.Organization.about] as? String
+        logoUrl = dictionary[HacksmithsAPIClient.JSONResponseKeys.Organization.logoUrl] as? String
         logoFilename = logoUrl?.lastPathComponent
         isHiring = dictionary[HacksmithsAPIClient.JSONResponseKeys.Organization.isHiring] as! Bool
         
+    }
+    
+    func fetchImage(completionHandler: CompletionHandler) {
+        guard logoUrl != nil else {
+            return
+        }
+        
+        HacksmithsAPIClient.sharedInstance().taskForGETImageFromURL(logoUrl!, completionHandler: {image, error in
+            
+            if error != nil {
+                completionHandler(success: false, error: error)
+            } else {
+                self.image = image
+            }
+            
+        })
+    }
+    
+    
+    var image: UIImage? {
+        get {
+            guard logoFilename != nil else {
+                return nil
+            }
+            
+            return HacksmithsAPIClient.Caches.imageCache.imageWithIdentifier(logoFilename!)
+        }
+        set {
+            HacksmithsAPIClient.Caches.imageCache.storeImage(newValue, withIdentifier: logoFilename!)
+        }
     }
     
 }

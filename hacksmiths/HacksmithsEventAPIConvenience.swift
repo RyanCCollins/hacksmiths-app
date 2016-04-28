@@ -34,27 +34,37 @@ extension HacksmithsAPIClient {
                             
                             let organization = Organization(dictionary: self.dictionaryForOrganization(eventDict), context: self.sharedContext)
                             
-                            /*  Save our new event and our organization */
-                            self.sharedContext.performBlockAndWait( {
-                                CoreDataStackManager.sharedInstance().saveContext()
-                            })
-                            
-                            // Set the organization for the event and then carry on
-                            event.organization = organization
-                            
-                            self.sharedContext.performBlock({
-                                CoreDataStackManager.sharedInstance().saveContext()
-                            })
-                            
-                            
-                            self.fetchAttendees(forEvent: event, completionHandler: {success, error in
+                            organization.fetchImage({success, error in
                                 
                                 if error != nil {
-                                    completionHandler(success: false, error: error)
-                                } else {
                                     
-                                    self.sharedContext.performBlockAndWait({
+                                    completionHandler(success: false, error: error)
+                                    
+                                } else {
+                                   
+                                    /*  Save our new event and our organization */
+                                    self.sharedContext.performBlockAndWait( {
                                         CoreDataStackManager.sharedInstance().saveContext()
+                                    })
+                                    
+                                    // Set the organization for the event and then carry on
+                                    event.organization = organization
+                                    
+                                    self.sharedContext.performBlock({
+                                        CoreDataStackManager.sharedInstance().saveContext()
+                                    })
+                                    
+                                    
+                                    self.fetchAttendees(forEvent: event, completionHandler: {success, error in
+                                        
+                                        if error != nil {
+                                            completionHandler(success: false, error: error)
+                                        } else {
+                                            
+                                            self.sharedContext.performBlockAndWait({
+                                                CoreDataStackManager.sharedInstance().saveContext()
+                                            })
+                                        }
                                     })
                                 }
                             })
@@ -137,5 +147,42 @@ extension HacksmithsAPIClient {
             "featureImage" : event[HacksmithsAPIClient.JSONResponseKeys.Event.featureImage]!
         ]
         return dictionary
+    }
+    
+    func dictionaryForOrganization(eventJsonDict: JsonDict) -> JsonDict {
+        
+        // Initialize the main properties for the return dictionary
+        var orgId = "", orgName = "", orgLogoUrl = "", orgIsHiring = false, orgAbout = "", orgWebsite = ""
+        
+        // Parse JSON for our organization, protecting against bad data returned from the API.
+        if let organization = eventJsonDict[HacksmithsAPIClient.JSONResponseKeys.Organization.dictKey] as? JsonDict {
+            if let logoDict = organization[HacksmithsAPIClient.JSONResponseKeys.Organization.logo] as? JsonDict,
+                aboutDict = organization[HacksmithsAPIClient.JSONResponseKeys.Organization.description] as? JsonDict {
+                
+                if let id = organization[HacksmithsAPIClient.JSONResponseKeys.Organization.id] as? String,
+                    name = organization[HacksmithsAPIClient.JSONResponseKeys.Organization.name] as? String,
+                    about = aboutDict[HacksmithsAPIClient.JSONResponseKeys.Organization.md] as? String,
+                    logoUrl = logoDict[HacksmithsAPIClient.JSONResponseKeys.Organization.url] as? String,
+                    website = organization[HacksmithsAPIClient.JSONResponseKeys.Organization.website] as? String,
+                    isHiring = organization[HacksmithsAPIClient.JSONResponseKeys.Organization.isHiring] as? Bool {
+                    
+                    // Set our properties
+                    orgId = id
+                    orgName = name
+                    orgLogoUrl = logoUrl
+                    orgIsHiring = isHiring
+                    orgAbout = about
+                    orgWebsite = website
+                }
+            }
+        }
+        
+        let returnDict: JsonDict = [
+            "id" : orgId, "name": orgName,
+            "logoUrl": orgLogoUrl, "isHiring" : orgIsHiring,
+            "about" : orgAbout, "website" : orgWebsite
+        ]
+        
+        return returnDict
     }
 }

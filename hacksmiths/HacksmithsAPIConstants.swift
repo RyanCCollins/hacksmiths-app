@@ -278,6 +278,7 @@ extension HacksmithsAPIClient {
             static let description = "description"
             static let website = "website"
             static let md = "md"
+            static let about = "about"
             static let url = "url"
         }
         
