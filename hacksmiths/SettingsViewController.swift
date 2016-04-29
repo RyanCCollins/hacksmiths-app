@@ -15,8 +15,9 @@ import Spring
 class SettingsViewController: UIViewController {
 
     @IBOutlet weak var modalView: SpringView!
-    @IBOutlet weak var codeTextView: UITextView!
     @IBOutlet weak var titleLabel: UILabel!
+    
+    var userData: UserData? = nil
     var codeText: String = ""
     var data: SpringView!
     
@@ -26,13 +27,15 @@ class SettingsViewController: UIViewController {
         // Do any additional setup after loading the view.
         modalView.transform = CGAffineTransformMakeTranslation(-300, 0)
     }
-
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+    }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
-        
         modalView.animate()
-        
         presentingViewController!.view.transformOut(self)
     }
     
@@ -45,7 +48,4 @@ class SettingsViewController: UIViewController {
             self.dismissViewControllerAnimated(false, completion: nil)
         })
     }
-    
-
-
 }

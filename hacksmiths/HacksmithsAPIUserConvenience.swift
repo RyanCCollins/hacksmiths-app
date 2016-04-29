@@ -253,9 +253,14 @@ extension HacksmithsAPIClient {
     
     func dictionaryForProfileUpdate()-> JsonDict {
         let userId = UserDefaults.sharedInstance().userId
+        let mentoringDict: JsonDict = ["available": true, "needsAMentor" : false]
         
         let notificationsDict: JsonDict = [ "mobile" : true ]
-        let body: JsonDict = ["notifications" : notificationsDict]
+        let body: JsonDict = [
+            "notifications" : notificationsDict,
+            "isPublic" : true,
+            "mentoring": mentoringDict
+        ]
         let profileDictionary: JsonDict = [
             "user" : userId!,
             "body": body

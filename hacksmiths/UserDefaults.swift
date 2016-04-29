@@ -45,7 +45,6 @@ class UserDefaults: NSObject {
             NSUserDefaults.standardUserDefaults().setValue(newValue, forKey: "dateAuthenticated")
         }
     }
-    
 }
 
 

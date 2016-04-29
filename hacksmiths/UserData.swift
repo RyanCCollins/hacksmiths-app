@@ -90,15 +90,11 @@ class UserData: NSManagedObject {
         }
         
         HacksmithsAPIClient.sharedInstance().taskForGETImageFromURL(avatarURL!, completionHandler: {image, error in
-            
             if error != nil {
                 completionHandler(success: false, error: error)
             } else {
-                
                 self.image = image
-                
             }
-            
         })
     }
     
