@@ -58,7 +58,7 @@
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
-    <entity name="User" syncable="YES">
+    <entity name="UserData" syncable="YES">
         <attribute name="avatarFilePath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="avatarURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="bio" optional="YES" attributeType="String" syncable="YES"/>
@@ -80,6 +80,6 @@
         <element name="EventRSVP" positionX="511" positionY="618" width="128" height="75"/>
         <element name="Organization" positionX="-92" positionY="72" width="128" height="150"/>
         <element name="Person" positionX="358" positionY="243" width="128" height="270"/>
-        <element name="User" positionX="126" positionY="45" width="128" height="270"/>
+        <element name="UserData" positionX="126" positionY="45" width="128" height="270"/>
     </elements>
 </model>

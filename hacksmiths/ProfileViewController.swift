@@ -118,12 +118,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         
     }
     
-    func editProfileImagePhoto() {
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.delegate = self
-        presentViewController(imagePickerController, animated: true, completion: nil)
-    }
-    
     func commitChangesToProfile() {
         // TODO: Upload changes to the profile to the server.
         toggleEditMode(false)
@@ -131,10 +125,10 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     lazy var fetchedResultsController: NSFetchedResultsController = {
         let sortPriority = NSSortDescriptor(key: "dateUpdated", ascending: false)
-        let nextEventFetch = NSFetchRequest(entityName: "UserData")
-        nextEventFetch.sortDescriptors = [sortPriority]
+        let userDataFetch = NSFetchRequest(entityName: "UserData")
+        userDataFetch.sortDescriptors = [sortPriority]
         
-        let fetchResultsController = NSFetchedResultsController(fetchRequest: nextEventFetch, managedObjectContext: self.sharedContext, sectionNameKeyPath: nil, cacheName: nil)
+        let fetchResultsController = NSFetchedResultsController(fetchRequest: userDataFetch, managedObjectContext: self.sharedContext, sectionNameKeyPath: nil, cacheName: nil)
         
         do {
             try fetchResultsController.performFetch()

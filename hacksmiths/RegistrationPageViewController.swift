@@ -93,9 +93,9 @@ class RegistrationPageViewController: UIViewController {
             }
         } else if RegistrationData.sharedInstance.currentField == .Email {
             
-            let email = emailTextField.text ?? ""
-            if isValidEmail(email) {
-                RegistrationData.sharedInstance.didFinishRegistering(withFieldRawValue: 1, value: email)
+            let email = emailTextField.text
+            if isValidEmail(email!) {
+                RegistrationData.sharedInstance.didFinishRegistering(withFieldRawValue: 1, value: email!)
                 goToNextView(self)
             } else {
                 showDebugLabel(withText: "Please enter a valid email address")
@@ -126,7 +126,7 @@ class RegistrationPageViewController: UIViewController {
     // From an open source project I worked on by Ian Gristock & Ivan Lares
     // https://github.com/teamhacksmiths/food-drivr-ios/blob/b4571b58894be2ed29dbb1e32d1eacd587740ad5/hackathon-for-hunger/VSUserInfoViewController.swift
     private func isValidEmail(theEmail: String) -> Bool {
-        let emailTest = NSPredicate(format: "SELF MATCHES %&", RegistrationPageViewController.emailRegEx)
+        let emailTest = NSPredicate(format: "SELF MATCHES %@", RegistrationPageViewController.emailRegEx)
         return emailTest.evaluateWithObject(theEmail)
     }
     
