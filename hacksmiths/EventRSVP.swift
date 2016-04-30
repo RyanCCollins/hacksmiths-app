@@ -22,7 +22,7 @@ class EventRSVP: NSManagedObject {
     }
     
     /* Custom init */
-    init(dictionary: [String : AnyObject], context: NSManagedObjectContext) {
+    init(personId: String, eventId: String, context: NSManagedObjectContext) {
         
         /* Get associated entity from our context */
         let entity = NSEntityDescription.entityForName("EventRSVP", inManagedObjectContext: context)
@@ -30,11 +30,9 @@ class EventRSVP: NSManagedObject {
         /* Super, get to work! */
         super.init(entity: entity!, insertIntoManagedObjectContext: context)
         
-        let eventId = dictionary[HacksmithsAPIClient.JSONResponseKeys.EventRSVP.eventId] as! String
-        let personId = dictionary[HacksmithsAPIClient.JSONResponseKeys.EventRSVP.personId] as! String
-        
         if let person = findPerson(fromId: personId), let theEvent = findEvent(fromId: eventId) {
             who = person
+            event = theEvent
         }
     }
     

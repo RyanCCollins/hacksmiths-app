@@ -52,17 +52,19 @@ extension HacksmithsAPIClient {
                 
                 guard response.result.isSuccess else {
                     completionHandler(success: false, error: GlobalErrors.GenericNetworkError)
+                    return
                 }
                 
-                guard let value = response.result.value as? NSData else {
+                guard let value = response.result.value else {
                     completionHandler(success: false, error: GlobalErrors.GenericNetworkError)
                     return
                 }
                 
-                let jsonData = JSON(data: value)
+                let jsonData = JSON(value)
                 
                 let eventId = jsonData[HacksmithsAPIClient.JSONResponseKeys.Event._id].string
-                let attendeesArray = jsonData[HacksmithsAPIClient.JSONResponseKeys.Event.attendees].array
+                let attendeesArray = jsonData[HacksmithsAPIClient.JSONResponseKeys.Event.attendees].arrayObject as? [JsonDict]
+                
                 
                 // Batch delete the RSVPs before creating new ones.
                 self.batchDeleteAllRSVPS({success, error in
@@ -72,17 +74,13 @@ extension HacksmithsAPIClient {
                     }
                 })
                 
-                attendeesArray.map({attendeeDict in
+                // Loop through and create an RSVP record for each attendee.
+                for attendee in attendeesArray! {
+                    let personId = attendee["id"] as! String
+                    let eventRSVP = EventRSVP(personId: personId, eventId: eventId!, context: self.sharedContext)
                     
-                    let personId = attendeeDict["id"] as! String
-                    
-                    let newRSVP: JsonDict = [
-                        "eventId": eventId,
-                        "personId": personId,
-                    ]
-                    let eventRSVP = EventRSVP(dictionary: newRSVP, context: self.sharedContext)
-                })
-                
+                }
+
                 // Save the context after creating the eventRSVPS.
                 self.sharedContext.performBlockAndWait({
                     CoreDataStackManager.sharedInstance().saveContext()
@@ -218,35 +216,46 @@ extension HacksmithsAPIClient {
     func dictionaryForEvent (eventJSON: JSON) -> JsonDict{
         
         let id = eventJSON[HacksmithsAPIClient.JSONResponseKeys.Event.id].string
-        
         let active = eventJSON[HacksmithsAPIClient.JSONResponseKeys.Event.active].boolValue
-        
+        let marketingInfo = eventJSON[HacksmithsAPIClient.JSONResponseKeys.Event.marketingInfo].string ?? ""
         let title = eventJSON[HacksmithsAPIClient.JSONResponseKeys.Event.title].string
+        let description = eventJSON[HacksmithsAPIClient.JSONResponseKeys.Event.description].string ?? ""
+        let spotsRemaining = eventJSON[HacksmithsAPIClient.JSONResponseKeys.Event.spotsRemaining].int ?? 0
         
-        let startDate = eventJSON[HacksmithsAPIClient.JSONResponseKeys.Event.starts].string
-        let endDate = eventJSON[HacksmithsAPIClient.JSONResponseKeys.Event.ends].string
+        let registrationStartDateString = eventJSON[HacksmithsAPIClient.JSONResponseKeys.Event.registrationStartDate].string ?? ""
+        let registrationEndDateString = eventJSON[HacksmithsAPIClient.JSONResponseKeys.Event.registrationEndDate].string ?? ""
+        let startDateString = eventJSON[HacksmithsAPIClient.JSONResponseKeys.Event.starts].string ?? ""
+        let endDateString = eventJSON[HacksmithsAPIClient.JSONResponseKeys.Event.ends].string ?? ""
         
-        let description = eventJSON[HacksmithsAPIClient.JSONResponseKeys.Event.description].string
+        // Set up our dictionary
+        var dictionary: JsonDict = [
+            "id" : id!,
+            "active" : active,
+            "marketingInfo": marketingInfo,
+            "title" : title!,
+            "description" : description,
+            "spotsRemaining": spotsRemaining,
+        ]
         
-        let spotsRemaining = eventJSON[HacksmithsAPIClient.JSONResponseKeys.Event.spotsRemaining].int
+        if let eventStartDate = dateFromString(registrationStartDateString) {
+            dictionary["registrationStartDate"] = eventStartDate
+        }
         
-        var featureImageURL = ""
+        if let eventEndDate = dateFromString(registrationEndDateString) {
+            dictionary["registrationEndDate"] = eventEndDate
+        }
+        
+        if let eventStartDate = dateFromString(startDateString), eventEndDate = dateFromString(endDateString) {
+            dictionary["starts"] = eventStartDate
+            dictionary["ends"] = eventEndDate
+        }
+        
         if let featureImage = eventJSON[HacksmithsAPIClient.JSONResponseKeys.Event.featureImage].dictionary {
             if let imageURL = featureImage["url"]!.string {
-                featureImageURL = imageURL
+                dictionary["featureImage"] = imageURL
             }
         }
         
-         let dictionary: JsonDict = [
-            "id" : id!,
-            "active" : active,
-            "title" : title!,
-            "description" : description!,
-            "starts" : startDate!,
-            "ends" : endDate!,
-            "spotsRemaining": spotsRemaining!,
-            "featureImage" : featureImageURL
-        ]
         return dictionary
     }
     
@@ -286,5 +295,13 @@ extension HacksmithsAPIClient {
         }
         
         return returnDict
+    }
+    
+    func dateFromString(dateString: String) -> NSDate? {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm.ssZZZZZ"
+        let date = dateFormatter.dateFromString(dateString)
+        
+        return date
     }
 }

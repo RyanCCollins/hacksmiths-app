@@ -23,14 +23,8 @@ class EventViewController: UIViewController {
     
     @IBOutlet weak var whenLabel: UILabel!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
-    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
         getEventData()
     }
     
@@ -43,32 +37,28 @@ class EventViewController: UIViewController {
                 
             } else {
                 
-                HacksmithsAPIClient.sharedInstance().fetchEventAttendees(eventID, completionHandler: {success, error in
-                    if error != nil {
-                        
-                        self.view.hideLoading()
-                        self.alertController(withTitles: ["OK", "Retry"], message: (error?.localizedDescription)!, callbackHandler: [nil, {Void in self.getEventData()}])
-                        
-                    } else {
-                        self.view.hideLoading()
-                        self.performEventFetch()
-                        self.updateUIWithNetworkData()
-                    }
-                })
+                // Start loading the event data and then pass off loading of the event attendees.
+                self.performEventFetch()
+                self.updateUIWithNetworkData()
+                
+                if let event = self.fetchedResultsController.fetchedObjects![0] as? Event {
+                    self.currentEvent = event
+                }
             }
         })
     }
     
     func updateUIWithNetworkData() {
-        // Pick the first event
-        if let event = fetchedResultsController.fetchedObjects![0] as? Event {
-            
-            eventImageView.image = event.image
+        if let event = currentEvent {
+            eventImageView.image = currentEvent!.image
             headerLabel.text = event.title
             aboutTextView.text = event.descriptionString
-            
         }
         
+        if let organization = currentEvent?.organization {
+            whoLabel.text = organization.name
+            
+        }
     }
     
     lazy var fetchedResultsController: NSFetchedResultsController = {

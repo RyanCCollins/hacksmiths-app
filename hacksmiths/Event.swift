@@ -21,9 +21,11 @@ class Event: NSManagedObject {
     @NSManaged var registrationEnd : NSDate?
     @NSManaged var startDate: NSDate?
     @NSManaged var endDate: NSDate?
+    @NSManaged var active: Bool
     
     @NSManaged var maxRSVPS: NSNumber
     @NSManaged var totalRSVPS: NSNumber
+    
     @NSManaged var spotsAvailable: Bool
     @NSManaged var spotsRemaining: NSNumber
     
@@ -51,14 +53,7 @@ class Event: NSManagedObject {
         eventID = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.id] as! String
         title = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.title] as! String
         descriptionString = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.description] as! String
-        let dateStringStart = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.starts] as! String
-        let dateStringEnd = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.ends] as! String
- 
-        if let start = dateFromString(dateStringStart), end = dateFromString(dateStringEnd) {
-            
-            startDate = start
-            endDate = end
-        }
+        
         
         if let spots = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.spotsRemaining] as? Int {
             spotsRemaining = spots
@@ -69,8 +64,12 @@ class Event: NSManagedObject {
             }
         }
         
-        if let image = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.featureImage] as? [String : AnyObject] {
-            featureImageURL = image["url"] as? String
+        active = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.active] as! Bool
+        
+        if let eventEndDate = dictionary[HackmsmithsAPIClient.JSONResponseKeys.]
+        
+        if let imageURL = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.featureImage] as? String {
+            featureImageURL = imageURL
             featureImageFilePath = featureImageURL?.lastPathComponent
         }
         
@@ -109,13 +108,7 @@ class Event: NSManagedObject {
     }
 
     
-    func dateFromString(dateString: String) -> NSDate? {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm.ssZZZZZ"
-        let date = dateFormatter.dateFromString(dateString)
-        
-        return date
-    }
+
     
 }
 

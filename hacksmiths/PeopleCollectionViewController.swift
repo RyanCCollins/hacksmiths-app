@@ -14,6 +14,8 @@ private let reuseIdentifier = "PersonTableViewCell"
 class PeopleCollectionViewController: UICollectionViewController {
     
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
+    var currentEvent: Event?
+    var people: [Person]? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,13 +50,31 @@ class PeopleCollectionViewController: UICollectionViewController {
         }
     }
     
+    func fetchEventAttendees() {
+
+        
+        guard let eventId = self.currentEvent?.eventID else {
+            return
+        }
+        
+        HacksmithsAPIClient.sharedInstance().fetchEventAttendees(eventId, completionHandler: {success, error in
+            if error != nil {
+                self.view.hideLoading()
+                self.alertController(withTitles: ["OK", "Retry"], message: (error?.localizedDescription)!, callbackHandler: [nil, {Void in self.fetchEventAttendees()}])
+            } else {
+                self.view.hideLoading()
+                self.performEventFetch()
+            }
+        })
+    }
     
     lazy var fetchedResultsController: NSFetchedResultsController = {
-        let sortPriority = NSSortDescriptor(key: "startDate", ascending: false)
-        let eventRSVPFetch = NSFetchRequest(entityName: "Event")
-        eventRSVPFetch.sortDescriptors = [sortPriority]
+        let eventId = self.currentEvent!.eventID ?? ""
+        let rsvpFetch = NSFetchRequest(entityName: "EventRSVP")
+        let eventPredicate = NSPredicate(format: "%K == %@", "event.eventId", eventId)
         
-        let fetchResultsController = NSFetchedResultsController(fetchRequest: eventRSVPFetch, managedObjectContext: self.sharedContext, sectionNameKeyPath: nil, cacheName: nil)
+        
+        let fetchResultsController = NSFetchedResultsController(fetchRequest: rsvpFetch, managedObjectContext: self.sharedContext, sectionNameKeyPath: nil, cacheName: nil)
         
         do {
             try fetchResultsController.performFetch()
