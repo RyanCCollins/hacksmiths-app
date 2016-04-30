@@ -167,9 +167,9 @@ extension HacksmithsAPIClient {
                             } else {
                                 completionHandler(success: false, error: Errors.constructError(domain: "Hacksmiths API Client", userMessage: "Sorry, but an error occured while loading data from the network."))
                             }
+                        } else {
+                            completionHandler(success: false, error: GlobalErrors.GenericNetworkError)
                         }
-                    } else {
-                        completionHandler(success: false, error: GlobalErrors.GenericNetworkError)
                     }
                 })
             }
