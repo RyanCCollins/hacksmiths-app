@@ -168,14 +168,12 @@ extension HacksmithsAPIClient {
                                 completionHandler(success: false, error: Errors.constructError(domain: "Hacksmiths API Client", userMessage: "Sorry, but an error occured while loading data from the network."))
                             }
                         }
+                    } else {
+                        completionHandler(success: false, error: GlobalErrors.GenericNetworkError)
                     }
                 })
             }
         }
-        
-        completionHandler(success: false, error: Errors.constructError(domain: "HacksmithsAPIClient", userMessage: "Please make sure you are authenticated before making that request."))
-        
-        
     }
     
     func getMemberList(body: [String :AnyObject], completionHandler: CompletionHandler) {
@@ -295,7 +293,7 @@ extension HacksmithsAPIClient {
         if let name = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.name] as? JsonDict {
             let firstName = name["first"] as? String
             let lastName = name["last"] as? String
-            fullName = "\(firstName) \(lastName)"
+            fullName = "\(firstName!) \(lastName!)"
         }
         
         if let bio = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.bio] as? JsonDict {
