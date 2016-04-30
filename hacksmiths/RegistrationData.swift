@@ -7,7 +7,7 @@
 //
 
 protocol RegistrationDelegate {
-    func didFinishRegisteringAndCanContinue(withFieldRawValue fieldRawValue: Int, value: String) -> Bool
+    func didFinishRegistering(withFieldRawValue fieldRawValue: Int, value: String)
 }
 
 // Temporary class for storing registration data.  Will get wiped out after registration
@@ -19,49 +19,32 @@ class RegistrationData: RegistrationDelegate {
     var currentField = Field(rawValue: 0)
     static let sharedInstance = RegistrationData()
     
-    // Mark: Regular expression for email
-    static private let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
-    
     // Coordinate setting of the various fields to make this class handle the collection of the data
     // The delegate method will collect the data and also set the next field that needs to be collected
     // Based off of the raw Int value.
-    func didFinishRegisteringAndCanContinue(withFieldRawValue fieldRawValue: Int, value: String) -> Bool {
-        // Field to return
-        var isValid = false
+    func didFinishRegistering(withFieldRawValue fieldRawValue: Int, value: String) {
         
         if let theField = Field.init(rawValue: fieldRawValue) {
             //Set our class variable for current field
             currentField = theField
             
-            
             // Work through the various fields and set the value for the submitted field.
             // Then, set current field to the next field.
             switch theField {
             case .FullName:
-                if isValidEmail(value) {
-                    fullName = value
-                    currentField = .Email
-                    isValid = true
-                }
+                fullName = value
+                currentField = .Email
             case .Email:
-                if isValidEmail(value) {
-                    email = value
-                    currentField = .Password
-                    isValid = true
-                }
+                email = value
+                currentField = .Password
             case .Password:
-                if isValidPassword(value) {
-                    password = value
-                    currentField = .None
-                }
+                password = value
+                currentField = .None
             case .None:
-                return isValid
+                break
             }
         }
-        return isValid
     }
-    
-    
     
     // Useful for decrementing the current field if the user needs to go back.
     func decrementCurrentField() {
@@ -69,41 +52,6 @@ class RegistrationData: RegistrationDelegate {
             currentField = Field.init(rawValue: (currentField?.rawValue)! - 1)
         }
     }
-    
-    private func isValidPassword(thePassword: String)-> Bool {
-        var isValid = false
-        
-        guard !thePassword.isEmpty else {
-            return false
-        }
-        
-        // Get the simple checks out of the way, such as password length
-        if thePassword.length < 8 {
-            isValid = false
-        } else {
-            isValid = true
-        }
-        
-        return isValid
-    }
-    
-    // From an open source project I worked on by Ian Gristock & Ivan Lares
-    // https://github.com/teamhacksmiths/food-drivr-ios/blob/b4571b58894be2ed29dbb1e32d1eacd587740ad5/hackathon-for-hunger/VSUserInfoViewController.swift
-    private func isValidEmail(theEmail: String) -> Bool {
-        let emailTest = NSPredicate(format: "SELF MATCHES %&", RegistrationData.emailRegEx)
-        return emailTest.evaluateWithObject(theEmail)
-    }
-    
-    private func isValidFullname(theName: String) -> Bool {
-        
-        // If the length is greater than 3, return true, otherwise return false.
-        if theName.rangeOfString(" ") != nil {
-            return true
-        } else {
-            return false
-        }
-    }
-    
     
     func submitRegistrationData(completionHandler: CompletionHandler) {
         

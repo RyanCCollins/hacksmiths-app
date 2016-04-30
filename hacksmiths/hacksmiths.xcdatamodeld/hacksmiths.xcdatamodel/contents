@@ -7,7 +7,7 @@
         <attribute name="featureImageFilePath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="featureImageURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="place" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="marketingInfo" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="registrationEndDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="registrationStartDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="spotsAvailable" optional="YES" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
@@ -24,7 +24,6 @@
         </compoundIndexes>
     </entity>
     <entity name="EventRSVP" syncable="YES">
-        <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="event" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="rsvps" inverseEntity="Event" syncable="YES"/>
         <relationship name="people" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="rsvps" inverseEntity="Person" syncable="YES"/>
     </entity>
@@ -78,7 +77,7 @@
     </entity>
     <elements>
         <element name="Event" positionX="-27" positionY="450" width="128" height="285"/>
-        <element name="EventRSVP" positionX="511" positionY="618" width="128" height="30"/>
+        <element name="EventRSVP" positionX="511" positionY="618" width="128" height="75"/>
         <element name="Organization" positionX="-92" positionY="72" width="128" height="150"/>
         <element name="Person" positionX="358" positionY="243" width="128" height="270"/>
         <element name="User" positionX="126" positionY="45" width="128" height="270"/>

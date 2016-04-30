@@ -16,7 +16,10 @@ class RegistrationPageViewController: UIViewController {
     @IBOutlet weak var emailTextField: IsaoTextField!
     @IBOutlet weak var passwordTextField: IsaoTextField!
     @IBOutlet weak var debugLabel: UILabel!
-
+    
+    // Mark: Regular expression for email
+    static private let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -77,30 +80,63 @@ class RegistrationPageViewController: UIViewController {
     func submitAndContinue(sender: AnyObject) {
         
         if RegistrationData.sharedInstance.currentField == .FullName {
-
-            if RegistrationData.sharedInstance.didFinishRegisteringAndCanContinue(withFieldRawValue: 0, value: fullNameTextField.text!) {
+            
+            let fullname = fullNameTextField.text!
+            
+            if isValidFullname(fullname) {
+                
+                RegistrationData.sharedInstance.didFinishRegistering(withFieldRawValue: 0, value: fullname)
                 goToNextView(self)
             } else {
-                
                 showDebugLabel(withText: "Please enter your full name, both first and last")
                 
             }
         } else if RegistrationData.sharedInstance.currentField == .Email {
             
-            if RegistrationData.sharedInstance.didFinishRegisteringAndCanContinue(withFieldRawValue: 1, value: emailTextField.text!) {
+            let email = emailTextField.text ?? ""
+            if isValidEmail(email) {
+                RegistrationData.sharedInstance.didFinishRegistering(withFieldRawValue: 1, value: email)
                 goToNextView(self)
             } else {
                 showDebugLabel(withText: "Please enter a valid email address")
             }
-            
-            
+        
         } else if RegistrationData.sharedInstance.currentField == .Password {
-            
-            if RegistrationData.sharedInstance.didFinishRegisteringAndCanContinue(withFieldRawValue: 2, value: passwordTextField.text!) {
+            let password = passwordTextField.text ?? ""
+            if isValidPassword(password) {
+                RegistrationData.sharedInstance.didFinishRegistering(withFieldRawValue: 2, value: passwordTextField.text!)
                completeRegistration()
             } else {
                 showDebugLabel(withText: "Please ensure that your password is at least 8 characters.")
             }
+        }
+    }
+    
+    private func isValidPassword(thePassword: String)-> Bool {
+        
+        // Get the simple checks out of the way, such as password length
+        if thePassword.length < 8 {
+            return false
+        } else {
+            return true
+        }
+        
+    }
+    
+    // From an open source project I worked on by Ian Gristock & Ivan Lares
+    // https://github.com/teamhacksmiths/food-drivr-ios/blob/b4571b58894be2ed29dbb1e32d1eacd587740ad5/hackathon-for-hunger/VSUserInfoViewController.swift
+    private func isValidEmail(theEmail: String) -> Bool {
+        let emailTest = NSPredicate(format: "SELF MATCHES %&", RegistrationPageViewController.emailRegEx)
+        return emailTest.evaluateWithObject(theEmail)
+    }
+    
+    private func isValidFullname(theName: String) -> Bool {
+        
+        // If the length is greater than 3, return true, otherwise return false.
+        if theName.rangeOfString(" ") != nil {
+            return true
+        } else {
+            return false
         }
     }
     

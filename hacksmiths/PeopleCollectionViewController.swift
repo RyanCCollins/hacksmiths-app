@@ -15,6 +15,7 @@ class PeopleCollectionViewController: UICollectionViewController {
     
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     var currentEvent: Event?
+    var needsNewAttendees = true
     var people: [Person]? = nil
     
     override func viewDidLoad() {
@@ -22,6 +23,13 @@ class PeopleCollectionViewController: UICollectionViewController {
 
         // Register cell classes
         self.collectionView!.registerClass(PersonCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        if needsNewAttendees {
+            fetchEventAttendees()
+        }
     }
 
     // MARK: UICollectionViewDataSource
@@ -69,10 +77,13 @@ class PeopleCollectionViewController: UICollectionViewController {
     }
     
     lazy var fetchedResultsController: NSFetchedResultsController = {
-        let eventId = self.currentEvent!.eventID ?? ""
+        var eventId = ""
+        if self.currentEvent != nil {
+            eventId = self.currentEvent!.eventID
+        }
+        
         let rsvpFetch = NSFetchRequest(entityName: "EventRSVP")
         let eventPredicate = NSPredicate(format: "%K == %@", "event.eventId", eventId)
-        
         
         let fetchResultsController = NSFetchedResultsController(fetchRequest: rsvpFetch, managedObjectContext: self.sharedContext, sectionNameKeyPath: nil, cacheName: nil)
         
@@ -81,7 +92,7 @@ class PeopleCollectionViewController: UICollectionViewController {
         } catch let error {
             print(error)
         }
-        
+
         return fetchResultsController
     }()
     
@@ -101,9 +112,6 @@ class PeopleCollectionViewController: UICollectionViewController {
     var sharedContext: NSManagedObjectContext {
         return CoreDataStackManager.sharedInstance().managedObjectContext
     }
-
-
-
 }
 
 extension PeopleCollectionViewController: NSFetchedResultsControllerDelegate {

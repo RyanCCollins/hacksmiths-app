@@ -33,7 +33,7 @@ class Event: NSManagedObject {
     
     @NSManaged var featureImageURL: String?
     @NSManaged var featureImageFilePath: String?
-    @NSManaged var peopleHelping: [Person]
+    @NSManaged var participants: [Person]
     
     
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
@@ -66,7 +66,21 @@ class Event: NSManagedObject {
         
         active = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.active] as! Bool
         
-        if let eventEndDate = dictionary[HackmsmithsAPIClient.JSONResponseKeys.]
+        if let eventEndDate = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.ends] as? NSDate {
+            endDate = eventEndDate
+        }
+        
+        if let eventStartDate = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.starts] as? NSDate {
+            startDate = eventStartDate
+        }
+        
+        if let registrationStartDate = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.registrationStartDate] as? NSDate {
+            registrationStart = registrationStartDate
+        }
+        
+        if let registrationEndDate = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.registrationEndDate] as? NSDate {
+            registrationEnd = registrationEndDate
+        }
         
         if let imageURL = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.featureImage] as? String {
             featureImageURL = imageURL
