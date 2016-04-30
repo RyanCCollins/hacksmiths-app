@@ -36,15 +36,25 @@ class EventViewController: UIViewController {
     
     func getEventData() {
         view.showLoading()
-        HacksmithsAPIClient.sharedInstance().checkAPIForEvents({success, error in
+        HacksmithsAPIClient.sharedInstance().fetchEventsFromAPI({success, error in
             if error != nil {
                 self.view.hideLoading()
                 self.alertController(withTitles: ["OK", "Retry"], message: (error?.localizedDescription)!, callbackHandler: [nil, {Void in self.getEventData()}])
                 
             } else {
-                self.view.hideLoading()
-                self.performEventFetch()
-                self.updateUIWithNetworkData()
+                
+                HacksmithsAPIClient.sharedInstance().fetchEventAttendees(eventID, completionHandler: {success, error in
+                    if error != nil {
+                        
+                        self.view.hideLoading()
+                        self.alertController(withTitles: ["OK", "Retry"], message: (error?.localizedDescription)!, callbackHandler: [nil, {Void in self.getEventData()}])
+                        
+                    } else {
+                        self.view.hideLoading()
+                        self.performEventFetch()
+                        self.updateUIWithNetworkData()
+                    }
+                })
             }
         })
     }
