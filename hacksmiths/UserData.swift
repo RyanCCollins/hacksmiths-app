@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 
+@objc(UserData)
 class UserData: NSManagedObject {
     // Managed properties for one single user
     @NSManaged var name: String?
@@ -34,7 +35,7 @@ class UserData: NSManagedObject {
     // Init for loading our data.
     init(dictionary: [String : AnyObject], context: NSManagedObjectContext) {
         /* Get associated entity from our context */
-        let entity = NSEntityDescription.entityForName("Person", inManagedObjectContext: context)
+        let entity = NSEntityDescription.entityForName("UserData", inManagedObjectContext: context)
         
         /* Super, get to work! */
         super.init(entity: entity!, insertIntoManagedObjectContext: context)

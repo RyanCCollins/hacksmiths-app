@@ -9,8 +9,7 @@
 import CoreData
 import UIKit
 
-@objc(User)
-
+@objc(Person)
 class Person: NSManagedObject {
     @NSManaged var id: String
     @NSManaged var firstName: String
