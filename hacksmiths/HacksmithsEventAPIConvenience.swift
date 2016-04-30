@@ -7,22 +7,34 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 // More convenience methods, specifically for fetching events.
 extension HacksmithsAPIClient {
     
+    func fetchEventsFromAPI(completionHandler: CompletionHandler) {
+        Alamofire.request(.GET, "https://hacksmiths.io/api/app/event-status", parameters: nil, encoding: .URL, headers: nil)
+            .validate()
+            .responseJSON(completionHandler: {response in
+            guard response.result.isSuccess else {
+                completionHandler(success: false, error: Errors.constructError(domain: "HacksmithsAPIClient", userMessage: "Unable to check event status from network.  Please try again."))
+                return
+            }
+            guard let value = response.result.value as? JsonDict else {
+                completionHandler(success: false, error: GlobalErrors.GenericNetworkError)
+                return
+            }
+            
+        })
+    }
     
     // Fetch events, organization and attendees from the API
     func checkAPIForEvents(completionHandler: CompletionHandler) {
         let method = Routes.EventStatus
         
-        var body: JsonDict? = nil
         
-        if UserDefaults.sharedInstance().authenticated == true {
-            body!["user"] = UserDefaults.sharedInstance().userId
-        }
-        
-        taskForGETMethod(method, parameters: body, completionHandler: {success, result, error in
+        taskForGETMethod(method, parameters: nil, completionHandler: {success, result, error in
             if error != nil {
                 completionHandler(success: false, error: error)
             } else {
@@ -38,11 +50,8 @@ extension HacksmithsAPIClient {
                         } else {
                             
                             let event = Event(dictionary: self.dictionaryForEvent(eventDict), context: self.sharedContext)
-                            
                             let organization = Organization(dictionary: self.dictionaryForOrganization(eventDict), context: self.sharedContext)
-                            
                             organization.fetchImage({success, error in
-                                
                                 if error != nil {
                                     
                                     completionHandler(success: false, error: error)
@@ -56,14 +65,11 @@ extension HacksmithsAPIClient {
                                     
                                     // Set the organization for the event and then carry on
                                     event.organization = organization
-                                    
                                     self.sharedContext.performBlock({
                                         CoreDataStackManager.sharedInstance().saveContext()
                                     })
                                     
-                                    
                                     self.fetchAttendees(forEvent: event, completionHandler: {success, error in
-                                        
                                         if error != nil {
                                             completionHandler(success: false, error: error)
                                         } else {
@@ -145,14 +151,48 @@ extension HacksmithsAPIClient {
     
     /* Takes an event dictionary and returns a dictionary for creating an event */
     func dictionaryForEvent (event: [String : AnyObject]) -> [String : AnyObject]{
-        let dictionary: [String : AnyObject] = [
-            "id" : event[HacksmithsAPIClient.JSONResponseKeys.Event.id]!,
-            "active" : event[HacksmithsAPIClient.JSONResponseKeys.Event.active]!,
-            "title" : event[HacksmithsAPIClient.JSONResponseKeys.Event.title]!,
-            "description" : event[HacksmithsAPIClient.JSONResponseKeys.Event.description]!,
-            "starts" : event[HacksmithsAPIClient.JSONResponseKeys.Event.starts]!,
-            "ends" : event[HacksmithsAPIClient.JSONResponseKeys.Event.ends]!,
-            "spotsRemaining": event[HacksmithsAPIClient.JSONResponseKeys.Event.spotsRemaining]!,
+        
+        // Initialize our properties to avoid nulls from causing messy Core Data problems
+        var id = "", active = false, title = "", description = "", starts = "", ends = "", spotsRemaining: NSNumber = 0
+        
+        // Awful optionals, but this is the best way to protect against a null value from the API.
+        // Will get rid of this in version 2 when we add Realm.
+        if let eventId = event[HacksmithsAPIClient.JSONResponseKeys.Event.id] as? String {
+            id = eventId
+        }
+        
+        if let activeStatus = event[HacksmithsAPIClient.JSONResponseKeys.Event.active] as? Bool {
+            active = activeStatus
+        }
+        
+        if let eventTitle = event[HacksmithsAPIClient.JSONResponseKeys.Event.title] as? String {
+            title = eventTitle
+        }
+        
+        if let startDate = event[HacksmithsAPIClient.JSONResponseKeys.Event.starts] as? String {
+            starts = startDate
+        }
+        
+        if let endDate = event[HacksmithsAPIClient.JSONResponseKeys.Event.ends] as? String {
+            ends = endDate
+        }
+        
+        if let eventDescription = event[HacksmithsAPIClient.JSONResponseKeys.Event.description] as? String {
+            description = eventDescription
+        }
+        
+        if let spots = event[HacksmithsAPIClient.JSONResponseKeys.Event.spotsRemaining] as? NSNumber {
+            spotsRemaining = spots
+        }
+        
+         let dictionary: JsonDict = [
+            "id" : id,
+            "active" : active,
+            "title" : title,
+            "description" : description,
+            "starts" : starts,
+            "ends" : ends,
+            "spotsRemaining": spotsRemaining,
             "featureImage" : event[HacksmithsAPIClient.JSONResponseKeys.Event.featureImage]!
         ]
         return dictionary

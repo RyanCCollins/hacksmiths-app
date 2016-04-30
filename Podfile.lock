@@ -15,6 +15,7 @@ PODS:
     - SwiftyButton/CustomContent (= 0.4.0)
   - SwiftyButton/CustomContent (0.4.0):
     - PureLayout (~> 3.0)
+  - SwiftyJSON (2.3.2)
   - TextFieldEffects (1.1.1)
 
 DEPENDENCIES:
@@ -28,17 +29,23 @@ DEPENDENCIES:
   - SwiftValidator (= 3.0.3)
   - SwiftyButton
   - SwiftyButton/CustomContent
+  - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
   - TextFieldEffects
 
 EXTERNAL SOURCES:
   Spring:
     :branch: swift2
     :git: https://github.com/MengTo/Spring.git
+  SwiftyJSON:
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 CHECKOUT OPTIONS:
   Spring:
     :commit: 18d5c7b74489de8044e34767f856d1e574f0820e
     :git: https://github.com/MengTo/Spring.git
+  SwiftyJSON:
+    :commit: 2a5b70f06001316d4fb54501edc70b4084705da0
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
   Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
@@ -51,6 +58,7 @@ SPEC CHECKSUMS:
   SwiftSpinner: 11c2c5ec7443d92f3026d3067ca8a91d4adef13f
   SwiftValidator: 0b6a48bf10364411b0d64c97f78665ff87ca9f8b
   SwiftyButton: fffcc0d82b2b5f9ec1681f20ee9c67bed0d5c73b
+  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   TextFieldEffects: a1a78efeb93b65c611ad287b28a068c9a4a5f5b4
 
 COCOAPODS: 0.39.0
