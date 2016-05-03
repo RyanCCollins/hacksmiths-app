@@ -59,13 +59,15 @@
         </uniquenessConstraints>
     </entity>
     <entity name="UserData" representedClassName="UserData" syncable="YES">
+        <attribute name="availabilityExplanation" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="avatarFilePath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="avatarURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="bio" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="dateUpdated" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="hasSkills" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="hasExperience" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isAvailableAsAMentor" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isAvailableForEvents" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="isPublic" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="isTopContributor" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="mobileNotifications" optional="YES" attributeType="Boolean" syncable="YES"/>
@@ -73,7 +75,7 @@
         <attribute name="needsAMentor" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="rank" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="totalHatTips" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="wantsSkills" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="wantsExperience" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="website" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="events" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Event" syncable="YES"/>
     </entity>
@@ -82,6 +84,6 @@
         <element name="EventRSVP" positionX="511" positionY="618" width="128" height="75"/>
         <element name="Organization" positionX="-92" positionY="72" width="128" height="150"/>
         <element name="Person" positionX="358" positionY="243" width="128" height="270"/>
-        <element name="UserData" positionX="126" positionY="45" width="128" height="300"/>
+        <element name="UserData" positionX="126" positionY="45" width="128" height="330"/>
     </elements>
 </model>

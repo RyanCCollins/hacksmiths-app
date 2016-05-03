@@ -229,9 +229,7 @@ extension HacksmithsAPIClient {
         
         let method = Routes.UpdateProfile
         if UserDefaults.sharedInstance().authenticated {
-            
-            let body = dictionaryForProfileUpdate()
-            
+        
             HacksmithsAPIClient.sharedInstance().taskForPOSTMethod(method, JSONBody: body, completionHandler: {succeess, result, error in
                 
                 if error != nil {
@@ -249,22 +247,6 @@ extension HacksmithsAPIClient {
         }
     }
     
-    func dictionaryForProfileUpdate()-> JsonDict {
-        let userId = UserDefaults.sharedInstance().userId
-        let mentoringDict: JsonDict = ["available": true, "needsAMentor" : false]
-        
-        let notificationsDict: JsonDict = [ "mobile" : true ]
-        let body: JsonDict = [
-            "notifications" : notificationsDict,
-            "isPublic" : true,
-            "mentoring": mentoringDict
-        ]
-        let profileDictionary: JsonDict = [
-            "user" : userId!,
-            "body": body
-        ]
-        return profileDictionary
-    }
     
     func batchDeleteAllRSVPS(completionHandler: CompletionHandler) {
         let fetchRequest = NSFetchRequest(entityName: "EventRSVP")
@@ -288,8 +270,9 @@ extension HacksmithsAPIClient {
     // This is starting to get out of hand, so we should likely setup the server to only return good data.
     func dictionaryForUserData(user: [String : AnyObject]) -> [String : AnyObject] {
         var fullName = "", bioText = "", email = "", isPublic = false, isAvailableAsAMentor = false,
-        needsAMentor = false, rank: NSNumber = 0, website = "", mobileNotifications = false, totalHatTips: NSNumber = 0,
-        isTopContributor = false
+        needsAMentor = false, rank: NSNumber = 0, website = "", mobileNotifications = false,
+        totalHatTips: NSNumber = 0, isTopContributor = false, hasExperience = "", wantsExperience = "",
+        isAvailableForEvents = false, availabilityExplanation = ""
         
         if let name = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.name] as? JsonDict {
             let firstName = name["first"] as? String
@@ -324,6 +307,13 @@ extension HacksmithsAPIClient {
             totalHatTips = hatTips
         }
         
+        if let availabilityDict = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.EventInvolvement.dictKey] as? JsonDict {
+            isAvailableForEvents = availabilityDict[HacksmithsAPIClient.JSONResponseKeys.MemberData.EventInvolvement.availability.isAvailableForEvents] as! Bool
+            if let explanation = availabilityDict[HacksmithsAPIClient.JSONResponseKeys.MemberData.EventInvolvement.availability.explanation] as? String {
+                availabilityExplanation = explanation
+            }
+        }
+        
         if let notifications = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Notifications.notifications] as? JsonDict {
             mobileNotifications = notifications[HacksmithsAPIClient.JSONResponseKeys.MemberData.Notifications.mobile] as! Bool
         }
@@ -331,11 +321,14 @@ extension HacksmithsAPIClient {
         if let mentoringDictionary = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.mentoring.dictionaryKey] {
             isAvailableAsAMentor = mentoringDictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.mentoring.available] as! Bool
             needsAMentor = mentoringDictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.mentoring.needsAMentor] as! Bool
-//            if let hasSkills = mentoringDictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.mentoring.has] as? String,
-//                wantsSkills = mentoringDictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.mentoring.wants] as? String {
-//                has = hasSkills
-//                wants = wantsSkills
-//            }
+            
+            if let skillExplanation = mentoringDictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.mentoring.experience] as? String {
+                hasExperience = skillExplanation
+            }
+            
+            if let skillsWanted = mentoringDictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.mentoring.want] as? String {
+                wantsExperience = skillsWanted
+            }
         }
         
         if let userRank = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Meta.rank] as? NSNumber {
@@ -354,9 +347,13 @@ extension HacksmithsAPIClient {
             "mobile" : mobileNotifications,
             "available": isAvailableAsAMentor,
             "needsAMentor" : needsAMentor,
+            "experience": hasExperience,
+            "wantsExperience": wantsExperience,
             "updatedAt": updatedAt,
             "totalHatTips": totalHatTips,
-            "isTopContributor": isTopContributor
+            "isTopContributor": isTopContributor,
+            "isAvailableForEvents" : isAvailableForEvents,
+            "explanation": availabilityExplanation
         ]
         
         //Photo can be nil, so we need to protect against that

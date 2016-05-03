@@ -9,68 +9,25 @@
 import UIKit
 import CoreData
 
-class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
+protocol ProfileUserDataDelegate {
+    func didSetUserData(userData: UserData)
+}
+
+class ProfileViewController: UIViewController, UINavigationControllerDelegate {
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var editButton: UIBarButtonItem!
 
-    @IBOutlet weak var profileImageView: CircularImageView!
+    
+    @IBOutlet var profileImageView: RCCircularImageView!
     @IBOutlet weak var profileTextView: UITextView!
     @IBOutlet weak var descriptionTextField: UITextView!
 
-    @IBOutlet weak var profilePhotoViewOverlay: UIView!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var noDataFoundLabel: UILabel!
-    
-    var imageToUpload: UIImage? = nil
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        getMostUpToDateDataFromAPI()
-        
-    }
-    
-    func getMostUpToDateDataFromAPI() {
-        
-        // If the user is authenticated then create a request to get the profile data:
-        if UserDefaults.sharedInstance().authenticated == true {
-            let userID = UserDefaults.sharedInstance().userId
-            
-            // Protect against the UserID being nil, for some reason
-            guard userID != nil || userID != "" else {
-                return
-            }
-            
-            let dictionary: [String : AnyObject] = [ "user" : userID! ]
-            print(userID!)
-            HacksmithsAPIClient.sharedInstance().getUserDataFromAPI(dictionary, completionHandler: {success, error in
-                
-                if error != nil {
-                    self.alertController(withTitles: ["Ok", "Retry"], message: error!.localizedDescription, callbackHandler: [nil,{Void in
-                            self.getMostUpToDateDataFromAPI()
-                    }])
-                } else {
-                    
-                    self.performUserFetch()
-                    self.updateUIForUser()
-                }
-            })
-        }
-    }
-    
-    func updateUIForUser() {
-        if let user = fetchedResultsController.fetchedObjects![0] as? UserData {
-            dispatch_async(GlobalMainQueue, {
-                self.nameLabel.text = user.name
-                self.descriptionTextField.text = user.bio
-                self.profileImageView.userImage = user.image
 
-            })
-        }
-    }
+    @IBOutlet weak var websiteTextView: UITextView!
+    
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -78,11 +35,28 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         // Toggle the UI state when view appears to insure that the right elements are hidden.
         toggleEditMode(editing)
         
-        // Set the profile image view image to the avatar missing if there is no photo.
-        if profileImageView.image == nil {
-            profileImageView.image = UIImage(named: "avatar-missing")
+        syncUIWithProfileData()
+    }
+    
+    func syncUIWithProfileData() {
+        var userData: UserData?
+        if let usersData = ProfileDataFetcher.sharedInstance.userData {
+            setUIForUserData(<#T##userData: UserData##UserData#>)
         }
     }
+    
+    func setUIForUserData(userData: UserData) {
+        dispatch_async(GlobalMainQueue, {
+            self.nameLabel.text = userData.name
+            self.descriptionTextField.text = userData.bio
+            self.profileImageView.userImage = userData.image
+            
+            if let website = userData.website {
+                self.websiteTextView.text = website
+            }
+        })
+    }
+
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
@@ -122,37 +96,4 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         // TODO: Upload changes to the profile to the server.
         toggleEditMode(false)
     }
-    
-    lazy var fetchedResultsController: NSFetchedResultsController = {
-        let sortPriority = NSSortDescriptor(key: "dateUpdated", ascending: false)
-        let userDataFetch = NSFetchRequest(entityName: "UserData")
-        userDataFetch.sortDescriptors = [sortPriority]
-        
-        let fetchResultsController = NSFetchedResultsController(fetchRequest: userDataFetch, managedObjectContext: self.sharedContext, sectionNameKeyPath: nil, cacheName: nil)
-        
-        do {
-            try fetchResultsController.performFetch()
-        } catch let error {
-            print(error)
-        }
-        
-        return fetchResultsController
-    }()
-    
-    func performUserFetch() {
-        do {
-            
-            try fetchedResultsController.performFetch()
-            
-        } catch let error as NSError {
-            self.alertController(withTitles: ["OK", "Retry"], message: error.localizedDescription, callbackHandler: [nil, {Void in
-                self.performUserFetch()
-                }])
-        }
-    }
-    
-    var sharedContext: NSManagedObjectContext {
-        return CoreDataStackManager.sharedInstance().managedObjectContext
-    }
-    
 }

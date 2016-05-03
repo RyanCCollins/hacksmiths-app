@@ -12,10 +12,17 @@
 import UIKit
 import Spring
 
+protocol SettingsDelegate {
+    func didSetUserData(user: UserData)
+}
+
 class SettingsViewController: UIViewController {
+    @IBOutlet weak var pushNotificationsSwitch: UISwitch!
+    @IBOutlet weak var availableForEvents: UISwitch!
 
     @IBOutlet weak var modalView: SpringView!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var publicProfileToggle: UISwitch!
     
     var userData: UserData? = nil
     var codeText: String = ""
@@ -23,9 +30,30 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         modalView.transform = CGAffineTransformMakeTranslation(-300, 0)
+    }
+    
+    
+    func setupView() {
+        
+    }
+    
+    
+    @IBAction func didTapPushNotificationsToggle(sender: UISwitch) {
+        
+    }
+    
+    @IBAction func didTapAvailableForEvents(sender: UISwitch) {
+        
+    }
+    
+    @IBAction func didTapPublicProfile(sender: UISwitch) {
+        
+    }
+    
+    
+    func setUIForUserData(userData: UserData){
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -48,4 +76,6 @@ class SettingsViewController: UIViewController {
             self.dismissViewControllerAnimated(false, completion: nil)
         })
     }
+    
+    
 }

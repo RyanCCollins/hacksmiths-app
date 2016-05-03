@@ -26,8 +26,10 @@ class UserData: NSManagedObject {
     @NSManaged var needsAMentor: Bool
     @NSManaged var totalHatTips: NSNumber
     @NSManaged var dateUpdated: NSDate
-    @NSManaged var hasSkills: String?
-    @NSManaged var wantsSkills: String?
+    @NSManaged var hasExperience: String?
+    @NSManaged var wantsExperience: String?
+    @NSManaged var isAvailableForEvents: Bool
+    @NSManaged var availabilityExplanation: String
     
     // Standard required init for the entity
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
@@ -70,18 +72,20 @@ class UserData: NSManagedObject {
         isAvailableAsAMentor = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.mentoring.available] as! Bool
         needsAMentor = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.mentoring.needsAMentor] as! Bool
         
+        isAvailableForEvents = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.EventInvolvement.availability.isAvailableForEvents] as! Bool
+        
+        hasExperience = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.mentoring.experience] as! String
+        
+        wantsExperience = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.mentoring.wantsExperience] as! String
+        
+        if let explanation = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.EventInvolvement.availability.explanation] as? String {
+            availabilityExplanation = explanation
+        }
+        
         let updatedAt = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.updatedAt] as? String
         
         if let updateDate = dateFromString(updatedAt!) {
             dateUpdated = updateDate
-        }
-        
-        if let has = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.mentoring.has] as? String {
-            hasSkills = has
-        }
-        
-        if let wants = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.mentoring.want] as? String {
-            wantsSkills = wants
         }
     }
     
