@@ -36,7 +36,7 @@ class EventRSVP: NSManagedObject {
         }
     }
     
-    func findEvent(fromId id: String)-> Event?{
+    func findEvent(fromId id: String)-> Event? {
         let fetchPredicate = NSPredicate(format: "eventID == %@", id)
         let fetchRequest = NSFetchRequest(entityName: "Event")
         fetchRequest.predicate = fetchPredicate
@@ -80,7 +80,7 @@ class EventRSVP: NSManagedObject {
                 return nil
             }
             
-        } catch let error as NSError {
+        } catch let _ as NSError {
             print("Error fetching person in EventRSVP")
             return nil
         }

@@ -52,7 +52,7 @@ class Event: NSManagedObject {
         /* Assign our properties */
         eventID = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.id] as! String
         title = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.title] as! String
-        descriptionString = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.description] as! String
+        descriptionString = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.description] as? String
         
         
         if let spots = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.spotsRemaining] as? Int {

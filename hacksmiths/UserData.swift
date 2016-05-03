@@ -26,6 +26,8 @@ class UserData: NSManagedObject {
     @NSManaged var needsAMentor: Bool
     @NSManaged var totalHatTips: NSNumber
     @NSManaged var dateUpdated: NSDate
+    @NSManaged var hasSkills: String?
+    @NSManaged var wantsSkills: String?
     
     // Standard required init for the entity
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
@@ -72,6 +74,14 @@ class UserData: NSManagedObject {
         
         if let updateDate = dateFromString(updatedAt!) {
             dateUpdated = updateDate
+        }
+        
+        if let has = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.mentoring.has] as? String {
+            hasSkills = has
+        }
+        
+        if let wants = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.mentoring.want] as? String {
+            wantsSkills = wants
         }
     }
     

@@ -211,17 +211,12 @@ extension CommunityViewController {
         var person: Person? = nil
         
         if indexPath.section == Sections.Leaders {
-            
             person = fetchedResultsController.objectAtIndexPath(indexPath) as? Person
-            
-            
         } else if indexPath.section == Sections.Community {
-            
             person = communityFetchResultsController.objectAtIndexPath(indexPath) as? Person
             
         }
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("PersonTableViewCell") as! PersonTableViewCell
         let personView = storyboard?.instantiateViewControllerWithIdentifier("PersonViewController") as! PersonViewController
         personView.person = person
         

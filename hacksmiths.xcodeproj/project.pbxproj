@@ -69,6 +69,7 @@
 		1FC6DE471C9F6DC5000E8159 /* RegistrationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC6DE461C9F6DC5000E8159 /* RegistrationData.swift */; };
 		1FE4B30D1C6ADAC10011ECAE /* octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1FE4B30C1C6ADAC10011ECAE /* octicons.ttf */; };
 		1FE4B3131C6ADE050011ECAE /* PersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE4B3121C6ADE050011ECAE /* PersonViewController.swift */; };
+		1FE5F91B1CD8288800487CA8 /* CircularImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE5F91A1CD8288800487CA8 /* CircularImageView.swift */; };
 		1FF998921C6EB359003D98B2 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF998911C6EB359003D98B2 /* MainTabBarController.swift */; };
 		1FF998971C6FAE3E003D98B2 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF998961C6FAE3E003D98B2 /* Person.swift */; };
 		1FF998991C6FAEDE003D98B2 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF998981C6FAEDE003D98B2 /* Event.swift */; };
@@ -167,6 +168,7 @@
 		1FC6DE461C9F6DC5000E8159 /* RegistrationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationData.swift; sourceTree = "<group>"; };
 		1FE4B30C1C6ADAC10011ECAE /* octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = octicons.ttf; path = hacksmiths/octicons.ttf; sourceTree = "<group>"; };
 		1FE4B3121C6ADE050011ECAE /* PersonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonViewController.swift; sourceTree = "<group>"; };
+		1FE5F91A1CD8288800487CA8 /* CircularImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularImageView.swift; sourceTree = "<group>"; };
 		1FF998911C6EB359003D98B2 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		1FF998961C6FAE3E003D98B2 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		1FF998981C6FAEDE003D98B2 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
@@ -403,6 +405,7 @@
 				1F6C69E71CCC6BB700F15247 /* PersonCollectionViewCell.swift */,
 				1FF998A01C71387C003D98B2 /* PersonTableViewCell.swift */,
 				1FF998A31C713931003D98B2 /* LeaderBoardTableViewCell.swift */,
+				1FE5F91A1CD8288800487CA8 /* CircularImageView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -641,6 +644,7 @@
 				1F6C69EA1CCC72EA00F15247 /* EventRSVP.swift in Sources */,
 				1F44B1BA1C5DDAB9004E196D /* CoreDataStackManager.swift in Sources */,
 				1FF998A41C713931003D98B2 /* LeaderBoardTableViewCell.swift in Sources */,
+				1FE5F91B1CD8288800487CA8 /* CircularImageView.swift in Sources */,
 				1F4B4DF81C72574700A75F5D /* OnePasswordExtension.m in Sources */,
 				1FF9989D1C6FB060003D98B2 /* Organization.swift in Sources */,
 				1FF998991C6FAEDE003D98B2 /* Event.swift in Sources */,

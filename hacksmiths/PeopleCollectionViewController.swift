@@ -59,8 +59,6 @@ class PeopleCollectionViewController: UICollectionViewController {
     }
     
     func fetchEventAttendees() {
-
-        
         guard let eventId = self.currentEvent?.eventID else {
             return
         }
@@ -81,9 +79,9 @@ class PeopleCollectionViewController: UICollectionViewController {
         if self.currentEvent != nil {
             eventId = self.currentEvent!.eventID
         }
-        
         let rsvpFetch = NSFetchRequest(entityName: "EventRSVP")
         let eventPredicate = NSPredicate(format: "%K == %@", "event.eventId", eventId)
+        rsvpFetch.sortDescriptors = []
         
         let fetchResultsController = NSFetchedResultsController(fetchRequest: rsvpFetch, managedObjectContext: self.sharedContext, sectionNameKeyPath: nil, cacheName: nil)
         

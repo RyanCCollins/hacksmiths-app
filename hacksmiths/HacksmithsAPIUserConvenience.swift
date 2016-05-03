@@ -288,7 +288,8 @@ extension HacksmithsAPIClient {
     // This is starting to get out of hand, so we should likely setup the server to only return good data.
     func dictionaryForUserData(user: [String : AnyObject]) -> [String : AnyObject] {
         var fullName = "", bioText = "", email = "", isPublic = false, isAvailableAsAMentor = false,
-        needsAMentor = false, rank: NSNumber = 0, website = "", mobileNotifications = false
+        needsAMentor = false, rank: NSNumber = 0, website = "", mobileNotifications = false, totalHatTips: NSNumber = 0,
+        isTopContributor = false
         
         if let name = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.name] as? JsonDict {
             let firstName = name["first"] as? String
@@ -296,8 +297,15 @@ extension HacksmithsAPIClient {
             fullName = "\(firstName!) \(lastName!)"
         }
         
+        if let topContributor = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Meta.isTopContributor] as? Bool {
+            isTopContributor = topContributor
+        }
+        
+        
         if let bio = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.bio] as? JsonDict {
-            bioText = bio[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.bioMD] as? String ?? ""
+            if let bioMD = bio[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.bioMD] as? String {
+                bioText = bioMD
+            }
         }
         
         if let userWebsite = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.website] as? String {
@@ -312,6 +320,10 @@ extension HacksmithsAPIClient {
             isPublic = publicStatus
         }
         
+        if let hatTips = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.totalHatTips] as? NSNumber {
+            totalHatTips = hatTips
+        }
+        
         if let notifications = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Notifications.notifications] as? JsonDict {
             mobileNotifications = notifications[HacksmithsAPIClient.JSONResponseKeys.MemberData.Notifications.mobile] as! Bool
         }
@@ -319,13 +331,18 @@ extension HacksmithsAPIClient {
         if let mentoringDictionary = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.mentoring.dictionaryKey] {
             isAvailableAsAMentor = mentoringDictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.mentoring.available] as! Bool
             needsAMentor = mentoringDictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.mentoring.needsAMentor] as! Bool
+//            if let hasSkills = mentoringDictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.mentoring.has] as? String,
+//                wantsSkills = mentoringDictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.mentoring.wants] as? String {
+//                has = hasSkills
+//                wants = wantsSkills
+//            }
         }
         
         if let userRank = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.Meta.rank] as? NSNumber {
             rank = userRank
         }
-
-        let updatedAt = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.updatedAt] as? String ?? ""
+        
+        let updatedAt = user[HacksmithsAPIClient.JSONResponseKeys.MemberData.updatedAt] as! String
         
         var dictionary: [String : AnyObject] = [
             "name" : fullName,
@@ -335,9 +352,11 @@ extension HacksmithsAPIClient {
             "isPublic" : isPublic,
             "rank" : rank,
             "mobile" : mobileNotifications,
-            "isAvailableAsAMentor": isAvailableAsAMentor,
+            "available": isAvailableAsAMentor,
             "needsAMentor" : needsAMentor,
-            "updatedAt": updatedAt
+            "updatedAt": updatedAt,
+            "totalHatTips": totalHatTips,
+            "isTopContributor": isTopContributor
         ]
         
         //Photo can be nil, so we need to protect against that
@@ -348,6 +367,4 @@ extension HacksmithsAPIClient {
 
         return dictionary
     }
-    
-
 }

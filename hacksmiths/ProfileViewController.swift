@@ -13,12 +13,9 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     
     @IBOutlet weak var nameLabel: UILabel!
-    
     @IBOutlet weak var editButton: UIBarButtonItem!
 
-    @IBOutlet weak var nameTextField: UITextField!
-
-    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var profileImageView: CircularImageView!
     @IBOutlet weak var profileTextView: UITextView!
     @IBOutlet weak var descriptionTextField: UITextView!
 
@@ -28,10 +25,12 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     var imageToUpload: UIImage? = nil
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         getMostUpToDateDataFromAPI()
+        
     }
     
     func getMostUpToDateDataFromAPI() {
@@ -64,9 +63,12 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     func updateUIForUser() {
         if let user = fetchedResultsController.fetchedObjects![0] as? UserData {
-            nameLabel.text = user.name
-            descriptionTextField.text = user.bio
-            profileImageView.image = user.image
+            dispatch_async(GlobalMainQueue, {
+                self.nameLabel.text = user.name
+                self.descriptionTextField.text = user.bio
+                self.profileImageView.userImage = user.image
+
+            })
         }
     }
     
@@ -112,8 +114,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         editButton.title = editing ? "Save" : "Edit"
         cancelButton.enabled = editing
         nameLabel.hidden = editing
-        nameTextField.hidden = !editing
-        
         descriptionTextField.editable = editing
         
     }

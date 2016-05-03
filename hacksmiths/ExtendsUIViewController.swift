@@ -11,17 +11,6 @@ import Spring
 
 class ExtendsUIViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
 
     func minimizeView(sender: AnyObject) {
         SpringAnimation.spring(0.7, animations: {

@@ -48,16 +48,9 @@ class Person: NSManagedObject {
         // Protect against nil values.
         if let lname = name["last"] as? String, fname = name["first"] as? String {
             lastName = lname
-        } else {
-            lastName = ""
-        }
-        
-        if let fname = name["first"] as? String {
             firstName = fname
-        } else {
-            firstName = ""
         }
-        
+    
         if let userEmail = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.email] as? String {
             email = userEmail
         }
