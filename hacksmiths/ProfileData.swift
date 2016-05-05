@@ -15,13 +15,15 @@ class ProfileDataFetcher: NSObject {
     var userData: UserData?
     var requiresFetch = true
     
-    func fetchUserDataFromAPI(completionHandler: CompletionHandler) {
+    // Public interface for fetching and updating data from API
+    internal func fetchAndUpdateData(completionHandler: CompletionHandler) {
         // If the user is authenticated then create a request to get the profile data:
         if UserDefaults.sharedInstance().authenticated == true {
             let userID = UserDefaults.sharedInstance().userId
             
             // Protect against the UserID being nil, for some reason
             guard userID != nil || userID != "" else {
+                completionHandler(success: false, error: Errors.constructError(domain: "ProfileDataFetcher", userMessage: "An error occured connecting you to the server.  If the problem continues, please log out and log back in."))
                 return
             }
             
@@ -35,6 +37,7 @@ class ProfileDataFetcher: NSObject {
                     
                     self.performUserFetch({success, userData, error in
                         if error != nil {
+                            self.requiresFetch = true
                             completionHandler(success: false, error: error)
                         } else {
                             self.requiresFetch = false
@@ -49,7 +52,7 @@ class ProfileDataFetcher: NSObject {
     
     
     // Update profile data when userData has changed.
-    func updateProfileData(completionHandler: CompletionHandler) {
+    internal func updateProfileData(completionHandler: CompletionHandler) {
         
         if let profileDict = dictForProfileUpdate() {
             HacksmithsAPIClient.sharedInstance().updateProfile(profileDict, completionHandler: {success, error in
@@ -57,6 +60,7 @@ class ProfileDataFetcher: NSObject {
                 if error != nil {
                     completionHandler(success: false, error: error)
                 } else {
+                    self.requiresFetch = true
                     completionHandler(success: true, error: nil)
                 }
                 
@@ -66,10 +70,8 @@ class ProfileDataFetcher: NSObject {
         }
     }
     
-    func dictForProfileUpdate() -> JsonDict? {
-        
+    private func dictForProfileUpdate() -> JsonDict? {
         if let userProfileData = userData {
-            
             let id = UserDefaults.sharedInstance().userId
             
             guard id != nil else {
@@ -125,7 +127,7 @@ class ProfileDataFetcher: NSObject {
         return availabilityDict
     }
     
-    lazy var fetchedResultsController: NSFetchedResultsController = {
+    private lazy var fetchedResultsController: NSFetchedResultsController = {
         let sortPriority = NSSortDescriptor(key: "dateUpdated", ascending: false)
         let userDataFetch = NSFetchRequest(entityName: "UserData")
         userDataFetch.sortDescriptors = [sortPriority]
@@ -141,7 +143,7 @@ class ProfileDataFetcher: NSObject {
         return fetchResultsController
     }()
     
-    func performUserFetch(completionHandlerWithUserData: CompletionHandlerWithUserData) {
+    private func performUserFetch(completionHandlerWithUserData: CompletionHandlerWithUserData) {
         do {
             
             try fetchedResultsController.performFetch()
@@ -157,7 +159,7 @@ class ProfileDataFetcher: NSObject {
         }
     }
     
-    var sharedContext: NSManagedObjectContext {
+    private var sharedContext: NSManagedObjectContext {
         return CoreDataStackManager.sharedInstance().managedObjectContext
     }
     

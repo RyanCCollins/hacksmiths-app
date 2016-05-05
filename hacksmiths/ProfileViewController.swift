@@ -18,7 +18,6 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var editButton: UIBarButtonItem!
 
-    
     @IBOutlet var profileImageView: RCCircularImageView!
     @IBOutlet weak var profileTextView: UITextView!
     @IBOutlet weak var descriptionTextField: UITextView!
@@ -39,10 +38,23 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
     }
     
     func syncUIWithProfileData() {
-        var userData: UserData?
-        if let usersData = ProfileDataFetcher.sharedInstance.userData {
-            setUIForUserData(<#T##userData: UserData##UserData#>)
+        if ProfileDataFetcher.sharedInstance.requiresFetch || ProfileDataFetcher.sharedInstance.userData == nil {
+            ProfileDataFetcher.sharedInstance.fetchAndUpdateData({success, error in
+                
+                if error != nil {
+                    self.alertController(withTitles: ["Ok"], message: (error?.localizedDescription)!, callbackHandler: [nil])
+                } else {
+                    
+                    // Recursively set the profile data once it has been updated
+                    self.syncUIWithProfileData()
+                }
+                
+            })
+            
+        } else {
+            setUIForUserData(ProfileDataFetcher.sharedInstance.userData!)
         }
+        
     }
     
     func setUIForUserData(userData: UserData) {
