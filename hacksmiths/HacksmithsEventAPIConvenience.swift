@@ -15,34 +15,30 @@ extension HacksmithsAPIClient {
     
     func fetchEventsFromAPI(completionHandler: CompletionHandler) {
         Alamofire.request(.GET, "https://hacksmiths.io/api/app/event-status", parameters: nil, encoding: .URL, headers: nil)
-            .validate()
-            .responseJSON(completionHandler: {response in
-                guard response.result.isSuccess else {
-                    completionHandler(success: false, error: Errors.constructError(domain: "HacksmithsAPIClient", userMessage: "Unable to check event status from network.  Please try again."))
-                    return
+            .responseJson(completionHandler: {response in
+                
+                switch response.result {
+                case .Success(let JSON):
+                    let response = JSON as! JsonDict
+                    let dictionaryForEvent = self.dictionaryForEvent(response)
+                    let event = Event(dictionary: dictionaryForEvent, context: self.sharedContext)
+                    self.sharedContext.performBlockAndWait({
+                        CoreDataStackManager.sharedInstance().saveContext()
+                    })
+                    
+                    let organizationDict = self.dictionaryForOrganization(response)
+                    let organization = Organization(dictionary: organizationDict, context: self.sharedContext)
+                    event.organization = organization
+                    
+                    self.sharedContext.performBlockAndWait({
+                        CoreDataStackManager.sharedInstance().saveContext()
+                    })
+                    
+                    completionHandler(success: true, error: false)
+                    
+                case .Failure(let error):
+                    completionHandler(success: false, error: error)
                 }
-                guard let value = response.result.value as? NSData else {
-                    completionHandler(success: false, error: GlobalErrors.GenericNetworkError)
-                    return
-                }
-            
-                let jsonData = JSON(data: value)
-                let dictionaryForEvent = self.dictionaryForEvent(jsonData)
-                let event = Event(dictionary: dictionaryForEvent, context: self.sharedContext)
-                self.sharedContext.performBlockAndWait({
-                    CoreDataStackManager.sharedInstance().saveContext()
-                })
-                
-                let organizationDict = self.dictionaryForOrganization(jsonData)
-                let organization = Organization(dictionary: organizationDict, context: self.sharedContext)
-                
-                event.organization = organization
-                
-                self.sharedContext.performBlockAndWait({
-                    CoreDataStackManager.sharedInstance().saveContext()
-                })
-                
-                completionHandler(success: true, error: nil)
         })
     }
     

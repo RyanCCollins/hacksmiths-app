@@ -12,10 +12,6 @@
 import UIKit
 import Spring
 
-protocol SettingsDelegate {
-    func didSetUserData(user: UserData)
-}
-
 class SettingsViewController: UIViewController {
     @IBOutlet weak var pushNotificationsSwitch: UISwitch!
     @IBOutlet weak var availableForEvents: UISwitch!
@@ -24,41 +20,47 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var publicProfileToggle: UISwitch!
     
-    var userData: UserData? = nil
-    var codeText: String = ""
-    var data: SpringView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         modalView.transform = CGAffineTransformMakeTranslation(-300, 0)
     }
     
     
-    func setupView() {
-        
-    }
-    
-    
     @IBAction func didTapPushNotificationsToggle(sender: UISwitch) {
-        
+        if ProfileDataFetcher.sharedInstance.userData != nil {
+            ProfileDataFetcher.sharedInstance.userData?.mobileNotifications = sender.on
+        }
     }
     
     @IBAction func didTapAvailableForEvents(sender: UISwitch) {
-        
+        if ProfileDataFetcher.sharedInstance.userData != nil {
+            ProfileDataFetcher.sharedInstance.userData?.isAvailableForEvents = sender.on
+        }
     }
     
     @IBAction func didTapPublicProfile(sender: UISwitch) {
-        
+        if ProfileDataFetcher.sharedInstance.userData != nil {
+            ProfileDataFetcher.sharedInstance.userData?.isPublic = sender.on
+        }
     }
     
     
-    func setUIForUserData(userData: UserData){
-        
+    func setUIForUserData(){
+        if ProfileDataFetcher.sharedInstance.userData != nil {
+            
+            let notificationsIsOn = ProfileDataFetcher.sharedInstance.userData?.mobileNotifications
+            let isAvailableForEvents = ProfileDataFetcher.sharedInstance.userData?.isAvailableForEvents
+            let publicProfile = ProfileDataFetcher.sharedInstance.userData?.isPublic
+            
+            pushNotificationsSwitch.setOn(notificationsIsOn!, animated: false)
+            availableForEvents.setOn(isAvailableForEvents!, animated: false)
+            publicProfileToggle.setOn(publicProfile!, animated: false)
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+        setUIForUserData()
     }
 
     override func viewDidAppear(animated: Bool) {

@@ -10,6 +10,10 @@ import UIKit
 import CoreData
 
 
+protocol ProfileDataUpdateDelegate {
+    func didUpdateUserProfileData(userData: UserData)
+}
+
 class ProfileDataFetcher: NSObject {
     static let sharedInstance = ProfileDataFetcher()
     var userData: UserData?
