@@ -18,23 +18,27 @@ extension HacksmithsAPIClient {
             .responseJSON(completionHandler: {response in
                 
                 switch response.result {
-                case .Success(let JSONData):
-                    let jsonResponse = JSON(data: JSONData)
-                    let dictionaryForEvent = self.dictionaryForEvent(jsonResponse)
-                    let event = Event(dictionary: dictionaryForEvent, context: self.sharedContext)
-                    self.sharedContext.performBlockAndWait({
-                        CoreDataStackManager.sharedInstance().saveContext()
-                    })
+                case .Success(let responseData):
                     
-                    let organizationDict = self.dictionaryForOrganization(jsonResponse)
-                    let organization = Organization(dictionary: organizationDict, context: self.sharedContext)
-                    event.organization = organization
-                    
-                    self.sharedContext.performBlockAndWait({
-                        CoreDataStackManager.sharedInstance().saveContext()
-                    })
-                    
-                    completionHandler(success: true, error: nil)
+                    if let dataFromString = responseData.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
+                        let json = JSON(data: dataFromString)
+                        
+                        let dictionaryForEvent = self.dictionaryForEvent(json)
+                        let event = Event(dictionary: dictionaryForEvent, context: self.sharedContext)
+                        self.sharedContext.performBlockAndWait({
+                            CoreDataStackManager.sharedInstance().saveContext()
+                        })
+                        
+                        let organizationDict = self.dictionaryForOrganization(json)
+                        let organization = Organization(dictionary: organizationDict, context: self.sharedContext)
+                        
+                        self.sharedContext.performBlockAndWait({
+                            CoreDataStackManager.sharedInstance().saveContext()
+                        })
+                        
+                        completionHandler(success: true, error: nil)
+                        
+                    }
                     
                 case .Failure(let error):
                     completionHandler(success: false, error: error)
