@@ -7,6 +7,27 @@ PODS:
     - Fabric (~> 1.6.3)
   - Fabric (1.6.6)
   - FontAwesome-iOS (0.0.4)
+  - Gloss (0.7.3)
+  - NVActivityIndicatorView (2.5)
+  - OMGHTTPURLRQ (3.1.1):
+    - OMGHTTPURLRQ/RQ (= 3.1.1)
+  - OMGHTTPURLRQ/FormURLEncode (3.1.1)
+  - OMGHTTPURLRQ/RQ (3.1.1):
+    - OMGHTTPURLRQ/FormURLEncode
+    - OMGHTTPURLRQ/UserAgent
+  - OMGHTTPURLRQ/UserAgent (3.1.1)
+  - PromiseKit (3.1.1):
+    - PromiseKit/Foundation (= 3.1.1)
+    - PromiseKit/QuartzCore (= 3.1.1)
+    - PromiseKit/UIKit (= 3.1.1)
+  - PromiseKit/CorePromise (3.1.1)
+  - PromiseKit/Foundation (3.1.1):
+    - OMGHTTPURLRQ (~> 3.1.0)
+    - PromiseKit/CorePromise
+  - PromiseKit/QuartzCore (3.1.1):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (3.1.1):
+    - PromiseKit/CorePromise
   - PureLayout (3.0.1)
   - Spring (1.0.3)
   - SwiftSpinner (0.8.0)
@@ -24,6 +45,9 @@ DEPENDENCIES:
   - Crashlytics
   - Fabric
   - FontAwesome-iOS
+  - Gloss (~> 0.7)
+  - NVActivityIndicatorView (~> 2.5)
+  - PromiseKit
   - Spring (from `https://github.com/MengTo/Spring.git`, branch `swift2`)
   - SwiftSpinner
   - SwiftValidator (= 3.0.3)
@@ -53,6 +77,10 @@ SPEC CHECKSUMS:
   Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
   Fabric: 1abc1e59f11fa39ede6f690ef7309d8563e3ec59
   FontAwesome-iOS: 0fd503f7ae46780e17c2dd98e70fed30b5f90322
+  Gloss: c97a95d6279821f35fa0138700bce0391bce87c1
+  NVActivityIndicatorView: 18e82784c9cb2d5f3df3129a3e4754eb075ebca0
+  OMGHTTPURLRQ: 633f98ee745aeda02345935a52eec1784cddb589
+  PromiseKit: 4e8127c22a9b29d1b44958ab2ec762ea6115cbfb
   PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
   Spring: 3f02b5dc3308572ef177b3cad0fa7bbc4b0706f7
   SwiftSpinner: 11c2c5ec7443d92f3026d3067ca8a91d4adef13f

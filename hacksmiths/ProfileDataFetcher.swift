@@ -17,7 +17,7 @@ protocol ProfileDataUpdateDelegate {
 class ProfileDataFetcher: NSObject {
     static let sharedInstance = ProfileDataFetcher()
     var userData: UserData?
-    var requiresFetch = true
+    private var requiresFetch = true
     
     // Public interface for fetching and updating data from API
     internal func fetchAndUpdateData(completionHandler: CompletionHandler) {

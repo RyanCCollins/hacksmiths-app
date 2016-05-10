@@ -6,12 +6,12 @@
 //  Copyright © 2016 Tech Rapport. All rights reserved.
 //
 
-import UIKit
+import Gloss
 import CoreData
 
 @objc(Event)
 
-class Event: NSManagedObject {
+class Event: NSManagedObject, Decodable {
     
     @NSManaged var eventID: String
     @NSManaged var title: String
@@ -34,6 +34,12 @@ class Event: NSManagedObject {
     @NSManaged var featureImageURL: String?
     @NSManaged var featureImageFilePath: String?
     @NSManaged var participants: [Person]
+    
+    init(json: JSON) {
+        self.eventID = "id" <~~ json
+        self.title = "title" <~~ json
+        
+    }
     
     
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {

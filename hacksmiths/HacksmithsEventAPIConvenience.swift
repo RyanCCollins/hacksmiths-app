@@ -15,18 +15,18 @@ extension HacksmithsAPIClient {
     
     func fetchEventsFromAPI(completionHandler: CompletionHandler) {
         Alamofire.request(.GET, "https://hacksmiths.io/api/app/event-status", parameters: nil, encoding: .URL, headers: nil)
-            .responseJson(completionHandler: {response in
+            .responseJSON(completionHandler: {response in
                 
                 switch response.result {
-                case .Success(let JSON):
-                    let response = JSON as! JsonDict
-                    let dictionaryForEvent = self.dictionaryForEvent(response)
+                case .Success(let JSONData):
+                    let jsonResponse = JSON(data: JSONData)
+                    let dictionaryForEvent = self.dictionaryForEvent(jsonResponse)
                     let event = Event(dictionary: dictionaryForEvent, context: self.sharedContext)
                     self.sharedContext.performBlockAndWait({
                         CoreDataStackManager.sharedInstance().saveContext()
                     })
                     
-                    let organizationDict = self.dictionaryForOrganization(response)
+                    let organizationDict = self.dictionaryForOrganization(jsonResponse)
                     let organization = Organization(dictionary: organizationDict, context: self.sharedContext)
                     event.organization = organization
                     
@@ -34,7 +34,7 @@ extension HacksmithsAPIClient {
                         CoreDataStackManager.sharedInstance().saveContext()
                     })
                     
-                    completionHandler(success: true, error: false)
+                    completionHandler(success: true, error: nil)
                     
                 case .Failure(let error):
                     completionHandler(success: false, error: error)
@@ -83,134 +83,13 @@ extension HacksmithsAPIClient {
                 })
                 
                 completionHandler(success: true, error: nil)
-                
         })
     }
-    
-    
-//    // Fetch events, organization and attendees from the API
-//    func checkAPIForEvents(completionHandler: CompletionHandler) {
-//        let method = Routes.EventStatus
-//        
-//        
-//        taskForGETMethod(method, parameters: nil, completionHandler: {success, result, error in
-//            if error != nil {
-//                completionHandler(success: false, error: error)
-//            } else {
-//                if result != nil {
-//                     
-//                    if let success = result[HacksmithsAPIClient.JSONResponseKeys.Success] as? Bool,
-//                           eventDict = result[HacksmithsAPIClient.JSONResponseKeys.Event.event] as? JsonDict {
-//                        
-//                        if success != true {
-//                            
-//                            completionHandler(success: false, error: Errors.constructError(domain: "HacksmithsAPIClient", userMessage: "An unknown error occured while downloading data from the network.  Please try again."))
-//                            
-//                        } else {
-//                            
-//                            let event = Event(dictionary: self.dictionaryForEvent(eventDict), context: self.sharedContext)
-//                            let organization = Organization(dictionary: self.dictionaryForOrganization(eventDict), context: self.sharedContext)
-//                            organization.fetchImage({success, error in
-//                                if error != nil {
-//                                    
-//                                    completionHandler(success: false, error: error)
-//                                    
-//                                } else {
-//                                   
-//                                    /*  Save our new event and our organization */
-//                                    self.sharedContext.performBlockAndWait( {
-//                                        CoreDataStackManager.sharedInstance().saveContext()
-//                                    })
-//                                    
-//                                    // Set the organization for the event and then carry on
-//                                    event.organization = organization
-//                                    self.sharedContext.performBlock({
-//                                        CoreDataStackManager.sharedInstance().saveContext()
-//                                    })
-//                                    
-//                                    self.fetchAttendees(forEvent: event, completionHandler: {success, error in
-//                                        if error != nil {
-//                                            completionHandler(success: false, error: error)
-//                                        } else {
-//                                            
-//                                            self.sharedContext.performBlockAndWait({
-//                                                CoreDataStackManager.sharedInstance().saveContext()
-//                                            })
-//                                            
-//                                            completionHandler(success: true, error: nil)
-//                                        }
-//                                    })
-//                                }
-//                            })
-//                        }
-//                    }
-//                }
-//            }
-//        })
-//    }
-//    
-//    func fetchAttendees(forEvent event: Event, completionHandler: CompletionHandler) {
-//        let eventId = event.eventID
-//        let method = Routes.EventAttendees + eventId
-//        
-//        taskForGETMethod(method, parameters: nil, completionHandler: {success, results, error in
-//            
-//            if error != nil {
-//                
-//                completionHandler(success: false, error: error)
-//                
-//            } else {
-//                
-//                if results != nil {
-//                    if let eventDict = results[HacksmithsAPIClient.JSONResponseKeys.Event.event] as? JsonDict {
-//                        
-//                        let success = eventDict["success"] as! Bool ?? false
-//                        
-//                        // Another safety check because the app would sometimes return a 200 without proper data.
-//                        // Need to debug serverside, but this is a needed safety measure at this point.
-//                        guard success == true else {
-//                            completionHandler(success: false, error: Errors.constructError(domain: "HacksmithsAPIClient", userMessage: "The server returned an unknown error.  Please try again."))
-//                            return
-//                        }
-//                        
-//                        let eventId = eventDict[HacksmithsAPIClient.JSONResponseKeys.Event._id] as! String
-//                        let attendeesArray = results[HacksmithsAPIClient.JSONResponseKeys.Event.attendees] as! [JsonDict]
-//                        
-//                        
-//                        // Batch delete the RSVPs before creating new ones.
-//                        self.batchDeleteAllRSVPS({success, error in
-//                            
-//                            if error != nil {
-//                                completionHandler(success: false, error: error)
-//                            }
-//                        })
-//                        
-//                        attendeesArray.map({attendeeDict in
-//                            
-//                            let personId = attendeeDict["id"] as! String
-//                            
-//                            let newRSVP: JsonDict = [
-//                                "eventId": eventId,
-//                                "personId": personId,
-//                            ]
-//                            let eventRSVP = EventRSVP(dictionary: newRSVP, context: self.sharedContext)
-//                        })
-//                        
-//                        // Save the context after creating the eventRSVPS.
-//                        self.sharedContext.performBlockAndWait({
-//                            CoreDataStackManager.sharedInstance().saveContext()
-//                        })
-//                        
-//                        completionHandler(success: true, error: nil)
-//                    }
-//                }
-//            }
-//        })
-//    }
+
     
     /* Takes an event dictionary and returns a dictionary for creating an event */
-    func dictionaryForEvent (eventJSON: JSON) -> JsonDict{
-        
+    private func dictionaryForEvent (eventJSON: JSON) -> JsonDict{
+        print("eventJSON: \(eventJSON)")
         let id = eventJSON[HacksmithsAPIClient.JSONResponseKeys.Event.id].string
         let active = eventJSON[HacksmithsAPIClient.JSONResponseKeys.Event.active].boolValue
         let marketingInfo = eventJSON[HacksmithsAPIClient.JSONResponseKeys.Event.marketingInfo].string ?? ""
@@ -255,8 +134,7 @@ extension HacksmithsAPIClient {
         return dictionary
     }
     
-    func dictionaryForOrganization(eventJsonDict: JSON) -> JsonDict {
-        
+    private func dictionaryForOrganization(eventJsonDict: JSON) -> JsonDict {
         var returnDict: JsonDict = [
             "id": "",
             "name": "",
@@ -293,7 +171,7 @@ extension HacksmithsAPIClient {
         return returnDict
     }
     
-    func dateFromString(dateString: String) -> NSDate? {
+    private func dateFromString(dateString: String) -> NSDate? {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm.ssZZZZZ"
         let date = dateFormatter.dateFromString(dateString)

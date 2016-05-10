@@ -39,18 +39,19 @@ class EventViewController: UIViewController {
                 
                 // Start loading the event data and then pass off loading of the event attendees.
                 self.performEventFetch()
-                self.updateUIWithNetworkData()
+                
                 
                 if let event = self.fetchedResultsController.fetchedObjects![0] as? Event {
                     self.currentEvent = event
                 }
+                self.updateUIWithNetworkData(self.currentEvent)
             }
         })
     }
     
-    func updateUIWithNetworkData() {
-        if let event = currentEvent {
-            eventImageView.image = currentEvent!.image
+    func updateUIWithNetworkData(event: Event?) {
+        if let event = event {
+            eventImageView.image = event.image
             headerLabel.text = event.title
             aboutTextView.text = event.descriptionString
         }
