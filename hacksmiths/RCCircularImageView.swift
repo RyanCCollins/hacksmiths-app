@@ -1,5 +1,5 @@
 //
-//  CircularImageView.swift
+//  RCCircularImageView
 //  hacksmiths
 //
 //  Created by Ryan Collins on 5/2/16.
@@ -10,7 +10,7 @@ import UIKit
 @IBDesignable
 
 // Built with a bit of help from: http://www.sitepoint.com/creating-custom-ui-components-live-rendering-xcode/
-class CircularImageView: UIView {
+class RCCircularImageView: UIView {
     
     var backgroundLayer: CAShapeLayer!
     var imageLayer: CALayer!

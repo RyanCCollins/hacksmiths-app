@@ -35,6 +35,7 @@ var GlobalBackgroundQueue: dispatch_queue_t {
 typealias CompletionHandlerWithResult = (success: Bool, result: AnyObject!, error: NSError?) -> Void
 typealias CompletionHandler = (success: Bool, error: NSError?) -> Void
 typealias CompletionHandlerWithImage = (image: UIImage?, error: NSError?) -> Void
+typealias CompletionHandlerWithUserData = (success: Bool, userData: UserData?, error: NSError?) -> Void
 
 // Shortcut type alias for Json Dictionary
 typealias JsonDict = [String : AnyObject]

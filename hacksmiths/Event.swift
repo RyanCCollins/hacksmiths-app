@@ -6,7 +6,6 @@
 //  Copyright © 2016 Tech Rapport. All rights reserved.
 //
 
-import UIKit
 import CoreData
 
 @objc(Event)
@@ -34,7 +33,6 @@ class Event: NSManagedObject {
     @NSManaged var featureImageURL: String?
     @NSManaged var featureImageFilePath: String?
     @NSManaged var participants: [Person]
-    
     
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)

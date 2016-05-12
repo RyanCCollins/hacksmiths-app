@@ -24,12 +24,10 @@ class PersonViewController: UIViewController {
         setViewObjectsHidden(true)
         makeImageViewCircular()
         configurePersonView()
-        
     }
     
     
     func setViewObjectsHidden(hidden: Bool) {
-
         personNameLabel.hidden = hidden
         personDescriptionLabel.hidden = hidden
         personImageView.hidden = hidden
@@ -52,8 +50,12 @@ class PersonViewController: UIViewController {
                 personImageView.image = UIImage(named: "avatar-missing")
             }
             
-            personNameLabel.text = person!.firstName + " " + person!.lastName
-            personDescriptionLabel.text = person!.bio
+            
+            if let bio = person!.bio {
+                personDescriptionLabel.text = bio
+            }
+            
+            personNameLabel.text = person!.fullName
             
             setViewObjectsHidden(false)
             
@@ -66,6 +68,7 @@ class PersonViewController: UIViewController {
                 personGithubLabel.text = githubUserName
                 personGithubLabel.hidden = false
             }
+            
         } else {
             
             setViewObjectsHidden(true)
@@ -79,5 +82,4 @@ class PersonViewController: UIViewController {
         /* Set us as the controllers delegate */
         self.presentViewController(controller, animated: true, completion: nil)
     }
-
 }

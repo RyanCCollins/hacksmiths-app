@@ -182,7 +182,7 @@ extension HacksmithsAPIClient {
                 static let needsAMentor = "needsAMentor"
                 static let experience = "experience"
                 static let want = "want"
-                static let has = "has"
+                static let wantsExperience = "wantsExperience"
             }
             
             struct Settings {
@@ -270,8 +270,8 @@ extension HacksmithsAPIClient {
         
         struct Organization {
             static let dictKey = "organization"
-            
             static let id = "id"
+            static let _id = "_id"
             static let name = "name"
             static let logo = "logo"
             static let logoUrl = "logoUrl"

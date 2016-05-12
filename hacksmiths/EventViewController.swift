@@ -29,28 +29,29 @@ class EventViewController: UIViewController {
     }
     
     func getEventData() {
-        view.showLoading()
+        
         HacksmithsAPIClient.sharedInstance().fetchEventsFromAPI({success, error in
             if error != nil {
-                self.view.hideLoading()
+                
                 self.alertController(withTitles: ["OK", "Retry"], message: (error?.localizedDescription)!, callbackHandler: [nil, {Void in self.getEventData()}])
                 
             } else {
                 
                 // Start loading the event data and then pass off loading of the event attendees.
                 self.performEventFetch()
-                self.updateUIWithNetworkData()
+                
                 
                 if let event = self.fetchedResultsController.fetchedObjects![0] as? Event {
                     self.currentEvent = event
                 }
+                self.updateUIWithNetworkData(self.currentEvent)
             }
         })
     }
     
-    func updateUIWithNetworkData() {
-        if let event = currentEvent {
-            eventImageView.image = currentEvent!.image
+    func updateUIWithNetworkData(event: Event?) {
+        if let event = event {
+            eventImageView.image = event.image
             headerLabel.text = event.title
             aboutTextView.text = event.descriptionString
         }

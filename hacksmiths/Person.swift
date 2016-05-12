@@ -7,7 +7,6 @@
 //
 
 import CoreData
-import UIKit
 
 @objc(Person)
 class Person: NSManagedObject {
@@ -30,6 +29,7 @@ class Person: NSManagedObject {
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
     }
+
     
     /* Custom init */
     init(dictionary: [String : AnyObject], context: NSManagedObjectContext) {
@@ -95,6 +95,12 @@ class Person: NSManagedObject {
             }
             
         })
+    }
+    
+    var fullName: String? {
+        get {
+            return "\(firstName) \(lastName)"
+        }
     }
     
     var image: UIImage? {
