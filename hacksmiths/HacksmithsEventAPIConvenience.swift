@@ -20,25 +20,30 @@ extension HacksmithsAPIClient {
                 switch response.result {
                 case .Success(let responseData):
                     
-                    if let dataFromString = responseData.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
-                        let json = JSON(data: dataFromString)
-                        
-                        let dictionaryForEvent = self.dictionaryForEvent(json)
-                        let event = Event(dictionary: dictionaryForEvent, context: self.sharedContext)
-                        self.sharedContext.performBlockAndWait({
-                            CoreDataStackManager.sharedInstance().saveContext()
-                        })
-                        
-                        let organizationDict = self.dictionaryForOrganization(json)
+                    let json = JSON(responseData)
+                    let eventJSON = json["event"]
+                    let dictionaryForEvent = self.dictionaryForEvent(eventJSON)
+                    
+                    let event = Event(dictionary: dictionaryForEvent!, context: self.sharedContext)
+                    
+                    
+                    self.sharedContext.performBlockAndWait({
+                        CoreDataStackManager.sharedInstance().saveContext()
+                    })
+                    
+                    // If we get a good dictionary for the organization, the create it
+                    if let organizationDict = self.dictionaryForOrganization(eventJSON) {
                         let organization = Organization(dictionary: organizationDict, context: self.sharedContext)
+                        event.organization = organization
                         
                         self.sharedContext.performBlockAndWait({
                             CoreDataStackManager.sharedInstance().saveContext()
                         })
-                        
-                        completionHandler(success: true, error: nil)
                         
                     }
+                    
+                    completionHandler(success: true, error: nil)
+                    
                     
                 case .Failure(let error):
                     completionHandler(success: false, error: error)
@@ -92,31 +97,34 @@ extension HacksmithsAPIClient {
 
     
     /* Takes an event dictionary and returns a dictionary for creating an event */
-    private func dictionaryForEvent (eventJSON: JSON) -> JsonDict{
-        print("eventJSON: \(eventJSON)")
-        let id = eventJSON[HacksmithsAPIClient.JSONResponseKeys.Event.id].string
-        let active = eventJSON[HacksmithsAPIClient.JSONResponseKeys.Event.active].boolValue
-        let marketingInfo = eventJSON[HacksmithsAPIClient.JSONResponseKeys.Event.marketingInfo].string ?? ""
-        let title = eventJSON[HacksmithsAPIClient.JSONResponseKeys.Event.title].string
-        let description = eventJSON[HacksmithsAPIClient.JSONResponseKeys.Event.description].string ?? ""
-        let spotsRemaining = eventJSON[HacksmithsAPIClient.JSONResponseKeys.Event.spotsRemaining].int ?? 0
+    private func dictionaryForEvent (eventJSON: JSON) -> JsonDict? {
+        print("Event JSON: \(eventJSON)")
         
-        let registrationStartDateString = eventJSON[HacksmithsAPIClient.JSONResponseKeys.Event.registrationStartDate].string ?? ""
-        let registrationEndDateString = eventJSON[HacksmithsAPIClient.JSONResponseKeys.Event.registrationEndDate].string ?? ""
-        let startDateString = eventJSON[HacksmithsAPIClient.JSONResponseKeys.Event.starts].string ?? ""
-        let endDateString = eventJSON[HacksmithsAPIClient.JSONResponseKeys.Event.ends].string ?? ""
+        
+        let id = eventJSON[HacksmithsAPIClient.JSONResponseKeys.Event.id].stringValue
+        let active = eventJSON[HacksmithsAPIClient.JSONResponseKeys.Event.active].boolValue
+        let marketingInfo = eventJSON[HacksmithsAPIClient.JSONResponseKeys.Event.marketingInfo].stringValue ?? ""
+        let title = eventJSON[HacksmithsAPIClient.JSONResponseKeys.Event.title].stringValue
+        let description = eventJSON[HacksmithsAPIClient.JSONResponseKeys.Event.description].stringValue ?? ""
+        let spotsRemaining = eventJSON[HacksmithsAPIClient.JSONResponseKeys.Event.spotsRemaining].intValue ?? 0
+        
+        let registrationStartDateString = eventJSON[HacksmithsAPIClient.JSONResponseKeys.Event.registrationStartDate].stringValue ?? ""
+        let registrationEndDateString = eventJSON[HacksmithsAPIClient.JSONResponseKeys.Event.registrationEndDate].stringValue ?? ""
+        let startDateString = eventJSON[HacksmithsAPIClient.JSONResponseKeys.Event.starts].stringValue ?? ""
+        let endDateString = eventJSON[HacksmithsAPIClient.JSONResponseKeys.Event.ends].stringValue ?? ""
         
         // Set up our dictionary
         var dictionary: JsonDict = [
-            "id" : id!,
+            "id" : id,
             "active" : active,
             "marketingInfo": marketingInfo,
-            "title" : title!,
+            "title" : title,
             "description" : description,
             "spotsRemaining": spotsRemaining,
         ]
         
         if let eventStartDate = dateFromString(registrationStartDateString) {
+            print("Creating date from string: \(registrationStartDateString)")
             dictionary["registrationStartDate"] = eventStartDate
         }
         
@@ -135,10 +143,12 @@ extension HacksmithsAPIClient {
             }
         }
         
+        print("returning: \(dictionary)")
+        
         return dictionary
     }
     
-    private func dictionaryForOrganization(eventJsonDict: JSON) -> JsonDict {
+    private func dictionaryForOrganization(eventJsonDict: JSON) -> JsonDict? {
         var returnDict: JsonDict = [
             "id": "",
             "name": "",
@@ -150,13 +160,19 @@ extension HacksmithsAPIClient {
         
         if let organization = eventJsonDict[HacksmithsAPIClient.JSONResponseKeys.Organization.dictKey].dictionary {
             
-            let orgId = organization[HacksmithsAPIClient.JSONResponseKeys.Organization.id]!.string
-            let orgName = organization[HacksmithsAPIClient.JSONResponseKeys.Organization.name]!.string
-            let isHiring = organization[HacksmithsAPIClient.JSONResponseKeys.Organization.isHiring]!.bool
+            // Check to make sure we got a good data object by checking the organization ID comes back as a value
+            guard let organizationID = organization[HacksmithsAPIClient.JSONResponseKeys.Organization._id]!.string else {
+                return nil
+            }
+            
+            let orgId = organizationID
+            let orgName = organization[HacksmithsAPIClient.JSONResponseKeys.Organization.name]!.stringValue
+            let isHiring = organization[HacksmithsAPIClient.JSONResponseKeys.Organization.isHiring]!.boolValue
             
             returnDict["id"] = orgId
             returnDict["name"] = orgName
             returnDict["isHiring"] = isHiring
+            
             
             if let logoURL = organization[HacksmithsAPIClient.JSONResponseKeys.Organization.logo]![HacksmithsAPIClient.JSONResponseKeys.Organization.url].string {
                 returnDict["logoUrl"] = logoURL

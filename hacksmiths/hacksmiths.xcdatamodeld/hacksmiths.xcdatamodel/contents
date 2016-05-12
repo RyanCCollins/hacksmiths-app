@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15B42" minimumToolsVersion="Automatic">
     <entity name="Event" representedClassName="Event" syncable="YES">
+        <attribute name="active" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="descriptionString" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="eventID" optional="YES" attributeType="String" syncable="YES"/>
@@ -80,7 +81,7 @@
         <relationship name="events" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Event" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Event" positionX="-27" positionY="450" width="128" height="285"/>
+        <element name="Event" positionX="-27" positionY="450" width="128" height="300"/>
         <element name="EventRSVP" positionX="511" positionY="618" width="128" height="75"/>
         <element name="Organization" positionX="-92" positionY="72" width="128" height="150"/>
         <element name="Person" positionX="358" positionY="243" width="128" height="270"/>
