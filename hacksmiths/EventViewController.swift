@@ -44,25 +44,36 @@ class EventViewController: UIViewController {
                 if let event = self.fetchedResultsController.fetchedObjects![0] as? Event {
                     self.currentEvent = event
                 }
-                self.updateUIWithNetworkData(self.currentEvent)
+                
             }
         })
     }
     
-    func updateUIWithNetworkData(event: Event?) {
-        if let event = event {
+    private func userInterfaceUpdater() {
+        if let event = currentEvent {
             eventImageView.image = event.image
             headerLabel.text = event.title
-            aboutTextView.text = event.descriptionString
-        }
-        
-        if let organization = currentEvent?.organization {
-            whoLabel.text = organization.name
             
+            if let organization = event.organization {
+                organizationImageView.image = organization.image
+                organizationTitleLabel = organization.title
+            }
         }
     }
     
-    lazy var fetchedResultsController: NSFetchedResultsController = {
+    private func setButtonForAuthState() {
+        if UserDefaults.sharedInstance().authenticated == true {
+            
+            registerSignupButton.enabled = true
+            
+        } else {
+            registerSignupButton.enabled = false
+        }
+    }
+    
+
+    
+    private lazy var fetchedResultsController: NSFetchedResultsController = {
         let sortPriority = NSSortDescriptor(key: "startDate", ascending: false)
         let nextEventFetch = NSFetchRequest(entityName: "Event")
         nextEventFetch.sortDescriptors = [sortPriority]

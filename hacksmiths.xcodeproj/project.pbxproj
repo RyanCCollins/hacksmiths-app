@@ -77,6 +77,7 @@
 		1FF9989D1C6FB060003D98B2 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF9989C1C6FB060003D98B2 /* Organization.swift */; };
 		1FF998A11C71387C003D98B2 /* PersonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF998A01C71387C003D98B2 /* PersonTableViewCell.swift */; };
 		1FF998A41C713931003D98B2 /* LeaderBoardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF998A31C713931003D98B2 /* LeaderBoardTableViewCell.swift */; };
+		1FFBAE501CE5592E006FC5F9 /* EventWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFBAE4F1CE5592E006FC5F9 /* EventWebViewController.swift */; };
 		944BA94349C31AD439B9CB55 /* Pods_hacksmiths.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1D439823755832D7DEC3CC3 /* Pods_hacksmiths.framework */; };
 /* End PBXBuildFile section */
 
@@ -177,6 +178,7 @@
 		1FF9989C1C6FB060003D98B2 /* Organization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
 		1FF998A01C71387C003D98B2 /* PersonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonTableViewCell.swift; sourceTree = "<group>"; };
 		1FF998A31C713931003D98B2 /* LeaderBoardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderBoardTableViewCell.swift; sourceTree = "<group>"; };
+		1FFBAE4F1CE5592E006FC5F9 /* EventWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventWebViewController.swift; sourceTree = "<group>"; };
 		2191EFCDC3E224734A81AEB7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		2F01D804491290ED3ADAFE2E /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		45292B4C83993EE9BF28F373 /* Pods-hacksmiths.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hacksmiths.release.xcconfig"; path = "Pods/Target Support Files/Pods-hacksmiths/Pods-hacksmiths.release.xcconfig"; sourceTree = "<group>"; };
@@ -355,6 +357,7 @@
 				1FF998A21C713888003D98B2 /* View */,
 				1F44B1BB1C5DDAC9004E196D /* Controller */,
 				1FA9FC6D1C534E5A00B993BC /* Main.storyboard */,
+				1FFBAE4F1CE5592E006FC5F9 /* EventWebViewController.swift */,
 				1FA9FC731C534E5A00B993BC /* Assets.xcassets */,
 				1FA9FC751C534E5A00B993BC /* LaunchScreen.storyboard */,
 				1FA9FC781C534E5A00B993BC /* Info.plist */,
@@ -653,6 +656,7 @@
 				1FF9989D1C6FB060003D98B2 /* Organization.swift in Sources */,
 				1FF998991C6FAEDE003D98B2 /* Event.swift in Sources */,
 				1FC6DE471C9F6DC5000E8159 /* RegistrationData.swift in Sources */,
+				1FFBAE501CE5592E006FC5F9 /* EventWebViewController.swift in Sources */,
 				1FA5A4EE1C535A9500722E55 /* ExtendsUIViewController.swift in Sources */,
 				1F4B4DFF1C73A60400A75F5D /* UserDefaults.swift in Sources */,
 				1F46B9EC1CA467250065D50D /* UserData.swift in Sources */,

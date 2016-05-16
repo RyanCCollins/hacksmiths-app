@@ -75,8 +75,6 @@ class CommunityViewController: UITableViewController, NSFetchedResultsController
     }
     
     lazy var fetchedResultsController: NSFetchedResultsController = {
-        
- 
         let sortPriority = NSSortDescriptor(key: "sortPriority", ascending: true)
         
         // Leader fetch for getting team leaders
@@ -178,7 +176,6 @@ extension CommunityViewController {
         
         if indexPath.section == Sections.Leaders {
             if let thePerson = fetchedResultsController.fetchedObjects![indexPath.row] as? Person {
-                
                 person = thePerson
             }
         } else {
@@ -199,8 +196,7 @@ extension CommunityViewController {
               cell.personImageView.image = person!.image
             }
             
-            let name = person!.firstName + " " + person!.lastName
-            cell.nameLabel.text = name
+            cell.nameLabel.text = person?.fullName
             cell.aboutLabel.text = person!.bio
         }
         
@@ -211,21 +207,24 @@ extension CommunityViewController {
         var person: Person? = nil
         
         if indexPath.section == Sections.Leaders {
-            person = fetchedResultsController.objectAtIndexPath(indexPath) as? Person
+            if let thePerson = fetchedResultsController.objectAtIndexPath(indexPath) as? Person {
+                person = thePerson
+            }
         } else if indexPath.section == Sections.Community {
-            person = communityFetchResultsController.objectAtIndexPath(indexPath) as? Person
-            
+            if let thePerson = communityFetchResultsController.objectAtIndexPath(indexPath) as? Person {
+                person = thePerson
+            }
         }
         
-        let personView = storyboard?.instantiateViewControllerWithIdentifier("PersonViewController") as! PersonViewController
-        personView.person = person
-        
-        navigationController?.pushViewController(personView, animated: true)
-
+        if person != nil {
+            let personView = storyboard?.instantiateViewControllerWithIdentifier("PersonViewController") as! PersonViewController
+            personView.person = person
+            
+            navigationController?.pushViewController(personView, animated: true)
+        } else {
+            alertController(withTitles: ["OK"], message: "It looks like that person has deleted their profile.", callbackHandler: [nil])
+        }
     }
-    
-    
-
 }
 
 enum Sections {

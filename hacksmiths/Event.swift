@@ -14,7 +14,7 @@ class Event: NSManagedObject {
     
     @NSManaged var eventID: String
     @NSManaged var title: String
-    @NSManaged var organization : Organization
+    @NSManaged var organization : Organization?
     @NSManaged var descriptionString: String?
     @NSManaged var registrationStart : NSDate
     @NSManaged var registrationEnd : NSDate?
