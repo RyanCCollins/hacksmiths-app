@@ -56,7 +56,13 @@ class EventViewController: UIViewController {
             
             if let organization = event.organization {
                 organizationImageView.image = organization.image
-                organizationTitleLabel = organization.title
+                organizationTitleLabel.text = organization.name
+                organizationDescriptionLabel.text = organization.about ?? ""
+                if let organizationImage = organization.image {
+                    organizationImageView.image = organizationImage
+                } else {
+                    organizationImageView.image = UIImage(named: <#T##String#>)
+                }
             }
         }
     }
