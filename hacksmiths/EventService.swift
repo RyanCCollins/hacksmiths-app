@@ -12,7 +12,7 @@ import PromiseKit
 import Gloss
 
 class EventService {
-    func getEventStatus() -> Promise<Event?> {
+    func getEventStatus() -> Promise<NextEventJSON?> {
         return Promise {fullfill, reject in
             
             let HTTPManager = Manager()
@@ -24,11 +24,29 @@ class EventService {
                     
                     switch response.result {
                     case .Success(let JSON):
-                        let event = Event(json: JSON)
-                        fullfill(event)
+                        let nextEventJSON = NextEventJSON(json)
+                        fullfill(nextEventJSON)
                     case .Failure(let error):
                         reject(error)
                 }
+            }
+        }
+    }
+    
+    func getEvent(eventID: String) -> Promise<EventJSON?> {
+        return Promise {fullfill, reject in
+            let HTTPManager = Manager()
+            let router = EventRouter(endpoint: .GetEvent(eventID))
+            HTTPManager.request(router)
+                .validate()
+                .responseJSON {
+                    switch response.result {
+                    case .Success(let JSON):
+                        let eventJSON = EventJSON(JSON)
+                        let event = Event(eventJson: eventJSON, context: GlobalStackManager.sharedContext)
+                    case .Failure(let error):
+                        reject(error)
+                    }
             }
         }
     }

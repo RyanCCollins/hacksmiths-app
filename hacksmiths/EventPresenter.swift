@@ -7,13 +7,14 @@
 //
 
 import Foundation
+import CoreData
 
 protocol EventView: NSObjectProtocol {
     func startLoading()
     func finishLoading()
-    func setEvent(sender: EventPresenter, didSucceed event: Event)
-    func setEvent(sender: EventPresenter, didFail error: NSError)
-    func setAttendees(forEvent event: Event)
+    func getEvent(sender: EventPresenter, didSucceed event: Event)
+    func getEvent(sender: EventPresenter, didFail error: NSError)
+    func getAttendees(forEvent event: Event)
     func respondToEvent(sender: EventPresenter, didSucceed event: Event)
     func respondToEvent(sender: EventPresenter, didFail error: NSError)
 }
@@ -35,27 +36,37 @@ class EventPresenter {
         eventView = nil
     }
     
-    func setEvent() {
-        eventService.getEventStatus.then() {
-            event in
+    func getEvent() {
+        eventService.getEventStatus().then() {
+            event -> () in
             
-            self.eventView?.setEvent(self, didSucceed: event)
-        }
+                if let event = self.performEventFetch() {
+                    self.eventView?.getEvent(self, didSucceed: event)
+                } else {
+                    self.eventView?.getEvent(self, didFail: Errors.constructError(domain: "EventView", userMessage: "An error occured while loading the event.  Please try again."))
+                }
+            
+            }.error { (error: ErrorType) -> Void in
+                self.eventView?.getEvent(self, didFail: error)
+            }
     }
     
-    private func setEventParticipants() {
-        eventService.getEventAttendees.then() {
-            
-        }
+    private func getEventParticipants() {
+//        eventService.getEventAttendees().then() {
+//            
+//        }
     }
     
-    func performEventFetch(completionHandler: CompletionHandler) {
+    private func performEventFetch() -> Event? {
         do {
-            
             try fetchedResultsController.performFetch()
-            completionHandler(success: true, error: nil)
+            if let event = fetchedResultsController.fetchedObjects![0] as? Event {
+                return event
+            } else {
+                return nil
+            }
         } catch let error as NSError {
-            completionHandler(success: false, error: error)
+            return nil
         }
     }
     

@@ -9,6 +9,7 @@
 /* Global constants.  Note, although not all are being used, we are preserving them for a later time */
 
 import Foundation
+import CoreData
 
 /* Helper properties to get a_sync queues */
 var GlobalMainQueue: dispatch_queue_t {
@@ -36,6 +37,13 @@ typealias CompletionHandlerWithResult = (success: Bool, result: AnyObject!, erro
 typealias CompletionHandler = (success: Bool, error: NSError?) -> Void
 typealias CompletionHandlerWithImage = (image: UIImage?, error: NSError?) -> Void
 typealias CompletionHandlerWithUserData = (success: Bool, userData: UserData?, error: NSError?) -> Void
+
+/* global static stack manager */
+struct GlobalStackManager {
+    var sharedContext: NSManagedObjectContext {
+        return CoreDataStackManager.sharedInstance().managedObjectContext
+    }
+}
 
 // Shortcut type alias for Json Dictionary
 typealias JsonDict = [String : AnyObject]

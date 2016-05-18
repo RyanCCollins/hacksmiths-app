@@ -3,17 +3,16 @@
     <entity name="Event" representedClassName="Event" syncable="YES">
         <attribute name="active" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="descriptionString" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="endDateString" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="eventID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="featureImageFilePath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="featureImageURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="marketingInfo" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="registrationEndDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="registrationStartDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="spotsAvailable" optional="YES" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
+        <attribute name="registrationEndDateString" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="registrationStartDateString" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="spotsRemaining" optional="YES" attributeType="Integer 16" defaultValueString="YES" syncable="YES"/>
-        <attribute name="startDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="startDateString" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="organization" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Organization" syncable="YES"/>
         <relationship name="participants" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Person" syncable="YES"/>
@@ -81,7 +80,7 @@
         <relationship name="events" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Event" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Event" positionX="-27" positionY="450" width="128" height="300"/>
+        <element name="Event" positionX="-27" positionY="450" width="128" height="285"/>
         <element name="EventRSVP" positionX="511" positionY="618" width="128" height="75"/>
         <element name="Organization" positionX="-92" positionY="72" width="128" height="150"/>
         <element name="Person" positionX="358" positionY="243" width="128" height="270"/>

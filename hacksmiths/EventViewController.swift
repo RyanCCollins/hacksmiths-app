@@ -26,40 +26,25 @@ class EventViewController: UIViewController {
     private let eventPresenter = EventPresenter(eventService: EventService())
     
     @IBOutlet weak var whenLabel: UILabel!
+    var activityIndicator: IGActivityIndicatorView!
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-
+        updateUserInterface()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        eventPresenter.attachView(self)
+        startLoading()
     }
     
     
-    private func updateUserInterface() {
-        if let event = currentEvent {
-            eventImageView.image = event.image
-            headerLabel.text = event.title
-            
-            if let organization = event.organization {
-                organizationImageView.image = organization.image
-                organizationTitleLabel.text = organization.name
-                organizationDescriptionLabel.text = organization.about ?? ""
-                
-                if let organizationImage = organization.image {
-                    organizationImageView.image = organizationImage
-                } else {
-                    organizationImageView.image = UIImage(named: "missing-visual")
-                }
-                
-                if let website = organization.website {
-                    organizationWebsiteStackView.hidden = false
-                    organizationWebsiteButton.titleLabel!.text = website
-                } else {
-                    /* Hide the entire stack view if there is no website. */
-                    organizationWebsiteStackView.hidden = true
-                }
-                
-            }
-        }
+    func updateUserInterface() {
+        
+        
     }
+    
     
     private func setButtonForAuthState() {
         if UserDefaults.sharedInstance().authenticated == true {
@@ -71,23 +56,6 @@ class EventViewController: UIViewController {
         }
     }
     
-
-    
-    private lazy var fetchedResultsController: NSFetchedResultsController = {
-        let sortPriority = NSSortDescriptor(key: "startDate", ascending: false)
-        let nextEventFetch = NSFetchRequest(entityName: "Event")
-        nextEventFetch.sortDescriptors = [sortPriority]
-        
-        let fetchResultsController = NSFetchedResultsController(fetchRequest: nextEventFetch, managedObjectContext: self.sharedContext, sectionNameKeyPath: nil, cacheName: nil)
-        
-        do {
-            try fetchResultsController.performFetch()
-        } catch let error {
-            print(error)
-        }
-        
-        return fetchResultsController
-    }()
     
     /* Open the URL for the website if possible. */
     @IBAction func didTapOrganizationWebsiteButton(sender: UIButton) {
@@ -97,40 +65,24 @@ class EventViewController: UIViewController {
             }
         }
     }
-    
-    func performEventFetch() {
-        do {
-            
-            try fetchedResultsController.performFetch()
-            
-        } catch let error as NSError {
-            self.alertController(withTitles: ["OK", "Retry"], message: error.localizedDescription, callbackHandler: [nil, {Void in
-                self.performEventFetch()
-            }])
-        }
-    }
-
-    
-    var sharedContext: NSManagedObjectContext {
-        return CoreDataStackManager.sharedInstance().managedObjectContext
-    }
 
 }
 
 extension EventViewController: EventView {
     func startLoading() {
-        
+        self.activityIndicator.startAnimating()
     }
     
     func finishLoading() {
-        
+        self.activityIndicator.stopAnimating()
     }
     
-    func setEvent(didSucceed: Bool, event: Event){
-        
+    func getEvent(didSucceed: Bool, event: Event){
+        self.finishLoading()
+        self.updateUserInterface()
     }
     
-    func setEvent(didFail error: NSError) {
+    func getEvent(didFail error: NSError) {
         
     }
     

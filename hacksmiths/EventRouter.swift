@@ -11,6 +11,7 @@ import Foundation
 
 enum EventEndpoint {
     case GetEventStatus()
+    case GetEvent(eventID: String)
     case GetEventAttendees(event: Event)
     case RSVPForEvent(userData: UserData, event: Event, participating: Bool, cancel: Bool)
 }
@@ -24,7 +25,7 @@ class EventRouter: BaseRouter {
     override var method: Alamofire.Method {
         switch endpoint {
         case .GetEventStatus: return .GET
-        case .GetEventAttendees: return .GET
+        case .GetEvent: return .GET
         case RSVP: return .POST
         }
     }
@@ -32,15 +33,13 @@ class EventRouter: BaseRouter {
     override var path: String {
         switch endpoint {
         case .GetEventStatus: return "/api/app/event-status"
-        case .GetEventAttendees: return "/api/event/\(event.id)"
+        case .GetEvent(let eventID): return "/api/event/\(eventID)"
         case .RSVPForEvent: return "/api/app/rsvp"
         }
     }
     
     override var parameters: JsonDict {
         switch endpoint {
-        case .GetEventAttendees(let event):
-            return ["event" : event.eventID]
         case .RSVPForEvent(let userData, let event, let participating, let cancel):
             let eventDict = [
                 "user": userData.id,
@@ -66,6 +65,8 @@ class EventRouter: BaseRouter {
     
     override var encoding: Alamofire.ParameterEncoding? {
         switch endpoint {
+        case .GetEvent():
+            return .URL
         default: return .JSON
         }
     }

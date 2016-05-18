@@ -11,16 +11,18 @@ import Gloss
 
 @objc(Event)
 
-class Event: NSManagedObject, Decodable {
+
+class Event: NSManagedObject {
     
     @NSManaged var eventID: String
     @NSManaged var title: String
     @NSManaged var organization : Organization?
     @NSManaged var descriptionString: String?
-    @NSManaged var registrationStart : NSDate
-    @NSManaged var registrationEnd : NSDate?
-    @NSManaged var startDate: NSDate?
-    @NSManaged var endDate: NSDate?
+    @NSManaged var registrationStartDateString : String?
+    @NSManaged var registrationEndDateString : String?
+    
+    @NSManaged var startDateString: String
+    @NSManaged var endDateString: String
     @NSManaged var active: Bool
     
     @NSManaged var maxRSVPS: NSNumber
@@ -36,6 +38,21 @@ class Event: NSManagedObject, Decodable {
     
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
+    }
+    
+    
+    init(eventJson: EventJSON, context: NSManagedObjectContext) {
+        let entity = NSEntityDescription.entityForName("Event", inManagedObjectContext: context)
+        super.init(entity: entity!, insertIntoManagedObjectContext: context)
+        self.eventID = eventJson.eventID
+        self.title = eventJson.title
+        self.descriptionString = eventJson.descriptionString
+        self.registrationEndDateString = eventJson.registrationEndString
+        self.registrationStartDateString = eventJson.registrationEndString
+        self.startDateString = eventJson.startDateString
+        self.endDateString = eventJson.endDateString
+        self.featureImageURL = eventJson.featureImageURL
+        self.marketingInfo = eventJson.m
     }
     
 //    /* Custom init */
@@ -86,31 +103,38 @@ class Event: NSManagedObject, Decodable {
 //        }
 //        
 //    }
-//    
-    init?(json: JSON, context: NSManagedObjectContext) {
-        
-        guard let eventID: String = HacksmithsAPIClient.JSONResponseKeys.Event.id <~~ json else {
-            return nil
+//
+  
+    
+    
+    /* MARK: Computed properties */
+    dynamic var spotsAvailable: Bool {
+        get {
+            return spotsRemaining as Int > 0
         }
-        
-        let entity = NSEntityDescription.entityForName("Event", inManagedObjectContext: context)
-        super.init(entity: entity!, insertIntoManagedObjectContext: context)
-        
-        self.title = HacksmithsAPIClient.JSONResponseKeys.Event.title <~~ json
-        self.spotsRemaining = HacksmithsAPIClient.JSONResponseKeys.Event.spotsRemaining <~~ json
-        self.descriptionString = HacksmithsAPIClient.JSONResponseKeys.Event.description <~~ json
-        self.endDate = HacksmithsAPIClient.JSONResponseKeys.Event.ends <~~ json
-        self.startDate = HacksmithsAPIClient.JSONResponseKeys.Event.starts <~~ json
-        self.featureImageURL = HacksmithsAPIClient.JSONResponseKeys.Event.featureImage <~~ json
-        self.registrationEnd = HacksmithsAPIClient.JSONResponseKeys.Event.registrationEndDate <~~ json
-        self.registrationStart = HacksmithsAPIClient.JSONResponseKeys.Event.registrationStartDate <~~ json
     }
     
-    public static var spotsRemaining: Bool {
+    internal func dateFromString(string: String) -> NSDate {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = ""
+        let date = dateFormatter.dateFromString(string)
+        return (date == nil ? nil : date)!
+    }
+    
+    dynamic var startDate: NSDate {
         get {
-            return spotsRemaining > 0
+            return dateFromString(self.startDateString as String)
         }
     }
+    
+    dynamic var endDate: NSDate {
+        get {
+            return dateFromString(self.endDateString as String)
+        }
+    }
+    
+    
+    
     
     func fetchImages(completionHandler: CompletionHandler) {
         guard featureImageURL != nil else {
