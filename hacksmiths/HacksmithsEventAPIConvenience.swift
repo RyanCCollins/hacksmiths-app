@@ -9,46 +9,81 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import PromiseKit
+import CoreData
+
+enum EventEndpoint {
+    case GetEvent()
+    
+}
+
+class EventRouter {
+    
+}
 
 // More convenience methods, specifically for fetching events.
 extension HacksmithsAPIClient {
     
     func fetchEventsFromAPI(completionHandler: CompletionHandler) {
+        let manager = Manager()
+        
+        let router = EventRouter()
+        
         Alamofire.request(.GET, "https://hacksmiths.io/api/app/event-status", parameters: nil, encoding: .URL, headers: nil)
             .responseJSON(completionHandler: {response in
                 
                 switch response.result {
                 case .Success(let responseData):
-                    
+                    var organizationError: NSError?
                     let json = JSON(responseData)
                     let eventJSON = json["event"]
                     let dictionaryForEvent = self.dictionaryForEvent(eventJSON)
                     
                     let event = Event(dictionary: dictionaryForEvent!, context: self.sharedContext)
                     
+                    self.sharedContext.performBlockAndWait({
+                        CoreDataStackManager.sharedInstance().saveContext()
+                    })
+                    
+                    self.parseOrganization(eventJSON, completionHandler: {success, result, error in
+                        
+                        if error != nil {
+                            event.organization = nil
+                            organizationError = error
+                        } else {
+                            let theOrganization = result as? Organization
+                            event.organization = theOrganization
+                        }
+                        
+                    })
                     
                     self.sharedContext.performBlockAndWait({
                         CoreDataStackManager.sharedInstance().saveContext()
                     })
                     
-                    // If we get a good dictionary for the organization, the create it
-                    if let organizationDict = self.dictionaryForOrganization(eventJSON) {
-                        let organization = Organization(dictionary: organizationDict, context: self.sharedContext)
-                        event.organization = organization
-                        
-                        self.sharedContext.performBlockAndWait({
-                            CoreDataStackManager.sharedInstance().saveContext()
-                        })
-                        
-                    }
-                    
-                    completionHandler(success: true, error: nil)
-                    
+                    event.fetchImages({success, error in
+                        if error != nil {
+                            completionHandler(success: false, error: error)
+                        } else {
+                            completionHandler(success: true, error: nil)
+                        }
+                    })
                     
                 case .Failure(let error):
                     completionHandler(success: false, error: error)
                 }
         })
+    }
+    
+    private func parseOrganization(eventJson: JSON, completionHandler: CompletionHandlerWithResult) {
+        if let organizationDict = self.dictionaryForOrganization(eventJson) {
+            
+            let organization = Organization(dictionary: organizationDict, context: self.sharedContext)
+            
+            completionHandler(success: true, result: organization, error: nil)
+        } else {
+            completionHandler(success: false, result: nil, error: Errors.constructError(domain: "Hacksmiths API Client", userMessage: "Unable to download information about the event organization"))
+        }
     }
     
     func fetchEventAttendees(eventID: String, completionHandler: CompletionHandler) {
@@ -73,7 +108,6 @@ extension HacksmithsAPIClient {
                 
                 // Batch delete the RSVPs before creating new ones.
                 self.batchDeleteAllRSVPS({success, error in
-                    
                     if error != nil {
                         completionHandler(success: false, error: error)
                     }
@@ -94,13 +128,43 @@ extension HacksmithsAPIClient {
                 completionHandler(success: true, error: nil)
         })
     }
+    
+    private func batchDeleteAllRSVPS(completionHandler: CompletionHandler) {
+        let fetchRequest = NSFetchRequest(entityName: "EventRSVP")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        do {
+            try CoreDataStackManager.sharedInstance().persistentStoreCoordinator?.executeRequest(deleteRequest, withContext: self.sharedContext)
+            sharedContext.performBlockAndWait({
+                CoreDataStackManager.sharedInstance().saveContext()
+            })
+            
+            completionHandler(success: true, error: nil)
+            
+        } catch let error as NSError {
+            completionHandler(success: false, error: error)
+        }
+    }
+    
+    private func batchDeleteAllEvents(completionHandler: CompletionHandler) {
+        let fetchRequest = NSFetchRequest(entityName: "Event")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        do {
+            try CoreDataStackManager.sharedInstance().persistentStoreCoordinator?.executeRequest(deleteRequest, withContext: self.sharedContext)
+            sharedContext.performBlockAndWait({
+                CoreDataStackManager.sharedInstance().saveContext()
+            })
+            
+            completionHandler(success: true, error: nil)
+            
+        } catch let error as NSError {
+            completionHandler(success: false, error: error)
+        }
+    }
 
     
     /* Takes an event dictionary and returns a dictionary for creating an event */
     private func dictionaryForEvent (eventJSON: JSON) -> JsonDict? {
         print("Event JSON: \(eventJSON)")
-        
-        
         let id = eventJSON[HacksmithsAPIClient.JSONResponseKeys.Event.id].stringValue
         let active = eventJSON[HacksmithsAPIClient.JSONResponseKeys.Event.active].boolValue
         let marketingInfo = eventJSON[HacksmithsAPIClient.JSONResponseKeys.Event.marketingInfo].stringValue ?? ""
@@ -187,6 +251,8 @@ extension HacksmithsAPIClient {
             }
             
         }
+        
+        print("Returning: \(returnDict)")
         
         return returnDict
     }

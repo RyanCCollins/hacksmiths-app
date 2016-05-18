@@ -7,10 +7,11 @@
 //
 
 import CoreData
+import Gloss
 
 @objc(Event)
 
-class Event: NSManagedObject {
+class Event: NSManagedObject, Decodable {
     
     @NSManaged var eventID: String
     @NSManaged var title: String
@@ -25,7 +26,6 @@ class Event: NSManagedObject {
     @NSManaged var maxRSVPS: NSNumber
     @NSManaged var totalRSVPS: NSNumber
     
-    @NSManaged var spotsAvailable: Bool
     @NSManaged var spotsRemaining: NSNumber
     
     @NSManaged var marketingInfo: String
@@ -38,53 +38,78 @@ class Event: NSManagedObject {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
     }
     
-    /* Custom init */
-    init(dictionary: [String : AnyObject], context: NSManagedObjectContext) {
+//    /* Custom init */
+//    init(dictionary: [String : AnyObject], context: NSManagedObjectContext) {
+//        
+//        /* Get associated entity from our context */
+//        let entity = NSEntityDescription.entityForName("Event", inManagedObjectContext: context)
+//        
+//        /* Super, get to work! */
+//        super.init(entity: entity!, insertIntoManagedObjectContext: context)
+//        
+//        /* Assign our properties */
+//        eventID = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.id] as! String
+//        title = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.title] as! String
+//        descriptionString = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.description] as? String
+//        
+//        
+//        if let spots = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.spotsRemaining] as? Int {
+//            spotsRemaining = spots
+//            if spots > 0 {
+//                spotsAvailable = true
+//            } else {
+//                spotsAvailable = false
+//            }
+//        }
+//        
+//        active = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.active] as! Bool
+//        
+//        if let eventEndDate = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.ends] as? NSDate {
+//            endDate = eventEndDate
+//        }
+//        
+//        if let eventStartDate = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.starts] as? NSDate {
+//            startDate = eventStartDate
+//        }
+//        
+//        if let registrationStartDate = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.registrationStartDate] as? NSDate {
+//            registrationStart = registrationStartDate
+//        }
+//        
+//        if let registrationEndDate = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.registrationEndDate] as? NSDate {
+//            registrationEnd = registrationEndDate
+//        }
+//        
+//        if let imageURL = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.featureImage] as? String {
+//            featureImageURL = imageURL
+//            featureImageFilePath = featureImageURL?.lastPathComponent
+//        }
+//        
+//    }
+//    
+    init?(json: JSON, context: NSManagedObjectContext) {
         
-        /* Get associated entity from our context */
+        guard let eventID: String = HacksmithsAPIClient.JSONResponseKeys.Event.id <~~ json else {
+            return nil
+        }
+        
         let entity = NSEntityDescription.entityForName("Event", inManagedObjectContext: context)
-        
-        /* Super, get to work! */
         super.init(entity: entity!, insertIntoManagedObjectContext: context)
         
-        /* Assign our properties */
-        eventID = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.id] as! String
-        title = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.title] as! String
-        descriptionString = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.description] as? String
-        
-        
-        if let spots = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.spotsRemaining] as? Int {
-            spotsRemaining = spots
-            if spots > 0 {
-                spotsAvailable = true
-            } else {
-                spotsAvailable = false
-            }
+        self.title = HacksmithsAPIClient.JSONResponseKeys.Event.title <~~ json
+        self.spotsRemaining = HacksmithsAPIClient.JSONResponseKeys.Event.spotsRemaining <~~ json
+        self.descriptionString = HacksmithsAPIClient.JSONResponseKeys.Event.description <~~ json
+        self.endDate = HacksmithsAPIClient.JSONResponseKeys.Event.ends <~~ json
+        self.startDate = HacksmithsAPIClient.JSONResponseKeys.Event.starts <~~ json
+        self.featureImageURL = HacksmithsAPIClient.JSONResponseKeys.Event.featureImage <~~ json
+        self.registrationEnd = HacksmithsAPIClient.JSONResponseKeys.Event.registrationEndDate <~~ json
+        self.registrationStart = HacksmithsAPIClient.JSONResponseKeys.Event.registrationStartDate <~~ json
+    }
+    
+    public static var spotsRemaining: Bool {
+        get {
+            return spotsRemaining > 0
         }
-        
-        active = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.active] as! Bool
-        
-        if let eventEndDate = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.ends] as? NSDate {
-            endDate = eventEndDate
-        }
-        
-        if let eventStartDate = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.starts] as? NSDate {
-            startDate = eventStartDate
-        }
-        
-        if let registrationStartDate = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.registrationStartDate] as? NSDate {
-            registrationStart = registrationStartDate
-        }
-        
-        if let registrationEndDate = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.registrationEndDate] as? NSDate {
-            registrationEnd = registrationEndDate
-        }
-        
-        if let imageURL = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.featureImage] as? String {
-            featureImageURL = imageURL
-            featureImageFilePath = featureImageURL?.lastPathComponent
-        }
-        
     }
     
     func fetchImages(completionHandler: CompletionHandler) {
@@ -105,7 +130,6 @@ class Event: NSManagedObject {
         })
     }
     
-    
     var image: UIImage? {
         get {
             guard featureImageFilePath != nil else {
@@ -118,9 +142,4 @@ class Event: NSManagedObject {
             HacksmithsAPIClient.Caches.imageCache.storeImage(newValue, withIdentifier: featureImageFilePath!)
         }
     }
-
-    
-
-    
 }
-

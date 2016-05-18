@@ -9,8 +9,10 @@
 import UIKit
 import SwiftyButton
 import CoreData
+import Foundation
 
 class EventViewController: UIViewController {
+    @IBOutlet weak var organizationWebsiteStackView: UIStackView!
     @IBOutlet weak var eventImageView: UIImageView!
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var whoLabel: UILabel!
@@ -18,38 +20,20 @@ class EventViewController: UIViewController {
     @IBOutlet weak var registerSignupButton: SwiftyButton!
     @IBOutlet weak var organizationImageView: UIImageView!
     @IBOutlet weak var organizationTitleLabel: UILabel!
+
+    @IBOutlet weak var organizationWebsiteButton: UIButton!
     @IBOutlet weak var organizationDescriptionLabel: UILabel!
-    var currentEvent: Event?
+    private let eventPresenter = EventPresenter(eventService: EventService())
     
     @IBOutlet weak var whenLabel: UILabel!
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        getEventData()
+
     }
     
-    func getEventData() {
-        
-        HacksmithsAPIClient.sharedInstance().fetchEventsFromAPI({success, error in
-            if error != nil {
-                
-                self.alertController(withTitles: ["OK", "Retry"], message: (error?.localizedDescription)!, callbackHandler: [nil, {Void in self.getEventData()}])
-                
-            } else {
-                
-                // Start loading the event data and then pass off loading of the event attendees.
-                self.performEventFetch()
-                
-                
-                if let event = self.fetchedResultsController.fetchedObjects![0] as? Event {
-                    self.currentEvent = event
-                }
-                
-            }
-        })
-    }
     
-    private func userInterfaceUpdater() {
+    private func updateUserInterface() {
         if let event = currentEvent {
             eventImageView.image = event.image
             headerLabel.text = event.title
@@ -58,11 +42,21 @@ class EventViewController: UIViewController {
                 organizationImageView.image = organization.image
                 organizationTitleLabel.text = organization.name
                 organizationDescriptionLabel.text = organization.about ?? ""
+                
                 if let organizationImage = organization.image {
                     organizationImageView.image = organizationImage
                 } else {
-                    organizationImageView.image = UIImage(named: <#T##String#>)
+                    organizationImageView.image = UIImage(named: "missing-visual")
                 }
+                
+                if let website = organization.website {
+                    organizationWebsiteStackView.hidden = false
+                    organizationWebsiteButton.titleLabel!.text = website
+                } else {
+                    /* Hide the entire stack view if there is no website. */
+                    organizationWebsiteStackView.hidden = true
+                }
+                
             }
         }
     }
@@ -95,6 +89,15 @@ class EventViewController: UIViewController {
         return fetchResultsController
     }()
     
+    /* Open the URL for the website if possible. */
+    @IBAction func didTapOrganizationWebsiteButton(sender: UIButton) {
+        if let urlString = sender.titleLabel?.text {
+            if let url = NSURL(string: urlString) {
+                UIApplication.sharedApplication().openURL(url)
+            }
+        }
+    }
+    
     func performEventFetch() {
         do {
             
@@ -112,4 +115,36 @@ class EventViewController: UIViewController {
         return CoreDataStackManager.sharedInstance().managedObjectContext
     }
 
+}
+
+extension EventViewController: EventView {
+    func startLoading() {
+        
+    }
+    
+    func finishLoading() {
+        
+    }
+    
+    func setEvent(didSucceed: Bool, event: Event){
+        
+    }
+    
+    func setEvent(didFail error: NSError) {
+        
+    }
+    
+    func setAttendees(forEvent event: Event) {
+        
+    }
+    
+    func respondToEvent(sender: EventPresenter, didSucceed event: Event) {
+        
+    }
+    
+    func respondToEvent(sender: EventPresenter, didFail error: NSError) {
+        
+    }
+    
+    
 }

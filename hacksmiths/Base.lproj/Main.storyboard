@@ -283,10 +283,10 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0qY-eJ-56M">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="801"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hAg-NN-Moo">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hAg-NN-Moo">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="801"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="dC3-kF-nbE">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="dC3-kF-nbE">
                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="801"/>
                                             </imageView>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hacksmiths-logo-text" translatesAutoresizingMaskIntoConstraints="NO" id="SxD-Ek-BjP">
@@ -309,13 +309,13 @@ We build tools designed to help non-profit organizations streamline their philan
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="About the Founders" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uXe-xc-XuT">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About the Founders" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uXe-xc-XuT">
                                                 <rect key="frame" x="164" y="458" width="272" height="37"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="31"/>
                                                 <color key="textColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hfH-WU-cpc">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hfH-WU-cpc">
                                                 <rect key="frame" x="8" y="503" width="584" height="142"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ryan" translatesAutoresizingMaskIntoConstraints="NO" id="Cyg-Be-Nyp">
@@ -361,7 +361,7 @@ We build tools designed to help non-profit organizations streamline their philan
                                                     <constraint firstItem="nMg-pf-3KX" firstAttribute="top" secondItem="EET-i8-zIf" secondAttribute="bottom" constant="8" symbolic="YES" id="vud-sS-gk3"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="orT-WB-0bL">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="orT-WB-0bL">
                                                 <rect key="frame" x="8" y="653" width="584" height="142"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sean" translatesAutoresizingMaskIntoConstraints="NO" id="CY6-1H-CVi">
@@ -408,17 +408,17 @@ We build tools designed to help non-profit organizations streamline their philan
                                                     <constraint firstItem="qsd-rT-7eu" firstAttribute="leading" secondItem="CY6-1H-CVi" secondAttribute="trailing" constant="8" symbolic="YES" id="ojW-Ah-lou"/>
                                                 </constraints>
                                             </view>
-                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="LSB-n3-hpA">
-                                                <rect key="frame" x="213" y="368" width="173" height="60"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="LSB-n3-hpA">
+                                                <rect key="frame" x="213" y="368" width="173" height="61"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Visit Our Website!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NG1-Uc-ODk">
-                                                        <rect key="frame" x="19" y="0.0" width="135" height="20"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Visit Our Website!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NG1-Uc-ODk">
+                                                        <rect key="frame" x="13" y="0.0" width="148" height="21"/>
                                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
                                                         <color key="textColor" red="0.74509803919999995" green="0.75294117650000003" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="D2b-HP-4JA">
-                                                        <rect key="frame" x="0.0" y="30" width="173" height="30"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="D2b-HP-4JA">
+                                                        <rect key="frame" x="0.0" y="31" width="173" height="30"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="link-white" translatesAutoresizingMaskIntoConstraints="NO" id="Doz-Pi-70y">
                                                                 <rect key="frame" x="0.0" y="2" width="26" height="26"/>
@@ -707,16 +707,16 @@ We build tools designed to help non-profit organizations streamline their philan
                                         <state key="normal" image="multiple-circle-white"/>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="gjM-yC-Ilj">
-                                        <rect key="frame" x="216" y="514" width="154" height="60"/>
+                                        <rect key="frame" x="216" y="514" width="168" height="61"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Already Registered?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fJW-zs-alJ">
-                                                <rect key="frame" x="0.0" y="0.0" width="154" height="20"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Already Registered?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fJW-zs-alJ">
+                                                <rect key="frame" x="0.0" y="0.0" width="168" height="21"/>
                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
                                                 <color key="textColor" red="0.79607843137254897" green="0.94117647058823528" blue="0.86274509803921573" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vWq-Vh-e9y">
-                                                <rect key="frame" x="54" y="30" width="47" height="30"/>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vWq-Vh-e9y">
+                                                <rect key="frame" x="61" y="31" width="47" height="30"/>
                                                 <state key="normal" title="Sign in"/>
                                                 <connections>
                                                     <action selector="didTapSigninUpInside:" destination="8E9-ee-mxd" eventType="touchUpInside" id="hOZ-9k-BOR"/>
@@ -748,35 +748,35 @@ We build tools designed to help non-profit organizations streamline their philan
                                             <segue destination="wXb-3j-dvv" kind="presentation" identifier="ShowRegistration" id="9nk-Na-jJ7"/>
                                         </connections>
                                     </button>
-                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="equalSpacing" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="ia8-GS-h7P">
-                                        <rect key="frame" x="165" y="265" width="243" height="161"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="ia8-GS-h7P">
+                                        <rect key="frame" x="165" y="265" width="269" height="161"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="1. Register for an account" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S7f-gk-f89">
-                                                <rect key="frame" x="0.0" y="0.0" width="243" height="17"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1. Register for an account" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S7f-gk-f89">
+                                                <rect key="frame" x="0.0" y="0.0" width="269" height="17"/>
                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
                                                 <color key="textColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="2. Fill out your profile." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q1v-05-PHM">
-                                                <rect key="frame" x="0.0" y="36" width="243" height="17"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2. Fill out your profile." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q1v-05-PHM">
+                                                <rect key="frame" x="0.0" y="36" width="269" height="17"/>
                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
                                                 <color key="textColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="3. Sign up for a team" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rrU-K0-ShN">
-                                                <rect key="frame" x="0.0" y="72" width="243" height="17"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3. Sign up for a team" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rrU-K0-ShN">
+                                                <rect key="frame" x="0.0" y="72" width="269" height="17"/>
                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
                                                 <color key="textColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="4. Climb to the top of the leaderboard" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eQ7-VU-Vep">
-                                                <rect key="frame" x="0.0" y="108" width="243" height="17"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4. Climb to the top of the leaderboard" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eQ7-VU-Vep">
+                                                <rect key="frame" x="0.0" y="108" width="269" height="17"/>
                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
                                                 <color key="textColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="5. Solve real world problems with code" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="quu-Fd-TLw">
-                                                <rect key="frame" x="0.0" y="144" width="243" height="17"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5. Solve real world problems with code" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="quu-Fd-TLw">
+                                                <rect key="frame" x="0.0" y="144" width="269" height="17"/>
                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
                                                 <color key="textColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -793,7 +793,7 @@ We build tools designed to help non-profit organizations streamline their philan
                                         <color key="textColor" red="0.61176470589999998" green="0.60392156860000001" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="equalSpacing" alignment="center" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="pZc-tf-OVT">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="pZc-tf-OVT">
                                         <rect key="frame" x="131" y="263" width="26" height="166"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imac-white" translatesAutoresizingMaskIntoConstraints="NO" id="ED3-83-pSd">
@@ -889,7 +889,7 @@ We build tools designed to help non-profit organizations streamline their philan
                         <rect key="frame" x="0.0" y="0.0" width="600" height="1500"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VHh-Hr-Cdd">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VHh-Hr-Cdd">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="1451"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EJR-yi-Gos">
@@ -955,13 +955,6 @@ We build tools designed to help non-profit organizations streamline their philan
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="2" id="CGB-vF-X1d"/>
-                                        </constraints>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J0G-ii-NI6">
-                                        <rect key="frame" x="40" y="880" width="520" height="2"/>
-                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="2" id="7fd-oX-Wus"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C3o-5y-gCb" customClass="SwiftyButton" customModule="SwiftyButton">
@@ -1030,8 +1023,8 @@ We build tools designed to help non-profit organizations streamline their philan
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tnf-WJ-f8R">
-                                        <rect key="frame" x="40" y="939" width="520" height="504"/>
+                                    <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tnf-WJ-f8R">
+                                        <rect key="frame" x="40" y="996" width="520" height="447"/>
                                         <connections>
                                             <segue destination="01o-DI-c75" kind="embed" id="J1e-r5-3ul"/>
                                         </connections>
@@ -1042,22 +1035,6 @@ We build tools designed to help non-profit organizations streamline their philan
                                             <constraint firstAttribute="height" constant="200" id="tst-Vh-RZJ"/>
                                         </constraints>
                                     </imageView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HNv-VU-gab">
-                                        <rect key="frame" x="40" y="929" width="520" height="2"/>
-                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="2" id="drO-2B-91S"/>
-                                        </constraints>
-                                    </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Who's Participating" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oZx-KB-KxP">
-                                        <rect key="frame" x="8" y="890" width="584" height="31"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="31" id="nFv-4X-aBV"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="16"/>
-                                        <color key="textColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Food Drivr Hackathon" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HfK-rW-YbI">
                                         <rect key="frame" x="8" y="228" width="584" height="77"/>
                                         <constraints>
@@ -1067,12 +1044,57 @@ We build tools designed to help non-profit organizations streamline their philan
                                         <color key="textColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J0G-ii-NI6">
+                                        <rect key="frame" x="40" y="937" width="520" height="2"/>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="2" id="7fd-oX-Wus"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HNv-VU-gab">
+                                        <rect key="frame" x="40" y="986" width="520" height="2"/>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="2" id="drO-2B-91S"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Who's Participating" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oZx-KB-KxP">
+                                        <rect key="frame" x="8" y="947" width="584" height="31"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="31" id="nFv-4X-aBV"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="16"/>
+                                        <color key="textColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="80q-rc-5kk">
+                                        <rect key="frame" x="14" y="882" width="163" height="26"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="link-white" translatesAutoresizingMaskIntoConstraints="NO" id="woe-nF-ngh">
+                                                <rect key="frame" x="0.0" y="0.0" width="26" height="26"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="26" id="1O5-4G-3jT"/>
+                                                    <constraint firstAttribute="height" constant="26" id="z4q-Hu-Gmv"/>
+                                                </constraints>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ib4-5D-bEd">
+                                                <rect key="frame" x="26" y="0.0" width="137" height="26"/>
+                                                <state key="normal" title="http://hacksmiths.io"/>
+                                                <connections>
+                                                    <action selector="didTapHacksmithsUpInside:" destination="1DQ-Ae-VIb" eventType="touchUpInside" id="NvI-Pv-kD5"/>
+                                                    <action selector="didTapOrganizationWebsiteButton:" destination="DC3-eH-eDa" eventType="touchUpInside" id="buj-kv-wZj"/>
+                                                    <action selector="didTapVisitSiteUpInside:" destination="8E9-ee-mxd" eventType="touchUpInside" id="WQ2-1t-gdn"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.15294117647058825" green="0.20784313725490197" blue="0.25882352941176473" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="dz8-oS-DrK" secondAttribute="trailing" constant="8" id="15g-vO-t9E"/>
                                     <constraint firstAttribute="trailing" secondItem="Vn8-e6-SfX" secondAttribute="trailing" constant="8" id="169-9r-fg8"/>
                                     <constraint firstAttribute="trailing" secondItem="yun-Ud-2rc" secondAttribute="trailing" constant="40" id="1cc-FO-G3P"/>
+                                    <constraint firstItem="80q-rc-5kk" firstAttribute="top" secondItem="7xb-iV-E0f" secondAttribute="bottom" constant="18" id="23V-XW-Exl"/>
                                     <constraint firstItem="Src-aF-bz5" firstAttribute="leading" secondItem="VHh-Hr-Cdd" secondAttribute="leading" id="2UT-Ew-FaD"/>
                                     <constraint firstItem="RW4-oj-2rJ" firstAttribute="centerX" secondItem="VHh-Hr-Cdd" secondAttribute="centerX" id="2t1-Wc-hDt"/>
                                     <constraint firstItem="SID-a8-NR0" firstAttribute="top" secondItem="C3o-5y-gCb" secondAttribute="bottom" constant="8" id="3At-Mz-RJZ"/>
@@ -1111,6 +1133,7 @@ We build tools designed to help non-profit organizations streamline their philan
                                     <constraint firstAttribute="bottom" secondItem="Tnf-WJ-f8R" secondAttribute="bottom" constant="8" id="ZXk-3Q-0hI"/>
                                     <constraint firstItem="J0G-ii-NI6" firstAttribute="centerX" secondItem="oZx-KB-KxP" secondAttribute="centerX" id="ZnE-Xu-GIk"/>
                                     <constraint firstAttribute="bottom" secondItem="J0G-ii-NI6" secondAttribute="bottom" constant="569" id="aV9-7f-Z6g"/>
+                                    <constraint firstItem="80q-rc-5kk" firstAttribute="leading" secondItem="VHh-Hr-Cdd" secondAttribute="leading" constant="14" id="aoU-Ok-GyB"/>
                                     <constraint firstItem="Src-aF-bz5" firstAttribute="centerX" secondItem="yun-Ud-2rc" secondAttribute="centerX" id="bJZ-LV-8wY"/>
                                     <constraint firstItem="SID-a8-NR0" firstAttribute="leading" secondItem="yun-Ud-2rc" secondAttribute="leading" id="baa-1M-uuh"/>
                                     <constraint firstItem="SID-a8-NR0" firstAttribute="trailing" secondItem="bkR-v5-mAt" secondAttribute="trailing" id="cIa-cP-20M"/>
@@ -1123,7 +1146,6 @@ We build tools designed to help non-profit organizations streamline their philan
                                     <constraint firstAttribute="trailing" secondItem="Src-aF-bz5" secondAttribute="trailing" id="qp6-Xh-4MS"/>
                                     <constraint firstItem="Vn8-e6-SfX" firstAttribute="top" secondItem="HfK-rW-YbI" secondAttribute="bottom" constant="8" id="rTe-K5-uai"/>
                                     <constraint firstItem="nST-lF-I5r" firstAttribute="top" secondItem="Vn8-e6-SfX" secondAttribute="bottom" constant="8" id="sIx-D5-FHA"/>
-                                    <constraint firstItem="J0G-ii-NI6" firstAttribute="top" secondItem="8By-sE-1by" secondAttribute="bottom" constant="8" symbolic="YES" id="spS-UA-ITi"/>
                                     <constraint firstItem="yun-Ud-2rc" firstAttribute="leading" secondItem="VHh-Hr-Cdd" secondAttribute="leading" constant="40" id="sug-6t-0wl"/>
                                     <constraint firstItem="C3o-5y-gCb" firstAttribute="centerX" secondItem="VHh-Hr-Cdd" secondAttribute="centerX" id="szX-xX-Z8d"/>
                                     <constraint firstAttribute="trailing" secondItem="dz8-oS-DrK" secondAttribute="trailing" constant="8" id="vOP-i9-WyQ"/>
@@ -1161,6 +1183,8 @@ We build tools designed to help non-profit organizations streamline their philan
                         <outlet property="organizationDescriptionLabel" destination="8By-sE-1by" id="rwE-eH-VoX"/>
                         <outlet property="organizationImageView" destination="7xb-iV-E0f" id="ZBE-Wg-1Qr"/>
                         <outlet property="organizationTitleLabel" destination="dz8-oS-DrK" id="wLc-j4-v6v"/>
+                        <outlet property="organizationWebsiteButton" destination="ib4-5D-bEd" id="fy9-ed-3bp"/>
+                        <outlet property="organizationWebsiteStackView" destination="80q-rc-5kk" id="S8K-0c-8W5"/>
                         <outlet property="registerSignupButton" destination="C3o-5y-gCb" id="3JF-7m-BZr"/>
                         <outlet property="whenLabel" destination="tBE-aP-qdy" id="H2a-Ht-2Nr"/>
                         <outlet property="whoLabel" destination="zx4-zt-d46" id="Pya-iN-cDl"/>
@@ -1175,7 +1199,7 @@ We build tools designed to help non-profit organizations streamline their philan
             <objects>
                 <collectionViewController id="01o-DI-c75" customClass="PeopleCollectionViewController" customModule="hacksmiths" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="gTp-e8-W9f">
-                        <rect key="frame" x="0.0" y="0.0" width="520" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="520" height="447"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.15868747234344482" green="0.21822044253349304" blue="0.30320093035697937" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="F4c-st-dLY">
@@ -1312,17 +1336,17 @@ We build tools designed to help non-profit organizations streamline their philan
                                             <action selector="didTapSkipUpInside:" destination="WN5-vs-oyA" eventType="touchUpInside" id="MRd-lV-tfs"/>
                                         </connections>
                                     </button>
-                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="equalSpacing" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="6tJ-u5-2QH">
-                                        <rect key="frame" x="223" y="478" width="142" height="55"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="6tJ-u5-2QH">
+                                        <rect key="frame" x="223" y="478" width="154" height="56"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Need an Account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bQS-jy-J3I">
-                                                <rect key="frame" x="0.0" y="0.0" width="142" height="20"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Need an Account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bQS-jy-J3I">
+                                                <rect key="frame" x="0.0" y="0.0" width="154" height="21"/>
                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
                                                 <color key="textColor" red="0.79607843140000001" green="0.94117647059999998" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kkd-ah-L8M">
-                                                <rect key="frame" x="43" y="25" width="57" height="30"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kkd-ah-L8M">
+                                                <rect key="frame" x="49" y="26" width="57" height="30"/>
                                                 <state key="normal" title="Register"/>
                                                 <connections>
                                                     <action selector="didTapRegisterUpInside:" destination="WN5-vs-oyA" eventType="touchUpInside" id="ZSm-XT-RyX"/>
@@ -1330,7 +1354,7 @@ We build tools designed to help non-profit organizations streamline their philan
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="NaY-C1-Wv6">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="NaY-C1-Wv6">
                                         <rect key="frame" x="20" y="360" width="560" height="110"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rPo-c9-z7X" customClass="IsaoTextField" customModule="TextFieldEffects">
