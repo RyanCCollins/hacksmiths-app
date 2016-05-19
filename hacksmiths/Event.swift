@@ -13,28 +13,28 @@ import Gloss
 
 
 class Event: NSManagedObject {
-    
-    @NSManaged var eventID: String
+    /* Non Optional props */
+    @NSManaged var idString: String
     @NSManaged var title: String
-    @NSManaged var organization : Organization?
-    @NSManaged var descriptionString: String?
-    @NSManaged var registrationStartDateString : String?
-    @NSManaged var registrationEndDateString : String?
-    
+    @NSManaged var descriptionString: String
     @NSManaged var startDateString: String
     @NSManaged var endDateString: String
+    
+    /* Optional Props */
+    @NSManaged var marketingInfo: String?
+    @NSManaged var featureImageURL: String?
+    @NSManaged var registrationStartDateString : String?
+    @NSManaged var registrationEndDateString : String?
+    @NSManaged var place: String?
+    @NSManaged var spotsRemaining: NSNumber
+    @NSManaged var participants: [Participant]
+    
+    /* Other props that need to get set from non JSON */
+    @NSManaged var featureImageFilePath: String?
     @NSManaged var active: Bool
     
-    @NSManaged var maxRSVPS: NSNumber
-    @NSManaged var totalRSVPS: NSNumber
+    @NSManaged var organization : Organization?
     
-    @NSManaged var spotsRemaining: NSNumber
-    
-    @NSManaged var marketingInfo: String
-    
-    @NSManaged var featureImageURL: String?
-    @NSManaged var featureImageFilePath: String?
-    @NSManaged var participants: [Person]
     
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
@@ -44,16 +44,44 @@ class Event: NSManagedObject {
     init(eventJson: EventJSON, context: NSManagedObjectContext) {
         let entity = NSEntityDescription.entityForName("Event", inManagedObjectContext: context)
         super.init(entity: entity!, insertIntoManagedObjectContext: context)
-        self.eventID = eventJson.eventID
+        self.idString = eventJson.idString
         self.title = eventJson.title
-        self.descriptionString = eventJson.descriptionString
-        self.registrationEndDateString = eventJson.registrationEndString
-        self.registrationStartDateString = eventJson.registrationEndString
         self.startDateString = eventJson.startDateString
         self.endDateString = eventJson.endDateString
-        self.featureImageURL = eventJson.featureImageURL
-        self.marketingInfo = eventJson.m
+        
+        if let featureImageURL = eventJson.featureImageURL {
+            self.featureImageURL = featureImageURL
+        }
+        
+        if let registrationStartDateString = eventJson.registrationStartDateString {
+            self.registrationStartDateString = registrationStartDateString
+        }
+        
+        if let registrationEndDateString = eventJson.registrationEndDateString {
+            self.registrationEndDateString = registrationEndDateString
+        }
+        
+        if let place = eventJson.place {
+            self.place = place
+        }
+        
+        /* Create related models from embedded JSON */
+        self.participants = createParticipantModel(eventJson.participantJSONArray, eventID: self.idString)
+        self.organization = createOrganizationModel(eventJson.organizationJSON, eventID: self.idString)
     }
+    
+    private func createParticipantModel(participantJSONArray: [ParticipantJSON], eventID: String) -> [Participant] {
+        return participantJSONArray.map({participant in
+            return Participant(participantJson: participant, eventID: eventID, context: GlobalStackManager.SharedManager.sharedContext)
+        })
+    }
+    
+    private func createOrganizationModel(organizationJSON: OrganizationJSON, eventID: String) -> Organization {
+        let organization = Organization(entity: organizationJSON, insertIntoManagedObjectContext: GlobalStackManager.SharedManager.sharedContext)
+        
+    }
+    
+    
     
 //    /* Custom init */
 //    init(dictionary: [String : AnyObject], context: NSManagedObjectContext) {

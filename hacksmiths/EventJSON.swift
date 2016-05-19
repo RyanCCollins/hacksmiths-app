@@ -42,19 +42,22 @@ struct NextEventJSON: Decodable {
 
 struct EventJSON: Decodable {
     /* Non optional properties */
-    let eventID: String
+    let idString: String
     let title: String
     let descriptionString: String
-    let startDateString: String?
-    let endDateString: String?
+    
+    let startDateString: String
+    let endDateString: String
     
     /* Optional properties */
+    let marketingInfo: String?
     let featureImageURL: String?
     let registrationStartDateString: String?
     let registrationEndDateString: String?
     let place: String?
     let spotsRemaining: Int
-    let participants: [ParticipantJSON]
+    let participantJSONArray: [ParticipantJSON]
+    let organizationJSON: OrganizationJSON
     
     init?(json: JSON) {
         
@@ -67,12 +70,14 @@ struct EventJSON: Decodable {
         }
     
         
-        self.eventID = eventIDString
+        self.idString = eventIDString
         self.title = title
         self.descriptionString = descriptionString
+        
         self.startDateString = startDateString
         self.endDateString = endDateString
         
+        self.marketingInfo = EventKeys.marketingInfo <~~ json
         self.featureImageURL = EventKeys.featureImageURL <~~ json
         self.registrationStartDateString = EventKeys.registrationStartDate <~~ json
         self.registrationEndDateString = EventKeys.registrationEndDate <~~ json
@@ -81,12 +86,8 @@ struct EventJSON: Decodable {
         self.spotsRemaining = (EventKeys.spotsRemaining <~~ json)!
         
         /* Parse Nested JSON for participants */
-        let participantJSONArray = EventKeys.participants <~~ json
-        self.participants = [ParticipantJSON].fromJSONArray(participantJSONArray)
-    }
-    
-    func toDictionary() -> JsonDict {
-        let returnDict: JsonDict = [:]
-        return returnDict
+        let participantJSONArray: [JSON] = (EventKeys.participants <~~ json)!
+        self.participantJSONArray = [ParticipantJSON].fromJSONArray(participantJSONArray)
+        self.organizationJSON = "organization" <~~ json
     }
 }

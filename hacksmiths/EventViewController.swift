@@ -86,10 +86,6 @@ extension EventViewController: EventView {
         
     }
     
-    func setAttendees(forEvent event: Event) {
-        
-    }
-    
     func respondToEvent(sender: EventPresenter, didSucceed event: Event) {
         
     }

@@ -39,7 +39,8 @@ typealias CompletionHandlerWithImage = (image: UIImage?, error: NSError?) -> Voi
 typealias CompletionHandlerWithUserData = (success: Bool, userData: UserData?, error: NSError?) -> Void
 
 /* global static stack manager */
-struct GlobalStackManager {
+class GlobalStackManager {
+    static let SharedManager = GlobalStackManager()
     var sharedContext: NSManagedObjectContext {
         return CoreDataStackManager.sharedInstance().managedObjectContext
     }

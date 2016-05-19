@@ -23,8 +23,8 @@ class EventService {
                     response in
                     
                     switch response.result {
-                    case .Success(let JSON):
-                        let nextEventJSON = NextEventJSON(json)
+                    case .Success(let JSONData):
+                        let nextEventJSON = NextEventJSON(json: JSONData as! JSON)
                         fullfill(nextEventJSON)
                     case .Failure(let error):
                         reject(error)
@@ -33,17 +33,25 @@ class EventService {
         }
     }
     
-    func getEvent(eventID: String) -> Promise<EventJSON?> {
+    func getEvent(eventID: String) -> Promise<Event?> {
         return Promise {fullfill, reject in
             let HTTPManager = Manager()
-            let router = EventRouter(endpoint: .GetEvent(eventID))
+            let router = EventRouter(endpoint: .GetEvent(eventID: eventID))
             HTTPManager.request(router)
                 .validate()
                 .responseJSON {
+                    response in
+                    
                     switch response.result {
-                    case .Success(let JSON):
-                        let eventJSON = EventJSON(JSON)
-                        let event = Event(eventJson: eventJSON, context: GlobalStackManager.sharedContext)
+                    case .Success(let JSONData):
+                        
+                        if let eventJSON = EventJSON(json: JSONData as! JSON) {
+                            let event = Event(eventJson: eventJSON, context: GlobalStackManager.SharedManager.sharedContext)
+                            fullfill(event)
+                        } else {
+                            let error = GlobalErrors.MissingData
+                            reject(error)
+                        }
                     case .Failure(let error):
                         reject(error)
                     }
@@ -54,7 +62,7 @@ class EventService {
     func getEventAttendees(event: Event) -> Promise<[EventRSVP]?> {
         return Promise {fullfill, reject in
             
-            let router = EventRouter(endpoint: .GetEventAttendees())
+            let router = EventRouter(endpoint: .GetEventAttendees(event: event))
             let HTTPManager = Manager()
             
             
@@ -64,7 +72,7 @@ class EventService {
                     response in
                     
                     switch response.result {
-                    case .Success(let JSON):
+                    case .Success(let JSONData):
                         break
                     case .Failure(let error):
                         reject(error)
