@@ -14,7 +14,6 @@ protocol EventView: NSObjectProtocol {
     func finishLoading()
     func getEvent(sender: EventPresenter, didSucceed event: Event)
     func getEvent(sender: EventPresenter, didFail error: NSError)
-    func getAttendees(forEvent event: Event)
     func respondToEvent(sender: EventPresenter, didSucceed event: Event)
     func respondToEvent(sender: EventPresenter, didFail error: NSError)
 }
@@ -22,7 +21,6 @@ protocol EventView: NSObjectProtocol {
 class EventPresenter {
     private var eventView: EventView?
     private let eventService: EventService
-    
     
     init(eventService: EventService) {
         self.eventService = eventService
@@ -36,25 +34,17 @@ class EventPresenter {
         eventView = nil
     }
     
-    func getEvent() {
+    func getNextEvent() {
         eventService.getEventStatus().then() {
-            event -> () in
+            nextEvent -> () in
             
-                if let event = self.performEventFetch() {
-                    self.eventView?.getEvent(self, didSucceed: event)
-                } else {
-                    self.eventView?.getEvent(self, didFail: Errors.constructError(domain: "EventView", userMessage: "An error occured while loading the event.  Please try again."))
-                }
-            
-            }.error { (error: ErrorType) -> Void in
-                self.eventView?.getEvent(self, didFail: error)
+
+            self.eventService.getEvent(nextEvent!.id).then(){
+                event -> () in
+                
+                self.eventView?.getEvent(self, didSucceed: event!)
             }
-    }
-    
-    private func getEventParticipants() {
-//        eventService.getEventAttendees().then() {
-//            
-//        }
+        }
     }
     
     private func performEventFetch() -> Event? {

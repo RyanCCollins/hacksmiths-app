@@ -58,26 +58,4 @@ class EventService {
             }
         }
     }
-    
-    func getEventAttendees(event: Event) -> Promise<[EventRSVP]?> {
-        return Promise {fullfill, reject in
-            
-            let router = EventRouter(endpoint: .GetEventAttendees(event: event))
-            let HTTPManager = Manager()
-            
-            
-            HTTPManager.request(router)
-                .validate()
-                .responseJSON() {
-                    response in
-                    
-                    switch response.result {
-                    case .Success(let JSONData):
-                        break
-                    case .Failure(let error):
-                        reject(error)
-                }
-            }
-        }
-    }
 }

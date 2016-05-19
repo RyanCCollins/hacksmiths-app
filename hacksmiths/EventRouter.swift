@@ -12,8 +12,7 @@ import Foundation
 enum EventEndpoint {
     case GetEventStatus()
     case GetEvent(eventID: String)
-    case GetEventAttendees(event: Event)
-    case RSVPForEvent(userData: UserData, event: Event, participating: Bool, cancel: Bool)
+    case RSVPForEvent(userID: String, event: Event, participating: Bool, cancel: Bool)
 }
 
 class EventRouter: BaseRouter {
@@ -26,7 +25,7 @@ class EventRouter: BaseRouter {
         switch endpoint {
         case .GetEventStatus: return .GET
         case .GetEvent: return .GET
-        case RSVP: return .POST
+        case .RSVPForEvent: return .POST
         }
     }
     
@@ -38,12 +37,12 @@ class EventRouter: BaseRouter {
         }
     }
     
-    override var parameters: JsonDict {
+    override var parameters: JsonDict? {
         switch endpoint {
-        case .RSVPForEvent(let userData, let event, let participating, let cancel):
-            let eventDict = [
-                "user": userData.id,
-                "event": event.eventID,
+        case .RSVPForEvent(let userID, let event, let participating, let cancel):
+            let eventDict: JsonDict = [
+                "user": userID,
+                "event": event.idString,
                 "participating": participating,
                 "cancel": cancel,
                 "changed": currentDateTime
@@ -54,19 +53,18 @@ class EventRouter: BaseRouter {
         }
     }
     
-    var currentDateTime: NSDate {
-        var todaysDate:NSDate = NSDate()
-        var dateFormatter:NSDateFormatter = NSDateFormatter()
+    var currentDateTime: String {
+        let todaysDate:NSDate = NSDate()
+        let dateFormatter:NSDateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "MM-dd-yyyy HH:mm"
-        var currentDataTimeString: String = dateFormatter.stringFromDate()
+        let currentDateTimeString: String = dateFormatter.stringFromDate(todaysDate)
         
-        return currentDateTime
+        return currentDateTimeString
     }
     
     override var encoding: Alamofire.ParameterEncoding? {
         switch endpoint {
-        case .GetEvent():
-            return .URL
+        case .GetEvent: return .URL
         default: return .JSON
         }
     }

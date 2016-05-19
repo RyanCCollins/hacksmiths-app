@@ -22,6 +22,8 @@ struct EventKeys {
     static let participants = "participants"
     static let featureImageURL = "featureImage.url"
     static let spotsRemaining = "spotsRemaining"
+    
+    static let organization = "organization"
 }
 
 
@@ -88,6 +90,8 @@ struct EventJSON: Decodable {
         /* Parse Nested JSON for participants */
         let participantJSONArray: [JSON] = (EventKeys.participants <~~ json)!
         self.participantJSONArray = [ParticipantJSON].fromJSONArray(participantJSONArray)
-        self.organizationJSON = "organization" <~~ json
+        
+        self.organizationJSON = (EventKeys.organization <~~ json)!
+        
     }
 }

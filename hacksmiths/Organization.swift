@@ -57,8 +57,12 @@ class Organization: NSManagedObject {
         
     }
     
-    var logoFileName: String {
-        return logoUrl?.lastPathComponent || ""
+    var logoFileName: String? {
+        if let logoURL = logoUrl {
+            return logoUrl?.lastPathComponent
+        } else {
+            return nil
+        }
     }
     
     var image: UIImage? {

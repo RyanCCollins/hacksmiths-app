@@ -17,7 +17,7 @@ struct OrganizationKeys {
     static let logoURL = "logo.url"
 }
 
-class OrganizationJSON: Decodable {
+struct OrganizationJSON: Decodable {
     let idString: String
     let name: String
     let isHiring: Bool
@@ -37,5 +37,6 @@ class OrganizationJSON: Decodable {
         
         self.website = OrganizationKeys.website <~~ json
         self.logoURL = OrganizationKeys.logoURL <~~ json
+        self.descriptionString = OrganizationKeys.description <~~ json
     }
 }

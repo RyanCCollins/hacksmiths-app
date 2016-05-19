@@ -13,7 +13,7 @@ protocol APIConfig {
     var method: Alamofire.Method { get }
     var encoding: Alamofire.ParameterEncoding? { get }
     var path: String { get }
-    var parameters: String { get }
+    var parameters: JsonDict? { get }
 }
 
 
@@ -25,7 +25,7 @@ class BaseRouter: URLRequestConvertible, APIConfig {
         fatalError("[BaseRouter - \(#function)] Must be overridden in subclass")
     }
     
-    var encoding: ParameterEncoding? {
+    var encoding: Alamofire.ParameterEncoding? {
         fatalError("[BaseRouter - \(#function)] Must be overridden in subclass")
     }
     
@@ -33,16 +33,18 @@ class BaseRouter: URLRequestConvertible, APIConfig {
         fatalError("[BaseRouter - \(#function)] Must be overridden in subclass")
     }
     
-    var parameters: JsonDict {
+    var parameters: JsonDict? {
         fatalError("[BaseRouter - \(#function)] Must be overridden in subclass")
     }
     
     var baseURL: String {
         var configuration: NSDictionary?
+        var returnURL: String = ""
         if let path = NSBundle.mainBundle().pathForResource("APIKeys", ofType: "plist") {
             configuration = NSDictionary(contentsOfFile: path)
-            return configuration!["HACKSMITHS_BASE_URL"] as? String ?? ""
+            returnURL =  configuration!["HACKSMITHS_BASE_URL"] as? String ?? ""
         }
+        return returnURL
     }
     
     var URLRequest: NSMutableURLRequest {

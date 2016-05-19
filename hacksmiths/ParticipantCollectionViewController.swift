@@ -34,13 +34,15 @@ class ParticipantCollectionViewController: UICollectionViewController {
 
     // MARK: UICollectionViewDataSource
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return self.fetchedResultsController.sections?.count ?? 0
+        return 0
+        //        return self.fetchedResultsController.sections?.count ?? 0
     }
 
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let sectionInfo = fetchedResultsController.sections![section]
-        return sectionInfo.numberOfObjects
+        return 0
+//        let sectionInfo = fetchedResultsController.sections![section]
+//        return sectionInfo.numberOfObjects
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -108,7 +110,7 @@ class ParticipantCollectionViewController: UICollectionViewController {
     
 }
 
-extension PeopleCollectionViewController: NSFetchedResultsControllerDelegate {
+extension ParticipantCollectionViewController: NSFetchedResultsControllerDelegate {
     func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
 
     }

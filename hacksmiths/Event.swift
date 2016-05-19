@@ -77,8 +77,8 @@ class Event: NSManagedObject {
     }
     
     private func createOrganizationModel(organizationJSON: OrganizationJSON, eventID: String) -> Organization {
-        let organization = Organization(entity: organizationJSON, insertIntoManagedObjectContext: GlobalStackManager.SharedManager.sharedContext)
-        
+        let organization = Organization(organizationJSON: organizationJSON, eventID: eventID, context: GlobalStackManager.SharedManager.sharedContext)
+        return organization
     }
     
     

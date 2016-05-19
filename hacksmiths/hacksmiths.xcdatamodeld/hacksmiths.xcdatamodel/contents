@@ -18,7 +18,7 @@
         <relationship name="participants" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Participant" inverseName="event" inverseEntity="Participant" syncable="YES"/>
         <compoundIndexes>
             <compoundIndex>
-                <index value="eventID"/>
+                <index value="idString"/>
             </compoundIndex>
         </compoundIndexes>
     </entity>
