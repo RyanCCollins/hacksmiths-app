@@ -9,17 +9,14 @@
 /* Begin PBXBuildFile section */
 		1F115B4A1CC0060900DC434E /* RegistrationPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F115B491CC0060900DC434E /* RegistrationPageViewController.swift */; };
 		1F26C3F71CA0B232001596D2 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F26C3F61CA0B232001596D2 /* AboutViewController.swift */; };
-		1F26C3F91CA1958E001596D2 /* LeaderboardTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F26C3F81CA1958E001596D2 /* LeaderboardTableViewController.swift */; };
 		1F44B1BA1C5DDAB9004E196D /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F44B1B91C5DDAB9004E196D /* CoreDataStackManager.swift */; };
 		1F46B9EC1CA467250065D50D /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F46B9EB1CA467250065D50D /* UserData.swift */; };
 		1F4B4DF71C72574700A75F5D /* 1Password.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F4B4DF41C72574700A75F5D /* 1Password.xcassets */; };
 		1F4B4DF81C72574700A75F5D /* OnePasswordExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4B4DF61C72574700A75F5D /* OnePasswordExtension.m */; };
-		1F4B4DFB1C72581D00A75F5D /* KeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4B4DFA1C72581D00A75F5D /* KeychainWrapper.m */; };
 		1F4B4DFF1C73A60400A75F5D /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4B4DFE1C73A60400A75F5D /* UserDefaults.swift */; };
 		1F4B4E011C74FCC400A75F5D /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4B4E001C74FCC400A75F5D /* JoinViewController.swift */; };
 		1F6C69E61CCC627B00F15247 /* ParticipantCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6C69E51CCC627B00F15247 /* ParticipantCollectionViewController.swift */; };
 		1F6C69E81CCC6BB700F15247 /* PersonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6C69E71CCC6BB700F15247 /* PersonCollectionViewCell.swift */; };
-		1F6C69EA1CCC72EA00F15247 /* EventRSVP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6C69E91CCC72EA00F15247 /* EventRSVP.swift */; };
 		1F6C69EC1CCFAEE600F15247 /* HacksmithsEventAPIConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6C69EB1CCFAEE500F15247 /* HacksmithsEventAPIConvenience.swift */; };
 		1F7701C21C84B532006FBCE0 /* Montserrat-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1F7701BC1C84B532006FBCE0 /* Montserrat-Black.otf */; };
 		1F7701C31C84B532006FBCE0 /* Montserrat-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1F7701BD1C84B532006FBCE0 /* Montserrat-Bold.otf */; };
@@ -75,6 +72,7 @@
 		1FA9FC821C534E5B00B993BC /* hacksmithsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA9FC811C534E5B00B993BC /* hacksmithsTests.swift */; };
 		1FA9FC8D1C534E5B00B993BC /* hacksmithsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA9FC8C1C534E5B00B993BC /* hacksmithsUITests.swift */; };
 		1FA9FC9B1C53563700B993BC /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA9FC9A1C53563700B993BC /* EventViewController.swift */; };
+		1FAD7DB91CEE64EB0044BD94 /* NextEventJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAD7DB81CEE64EB0044BD94 /* NextEventJSON.swift */; };
 		1FC6DE3E1C9F36BF000E8159 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC6DE3D1C9F36BF000E8159 /* ProfileViewController.swift */; };
 		1FC6DE471C9F6DC5000E8159 /* RegistrationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC6DE461C9F6DC5000E8159 /* RegistrationData.swift */; };
 		1FE1668A1CD9053C0052B0A8 /* ProfileDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE166891CD9053C0052B0A8 /* ProfileDataFetcher.swift */; };
@@ -87,7 +85,6 @@
 		1FF998991C6FAEDE003D98B2 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF998981C6FAEDE003D98B2 /* Event.swift */; };
 		1FF9989D1C6FB060003D98B2 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF9989C1C6FB060003D98B2 /* Organization.swift */; };
 		1FF998A11C71387C003D98B2 /* PersonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF998A01C71387C003D98B2 /* PersonTableViewCell.swift */; };
-		1FF998A41C713931003D98B2 /* LeaderBoardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF998A31C713931003D98B2 /* LeaderBoardTableViewCell.swift */; };
 		944BA94349C31AD439B9CB55 /* Pods_hacksmiths.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1D439823755832D7DEC3CC3 /* Pods_hacksmiths.framework */; };
 /* End PBXBuildFile section */
 
@@ -111,20 +108,16 @@
 /* Begin PBXFileReference section */
 		1F115B491CC0060900DC434E /* RegistrationPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationPageViewController.swift; sourceTree = "<group>"; };
 		1F26C3F61CA0B232001596D2 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
-		1F26C3F81CA1958E001596D2 /* LeaderboardTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderboardTableViewController.swift; sourceTree = "<group>"; };
 		1F44B1B91C5DDAB9004E196D /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
 		1F46B9EB1CA467250065D50D /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		1F4B4DF31C72574600A75F5D /* hacksmiths-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "hacksmiths-Bridging-Header.h"; sourceTree = "<group>"; };
 		1F4B4DF41C72574700A75F5D /* 1Password.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = 1Password.xcassets; sourceTree = "<group>"; };
 		1F4B4DF51C72574700A75F5D /* OnePasswordExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnePasswordExtension.h; sourceTree = "<group>"; };
 		1F4B4DF61C72574700A75F5D /* OnePasswordExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnePasswordExtension.m; sourceTree = "<group>"; };
-		1F4B4DF91C72581D00A75F5D /* KeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainWrapper.h; sourceTree = "<group>"; };
-		1F4B4DFA1C72581D00A75F5D /* KeychainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainWrapper.m; sourceTree = "<group>"; };
 		1F4B4DFE1C73A60400A75F5D /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		1F4B4E001C74FCC400A75F5D /* JoinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinViewController.swift; sourceTree = "<group>"; };
 		1F6C69E51CCC627B00F15247 /* ParticipantCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticipantCollectionViewController.swift; sourceTree = "<group>"; };
 		1F6C69E71CCC6BB700F15247 /* PersonCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonCollectionViewCell.swift; sourceTree = "<group>"; };
-		1F6C69E91CCC72EA00F15247 /* EventRSVP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventRSVP.swift; sourceTree = "<group>"; };
 		1F6C69EB1CCFAEE500F15247 /* HacksmithsEventAPIConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HacksmithsEventAPIConvenience.swift; sourceTree = "<group>"; };
 		1F7701BC1C84B532006FBCE0 /* Montserrat-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Black.otf"; sourceTree = "<group>"; };
 		1F7701BD1C84B532006FBCE0 /* Montserrat-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.otf"; sourceTree = "<group>"; };
@@ -176,9 +169,9 @@
 		1FA9FC691C534E5900B993BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1FA9FC6E1C534E5A00B993BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1FA9FC711C534E5A00B993BC /* hacksmiths.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = hacksmiths.xcdatamodel; sourceTree = "<group>"; };
-		1FA9FC731C534E5A00B993BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1FA9FC731C534E5A00B993BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = hacksmiths/Assets.xcassets; sourceTree = "<group>"; };
 		1FA9FC761C534E5A00B993BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		1FA9FC781C534E5A00B993BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1FA9FC781C534E5A00B993BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = hacksmiths/Info.plist; sourceTree = "<group>"; };
 		1FA9FC7D1C534E5B00B993BC /* hacksmithsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hacksmithsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FA9FC811C534E5B00B993BC /* hacksmithsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hacksmithsTests.swift; sourceTree = "<group>"; };
 		1FA9FC831C534E5B00B993BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -186,6 +179,7 @@
 		1FA9FC8C1C534E5B00B993BC /* hacksmithsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hacksmithsUITests.swift; sourceTree = "<group>"; };
 		1FA9FC8E1C534E5B00B993BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1FA9FC9A1C53563700B993BC /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
+		1FAD7DB81CEE64EB0044BD94 /* NextEventJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextEventJSON.swift; sourceTree = "<group>"; };
 		1FC6DE3D1C9F36BF000E8159 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		1FC6DE461C9F6DC5000E8159 /* RegistrationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationData.swift; sourceTree = "<group>"; };
 		1FE166891CD9053C0052B0A8 /* ProfileDataFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDataFetcher.swift; sourceTree = "<group>"; };
@@ -198,7 +192,6 @@
 		1FF998981C6FAEDE003D98B2 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		1FF9989C1C6FB060003D98B2 /* Organization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
 		1FF998A01C71387C003D98B2 /* PersonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonTableViewCell.swift; sourceTree = "<group>"; };
-		1FF998A31C713931003D98B2 /* LeaderBoardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaderBoardTableViewCell.swift; sourceTree = "<group>"; };
 		2191EFCDC3E224734A81AEB7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		2F01D804491290ED3ADAFE2E /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		45292B4C83993EE9BF28F373 /* Pods-hacksmiths.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hacksmiths.release.xcconfig"; path = "Pods/Target Support Files/Pods-hacksmiths/Pods-hacksmiths.release.xcconfig"; sourceTree = "<group>"; };
@@ -244,32 +237,24 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		1F44B1BB1C5DDAC9004E196D /* Controller */ = {
+		1F44B1BB1C5DDAC9004E196D /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				1FC6DE451C9F59EB000E8159 /* Registration */,
-				1FF998911C6EB359003D98B2 /* MainTabBarController.swift */,
-				1F26C3F61CA0B232001596D2 /* AboutViewController.swift */,
-				1F26C3F81CA1958E001596D2 /* LeaderboardTableViewController.swift */,
-				1FA5A4EF1C535D6C00722E55 /* LoginViewController.swift */,
-				1FE4B3121C6ADE050011ECAE /* PersonViewController.swift */,
 				1FA5A4ED1C535A9500722E55 /* ExtendsUIViewController.swift */,
-				1FA5A4E71C53585500722E55 /* SettingsViewController.swift */,
-				1FA5A4EB1C53586D00722E55 /* CommunityViewController.swift */,
-				1F4B4E001C74FCC400A75F5D /* JoinViewController.swift */,
 			);
-			name = Controller;
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		1F44B1BC1C5DDB35004E196D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1FAD7DAE1CEE5DAC0044BD94 /* User */,
+				1FAD7DAD1CEE5D980044BD94 /* Person */,
 				1F846CC81CED00C5009166D4 /* Participant */,
 				1F846CCC1CED0173009166D4 /* Organization */,
 				1F846CC51CECF7AE009166D4 /* Event */,
 				1F846CC21CEBFD31009166D4 /* Core Data */,
 				1F846CB11CEBADD9009166D4 /* Services */,
-				1FC6DE461C9F6DC5000E8159 /* RegistrationData.swift */,
 				1FA2E5641C6802B30085FC7D /* HacksmithsAPI */,
 			);
 			name = Model;
@@ -291,8 +276,7 @@
 		1F846CB11CEBADD9009166D4 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				1F846CB71CEBB1DA009166D4 /* HTTPRouting */,
-				1F846CAF1CEBADC7009166D4 /* EventService.swift */,
+				1F846CB21CEBAF3C009166D4 /* BaseRouter.swift */,
 				1F846CC01CEBFA5C009166D4 /* HTTPStatusCodes.swift */,
 			);
 			name = Services;
@@ -307,19 +291,13 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
-		1F846CB71CEBB1DA009166D4 /* HTTPRouting */ = {
-			isa = PBXGroup;
-			children = (
-				1F846CB21CEBAF3C009166D4 /* BaseRouter.swift */,
-				1F846CB81CEBB4BE009166D4 /* EventRouter.swift */,
-			);
-			name = HTTPRouting;
-			sourceTree = "<group>";
-		};
 		1F846CBA1CEBF547009166D4 /* ControllerModules */ = {
 			isa = PBXGroup;
 			children = (
-				1FEF3FB41CED69E0007E4BF0 /* UserProfile */,
+				1FAD7DB61CEE5F7A0044BD94 /* Community */,
+				1FC6DE451C9F59EB000E8159 /* User & Auth */,
+				1FAD7DB31CEE5F050044BD94 /* About */,
+				1FAD7DB21CEE5EEA0044BD94 /* MainTabBar */,
 				1FEF3FAF1CED6695007E4BF0 /* Participant */,
 				1F846CBB1CEBF56A009166D4 /* Event */,
 			);
@@ -354,7 +332,6 @@
 		1F846CC21CEBFD31009166D4 /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
-				1FF998951C6FAD98003D98B2 /* Managed Object Models */,
 				1FA2E55E1C6802680085FC7D /* ImageCache.swift */,
 				1F44B1B91C5DDAB9004E196D /* CoreDataStackManager.swift */,
 			);
@@ -364,8 +341,11 @@
 		1F846CC51CECF7AE009166D4 /* Event */ = {
 			isa = PBXGroup;
 			children = (
+				1F846CB81CEBB4BE009166D4 /* EventRouter.swift */,
+				1F846CAF1CEBADC7009166D4 /* EventService.swift */,
 				1FF998981C6FAEDE003D98B2 /* Event.swift */,
 				1F846CC61CECF7D5009166D4 /* EventJSON.swift */,
+				1FAD7DB81CEE64EB0044BD94 /* NextEventJSON.swift */,
 			);
 			name = Event;
 			sourceTree = "<group>";
@@ -428,14 +408,11 @@
 		1FA5A53C1C53610300722E55 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				1F7701BB1C84B532006FBCE0 /* montserrat */,
-				1F4B4DF91C72581D00A75F5D /* KeychainWrapper.h */,
-				1F4B4DFA1C72581D00A75F5D /* KeychainWrapper.m */,
+				1FAD7DBD1CEE69C20044BD94 /* Storyboard & Assets */,
+				1FAD7DBC1CEE69A10044BD94 /* App Configuration Files */,
+				1FAD7DBB1CEE69870044BD94 /* Libraries */,
+				1FAD7DBA1CEE696C0044BD94 /* Fonts */,
 				1F4B4DF41C72574700A75F5D /* 1Password.xcassets */,
-				1F4B4DF51C72574700A75F5D /* OnePasswordExtension.h */,
-				1F4B4DF61C72574700A75F5D /* OnePasswordExtension.m */,
-				1FE4B30C1C6ADAC10011ECAE /* octicons.ttf */,
-				1FA5A5151C5360FA00722E55 /* roboto */,
 				1F4B4DF31C72574600A75F5D /* hacksmiths-Bridging-Header.h */,
 			);
 			name = Resources;
@@ -468,18 +445,11 @@
 		1FA9FC681C534E5900B993BC /* hacksmiths */ = {
 			isa = PBXGroup;
 			children = (
+				1FAD7DAF1CEE5DFC0044BD94 /* Global */,
 				1F846CB61CEBB170009166D4 /* Support */,
-				1FA9FC691C534E5900B993BC /* AppDelegate.swift */,
-				1FA2E55A1C67FF020085FC7D /* GlobalConstants.swift */,
 				1F44B1BC1C5DDB35004E196D /* Model */,
 				1FF998A21C713888003D98B2 /* View */,
 				1F846CBA1CEBF547009166D4 /* ControllerModules */,
-				1F44B1BB1C5DDAC9004E196D /* Controller */,
-				1FA9FC6D1C534E5A00B993BC /* Main.storyboard */,
-				1FA9FC731C534E5A00B993BC /* Assets.xcassets */,
-				1FA9FC751C534E5A00B993BC /* LaunchScreen.storyboard */,
-				1FA9FC781C534E5A00B993BC /* Info.plist */,
-				1FA9FC701C534E5A00B993BC /* hacksmiths.xcdatamodeld */,
 			);
 			path = hacksmiths;
 			sourceTree = "<group>";
@@ -502,12 +472,147 @@
 			path = hacksmithsUITests;
 			sourceTree = "<group>";
 		};
-		1FC6DE451C9F59EB000E8159 /* Registration */ = {
+		1FAD7DAD1CEE5D980044BD94 /* Person */ = {
+			isa = PBXGroup;
+			children = (
+				1FF998961C6FAE3E003D98B2 /* Person.swift */,
+			);
+			name = Person;
+			sourceTree = "<group>";
+		};
+		1FAD7DAE1CEE5DAC0044BD94 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				1FC6DE461C9F6DC5000E8159 /* RegistrationData.swift */,
+				1F46B9EB1CA467250065D50D /* UserData.swift */,
+				1F4B4DFE1C73A60400A75F5D /* UserDefaults.swift */,
+			);
+			name = User;
+			sourceTree = "<group>";
+		};
+		1FAD7DAF1CEE5DFC0044BD94 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				1F44B1BB1C5DDAC9004E196D /* Extensions */,
+				1FA9FC691C534E5900B993BC /* AppDelegate.swift */,
+				1FA2E55A1C67FF020085FC7D /* GlobalConstants.swift */,
+			);
+			name = Global;
+			sourceTree = "<group>";
+		};
+		1FAD7DB01CEE5ECE0044BD94 /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				1FAD7DB11CEE5ED70044BD94 /* View */,
+			);
+			name = Registration;
+			sourceTree = "<group>";
+		};
+		1FAD7DB11CEE5ED70044BD94 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				1F115B491CC0060900DC434E /* RegistrationPageViewController.swift */,
 			);
-			name = Registration;
+			name = View;
+			sourceTree = "<group>";
+		};
+		1FAD7DB21CEE5EEA0044BD94 /* MainTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				1FF998911C6EB359003D98B2 /* MainTabBarController.swift */,
+			);
+			name = MainTabBar;
+			sourceTree = "<group>";
+		};
+		1FAD7DB31CEE5F050044BD94 /* About */ = {
+			isa = PBXGroup;
+			children = (
+				1F26C3F61CA0B232001596D2 /* AboutViewController.swift */,
+			);
+			name = About;
+			sourceTree = "<group>";
+		};
+		1FAD7DB41CEE5F140044BD94 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				1FA5A4EF1C535D6C00722E55 /* LoginViewController.swift */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		1FAD7DB51CEE5F240044BD94 /* Join */ = {
+			isa = PBXGroup;
+			children = (
+				1F4B4E001C74FCC400A75F5D /* JoinViewController.swift */,
+			);
+			name = Join;
+			sourceTree = "<group>";
+		};
+		1FAD7DB61CEE5F7A0044BD94 /* Community */ = {
+			isa = PBXGroup;
+			children = (
+				1FA5A4EB1C53586D00722E55 /* CommunityViewController.swift */,
+				1FE4B3121C6ADE050011ECAE /* PersonViewController.swift */,
+			);
+			name = Community;
+			sourceTree = "<group>";
+		};
+		1FAD7DB71CEE5F8E0044BD94 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				1FA5A4E71C53585500722E55 /* SettingsViewController.swift */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		1FAD7DBA1CEE696C0044BD94 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				1FE4B30C1C6ADAC10011ECAE /* octicons.ttf */,
+				1FA5A5151C5360FA00722E55 /* roboto */,
+				1F7701BB1C84B532006FBCE0 /* montserrat */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
+		1FAD7DBB1CEE69870044BD94 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				1F4B4DF51C72574700A75F5D /* OnePasswordExtension.h */,
+				1F4B4DF61C72574700A75F5D /* OnePasswordExtension.m */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
+		1FAD7DBC1CEE69A10044BD94 /* App Configuration Files */ = {
+			isa = PBXGroup;
+			children = (
+				1FA9FC781C534E5A00B993BC /* Info.plist */,
+				1FA9FC701C534E5A00B993BC /* hacksmiths.xcdatamodeld */,
+			);
+			name = "App Configuration Files";
+			sourceTree = "<group>";
+		};
+		1FAD7DBD1CEE69C20044BD94 /* Storyboard & Assets */ = {
+			isa = PBXGroup;
+			children = (
+				1FA9FC6D1C534E5A00B993BC /* Main.storyboard */,
+				1FA9FC731C534E5A00B993BC /* Assets.xcassets */,
+				1FA9FC751C534E5A00B993BC /* LaunchScreen.storyboard */,
+			);
+			name = "Storyboard & Assets";
+			sourceTree = "<group>";
+		};
+		1FC6DE451C9F59EB000E8159 /* User & Auth */ = {
+			isa = PBXGroup;
+			children = (
+				1FEF3FB41CED69E0007E4BF0 /* Profile */,
+				1FAD7DB71CEE5F8E0044BD94 /* Settings */,
+				1FAD7DB01CEE5ECE0044BD94 /* Registration */,
+				1FAD7DB41CEE5F140044BD94 /* Login */,
+				1FAD7DB51CEE5F240044BD94 /* Join */,
+			);
+			name = "User & Auth";
 			sourceTree = "<group>";
 		};
 		1FEF3FAF1CED6695007E4BF0 /* Participant */ = {
@@ -535,13 +640,13 @@
 			name = View;
 			sourceTree = "<group>";
 		};
-		1FEF3FB41CED69E0007E4BF0 /* UserProfile */ = {
+		1FEF3FB41CED69E0007E4BF0 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
 				1FEF3FB61CED69FA007E4BF0 /* View */,
 				1FEF3FB51CED69F1007E4BF0 /* Presenter */,
 			);
-			name = UserProfile;
+			name = Profile;
 			sourceTree = "<group>";
 		};
 		1FEF3FB51CED69F1007E4BF0 /* Presenter */ = {
@@ -560,23 +665,11 @@
 			name = View;
 			sourceTree = "<group>";
 		};
-		1FF998951C6FAD98003D98B2 /* Managed Object Models */ = {
-			isa = PBXGroup;
-			children = (
-				1F46B9EB1CA467250065D50D /* UserData.swift */,
-				1FF998961C6FAE3E003D98B2 /* Person.swift */,
-				1F4B4DFE1C73A60400A75F5D /* UserDefaults.swift */,
-				1F6C69E91CCC72EA00F15247 /* EventRSVP.swift */,
-			);
-			name = "Managed Object Models";
-			sourceTree = "<group>";
-		};
 		1FF998A21C713888003D98B2 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				1F6C69E71CCC6BB700F15247 /* PersonCollectionViewCell.swift */,
 				1FF998A01C71387C003D98B2 /* PersonTableViewCell.swift */,
-				1FF998A31C713931003D98B2 /* LeaderBoardTableViewCell.swift */,
 				1FE5F91A1CD8288800487CA8 /* RCCircularImageView.swift */,
 				1F846CC31CEC03C5009166D4 /* IGActivityIndicatorView.swift */,
 			);
@@ -821,9 +914,7 @@
 				1FC6DE3E1C9F36BF000E8159 /* ProfileViewController.swift in Sources */,
 				1F846CCE1CED0190009166D4 /* OrganizationJSON.swift in Sources */,
 				1F6C69E61CCC627B00F15247 /* ParticipantCollectionViewController.swift in Sources */,
-				1F6C69EA1CCC72EA00F15247 /* EventRSVP.swift in Sources */,
 				1F44B1BA1C5DDAB9004E196D /* CoreDataStackManager.swift in Sources */,
-				1FF998A41C713931003D98B2 /* LeaderBoardTableViewCell.swift in Sources */,
 				1FE5F91B1CD8288800487CA8 /* RCCircularImageView.swift in Sources */,
 				1F4B4DF81C72574700A75F5D /* OnePasswordExtension.m in Sources */,
 				1FF9989D1C6FB060003D98B2 /* Organization.swift in Sources */,
@@ -836,15 +927,14 @@
 				1F46B9EC1CA467250065D50D /* UserData.swift in Sources */,
 				1FA9FC721C534E5A00B993BC /* hacksmiths.xcdatamodeld in Sources */,
 				1F846CC11CEBFA5C009166D4 /* HTTPStatusCodes.swift in Sources */,
-				1F26C3F91CA1958E001596D2 /* LeaderboardTableViewController.swift in Sources */,
 				1FA2E5631C6802AC0085FC7D /* HacksmithsAPIUserConvenience.swift in Sources */,
+				1FAD7DB91CEE64EB0044BD94 /* NextEventJSON.swift in Sources */,
 				1FF998A11C71387C003D98B2 /* PersonTableViewCell.swift in Sources */,
 				1F4B4E011C74FCC400A75F5D /* JoinViewController.swift in Sources */,
 				1F26C3F71CA0B232001596D2 /* AboutViewController.swift in Sources */,
 				1FA2E5611C68029C0085FC7D /* HacksmithsAPIConstants.swift in Sources */,
 				1FF998921C6EB359003D98B2 /* MainTabBarController.swift in Sources */,
 				1FA9FC6A1C534E5900B993BC /* AppDelegate.swift in Sources */,
-				1F4B4DFB1C72581D00A75F5D /* KeychainWrapper.m in Sources */,
 				1FA5A4F01C535D6C00722E55 /* LoginViewController.swift in Sources */,
 				1FEF3FB11CED66F4007E4BF0 /* ParticipantPresenter.swift in Sources */,
 				1FF998971C6FAE3E003D98B2 /* Person.swift in Sources */,
@@ -891,6 +981,7 @@
 				1FA9FC6E1C534E5A00B993BC /* Base */,
 			);
 			name = Main.storyboard;
+			path = hacksmiths;
 			sourceTree = "<group>";
 		};
 		1FA9FC751C534E5A00B993BC /* LaunchScreen.storyboard */ = {
@@ -899,6 +990,7 @@
 				1FA9FC761C534E5A00B993BC /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = hacksmiths;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1112,7 +1204,8 @@
 				1FA9FC711C534E5A00B993BC /* hacksmiths.xcdatamodel */,
 			);
 			currentVersion = 1FA9FC711C534E5A00B993BC /* hacksmiths.xcdatamodel */;
-			path = hacksmiths.xcdatamodeld;
+			name = hacksmiths.xcdatamodeld;
+			path = hacksmiths/hacksmiths.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

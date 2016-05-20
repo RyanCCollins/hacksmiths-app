@@ -12,8 +12,7 @@ import UIKit
 import Foundation
 import NVActivityIndicatorView
 
-class IGActivityIndicatorView: UIView
-{
+class IGActivityIndicatorView: UIView {
     var messageFrame = UIView()
     var activityIndicator: NVActivityIndicatorView!
     var title: String!
@@ -49,11 +48,9 @@ class IGActivityIndicatorView: UIView
     }
     
     convenience init(inview:UIView) {
-        
         self.init(inview: inview,loadingViewColor: UIColor.blackColor(),indicatorColor:UIColor.whiteColor(), msg: "Loading..")
     }
     convenience init(inview:UIView,messsage:String) {
-        
         self.init(inview: inview,loadingViewColor: UIColor.blackColor(),indicatorColor:UIColor.whiteColor(), msg: messsage)
     }
     

@@ -12,7 +12,6 @@ import SwiftyButton
 
 class LoginViewController: UIViewController {
     
-    let AKeychainWrapper = KeychainWrapper()
     let createLoginButtonTag = 0
     let loginButtonTag = 1
     

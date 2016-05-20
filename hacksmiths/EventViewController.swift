@@ -32,16 +32,25 @@ class EventViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        eventPresenter.attachView(self)
         updateUserInterface()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        eventPresenter.attachView(self)
         eventPresenter.getNextEvent()
+        setActivityIndicator()
         startLoading()
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        eventPresenter.detachView()
+    }
+    
+    func setActivityIndicator() {
+        activityIndicator = IGActivityIndicatorView(inview: self.view)
+    }
     
     func updateUserInterface() {
         if let event = currentEvent {
@@ -113,10 +122,15 @@ extension EventViewController: EventView {
     
     func getEvent(sender: EventPresenter, didFail error: NSError) {
         print("Called getEvent:didFail in EventView with error: \(error)")
+        alertController(withTitles: ["OK", "Retry"], message: error.localizedDescription, callbackHandler: [nil, {Void in
+            self.eventPresenter.getNextEvent()
+            }])
     }
     
     func respondToEvent(sender: EventPresenter, didSucceed event: Event) {
-        
+        self.currentEvent = event
+        self.finishLoading()
+        updateUserInterface()
     }
     
     func respondToEvent(sender: EventPresenter, didFail error: NSError) {

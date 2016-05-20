@@ -14,7 +14,7 @@ import Gloss
 class EventService {
     func getEventStatus() -> Promise<NextEventJSON?> {
         return Promise {fullfill, reject in
-            
+            print("Calling beginning of promise in getEventStatus")
             let HTTPManager = Manager()
             let router = EventRouter(endpoint: .GetEventStatus())
             HTTPManager.request(router)
@@ -24,9 +24,11 @@ class EventService {
                     
                     switch response.result {
                     case .Success(let JSONData):
+                        print("Called success in event service")
                         let nextEventJSON = NextEventJSON(json: JSONData as! JSON)
                         fullfill(nextEventJSON)
                     case .Failure(let error):
+                        print("Called reject in event service.")
                         reject(error)
                 }
             }
@@ -47,6 +49,11 @@ class EventService {
                         
                         if let eventJSON = EventJSON(json: JSONData as! JSON) {
                             let event = Event(eventJson: eventJSON, context: GlobalStackManager.SharedManager.sharedContext)
+                            
+                            GlobalStackManager.SharedManager.sharedContext.performBlockAndWait({
+                                CoreDataStackManager.sharedInstance().saveContext()
+                            })
+                            
                             fullfill(event)
                         } else {
                             let error = GlobalErrors.MissingData

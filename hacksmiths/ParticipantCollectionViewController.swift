@@ -15,8 +15,7 @@ class ParticipantCollectionViewController: UICollectionViewController {
     
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     var currentEvent: Event?
-    var needsNewAttendees = true
-    var people: [Person]? = nil
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,9 +26,7 @@ class ParticipantCollectionViewController: UICollectionViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        if needsNewAttendees {
-            fetchEventAttendees()
-        }
+        
     }
 
     // MARK: UICollectionViewDataSource
@@ -59,55 +56,6 @@ class ParticipantCollectionViewController: UICollectionViewController {
 //            cell.setUIForPerson()
 //        }
     }
-    
-    func fetchEventAttendees() {
-//        guard let eventId = self.currentEvent?.eventID else {
-//            return
-//        }
-//        
-//        HacksmithsAPIClient.sharedInstance().fetchEventAttendees(eventId, completionHandler: {success, error in
-//            if error != nil {
-//                self.view.hideLoading()
-//                self.alertController(withTitles: ["OK", "Retry"], message: (error?.localizedDescription)!, callbackHandler: [nil, {Void in self.fetchEventAttendees()}])
-//            } else {
-//                self.view.hideLoading()
-//                self.performEventFetch()
-//            }
-//        })
-    }
-    
-//    lazy var fetchedResultsController: NSFetchedResultsController = {
-//        var eventId = ""
-//        if self.currentEvent != nil {
-//            eventId = self.currentEvent!.eventID
-//        }
-//        let rsvpFetch = NSFetchRequest(entityName: "EventRSVP")
-//        let eventPredicate = NSPredicate(format: "%K == %@", "event.eventId", eventId)
-//        rsvpFetch.sortDescriptors = []
-//        
-//        let fetchResultsController = NSFetchedResultsController(fetchRequest: rsvpFetch, managedObjectContext: self.sharedContext, sectionNameKeyPath: nil, cacheName: nil)
-//        
-//        do {
-//            try fetchResultsController.performFetch()
-//        } catch let error {
-//            print(error)
-//        }
-//
-//        return fetchResultsController
-//    }()
-    
-//    func performEventFetch() {
-//        do {
-//            
-//            try fetchedResultsController.performFetch()
-//            
-//        } catch let error as NSError {
-//            self.alertController(withTitles: ["OK", "Retry"], message: error.localizedDescription, callbackHandler: [nil, {Void in
-//                self.performEventFetch()
-//                }])
-//        }
-//    }
-    
 }
 
 extension ParticipantCollectionViewController: NSFetchedResultsControllerDelegate {

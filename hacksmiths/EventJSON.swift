@@ -27,21 +27,6 @@ struct EventKeys {
 }
 
 
-/* Next event, when checking event status.  Will allow to get next event by ID. */
-struct NextEventJSON: Decodable {
-    let id: String
-    let active: Bool
-    
-    init?(json: JSON) {
-        guard let id: String = "event.id" <~~ json,
-            let active: Bool = "event.active" <~~ json else {
-                return nil
-        }
-        self.id = id
-        self.active = active
-    }
-}
-
 struct EventJSON: Decodable {
     /* Non optional properties */
     let idString: String

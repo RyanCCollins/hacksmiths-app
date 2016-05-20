@@ -22,10 +22,6 @@
             </compoundIndex>
         </compoundIndexes>
     </entity>
-    <entity name="EventRSVP" syncable="YES">
-        <relationship name="event" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Event" syncable="YES"/>
-        <relationship name="people" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="rsvps" inverseEntity="Person" syncable="YES"/>
-    </entity>
     <entity name="Organization" representedClassName="Organization" syncable="YES">
         <attribute name="descriptionString" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="eventID" optional="YES" attributeType="String" syncable="YES"/>
@@ -59,7 +55,6 @@
         <attribute name="sortPriority" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="twitterUsername" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="website" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="rsvps" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="EventRSVP" inverseName="people" inverseEntity="EventRSVP" syncable="YES"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="id"/>
@@ -89,10 +84,9 @@
     </entity>
     <elements>
         <element name="Event" positionX="-27" positionY="450" width="128" height="270"/>
-        <element name="EventRSVP" positionX="511" positionY="618" width="128" height="75"/>
         <element name="Organization" positionX="-92" positionY="72" width="128" height="30"/>
-        <element name="Person" positionX="358" positionY="243" width="128" height="270"/>
-        <element name="UserData" positionX="126" positionY="45" width="128" height="330"/>
         <element name="Participant" positionX="117" positionY="198" width="128" height="135"/>
+        <element name="Person" positionX="358" positionY="243" width="128" height="255"/>
+        <element name="UserData" positionX="126" positionY="45" width="128" height="330"/>
     </elements>
 </model>
