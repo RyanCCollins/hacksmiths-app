@@ -93,3 +93,16 @@ extension UIView {
     }
 }
 
+/* Extension for parsing a string as a date */
+extension String {
+    func parseAsDate() -> NSDate? {
+        let dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = dateFormat
+        if let date = dateFormatter.dateFromString(self) {
+            return date
+        } else {
+            return nil
+        }
+    }
+}
