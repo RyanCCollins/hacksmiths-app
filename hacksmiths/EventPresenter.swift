@@ -35,34 +35,11 @@ class EventPresenter {
     }
     
     func getNextEvent() {
-        return eventService.getEventStatus().then() {
-            nextEvent -> () in
-            let nextEventID = nextEvent.id
-            
-        }
-    }
-    
-    func getNextEvent() -> Event? {
-        print("Calling beginning of getNextEvent in Event Presenter")
-        return eventService
-            .getEventStatus()
-            .then() {
-                nextEvent -> () in
-                let nextEventID = nextEvent?.id
-                print("Calling did succeed in getNextEvent in EventPresenter")
-                self.eventService
-                    .getEvent(nextEventID!)
-                    .then() {
-                        event -> () in
-                        
-                        self.eventView?.getEvent(self, didSucceed: event!)
-                        fulfill(event)
-                    }
-                    .error {
-                        err -> () in
-                        self.eventView?.getEvent(self, didFail: err as NSError)
-                        reject(err)
-                    }
+        eventService.getEvent("56e1e408427538030076119b").then() {
+            event -> () in
+            self.eventView?.getEvent(self, didSucceed: event!)
+            }.error { error in
+                self.eventView?.getEvent(self, didFail: error as NSError)
             }
     }
     

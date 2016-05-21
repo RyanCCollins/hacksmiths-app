@@ -9,13 +9,14 @@
 import Foundation
 import Alamofire
 import PromiseKit
-import Gloss
+import SwiftyJSON
+//import Gloss
 
 class EventService {
     func getEventStatus() -> Promise<NextEventJSON?> {
         return Promise {fullfill, reject in
             print("Calling beginning of promise in getEventStatus")
-            let HTTPManager = Manager()
+            let HTTPManager = Alamofire.Manager.sharedInstance
             let router = EventRouter(endpoint: .GetEventStatus())
             HTTPManager.request(router)
                 .validate()
@@ -25,8 +26,8 @@ class EventService {
                     switch response.result {
                     case .Success(let JSONData):
                         print("Called success in event service")
-                        let nextEventJSON = NextEventJSON(json: JSONData as! JSON)
-                        fullfill(nextEventJSON)
+                        //let nextEventJSON = NextEventJSON(json: JSONData as! JSON)
+                        //fullfill(nextEventJSON)
                     case .Failure(let error):
                         print("Called reject in event service.")
                         reject(error)
@@ -37,17 +38,18 @@ class EventService {
     
     func getEvent(eventID: String) -> Promise<Event?> {
         return Promise {fullfill, reject in
-            let HTTPManager = Manager()
+            let HTTPManager = Alamofire.Manager.sharedInstance
             let router = EventRouter(endpoint: .GetEvent(eventID: eventID))
             HTTPManager.request(router)
-                .validate()
+                .debugLog()
                 .responseJSON {
                     response in
-                    
+                    print(response.result)
                     switch response.result {
                     case .Success(let JSONData):
-                        
-                        if let eventJSON = EventJSON(json: JSONData as! JSON) {
+                        print("Success in get event.  Saving event. \(JSONData["event"])")
+
+                        if let eventJSON = EventJSON(json: JSONData as! [String : AnyObject]) {
                             let event = Event(eventJson: eventJSON, context: GlobalStackManager.SharedManager.sharedContext)
                             
                             GlobalStackManager.SharedManager.sharedContext.performBlockAndWait({
@@ -56,10 +58,12 @@ class EventService {
                             
                             fullfill(event)
                         } else {
+                            print("Just where I thought it'd be:")
                             let error = GlobalErrors.MissingData
                             reject(error)
                         }
                     case .Failure(let error):
+                        print("error in get event \(error.code)")
                         reject(error)
                     }
             }

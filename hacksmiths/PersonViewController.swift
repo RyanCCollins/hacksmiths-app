@@ -10,76 +10,72 @@ import UIKit
 
 class PersonViewController: UIViewController {
     var person: Person? = nil
+    private let personPresenter = PersonPresenter()
     
-    @IBOutlet weak var personImageView: UIImageView!
-    @IBOutlet weak var personNameLabel: UILabel!
-    @IBOutlet weak var personDescriptionLabel: UILabel!
-    @IBOutlet weak var personTwitterLabel: UILabel!
-    @IBOutlet weak var personGithubLabel: UILabel!
-    
-    @IBOutlet weak var noDataFoundLabel: UILabel!
+    @IBOutlet weak var avatarView: RCCircularImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var twitterLabel: UILabel!
+    @IBOutlet weak var githubLabel: UILabel!
+    @IBOutlet weak var websiteLabel: UILabel!
+    @IBOutlet weak var debugLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setViewObjectsHidden(true)
-        makeImageViewCircular()
-        configurePersonView()
+        personPresenter.attachView(self)
     }
     
-    
-    func setViewObjectsHidden(hidden: Bool) {
-        personNameLabel.hidden = hidden
-        personDescriptionLabel.hidden = hidden
-        personImageView.hidden = hidden
-        noDataFoundLabel.hidden = !hidden
+    private func configureViewOnLoad() {
+        
     }
     
-    func makeImageViewCircular() {
-        personImageView?.layer.cornerRadius = personImageView!.frame.size.width / 2
-        personImageView?.clipsToBounds = true
-        personImageView?.layer.borderWidth = 3.0
-        personImageView.layer.borderColor = UIColor.whiteColor().CGColor
-    }
-    
-    func configurePersonView() {
-        if person != nil {
-            if person!.image != nil {
-                personImageView.image = person!.image
-            } else {
-                // Set the default image view image to show a missing image
-                personImageView.image = UIImage(named: "avatar-missing")
-            }
-            
-            
-            if let bio = person!.bio {
-                personDescriptionLabel.text = bio
-            }
-            
-            personNameLabel.text = person!.fullName
-            
-            setViewObjectsHidden(false)
-            
-            if let twitterUsername = person!.twitterUsername {
-                personTwitterLabel.text = twitterUsername
-                personTwitterLabel.hidden = false
-            }
-            
-            if let githubUserName = person!.githubUsername {
-                personGithubLabel.text = githubUserName
-                personGithubLabel.hidden = false
-            }
-            
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        if let person = person {
+            personPresenter.setPerson(person)
         } else {
-            
-            setViewObjectsHidden(true)
+            personPresenter.setDebugMessage("An error occured while loading the data for this member.")
         }
     }
     
-    @IBAction func didTapSettingsButtonUpInside(sender: AnyObject) {
-        /* Instantiate the settings view controller for showing the settings view */
-        let controller = storyboard?.instantiateViewControllerWithIdentifier("SettingsViewController") as! SettingsViewController
-        
-        /* Set us as the controllers delegate */
-        self.presentViewController(controller, animated: true, completion: nil)
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        personPresenter.detachView(self)
     }
+    
+    
+}
+
+/* MARK: Presenter protocol */
+extension PersonViewController: PersonView {
+    func configureView(forPerson person: Person) {
+        
+        if person.image != nil {
+            avatarView.image = person.image
+            avatarView.hidden = false
+        }
+        if let bio = person.bio {
+            descriptionLabel.text = bio
+            descriptionLabel.hidden = false
+        }
+        if let twitterUsername = person.twitterUsername {
+            twitterLabel.text = twitterUsername
+            twitterLabel.hidden = false
+        }
+        if let githubUsername = person.githubUsername {
+            githubLabel.text = githubUsername
+            githubLabel.hidden = false
+        }
+        if let website = person.website {
+            websiteLabel.text = website
+            websiteLabel.hidden = false
+        }
+        
+    }
+    
+    func configureDebugView(withMessage message: String) {
+        self.debugLabel.text = message
+        self.debugLabel.hidden = false
+    }
+    
 }

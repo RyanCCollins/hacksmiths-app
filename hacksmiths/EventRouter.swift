@@ -31,9 +31,10 @@ class EventRouter: BaseRouter {
     
     override var path: String {
         switch endpoint {
-        case .GetEventStatus: return "/api/app/event-status"
-        case .GetEvent(let eventID): return "/api/event/\(eventID)"
-        case .RSVPForEvent: return "/api/app/rsvp"
+        case .GetEventStatus: return "api/app/event-status"
+        case .GetEvent(let eventID):
+            return "api/event/\(eventID)"
+        case .RSVPForEvent: return "api/app/rsvp"
         }
     }
     

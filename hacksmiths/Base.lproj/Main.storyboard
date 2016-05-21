@@ -40,6 +40,8 @@
             <string>Montserrat-Regular</string>
             <string>Montserrat-Regular</string>
             <string>Montserrat-Regular</string>
+            <string>Montserrat-Regular</string>
+            <string>Montserrat-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -145,7 +147,59 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oC5-vG-p5l">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar-missing" translatesAutoresizingMaskIntoConstraints="NO" id="Z0k-GJ-2YI" customClass="RCCircularImageView">
+                                <rect key="frame" x="225" y="28" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="6gE-jm-lZ6"/>
+                                    <constraint firstAttribute="width" constant="150" id="UZS-s2-WrO"/>
+                                </constraints>
+                            </imageView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@twitter_name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Wj-ZQ-afu">
+                                <rect key="frame" x="20" y="408" width="560" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="NPi-E9-ZHy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
+                                <color key="textColor" red="0.40000000000000002" green="0.76862745099999996" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="github" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o5y-BV-VHr">
+                                <rect key="frame" x="20" y="446" width="560" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="2hJ-Ia-4mI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
+                                <color key="textColor" red="0.40000000000000002" green="0.76862745099999996" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Website" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WhL-H4-TAP">
+                                <rect key="frame" x="20" y="484" width="560" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="zTq-mt-f7T"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
+                                <color key="textColor" red="0.40000000000000002" green="0.76862745099999996" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1F9-dx-ANU">
+                                <rect key="frame" x="20" y="234" width="560" height="166"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="166" id="T6n-KV-gOQ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="15"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vs8-tT-LOa">
+                                <rect key="frame" x="20" y="186" width="560" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="evz-NY-ZvS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oC5-vG-p5l">
                                 <rect key="frame" x="92" y="276" width="417" height="47"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="47" id="9Tm-3O-KCR"/>
@@ -162,67 +216,18 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar-missing" translatesAutoresizingMaskIntoConstraints="NO" id="Z0k-GJ-2YI" customClass="RCCircularImageView">
-                                <rect key="frame" x="225" y="28" width="150" height="150"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="6gE-jm-lZ6"/>
-                                    <constraint firstAttribute="width" constant="150" id="UZS-s2-WrO"/>
-                                </constraints>
-                            </imageView>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@twitter_name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Wj-ZQ-afu">
-                                <rect key="frame" x="20" y="370" width="560" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="NPi-E9-ZHy"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
-                                <color key="textColor" red="0.40000000000000002" green="0.76862745099999996" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="github" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o5y-BV-VHr">
-                                <rect key="frame" x="20" y="408" width="560" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="2hJ-Ia-4mI"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
-                                <color key="textColor" red="0.40000000000000002" green="0.76862745099999996" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Website" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WhL-H4-TAP">
-                                <rect key="frame" x="20" y="446" width="560" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="zTq-mt-f7T"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
-                                <color key="textColor" red="0.40000000000000002" green="0.76862745099999996" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1F9-dx-ANU">
-                                <rect key="frame" x="20" y="234" width="560" height="128"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="qU8-zK-Osa"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="15"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vs8-tT-LOa">
-                                <rect key="frame" x="20" y="186" width="560" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="evz-NY-ZvS"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.15868747234344482" green="0.21822044253349304" blue="0.30320093035697937" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Vs8-tT-LOa" firstAttribute="top" secondItem="Z0k-GJ-2YI" secondAttribute="bottom" constant="8" id="3FA-Vw-h7h"/>
+                            <constraint firstItem="WhL-H4-TAP" firstAttribute="top" secondItem="o5y-BV-VHr" secondAttribute="bottom" constant="8" id="6mw-se-GrO"/>
                             <constraint firstItem="2Wj-ZQ-afu" firstAttribute="leading" secondItem="krA-C3-AJh" secondAttribute="leadingMargin" id="9X1-Q0-MvH"/>
                             <constraint firstItem="o5y-BV-VHr" firstAttribute="centerX" secondItem="Z0k-GJ-2YI" secondAttribute="centerX" id="Bf0-aj-arK"/>
                             <constraint firstItem="o5y-BV-VHr" firstAttribute="leading" secondItem="krA-C3-AJh" secondAttribute="leadingMargin" id="DLW-5A-Mbx"/>
+                            <constraint firstItem="WhL-H4-TAP" firstAttribute="trailing" secondItem="krA-C3-AJh" secondAttribute="trailingMargin" id="Gch-1K-Opw"/>
                             <constraint firstItem="Z0k-GJ-2YI" firstAttribute="centerX" secondItem="krA-C3-AJh" secondAttribute="centerX" id="GeN-CK-AWO"/>
                             <constraint firstItem="2Wj-ZQ-afu" firstAttribute="top" secondItem="1F9-dx-ANU" secondAttribute="bottom" constant="8" id="Gs0-Ev-sjN"/>
+                            <constraint firstItem="WhL-H4-TAP" firstAttribute="leading" secondItem="krA-C3-AJh" secondAttribute="leadingMargin" id="Lth-V6-iEf"/>
                             <constraint firstItem="2Wj-ZQ-afu" firstAttribute="trailing" secondItem="krA-C3-AJh" secondAttribute="trailingMargin" id="OYi-UT-GdA"/>
                             <constraint firstItem="o5y-BV-VHr" firstAttribute="trailing" secondItem="krA-C3-AJh" secondAttribute="trailingMargin" id="SRW-wt-2fv"/>
                             <constraint firstItem="1F9-dx-ANU" firstAttribute="top" secondItem="Vs8-tT-LOa" secondAttribute="bottom" constant="8" id="d3I-ER-Pjt"/>
@@ -239,12 +244,13 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Me" image="person" id="oMY-vR-7sW"/>
                     <connections>
-                        <outlet property="noDataFoundLabel" destination="oC5-vG-p5l" id="Hfs-iW-9OO"/>
-                        <outlet property="personDescriptionLabel" destination="1F9-dx-ANU" id="orH-aw-Jse"/>
-                        <outlet property="personGithubLabel" destination="o5y-BV-VHr" id="VgA-xD-ghV"/>
-                        <outlet property="personImageView" destination="Z0k-GJ-2YI" id="HNu-2r-DeD"/>
-                        <outlet property="personNameLabel" destination="Vs8-tT-LOa" id="Ihc-U5-MeK"/>
-                        <outlet property="personTwitterLabel" destination="2Wj-ZQ-afu" id="F6J-OG-YfO"/>
+                        <outlet property="avatarView" destination="Z0k-GJ-2YI" id="mUd-Pc-BeU"/>
+                        <outlet property="debugLabel" destination="oC5-vG-p5l" id="VGo-jO-tWc"/>
+                        <outlet property="descriptionLabel" destination="1F9-dx-ANU" id="asJ-M1-Wez"/>
+                        <outlet property="githubLabel" destination="o5y-BV-VHr" id="voX-eN-MCJ"/>
+                        <outlet property="nameLabel" destination="Vs8-tT-LOa" id="uUv-0O-xiJ"/>
+                        <outlet property="twitterLabel" destination="2Wj-ZQ-afu" id="ZKh-Sa-67D"/>
+                        <outlet property="websiteLabel" destination="WhL-H4-TAP" id="y75-yC-MjL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cYn-1W-Eek" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -889,7 +895,7 @@ We build tools designed to help non-profit organizations streamline their philan
                         <rect key="frame" x="0.0" y="0.0" width="600" height="1500"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VHh-Hr-Cdd">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VHh-Hr-Cdd">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="1451"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EJR-yi-Gos">
@@ -1023,7 +1029,7 @@ We build tools designed to help non-profit organizations streamline their philan
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tnf-WJ-f8R">
+                                    <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tnf-WJ-f8R">
                                         <rect key="frame" x="40" y="996" width="520" height="447"/>
                                         <connections>
                                             <segue destination="01o-DI-c75" kind="embed" id="J1e-r5-3ul"/>
@@ -1044,21 +1050,21 @@ We build tools designed to help non-profit organizations streamline their philan
                                         <color key="textColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J0G-ii-NI6">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J0G-ii-NI6">
                                         <rect key="frame" x="40" y="937" width="520" height="2"/>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="2" id="7fd-oX-Wus"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HNv-VU-gab">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HNv-VU-gab">
                                         <rect key="frame" x="40" y="986" width="520" height="2"/>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="2" id="drO-2B-91S"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Who's Participating" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oZx-KB-KxP">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Who's Participating" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oZx-KB-KxP">
                                         <rect key="frame" x="8" y="947" width="584" height="31"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="31" id="nFv-4X-aBV"/>
@@ -1102,6 +1108,7 @@ We build tools designed to help non-profit organizations streamline their philan
                                     <constraint firstAttribute="trailing" secondItem="EJR-yi-Gos" secondAttribute="trailing" constant="8" id="6aF-uN-xpr"/>
                                     <constraint firstAttribute="trailing" secondItem="HfK-rW-YbI" secondAttribute="trailing" constant="8" id="6tP-0o-tgg"/>
                                     <constraint firstItem="SID-a8-NR0" firstAttribute="trailing" secondItem="yun-Ud-2rc" secondAttribute="trailing" id="8AB-E1-KPp"/>
+                                    <constraint firstItem="oZx-KB-KxP" firstAttribute="leading" secondItem="dz8-oS-DrK" secondAttribute="leading" id="9AK-RO-r0l"/>
                                     <constraint firstItem="HfK-rW-YbI" firstAttribute="top" secondItem="Src-aF-bz5" secondAttribute="bottom" constant="8" id="9hs-YB-5qU"/>
                                     <constraint firstItem="7Eh-Sd-FWR" firstAttribute="leading" secondItem="VHh-Hr-Cdd" secondAttribute="leading" constant="8" id="AJ1-wQ-yeA"/>
                                     <constraint firstItem="8By-sE-1by" firstAttribute="top" secondItem="dz8-oS-DrK" secondAttribute="bottom" constant="8" id="BaX-Gf-z5l"/>
@@ -1115,6 +1122,7 @@ We build tools designed to help non-profit organizations streamline their philan
                                     <constraint firstItem="dz8-oS-DrK" firstAttribute="top" secondItem="bkR-v5-mAt" secondAttribute="bottom" constant="8" id="HT2-Uy-TUz"/>
                                     <constraint firstItem="nST-lF-I5r" firstAttribute="leading" secondItem="VHh-Hr-Cdd" secondAttribute="leading" constant="40" id="Hdw-Ec-j3l"/>
                                     <constraint firstItem="J0G-ii-NI6" firstAttribute="trailing" secondItem="HNv-VU-gab" secondAttribute="trailing" id="IFZ-2J-B3h"/>
+                                    <constraint firstItem="J0G-ii-NI6" firstAttribute="top" secondItem="80q-rc-5kk" secondAttribute="bottom" constant="29" id="J6P-jT-a8m"/>
                                     <constraint firstItem="Vn8-e6-SfX" firstAttribute="centerX" secondItem="VHh-Hr-Cdd" secondAttribute="centerX" id="JDj-2U-lUi"/>
                                     <constraint firstItem="7xb-iV-E0f" firstAttribute="leading" secondItem="VHh-Hr-Cdd" secondAttribute="leading" constant="14" id="JOj-5K-TpI"/>
                                     <constraint firstItem="C3o-5y-gCb" firstAttribute="top" secondItem="RW4-oj-2rJ" secondAttribute="bottom" constant="8" id="JrT-qG-AR2"/>
@@ -1251,6 +1259,104 @@ We build tools designed to help non-profit organizations streamline their philan
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IaY-iF-3AV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1805" y="-143.5"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="arC-qO-Enr">
+            <objects>
+                <viewController id="Q5f-dL-Dzh" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zcM-wx-8le"/>
+                        <viewControllerLayoutGuide type="bottom" id="Esx-C3-rUy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Cbg-tH-gTh">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xka-1z-rxW">
+                                <rect key="frame" x="0.0" y="20" width="600" height="531"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Have an idea for a project we can work on together?  Submit an idea for our next event." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AFy-jW-9hS">
+                                        <rect key="frame" x="8" y="83" width="584" height="101"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="101" id="DEI-PU-6g5"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1. Pick your favorite Non Profit / Philanthropic Organization" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pRW-Aa-52u">
+                                        <rect key="frame" x="8" y="240" width="584" height="32"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="3. Submit it through here or our website and we will put it to a vote." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dhp-iE-owY">
+                                        <rect key="frame" x="8" y="360" width="584" height="48"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zNc-tX-cuE">
+                                        <rect key="frame" x="8" y="280" width="584" height="72"/>
+                                        <string key="text">2. Write a detailed summary of your idea, focusing on how we can use technology to solve a problem for the cause of the organization.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="How it works" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Wz-bY-6Bn">
+                                        <rect key="frame" x="8" y="192" width="584" height="40"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="27"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Mw-yQ-oQ9" customClass="SwiftyButton" customModule="SwiftyButton">
+                                        <rect key="frame" x="223" y="487" width="154" height="38"/>
+                                        <state key="normal" title="Submit an Idea">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="buttonColor">
+                                                <color key="value" red="0.16862745100000001" green="0.2156862745" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="highlightedColor">
+                                                <color key="value" red="0.61176470589999998" green="0.60392156860000001" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="16"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="We need your help!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CGx-oE-Slj">
+                                        <rect key="frame" x="8" y="8" width="584" height="67"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="28"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.11764705882352941" blue="0.25098039215686274" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="6Wz-bY-6Bn" firstAttribute="top" secondItem="AFy-jW-9hS" secondAttribute="bottom" constant="8" id="GGT-U5-AHG"/>
+                                    <constraint firstItem="AFy-jW-9hS" firstAttribute="top" secondItem="CGx-oE-Slj" secondAttribute="bottom" constant="8" id="Rha-n0-8gL"/>
+                                    <constraint firstItem="CGx-oE-Slj" firstAttribute="centerX" secondItem="Xka-1z-rxW" secondAttribute="centerX" id="bJb-hp-aeY"/>
+                                    <constraint firstAttribute="trailing" secondItem="AFy-jW-9hS" secondAttribute="trailing" constant="8" id="oEU-u5-gt7"/>
+                                    <constraint firstItem="AFy-jW-9hS" firstAttribute="leading" secondItem="Xka-1z-rxW" secondAttribute="leading" constant="8" id="uU2-yL-wFy"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Xka-1z-rxW" firstAttribute="top" secondItem="zcM-wx-8le" secondAttribute="bottom" id="Ctf-ij-UXZ"/>
+                            <constraint firstItem="Esx-C3-rUy" firstAttribute="top" secondItem="1Mw-yQ-oQ9" secondAttribute="bottom" constant="6" id="DD7-iA-pfl"/>
+                            <constraint firstItem="Xka-1z-rxW" firstAttribute="leading" secondItem="Cbg-tH-gTh" secondAttribute="leadingMargin" constant="-20" id="cvB-ZI-If9"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Xka-1z-rxW" secondAttribute="trailing" constant="-20" id="u63-gJ-WNh"/>
+                            <constraint firstItem="Esx-C3-rUy" firstAttribute="top" secondItem="Xka-1z-rxW" secondAttribute="bottom" id="vLZ-bp-AX9"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="Z0S-mu-Bnc"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rtA-VD-j2c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-571" y="1350"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="hUj-CU-FbA">
@@ -1461,6 +1567,7 @@ We build tools designed to help non-profit organizations streamline their philan
                         <segue destination="uzT-vA-7uU" kind="relationship" relationship="viewControllers" id="b8H-xp-q23"/>
                         <segue destination="DC3-eH-eDa" kind="relationship" relationship="viewControllers" id="npc-hh-O3U"/>
                         <segue destination="1DQ-Ae-VIb" kind="relationship" relationship="viewControllers" id="A7n-I5-fa2"/>
+                        <segue destination="Q5f-dL-Dzh" kind="relationship" relationship="viewControllers" id="dOH-eh-MUp"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0ud-oe-gue" userLabel="First Responder" sceneMemberID="firstResponder"/>

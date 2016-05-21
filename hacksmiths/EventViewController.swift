@@ -122,6 +122,8 @@ extension EventViewController: EventView {
     
     func getEvent(sender: EventPresenter, didFail error: NSError) {
         print("Called getEvent:didFail in EventView with error: \(error)")
+        
+        self.finishLoading()
         alertController(withTitles: ["OK", "Retry"], message: error.localizedDescription, callbackHandler: [nil, {Void in
             self.eventPresenter.getNextEvent()
             }])

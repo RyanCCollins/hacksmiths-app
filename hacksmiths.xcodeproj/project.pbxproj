@@ -79,6 +79,8 @@
 		1FE4B30D1C6ADAC10011ECAE /* octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1FE4B30C1C6ADAC10011ECAE /* octicons.ttf */; };
 		1FE4B3131C6ADE050011ECAE /* PersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE4B3121C6ADE050011ECAE /* PersonViewController.swift */; };
 		1FE5F91B1CD8288800487CA8 /* RCCircularImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE5F91A1CD8288800487CA8 /* RCCircularImageView.swift */; };
+		1FEA07BC1CEFD0F500D4BDA7 /* CommunityPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEA07BB1CEFD0F500D4BDA7 /* CommunityPresenter.swift */; };
+		1FEA07BF1CEFD22400D4BDA7 /* PersonPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEA07BE1CEFD22400D4BDA7 /* PersonPresenter.swift */; };
 		1FEF3FB11CED66F4007E4BF0 /* ParticipantPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF3FB01CED66F4007E4BF0 /* ParticipantPresenter.swift */; };
 		1FF998921C6EB359003D98B2 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF998911C6EB359003D98B2 /* MainTabBarController.swift */; };
 		1FF998971C6FAE3E003D98B2 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF998961C6FAE3E003D98B2 /* Person.swift */; };
@@ -186,6 +188,8 @@
 		1FE4B30C1C6ADAC10011ECAE /* octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = octicons.ttf; path = hacksmiths/octicons.ttf; sourceTree = "<group>"; };
 		1FE4B3121C6ADE050011ECAE /* PersonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonViewController.swift; sourceTree = "<group>"; };
 		1FE5F91A1CD8288800487CA8 /* RCCircularImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RCCircularImageView.swift; sourceTree = "<group>"; };
+		1FEA07BB1CEFD0F500D4BDA7 /* CommunityPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityPresenter.swift; sourceTree = "<group>"; };
+		1FEA07BE1CEFD22400D4BDA7 /* PersonPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonPresenter.swift; sourceTree = "<group>"; };
 		1FEF3FB01CED66F4007E4BF0 /* ParticipantPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticipantPresenter.swift; sourceTree = "<group>"; };
 		1FF998911C6EB359003D98B2 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		1FF998961C6FAE3E003D98B2 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
@@ -551,8 +555,8 @@
 		1FAD7DB61CEE5F7A0044BD94 /* Community */ = {
 			isa = PBXGroup;
 			children = (
-				1FA5A4EB1C53586D00722E55 /* CommunityViewController.swift */,
-				1FE4B3121C6ADE050011ECAE /* PersonViewController.swift */,
+				1FEA07BD1CEFD20700D4BDA7 /* View */,
+				1FEA07BA1CEFD0D700D4BDA7 /* Presenter */,
 			);
 			name = Community;
 			sourceTree = "<group>";
@@ -613,6 +617,24 @@
 				1FAD7DB51CEE5F240044BD94 /* Join */,
 			);
 			name = "User & Auth";
+			sourceTree = "<group>";
+		};
+		1FEA07BA1CEFD0D700D4BDA7 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				1FEA07BB1CEFD0F500D4BDA7 /* CommunityPresenter.swift */,
+				1FEA07BE1CEFD22400D4BDA7 /* PersonPresenter.swift */,
+			);
+			name = Presenter;
+			sourceTree = "<group>";
+		};
+		1FEA07BD1CEFD20700D4BDA7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1FA5A4EB1C53586D00722E55 /* CommunityViewController.swift */,
+				1FE4B3121C6ADE050011ECAE /* PersonViewController.swift */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		1FEF3FAF1CED6695007E4BF0 /* Participant */ = {
@@ -907,6 +929,7 @@
 				1FE4B3131C6ADE050011ECAE /* PersonViewController.swift in Sources */,
 				1F846CC71CECF7D5009166D4 /* EventJSON.swift in Sources */,
 				1F846CD01CED259D009166D4 /* Participant.swift in Sources */,
+				1FEA07BF1CEFD22400D4BDA7 /* PersonPresenter.swift in Sources */,
 				1F846CBF1CEBF5E2009166D4 /* EventPresenter.swift in Sources */,
 				1FE1668A1CD9053C0052B0A8 /* ProfileDataFetcher.swift in Sources */,
 				1FA2E55D1C67FF550085FC7D /* HacksmithsAPIClient.swift in Sources */,
@@ -917,6 +940,7 @@
 				1F44B1BA1C5DDAB9004E196D /* CoreDataStackManager.swift in Sources */,
 				1FE5F91B1CD8288800487CA8 /* RCCircularImageView.swift in Sources */,
 				1F4B4DF81C72574700A75F5D /* OnePasswordExtension.m in Sources */,
+				1FEA07BC1CEFD0F500D4BDA7 /* CommunityPresenter.swift in Sources */,
 				1FF9989D1C6FB060003D98B2 /* Organization.swift in Sources */,
 				1F846CC41CEC03C5009166D4 /* IGActivityIndicatorView.swift in Sources */,
 				1F846CCA1CED00E3009166D4 /* ParticipantJSON.swift in Sources */,
