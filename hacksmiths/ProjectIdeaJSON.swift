@@ -36,6 +36,15 @@ struct IdeaJSON: Glossy {
             IdeaKeys.additionalInformation ~~> self.additionalInformation
         ])
     }
+    
+    func toDictionary() -> JsonDict? {
+        let dictionary: JsonDict = [
+            "title" : self.title,
+            "description": self.description,
+            "additionalInformation": self.additionalInformation!
+        ]
+        return dictionary
+    }
 }
 
 struct ProjectIdeaKeys {
@@ -61,12 +70,23 @@ struct ProjectIdeaJSON: Glossy {
             self.idea = nil
         }
     }
-    // - MARK: Encode to JSON, not r
+    // - MARK: Encode to JSON
     func toJSON() -> JSON? {
          return jsonify([
             ProjectIdeaKeys.user ~~> self.user,
             ProjectIdeaKeys.event ~~> self.event,
             ProjectIdeaKeys.idea ~~> self.idea
         ])
+    }
+    
+    func toJsonDict() -> JsonDict? {
+        var dictionary: JsonDict = [
+            "user" : self.user,
+            "event": self.event,
+        ]
+        if let ideaDict = idea?.toDictionary() {
+            dictionary["idea"] = ideaDict
+        }
+        return dictionary
     }
 }
