@@ -15,6 +15,10 @@
 		1F4B4DF81C72574700A75F5D /* OnePasswordExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4B4DF61C72574700A75F5D /* OnePasswordExtension.m */; };
 		1F4B4DFF1C73A60400A75F5D /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4B4DFE1C73A60400A75F5D /* UserDefaults.swift */; };
 		1F4B4E011C74FCC400A75F5D /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4B4E001C74FCC400A75F5D /* JoinViewController.swift */; };
+		1F4E31561CF0DB3A0013F56E /* IdeaPagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4E31551CF0DB3A0013F56E /* IdeaPagePresenter.swift */; };
+		1F4E31591CF0E1B10013F56E /* ProjectIdeaRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4E31581CF0E1B10013F56E /* ProjectIdeaRouter.swift */; };
+		1F4E315B1CF0E1C20013F56E /* ProjectIdeaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4E315A1CF0E1C20013F56E /* ProjectIdeaService.swift */; };
+		1F4E315D1CF0E1D30013F56E /* ProjectIdeaJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4E315C1CF0E1D30013F56E /* ProjectIdeaJSON.swift */; };
 		1F6C69E61CCC627B00F15247 /* ParticipantCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6C69E51CCC627B00F15247 /* ParticipantCollectionViewController.swift */; };
 		1F6C69E81CCC6BB700F15247 /* PersonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6C69E71CCC6BB700F15247 /* PersonCollectionViewCell.swift */; };
 		1F6C69EC1CCFAEE600F15247 /* HacksmithsEventAPIConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6C69EB1CCFAEE500F15247 /* HacksmithsEventAPIConvenience.swift */; };
@@ -81,6 +85,10 @@
 		1FE5F91B1CD8288800487CA8 /* RCCircularImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE5F91A1CD8288800487CA8 /* RCCircularImageView.swift */; };
 		1FEA07BC1CEFD0F500D4BDA7 /* CommunityPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEA07BB1CEFD0F500D4BDA7 /* CommunityPresenter.swift */; };
 		1FEA07BF1CEFD22400D4BDA7 /* PersonPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEA07BE1CEFD22400D4BDA7 /* PersonPresenter.swift */; };
+		1FEA07C21CEFFD2E00D4BDA7 /* IdeaSubmissionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEA07C11CEFFD2E00D4BDA7 /* IdeaSubmissionPresenter.swift */; };
+		1FEA07C51CEFFD4700D4BDA7 /* IdeaSubmissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEA07C41CEFFD4700D4BDA7 /* IdeaSubmissionViewController.swift */; };
+		1FEA07C81CEFFE3800D4BDA7 /* IdeaPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEA07C71CEFFE3800D4BDA7 /* IdeaPageViewController.swift */; };
+		1FEA07CE1CF00BE400D4BDA7 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEA07CD1CF00BE400D4BDA7 /* LoginPresenter.swift */; };
 		1FEF3FB11CED66F4007E4BF0 /* ParticipantPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF3FB01CED66F4007E4BF0 /* ParticipantPresenter.swift */; };
 		1FF998921C6EB359003D98B2 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF998911C6EB359003D98B2 /* MainTabBarController.swift */; };
 		1FF998971C6FAE3E003D98B2 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF998961C6FAE3E003D98B2 /* Person.swift */; };
@@ -118,6 +126,10 @@
 		1F4B4DF61C72574700A75F5D /* OnePasswordExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnePasswordExtension.m; sourceTree = "<group>"; };
 		1F4B4DFE1C73A60400A75F5D /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		1F4B4E001C74FCC400A75F5D /* JoinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinViewController.swift; sourceTree = "<group>"; };
+		1F4E31551CF0DB3A0013F56E /* IdeaPagePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdeaPagePresenter.swift; sourceTree = "<group>"; };
+		1F4E31581CF0E1B10013F56E /* ProjectIdeaRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectIdeaRouter.swift; sourceTree = "<group>"; };
+		1F4E315A1CF0E1C20013F56E /* ProjectIdeaService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectIdeaService.swift; sourceTree = "<group>"; };
+		1F4E315C1CF0E1D30013F56E /* ProjectIdeaJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectIdeaJSON.swift; sourceTree = "<group>"; };
 		1F6C69E51CCC627B00F15247 /* ParticipantCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticipantCollectionViewController.swift; sourceTree = "<group>"; };
 		1F6C69E71CCC6BB700F15247 /* PersonCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonCollectionViewCell.swift; sourceTree = "<group>"; };
 		1F6C69EB1CCFAEE500F15247 /* HacksmithsEventAPIConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HacksmithsEventAPIConvenience.swift; sourceTree = "<group>"; };
@@ -190,6 +202,10 @@
 		1FE5F91A1CD8288800487CA8 /* RCCircularImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RCCircularImageView.swift; sourceTree = "<group>"; };
 		1FEA07BB1CEFD0F500D4BDA7 /* CommunityPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityPresenter.swift; sourceTree = "<group>"; };
 		1FEA07BE1CEFD22400D4BDA7 /* PersonPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonPresenter.swift; sourceTree = "<group>"; };
+		1FEA07C11CEFFD2E00D4BDA7 /* IdeaSubmissionPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdeaSubmissionPresenter.swift; sourceTree = "<group>"; };
+		1FEA07C41CEFFD4700D4BDA7 /* IdeaSubmissionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdeaSubmissionViewController.swift; sourceTree = "<group>"; };
+		1FEA07C71CEFFE3800D4BDA7 /* IdeaPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdeaPageViewController.swift; sourceTree = "<group>"; };
+		1FEA07CD1CF00BE400D4BDA7 /* LoginPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		1FEF3FB01CED66F4007E4BF0 /* ParticipantPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticipantPresenter.swift; sourceTree = "<group>"; };
 		1FF998911C6EB359003D98B2 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		1FF998961C6FAE3E003D98B2 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
@@ -252,6 +268,7 @@
 		1F44B1BC1C5DDB35004E196D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1F4E31571CF0E1980013F56E /* ProjectIdea */,
 				1FAD7DAE1CEE5DAC0044BD94 /* User */,
 				1FAD7DAD1CEE5D980044BD94 /* Person */,
 				1F846CC81CED00C5009166D4 /* Participant */,
@@ -262,6 +279,16 @@
 				1FA2E5641C6802B30085FC7D /* HacksmithsAPI */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		1F4E31571CF0E1980013F56E /* ProjectIdea */ = {
+			isa = PBXGroup;
+			children = (
+				1F4E31581CF0E1B10013F56E /* ProjectIdeaRouter.swift */,
+				1F4E315A1CF0E1C20013F56E /* ProjectIdeaService.swift */,
+				1F4E315C1CF0E1D30013F56E /* ProjectIdeaJSON.swift */,
+			);
+			name = ProjectIdea;
 			sourceTree = "<group>";
 		};
 		1F7701BB1C84B532006FBCE0 /* montserrat */ = {
@@ -298,6 +325,7 @@
 		1F846CBA1CEBF547009166D4 /* ControllerModules */ = {
 			isa = PBXGroup;
 			children = (
+				1FEA07C01CEFFCF500D4BDA7 /* IdeaSubmission */,
 				1FAD7DB61CEE5F7A0044BD94 /* Community */,
 				1FC6DE451C9F59EB000E8159 /* User & Auth */,
 				1FAD7DB31CEE5F050044BD94 /* About */,
@@ -539,7 +567,8 @@
 		1FAD7DB41CEE5F140044BD94 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				1FA5A4EF1C535D6C00722E55 /* LoginViewController.swift */,
+				1FEA07CC1CF00BC400D4BDA7 /* View */,
+				1FEA07CB1CF00BB100D4BDA7 /* Presenter */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -633,6 +662,49 @@
 			children = (
 				1FA5A4EB1C53586D00722E55 /* CommunityViewController.swift */,
 				1FE4B3121C6ADE050011ECAE /* PersonViewController.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		1FEA07C01CEFFCF500D4BDA7 /* IdeaSubmission */ = {
+			isa = PBXGroup;
+			children = (
+				1FEA07C61CEFFD4D00D4BDA7 /* View */,
+				1FEA07C31CEFFD3500D4BDA7 /* Presenter */,
+			);
+			name = IdeaSubmission;
+			sourceTree = "<group>";
+		};
+		1FEA07C31CEFFD3500D4BDA7 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				1FEA07C11CEFFD2E00D4BDA7 /* IdeaSubmissionPresenter.swift */,
+				1F4E31551CF0DB3A0013F56E /* IdeaPagePresenter.swift */,
+			);
+			name = Presenter;
+			sourceTree = "<group>";
+		};
+		1FEA07C61CEFFD4D00D4BDA7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1FEA07C71CEFFE3800D4BDA7 /* IdeaPageViewController.swift */,
+				1FEA07C41CEFFD4700D4BDA7 /* IdeaSubmissionViewController.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		1FEA07CB1CF00BB100D4BDA7 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				1FEA07CD1CF00BE400D4BDA7 /* LoginPresenter.swift */,
+			);
+			name = Presenter;
+			sourceTree = "<group>";
+		};
+		1FEA07CC1CF00BC400D4BDA7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1FA5A4EF1C535D6C00722E55 /* LoginViewController.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -926,6 +998,7 @@
 				1FA2E55B1C67FF020085FC7D /* GlobalConstants.swift in Sources */,
 				1F846CB31CEBAF3C009166D4 /* BaseRouter.swift in Sources */,
 				1F846CB01CEBADC8009166D4 /* EventService.swift in Sources */,
+				1FEA07CE1CF00BE400D4BDA7 /* LoginPresenter.swift in Sources */,
 				1FE4B3131C6ADE050011ECAE /* PersonViewController.swift in Sources */,
 				1F846CC71CECF7D5009166D4 /* EventJSON.swift in Sources */,
 				1F846CD01CED259D009166D4 /* Participant.swift in Sources */,
@@ -946,10 +1019,13 @@
 				1F846CCA1CED00E3009166D4 /* ParticipantJSON.swift in Sources */,
 				1FF998991C6FAEDE003D98B2 /* Event.swift in Sources */,
 				1FC6DE471C9F6DC5000E8159 /* RegistrationData.swift in Sources */,
+				1F4E315D1CF0E1D30013F56E /* ProjectIdeaJSON.swift in Sources */,
+				1F4E31561CF0DB3A0013F56E /* IdeaPagePresenter.swift in Sources */,
 				1FA5A4EE1C535A9500722E55 /* ExtendsUIViewController.swift in Sources */,
 				1F4B4DFF1C73A60400A75F5D /* UserDefaults.swift in Sources */,
 				1F46B9EC1CA467250065D50D /* UserData.swift in Sources */,
 				1FA9FC721C534E5A00B993BC /* hacksmiths.xcdatamodeld in Sources */,
+				1FEA07C81CEFFE3800D4BDA7 /* IdeaPageViewController.swift in Sources */,
 				1F846CC11CEBFA5C009166D4 /* HTTPStatusCodes.swift in Sources */,
 				1FA2E5631C6802AC0085FC7D /* HacksmithsAPIUserConvenience.swift in Sources */,
 				1FAD7DB91CEE64EB0044BD94 /* NextEventJSON.swift in Sources */,
@@ -962,8 +1038,12 @@
 				1FA5A4F01C535D6C00722E55 /* LoginViewController.swift in Sources */,
 				1FEF3FB11CED66F4007E4BF0 /* ParticipantPresenter.swift in Sources */,
 				1FF998971C6FAE3E003D98B2 /* Person.swift in Sources */,
+				1F4E315B1CF0E1C20013F56E /* ProjectIdeaService.swift in Sources */,
 				1F115B4A1CC0060900DC434E /* RegistrationPageViewController.swift in Sources */,
+				1F4E31591CF0E1B10013F56E /* ProjectIdeaRouter.swift in Sources */,
 				1F846CB91CEBB4BE009166D4 /* EventRouter.swift in Sources */,
+				1FEA07C51CEFFD4700D4BDA7 /* IdeaSubmissionViewController.swift in Sources */,
+				1FEA07C21CEFFD2E00D4BDA7 /* IdeaSubmissionPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

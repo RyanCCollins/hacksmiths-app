@@ -9,8 +9,8 @@
 import Foundation
 import Alamofire
 import PromiseKit
-import SwiftyJSON
-//import Gloss
+//import SwiftyJSON
+import Gloss
 
 class EventService {
     func getEventStatus() -> Promise<NextEventJSON?> {
@@ -24,10 +24,8 @@ class EventService {
                     response in
                     
                     switch response.result {
-                    case .Success(let JSONData):
-                        print("Called success in event service")
-                        //let nextEventJSON = NextEventJSON(json: JSONData as! JSON)
-                        //fullfill(nextEventJSON)
+                    case .Success(let JSON):
+                        print("Success in event service with JSON: \(JSON)")
                     case .Failure(let error):
                         print("Called reject in event service.")
                         reject(error)
@@ -46,21 +44,24 @@ class EventService {
                     response in
                     print(response.result)
                     switch response.result {
-                    case .Success(let JSONData):
-                        print("Success in get event.  Saving event. \(JSONData["event"])")
-
-                        if let eventJSON = EventJSON(json: JSONData as! [String : AnyObject]) {
-                            let event = Event(eventJson: eventJSON, context: GlobalStackManager.SharedManager.sharedContext)
+                    case .Success(let JSON):
+                        print("Success in get event.  Saving event. \(JSON)")
+                        if let eventJSONDict = JSON["event"] {
+                            print("Called success in getEvent with event data: \(eventJSONDict)")
                             
-                            GlobalStackManager.SharedManager.sharedContext.performBlockAndWait({
-                                CoreDataStackManager.sharedInstance().saveContext()
-                            })
+                            if let eventJSON = EventJSON(json: eventJSONDict as! [String : AnyObject]) {
+                                let event = Event(eventJson: eventJSON, context: GlobalStackManager.SharedManager.sharedContext)
+                                
+                                GlobalStackManager.SharedManager.sharedContext.performBlockAndWait({
+                                    CoreDataStackManager.sharedInstance().saveContext()
+                                })
+                                
+                                fullfill(event)
+                                
+                            }
                             
-                            fullfill(event)
                         } else {
-                            print("Just where I thought it'd be:")
-                            let error = GlobalErrors.MissingData
-                            reject(error)
+                            reject(GlobalErrors.GenericError)
                         }
                     case .Failure(let error):
                         print("error in get event \(error.code)")
