@@ -16,6 +16,7 @@
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="organization" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Organization" syncable="YES"/>
         <relationship name="participants" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Participant" inverseName="event" inverseEntity="Participant" syncable="YES"/>
+        <relationship name="projectIdeas" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectIdea" inverseName="event" inverseEntity="ProjectIdea" syncable="YES"/>
         <compoundIndexes>
             <compoundIndex>
                 <index value="idString"/>
@@ -61,6 +62,16 @@
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
+    <entity name="ProjectIdea" syncable="YES">
+        <attribute name="additionalInformation" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="createdById" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="descriptionString" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="createdBy" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Person" syncable="YES"/>
+        <relationship name="event" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="projectIdeas" inverseEntity="Event" syncable="YES"/>
+    </entity>
     <entity name="UserData" representedClassName="UserData" syncable="YES">
         <attribute name="availabilityExplanation" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="avatarFilePath" optional="YES" attributeType="String" syncable="YES"/>
@@ -83,10 +94,11 @@
         <relationship name="events" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Event" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Event" positionX="-27" positionY="450" width="128" height="270"/>
+        <element name="Event" positionX="-27" positionY="450" width="128" height="285"/>
         <element name="Organization" positionX="-92" positionY="72" width="128" height="30"/>
         <element name="Participant" positionX="117" positionY="198" width="128" height="135"/>
         <element name="Person" positionX="358" positionY="243" width="128" height="255"/>
         <element name="UserData" positionX="126" positionY="45" width="128" height="330"/>
+        <element name="ProjectIdea" positionX="126" positionY="207" width="128" height="165"/>
     </elements>
 </model>

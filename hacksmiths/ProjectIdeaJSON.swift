@@ -10,7 +10,7 @@ import Gloss
 
 struct IdeaKeys {
     static let title = "title"
-    static let description = "description"
+    static let description = "description.md"
     static let additionalInformation = "additionalInformation"
 }
 
@@ -48,32 +48,42 @@ struct IdeaJSON: Glossy {
 }
 
 struct ProjectIdeaKeys {
-    static let user = "user"
+    static let id = "_id"
+    static let createdBy = "createdBy"
+    static let createdAt = "createdAt"
     static let event = "event"
     static let idea = "idea"
 }
 
 struct ProjectIdeaJSON: Glossy {
-    let user: String
+    let id: String
+    let createdBy: String
+    let createdAt: NSDate?
     let event: String
     let idea: IdeaJSON?
     init?(json: JSON) {
-        guard let user: String = "user" <~~ json,
-              let event: String = "event" <~~ json else {
+        guard let id: String = ProjectIdeaKeys.id <~~ json,
+              let createdBy: String = ProjectIdeaKeys.createdBy <~~ json,
+              let event: String = ProjectIdeaKeys.event <~~ json else {
             return nil
         }
-        self.user = user
+        self.id = id
+        self.createdBy = createdBy
         self.event = event
-        if let idea: IdeaJSON = "idea" <~~ json {
+        if let idea: IdeaJSON = ProjectIdeaKeys.idea <~~ json {
             self.idea = idea
         } else {
             self.idea = nil
         }
+        if let createdAtString = ProjectIdeaKeys.createdAt <~~ json {
+            
+        }
     }
+    
     // - MARK: Encode to JSON
     func toJSON() -> JSON? {
          return jsonify([
-            ProjectIdeaKeys.user ~~> self.user,
+            ProjectIdeaKeys.createdBy ~~> self.createdBy,
             ProjectIdeaKeys.event ~~> self.event,
             ProjectIdeaKeys.idea ~~> self.idea
         ])
@@ -81,7 +91,7 @@ struct ProjectIdeaJSON: Glossy {
     
     func toJsonDict() -> JsonDict? {
         var dictionary: JsonDict = [
-            "user" : self.user,
+            "createdBy" : self.createdBy,
             "event": self.event,
         ]
         if let ideaDict = idea?.toDictionary() {
