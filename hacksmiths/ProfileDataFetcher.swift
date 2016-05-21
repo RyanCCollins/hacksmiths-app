@@ -14,6 +14,7 @@ protocol ProfileDataUpdateDelegate {
     func didUpdateUserProfileData(userData: UserData)
 }
 
+/* TODO: Refactor into MVP Presenter class */
 class ProfileDataFetcher: NSObject {
     static let sharedInstance = ProfileDataFetcher()
     var userData: UserData?

@@ -11,21 +11,24 @@ import CoreData
 @objc(Organization)
 
 class Organization: NSManagedObject {
-    @NSManaged var id: String
+    @NSManaged var idString: String
     @NSManaged var name: String
-    @NSManaged var logoUrl: String?
-    @NSManaged var logoFilename: String?
-    @NSManaged var website: String?
     @NSManaged var isHiring : Bool
-    @NSManaged var about : String?
-    @NSManaged var events: [Event]?
+    @NSManaged var eventID: String
+    
+    @NSManaged var website: String?
+    @NSManaged var descriptionString: String?
+    @NSManaged var logoUrl: String?
+    
+    /* OTHER: i.e. not defined in initial JSON Schema */
+    @NSManaged var logoFilename: String?
     
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
     }
     
     /* Custom init */
-    init(dictionary: [String : AnyObject], context: NSManagedObjectContext) {
+    init(organizationJSON: OrganizationJSON, eventID: String, context: NSManagedObjectContext) {
         
         /* Get associated entity from our context */
         let entity = NSEntityDescription.entityForName("Organization", inManagedObjectContext: context)
@@ -33,33 +36,34 @@ class Organization: NSManagedObject {
         /* Super, get to work! */
         super.init(entity: entity!, insertIntoManagedObjectContext: context)
         
-        /* Assign our properties */
-        id = dictionary[HacksmithsAPIClient.JSONResponseKeys.Organization.id] as! String
-        name = dictionary[HacksmithsAPIClient.JSONResponseKeys.Organization.name] as! String
-        website = dictionary[HacksmithsAPIClient.JSONResponseKeys.Organization.website] as? String
-        about = dictionary[HacksmithsAPIClient.JSONResponseKeys.Organization.about] as? String
-        logoUrl = dictionary[HacksmithsAPIClient.JSONResponseKeys.Organization.logoUrl] as? String
-        logoFilename = logoUrl?.lastPathComponent
-        isHiring = dictionary[HacksmithsAPIClient.JSONResponseKeys.Organization.isHiring] as! Bool
+        /* Set a reference to the eventID since the server may need it */
+        self.eventID = eventID
         
-    }
-    
-    func fetchImage(completionHandler: CompletionHandler) {
-        guard logoUrl != nil else {
-            return
+        self.idString = organizationJSON.idString
+        self.name = organizationJSON.name
+        self.isHiring = organizationJSON.isHiring
+        
+        if let website = organizationJSON.website {
+            self.website = website
         }
         
-        HacksmithsAPIClient.sharedInstance().taskForGETImageFromURL(logoUrl!, completionHandler: {image, error in
-            
-            if error != nil {
-                completionHandler(success: false, error: error)
-            } else {
-                self.image = image
-            }
-            
-        })
+        if let descriptionString = organizationJSON.descriptionString {
+            self.descriptionString = descriptionString
+        }
+        
+        if let logoUrl = organizationJSON.logoURL {
+            self.logoUrl = logoUrl
+        }
+        
     }
     
+    var logoFileName: String? {
+        if let logoURL = logoUrl {
+            return logoUrl?.lastPathComponent
+        } else {
+            return nil
+        }
+    }
     
     var image: UIImage? {
         get {

@@ -40,6 +40,10 @@
             <string>Montserrat-Regular</string>
             <string>Montserrat-Regular</string>
             <string>Montserrat-Regular</string>
+            <string>Montserrat-Regular</string>
+            <string>Montserrat-Regular</string>
+            <string>Montserrat-Regular</string>
+            <string>Montserrat-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -145,7 +149,59 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oC5-vG-p5l">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar-missing" translatesAutoresizingMaskIntoConstraints="NO" id="Z0k-GJ-2YI" customClass="RCCircularImageView">
+                                <rect key="frame" x="225" y="28" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="6gE-jm-lZ6"/>
+                                    <constraint firstAttribute="width" constant="150" id="UZS-s2-WrO"/>
+                                </constraints>
+                            </imageView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@twitter_name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Wj-ZQ-afu">
+                                <rect key="frame" x="20" y="408" width="560" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="NPi-E9-ZHy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
+                                <color key="textColor" red="0.40000000000000002" green="0.76862745099999996" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="github" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o5y-BV-VHr">
+                                <rect key="frame" x="20" y="446" width="560" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="2hJ-Ia-4mI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
+                                <color key="textColor" red="0.40000000000000002" green="0.76862745099999996" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Website" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WhL-H4-TAP">
+                                <rect key="frame" x="20" y="484" width="560" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="zTq-mt-f7T"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
+                                <color key="textColor" red="0.40000000000000002" green="0.76862745099999996" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1F9-dx-ANU">
+                                <rect key="frame" x="20" y="234" width="560" height="166"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="166" id="T6n-KV-gOQ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="15"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vs8-tT-LOa">
+                                <rect key="frame" x="20" y="186" width="560" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="evz-NY-ZvS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oC5-vG-p5l">
                                 <rect key="frame" x="92" y="276" width="417" height="47"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="47" id="9Tm-3O-KCR"/>
@@ -162,67 +218,18 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar-missing" translatesAutoresizingMaskIntoConstraints="NO" id="Z0k-GJ-2YI" customClass="RCCircularImageView">
-                                <rect key="frame" x="225" y="28" width="150" height="150"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="6gE-jm-lZ6"/>
-                                    <constraint firstAttribute="width" constant="150" id="UZS-s2-WrO"/>
-                                </constraints>
-                            </imageView>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@twitter_name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Wj-ZQ-afu">
-                                <rect key="frame" x="20" y="370" width="560" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="NPi-E9-ZHy"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
-                                <color key="textColor" red="0.40000000000000002" green="0.76862745099999996" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="github" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o5y-BV-VHr">
-                                <rect key="frame" x="20" y="408" width="560" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="2hJ-Ia-4mI"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
-                                <color key="textColor" red="0.40000000000000002" green="0.76862745099999996" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Website" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WhL-H4-TAP">
-                                <rect key="frame" x="20" y="446" width="560" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="zTq-mt-f7T"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
-                                <color key="textColor" red="0.40000000000000002" green="0.76862745099999996" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1F9-dx-ANU">
-                                <rect key="frame" x="20" y="234" width="560" height="128"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="qU8-zK-Osa"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="15"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vs8-tT-LOa">
-                                <rect key="frame" x="20" y="186" width="560" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="evz-NY-ZvS"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.15868747234344482" green="0.21822044253349304" blue="0.30320093035697937" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Vs8-tT-LOa" firstAttribute="top" secondItem="Z0k-GJ-2YI" secondAttribute="bottom" constant="8" id="3FA-Vw-h7h"/>
+                            <constraint firstItem="WhL-H4-TAP" firstAttribute="top" secondItem="o5y-BV-VHr" secondAttribute="bottom" constant="8" id="6mw-se-GrO"/>
                             <constraint firstItem="2Wj-ZQ-afu" firstAttribute="leading" secondItem="krA-C3-AJh" secondAttribute="leadingMargin" id="9X1-Q0-MvH"/>
                             <constraint firstItem="o5y-BV-VHr" firstAttribute="centerX" secondItem="Z0k-GJ-2YI" secondAttribute="centerX" id="Bf0-aj-arK"/>
                             <constraint firstItem="o5y-BV-VHr" firstAttribute="leading" secondItem="krA-C3-AJh" secondAttribute="leadingMargin" id="DLW-5A-Mbx"/>
+                            <constraint firstItem="WhL-H4-TAP" firstAttribute="trailing" secondItem="krA-C3-AJh" secondAttribute="trailingMargin" id="Gch-1K-Opw"/>
                             <constraint firstItem="Z0k-GJ-2YI" firstAttribute="centerX" secondItem="krA-C3-AJh" secondAttribute="centerX" id="GeN-CK-AWO"/>
                             <constraint firstItem="2Wj-ZQ-afu" firstAttribute="top" secondItem="1F9-dx-ANU" secondAttribute="bottom" constant="8" id="Gs0-Ev-sjN"/>
+                            <constraint firstItem="WhL-H4-TAP" firstAttribute="leading" secondItem="krA-C3-AJh" secondAttribute="leadingMargin" id="Lth-V6-iEf"/>
                             <constraint firstItem="2Wj-ZQ-afu" firstAttribute="trailing" secondItem="krA-C3-AJh" secondAttribute="trailingMargin" id="OYi-UT-GdA"/>
                             <constraint firstItem="o5y-BV-VHr" firstAttribute="trailing" secondItem="krA-C3-AJh" secondAttribute="trailingMargin" id="SRW-wt-2fv"/>
                             <constraint firstItem="1F9-dx-ANU" firstAttribute="top" secondItem="Vs8-tT-LOa" secondAttribute="bottom" constant="8" id="d3I-ER-Pjt"/>
@@ -239,12 +246,13 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Me" image="person" id="oMY-vR-7sW"/>
                     <connections>
-                        <outlet property="noDataFoundLabel" destination="oC5-vG-p5l" id="Hfs-iW-9OO"/>
-                        <outlet property="personDescriptionLabel" destination="1F9-dx-ANU" id="orH-aw-Jse"/>
-                        <outlet property="personGithubLabel" destination="o5y-BV-VHr" id="VgA-xD-ghV"/>
-                        <outlet property="personImageView" destination="Z0k-GJ-2YI" id="HNu-2r-DeD"/>
-                        <outlet property="personNameLabel" destination="Vs8-tT-LOa" id="Ihc-U5-MeK"/>
-                        <outlet property="personTwitterLabel" destination="2Wj-ZQ-afu" id="F6J-OG-YfO"/>
+                        <outlet property="avatarView" destination="Z0k-GJ-2YI" id="mUd-Pc-BeU"/>
+                        <outlet property="debugLabel" destination="oC5-vG-p5l" id="VGo-jO-tWc"/>
+                        <outlet property="descriptionLabel" destination="1F9-dx-ANU" id="asJ-M1-Wez"/>
+                        <outlet property="githubLabel" destination="o5y-BV-VHr" id="voX-eN-MCJ"/>
+                        <outlet property="nameLabel" destination="Vs8-tT-LOa" id="uUv-0O-xiJ"/>
+                        <outlet property="twitterLabel" destination="2Wj-ZQ-afu" id="ZKh-Sa-67D"/>
+                        <outlet property="websiteLabel" destination="WhL-H4-TAP" id="y75-yC-MjL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cYn-1W-Eek" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -283,10 +291,10 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0qY-eJ-56M">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="801"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hAg-NN-Moo">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hAg-NN-Moo">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="801"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="dC3-kF-nbE">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="dC3-kF-nbE">
                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="801"/>
                                             </imageView>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hacksmiths-logo-text" translatesAutoresizingMaskIntoConstraints="NO" id="SxD-Ek-BjP">
@@ -309,13 +317,13 @@ We build tools designed to help non-profit organizations streamline their philan
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="About the Founders" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uXe-xc-XuT">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About the Founders" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uXe-xc-XuT">
                                                 <rect key="frame" x="164" y="458" width="272" height="37"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="31"/>
                                                 <color key="textColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hfH-WU-cpc">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hfH-WU-cpc">
                                                 <rect key="frame" x="8" y="503" width="584" height="142"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ryan" translatesAutoresizingMaskIntoConstraints="NO" id="Cyg-Be-Nyp">
@@ -361,7 +369,7 @@ We build tools designed to help non-profit organizations streamline their philan
                                                     <constraint firstItem="nMg-pf-3KX" firstAttribute="top" secondItem="EET-i8-zIf" secondAttribute="bottom" constant="8" symbolic="YES" id="vud-sS-gk3"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="orT-WB-0bL">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="orT-WB-0bL">
                                                 <rect key="frame" x="8" y="653" width="584" height="142"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sean" translatesAutoresizingMaskIntoConstraints="NO" id="CY6-1H-CVi">
@@ -408,17 +416,17 @@ We build tools designed to help non-profit organizations streamline their philan
                                                     <constraint firstItem="qsd-rT-7eu" firstAttribute="leading" secondItem="CY6-1H-CVi" secondAttribute="trailing" constant="8" symbolic="YES" id="ojW-Ah-lou"/>
                                                 </constraints>
                                             </view>
-                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="LSB-n3-hpA">
-                                                <rect key="frame" x="213" y="368" width="173" height="60"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="LSB-n3-hpA">
+                                                <rect key="frame" x="213" y="368" width="173" height="61"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Visit Our Website!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NG1-Uc-ODk">
-                                                        <rect key="frame" x="19" y="0.0" width="135" height="20"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Visit Our Website!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NG1-Uc-ODk">
+                                                        <rect key="frame" x="13" y="0.0" width="148" height="21"/>
                                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
                                                         <color key="textColor" red="0.74509803919999995" green="0.75294117650000003" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="D2b-HP-4JA">
-                                                        <rect key="frame" x="0.0" y="30" width="173" height="30"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="D2b-HP-4JA">
+                                                        <rect key="frame" x="0.0" y="31" width="173" height="30"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="link-white" translatesAutoresizingMaskIntoConstraints="NO" id="Doz-Pi-70y">
                                                                 <rect key="frame" x="0.0" y="2" width="26" height="26"/>
@@ -707,16 +715,16 @@ We build tools designed to help non-profit organizations streamline their philan
                                         <state key="normal" image="multiple-circle-white"/>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="gjM-yC-Ilj">
-                                        <rect key="frame" x="216" y="514" width="154" height="60"/>
+                                        <rect key="frame" x="216" y="514" width="168" height="61"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Already Registered?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fJW-zs-alJ">
-                                                <rect key="frame" x="0.0" y="0.0" width="154" height="20"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Already Registered?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fJW-zs-alJ">
+                                                <rect key="frame" x="0.0" y="0.0" width="168" height="21"/>
                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
                                                 <color key="textColor" red="0.79607843137254897" green="0.94117647058823528" blue="0.86274509803921573" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vWq-Vh-e9y">
-                                                <rect key="frame" x="54" y="30" width="47" height="30"/>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vWq-Vh-e9y">
+                                                <rect key="frame" x="61" y="31" width="47" height="30"/>
                                                 <state key="normal" title="Sign in"/>
                                                 <connections>
                                                     <action selector="didTapSigninUpInside:" destination="8E9-ee-mxd" eventType="touchUpInside" id="hOZ-9k-BOR"/>
@@ -748,35 +756,35 @@ We build tools designed to help non-profit organizations streamline their philan
                                             <segue destination="wXb-3j-dvv" kind="presentation" identifier="ShowRegistration" id="9nk-Na-jJ7"/>
                                         </connections>
                                     </button>
-                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="equalSpacing" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="ia8-GS-h7P">
-                                        <rect key="frame" x="165" y="265" width="243" height="161"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="ia8-GS-h7P">
+                                        <rect key="frame" x="165" y="265" width="269" height="161"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="1. Register for an account" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S7f-gk-f89">
-                                                <rect key="frame" x="0.0" y="0.0" width="243" height="17"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1. Register for an account" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S7f-gk-f89">
+                                                <rect key="frame" x="0.0" y="0.0" width="269" height="17"/>
                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
                                                 <color key="textColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="2. Fill out your profile." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q1v-05-PHM">
-                                                <rect key="frame" x="0.0" y="36" width="243" height="17"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2. Fill out your profile." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q1v-05-PHM">
+                                                <rect key="frame" x="0.0" y="36" width="269" height="17"/>
                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
                                                 <color key="textColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="3. Sign up for a team" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rrU-K0-ShN">
-                                                <rect key="frame" x="0.0" y="72" width="243" height="17"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3. Sign up for a team" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rrU-K0-ShN">
+                                                <rect key="frame" x="0.0" y="72" width="269" height="17"/>
                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
                                                 <color key="textColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="4. Climb to the top of the leaderboard" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eQ7-VU-Vep">
-                                                <rect key="frame" x="0.0" y="108" width="243" height="17"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4. Climb to the top of the leaderboard" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eQ7-VU-Vep">
+                                                <rect key="frame" x="0.0" y="108" width="269" height="17"/>
                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
                                                 <color key="textColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="5. Solve real world problems with code" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="quu-Fd-TLw">
-                                                <rect key="frame" x="0.0" y="144" width="243" height="17"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5. Solve real world problems with code" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="quu-Fd-TLw">
+                                                <rect key="frame" x="0.0" y="144" width="269" height="17"/>
                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
                                                 <color key="textColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -793,7 +801,7 @@ We build tools designed to help non-profit organizations streamline their philan
                                         <color key="textColor" red="0.61176470589999998" green="0.60392156860000001" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="equalSpacing" alignment="center" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="pZc-tf-OVT">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="pZc-tf-OVT">
                                         <rect key="frame" x="131" y="263" width="26" height="166"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imac-white" translatesAutoresizingMaskIntoConstraints="NO" id="ED3-83-pSd">
@@ -957,13 +965,6 @@ We build tools designed to help non-profit organizations streamline their philan
                                             <constraint firstAttribute="height" constant="2" id="CGB-vF-X1d"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J0G-ii-NI6">
-                                        <rect key="frame" x="40" y="880" width="520" height="2"/>
-                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="2" id="7fd-oX-Wus"/>
-                                        </constraints>
-                                    </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C3o-5y-gCb" customClass="SwiftyButton" customModule="SwiftyButton">
                                         <rect key="frame" x="193" y="540" width="214" height="50"/>
                                         <constraints>
@@ -1030,8 +1031,8 @@ We build tools designed to help non-profit organizations streamline their philan
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tnf-WJ-f8R">
-                                        <rect key="frame" x="40" y="939" width="520" height="504"/>
+                                    <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tnf-WJ-f8R">
+                                        <rect key="frame" x="40" y="996" width="520" height="447"/>
                                         <connections>
                                             <segue destination="01o-DI-c75" kind="embed" id="J1e-r5-3ul"/>
                                         </connections>
@@ -1042,22 +1043,6 @@ We build tools designed to help non-profit organizations streamline their philan
                                             <constraint firstAttribute="height" constant="200" id="tst-Vh-RZJ"/>
                                         </constraints>
                                     </imageView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HNv-VU-gab">
-                                        <rect key="frame" x="40" y="929" width="520" height="2"/>
-                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="2" id="drO-2B-91S"/>
-                                        </constraints>
-                                    </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Who's Participating" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oZx-KB-KxP">
-                                        <rect key="frame" x="8" y="890" width="584" height="31"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="31" id="nFv-4X-aBV"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="16"/>
-                                        <color key="textColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Food Drivr Hackathon" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HfK-rW-YbI">
                                         <rect key="frame" x="8" y="228" width="584" height="77"/>
                                         <constraints>
@@ -1067,12 +1052,57 @@ We build tools designed to help non-profit organizations streamline their philan
                                         <color key="textColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J0G-ii-NI6">
+                                        <rect key="frame" x="40" y="937" width="520" height="2"/>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="2" id="7fd-oX-Wus"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HNv-VU-gab">
+                                        <rect key="frame" x="40" y="986" width="520" height="2"/>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="2" id="drO-2B-91S"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Who's Participating" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oZx-KB-KxP">
+                                        <rect key="frame" x="8" y="947" width="584" height="31"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="31" id="nFv-4X-aBV"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="16"/>
+                                        <color key="textColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="80q-rc-5kk">
+                                        <rect key="frame" x="14" y="882" width="163" height="26"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="link-white" translatesAutoresizingMaskIntoConstraints="NO" id="woe-nF-ngh">
+                                                <rect key="frame" x="0.0" y="0.0" width="26" height="26"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="26" id="1O5-4G-3jT"/>
+                                                    <constraint firstAttribute="height" constant="26" id="z4q-Hu-Gmv"/>
+                                                </constraints>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ib4-5D-bEd">
+                                                <rect key="frame" x="26" y="0.0" width="137" height="26"/>
+                                                <state key="normal" title="http://hacksmiths.io"/>
+                                                <connections>
+                                                    <action selector="didTapHacksmithsUpInside:" destination="1DQ-Ae-VIb" eventType="touchUpInside" id="NvI-Pv-kD5"/>
+                                                    <action selector="didTapOrganizationWebsiteButton:" destination="DC3-eH-eDa" eventType="touchUpInside" id="buj-kv-wZj"/>
+                                                    <action selector="didTapVisitSiteUpInside:" destination="8E9-ee-mxd" eventType="touchUpInside" id="WQ2-1t-gdn"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.15294117647058825" green="0.20784313725490197" blue="0.25882352941176473" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="dz8-oS-DrK" secondAttribute="trailing" constant="8" id="15g-vO-t9E"/>
                                     <constraint firstAttribute="trailing" secondItem="Vn8-e6-SfX" secondAttribute="trailing" constant="8" id="169-9r-fg8"/>
                                     <constraint firstAttribute="trailing" secondItem="yun-Ud-2rc" secondAttribute="trailing" constant="40" id="1cc-FO-G3P"/>
+                                    <constraint firstItem="80q-rc-5kk" firstAttribute="top" secondItem="7xb-iV-E0f" secondAttribute="bottom" constant="18" id="23V-XW-Exl"/>
                                     <constraint firstItem="Src-aF-bz5" firstAttribute="leading" secondItem="VHh-Hr-Cdd" secondAttribute="leading" id="2UT-Ew-FaD"/>
                                     <constraint firstItem="RW4-oj-2rJ" firstAttribute="centerX" secondItem="VHh-Hr-Cdd" secondAttribute="centerX" id="2t1-Wc-hDt"/>
                                     <constraint firstItem="SID-a8-NR0" firstAttribute="top" secondItem="C3o-5y-gCb" secondAttribute="bottom" constant="8" id="3At-Mz-RJZ"/>
@@ -1080,6 +1110,7 @@ We build tools designed to help non-profit organizations streamline their philan
                                     <constraint firstAttribute="trailing" secondItem="EJR-yi-Gos" secondAttribute="trailing" constant="8" id="6aF-uN-xpr"/>
                                     <constraint firstAttribute="trailing" secondItem="HfK-rW-YbI" secondAttribute="trailing" constant="8" id="6tP-0o-tgg"/>
                                     <constraint firstItem="SID-a8-NR0" firstAttribute="trailing" secondItem="yun-Ud-2rc" secondAttribute="trailing" id="8AB-E1-KPp"/>
+                                    <constraint firstItem="oZx-KB-KxP" firstAttribute="leading" secondItem="dz8-oS-DrK" secondAttribute="leading" id="9AK-RO-r0l"/>
                                     <constraint firstItem="HfK-rW-YbI" firstAttribute="top" secondItem="Src-aF-bz5" secondAttribute="bottom" constant="8" id="9hs-YB-5qU"/>
                                     <constraint firstItem="7Eh-Sd-FWR" firstAttribute="leading" secondItem="VHh-Hr-Cdd" secondAttribute="leading" constant="8" id="AJ1-wQ-yeA"/>
                                     <constraint firstItem="8By-sE-1by" firstAttribute="top" secondItem="dz8-oS-DrK" secondAttribute="bottom" constant="8" id="BaX-Gf-z5l"/>
@@ -1093,6 +1124,7 @@ We build tools designed to help non-profit organizations streamline their philan
                                     <constraint firstItem="dz8-oS-DrK" firstAttribute="top" secondItem="bkR-v5-mAt" secondAttribute="bottom" constant="8" id="HT2-Uy-TUz"/>
                                     <constraint firstItem="nST-lF-I5r" firstAttribute="leading" secondItem="VHh-Hr-Cdd" secondAttribute="leading" constant="40" id="Hdw-Ec-j3l"/>
                                     <constraint firstItem="J0G-ii-NI6" firstAttribute="trailing" secondItem="HNv-VU-gab" secondAttribute="trailing" id="IFZ-2J-B3h"/>
+                                    <constraint firstItem="J0G-ii-NI6" firstAttribute="top" secondItem="80q-rc-5kk" secondAttribute="bottom" constant="29" id="J6P-jT-a8m"/>
                                     <constraint firstItem="Vn8-e6-SfX" firstAttribute="centerX" secondItem="VHh-Hr-Cdd" secondAttribute="centerX" id="JDj-2U-lUi"/>
                                     <constraint firstItem="7xb-iV-E0f" firstAttribute="leading" secondItem="VHh-Hr-Cdd" secondAttribute="leading" constant="14" id="JOj-5K-TpI"/>
                                     <constraint firstItem="C3o-5y-gCb" firstAttribute="top" secondItem="RW4-oj-2rJ" secondAttribute="bottom" constant="8" id="JrT-qG-AR2"/>
@@ -1111,6 +1143,7 @@ We build tools designed to help non-profit organizations streamline their philan
                                     <constraint firstAttribute="bottom" secondItem="Tnf-WJ-f8R" secondAttribute="bottom" constant="8" id="ZXk-3Q-0hI"/>
                                     <constraint firstItem="J0G-ii-NI6" firstAttribute="centerX" secondItem="oZx-KB-KxP" secondAttribute="centerX" id="ZnE-Xu-GIk"/>
                                     <constraint firstAttribute="bottom" secondItem="J0G-ii-NI6" secondAttribute="bottom" constant="569" id="aV9-7f-Z6g"/>
+                                    <constraint firstItem="80q-rc-5kk" firstAttribute="leading" secondItem="VHh-Hr-Cdd" secondAttribute="leading" constant="14" id="aoU-Ok-GyB"/>
                                     <constraint firstItem="Src-aF-bz5" firstAttribute="centerX" secondItem="yun-Ud-2rc" secondAttribute="centerX" id="bJZ-LV-8wY"/>
                                     <constraint firstItem="SID-a8-NR0" firstAttribute="leading" secondItem="yun-Ud-2rc" secondAttribute="leading" id="baa-1M-uuh"/>
                                     <constraint firstItem="SID-a8-NR0" firstAttribute="trailing" secondItem="bkR-v5-mAt" secondAttribute="trailing" id="cIa-cP-20M"/>
@@ -1123,7 +1156,6 @@ We build tools designed to help non-profit organizations streamline their philan
                                     <constraint firstAttribute="trailing" secondItem="Src-aF-bz5" secondAttribute="trailing" id="qp6-Xh-4MS"/>
                                     <constraint firstItem="Vn8-e6-SfX" firstAttribute="top" secondItem="HfK-rW-YbI" secondAttribute="bottom" constant="8" id="rTe-K5-uai"/>
                                     <constraint firstItem="nST-lF-I5r" firstAttribute="top" secondItem="Vn8-e6-SfX" secondAttribute="bottom" constant="8" id="sIx-D5-FHA"/>
-                                    <constraint firstItem="J0G-ii-NI6" firstAttribute="top" secondItem="8By-sE-1by" secondAttribute="bottom" constant="8" symbolic="YES" id="spS-UA-ITi"/>
                                     <constraint firstItem="yun-Ud-2rc" firstAttribute="leading" secondItem="VHh-Hr-Cdd" secondAttribute="leading" constant="40" id="sug-6t-0wl"/>
                                     <constraint firstItem="C3o-5y-gCb" firstAttribute="centerX" secondItem="VHh-Hr-Cdd" secondAttribute="centerX" id="szX-xX-Z8d"/>
                                     <constraint firstAttribute="trailing" secondItem="dz8-oS-DrK" secondAttribute="trailing" constant="8" id="vOP-i9-WyQ"/>
@@ -1161,6 +1193,8 @@ We build tools designed to help non-profit organizations streamline their philan
                         <outlet property="organizationDescriptionLabel" destination="8By-sE-1by" id="rwE-eH-VoX"/>
                         <outlet property="organizationImageView" destination="7xb-iV-E0f" id="ZBE-Wg-1Qr"/>
                         <outlet property="organizationTitleLabel" destination="dz8-oS-DrK" id="wLc-j4-v6v"/>
+                        <outlet property="organizationWebsiteButton" destination="ib4-5D-bEd" id="fy9-ed-3bp"/>
+                        <outlet property="organizationWebsiteStackView" destination="80q-rc-5kk" id="S8K-0c-8W5"/>
                         <outlet property="registerSignupButton" destination="C3o-5y-gCb" id="3JF-7m-BZr"/>
                         <outlet property="whenLabel" destination="tBE-aP-qdy" id="H2a-Ht-2Nr"/>
                         <outlet property="whoLabel" destination="zx4-zt-d46" id="Pya-iN-cDl"/>
@@ -1170,12 +1204,12 @@ We build tools designed to help non-profit organizations streamline their philan
             </objects>
             <point key="canvasLocation" x="979" y="-925"/>
         </scene>
-        <!--People Collection View Controller-->
+        <!--Participant Collection View Controller-->
         <scene sceneID="fNJ-SM-Z1H">
             <objects>
-                <collectionViewController id="01o-DI-c75" customClass="PeopleCollectionViewController" customModule="hacksmiths" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="01o-DI-c75" customClass="ParticipantCollectionViewController" customModule="hacksmiths" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="gTp-e8-W9f">
-                        <rect key="frame" x="0.0" y="0.0" width="520" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="520" height="447"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.15868747234344482" green="0.21822044253349304" blue="0.30320093035697937" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="F4c-st-dLY">
@@ -1227,6 +1261,212 @@ We build tools designed to help non-profit organizations streamline their philan
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IaY-iF-3AV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1805" y="-143.5"/>
+        </scene>
+        <!--Ideas-->
+        <scene sceneID="arC-qO-Enr">
+            <objects>
+                <viewController id="Q5f-dL-Dzh" customClass="IdeaPageViewController" customModule="hacksmiths" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zcM-wx-8le"/>
+                        <viewControllerLayoutGuide type="bottom" id="Esx-C3-rUy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Cbg-tH-gTh">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xka-1z-rxW">
+                                <rect key="frame" x="0.0" y="20" width="600" height="531"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Have an idea for a project we can work on together?  Submit an idea for our next event." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AFy-jW-9hS">
+                                        <rect key="frame" x="8" y="83" width="584" height="101"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="101" id="DEI-PU-6g5"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="1. Pick your favorite Non Profit / Philanthropic Organization" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pRW-Aa-52u">
+                                        <rect key="frame" x="8" y="240" width="584" height="32"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zNc-tX-cuE">
+                                        <rect key="frame" x="8" y="280" width="584" height="87"/>
+                                        <string key="text">2. Write a detailed summary of your idea, focusing on how we can use technology to solve a problem for the cause of the organization.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="How it works" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Wz-bY-6Bn">
+                                        <rect key="frame" x="8" y="192" width="584" height="40"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="27"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="We need your help!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CGx-oE-Slj">
+                                        <rect key="frame" x="8" y="8" width="584" height="67"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="28"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z7g-2r-f4a" customClass="SwiftyButton" customModule="SwiftyButton">
+                                        <rect key="frame" x="218" y="446" width="164" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="1yy-DD-gIq"/>
+                                            <constraint firstAttribute="width" constant="164" id="bng-jG-5SH"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="Submit an idea">
+                                            <color key="titleColor" red="0.99215686270000003" green="0.12549019610000001" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="buttonColor">
+                                                <color key="value" red="0.16862745098039217" green="0.21568627450980393" blue="0.3411764705882353" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                <color key="value" red="0.19215686274509805" green="0.19607843137254902" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="highlightedColor">
+                                                <color key="value" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="didTapSubmitIdeaUpInside:" destination="Q5f-dL-Dzh" eventType="touchUpInside" id="9Sd-GB-8gp"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="3. Submit it through here or our website and we will put it to a vote." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dhp-iE-owY">
+                                        <rect key="frame" x="8" y="375" width="584" height="48"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.11764705882352941" blue="0.25098039215686274" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="z7g-2r-f4a" firstAttribute="top" secondItem="dhp-iE-owY" secondAttribute="bottom" constant="23" id="4ld-8y-aDC"/>
+                                    <constraint firstItem="dhp-iE-owY" firstAttribute="top" secondItem="zNc-tX-cuE" secondAttribute="bottom" constant="8" id="C1D-CC-51t"/>
+                                    <constraint firstItem="6Wz-bY-6Bn" firstAttribute="top" secondItem="AFy-jW-9hS" secondAttribute="bottom" constant="8" id="GGT-U5-AHG"/>
+                                    <constraint firstItem="pRW-Aa-52u" firstAttribute="top" secondItem="6Wz-bY-6Bn" secondAttribute="bottom" constant="8" id="Ir9-0I-5Ym"/>
+                                    <constraint firstItem="pRW-Aa-52u" firstAttribute="leading" secondItem="Xka-1z-rxW" secondAttribute="leading" constant="8" id="MzZ-3z-up7"/>
+                                    <constraint firstItem="zNc-tX-cuE" firstAttribute="top" secondItem="pRW-Aa-52u" secondAttribute="bottom" constant="8" id="Pob-Se-ZOs"/>
+                                    <constraint firstAttribute="trailing" secondItem="zNc-tX-cuE" secondAttribute="trailing" constant="8" id="RVZ-Lh-o3g"/>
+                                    <constraint firstItem="AFy-jW-9hS" firstAttribute="top" secondItem="CGx-oE-Slj" secondAttribute="bottom" constant="8" id="Rha-n0-8gL"/>
+                                    <constraint firstItem="dhp-iE-owY" firstAttribute="leading" secondItem="Xka-1z-rxW" secondAttribute="leading" constant="8" id="Tlm-uD-vkJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="dhp-iE-owY" secondAttribute="trailing" constant="8" id="WMb-V5-vBJ"/>
+                                    <constraint firstItem="CGx-oE-Slj" firstAttribute="centerX" secondItem="Xka-1z-rxW" secondAttribute="centerX" id="bJb-hp-aeY"/>
+                                    <constraint firstItem="dhp-iE-owY" firstAttribute="centerX" secondItem="Xka-1z-rxW" secondAttribute="centerX" id="deb-JW-bwy"/>
+                                    <constraint firstItem="zNc-tX-cuE" firstAttribute="centerX" secondItem="Xka-1z-rxW" secondAttribute="centerX" id="flr-Da-cnA"/>
+                                    <constraint firstAttribute="trailing" secondItem="pRW-Aa-52u" secondAttribute="trailing" constant="8" id="hrq-yu-9CS"/>
+                                    <constraint firstItem="pRW-Aa-52u" firstAttribute="centerX" secondItem="Xka-1z-rxW" secondAttribute="centerX" id="iCQ-gT-fyv"/>
+                                    <constraint firstAttribute="trailing" secondItem="AFy-jW-9hS" secondAttribute="trailing" constant="8" id="oEU-u5-gt7"/>
+                                    <constraint firstItem="6Wz-bY-6Bn" firstAttribute="leading" secondItem="Xka-1z-rxW" secondAttribute="leading" constant="8" id="pSm-s1-Jng"/>
+                                    <constraint firstItem="zNc-tX-cuE" firstAttribute="leading" secondItem="Xka-1z-rxW" secondAttribute="leading" constant="8" id="sCK-3e-MfP"/>
+                                    <constraint firstItem="z7g-2r-f4a" firstAttribute="centerX" secondItem="Xka-1z-rxW" secondAttribute="centerX" id="t2B-el-4UO"/>
+                                    <constraint firstAttribute="trailing" secondItem="6Wz-bY-6Bn" secondAttribute="trailing" constant="8" id="tCc-ya-k4h"/>
+                                    <constraint firstItem="6Wz-bY-6Bn" firstAttribute="centerX" secondItem="Xka-1z-rxW" secondAttribute="centerX" id="u6p-zA-79Y"/>
+                                    <constraint firstItem="AFy-jW-9hS" firstAttribute="leading" secondItem="Xka-1z-rxW" secondAttribute="leading" constant="8" id="uU2-yL-wFy"/>
+                                    <constraint firstItem="dhp-iE-owY" firstAttribute="top" secondItem="zNc-tX-cuE" secondAttribute="bottom" constant="8" id="zvI-Le-hen"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Esx-C3-rUy" firstAttribute="top" secondItem="z7g-2r-f4a" secondAttribute="bottom" constant="45" id="AsJ-IB-M9Z"/>
+                            <constraint firstItem="Xka-1z-rxW" firstAttribute="top" secondItem="zcM-wx-8le" secondAttribute="bottom" id="Ctf-ij-UXZ"/>
+                            <constraint firstItem="Xka-1z-rxW" firstAttribute="leading" secondItem="Cbg-tH-gTh" secondAttribute="leadingMargin" constant="-20" id="cvB-ZI-If9"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Xka-1z-rxW" secondAttribute="trailing" constant="-20" id="u63-gJ-WNh"/>
+                            <constraint firstItem="Esx-C3-rUy" firstAttribute="top" secondItem="Xka-1z-rxW" secondAttribute="bottom" id="vLZ-bp-AX9"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Ideas" image="box" id="Z0S-mu-Bnc"/>
+                    <connections>
+                        <segue destination="lmf-nJ-aZ8" kind="presentation" identifier="ShowIdeaSubmission" id="ejR-Y0-KwI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rtA-VD-j2c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-738" y="1362"/>
+        </scene>
+        <!--Idea Submission View Controller-->
+        <scene sceneID="dGp-7g-bbr">
+            <objects>
+                <viewController id="lmf-nJ-aZ8" customClass="IdeaSubmissionViewController" customModule="hacksmiths" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5Bq-TH-b2v"/>
+                        <viewControllerLayoutGuide type="bottom" id="G1d-R5-W1S"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ow0-FT-PVo">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="cZJ-DT-tr5">
+                                <rect key="frame" x="20" y="228" width="560" height="288"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YAH-9F-Mqe" customClass="SwiftyButton" customModule="SwiftyButton">
+                                <rect key="frame" x="220" y="533" width="161" height="47"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleColor" red="0.1215686275" green="0.3294117647" blue="0.63137254899999995" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="buttonColor">
+                                        <color key="value" red="0.66666666669999997" green="0.91764705879999997" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                        <color key="value" red="0.1215686275" green="0.3294117647" blue="0.63137254899999995" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="highlightedColor">
+                                        <color key="value" red="0.61176470589999998" green="0.60392156860000001" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tell us about your idea" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DLd-Kp-iLi">
+                                <rect key="frame" x="20" y="20" width="560" height="67"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="67" id="5E3-Sm-Hep"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="28"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Idea description" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AB1-ZQ-i42">
+                                <rect key="frame" x="20" y="180" width="560" height="40"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="21"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Pick a title for it, something that we can display on the site." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nfB-sK-FNW">
+                                <rect key="frame" x="20" y="136" width="560" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" red="0.20000000000000001" green="0.63529411759999999" blue="0.83529411760000005" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="cZJ-DT-tr5" firstAttribute="centerX" secondItem="Ow0-FT-PVo" secondAttribute="centerX" id="62J-r6-xmG"/>
+                            <constraint firstItem="DLd-Kp-iLi" firstAttribute="leading" secondItem="Ow0-FT-PVo" secondAttribute="leadingMargin" id="bGy-IW-9zx"/>
+                            <constraint firstItem="cZJ-DT-tr5" firstAttribute="trailing" secondItem="Ow0-FT-PVo" secondAttribute="trailingMargin" id="fmc-sZ-wlW"/>
+                            <constraint firstItem="cZJ-DT-tr5" firstAttribute="top" secondItem="AB1-ZQ-i42" secondAttribute="bottom" constant="8" id="hQe-du-C3E"/>
+                            <constraint firstItem="DLd-Kp-iLi" firstAttribute="trailing" secondItem="Ow0-FT-PVo" secondAttribute="trailingMargin" id="kCj-7q-31V"/>
+                            <constraint firstItem="cZJ-DT-tr5" firstAttribute="leading" secondItem="Ow0-FT-PVo" secondAttribute="leadingMargin" id="ph8-Xu-QiF"/>
+                            <constraint firstItem="DLd-Kp-iLi" firstAttribute="top" secondItem="5Bq-TH-b2v" secondAttribute="bottom" id="seF-uD-ORk"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2hn-9I-R6a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="20" y="1372"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="hUj-CU-FbA">
@@ -1284,6 +1524,9 @@ We build tools designed to help non-profit organizations streamline their philan
                                                     <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
                                                         <color key="value" red="0.42655369640000002" green="0.475846082" blue="0.4802647531" alpha="1" colorSpace="calibratedRGB"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="15"/>
+                                                    </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="didTapLoginButtonUpInside:" destination="WN5-vs-oyA" eventType="touchUpInside" id="sBK-5H-YUd"/>
@@ -1312,17 +1555,17 @@ We build tools designed to help non-profit organizations streamline their philan
                                             <action selector="didTapSkipUpInside:" destination="WN5-vs-oyA" eventType="touchUpInside" id="MRd-lV-tfs"/>
                                         </connections>
                                     </button>
-                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="equalSpacing" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="6tJ-u5-2QH">
-                                        <rect key="frame" x="223" y="478" width="142" height="55"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="6tJ-u5-2QH">
+                                        <rect key="frame" x="223" y="478" width="154" height="56"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Need an Account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bQS-jy-J3I">
-                                                <rect key="frame" x="0.0" y="0.0" width="142" height="20"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Need an Account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bQS-jy-J3I">
+                                                <rect key="frame" x="0.0" y="0.0" width="154" height="21"/>
                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
                                                 <color key="textColor" red="0.79607843140000001" green="0.94117647059999998" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kkd-ah-L8M">
-                                                <rect key="frame" x="43" y="25" width="57" height="30"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kkd-ah-L8M">
+                                                <rect key="frame" x="49" y="26" width="57" height="30"/>
                                                 <state key="normal" title="Register"/>
                                                 <connections>
                                                     <action selector="didTapRegisterUpInside:" destination="WN5-vs-oyA" eventType="touchUpInside" id="ZSm-XT-RyX"/>
@@ -1330,7 +1573,7 @@ We build tools designed to help non-profit organizations streamline their philan
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="NaY-C1-Wv6">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="NaY-C1-Wv6">
                                         <rect key="frame" x="20" y="360" width="560" height="110"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rPo-c9-z7X" customClass="IsaoTextField" customModule="TextFieldEffects">
@@ -1436,6 +1679,7 @@ We build tools designed to help non-profit organizations streamline their philan
                         <segue destination="8E9-ee-mxd" kind="relationship" relationship="viewControllers" id="q9g-SO-H0d"/>
                         <segue destination="uzT-vA-7uU" kind="relationship" relationship="viewControllers" id="b8H-xp-q23"/>
                         <segue destination="DC3-eH-eDa" kind="relationship" relationship="viewControllers" id="npc-hh-O3U"/>
+                        <segue destination="Q5f-dL-Dzh" kind="relationship" relationship="viewControllers" id="dOH-eh-MUp"/>
                         <segue destination="1DQ-Ae-VIb" kind="relationship" relationship="viewControllers" id="A7n-I5-fa2"/>
                     </connections>
                 </tabBarController>
@@ -1676,7 +1920,7 @@ We build tools designed to help non-profit organizations streamline their philan
                             </textView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U49-Db-g5R" customClass="RCCircularImageView" customModule="hacksmiths" customModuleProvider="target">
                                 <rect key="frame" x="225" y="84" width="150" height="150"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="I9j-Fa-y29"/>
                                     <constraint firstAttribute="height" constant="150" id="kGc-Ef-jF5"/>
@@ -1728,6 +1972,7 @@ We build tools designed to help non-profit organizations streamline their philan
     <resources>
         <image name="avatar-missing" width="108" height="130"/>
         <image name="bg" width="640" height="400"/>
+        <image name="box" width="32" height="32"/>
         <image name="circle-picture" width="170" height="170"/>
         <image name="code" width="30" height="26"/>
         <image name="code-white" width="30" height="26"/>

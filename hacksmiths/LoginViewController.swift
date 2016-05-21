@@ -12,7 +12,6 @@ import SwiftyButton
 
 class LoginViewController: UIViewController {
     
-    let AKeychainWrapper = KeychainWrapper()
     let createLoginButtonTag = 0
     let loginButtonTag = 1
     
@@ -22,6 +21,7 @@ class LoginViewController: UIViewController {
 
     @IBOutlet weak var touchIDButton: UIButton!
     @IBOutlet weak var onepasswordButton: UIButton!
+    var loginPresenter: LoginPresenter?
 
     
     let loginButton = SwiftyCustomContentButton()
@@ -175,6 +175,36 @@ class LoginViewController: UIViewController {
         }
     }
 
+}
+
+extension LoginViewController: LoginView {
+    func showLoading() {
+        
+    }
+    func hideLoading() {
+        
+    }
+    
+    private func findSavedCredentials(sender: AnyObject){
+        OnePasswordExtension.sharedExtension().findLoginForURLString("http://hacksmiths.io", forViewController: self, sender: sender, completion: { (loginDictionary, error) -> Void in
+            if loginDictionary == nil {
+                if error!.code != Int(AppExtensionErrorCodeCancelledByUser) {
+                    
+                    print("Error invoking 1Password App Extension for find login: \(error)")
+                }
+                return
+            }
+            
+            if let foundUsername = loginDictionary?[AppExtensionUsernameKey] as? String, foundPassword = loginDictionary?[AppExtensionPasswordKey] as? String {
+                
+                self.passwordTextField.text = foundPassword
+                self.usernameTextField.text = foundUsername
+                
+                self.authenticateUser(foundUsername, password: foundPassword)
+                
+            }
+        })
+    }
 }
 
 extension LoginViewController {

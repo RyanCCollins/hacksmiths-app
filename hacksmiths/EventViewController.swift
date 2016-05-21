@@ -9,8 +9,10 @@
 import UIKit
 import SwiftyButton
 import CoreData
+import Foundation
 
 class EventViewController: UIViewController {
+    @IBOutlet weak var organizationWebsiteStackView: UIStackView!
     @IBOutlet weak var eventImageView: UIImageView!
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var whoLabel: UILabel!
@@ -18,54 +20,64 @@ class EventViewController: UIViewController {
     @IBOutlet weak var registerSignupButton: SwiftyButton!
     @IBOutlet weak var organizationImageView: UIImageView!
     @IBOutlet weak var organizationTitleLabel: UILabel!
+    @IBOutlet weak var whenLabel: UILabel!
+    
+    @IBOutlet weak var organizationWebsiteButton: UIButton!
     @IBOutlet weak var organizationDescriptionLabel: UILabel!
+    private let eventPresenter = EventPresenter(eventService: EventService())
+    
     var currentEvent: Event?
     
-    @IBOutlet weak var whenLabel: UILabel!
+    var activityIndicator: IGActivityIndicatorView!
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        getEventData()
+        eventPresenter.attachView(self)
+        updateUserInterface()
     }
     
-    func getEventData() {
-        
-        HacksmithsAPIClient.sharedInstance().fetchEventsFromAPI({success, error in
-            if error != nil {
-                
-                self.alertController(withTitles: ["OK", "Retry"], message: (error?.localizedDescription)!, callbackHandler: [nil, {Void in self.getEventData()}])
-                
-            } else {
-                
-                // Start loading the event data and then pass off loading of the event attendees.
-                self.performEventFetch()
-                
-                
-                if let event = self.fetchedResultsController.fetchedObjects![0] as? Event {
-                    self.currentEvent = event
-                }
-                
-            }
-        })
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        eventPresenter.getNextEvent()
+        setActivityIndicator()
+        startLoading()
     }
     
-    private func userInterfaceUpdater() {
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        eventPresenter.detachView()
+    }
+    
+    func setActivityIndicator() {
+        activityIndicator = IGActivityIndicatorView(inview: self.view)
+    }
+    
+    func updateUserInterface() {
         if let event = currentEvent {
-            eventImageView.image = event.image
-            headerLabel.text = event.title
             
-            if let organization = event.organization {
-                organizationImageView.image = organization.image
-                organizationTitleLabel.text = organization.name
-                organizationDescriptionLabel.text = organization.about ?? ""
-                if let organizationImage = organization.image {
-                    organizationImageView.image = organizationImage
-                } else {
-                    organizationImageView.image = UIImage(named: <#T##String#>)
+            /* Set the UI elements on the main queue */
+            dispatch_async(GlobalMainQueue, {
+                self.eventImageView.image = event.image
+                self.headerLabel.text = event.title
+                self.aboutTextView.text = event.descriptionString
+                
+                self.whenLabel.text = "Set date here"
+                self.whoLabel.text = "Set who here"
+                
+                if let organization = self.currentEvent?.organization {
+                    if let image = organization.image,
+                       let descriptionString = organization.descriptionString,
+                       let organizationWebsite = organization.website {
+                        self.organizationImageView.image = image
+                        self.organizationDescriptionLabel.text = descriptionString
+                        self.organizationWebsiteButton.titleLabel!.text = organizationWebsite
+                        self.organizationWebsiteButton.hidden = false
+                    }
                 }
-            }
+            })
         }
     }
+    
     
     private func setButtonForAuthState() {
         if UserDefaults.sharedInstance().authenticated == true {
@@ -77,39 +89,55 @@ class EventViewController: UIViewController {
         }
     }
     
-
     
-    private lazy var fetchedResultsController: NSFetchedResultsController = {
-        let sortPriority = NSSortDescriptor(key: "startDate", ascending: false)
-        let nextEventFetch = NSFetchRequest(entityName: "Event")
-        nextEventFetch.sortDescriptors = [sortPriority]
-        
-        let fetchResultsController = NSFetchedResultsController(fetchRequest: nextEventFetch, managedObjectContext: self.sharedContext, sectionNameKeyPath: nil, cacheName: nil)
-        
-        do {
-            try fetchResultsController.performFetch()
-        } catch let error {
-            print(error)
+    /* Open the URL for the website if possible. */
+    @IBAction func didTapOrganizationWebsiteButton(sender: UIButton) {
+        if let urlString = sender.titleLabel?.text {
+            if let url = NSURL(string: urlString) {
+                UIApplication.sharedApplication().openURL(url)
+            }
         }
-        
-        return fetchResultsController
-    }()
+    }
+
+}
+
+extension EventViewController: EventView {
+
+
+    func startLoading() {
+        self.activityIndicator.startAnimating()
+    }
     
-    func performEventFetch() {
-        do {
-            
-            try fetchedResultsController.performFetch()
-            
-        } catch let error as NSError {
-            self.alertController(withTitles: ["OK", "Retry"], message: error.localizedDescription, callbackHandler: [nil, {Void in
-                self.performEventFetch()
+    
+    func finishLoading() {
+        self.activityIndicator.stopAnimating()
+    }
+    
+    func getEvent(sender: EventPresenter, didSucceed event: Event) {
+        self.currentEvent = event
+        self.finishLoading()
+        self.updateUserInterface()
+        print("Called getEvent:didSucceed in EventView with event: \(event)")
+    }
+    
+    func getEvent(sender: EventPresenter, didFail error: NSError) {
+        print("Called getEvent:didFail in EventView with error: \(error)")
+        
+        self.finishLoading()
+        alertController(withTitles: ["OK", "Retry"], message: error.localizedDescription, callbackHandler: [nil, {Void in
+            self.eventPresenter.getNextEvent()
             }])
-        }
     }
-
     
-    var sharedContext: NSManagedObjectContext {
-        return CoreDataStackManager.sharedInstance().managedObjectContext
+    func respondToEvent(sender: EventPresenter, didSucceed event: Event) {
+        self.currentEvent = event
+        self.finishLoading()
+        updateUserInterface()
     }
-
+    
+    func respondToEvent(sender: EventPresenter, didFail error: NSError) {
+    
+    }
+    
+    
 }
