@@ -57,42 +57,47 @@ struct ProjectIdeaKeys {
 
 struct ProjectIdeaJSON: Glossy {
     let id: String
-    let createdBy: String
-    let createdAt: NSDate?
-    let event: String
+    let createdById: String
+    var createdAt: NSDate? = nil
+    let eventId: String
     let idea: IdeaJSON?
+    
     init?(json: JSON) {
         guard let id: String = ProjectIdeaKeys.id <~~ json,
-              let createdBy: String = ProjectIdeaKeys.createdBy <~~ json,
-              let event: String = ProjectIdeaKeys.event <~~ json else {
+              let createdById: String = ProjectIdeaKeys.createdBy <~~ json,
+              let eventId: String = ProjectIdeaKeys.event <~~ json else {
             return nil
         }
         self.id = id
-        self.createdBy = createdBy
-        self.event = event
+        self.createdById = createdById
+        self.eventId = eventId
         if let idea: IdeaJSON = ProjectIdeaKeys.idea <~~ json {
             self.idea = idea
         } else {
             self.idea = nil
         }
-        if let createdAtString = ProjectIdeaKeys.createdAt <~~ json {
-            
+        
+        if let createdAtString: String = ProjectIdeaKeys.createdAt <~~ json {
+            if let date = createdAtString.parseAsDate() {
+                self.createdAt = date
+            }
         }
+        
     }
     
     // - MARK: Encode to JSON
     func toJSON() -> JSON? {
          return jsonify([
-            ProjectIdeaKeys.createdBy ~~> self.createdBy,
-            ProjectIdeaKeys.event ~~> self.event,
+            ProjectIdeaKeys.createdBy ~~> self.createdById,
+            ProjectIdeaKeys.event ~~> self.eventId,
             ProjectIdeaKeys.idea ~~> self.idea
         ])
     }
     
     func toJsonDict() -> JsonDict? {
         var dictionary: JsonDict = [
-            "createdBy" : self.createdBy,
-            "event": self.event,
+            "createdBy" : self.createdById,
+            "event": self.eventId,
         ]
         if let ideaDict = idea?.toDictionary() {
             dictionary["idea"] = ideaDict

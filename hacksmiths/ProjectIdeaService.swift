@@ -21,7 +21,7 @@ class ProjectIdeaService {
     
     func submitIdea(projectIdeaJSON: ProjectIdeaJSON, userId: String) -> Promise<ProjectIdea?> {
         
-        return Promise { fullfill, reject in
+        return Promise { resolve, reject in
             let router = ProjectIdeaRouter(endpoint: .PostProjectIdea(projectIdea: projectIdeaJSON, userId: userId))
             manager.request(router)
                 .validate()
@@ -31,9 +31,13 @@ class ProjectIdeaService {
                     case .Success(let JSON):
                         
                         /* Create the idea locally once the server responds with a proper success result */
-                        let idea = ProjectIdea()
+                        let idea = ProjectIdea(ideaJSON: projectIdeaJSON, context: GlobalStackManager.SharedManager.sharedContext)
                         
+                        GlobalStackManager.SharedManager.sharedContext.performBlockAndWait({
+                            CoreDataStackManager.sharedInstance().saveContext()
+                        })
                         
+                        resolve(idea)
                     case .Failure(let error):
                         
                         reject(error)
@@ -43,19 +47,72 @@ class ProjectIdeaService {
     }
     
     func getAllIdeas(forEvent: Event) -> Promise<[ProjectIdea]?> {
-        
+        return Promise { resolve, reject in
+            let router = ProjectIdeaRouter.init(endpoint: .GetAllProjectIdeas())
+            manager.request(router)
+                .validate()
+                .responseJSON {
+                    response in
+                    switch response.result {
+                    case .Success(let JSON):
+                        let projectIdeaArray = JSON["ideas"] as! [JsonDict]
+                        let ideas = projectIdeaArray.map({ idea in
+                            return ProjectIdeaJSON(json: idea)
+                        })
+                        
+                        let returnArray = ideas.map({idea in
+                            return ProjectIdea(ideaJSON: idea!, context: GlobalStackManager.SharedManager.sharedContext)
+                        })
+                        
+                        GlobalStackManager.SharedManager.sharedContext.performBlockAndWait({
+                            CoreDataStackManager.sharedInstance().saveContext()
+                        })
+                        resolve(returnArray)
+                    case .Failure(let error):
+                        reject(error)
+                    }
+            }
+        }
+
     }
     
     func getOneIdea(ideaId: String) -> Promise<ProjectIdea> {
+        return Promise {resolve, reject in
+            let router = ProjectIdeaRouter.init(endpoint: .GetOneProjectIdea(ideaId: ideaId))
+            manager.request(router)
+                .validate()
+                .responseJSON {
+                    response in
+                    switch response.result {
+                    case .Success(let JSON):
+                        let JSONData = JSON["idea"] as! JsonDict
+                        let projectIdeaJSON = ProjectIdeaJSON(json: JSONData)
+                        
+                        let projectIdea = ProjectIdea(ideaJSON: projectIdeaJSON!, context: GlobalStackManager.SharedManager.sharedContext)
+                        GlobalStackManager.SharedManager.sharedContext.performBlockAndWait({
+                            CoreDataStackManager.sharedInstance().saveContext()
+                        })
+                        
+                        resolve(projectIdea)
+                    case .Failure(let error):
+                        reject(error)
+                    }
+            }
+        }
+        
         
     }
     
-    func updateOneIdea(ideaId: String, ideaJSON: IdeaJSON) -> Promise<ProjectIdea> {
-        
+    func updateOneIdea(ideaId: String, ideaJSON: IdeaJSON) -> Promise<ProjectIdea?> {
+        return Promise { resolve, reject in
+            resolve(nil)
+        }
     }
     
-    func deleteOneIdea(ideaId: String, ideaJSON: IdeaJSON) -> Promise<ProjectIdea> {
-        
+    func deleteOneIdea(ideaId: String, ideaJSON: IdeaJSON) -> Promise<ProjectIdea?> {
+        return Promise{resolve, reject in
+            resolve(nil)
+        }
     }
 
 }

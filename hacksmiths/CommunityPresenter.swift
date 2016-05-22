@@ -11,7 +11,7 @@ import UIKit
 protocol CommunityView {
     func startLoading()
     func finishLoading()
-    func fetchCommunity(sender: CommunityPresenter, didFailWithError error: NSError?, didSucceedWithMembers members: [Person]?)
+    func fetchCommunity(sender: CommunityPresenter, didSucceed: Bool, didFailWithError error: NSError?)
 }
 
 class CommunityPresenter {
@@ -27,6 +27,19 @@ class CommunityPresenter {
     }
     
     func fetchCommunityMembers() {
-        
+        let body = [String : AnyObject]()
+        HacksmithsAPIClient.sharedInstance().getMemberList(body, completionHandler: {result, error in
+            
+            if error != nil {
+                
+                self.communityView?.fetchCommunity(self, didSucceed: false, didFailWithError: error)
+                
+            } else {
+                
+                self.communityView?.fetchCommunity(self, didSucceed: true, didFailWithError: nil)
+//                self.refreshControl!.endRefreshing()
+//                self.tableView.reloadData()
+            }
+        })
     }
 }

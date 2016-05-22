@@ -3,7 +3,7 @@
 //  hacksmiths
 //
 //  Created by Ryan Collins on 5/21/16.
-//  Copyright © 2016 Tech Rapport. All rights reserved.
+//  Copyright © 2016 Ryan Collins. All rights reserved.
 //
 
 import CoreData
@@ -23,6 +23,28 @@ class ProjectIdea: NSManagedObject {
     
     
     init(ideaJSON: ProjectIdeaJSON, context: NSManagedObjectContext) {
+        let entity = NSEntityDescription.entityForName("ProjectIdea", inManagedObjectContext: context)
+        super.init(entity: entity!, insertIntoManagedObjectContext: context)
+        self.id = ideaJSON.id
         
+        
+        /* Assign the information for the idea */
+        if let idea = ideaJSON.idea {
+            self.title = idea.title
+            self.descriptionString = idea.description
+            self.additionalInformation = idea.additionalInformation
+        }
+        
+        /* Set the created at date to current date or the date returned from API */
+        if let createdAt = ideaJSON.createdAt {
+            self.createdAt = createdAt
+        } else {
+            self.createdAt = getCurrentDate()
+        }
+    }
+    
+    private func getCurrentDate() -> NSDate {
+        let date = NSDate()
+        return date
     }
 }

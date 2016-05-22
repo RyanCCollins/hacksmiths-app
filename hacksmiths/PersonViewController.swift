@@ -25,12 +25,8 @@ class PersonViewController: UIViewController {
         personPresenter.attachView(self)
     }
     
-    private func configureViewOnLoad() {
-        
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         if let person = person {
             personPresenter.setPerson(person)
         } else {

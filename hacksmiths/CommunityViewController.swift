@@ -12,48 +12,32 @@ import SwiftSpinner
 
 class CommunityViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
+    private var activityIndicator: IGActivityIndicatorView!
+    private let communityPresenter = CommunityPresenter()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Set this view to be the fetchedResultsControllerDelegate
         fetchedResultsController.delegate = self
         configureRefreshControl()
-        refreshDataFromAPI(self)
+        self.communityPresenter.attachView(self)
+        self.communityPresenter.fetchCommunityMembers()
     }
     
     func configureRefreshControl() {
         refreshControl = UIRefreshControl()
         refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        refreshControl?.addTarget(self, action: #selector(CommunityViewController.refreshDataFromAPI(_:)), forControlEvents: .ValueChanged)
+        refreshControl?.addTarget(self, action: #selector(fetchNetworkData), forControlEvents: .ValueChanged)
         tableView.addSubview(refreshControl!)
+        self.activityIndicator = IGActivityIndicatorView(inview: view)
     }
     
-    func refreshDataFromAPI(sender: AnyObject) {
-        let body = [String : AnyObject]()
     
-        HacksmithsAPIClient.sharedInstance().getMemberList(body, completionHandler: {result, error in
-            
-            if error != nil {
-                
-                self.alertController(withTitles: ["OK", "Retry"], message: "Sorry, but an error occured while downloading networked data.", callbackHandler: [nil, nil])
-                
-            } else {
-                self.refreshControl!.endRefreshing()
-                self.tableView.reloadData()
-            }
-        })
+    func fetchNetworkData() {
+        self.communityPresenter.fetchCommunityMembers()
     }
     
-    /* Show loading indicator while performing fetch */
-    func performInitialFetch() {
-        sharedContext.performBlockAndWait({
-            self.performFetch()
-        })
-        dispatch_async(GlobalMainQueue, {
-            self.configureDisplay()
-        })
-    }
-
     func configureDisplay() {
         tableView.reloadData()
     }
@@ -225,6 +209,29 @@ extension CommunityViewController {
             alertController(withTitles: ["OK"], message: "It looks like that person has deleted their profile.", callbackHandler: [nil])
         }
     }
+}
+
+extension CommunityViewController: CommunityView {
+    func startLoading() {
+        activityIndicator.startAnimating()
+    }
+    func finishLoading() {
+        activityIndicator.stopAnimating()
+    }
+    
+    func fetchCommunity(sender: CommunityPresenter, didSucceed: Bool, didFailWithError error: NSError?) {
+        if error != nil {
+            self.alertController(withTitles: ["Ok"], message: (error?.localizedDescription)!, callbackHandler: [nil])
+        } else {
+            
+            self.refreshControl?.endRefreshing()
+            self.performFetch()
+
+            self.tableView.reloadData()
+            
+        }
+    }
+    
 }
 
 enum Sections {
