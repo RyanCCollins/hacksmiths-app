@@ -47,9 +47,15 @@ extension PersonViewController: PersonView {
     func configureView(forPerson person: Person) {
         
         if person.image != nil {
-            avatarView.image = person.image
+            avatarView.userImage = person.image
             avatarView.hidden = false
         }
+        
+        if person.fullName != nil {
+            nameLabel.text = person.fullName
+            nameLabel.hidden = false
+        }
+        
         if let bio = person.bio {
             descriptionLabel.text = bio
             descriptionLabel.hidden = false

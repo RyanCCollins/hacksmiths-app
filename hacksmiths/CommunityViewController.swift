@@ -8,13 +8,13 @@
 
 import UIKit
 import CoreData
-import SwiftSpinner
 
 class CommunityViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
     private var activityIndicator: IGActivityIndicatorView!
     private let communityPresenter = CommunityPresenter()
-    
+    var messageLabel = UILabel()
+        
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -116,58 +116,40 @@ extension CommunityViewController {
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0 {
-            return "Leaders"
+        let title = SectionTitle(rawValue: section)?.getTitle()
+        if title != nil {
+            return title
+        } else {
+            return nil
         }
-        if section == 1 {
-            return "Community"
-        }
-        return nil
     }
     
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Initialize count with zero
-        var count = 0
-        if section == Sections.Leaders {
-            count = (fetchedResultsController.fetchedObjects?.count)!
-
-        }
-        if section == Sections.Community {
-            
-            count = (communityFetchResultsController.fetchedObjects?.count)!
-            
-        }
+        let sectionTitle = SectionTitle(rawValue: section)
         
-        if count == 0 {
-            let messageLabel = UILabel(frame: CGRectMake(0,0, self.view.bounds.width, self.view.bounds.height))
-            messageLabel.text = "No data is currently available.  Please pull down to refresh."
-            messageLabel.textColor = UIColor.blackColor()
-            messageLabel.font = UIFont(name: "Roboto", size: 20)
-            messageLabel.sizeToFit()
-            
-            tableView.backgroundView = messageLabel
-            tableView.separatorStyle = .None
+        switch sectionTitle! {
+        case .Leaders: return fetchedResultsController.fetchedObjects!.count
+        case .Community: return communityFetchResultsController.fetchedObjects!.count
         }
-        
-        return count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("PersonTableViewCell") as! PersonTableViewCell
-        
         var person: Person? = nil
         
-        if indexPath.section == Sections.Leaders {
+        let sectionTitle = SectionTitle(rawValue: indexPath.section)
+        
+        switch sectionTitle! {
+        case .Leaders:
             if let thePerson = fetchedResultsController.fetchedObjects![indexPath.row] as? Person {
                 person = thePerson
             }
-        } else {
-            
+        case .Community:
             if let thePerson = communityFetchResultsController.fetchedObjects![indexPath.row] as? Person {
                 person = thePerson
             }
-            
         }
         
         if person != nil {
@@ -190,12 +172,15 @@ extension CommunityViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         var person: Person? = nil
         
-        if indexPath.section == Sections.Leaders {
-            if let thePerson = fetchedResultsController.objectAtIndexPath(indexPath) as? Person {
+        let section = SectionTitle(rawValue: indexPath.section)
+        
+        switch section! {
+        case .Leaders:
+            if let thePerson = fetchedResultsController.fetchedObjects![indexPath.row] as? Person {
                 person = thePerson
             }
-        } else if indexPath.section == Sections.Community {
-            if let thePerson = communityFetchResultsController.objectAtIndexPath(indexPath) as? Person {
+        case .Community:
+            if let thePerson = communityFetchResultsController.fetchedObjects![indexPath.row] as? Person {
                 person = thePerson
             }
         }
@@ -220,21 +205,51 @@ extension CommunityViewController: CommunityView {
     }
     
     func fetchCommunity(sender: CommunityPresenter, didSucceed: Bool, didFailWithError error: NSError?) {
+        startLoading()
         if error != nil {
+            self.finishLoading()
             self.alertController(withTitles: ["Ok"], message: (error?.localizedDescription)!, callbackHandler: [nil])
         } else {
-            
             self.refreshControl?.endRefreshing()
             self.performFetch()
-
+            self.finishLoading()
             self.tableView.reloadData()
+        }
+    }
+    
+    func showNoDataLabel() {
+        if tableView.numberOfRowsInSection(0) == 0 && tableView.numberOfRowsInSection(1) == 0 {
+            messageLabel = UILabel(frame: CGRectMake(0,0, self.view.bounds.width, self.view.bounds.height))
             
+            messageLabel.text = "No data is currently available, pull to refresh."
+            messageLabel.textColor = UIColor.blackColor()
+            messageLabel.font = UIFont(name: "Roboto", size: 20)
+            messageLabel.sizeToFit()
+            
+            tableView.backgroundView = messageLabel
+            tableView.separatorStyle = .None
+        } else {
+            removeNoDataLabel()
+        }
+    }
+    
+    func removeNoDataLabel(){
+        if view.subviews.contains(messageLabel) {
+            messageLabel.removeFromSuperview()
         }
     }
     
 }
 
-enum Sections {
-    static let Leaders = 0
-    static let Community = 1
+enum SectionTitle: Int {
+    case Leaders = 0, Community = 1
+    
+    func getTitle() -> String {
+        switch self {
+        case .Leaders:
+            return "Leaders"
+        case .Community:
+            return "Community"
+        }
+    }
 }

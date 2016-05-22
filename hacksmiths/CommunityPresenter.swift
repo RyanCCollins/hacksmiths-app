@@ -12,6 +12,7 @@ protocol CommunityView {
     func startLoading()
     func finishLoading()
     func fetchCommunity(sender: CommunityPresenter, didSucceed: Bool, didFailWithError error: NSError?)
+    func showNoDataLabel()
 }
 
 class CommunityPresenter {
@@ -37,8 +38,6 @@ class CommunityPresenter {
             } else {
                 
                 self.communityView?.fetchCommunity(self, didSucceed: true, didFailWithError: nil)
-//                self.refreshControl!.endRefreshing()
-//                self.tableView.reloadData()
             }
         })
     }
