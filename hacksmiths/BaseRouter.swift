@@ -59,12 +59,3 @@ class BaseRouter: URLRequestConvertible, APIConfig {
     
 }
 
-extension Request {
-    public func debugLog() -> Self {
-        #if DEBUG
-            debugPrint(self)
-        #endif
-        return self
-    }
-}
-

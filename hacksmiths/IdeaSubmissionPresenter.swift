@@ -9,10 +9,10 @@
 import UIKit
 
 protocol IdeaSubmissionView {
-    func submitNewIdea(sender: IdeaSubmissionPresenter, idea: ProjectIdeaJSON)
-    func cancelSubmission(sender: IdeaSubmissionPresenter)
-    func subscribeToNotifications(sender: IdeaSubmissionPresenter)
-    func unsubscribeToNotifications(sender: IdeaSubmissionPresenter)
+    func submitIdeaToAPI(sender: IdeaSubmissionPresenter, idea: ProjectIdeaJSON)
+    func cancelSubmission(sender: AnyObject)
+    func subscribeToNotifications(sender: AnyObject)
+    func unsubscribeToNotifications(sender: AnyObject)
 }
 
 class IdeaSubmissionPresenter {

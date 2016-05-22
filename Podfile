@@ -17,4 +17,5 @@ target 'hacksmiths' do
     pod 'NVActivityIndicatorView', '~> 2.5'
     pod 'PromiseKit'
     pod 'Gloss', '~> 0.7'
+    pod 'Timberjack'
 end

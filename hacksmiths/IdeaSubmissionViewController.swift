@@ -14,7 +14,11 @@ class IdeaSubmissionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        ideaSubmissionPresenter?.attachView(self)
+    }
+    
+    @IBAction func didTapCancelUpInside(sender: AnyObject) {
+        cancelSubmission(self)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -26,7 +30,6 @@ class IdeaSubmissionViewController: UIViewController {
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         ideaSubmissionPresenter?.detachView(self)
-        unsubsribeToKeyboardNotification()
     }
 
 }
@@ -39,12 +42,9 @@ extension IdeaSubmissionViewController: UITextViewDelegate, UITextFieldDelegate 
         return true
     }
     
-
     /* Hide keyboard when view is tapped */
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         view.endEditing(true)
-        /* Enable save button if fields are filled out  */
-        
     }
     
     func keyboardWillShow(notification: NSNotification) {
@@ -68,22 +68,23 @@ extension IdeaSubmissionViewController: UITextViewDelegate, UITextFieldDelegate 
 }
 
 extension IdeaSubmissionViewController: IdeaSubmissionView {
-    func submitNewIdea(sender: IdeaSubmissionPresenter, idea: ProjectIdeaJSON) {
+
+    func submitIdeaToAPI(sender: IdeaSubmissionPresenter, idea: ProjectIdeaJSON) {
         
     }
     
-    func cancelSubmission(sender: IdeaSubmissionPresenter) {
-        
-        dismissViewControllerAnimated(true, completion: nil)
+    func cancelSubmission(sender: AnyObject) {
+        print("Here")
+        presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func subscribeToNotifications(sender: IdeaSubmissionPresenter) {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
-    }
-    /* Unsubscribe the view controller to the UIKeyboardWillShowNotification */
-    func unsubsribeToKeyboardNotification(sender: IdeaSubmissionPresenter){
+    func unsubscribeToNotifications(sender: AnyObject) {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
+    func subscribeToNotifications(sender: AnyObject) {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(IdeaSubmissionViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(IdeaSubmissionViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
     }
 }

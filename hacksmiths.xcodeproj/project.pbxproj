@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1F115B4A1CC0060900DC434E /* RegistrationPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F115B491CC0060900DC434E /* RegistrationPageViewController.swift */; };
 		1F26C3F71CA0B232001596D2 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F26C3F61CA0B232001596D2 /* AboutViewController.swift */; };
+		1F384A881CF229D400E15887 /* HTTPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F384A871CF229D400E15887 /* HTTPManager.swift */; };
 		1F44B1BA1C5DDAB9004E196D /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F44B1B91C5DDAB9004E196D /* CoreDataStackManager.swift */; };
 		1F46B9EC1CA467250065D50D /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F46B9EB1CA467250065D50D /* UserData.swift */; };
 		1F4B4DF71C72574700A75F5D /* 1Password.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F4B4DF41C72574700A75F5D /* 1Password.xcassets */; };
@@ -119,6 +120,7 @@
 /* Begin PBXFileReference section */
 		1F115B491CC0060900DC434E /* RegistrationPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationPageViewController.swift; sourceTree = "<group>"; };
 		1F26C3F61CA0B232001596D2 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		1F384A871CF229D400E15887 /* HTTPManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPManager.swift; sourceTree = "<group>"; };
 		1F44B1B91C5DDAB9004E196D /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
 		1F46B9EB1CA467250065D50D /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		1F4B4DF31C72574600A75F5D /* hacksmiths-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "hacksmiths-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -312,6 +314,7 @@
 			children = (
 				1F846CB21CEBAF3C009166D4 /* BaseRouter.swift */,
 				1F846CC01CEBFA5C009166D4 /* HTTPStatusCodes.swift */,
+				1F384A871CF229D400E15887 /* HTTPManager.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -1045,6 +1048,7 @@
 				1FF998971C6FAE3E003D98B2 /* Person.swift in Sources */,
 				1F4E315B1CF0E1C20013F56E /* ProjectIdeaService.swift in Sources */,
 				1F115B4A1CC0060900DC434E /* RegistrationPageViewController.swift in Sources */,
+				1F384A881CF229D400E15887 /* HTTPManager.swift in Sources */,
 				1F4E31591CF0E1B10013F56E /* ProjectIdeaRouter.swift in Sources */,
 				1F846CB91CEBB4BE009166D4 /* EventRouter.swift in Sources */,
 				1FEA07C51CEFFD4700D4BDA7 /* IdeaSubmissionViewController.swift in Sources */,
