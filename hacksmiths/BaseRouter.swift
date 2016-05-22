@@ -49,7 +49,7 @@ class BaseRouter: URLRequestConvertible, APIConfig {
     
     var URLRequest: NSMutableURLRequest {
         let baseAPIURL = NSURL(string: baseURL)
-        let mutableURLRequest = NSMutableURLRequest(URL: baseAPIURL!)
+        let mutableURLRequest = NSMutableURLRequest(URL: baseAPIURL!.URLByAppendingPathComponent(path))
         mutableURLRequest.HTTPMethod = method.rawValue
         if let encoding = encoding {
             return encoding.encode(mutableURLRequest, parameters: parameters).0

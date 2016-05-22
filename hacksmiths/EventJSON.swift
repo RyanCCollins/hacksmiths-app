@@ -16,7 +16,7 @@ struct EventKeys {
     static let endDate = "endDate"
     static let place = "place"
     static let description = "description.md"
-    static let marketingInfo = "marketingInfo"
+    static let marketingInfo = "marketingInfo.md"
     static let registrationStartDate = "registrationStartDate"
     static let registrationEndDate = "registrationEndDate"
     static let participants = "participants"
@@ -43,7 +43,7 @@ struct EventJSON: Decodable {
     let registrationEndDateString: String?
     let place: String?
     let spotsRemaining: Int
-    let participantJSONArray: [ParticipantJSON]
+//    let participantJSONArray: [ParticipantJSON]
     let organizationJSON: OrganizationJSON
     
     init?(json: JSON) {
@@ -72,11 +72,12 @@ struct EventJSON: Decodable {
         self.place = EventKeys.place <~~ json
         self.spotsRemaining = (EventKeys.spotsRemaining <~~ json)!
         
-        /* Parse Nested JSON for participants */
-        let participantJSONArray: [JSON] = (EventKeys.participants <~~ json)!
-        self.participantJSONArray = [ParticipantJSON].fromJSONArray(participantJSONArray)
-        
+//        /* Parse Nested JSON for participants */
+//        let participantJSONArray: [JSON] = (EventKeys.participants <~~ json)!
+//        self.participantJSONArray = [ParticipantJSON].fromJSONArray(participantJSONArray)
+//        
         self.organizationJSON = (EventKeys.organization <~~ json)!
         
     }
 }
+

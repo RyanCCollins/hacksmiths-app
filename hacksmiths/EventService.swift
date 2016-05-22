@@ -37,7 +37,6 @@ class EventService {
         return Promise {fullfill, reject in
             let router = EventRouter(endpoint: .GetEvent(eventID: eventID))
             HTTPManager.sharedManager.request(router)
-                .debugLog()
                 .responseJSON {
                     response in
                     print(response.result.value)
@@ -48,7 +47,13 @@ class EventService {
                             print("Called success in getEvent with event data: \(eventJSONDict)")
                             
                             if let eventJSON = EventJSON(json: eventJSONDict as! [String : AnyObject]) {
-                                let event = Event(eventJson: eventJSON, context: GlobalStackManager.SharedManager.sharedContext)
+                                
+                                /* Handle parsing the participant array and create the event model */
+                                /* BOOM */
+                                let participantJSON = JSON["participants"] as! [JsonDict]
+                                let participantJSONArray = [ParticipantJSON].fromJSONArray(participantJSON)
+                                
+                                let event = Event(eventJson: eventJSON, participantJSONArray: participantJSONArray, context: GlobalStackManager.SharedManager.sharedContext)
                                 
                                 GlobalStackManager.SharedManager.sharedContext.performBlockAndWait({
                                     CoreDataStackManager.sharedInstance().saveContext()
@@ -66,8 +71,4 @@ class EventService {
             }
         }
     }
-}
-
-extension Request {
-    
 }

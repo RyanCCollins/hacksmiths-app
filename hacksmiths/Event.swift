@@ -41,7 +41,7 @@ class Event: NSManagedObject {
     }
     
     
-    init(eventJson: EventJSON, context: NSManagedObjectContext) {
+    init(eventJson: EventJSON, participantJSONArray: [ParticipantJSON], context: NSManagedObjectContext) {
         let entity = NSEntityDescription.entityForName("Event", inManagedObjectContext: context)
         super.init(entity: entity!, insertIntoManagedObjectContext: context)
         self.idString = eventJson.idString
@@ -66,7 +66,7 @@ class Event: NSManagedObject {
         }
         
         /* Create related models from embedded JSON */
-        self.participants = createParticipantModel(eventJson.participantJSONArray, eventID: self.idString)
+        self.participants = createParticipantModel(participantJSONArray, eventID: self.idString)
         self.organization = createOrganizationModel(eventJson.organizationJSON, eventID: self.idString)
     }
     
