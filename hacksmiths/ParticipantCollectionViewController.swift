@@ -12,6 +12,7 @@ import CoreData
 private let reuseIdentifier = "PersonTableViewCell"
 
 class ParticipantCollectionViewController: UICollectionViewController {
+    var participants: [Participant]? = nil
     
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     var currentEvent: Event?
@@ -21,7 +22,7 @@ class ParticipantCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
 
         // Register cell classes
-        self.collectionView!.registerClass(PersonCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView!.registerClass(ParticipantCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -31,30 +32,31 @@ class ParticipantCollectionViewController: UICollectionViewController {
 
     // MARK: UICollectionViewDataSource
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 0
-        //        return self.fetchedResultsController.sections?.count ?? 0
+        return 1
     }
 
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
-//        let sectionInfo = fetchedResultsController.sections![section]
-//        return sectionInfo.numberOfObjects
+        if let participants = participants {
+            return participants.count
+        } else {
+            return 0
+        }
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! PersonCollectionViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! ParticipantCollectionViewCell
     
         // Configure the cell
         configureCell(cell, atIndexPath: indexPath)
         return cell
     }
     
-    func configureCell(cell: PersonCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
-//        if let person = fetchedResultsController.fetchedObjects![indexPath.row] as? Person {
-//            cell.person = person
-//            cell.setUIForPerson()
-//        }
+    func configureCell(cell: ParticipantCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
+        if let participants = self.participants {
+            let participant = participants[indexPath.row]
+            cell.participant = participant
+        }
     }
 }
 

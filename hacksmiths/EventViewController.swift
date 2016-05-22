@@ -27,7 +27,6 @@ class EventViewController: UIViewController {
     private let eventPresenter = EventPresenter(eventService: EventService())
     
     var currentEvent: Event?
-    
     var activityIndicator: IGActivityIndicatorView!
     
     override func viewDidAppear(animated: Bool) {
@@ -102,7 +101,6 @@ class EventViewController: UIViewController {
 }
 
 extension EventViewController: EventView {
-
 
     func startLoading() {
         self.activityIndicator.startAnimating()

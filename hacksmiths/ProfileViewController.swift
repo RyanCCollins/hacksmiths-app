@@ -101,7 +101,12 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
         cancelButton.enabled = editing
         nameLabel.hidden = editing
         descriptionTextField.editable = editing
-        
+        if editing {
+            let borderColor = UIColor.redColor()
+            descriptionTextField.layer.borderColor = borderColor.CGColor
+        } else {
+            descriptionTextField.layer.borderColor = UIColor.clearColor().CGColor
+        }
     }
     
     func commitChangesToProfile() {

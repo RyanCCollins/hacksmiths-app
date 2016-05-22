@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import PromiseKit
 
 protocol EventView: NSObjectProtocol {
     func startLoading()
@@ -35,14 +36,24 @@ class EventPresenter {
     }
     
     func getNextEvent() {
-        eventService.getEvent("56e1e408427538030076119b").then() {
-            event -> () in
-            self.eventView?.getEvent(self, didSucceed: event!)
-            }.error { error in
-                self.eventView?.getEvent(self, didFail: error as NSError)
+        eventService.getEventStatus().then() {
+            nextEvent -> () in            
+            if nextEvent != nil {
+                self.eventService.getEvent(nextEvent!.id).then() {
+                    event -> () in
+                    guard let event = event else {
+                        self.eventView?.getEvent(self, didFail: GlobalErrors.GenericError)
+                        return
+                    }
+                    self.eventView?.getEvent(self, didSucceed: event)
+                }
+            } else {
+                self.eventView?.getEvent(self, didFail: GlobalErrors.GenericError)
             }
+        }.error { error in
+            self.eventView?.getEvent(self, didFail: error as NSError)
+        }
     }
-    
     
     private func performEventFetch() -> Event? {
         do {

@@ -19,7 +19,6 @@ class ParticipantPresenter {
     private var participantView: ParticipantView?
     var currentEvent: Event?
     
-    
     func attachView(view: ParticipantView){
         participantView = view
     }

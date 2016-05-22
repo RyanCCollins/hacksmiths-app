@@ -8,10 +8,14 @@
 
 import UIKit
 import Spring
+import Foundation
+
+/**
+ Publicly available extensions to abstract away commonly used
+ functionality
+ **/
 
 class ExtendsUIViewController: UIViewController {
-
-
     func minimizeView(sender: AnyObject) {
         SpringAnimation.spring(0.7, animations: {
             self.view.transform = CGAffineTransformMakeScale(0.935, 0.935)
@@ -29,14 +33,17 @@ class ExtendsUIViewController: UIViewController {
     func textFieldShouldEndEditing(textField: UITextField) -> Bool {
         return true
     }
-    
-
-    
 }
 
 extension UIViewController {
-    
-    /* Helper - Create an alert controller with an array of callback handlers   */
+    /**
+     Helper function for utilizing an alert controller.
+     
+     - Parameter titles: An array of strings to set the titles of the alert controller items
+     - Parameter message: A single string to show as the title for the alert controller
+     - Parameter callbackHandlers: an array of functions to call on button press, matches the order of the actions.
+     
+     */
     func alertController(withTitles titles: [String], message: String, callbackHandler: [((UIAlertAction)->Void)?]) {
         
         let alertController = UIAlertController(title: "Alert", message: message, preferredStyle: .ActionSheet)
@@ -44,15 +51,11 @@ extension UIViewController {
         for title in titles.enumerate() {
             
             if let callbackHandler = callbackHandler[title.index] {
-                
                 let action = UIAlertAction(title: title.element, style: .Default, handler: callbackHandler)
-                
                 alertController.addAction(action)
                 
             } else {
-                
                 let action = UIAlertAction(title: title.element, style: .Default, handler: nil)
-                
                 alertController.addAction(action)
                 
             }

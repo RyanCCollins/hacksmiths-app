@@ -72,10 +72,6 @@ struct EventJSON: Decodable {
         self.place = EventKeys.place <~~ json
         self.spotsRemaining = (EventKeys.spotsRemaining <~~ json)!
         
-//        /* Parse Nested JSON for participants */
-//        let participantJSONArray: [JSON] = (EventKeys.participants <~~ json)!
-//        self.participantJSONArray = [ParticipantJSON].fromJSONArray(participantJSONArray)
-//        
         self.organizationJSON = (EventKeys.organization <~~ json)!
         
     }
