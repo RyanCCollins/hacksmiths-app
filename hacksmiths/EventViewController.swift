@@ -32,12 +32,13 @@ class EventViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         eventPresenter.attachView(self)
+        eventPresenter.loadNextEvent()
         updateUserInterface()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        eventPresenter.getNextEvent()
+        eventPresenter.fetchNextEvent()
         setActivityIndicator()
         startLoading()
     }
@@ -52,6 +53,7 @@ class EventViewController: UIViewController {
     }
     
     func updateUserInterface() {
+        setButtonForAuthState()
         if let event = currentEvent {
             
             /* Set the UI elements on the main queue */
@@ -80,9 +82,7 @@ class EventViewController: UIViewController {
     
     private func setButtonForAuthState() {
         if UserDefaults.sharedInstance().authenticated == true {
-            
             registerSignupButton.enabled = true
-            
         } else {
             registerSignupButton.enabled = false
         }
@@ -111,6 +111,16 @@ extension EventViewController: EventView {
         self.activityIndicator.stopAnimating()
     }
     
+    func didReceiveNextEvent(sender: EventPresenter, nextEvent: NextEvent?, error: NSError?) {
+        if error != nil || nextEvent == nil {
+            let message = error?.localizedDescription ?? "An unknown error occurred."
+            alertController(withTitles: ["OK"], message: message, callbackHandler: [nil])
+        } else {
+            let nextEventId = nextEvent?.idString
+            self.eventPresenter.getEventData(nextEventId!)
+        }
+    }
+    
     func getEvent(sender: EventPresenter, didSucceed event: Event) {
         self.currentEvent = event
         self.finishLoading()
@@ -123,8 +133,8 @@ extension EventViewController: EventView {
         
         self.finishLoading()
         alertController(withTitles: ["OK", "Retry"], message: error.localizedDescription, callbackHandler: [nil, {Void in
-            self.eventPresenter.getNextEvent()
-            }])
+            self.eventPresenter.fetchNextEvent()
+        }])
     }
     
     func respondToEvent(sender: EventPresenter, didSucceed event: Event) {

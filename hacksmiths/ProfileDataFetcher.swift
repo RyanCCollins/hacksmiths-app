@@ -10,6 +10,10 @@ import UIKit
 import CoreData
 
 
+protocol ProfileView {
+    // TODO: Transfer to Presenter pattern
+}
+
 protocol ProfileDataUpdateDelegate {
     func didUpdateUserProfileData(userData: UserData)
 }

@@ -17,16 +17,13 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var editButton: UIBarButtonItem!
-
     @IBOutlet var profileImageView: RCCircularImageView!
     @IBOutlet weak var profileTextView: UITextView!
     @IBOutlet weak var descriptionTextField: UITextView!
 
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var noDataFoundLabel: UILabel!
-
     @IBOutlet weak var websiteTextView: UITextView!
-    
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -44,7 +41,6 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
                 if error != nil {
                     self.alertController(withTitles: ["Ok"], message: (error?.localizedDescription)!, callbackHandler: [nil])
                 } else {
-                    
                     // Recursively set the profile data once it has been updated
                     self.syncUIWithProfileData()
                 }
@@ -54,7 +50,6 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
         } else {
             setUIForUserData(ProfileDataFetcher.sharedInstance.userData!)
         }
-        
     }
     
     func setUIForUserData(userData: UserData) {
@@ -69,7 +64,6 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
         })
     }
 
-    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
