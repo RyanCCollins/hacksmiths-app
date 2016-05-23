@@ -15,8 +15,7 @@ class ParticipantCollectionViewController: UICollectionViewController {
     var participants: [Participant]? = nil
     
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
-    var currentEvent: Event?
-    
+    private let participantPresenter = ParticipantPresenter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +26,13 @@ class ParticipantCollectionViewController: UICollectionViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+        participantPresenter.attachView(self)
+        participantPresenter.getParticipants()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        participantPresenter.detachView(self)
     }
 
     // MARK: UICollectionViewDataSource
@@ -60,16 +65,17 @@ class ParticipantCollectionViewController: UICollectionViewController {
     }
 }
 
-extension ParticipantCollectionViewController: NSFetchedResultsControllerDelegate {
-    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
-
+extension ParticipantCollectionViewController: ParticipantView {
+    
+    func didFetchParticipants(participants: [Participant]?) {
+        if let participants = participants {
+            self.participants = participants
+        } else {
+            
+        }
     }
     
-    func controllerWillChangeContent(controller: NSFetchedResultsController) {
-
+    func noParticipantsFound() {
+        
     }
-    
-    
 }
-
-

@@ -14,8 +14,8 @@ struct NextEventJSON: Decodable {
     let active: Bool
     
     init?(json: JSON) {
-        guard let id: String = "event.id" <~~ json,
-            let active: Bool = "event.active" <~~ json else {
+        guard let id: String = "id" <~~ json,
+            let active: Bool = "active" <~~ json else {
                 return nil
         }
         self.id = id

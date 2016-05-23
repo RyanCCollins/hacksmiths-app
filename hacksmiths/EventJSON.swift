@@ -43,7 +43,6 @@ struct EventJSON: Decodable {
     let registrationEndDateString: String?
     let place: String?
     let spotsRemaining: Int
-//    let participantJSONArray: [ParticipantJSON]
     let organizationJSON: OrganizationJSON
     
     init?(json: JSON) {

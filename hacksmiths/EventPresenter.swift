@@ -87,13 +87,15 @@ class EventPresenter {
     private func performNextEventFetch() -> NextEvent? {
         do {
             let nextEventFetch = NSFetchRequest(entityName: "NextEvent")
-        
-            let results = try CoreDataStackManager.sharedInstance().managedObjectContext.executeFetchRequest(nextEventFetch)
-            if let nextEvent = results[0] as? NextEvent {
-                return nextEvent
-            } else {
-                return nil
+            
+            var returnEvent: NextEvent? = nil
+            if let results = try CoreDataStackManager.sharedInstance().managedObjectContext.executeFetchRequest(nextEventFetch) as? [NextEvent] {
+                guard results.count > 0 else {
+                    return nil
+                }
+                returnEvent = results[0]
             }
+            return returnEvent
         } catch let error as NSError {
             print(error)
             return nil

@@ -173,3 +173,8 @@ class ProfileDataFetcher: NSObject {
     }
     
 }
+
+
+struct ProfileDataJSON {
+    
+}
