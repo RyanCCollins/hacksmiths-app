@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15B42" minimumToolsVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15B42" minimumToolsVersion="Automatic">
     <entity name="Event" representedClassName="Event" syncable="YES">
         <attribute name="active" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="descriptionString" optional="YES" attributeType="String" syncable="YES"/>
@@ -38,7 +38,6 @@
         <attribute name="website" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Participant" syncable="YES">
-        <attribute name="eventId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="idString" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="imageURLString" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -99,11 +98,11 @@
     </entity>
     <elements>
         <element name="Event" positionX="-27" positionY="450" width="128" height="285"/>
+        <element name="NextEvent" positionX="117" positionY="198" width="128" height="75"/>
         <element name="Organization" positionX="-92" positionY="72" width="128" height="30"/>
-        <element name="Participant" positionX="117" positionY="198" width="128" height="135"/>
+        <element name="Participant" positionX="117" positionY="198" width="128" height="120"/>
         <element name="Person" positionX="358" positionY="243" width="128" height="255"/>
         <element name="ProjectIdea" positionX="126" positionY="207" width="128" height="165"/>
         <element name="UserData" positionX="126" positionY="45" width="128" height="330"/>
-        <element name="NextEvent" positionX="117" positionY="198" width="128" height="75"/>
     </elements>
 </model>

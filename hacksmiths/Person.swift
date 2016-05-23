@@ -57,8 +57,8 @@ class Person: NSManagedObject {
         
         //* Bio comes in markdown, although that should likely be changed.
         if let userBio = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.bio] as? [String : AnyObject] {
-            let mdBio = userBio["md"] as! String
-            bio = mdBio
+            let theBio = userBio["html"] as! String
+            self.bio = theBio.stringByRemovingHTML()
         }
         
         if let photoDictionary = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.photo] as? [String : AnyObject] {

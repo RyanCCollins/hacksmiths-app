@@ -61,6 +61,7 @@ class ParticipantCollectionViewController: UICollectionViewController {
         if let participants = self.participants {
             let participant = participants[indexPath.row]
             cell.participant = participant
+            cell.setUIForPerson()
         }
     }
 }
@@ -70,6 +71,7 @@ extension ParticipantCollectionViewController: ParticipantView {
     func didFetchParticipants(participants: [Participant]?) {
         if let participants = participants {
             self.participants = participants
+            self.collectionView?.reloadData()
         } else {
             
         }

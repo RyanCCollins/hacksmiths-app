@@ -25,6 +25,7 @@ class EventViewController: UIViewController {
     @IBOutlet weak var organizationWebsiteButton: UIButton!
     @IBOutlet weak var organizationDescriptionLabel: UILabel!
     private let eventPresenter = EventPresenter(eventService: EventService())
+    private let participantPresenter = ParticipantPresenter()
     
     var currentEvent: Event?
     var activityIndicator: IGActivityIndicatorView!
@@ -58,12 +59,16 @@ class EventViewController: UIViewController {
             
             /* Set the UI elements on the main queue */
             dispatch_async(GlobalMainQueue, {
+                if let imageURL = event.featureImageURL {
+                    self.eventImageView.downloadedFrom(link: imageURL, contentMode: .ScaleAspectFit)
+                }
                 self.eventImageView.image = event.image
                 self.headerLabel.text = event.title
                 self.aboutTextView.text = event.descriptionString
+                self.aboutTextView.textColor = UIColor.whiteColor()
                 
-                self.whenLabel.text = "Set date here"
-                self.whoLabel.text = "Set who here"
+                self.whenLabel.text = event.formattedDateString
+                self.aboutTextView.text = event.descriptionString
                 
                 if let organization = self.currentEvent?.organization {
                     if let image = organization.image,
@@ -71,21 +76,18 @@ class EventViewController: UIViewController {
                        let organizationWebsite = organization.website {
                         self.organizationImageView.image = image
                         self.organizationDescriptionLabel.text = descriptionString
+                        self.organizationTitleLabel.text = organization.name
                         self.organizationWebsiteButton.titleLabel!.text = organizationWebsite
                         self.organizationWebsiteButton.hidden = false
+                        self.whoLabel.text = organization.name
                     }
                 }
             })
         }
     }
     
-    
     private func setButtonForAuthState() {
-        if UserDefaults.sharedInstance().authenticated == true {
-            registerSignupButton.enabled = true
-        } else {
-            registerSignupButton.enabled = false
-        }
+        
     }
     
     
@@ -125,6 +127,7 @@ extension EventViewController: EventView {
         self.currentEvent = event
         self.finishLoading()
         self.updateUserInterface()
+        self.participantPresenter.getParticipants()
         print("Called getEvent:didSucceed in EventView with event: \(event)")
     }
     
@@ -146,6 +149,4 @@ extension EventViewController: EventView {
     func respondToEvent(sender: EventPresenter, didFail error: NSError) {
     
     }
-    
-    
 }

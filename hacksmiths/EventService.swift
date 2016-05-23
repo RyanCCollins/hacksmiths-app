@@ -63,15 +63,23 @@ class EventService {
                                 
                                 /* Handle parsing the participant array and create the event model */
                                 /* BOOM */
-                                let participantJSON = JSON["participants"] as! [JsonDict]
-                                let participantJSONArray = [ParticipantJSON].fromJSONArray(participantJSON)
-                                
-                                let event = Event(eventJson: eventJSON, participantJSONArray: participantJSONArray, context: GlobalStackManager.SharedManager.sharedContext)
-                                
                                 GlobalStackManager.SharedManager.sharedContext.performBlockAndWait({
+                                    self.deleteAllEventEntries()
+                                    let participantJSON = JSON["participants"] as! [JsonDict]
+                                    let participantJSONArray = [ParticipantJSON].fromJSONArray(participantJSON)
+                                    let event = Event(eventJson: eventJSON, context: GlobalStackManager.SharedManager.sharedContext)
                                     CoreDataStackManager.sharedInstance().saveContext()
+                                    
+                                    if participantJSONArray.count > 0 {
+                                        self.createParticipantModel(participantJSONArray, event: event)
+                                    }
+                                    
+                                    if let organization = self.createOrganizationModel(eventJSON.organizationJSON, eventID: event.idString) {
+                                        event.organization = organization
+                                    }
+                                    CoreDataStackManager.sharedInstance().saveContext()
+                                    fullfill(event)
                                 })
-                                fullfill(event)
                             }
                         } else {
                             reject(GlobalErrors.GenericError)
@@ -85,6 +93,34 @@ class EventService {
         }
     }
     
+    private func createParticipantModel(participantJSONArray: [ParticipantJSON], event: Event) {
+        let participants = participantJSONArray.map({participant in
+            return Participant(participantJson: participant, context: GlobalStackManager.SharedManager.sharedContext)
+        })
+    
+        GlobalStackManager.SharedManager.sharedContext.performBlockAndWait({
+            CoreDataStackManager.sharedInstance().saveContext()
+        })
+        
+        for participant in participants {
+            participant.event = event
+        }
+        
+        GlobalStackManager.SharedManager.sharedContext.performBlockAndWait({
+            CoreDataStackManager.sharedInstance().saveContext()
+        })
+    }
+    
+    private func createOrganizationModel(organizationJSON: OrganizationJSON, eventID: String) -> Organization? {
+        let organization = Organization(organizationJSON: organizationJSON, eventID: eventID, context: GlobalStackManager.SharedManager.sharedContext)
+        
+        GlobalStackManager.SharedManager.sharedContext.performBlockAndWait({
+            CoreDataStackManager.sharedInstance().saveContext()
+        })
+        
+        return organization
+    }
+    
     /* Next event should only hold a reference to the next event, so
      Using this convenience, all saved next event entries should be deleted when
      Creating a new one.
@@ -96,6 +132,17 @@ class EventService {
             try CoreDataStackManager.sharedInstance().persistentStoreCoordinator?.executeRequest(deleteRequest, withContext: GlobalStackManager.SharedManager.sharedContext)
         } catch let error as NSError {
             print("An error occured while deleting all next event items.  Whoops!")
+        }
+    }
+    
+    private func deleteAllEventEntries() {
+        let fetchRequest = NSFetchRequest(entityName: "Event")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        do {
+            try CoreDataStackManager.sharedInstance().persistentStoreCoordinator?.executeRequest(deleteRequest, withContext: GlobalStackManager.SharedManager.sharedContext)
+            
+        } catch let error as NSError {
+            print("An error occured while deleting all event data")
         }
     }
 }

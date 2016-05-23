@@ -50,7 +50,7 @@
 		1FA2E5631C6802AC0085FC7D /* HacksmithsAPIUserConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA2E5621C6802AC0085FC7D /* HacksmithsAPIUserConvenience.swift */; };
 		1FA5A4E81C53585500722E55 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA5A4E71C53585500722E55 /* SettingsViewController.swift */; };
 		1FA5A4EC1C53586D00722E55 /* CommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA5A4EB1C53586D00722E55 /* CommunityViewController.swift */; };
-		1FA5A4EE1C535A9500722E55 /* ExtendsUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA5A4ED1C535A9500722E55 /* ExtendsUIViewController.swift */; };
+		1FA5A4EE1C535A9500722E55 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA5A4ED1C535A9500722E55 /* Extensions.swift */; };
 		1FA5A4F01C535D6C00722E55 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA5A4EF1C535D6C00722E55 /* LoginViewController.swift */; };
 		1FA5A5291C5360FA00722E55 /* Apache License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1FA5A5161C5360FA00722E55 /* Apache License.txt */; };
 		1FA5A52A1C5360FA00722E55 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1FA5A5171C5360FA00722E55 /* Roboto-Black.ttf */; };
@@ -164,7 +164,7 @@
 		1FA2E5621C6802AC0085FC7D /* HacksmithsAPIUserConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HacksmithsAPIUserConvenience.swift; sourceTree = "<group>"; };
 		1FA5A4E71C53585500722E55 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		1FA5A4EB1C53586D00722E55 /* CommunityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
-		1FA5A4ED1C535A9500722E55 /* ExtendsUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendsUIViewController.swift; sourceTree = "<group>"; };
+		1FA5A4ED1C535A9500722E55 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		1FA5A4EF1C535D6C00722E55 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1FA5A5161C5360FA00722E55 /* Apache License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Apache License.txt"; sourceTree = "<group>"; };
 		1FA5A5171C5360FA00722E55 /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
@@ -266,7 +266,7 @@
 		1F44B1BB1C5DDAC9004E196D /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				1FA5A4ED1C535A9500722E55 /* ExtendsUIViewController.swift */,
+				1FA5A4ED1C535A9500722E55 /* Extensions.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -1031,7 +1031,7 @@
 				1FC6DE471C9F6DC5000E8159 /* RegistrationData.swift in Sources */,
 				1F4E315D1CF0E1D30013F56E /* ProjectIdeaJSON.swift in Sources */,
 				1F4E31561CF0DB3A0013F56E /* IdeaPagePresenter.swift in Sources */,
-				1FA5A4EE1C535A9500722E55 /* ExtendsUIViewController.swift in Sources */,
+				1FA5A4EE1C535A9500722E55 /* Extensions.swift in Sources */,
 				1F4B4DFF1C73A60400A75F5D /* UserDefaults.swift in Sources */,
 				1F46B9EC1CA467250065D50D /* UserData.swift in Sources */,
 				1FA9FC721C534E5A00B993BC /* hacksmiths.xcdatamodeld in Sources */,

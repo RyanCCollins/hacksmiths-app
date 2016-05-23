@@ -8,6 +8,7 @@
 
 import CoreData
 import Gloss
+import PromiseKit
 
 @objc(Event)
 
@@ -41,16 +42,18 @@ class Event: NSManagedObject {
     }
     
     
-    init(eventJson: EventJSON, participantJSONArray: [ParticipantJSON], context: NSManagedObjectContext) {
+    init(eventJson: EventJSON, context: NSManagedObjectContext) {
         let entity = NSEntityDescription.entityForName("Event", inManagedObjectContext: context)
         super.init(entity: entity!, insertIntoManagedObjectContext: context)
         self.idString = eventJson.idString
         self.title = eventJson.title
         self.startDateString = eventJson.startDateString
         self.endDateString = eventJson.endDateString
+        self.descriptionString = eventJson.descriptionString
         
         if let featureImageURL = eventJson.featureImageURL {
             self.featureImageURL = featureImageURL
+            self.featureImageFilePath = featureImageURL.lastPathComponent
         }
         
         if let registrationStartDateString = eventJson.registrationStartDateString {
@@ -65,75 +68,12 @@ class Event: NSManagedObject {
             self.place = place
         }
         
-        /* Create related models from embedded JSON */
-        self.participants = createParticipantModel(participantJSONArray, eventID: self.idString)
-        self.organization = createOrganizationModel(eventJson.organizationJSON, eventID: self.idString)
+        if let marketingInfo = eventJson.marketingInfo {
+            self.marketingInfo = marketingInfo
+        }
+        
     }
-    
-    private func createParticipantModel(participantJSONArray: [ParticipantJSON], eventID: String) -> [Participant] {
-        return participantJSONArray.map({participant in
-            return Participant(participantJson: participant, eventID: eventID, context: GlobalStackManager.SharedManager.sharedContext)
-        })
-    }
-    
-    private func createOrganizationModel(organizationJSON: OrganizationJSON, eventID: String) -> Organization {
-        let organization = Organization(organizationJSON: organizationJSON, eventID: eventID, context: GlobalStackManager.SharedManager.sharedContext)
-        return organization
-    }
-    
-    
-    
-//    /* Custom init */
-//    init(dictionary: [String : AnyObject], context: NSManagedObjectContext) {
-//        
-//        /* Get associated entity from our context */
-//        let entity = NSEntityDescription.entityForName("Event", inManagedObjectContext: context)
-//        
-//        /* Super, get to work! */
-//        super.init(entity: entity!, insertIntoManagedObjectContext: context)
-//        
-//        /* Assign our properties */
-//        eventID = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.id] as! String
-//        title = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.title] as! String
-//        descriptionString = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.description] as? String
-//        
-//        
-//        if let spots = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.spotsRemaining] as? Int {
-//            spotsRemaining = spots
-//            if spots > 0 {
-//                spotsAvailable = true
-//            } else {
-//                spotsAvailable = false
-//            }
-//        }
-//        
-//        active = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.active] as! Bool
-//        
-//        if let eventEndDate = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.ends] as? NSDate {
-//            endDate = eventEndDate
-//        }
-//        
-//        if let eventStartDate = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.starts] as? NSDate {
-//            startDate = eventStartDate
-//        }
-//        
-//        if let registrationStartDate = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.registrationStartDate] as? NSDate {
-//            registrationStart = registrationStartDate
-//        }
-//        
-//        if let registrationEndDate = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.registrationEndDate] as? NSDate {
-//            registrationEnd = registrationEndDate
-//        }
-//        
-//        if let imageURL = dictionary[HacksmithsAPIClient.JSONResponseKeys.Event.featureImage] as? String {
-//            featureImageURL = imageURL
-//            featureImageFilePath = featureImageURL?.lastPathComponent
-//        }
-//        
-//    }
-//
-  
-    
+
     
     /* MARK: Computed properties */
     dynamic var spotsAvailable: Bool {
@@ -142,44 +82,60 @@ class Event: NSManagedObject {
         }
     }
     
-    internal func dateFromString(string: String) -> NSDate {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = ""
-        let date = dateFormatter.dateFromString(string)
-        return (date == nil ? nil : date)!
-    }
-    
-    dynamic var startDate: NSDate {
+
+    dynamic var startDate: NSDate? {
         get {
-            return dateFromString(self.startDateString as String)
-        }
-    }
-    
-    dynamic var endDate: NSDate {
-        get {
-            return dateFromString(self.endDateString as String)
-        }
-    }
-    
-    
-    
-    
-    func fetchImages(completionHandler: CompletionHandler) {
-        guard featureImageURL != nil else {
-            return
-        }
-        
-        HacksmithsAPIClient.sharedInstance().taskForGETImageFromURL(featureImageURL!, completionHandler: {image, error in
-            
-            if error != nil {
-                completionHandler(success: false, error: error)
+            if let date = startDateString.parseAsDate() {
+                return date
             } else {
-                
-                self.image = image
-                
+                return nil
+            }
+        }
+    }
+    
+    dynamic var endDate: NSDate? {
+        get {
+            if let date = endDateString.parseAsDate() {
+                return date
+            } else {
+                return nil
+            }
+        }
+    }
+    
+    /* Get a formatted date string from the event
+       @return - A date string formatted like: Apr 1, 16 - Apr 12, 16
+     */
+    var formattedDateString: String {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MMM dd yy"
+        var start: String = ""
+        var end: String = ""
+        if let startDate = startDate {
+            start = dateFormatter.stringFromDate(startDate)
+        }
+        if let endDate = endDate {
+            end = dateFormatter.stringFromDate(endDate)
+        }
+        return "\(start) - \(end)"
+    }
+    
+    
+    func fetchImages() -> Promise<UIImage?> {
+        return Promise{resolve, reject in
+            guard featureImageURL != nil else {
+                reject(GlobalErrors.GenericNetworkError)
+                return
             }
             
-        })
+            HacksmithsAPIClient.sharedInstance().taskForGETImageFromURL(featureImageURL!, completionHandler: {image, error in
+                if image != nil {
+                    resolve(image)
+                } else {
+                    reject(error! as NSError)
+                }
+            })
+        }
     }
     
     var image: UIImage? {
@@ -191,7 +147,10 @@ class Event: NSManagedObject {
             return HacksmithsAPIClient.Caches.imageCache.imageWithIdentifier(featureImageFilePath!)
         }
         set {
-            HacksmithsAPIClient.Caches.imageCache.storeImage(newValue, withIdentifier: featureImageFilePath!)
+            guard let filePath = self.featureImageFilePath else {
+                return
+            }
+            HacksmithsAPIClient.Caches.imageCache.storeImage(newValue, withIdentifier: filePath)
         }
     }
 }

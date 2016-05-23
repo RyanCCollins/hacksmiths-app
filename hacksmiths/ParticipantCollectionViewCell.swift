@@ -21,6 +21,9 @@ class ParticipantCollectionViewCell: UICollectionViewCell {
         if participant.image != nil {
             imageView.image = participant.image
         }
+        if participant.imageURLString != nil {
+            imageView.downloadedFrom(link: participant.imageURLString!, contentMode: .ScaleToFill)
+        }
         nameLabel.text = participant.name
     }
 }

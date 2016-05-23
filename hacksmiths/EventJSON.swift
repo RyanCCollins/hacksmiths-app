@@ -15,8 +15,8 @@ struct EventKeys {
     static let startDate = "startDate"
     static let endDate = "endDate"
     static let place = "place"
-    static let description = "description.md"
-    static let marketingInfo = "marketingInfo.md"
+    static let description = "description"
+    static let marketingInfo = "marketingInfo"
     static let registrationStartDate = "registrationStartDate"
     static let registrationEndDate = "registrationEndDate"
     static let participants = "participants"
@@ -55,15 +55,16 @@ struct EventJSON: Decodable {
             return nil
         }
     
-        
         self.idString = eventIDString
         self.title = title
-        self.descriptionString = descriptionString
+        self.descriptionString = descriptionString.stringByRemovingHTML()
         
         self.startDateString = startDateString
         self.endDateString = endDateString
         
-        self.marketingInfo = EventKeys.marketingInfo <~~ json
+        let marketingData: String = (EventKeys.marketingInfo <~~ json)!
+        self.marketingInfo = marketingData.stringByRemovingHTML()
+        
         self.featureImageURL = EventKeys.featureImageURL <~~ json
         self.registrationStartDateString = EventKeys.registrationStartDate <~~ json
         self.registrationEndDateString = EventKeys.registrationEndDate <~~ json
@@ -72,7 +73,6 @@ struct EventJSON: Decodable {
         self.spotsRemaining = (EventKeys.spotsRemaining <~~ json)!
         
         self.organizationJSON = (EventKeys.organization <~~ json)!
-        
     }
 }
 

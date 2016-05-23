@@ -8,8 +8,10 @@
 
 import CoreData
 
+@objc(Participant)
+
 class Participant: NSManagedObject {
-    @NSManaged var eventId: String
+    @NSManaged var event: Event
     @NSManaged var idString: String
     @NSManaged var imageURLString: String?
     @NSManaged var name: String
@@ -20,10 +22,9 @@ class Participant: NSManagedObject {
     }
     
     
-    init(participantJson: ParticipantJSON, eventID: String, context: NSManagedObjectContext) {
-        let entity = NSEntityDescription.entityForName("Event", inManagedObjectContext: context)
+    init(participantJson: ParticipantJSON, context: NSManagedObjectContext) {
+        let entity = NSEntityDescription.entityForName("Participant", inManagedObjectContext: context)
         super.init(entity: entity!, insertIntoManagedObjectContext: context)
-        self.eventId = eventID
         self.idString = participantJson.idString
         self.name = participantJson.name
         self.profileURL = participantJson.profileURL

@@ -36,6 +36,14 @@ class EventPresenter {
         eventView = nil
     }
     
+    
+    func fetchImageForEvent(event: Event) {
+        event.fetchImages().then() {
+            image -> () in
+            event.image = image
+        }
+    }
+    
     /* Load in the next event and return whether there is a new event or not */
     func loadNextEvent() {
         eventService.getEventStatus().then() {
@@ -62,13 +70,14 @@ class EventPresenter {
                 throw GlobalErrors.MissingData
             }
             if let event = self.performEventFetch() {
+                self.fetchImageForEvent(event)
                 self.eventView?.getEvent(self, didSucceed: event)
             } else {
                 self.eventView?.getEvent(self, didFail: GlobalErrors.MissingData)
             }
             }.error { error in
                 self.eventView?.getEvent(self, didFail: error as NSError)
-        }
+            }
     }
     
     private func performEventFetch() -> Event? {
@@ -103,7 +112,7 @@ class EventPresenter {
     }
     
     private lazy var fetchedResultsController: NSFetchedResultsController = {
-        let sortPriority = NSSortDescriptor(key: "startDate", ascending: false)
+        let sortPriority = NSSortDescriptor(key: "startDateString", ascending: false)
         let nextEventFetch = NSFetchRequest(entityName: "Event")
         nextEventFetch.sortDescriptors = [sortPriority]
         
