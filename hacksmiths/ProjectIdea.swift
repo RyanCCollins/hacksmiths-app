@@ -39,7 +39,7 @@ class ProjectIdea: NSManagedObject {
         
         /* Set the created at date to current date or the date returned from API */
         if let createdAt = ideaJSON.createdAt {
-            self.createdAt = createdAt
+            self.createdAt = createdAt.parseAsDate()!
         } else {
             self.createdAt = getCurrentDate()
         }

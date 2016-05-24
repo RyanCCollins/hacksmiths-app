@@ -9,12 +9,9 @@
 import Alamofire
 import Gloss
 
-struct UserJSON {
-    
-}
 
 enum ProjectIdeaEndpoint {
-    case PostProjectIdea(projectIdea: ProjectIdeaJSON, userId: String)
+    case PostProjectIdea(projectIdeaSubmissionJSON: ProjectIdeaSubmissionJSON)
     case GetAllProjectIdeas()
     case DeleteProjectIdea(ideaId: String)
     case UpdateProjectIdea(ideaId: String, ideaJSON: ProjectIdeaJSON)
@@ -41,7 +38,7 @@ class ProjectIdeaRouter: BaseRouter {
         case .GetAllProjectIdeas: return "/api/app/project-ideas"
         case .GetOneProjectIdea(let ideaId): return "api/app/project-ideas/\(ideaId)"
         case .UpdateProjectIdea(let ideaId, let projectIdeaJSON): return "api/app/project-ideas/\(ideaId)"
-        case .PostProjectIdea(let projectIdea): return "api/app/submit-project-idea"
+        case .PostProjectIdea(let projectIdeaJson): return "api/app/project-idea"
         case .DeleteProjectIdea(let ideaId): return "api/app/project-ideas/\(ideaId)"
         }
     }
@@ -49,13 +46,13 @@ class ProjectIdeaRouter: BaseRouter {
     override var parameters: JsonDict? {
         switch endpoint {
         case .UpdateProjectIdea(let ideaId, let ideaJSON):
-            if let ideaJSONDict = ideaJSON.toJsonDict() {
+            if let ideaJSONDict = ideaJSON.toJSON() {
                 return ideaJSONDict
             } else {
                 return nil
             }
-        case .PostProjectIdea(let projectIdeaJSON, let userId):
-            if let data = projectIdeaJSON.toJsonDict() {
+        case .PostProjectIdea(let projectIdeaJSON):
+            if let data = projectIdeaJSON.toJSON() {
                 return data
             } else {
                 return nil

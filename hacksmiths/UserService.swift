@@ -6,17 +6,22 @@
 //  Copyright © 2016 Tech Rapport. All rights reserved.
 //
 
-import UIKit
 
-class UserDefaults: NSObject {
-
+class UserService {
+    var userData: UserData? = nil
     
     /* Singleton shared instance of */
-    class func sharedInstance() -> UserDefaults {
+    class func sharedInstance() -> UserService {
         struct Singleton {
-            static var sharedInstance = UserDefaults()
+            static var sharedInstance = UserService()
         }
         return Singleton.sharedInstance
+    }
+    
+    func performLogout() {
+        authenticated = false
+        userId = nil
+        dateAuthenticated = nil
     }
     
     var authenticated: Bool {

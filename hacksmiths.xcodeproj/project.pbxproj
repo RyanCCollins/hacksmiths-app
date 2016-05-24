@@ -15,13 +15,16 @@
 		1F46B9EC1CA467250065D50D /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F46B9EB1CA467250065D50D /* UserData.swift */; };
 		1F4B4DF71C72574700A75F5D /* 1Password.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F4B4DF41C72574700A75F5D /* 1Password.xcassets */; };
 		1F4B4DF81C72574700A75F5D /* OnePasswordExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4B4DF61C72574700A75F5D /* OnePasswordExtension.m */; };
-		1F4B4DFF1C73A60400A75F5D /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4B4DFE1C73A60400A75F5D /* UserDefaults.swift */; };
+		1F4B4DFF1C73A60400A75F5D /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4B4DFE1C73A60400A75F5D /* UserService.swift */; };
 		1F4B4E011C74FCC400A75F5D /* JoinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4B4E001C74FCC400A75F5D /* JoinViewController.swift */; };
 		1F4E31561CF0DB3A0013F56E /* IdeaPagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4E31551CF0DB3A0013F56E /* IdeaPagePresenter.swift */; };
 		1F4E31591CF0E1B10013F56E /* ProjectIdeaRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4E31581CF0E1B10013F56E /* ProjectIdeaRouter.swift */; };
 		1F4E315B1CF0E1C20013F56E /* ProjectIdeaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4E315A1CF0E1C20013F56E /* ProjectIdeaService.swift */; };
 		1F4E315D1CF0E1D30013F56E /* ProjectIdeaJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4E315C1CF0E1D30013F56E /* ProjectIdeaJSON.swift */; };
 		1F4E315F1CF1096A0013F56E /* ProjectIdea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4E315E1CF1096A0013F56E /* ProjectIdea.swift */; };
+		1F4F7EC11CF4B4A800325CA9 /* ProjectIdeaSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F7EC01CF4B4A800325CA9 /* ProjectIdeaSubmission.swift */; };
+		1F4F7EC31CF4B67000325CA9 /* ProjectIdeaSubmissionJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F7EC21CF4B67000325CA9 /* ProjectIdeaSubmissionJSON.swift */; };
+		1F4F7EC51CF4BEFC00325CA9 /* EventFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F7EC41CF4BEFC00325CA9 /* EventFetcher.swift */; };
 		1F6C69E61CCC627B00F15247 /* ParticipantCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6C69E51CCC627B00F15247 /* ParticipantCollectionViewController.swift */; };
 		1F6C69E81CCC6BB700F15247 /* ParticipantCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6C69E71CCC6BB700F15247 /* ParticipantCollectionViewCell.swift */; };
 		1F6C69EC1CCFAEE600F15247 /* HacksmithsEventAPIConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6C69EB1CCFAEE500F15247 /* HacksmithsEventAPIConvenience.swift */; };
@@ -128,13 +131,16 @@
 		1F4B4DF41C72574700A75F5D /* 1Password.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = 1Password.xcassets; sourceTree = "<group>"; };
 		1F4B4DF51C72574700A75F5D /* OnePasswordExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnePasswordExtension.h; sourceTree = "<group>"; };
 		1F4B4DF61C72574700A75F5D /* OnePasswordExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnePasswordExtension.m; sourceTree = "<group>"; };
-		1F4B4DFE1C73A60400A75F5D /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		1F4B4DFE1C73A60400A75F5D /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		1F4B4E001C74FCC400A75F5D /* JoinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinViewController.swift; sourceTree = "<group>"; };
 		1F4E31551CF0DB3A0013F56E /* IdeaPagePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdeaPagePresenter.swift; sourceTree = "<group>"; };
 		1F4E31581CF0E1B10013F56E /* ProjectIdeaRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectIdeaRouter.swift; sourceTree = "<group>"; };
 		1F4E315A1CF0E1C20013F56E /* ProjectIdeaService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectIdeaService.swift; sourceTree = "<group>"; };
 		1F4E315C1CF0E1D30013F56E /* ProjectIdeaJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectIdeaJSON.swift; sourceTree = "<group>"; };
 		1F4E315E1CF1096A0013F56E /* ProjectIdea.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectIdea.swift; sourceTree = "<group>"; };
+		1F4F7EC01CF4B4A800325CA9 /* ProjectIdeaSubmission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectIdeaSubmission.swift; sourceTree = "<group>"; };
+		1F4F7EC21CF4B67000325CA9 /* ProjectIdeaSubmissionJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectIdeaSubmissionJSON.swift; sourceTree = "<group>"; };
+		1F4F7EC41CF4BEFC00325CA9 /* EventFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventFetcher.swift; sourceTree = "<group>"; };
 		1F6C69E51CCC627B00F15247 /* ParticipantCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticipantCollectionViewController.swift; sourceTree = "<group>"; };
 		1F6C69E71CCC6BB700F15247 /* ParticipantCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticipantCollectionViewCell.swift; sourceTree = "<group>"; };
 		1F6C69EB1CCFAEE500F15247 /* HacksmithsEventAPIConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HacksmithsEventAPIConvenience.swift; sourceTree = "<group>"; };
@@ -292,6 +298,8 @@
 				1F4E315A1CF0E1C20013F56E /* ProjectIdeaService.swift */,
 				1F4E315C1CF0E1D30013F56E /* ProjectIdeaJSON.swift */,
 				1F4E315E1CF1096A0013F56E /* ProjectIdea.swift */,
+				1F4F7EC01CF4B4A800325CA9 /* ProjectIdeaSubmission.swift */,
+				1F4F7EC21CF4B67000325CA9 /* ProjectIdeaSubmissionJSON.swift */,
 			);
 			name = ProjectIdea;
 			sourceTree = "<group>";
@@ -385,6 +393,7 @@
 				1F846CC61CECF7D5009166D4 /* EventJSON.swift */,
 				1FAD7DB81CEE64EB0044BD94 /* NextEventJSON.swift */,
 				1F384A8C1CF25C3F00E15887 /* NextEvent.swift */,
+				1F4F7EC41CF4BEFC00325CA9 /* EventFetcher.swift */,
 			);
 			name = Event;
 			sourceTree = "<group>";
@@ -523,7 +532,7 @@
 			children = (
 				1FC6DE461C9F6DC5000E8159 /* RegistrationData.swift */,
 				1F46B9EB1CA467250065D50D /* UserData.swift */,
-				1F4B4DFE1C73A60400A75F5D /* UserDefaults.swift */,
+				1F4B4DFE1C73A60400A75F5D /* UserService.swift */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -1007,6 +1016,7 @@
 				1FEA07CE1CF00BE400D4BDA7 /* LoginPresenter.swift in Sources */,
 				1FE4B3131C6ADE050011ECAE /* PersonViewController.swift in Sources */,
 				1F846CC71CECF7D5009166D4 /* EventJSON.swift in Sources */,
+				1F4F7EC31CF4B67000325CA9 /* ProjectIdeaSubmissionJSON.swift in Sources */,
 				1F846CD01CED259D009166D4 /* Participant.swift in Sources */,
 				1FEA07BF1CEFD22400D4BDA7 /* PersonPresenter.swift in Sources */,
 				1F846CBF1CEBF5E2009166D4 /* EventPresenter.swift in Sources */,
@@ -1028,12 +1038,13 @@
 				1F4E315D1CF0E1D30013F56E /* ProjectIdeaJSON.swift in Sources */,
 				1F4E31561CF0DB3A0013F56E /* IdeaPagePresenter.swift in Sources */,
 				1FA5A4EE1C535A9500722E55 /* Extensions.swift in Sources */,
-				1F4B4DFF1C73A60400A75F5D /* UserDefaults.swift in Sources */,
+				1F4B4DFF1C73A60400A75F5D /* UserService.swift in Sources */,
 				1F46B9EC1CA467250065D50D /* UserData.swift in Sources */,
 				1FA9FC721C534E5A00B993BC /* hacksmiths.xcdatamodeld in Sources */,
 				1FEA07C81CEFFE3800D4BDA7 /* IdeaPageViewController.swift in Sources */,
 				1F846CC11CEBFA5C009166D4 /* HTTPStatusCodes.swift in Sources */,
 				1FA2E5631C6802AC0085FC7D /* HacksmithsAPIUserConvenience.swift in Sources */,
+				1F4F7EC11CF4B4A800325CA9 /* ProjectIdeaSubmission.swift in Sources */,
 				1F384A8D1CF25C3F00E15887 /* NextEvent.swift in Sources */,
 				1FAD7DB91CEE64EB0044BD94 /* NextEventJSON.swift in Sources */,
 				1FF998A11C71387C003D98B2 /* PersonTableViewCell.swift in Sources */,
@@ -1042,6 +1053,7 @@
 				1FA2E5611C68029C0085FC7D /* HacksmithsAPIConstants.swift in Sources */,
 				1FF998921C6EB359003D98B2 /* MainTabBarController.swift in Sources */,
 				1FA9FC6A1C534E5900B993BC /* AppDelegate.swift in Sources */,
+				1F4F7EC51CF4BEFC00325CA9 /* EventFetcher.swift in Sources */,
 				1F4E315F1CF1096A0013F56E /* ProjectIdea.swift in Sources */,
 				1FA5A4F01C535D6C00722E55 /* LoginViewController.swift in Sources */,
 				1FEF3FB11CED66F4007E4BF0 /* ParticipantPresenter.swift in Sources */,

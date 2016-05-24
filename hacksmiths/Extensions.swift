@@ -115,6 +115,16 @@ extension String {
     }
 }
 
+extension NSDate {
+    func parseAsString() -> String? {
+        let dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = dateFormat
+        let date = dateFormatter.stringFromDate(self)
+        return date
+    }
+}
+
 extension UIImageView {
     func downloadedFrom(link link:String, contentMode mode: UIViewContentMode) {
         guard

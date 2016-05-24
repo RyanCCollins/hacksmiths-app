@@ -1459,6 +1459,9 @@ We build tools designed to help non-profit organizations streamline their philan
                                                 <color key="value" red="0.61176470589999998" green="0.60392156860000001" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="didTapSubmissionButton:" destination="lmf-nJ-aZ8" eventType="touchUpInside" id="Xb0-b2-Xmd"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Idea description" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oP0-E4-qqm">
                                         <rect key="frame" x="20" y="226" width="560" height="40"/>
@@ -1523,6 +1526,10 @@ We build tools designed to help non-profit organizations streamline their philan
                             <constraint firstItem="G1d-R5-W1S" firstAttribute="top" secondItem="leT-R4-lJH" secondAttribute="bottom" id="r8z-9C-OPO"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="ideaDescriptionTextView" destination="G0L-wm-M6E" id="9bp-cw-OvR"/>
+                        <outlet property="ideaTitleTextField" destination="B7b-Nl-1gb" id="keR-0B-WoF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2hn-9I-R6a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1794,6 +1801,9 @@ We build tools designed to help non-profit organizations streamline their philan
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uVu-JU-wxR">
                                         <rect key="frame" x="126" y="88" width="48" height="30"/>
                                         <state key="normal" title="Logout"/>
+                                        <connections>
+                                            <action selector="performLogoutSegue:" destination="KDc-3l-D2d" eventType="touchUpInside" id="cLT-tn-ugM"/>
+                                        </connections>
                                     </button>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5zp-Pz-hHN">
                                         <rect key="frame" x="179" y="126" width="51" height="31"/>
@@ -1884,6 +1894,7 @@ We build tools designed to help non-profit organizations streamline their philan
                         <outlet property="publicProfileToggle" destination="rfv-Rx-rVn" id="gYa-VS-VT4"/>
                         <outlet property="pushNotificationsSwitch" destination="5zp-Pz-hHN" id="E7o-lZ-cKY"/>
                         <outlet property="titleLabel" destination="PPm-Z7-K1e" id="btM-Wg-sPV"/>
+                        <segue destination="mpf-Ib-Wgf" kind="presentation" identifier="LogoutSegue" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="hMp-NF-Ykh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="erB-1M-PZ2" userLabel="First Responder" sceneMemberID="firstResponder"/>

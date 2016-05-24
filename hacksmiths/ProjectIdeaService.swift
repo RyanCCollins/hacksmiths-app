@@ -19,25 +19,24 @@ struct Response {
 class ProjectIdeaService {
     let manager = Manager.sharedInstance
     
-    func submitIdea(projectIdeaJSON: ProjectIdeaJSON, userId: String) -> Promise<ProjectIdea?> {
+    func submitIdea(projectIdeaSubmissionJSON: ProjectIdeaSubmissionJSON) -> Promise<ProjectIdeaSubmission?> {
         
         return Promise { resolve, reject in
-            let router = ProjectIdeaRouter(endpoint: .PostProjectIdea(projectIdea: projectIdeaJSON, userId: userId))
+            let router = ProjectIdeaRouter(endpoint: .PostProjectIdea(projectIdeaSubmissionJSON: projectIdeaSubmissionJSON))
             manager.request(router)
                 .validate()
                 .responseJSON {
                     response in
                     switch response.result {
                     case .Success(let JSON):
-                        
-                        /* Create the idea locally once the server responds with a proper success result */
-                        let idea = ProjectIdea(ideaJSON: projectIdeaJSON, context: GlobalStackManager.SharedManager.sharedContext)
+                        /* Save the project idea to core data */
+                        let ideaSubmission = ProjectIdeaSubmission(ideaSubmissionJson: projectIdeaSubmissionJSON, context: GlobalStackManager.SharedManager.sharedContext)
                         
                         GlobalStackManager.SharedManager.sharedContext.performBlockAndWait({
                             CoreDataStackManager.sharedInstance().saveContext()
                         })
                         
-                        resolve(idea)
+                        resolve(ideaSubmission)
                     case .Failure(let error):
                         
                         reject(error)

@@ -21,9 +21,9 @@ extension HacksmithsAPIClient {
                     if success ==  1 && session == 1 {
                         
                         let userId = result[JSONResponseKeys.Auth.userId] as! String
-                        UserDefaults.sharedInstance().authenticated = true
-                        UserDefaults.sharedInstance().userId = userId
-                        UserDefaults.sharedInstance().dateAuthenticated = NSDate()
+                        UserService.sharedInstance().authenticated = true
+                        UserService.sharedInstance().userId = userId
+                        UserService.sharedInstance().dateAuthenticated = NSDate()
                         completionHandler(success: true, error: nil)
                         
                     } else {
@@ -55,10 +55,10 @@ extension HacksmithsAPIClient {
                     if success ==  1 && session == 1 {
                         
                         let userId = result[JSONResponseKeys.Auth.userId] as! String
-                        UserDefaults.sharedInstance().authenticated = true
-                        UserDefaults.sharedInstance().userId = userId
+                        UserService.sharedInstance().authenticated = true
+                        UserService.sharedInstance().userId = userId
                         let date = NSDate()
-                        UserDefaults.sharedInstance().dateAuthenticated = date
+                        UserService.sharedInstance().dateAuthenticated = date
                         completionHandler(success: true, error: nil)
                         
                     } else {
@@ -100,9 +100,9 @@ extension HacksmithsAPIClient {
                             if success ==  1 && session == 1 {
                                 
                                 let userId = result[JSONResponseKeys.Auth.userId] as! String
-                                UserDefaults.sharedInstance().authenticated = true
-                                UserDefaults.sharedInstance().userId = userId
-                                UserDefaults.sharedInstance().dateAuthenticated = NSDate()
+                                UserService.sharedInstance().authenticated = true
+                                UserService.sharedInstance().userId = userId
+                                UserService.sharedInstance().dateAuthenticated = NSDate()
                                 completionHandler(success: true, error: nil)
                                 
                             } else {
@@ -131,9 +131,9 @@ extension HacksmithsAPIClient {
     func getUserDataFromAPI(body: [String: AnyObject], completionHandler: CompletionHandler) {
         let method = HacksmithsAPIClient.Routes.Profile
         
-        if UserDefaults.sharedInstance().authenticated {
+        if UserService.sharedInstance().authenticated {
             
-            if let userID = UserDefaults.sharedInstance().userId {
+            if let userID = UserService.sharedInstance().userId {
                 let params: [String : AnyObject] = [
                     HacksmithsAPIClient.Keys.user : userID
                 ]
@@ -227,7 +227,7 @@ extension HacksmithsAPIClient {
     func updateProfile(body: JsonDict, completionHandler: CompletionHandler) {
         
         let method = Routes.UpdateProfile
-        if UserDefaults.sharedInstance().authenticated {
+        if UserService.sharedInstance().authenticated {
         
             HacksmithsAPIClient.sharedInstance().taskForPOSTMethod(method, JSONBody: body, completionHandler: {succeess, result, error in
                 
@@ -242,7 +242,7 @@ extension HacksmithsAPIClient {
             })
             
         } else {
-            completionHandler(success: false, error: Errors.constructError(domain: "Hacksmiths API Client", userMessage: ""))
+            completionHandler(success: false, error: Errors.constructError(domain: "Hacksmiths API Client", userMessage: "You must log in to do that."))
         }
     }
     

@@ -10,11 +10,31 @@ import UIKit
 
 class IdeaSubmissionViewController: UIViewController {
     
+    @IBOutlet weak var ideaDescriptionTextView: UITextView!
+    @IBOutlet weak var ideaTitleTextField: UITextField!
     var ideaSubmissionPresenter: IdeaSubmissionPresenter?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         ideaSubmissionPresenter?.attachView(self)
+    }
+    
+    @IBAction func didTapSubmissionButton(sender: AnyObject) {
+        if validateSubmission() == true {
+            let ideaSubmission: JsonDict = [
+                "title": ideaTitleTextField.text!,
+                "description": ideaDescriptionTextView.text
+            ]
+        } else {
+            alertController(withTitles: ["OK"], message: "Please fill in both text fields before submitting", callbackHandler: [nil])
+        }
+    }
+    
+    private func validateSubmission() -> Bool {
+        guard ideaTitleTextField.text != nil && ideaDescriptionTextView.text != nil else {
+            return false
+        }
+        return true
     }
     
     @IBAction func didTapCancelUpInside(sender: AnyObject) {
@@ -31,7 +51,6 @@ class IdeaSubmissionViewController: UIViewController {
         super.viewWillDisappear(animated)
         ideaSubmissionPresenter?.detachView(self)
     }
-
 }
 
 extension IdeaSubmissionViewController: UITextViewDelegate, UITextFieldDelegate {
@@ -68,9 +87,13 @@ extension IdeaSubmissionViewController: UITextViewDelegate, UITextFieldDelegate 
 }
 
 extension IdeaSubmissionViewController: IdeaSubmissionView {
-
-    func submitIdeaToAPI(sender: IdeaSubmissionPresenter, idea: ProjectIdeaJSON) {
-        
+    
+    func didSubmitIdeaToAPI(sender: IdeaSubmissionPresenter, didSucceed: Bool, didFail: NSError?) {
+        if didFail != nil {
+            alertController(withTitles: ["Ok"], message: (didFail?.localizedDescription)!, callbackHandler: [nil])
+        } else {
+            presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+        }
     }
     
     func cancelSubmission(sender: AnyObject) {

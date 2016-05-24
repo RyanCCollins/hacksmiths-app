@@ -43,7 +43,11 @@ class SettingsViewController: UIViewController {
             ProfileDataFetcher.sharedInstance.userData?.isPublic = sender.on
         }
     }
-    
+
+    @IBAction func performLogoutSegue(sender: AnyObject) {
+        UserService.sharedInstance().performLogout()
+        performSegueWithIdentifier("LogoutSegue", sender: self)
+    }
     
     func setUIForUserData(){
         if ProfileDataFetcher.sharedInstance.userData != nil {

@@ -58,9 +58,9 @@ struct ProjectIdeaKeys {
 
 struct ProjectIdeaJSON: Glossy {
     let id: String
-    let createdById: String
-    var createdAt: NSDate? = nil
-    let eventId: String
+    var createdById: String
+    var createdAt: String? = nil
+    var eventId: String
     let idea: IdeaJSON?
     
     init?(json: JSON) {
@@ -79,19 +79,20 @@ struct ProjectIdeaJSON: Glossy {
         }
         
         if let createdAtString: String = ProjectIdeaKeys.createdAt <~~ json {
-            if let date = createdAtString.parseAsDate() {
-                self.createdAt = date
-            }
+            self.createdAt = createdAtString
         }
         
     }
     
     // - MARK: Encode to JSON
     func toJSON() -> JSON? {
-         return jsonify([
-            ProjectIdeaKeys.createdBy ~~> self.createdById,
-            ProjectIdeaKeys.event ~~> self.eventId,
-            ProjectIdeaKeys.idea ~~> self.idea?.toJSON()
+        return jsonify([
+            "user" ~~> self.createdById,
+            "event" ~~> self.eventId,
+            "idea" ~~> self.idea?.toDictionary()
         ])
     }
 }
+
+
+

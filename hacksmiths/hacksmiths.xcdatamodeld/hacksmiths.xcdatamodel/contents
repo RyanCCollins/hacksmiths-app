@@ -75,6 +75,15 @@
         <relationship name="createdBy" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Person" syncable="YES"/>
         <relationship name="event" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="projectIdeas" inverseEntity="Event" syncable="YES"/>
     </entity>
+    <entity name="ProjectIdeaSubmission" syncable="YES">
+        <attribute name="additionalInformation" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="descriptionString" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="event" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="user" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="eventModel" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Event" syncable="YES"/>
+        <relationship name="userModel" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Person" syncable="YES"/>
+    </entity>
     <entity name="UserData" representedClassName="UserData" syncable="YES">
         <attribute name="availabilityExplanation" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="avatarFilePath" optional="YES" attributeType="String" syncable="YES"/>
@@ -104,5 +113,6 @@
         <element name="Person" positionX="358" positionY="243" width="128" height="255"/>
         <element name="ProjectIdea" positionX="126" positionY="207" width="128" height="165"/>
         <element name="UserData" positionX="126" positionY="45" width="128" height="330"/>
+        <element name="ProjectIdeaSubmission" positionX="117" positionY="198" width="128" height="150"/>
     </elements>
 </model>

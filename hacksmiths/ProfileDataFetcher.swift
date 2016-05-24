@@ -27,8 +27,8 @@ class ProfileDataFetcher: NSObject {
     // Public interface for fetching and updating data from API
     internal func fetchAndUpdateData(completionHandler: CompletionHandler) {
         // If the user is authenticated then create a request to get the profile data:
-        if UserDefaults.sharedInstance().authenticated == true {
-            let userID = UserDefaults.sharedInstance().userId
+        if UserService.sharedInstance().authenticated == true {
+            let userID = UserService.sharedInstance().userId
             
             // Protect against the UserID being nil, for some reason
             guard userID != nil || userID != "" else {
@@ -81,7 +81,7 @@ class ProfileDataFetcher: NSObject {
     
     private func dictForProfileUpdate() -> JsonDict? {
         if let userProfileData = userData {
-            let id = UserDefaults.sharedInstance().userId
+            let id = UserService.sharedInstance().userId
             
             guard id != nil else {
                 return nil
@@ -141,7 +141,7 @@ class ProfileDataFetcher: NSObject {
         let userDataFetch = NSFetchRequest(entityName: "UserData")
         userDataFetch.sortDescriptors = [sortPriority]
         
-        let fetchResultsController = NSFetchedResultsController(fetchRequest: userDataFetch, managedObjectContext: self.sharedContext, sectionNameKeyPath: nil, cacheName: nil)
+        let fetchResultsController = NSFetchedResultsController(fetchRequest: userDataFetch, managedObjectContext: GlobalStackManager.SharedManager.sharedContext, sectionNameKeyPath: nil, cacheName: nil)
         
         do {
             try fetchResultsController.performFetch()
@@ -168,13 +168,5 @@ class ProfileDataFetcher: NSObject {
         }
     }
     
-    private var sharedContext: NSManagedObjectContext {
-        return CoreDataStackManager.sharedInstance().managedObjectContext
-    }
-    
 }
 
-
-struct ProfileDataJSON {
-    
-}

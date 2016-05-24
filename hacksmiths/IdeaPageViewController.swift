@@ -35,13 +35,17 @@ class IdeaPageViewController: UIViewController {
     @IBAction func didTapSubmitIdeaUpInside(sender: AnyObject) {
         submitAnIdea()
     }
+    
+    func checkEventStatus() {
+        
+    }
 
 }
 
 
 extension IdeaPageViewController: IdeaPageView {
     func submitAnIdea() {
-        if UserDefaults.sharedInstance().authenticated == true {
+        if UserService.sharedInstance().authenticated == true {
             
             performSegueWithIdentifier("ShowIdeaSubmission", sender: self)
             

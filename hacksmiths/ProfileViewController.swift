@@ -69,7 +69,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
         
         // We check that the user is authenticated and enable the edit button
         // Based on their status.
-        editButton.enabled = UserDefaults.sharedInstance().authenticated
+        editButton.enabled = UserService.sharedInstance().authenticated
 
     }
     

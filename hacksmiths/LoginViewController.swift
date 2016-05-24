@@ -23,7 +23,6 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var onepasswordButton: UIButton!
     var loginPresenter: LoginPresenter?
 
-    
     let loginButton = SwiftyCustomContentButton()
     
     var has1PasswordLogin: Bool = false
