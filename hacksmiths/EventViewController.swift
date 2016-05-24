@@ -53,10 +53,12 @@ class EventViewController: UIViewController {
         activityIndicator = IGActivityIndicatorView(inview: self.view)
     }
     
+    @IBAction func didTapRefreshUpInside(sender: AnyObject) {
+        
+    }
+    
     func updateUserInterface() {
-        setButtonForAuthState()
         if let event = currentEvent {
-            
             /* Set the UI elements on the main queue */
             dispatch_async(GlobalMainQueue, {
                 if let imageURL = event.featureImageURL {
@@ -85,11 +87,6 @@ class EventViewController: UIViewController {
             })
         }
     }
-    
-    private func setButtonForAuthState() {
-        
-    }
-    
     
     /* Open the URL for the website if possible. */
     @IBAction func didTapOrganizationWebsiteButton(sender: UIButton) {

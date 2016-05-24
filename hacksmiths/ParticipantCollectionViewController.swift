@@ -27,12 +27,18 @@ class ParticipantCollectionViewController: UICollectionViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         participantPresenter.attachView(self)
-        participantPresenter.getParticipants()
+        
+        subscribeToNotifications()
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         participantPresenter.detachView(self)
+    }
+    
+    func didRecieveEventUpdate(){
+        participantPresenter.getParticipants()
+        collectionView?.reloadData()
     }
 
     // MARK: UICollectionViewDataSource
@@ -63,6 +69,17 @@ class ParticipantCollectionViewController: UICollectionViewController {
             cell.participant = participant
             cell.setUIForPerson()
         }
+    }
+}
+
+
+extension ParticipantCollectionViewController {
+    func subscribeToNotifications(){
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ParticipantCollectionViewController.didRecieveEventUpdate), name: "DidReceiveEventUpdate", object: nil)
+    }
+    
+    func unsubscribeFromNotifications() {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 }
 

@@ -48,6 +48,8 @@ class EventPresenter {
     func loadNextEvent() {
         eventService.getEventStatus().then() {
             nextEvent -> () in
+            let didReciveEventNotification = NSNotification(name: "DidReceiveEventUpdate", object: self)
+            NSNotificationCenter.defaultCenter().postNotification(didReciveEventNotification)
             self.eventView?.didReceiveNextEvent(self, nextEvent: nextEvent, error: nil)
         }.error { error in
             self.eventView?.didReceiveNextEvent(self, nextEvent: nil, error: error as NSError)

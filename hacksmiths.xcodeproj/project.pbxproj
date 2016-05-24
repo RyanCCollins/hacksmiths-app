@@ -31,7 +31,6 @@
 		1F7701C51C84B532006FBCE0 /* Montserrat-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1F7701BF1C84B532006FBCE0 /* Montserrat-Light.otf */; };
 		1F7701C61C84B532006FBCE0 /* Montserrat-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1F7701C01C84B532006FBCE0 /* Montserrat-Regular.otf */; };
 		1F7701C71C84B532006FBCE0 /* SIL Open Font License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1F7701C11C84B532006FBCE0 /* SIL Open Font License.txt */; };
-		1F7701C91C850441006FBCE0 /* SponsorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7701C81C850441006FBCE0 /* SponsorTableViewCell.swift */; };
 		1F846CB01CEBADC8009166D4 /* EventService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F846CAF1CEBADC7009166D4 /* EventService.swift */; };
 		1F846CB31CEBAF3C009166D4 /* BaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F846CB21CEBAF3C009166D4 /* BaseRouter.swift */; };
 		1F846CB51CEBB153009166D4 /* APIKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F846CB41CEBB153009166D4 /* APIKeys.plist */; };
@@ -145,7 +144,6 @@
 		1F7701BF1C84B532006FBCE0 /* Montserrat-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Light.otf"; sourceTree = "<group>"; };
 		1F7701C01C84B532006FBCE0 /* Montserrat-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.otf"; sourceTree = "<group>"; };
 		1F7701C11C84B532006FBCE0 /* SIL Open Font License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "SIL Open Font License.txt"; sourceTree = "<group>"; };
-		1F7701C81C850441006FBCE0 /* SponsorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SponsorTableViewCell.swift; sourceTree = "<group>"; };
 		1F846CAF1CEBADC7009166D4 /* EventService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventService.swift; sourceTree = "<group>"; };
 		1F846CB21CEBAF3C009166D4 /* BaseRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseRouter.swift; sourceTree = "<group>"; };
 		1F846CB41CEBB153009166D4 /* APIKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = APIKeys.plist; sourceTree = "<group>"; };
@@ -462,7 +460,6 @@
 		1FA9FC5D1C534E5800B993BC = {
 			isa = PBXGroup;
 			children = (
-				1F7701C81C850441006FBCE0 /* SponsorTableViewCell.swift */,
 				1FA9FC681C534E5900B993BC /* hacksmiths */,
 				1FA5A53C1C53610300722E55 /* Resources */,
 				1FA9FC801C534E5B00B993BC /* hacksmithsTests */,
@@ -1000,7 +997,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1FA2E55F1C6802680085FC7D /* ImageCache.swift in Sources */,
-				1F7701C91C850441006FBCE0 /* SponsorTableViewCell.swift in Sources */,
 				1FA9FC9B1C53563700B993BC /* EventViewController.swift in Sources */,
 				1FA5A4EC1C53586D00722E55 /* CommunityViewController.swift in Sources */,
 				1FA5A4E81C53585500722E55 /* SettingsViewController.swift in Sources */,
