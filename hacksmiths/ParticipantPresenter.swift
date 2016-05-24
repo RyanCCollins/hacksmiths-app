@@ -30,14 +30,16 @@ class ParticipantPresenter {
         var nextEvent: NextEvent? = nil
         
         if let fetchedEvent = performNextEventFetch() {
+            print("Called fetch event in participant presenter")
             nextEvent = fetchedEvent
-            if let participantsArray = performParticipantFetch(nextEvent!) {
+            if let participantsArray = performEventFetch(nextEvent!) {
                 self.participantView?.didFetchParticipants(participantsArray)
             }
         }
         
         self.participantView?.noParticipantsFound()
     }
+    
     
     private func performNextEventFetch() -> NextEvent? {
         do {
@@ -57,15 +59,16 @@ class ParticipantPresenter {
         }
     }
     
-    private func performParticipantFetch(currentEvent: NextEvent) -> [Participant]? {
+    private func performEventFetch(currentEvent: NextEvent) -> [Participant]? {
         do {
-            let participant = NSFetchRequest(entityName: "Participant")
-            let predicate = NSPredicate(format: "eventId == %@ ", currentEvent.idString)
-            participant.predicate = predicate
+            let eventEntity = NSFetchRequest(entityName: "Event")
+            let predicate = NSPredicate(format: "idString == %@ ", currentEvent.idString)
+            eventEntity.predicate = predicate
             
-            let results = try CoreDataStackManager.sharedInstance().managedObjectContext.executeFetchRequest(participant)
-            if let participantArray = results as? [Participant] {
-                return participantArray
+            let results = try CoreDataStackManager.sharedInstance().managedObjectContext.executeFetchRequest(eventEntity)
+            if let event = results[0] as? Event {
+                print("Fetched event with participants: \(event.participants)")
+                return event.participants
             } else {
                 return nil
             }

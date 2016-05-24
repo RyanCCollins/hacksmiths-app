@@ -9,35 +9,52 @@
 import UIKit
 import CoreData
 
-private let reuseIdentifier = "PersonTableViewCell"
+private let reuseIdentifier = "ParticipantCollectionViewCell"
 
 class ParticipantCollectionViewController: UICollectionViewController {
-    var participants: [Participant]? = nil
-    
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     private let participantPresenter = ParticipantPresenter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Register cell classes
+        setupCollectionView()
+        
+    }
+    
+    func setupCollectionView() {
         self.collectionView!.registerClass(ParticipantCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        collectionView?.delegate = self
+        collectionView?.dataSource = self
+    }
+    
+    /* Setup flowlayout upon layout of subviews */
+    override func viewDidLayoutSubviews() {
+        flowLayout.sectionInset = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
+        flowLayout.minimumLineSpacing = 4
+        flowLayout.minimumInteritemSpacing = 4
+        let contentSize: CGFloat = ((collectionView!.bounds.width / 3) - 8)
+        flowLayout.itemSize = CGSize(width: contentSize, height: contentSize)
+        
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         participantPresenter.attachView(self)
-        
         subscribeToNotifications()
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         participantPresenter.detachView(self)
+        unsubscribeFromNotifications()
     }
     
     func didRecieveEventUpdate(){
-        participantPresenter.getParticipants()
+        do {
+            try fetchedResultsController.performFetch()
+        } catch let error as NSError {
+            print("Error:  \(error)")
+        }
         collectionView?.reloadData()
     }
 
@@ -48,7 +65,8 @@ class ParticipantCollectionViewController: UICollectionViewController {
 
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let participants = participants {
+        if let participants = fetchedResultsController.fetchedObjects as? [Participant] {
+            print("Called collection view number of items with: \(participants.count)")
             return participants.count
         } else {
             return 0
@@ -57,21 +75,35 @@ class ParticipantCollectionViewController: UICollectionViewController {
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! ParticipantCollectionViewCell
-    
-        // Configure the cell
-        configureCell(cell, atIndexPath: indexPath)
+        if let participant = fetchedResultsController.fetchedObjects![indexPath.row] as? Participant {
+            cell.setCellForParticipant(participant)
+        }
         return cell
     }
     
-    func configureCell(cell: ParticipantCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
-        if let participants = self.participants {
-            let participant = participants[indexPath.row]
-            cell.participant = participant
-            cell.setUIForPerson()
+    lazy var fetchedResultsController: NSFetchedResultsController = {
+        let sortPriority = NSSortDescriptor(key: "name", ascending: true)
+        let fetch = NSFetchRequest(entityName: "Participant")
+        fetch.sortDescriptors = [sortPriority]
+
+        let fetchResultsController = NSFetchedResultsController(fetchRequest: fetch, managedObjectContext: GlobalStackManager.SharedManager.sharedContext, sectionNameKeyPath: nil, cacheName: nil)
+        
+        do {
+            try fetchResultsController.performFetch()
+        } catch let error {
+            print(error)
         }
-    }
+        
+        return fetchResultsController
+    }()
 }
 
+
+extension ParticipantCollectionViewController: NSFetchedResultsControllerDelegate {
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        print("Called controller did change content")
+    }
+}
 
 extension ParticipantCollectionViewController {
     func subscribeToNotifications(){
@@ -86,12 +118,7 @@ extension ParticipantCollectionViewController {
 extension ParticipantCollectionViewController: ParticipantView {
     
     func didFetchParticipants(participants: [Participant]?) {
-        if let participants = participants {
-            self.participants = participants
-            self.collectionView?.reloadData()
-        } else {
-            
-        }
+
     }
     
     func noParticipantsFound() {

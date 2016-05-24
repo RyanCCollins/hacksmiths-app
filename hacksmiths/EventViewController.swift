@@ -124,8 +124,8 @@ extension EventViewController: EventView {
         self.currentEvent = event
         self.finishLoading()
         self.updateUserInterface()
-        self.participantPresenter.getParticipants()
-        print("Called getEvent:didSucceed in EventView with event: \(event)")
+        let didReciveEventNotification = NSNotification(name: "DidReceiveEventUpdate", object: self)
+        NSNotificationCenter.defaultCenter().postNotification(didReciveEventNotification)
     }
     
     func getEvent(sender: EventPresenter, didFail error: NSError) {

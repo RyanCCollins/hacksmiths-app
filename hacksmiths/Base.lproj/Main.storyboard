@@ -1016,7 +1016,7 @@ We build tools designed to help non-profit organizations streamline their philan
                                     <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tnf-WJ-f8R">
                                         <rect key="frame" x="40" y="996" width="520" height="447"/>
                                         <connections>
-                                            <segue destination="01o-DI-c75" kind="embed" id="J1e-r5-3ul"/>
+                                            <segue destination="01o-DI-c75" kind="embed" id="Ckd-fG-gz2"/>
                                         </connections>
                                     </containerView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wastenot-food-taxi" translatesAutoresizingMaskIntoConstraints="NO" id="Src-aF-bz5">
@@ -1215,11 +1215,11 @@ We build tools designed to help non-profit organizations streamline their philan
         <!--Participant Collection View Controller-->
         <scene sceneID="fNJ-SM-Z1H">
             <objects>
-                <collectionViewController id="01o-DI-c75" customClass="ParticipantCollectionViewController" customModule="hacksmiths" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="ParticipantCollectionViewController" id="01o-DI-c75" customClass="ParticipantCollectionViewController" customModule="hacksmiths" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="gTp-e8-W9f">
                         <rect key="frame" x="0.0" y="0.0" width="520" height="447"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.15868747234344482" green="0.21822044253349304" blue="0.30320093035697937" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.12156862745098039" green="0.16470588235294117" blue="0.23529411764705882" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="F4c-st-dLY">
                             <size key="itemSize" width="125" height="125"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -1227,7 +1227,7 @@ We build tools designed to help non-profit organizations streamline their philan
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PersonCollectionViewCell" id="vfa-bL-JgW" customClass="ParticipantCollectionViewCell" customModule="hacksmiths" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ParticipantCollectionViewCell" id="vfa-bL-JgW" customClass="ParticipantCollectionViewCell" customModule="hacksmiths" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="125" height="125"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -1265,6 +1265,9 @@ We build tools designed to help non-profit organizations streamline their philan
                             <outlet property="delegate" destination="01o-DI-c75" id="vEl-7F-quA"/>
                         </connections>
                     </collectionView>
+                    <connections>
+                        <outlet property="flowLayout" destination="F4c-st-dLY" id="CF9-Fi-1t6"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IaY-iF-3AV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

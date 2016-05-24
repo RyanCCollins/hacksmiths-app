@@ -30,10 +30,11 @@ struct IdeaJSON: Glossy {
     }
     
     func toJSON() -> JSON? {
+        let descriptionDict = ["md": description, "html": description]
         return jsonify([
-            IdeaKeys.title ~~> self.title,
-            IdeaKeys.description ~~> self.description,
-            IdeaKeys.additionalInformation ~~> self.additionalInformation
+            IdeaKeys.title ~~> title,
+            IdeaKeys.description ~~> descriptionDict,
+            IdeaKeys.additionalInformation ~~> additionalInformation
         ])
     }
     
@@ -41,7 +42,7 @@ struct IdeaJSON: Glossy {
         let dictionary: JsonDict = [
             "title" : self.title,
             "description": self.description,
-            "additionalInformation": self.additionalInformation!
+            "additionalInformation": self.additionalInformation! ?? ""
         ]
         return dictionary
     }
@@ -90,18 +91,7 @@ struct ProjectIdeaJSON: Glossy {
          return jsonify([
             ProjectIdeaKeys.createdBy ~~> self.createdById,
             ProjectIdeaKeys.event ~~> self.eventId,
-            ProjectIdeaKeys.idea ~~> self.idea
+            ProjectIdeaKeys.idea ~~> self.idea?.toJSON()
         ])
-    }
-    
-    func toJsonDict() -> JsonDict? {
-        var dictionary: JsonDict = [
-            "createdBy" : self.createdById,
-            "event": self.eventId,
-        ]
-        if let ideaDict = idea?.toDictionary() {
-            dictionary["idea"] = ideaDict
-        }
-        return dictionary
     }
 }

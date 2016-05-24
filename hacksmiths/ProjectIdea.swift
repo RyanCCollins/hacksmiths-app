@@ -7,7 +7,9 @@
 //
 
 import CoreData
+import Gloss
 
+@objc(ProjectIdea)
 class ProjectIdea: NSManagedObject {
     @NSManaged var id: String
     @NSManaged var event: Event

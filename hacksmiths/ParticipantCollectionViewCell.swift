@@ -13,17 +13,13 @@ class ParticipantCollectionViewCell: UICollectionViewCell {
     var nameLabel: UILabel!
     var participant: Participant!
     
-    func setUIForPerson() {
-        // Set the person's avatar to the missing person
-        imageView.image = UIImage(named: "avatar-missing")
+    func setCellForParticipant(participant: Participant) {
+        if let imageURL = participant.imageURLString {
+            self.imageView.downloadedFrom(link: imageURL, contentMode: .Center)
+        } else {
+            imageView.image = UIImage(named: "avatar-missing")
+        }
         
-        // Set the person's image as long as it's not nil.
-        if participant.image != nil {
-            imageView.image = participant.image
-        }
-        if participant.imageURLString != nil {
-            imageView.downloadedFrom(link: participant.imageURLString!, contentMode: .ScaleToFill)
-        }
-        nameLabel.text = participant.name
+        self.nameLabel.text = participant.name
     }
 }
