@@ -100,7 +100,7 @@ struct UserProfileJSON: Glossy {
               let notifications: JSON = UserKeys.notifications <~~ json,
               let availability: JSON = UserKeys.availability <~~ json,
               let email: String = UserKeys.email <~~ json else {
-            return
+            return nil
         }
 
         self.name = NameJSON(json: name)
@@ -123,6 +123,7 @@ struct UserProfileJSON: Glossy {
     }
     
     init(userData: UserData) {
+        self.name = NameJSON(userData: userData)
         self.bio = BioJSON(userData: userData)
         
         self.email = userData.email
@@ -159,13 +160,13 @@ struct UserProfileJSON: Glossy {
  * - return - JSON data structured for API calls.
  */
 struct NameJSON: Glossy {
-    let firstname: String
-    let lastname: String
+    var firstname: String
+    var lastname: String
     
     init?(json: JSON) {
         guard let first: String = NameKeys.first <~~ json,
             let last: String = NameKeys.last <~~ json else {
-                return
+                return nil
         }
         self.firstname = first
         self.lastname = last
@@ -287,14 +288,13 @@ struct MentoringJSON: Glossy {
  */
 
 struct NotificationJSON: Glossy {
-    let mobile: Bool
+    var mobile: Bool
     
     init?(json: JSON) {
-        if let mobile: Bool = NotificationKeys.mobile <~~ json {
-            self.mobile = mobile
-        } else {
-            self.mobile = false
+        guard let mobileNotifications: Bool = NotificationKeys.mobile <~~ json else {
+            return nil
         }
+        self.mobile = mobileNotifications
     }
     
     init(userData: UserData) {

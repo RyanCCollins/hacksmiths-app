@@ -58,21 +58,21 @@ class ProfileDataFetcher: NSObject {
     
     // Update profile data when userData has changed.
     internal func updateProfileData(completionHandler: CompletionHandler) {
-        
-        if let profileDict = dictForProfileUpdate() {
-            HacksmithsAPIClient.sharedInstance().updateProfile(profileDict, completionHandler: {success, error in
-                
-                if error != nil {
-                    completionHandler(success: false, error: error)
-                } else {
-                    self.requiresFetch = true
-                    completionHandler(success: true, error: nil)
-                }
-                
-            })
-        } else {
-            completionHandler(success: false, error: Errors.constructError(domain: "ProfileData", userMessage: "An unknown error occurred while attempting to update your profile data.  If the problem persists, please try logging out and logging back in."))
-        }
+//        
+//        if let profileDict = dictForProfileUpdate() {
+//            HacksmithsAPIClient.sharedInstance().updateProfile(profileDict, completionHandler: {success, error in
+//                
+//                if error != nil {
+//                    completionHandler(success: false, error: error)
+//                } else {
+//                    self.requiresFetch = true
+//                    completionHandler(success: true, error: nil)
+//                }
+//                
+//            })
+//        } else {
+//            completionHandler(success: false, error: Errors.constructError(domain: "ProfileData", userMessage: "An unknown error occurred while attempting to update your profile data.  If the problem persists, please try logging out and logging back in."))
+//        }
     }
     
     private func dictForProfileUpdate() -> JsonDict? {

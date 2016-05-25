@@ -33,7 +33,8 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
         // Toggle the UI state when view appears to insure that the right elements are hidden.
         toggleEditMode(editing)
         profilePresenter?.attachView(self)
-        syncUIWithProfileData()
+        profilePresenter?.fetchUserData()
+//        syncUIWithProfileData()
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -41,21 +42,21 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
         profilePresenter?.detachView(self)
     }
     
-    func syncUIWithProfileData() {
-        if ProfileDataFetcher.sharedInstance.requiresFetch || ProfileDataFetcher.sharedInstance.userData == nil {
-            ProfileDataFetcher.sharedInstance.fetchAndUpdateData({success, error in
-                if error != nil {
-                    self.alertController(withTitles: ["Ok"], message: (error?.localizedDescription)!, callbackHandler: [nil])
-                } else {
-                    // Recursively set the profile data once it has been updated
-                    self.syncUIWithProfileData()
-                }
-            })
-            
-        } else {
-            setUIForUserData(ProfileDataFetcher.sharedInstance.userData!)
-        }
-    }
+//    func syncUIWithProfileData() {
+//        if ProfileDataFetcher.sharedInstance.requiresFetch || ProfileDataFetcher.sharedInstance.userData == nil {
+//            ProfileDataFetcher.sharedInstance.fetchAndUpdateData({success, error in
+//                if error != nil {
+//                    self.alertController(withTitles: ["Ok"], message: (error?.localizedDescription)!, callbackHandler: [nil])
+//                } else {
+//                    // Recursively set the profile data once it has been updated
+//                    self.syncUIWithProfileData()
+//                }
+//            })
+//            
+//        } else {
+//            setUIForUserData(ProfileDataFetcher.sharedInstance.userData!)
+//        }
+//    }
     
     func setUIForUserData(userData: UserData) {
         dispatch_async(GlobalMainQueue, {

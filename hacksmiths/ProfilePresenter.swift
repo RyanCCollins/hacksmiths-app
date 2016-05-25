@@ -46,14 +46,16 @@ class ProfilePresenter {
     }
     
     func fetchUserData() {
-        if UserService.sharedInstance().authenticated == true {
-            userProfileService.getProfile().then(){
-                userData -> () in
-                self.profileView?.didGetUserDataFromAPI(userData, error: nil)
-            }.error {
-                error in
-                self.profileView?.didGetUserDataFromAPI(nil, error: error as NSError)
-            }
+        guard UserService.sharedInstance().authenticated == true else {
+            self.profileView?.didGetUserDataFromAPI(nil, error: GlobalErrors.BadCredentials)
+            return
+        }
+        userProfileService.getProfile().then(){
+            userData -> () in
+            self.profileView?.didGetUserDataFromAPI(userData, error: nil)
+        }.error {
+            error in
+            self.profileView?.didGetUserDataFromAPI(nil, error: error as NSError)
         }
     }
 }
