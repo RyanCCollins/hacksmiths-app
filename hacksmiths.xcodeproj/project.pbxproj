@@ -25,9 +25,13 @@
 		1F4F7EC11CF4B4A800325CA9 /* ProjectIdeaSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F7EC01CF4B4A800325CA9 /* ProjectIdeaSubmission.swift */; };
 		1F4F7EC31CF4B67000325CA9 /* ProjectIdeaSubmissionJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F7EC21CF4B67000325CA9 /* ProjectIdeaSubmissionJSON.swift */; };
 		1F4F7EC51CF4BEFC00325CA9 /* EventFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F7EC41CF4BEFC00325CA9 /* EventFetcher.swift */; };
+		1F4F7EC71CF4D08300325CA9 /* CurrentEventService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F7EC61CF4D08300325CA9 /* CurrentEventService.swift */; };
+		1F4F7EC91CF4D50C00325CA9 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F7EC81CF4D50C00325CA9 /* ProfilePresenter.swift */; };
+		1F4F7ECB1CF4D5A200325CA9 /* UserJSONObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F7ECA1CF4D5A200325CA9 /* UserJSONObject.swift */; };
+		1F4F7ED01CF4E4AF00325CA9 /* UserProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F7ECF1CF4E4AF00325CA9 /* UserProfileService.swift */; };
+		1F4F7ED21CF4E4C000325CA9 /* UserProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F7ED11CF4E4C000325CA9 /* UserProfileRouter.swift */; };
 		1F6C69E61CCC627B00F15247 /* ParticipantCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6C69E51CCC627B00F15247 /* ParticipantCollectionViewController.swift */; };
 		1F6C69E81CCC6BB700F15247 /* ParticipantCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6C69E71CCC6BB700F15247 /* ParticipantCollectionViewCell.swift */; };
-		1F6C69EC1CCFAEE600F15247 /* HacksmithsEventAPIConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6C69EB1CCFAEE500F15247 /* HacksmithsEventAPIConvenience.swift */; };
 		1F7701C21C84B532006FBCE0 /* Montserrat-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1F7701BC1C84B532006FBCE0 /* Montserrat-Black.otf */; };
 		1F7701C31C84B532006FBCE0 /* Montserrat-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1F7701BD1C84B532006FBCE0 /* Montserrat-Bold.otf */; };
 		1F7701C41C84B532006FBCE0 /* Montserrat-Hairline.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1F7701BE1C84B532006FBCE0 /* Montserrat-Hairline.otf */; };
@@ -141,9 +145,13 @@
 		1F4F7EC01CF4B4A800325CA9 /* ProjectIdeaSubmission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectIdeaSubmission.swift; sourceTree = "<group>"; };
 		1F4F7EC21CF4B67000325CA9 /* ProjectIdeaSubmissionJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectIdeaSubmissionJSON.swift; sourceTree = "<group>"; };
 		1F4F7EC41CF4BEFC00325CA9 /* EventFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventFetcher.swift; sourceTree = "<group>"; };
+		1F4F7EC61CF4D08300325CA9 /* CurrentEventService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentEventService.swift; sourceTree = "<group>"; };
+		1F4F7EC81CF4D50C00325CA9 /* ProfilePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
+		1F4F7ECA1CF4D5A200325CA9 /* UserJSONObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserJSONObject.swift; sourceTree = "<group>"; };
+		1F4F7ECF1CF4E4AF00325CA9 /* UserProfileService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileService.swift; sourceTree = "<group>"; };
+		1F4F7ED11CF4E4C000325CA9 /* UserProfileRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileRouter.swift; sourceTree = "<group>"; };
 		1F6C69E51CCC627B00F15247 /* ParticipantCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticipantCollectionViewController.swift; sourceTree = "<group>"; };
 		1F6C69E71CCC6BB700F15247 /* ParticipantCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticipantCollectionViewCell.swift; sourceTree = "<group>"; };
-		1F6C69EB1CCFAEE500F15247 /* HacksmithsEventAPIConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HacksmithsEventAPIConvenience.swift; sourceTree = "<group>"; };
 		1F7701BC1C84B532006FBCE0 /* Montserrat-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Black.otf"; sourceTree = "<group>"; };
 		1F7701BD1C84B532006FBCE0 /* Montserrat-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.otf"; sourceTree = "<group>"; };
 		1F7701BE1C84B532006FBCE0 /* Montserrat-Hairline.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Hairline.otf"; sourceTree = "<group>"; };
@@ -304,6 +312,32 @@
 			name = ProjectIdea;
 			sourceTree = "<group>";
 		};
+		1F4F7ECC1CF4E26E00325CA9 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				1F4F7ECE1CF4E28800325CA9 /* Service */,
+				1F4F7ECD1CF4E27800325CA9 /* Model */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
+		1F4F7ECD1CF4E27800325CA9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1F4F7ECA1CF4D5A200325CA9 /* UserJSONObject.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		1F4F7ECE1CF4E28800325CA9 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				1F4F7ECF1CF4E4AF00325CA9 /* UserProfileService.swift */,
+				1F4F7ED11CF4E4C000325CA9 /* UserProfileRouter.swift */,
+			);
+			name = Service;
+			sourceTree = "<group>";
+		};
 		1F7701BB1C84B532006FBCE0 /* montserrat */ = {
 			isa = PBXGroup;
 			children = (
@@ -394,6 +428,7 @@
 				1FAD7DB81CEE64EB0044BD94 /* NextEventJSON.swift */,
 				1F384A8C1CF25C3F00E15887 /* NextEvent.swift */,
 				1F4F7EC41CF4BEFC00325CA9 /* EventFetcher.swift */,
+				1F4F7EC61CF4D08300325CA9 /* CurrentEventService.swift */,
 			);
 			name = Event;
 			sourceTree = "<group>";
@@ -422,7 +457,6 @@
 				1FA2E55C1C67FF550085FC7D /* HacksmithsAPIClient.swift */,
 				1FA2E5601C68029C0085FC7D /* HacksmithsAPIConstants.swift */,
 				1FA2E5621C6802AC0085FC7D /* HacksmithsAPIUserConvenience.swift */,
-				1F6C69EB1CCFAEE500F15247 /* HacksmithsEventAPIConvenience.swift */,
 			);
 			name = HacksmithsAPI;
 			sourceTree = "<group>";
@@ -530,6 +564,7 @@
 		1FAD7DAE1CEE5DAC0044BD94 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				1F4F7ECC1CF4E26E00325CA9 /* Profile */,
 				1FC6DE461C9F6DC5000E8159 /* RegistrationData.swift */,
 				1F46B9EB1CA467250065D50D /* UserData.swift */,
 				1F4B4DFE1C73A60400A75F5D /* UserService.swift */,
@@ -763,6 +798,7 @@
 			isa = PBXGroup;
 			children = (
 				1FE166891CD9053C0052B0A8 /* ProfileDataFetcher.swift */,
+				1F4F7EC81CF4D50C00325CA9 /* ProfilePresenter.swift */,
 			);
 			name = Presenter;
 			sourceTree = "<group>";
@@ -1007,9 +1043,11 @@
 			files = (
 				1FA2E55F1C6802680085FC7D /* ImageCache.swift in Sources */,
 				1FA9FC9B1C53563700B993BC /* EventViewController.swift in Sources */,
+				1F4F7EC71CF4D08300325CA9 /* CurrentEventService.swift in Sources */,
 				1FA5A4EC1C53586D00722E55 /* CommunityViewController.swift in Sources */,
+				1F4F7ECB1CF4D5A200325CA9 /* UserJSONObject.swift in Sources */,
+				1F4F7EC91CF4D50C00325CA9 /* ProfilePresenter.swift in Sources */,
 				1FA5A4E81C53585500722E55 /* SettingsViewController.swift in Sources */,
-				1F6C69EC1CCFAEE600F15247 /* HacksmithsEventAPIConvenience.swift in Sources */,
 				1FA2E55B1C67FF020085FC7D /* GlobalConstants.swift in Sources */,
 				1F846CB31CEBAF3C009166D4 /* BaseRouter.swift in Sources */,
 				1F846CB01CEBADC8009166D4 /* EventService.swift in Sources */,
@@ -1035,8 +1073,10 @@
 				1F846CCA1CED00E3009166D4 /* ParticipantJSON.swift in Sources */,
 				1FF998991C6FAEDE003D98B2 /* Event.swift in Sources */,
 				1FC6DE471C9F6DC5000E8159 /* RegistrationData.swift in Sources */,
+				1F4F7ED01CF4E4AF00325CA9 /* UserProfileService.swift in Sources */,
 				1F4E315D1CF0E1D30013F56E /* ProjectIdeaJSON.swift in Sources */,
 				1F4E31561CF0DB3A0013F56E /* IdeaPagePresenter.swift in Sources */,
+				1F4F7ED21CF4E4C000325CA9 /* UserProfileRouter.swift in Sources */,
 				1FA5A4EE1C535A9500722E55 /* Extensions.swift in Sources */,
 				1F4B4DFF1C73A60400A75F5D /* UserService.swift in Sources */,
 				1F46B9EC1CA467250065D50D /* UserData.swift in Sources */,

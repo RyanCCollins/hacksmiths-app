@@ -25,6 +25,7 @@ class IdeaSubmissionViewController: UIViewController {
                 "title": ideaTitleTextField.text!,
                 "description": ideaDescriptionTextView.text
             ]
+            ideaSubmissionPresenter?.submitIdeaToAPI(ideaSubmission)
         } else {
             alertController(withTitles: ["OK"], message: "Please fill in both text fields before submitting", callbackHandler: [nil])
         }

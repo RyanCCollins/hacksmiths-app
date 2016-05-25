@@ -29,6 +29,7 @@ class EventService {
                             
                             self.deleteAllSavedNextEventEntries()
                             let nextEvent = NextEvent(nextEventJSON: nextEventJSON, context: GlobalStackManager.SharedManager.sharedContext)
+                            CurrentEventService.sharedService.setFromJSON(nextEventJSON)
                             
                             /* Save the context for this next event model object */
                             GlobalStackManager.SharedManager.sharedContext.performBlockAndWait({

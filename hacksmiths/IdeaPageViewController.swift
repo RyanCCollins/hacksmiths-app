@@ -35,10 +35,6 @@ class IdeaPageViewController: UIViewController {
     @IBAction func didTapSubmitIdeaUpInside(sender: AnyObject) {
         submitAnIdea()
     }
-    
-    func checkEventStatus() {
-        
-    }
 
 }
 

@@ -6,97 +6,96 @@
 //  Copyright © 2016 Tech Rapport. All rights reserved.
 //
 
-import UIKit
+import Gloss
 import CoreData
 
 @objc(UserData)
 class UserData: NSManagedObject {
     // Managed properties for one single user
-    @NSManaged var name: String?
-    @NSManaged var bio: String?
-    @NSManaged var avatarURL: String?
-    @NSManaged var avatarFilePath: String?
+    @NSManaged var name: String
+    @NSManaged var email: String
     @NSManaged var website: String?
-    @NSManaged var email: String?
     @NSManaged var isPublic: Bool
-    @NSManaged var isTopContributor: Bool
-    @NSManaged var rank: NSNumber
+    
+    @NSManaged var bio: String?
     @NSManaged var mobileNotifications: Bool
+    
+    /* Availability */
+    @NSManaged var isAvailableForEvents: Bool
+    @NSManaged var availabilityExplanation: String?
+    
+    /* Mentoring */
     @NSManaged var isAvailableAsAMentor: Bool
     @NSManaged var needsAMentor: Bool
-    @NSManaged var totalHatTips: NSNumber
-    @NSManaged var dateUpdated: NSDate
     @NSManaged var hasExperience: String?
     @NSManaged var wantsExperience: String?
-    @NSManaged var isAvailableForEvents: Bool
-    @NSManaged var availabilityExplanation: String
+    
+    @NSManaged var avatarURL: String?
+    
+    
+    /* Not yet mapped to JSON */
+    @NSManaged var isTopContributor: Bool
+    @NSManaged var dateUpdated: NSDate
     
     // Standard required init for the entity
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
     }
     
-    // Init for loading our data.
-    init(dictionary: [String : AnyObject], context: NSManagedObjectContext) {
-        /* Get associated entity from our context */
-        let entity = NSEntityDescription.entityForName("UserData", inManagedObjectContext: context)
-        
-        /* Super, get to work! */
-        super.init(entity: entity!, insertIntoManagedObjectContext: context)
-        
-        // Set our managed data from the passed in dictionary.
-        // Name is a dictionary with first and last name
-        // Bio is a dictionary object with HTML and MD (we are only concerned with MD
-        
-        name = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.name] as? String
-        bio = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.bio] as? String
-        
-        // The image also comes as a dictionary object, so parse that out and get the URL
-        if let image = dictionary["photo"] as? [String : AnyObject] {
-            if let url = image["url"] as? String {
-                avatarURL = url
-                avatarFilePath = avatarURL?.lastPathComponent
+    /* - Standard messy initialization for core data.  Man, why is Core Data such a pain?
+     *   This might be my last time using Core Data.
+     * - parameters - UserJSONObject, the high level JSON from the User, serialized and deserialized from JSON from API
+     */
+    init(json: UserJSONObject, context: NSManagedObjectContext) {
+        guard let name = json.user.name?.fullname else {
+            return
+        }
+        self.name = name
+        self.email = json.user.email
+        if let website = json.user.website {
+            self.website = website
+        }
+        self.isPublic = json.user.isPublic
+        if let bio = json.user.bio {
+            self.bio = bio.md
+        }
+        if let mobile = json.user.notifications?.mobile {
+            self.mobileNotifications = mobile
+        }
+        if let isAvailableForEvents = json.user.availability?.isAvailableForEvents {
+            self.isAvailableForEvents = isAvailableForEvents
+        }
+        if let availabilityExplanation = json.user.availability?.descriptionString {
+            self.availabilityExplanation = availabilityExplanation
+        }
+        if let isAvailableAsAMentor = json.user.mentoring?.available {
+            self.isAvailableAsAMentor = isAvailableAsAMentor
+        }
+        if let needsAMentor = json.user.mentoring?.needsAMentor {
+            self.needsAMentor = needsAMentor
+        }
+        if let hasExperience = json.user.mentoring?.experience {
+            self.hasExperience = hasExperience
+        }
+        if let wantsExperience = json.user.mentoring?.want {
+            self.wantsExperience = wantsExperience
+        }
+        if let photo = json.user.photo {
+            avatarURL = photo
+        }
+        if let dateUpdated = json.user.dateUpdated {
+            if let date = dateUpdated.parseAsDate() {
+                self.dateUpdated = date
             }
-        }
-        // The following properties should never be null because they are initialized with the results
-        // From the HacksmithsAPIClient.
-        website = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.website] as? String
-        email = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.email] as? String
-        isPublic = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.isPublic] as! Bool
-        totalHatTips = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.totalHatTips] as! NSNumber
-        isTopContributor = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Meta.isTopContributor] as! Bool
-        mobileNotifications = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Notifications.mobile] as! Bool
-        rank = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Meta.rank] as! NSNumber
-        
-        // Values are initialized as false, so will not be null.
-        isAvailableAsAMentor = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.mentoring.available] as! Bool
-        needsAMentor = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.mentoring.needsAMentor] as! Bool
-        
-        isAvailableForEvents = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.EventInvolvement.availability.isAvailableForEvents] as! Bool
-        
-        hasExperience = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.mentoring.experience] as! String
-        
-        wantsExperience = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.mentoring.wantsExperience] as! String
-        
-        if let explanation = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.EventInvolvement.availability.explanation] as? String {
-            availabilityExplanation = explanation
-        }
-        
-        let updatedAt = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.updatedAt] as? String
-        
-        if let updateDate = dateFromString(updatedAt!) {
-            dateUpdated = updateDate
         }
     }
     
-    func dateFromString(dateString: String) -> NSDate? {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
-        let date = dateFormatter.dateFromString(dateString)
-        if let date = date {
-            return date
+    dynamic var avatarFilePath: String? {
+        if let avatarURL = avatarURL {
+            return avatarURL.lastPathComponent
+        } else {
+            return nil
         }
-        return nil
     }
     
     func fetchImages(completionHandler: CompletionHandler) {
@@ -127,3 +126,5 @@ class UserData: NSManagedObject {
     }
     
 }
+
+

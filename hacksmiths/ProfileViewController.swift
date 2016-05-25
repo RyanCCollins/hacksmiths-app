@@ -25,13 +25,21 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
     @IBOutlet weak var noDataFoundLabel: UILabel!
     @IBOutlet weak var websiteTextView: UITextView!
     
+    private var profilePresenter: ProfilePresenter?
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         // Toggle the UI state when view appears to insure that the right elements are hidden.
         toggleEditMode(editing)
+        profilePresenter?.attachView(view)
         
         syncUIWithProfileData()
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        profilePresenter?.detachView(view)
     }
     
     func syncUIWithProfileData() {
@@ -107,4 +115,8 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
         // TODO: Upload changes to the profile to the server.
         toggleEditMode(false)
     }
+}
+
+extension ProfileViewController: ProfileView {
+    func 
 }

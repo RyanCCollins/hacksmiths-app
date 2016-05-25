@@ -224,9 +224,10 @@ extension HacksmithsAPIClient {
     }
  
     
-    func updateProfile(body: JsonDict, completionHandler: CompletionHandler) {
+    func updateProfile(body: UserJSONObject, completionHandler: CompletionHandler) {
         
         let method = Routes.UpdateProfile
+        
         if UserService.sharedInstance().authenticated {
         
             HacksmithsAPIClient.sharedInstance().taskForPOSTMethod(method, JSONBody: body, completionHandler: {succeess, result, error in
