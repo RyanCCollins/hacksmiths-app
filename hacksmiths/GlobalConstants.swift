@@ -11,6 +11,12 @@
 import Foundation
 import CoreData
 
+struct GlobalConstants {
+    static let hacksmithsURL = NSURL(string: "hacksmiths.io")
+    static let slackURL = NSURL(string: "https://hacksmiths-slack-invite.herokuapp.com/")
+    static let profileURL = NSURL(string: "https://hacksmiths.io/me")
+}
+
 /* Helper properties to get a_sync queues */
 var GlobalMainQueue: dispatch_queue_t {
     return dispatch_get_main_queue()

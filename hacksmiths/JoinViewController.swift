@@ -8,6 +8,7 @@
 
 import UIKit
 
+/* Various actions on join view */
 class JoinViewController: UIViewController {
     
     @IBAction func didTapSigninUpInside(sender: AnyObject) {
@@ -15,11 +16,19 @@ class JoinViewController: UIViewController {
     }
 
     @IBAction func didTapVisitSiteUpInside(sender: AnyObject) {
-        let url = NSURL(string: "hacksmiths.io")
-        UIApplication.sharedApplication().openURL(url!)
+        UIApplication.sharedApplication().openURL(GlobalConstants.hacksmithsURL!)
     }
     
     @IBAction func didTapSignupButtonUpInside(sender: AnyObject) {
         performSegueWithIdentifier("ShowRegistration", sender: self)
     }
+    
+    @IBAction func didTapSlackLinkButtonUpInside(sender: AnyObject) {
+        UIApplication.sharedApplication().openURL(GlobalConstants.slackURL!)
+    }
+    
+    @IBAction func didTapHacksmithsButtonUpInside(sender: AnyObject) {
+        UIApplication.sharedApplication().openURL(GlobalConstants.profileURL!)
+    }
+
 }

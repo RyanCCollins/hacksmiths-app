@@ -33,4 +33,13 @@ class AboutViewController: UIViewController {
         imageView.clipsToBounds = true
     }
 
+    @IBAction func didTapRyanTwitter(sender: AnyObject) {
+        let url = NSURL(string: "https://twitter.com/ryancollinsio")
+        UIApplication.sharedApplication().openURL(url!)
+    }
+    @IBAction func didTapRyanGithub(sender: AnyObject) {
+        let url = NSURL(string: "https://github.com/ryanccollins")
+        UIApplication.sharedApplication().openURL(url!)
+    }
+    
 }
