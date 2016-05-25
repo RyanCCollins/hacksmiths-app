@@ -25,7 +25,7 @@ class AboutViewController: UIViewController {
     // Open the hacksmiths.io about page
     @IBAction func didTapHacksmithsUpInside(sender: AnyObject) {
         let url = NSURL(string: HacksmithsAPIClient.Constants.InfoPage)
-        UIApplication.sharedApplication().openURL(url!)
+        handleOpenURL(url!)
     }
     
     func setCircularImageView(imageView: UIImageView) {
@@ -35,11 +35,26 @@ class AboutViewController: UIViewController {
 
     @IBAction func didTapRyanTwitter(sender: AnyObject) {
         let url = NSURL(string: "https://twitter.com/ryancollinsio")
-        UIApplication.sharedApplication().openURL(url!)
+        handleOpenURL(url!)
     }
     @IBAction func didTapRyanGithub(sender: AnyObject) {
         let url = NSURL(string: "https://github.com/ryanccollins")
-        UIApplication.sharedApplication().openURL(url!)
+        handleOpenURL(url!)
+    }
+    
+    @IBAction func didTapSeanGithub(sender: AnyObject) {
+        let url = NSURL(string: "https://github.com/swhc1066")
+        handleOpenURL(url!)
+    }
+    
+    func handleOpenURL(url: NSURL) {
+        UIApplication.sharedApplication().openURL(url)
+    }
+    
+   
+    @IBAction func didTapSeanTwitter(sender: AnyObject) {
+        let url = NSURL(string: "https://twitter.com/seanwhcraig")
+        handleOpenURL(url!)
     }
     
 }
