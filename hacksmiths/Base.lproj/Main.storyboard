@@ -1731,7 +1731,7 @@
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="Hx1-EO-gZE">
                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="1000"/>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="About the Founders" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nwl-Wl-H4N">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About the Founders" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nwl-Wl-H4N">
                                                 <rect key="frame" x="164" y="655" width="273" height="37"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="273" id="sir-X5-Xvf"/>
@@ -1904,17 +1904,7 @@
                                                     <constraint firstItem="uMb-Ix-6gM" firstAttribute="bottom" secondItem="zNP-eO-i1X" secondAttribute="bottom" id="uci-QS-p9c"/>
                                                 </constraints>
                                             </view>
-                                            <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dwS-47-bF3">
-                                                <rect key="frame" x="8" y="311" width="584" height="160"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <string key="text">The Hacksmiths are a group of software professionals working collaboratively in a virtual environment in an effort to solve real world problems through the development of software.
-
-We build tools designed to help non-profit organizations streamline their philanthropic efforts, utilizing industry best practices and advanced software development methodologies.</string>
-                                                <color key="textColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                            </textView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="hacksmiths-logo-text" translatesAutoresizingMaskIntoConstraints="NO" id="tVb-IK-lzG" customClass="SpringImageView" customModule="Spring">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hacksmiths-logo-text" translatesAutoresizingMaskIntoConstraints="NO" id="tVb-IK-lzG" customClass="SpringImageView" customModule="Spring">
                                                 <rect key="frame" x="172" y="198" width="257" height="27"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="27" id="5A6-q6-cD4"/>
@@ -1930,7 +1920,7 @@ We build tools designed to help non-profit organizations streamline their philan
                                                     <userDefinedRuntimeAttribute type="string" keyPath="animation" value="fadeIn"/>
                                                 </userDefinedRuntimeAttributes>
                                             </imageView>
-                                            <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="hacksmiths-logo" translatesAutoresizingMaskIntoConstraints="NO" id="r8B-A5-pDw" customClass="SpringImageView" customModule="Spring">
+                                            <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hacksmiths-logo" translatesAutoresizingMaskIntoConstraints="NO" id="r8B-A5-pDw" customClass="SpringImageView" customModule="Spring">
                                                 <rect key="frame" x="250" y="90" width="100" height="100"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="100" id="GDC-LA-UmP"/>
@@ -1946,18 +1936,30 @@ We build tools designed to help non-profit organizations streamline their philan
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gEv-02-xgF">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gEv-02-xgF">
                                                 <rect key="frame" x="232" y="233" width="137" height="30"/>
                                                 <state key="normal" title="http://hacksmiths.io"/>
                                                 <connections>
                                                     <action selector="didTapHacksmithsUpInside:" destination="BPJ-uo-Azq" eventType="touchUpInside" id="FxN-aa-gPg"/>
                                                 </connections>
                                             </button>
+                                            <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dwS-47-bF3">
+                                                <rect key="frame" x="8" y="311" width="584" height="160"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <string key="text">The Hacksmiths are a group of software professionals working collaboratively in a virtual environment in an effort to solve real world problems through the development of software.
+
+We build tools designed to help non-profit organizations streamline their philanthropic efforts, utilizing industry best practices and advanced software development methodologies.</string>
+                                                <color key="textColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="jxB-Jc-hIE" firstAttribute="leading" secondItem="ls6-oc-wlg" secondAttribute="leading" constant="8" id="3if-KE-Lx0"/>
                                             <constraint firstItem="r8B-A5-pDw" firstAttribute="width" secondItem="r8B-A5-pDw" secondAttribute="height" multiplier="1:1" id="4E1-Cp-GuY"/>
+                                            <constraint firstItem="rMJ-ay-03C" firstAttribute="centerX" secondItem="Hx1-EO-gZE" secondAttribute="centerX" id="78p-9r-Hke"/>
+                                            <constraint firstItem="dwS-47-bF3" firstAttribute="top" secondItem="gEv-02-xgF" secondAttribute="bottom" constant="48" id="8ug-kl-Q80"/>
                                             <constraint firstAttribute="trailing" secondItem="dwS-47-bF3" secondAttribute="trailing" constant="8" id="BcG-iL-vBC"/>
                                             <constraint firstItem="dwS-47-bF3" firstAttribute="top" secondItem="tVb-IK-lzG" secondAttribute="bottom" constant="86" id="HmC-sW-9rK"/>
                                             <constraint firstItem="gEv-02-xgF" firstAttribute="top" secondItem="tVb-IK-lzG" secondAttribute="bottom" constant="8" id="Lyv-pH-wsH"/>
@@ -1967,10 +1969,17 @@ We build tools designed to help non-profit organizations streamline their philan
                                             <constraint firstItem="Hx1-EO-gZE" firstAttribute="leading" secondItem="ls6-oc-wlg" secondAttribute="leading" id="Vm2-nt-uSV"/>
                                             <constraint firstAttribute="trailing" secondItem="Hx1-EO-gZE" secondAttribute="trailing" id="WDQ-VN-wO0"/>
                                             <constraint firstAttribute="trailing" secondItem="jxB-Jc-hIE" secondAttribute="trailing" constant="8" id="WyY-qZ-O69"/>
+                                            <constraint firstItem="nwl-Wl-H4N" firstAttribute="top" secondItem="dwS-47-bF3" secondAttribute="bottom" constant="184" id="XNP-Vy-D7f"/>
                                             <constraint firstItem="dwS-47-bF3" firstAttribute="leading" secondItem="ls6-oc-wlg" secondAttribute="leading" constant="8" id="YDA-E3-i26"/>
+                                            <constraint firstItem="gEv-02-xgF" firstAttribute="centerX" secondItem="Hx1-EO-gZE" secondAttribute="centerX" id="YK6-hR-Uxh"/>
+                                            <constraint firstItem="dwS-47-bF3" firstAttribute="centerX" secondItem="Hx1-EO-gZE" secondAttribute="centerX" id="a6Y-ZU-lXh"/>
+                                            <constraint firstItem="r8B-A5-pDw" firstAttribute="centerX" secondItem="Hx1-EO-gZE" secondAttribute="centerX" id="hoZ-Fz-Dqh"/>
+                                            <constraint firstItem="nwl-Wl-H4N" firstAttribute="centerX" secondItem="Hx1-EO-gZE" secondAttribute="centerX" id="i8v-oU-C1f"/>
                                             <constraint firstAttribute="bottom" secondItem="Hx1-EO-gZE" secondAttribute="bottom" id="jBM-jG-FUN"/>
                                             <constraint firstItem="rMJ-ay-03C" firstAttribute="leading" secondItem="ls6-oc-wlg" secondAttribute="leading" constant="8" id="k19-fW-7h6"/>
+                                            <constraint firstItem="jxB-Jc-hIE" firstAttribute="centerX" secondItem="Hx1-EO-gZE" secondAttribute="centerX" id="kZR-Zy-Tpk"/>
                                             <constraint firstItem="jxB-Jc-hIE" firstAttribute="top" secondItem="rMJ-ay-03C" secondAttribute="bottom" constant="8" id="nXl-MB-EI7"/>
+                                            <constraint firstItem="tVb-IK-lzG" firstAttribute="centerX" secondItem="Hx1-EO-gZE" secondAttribute="centerX" id="nYf-cs-dTW"/>
                                             <constraint firstItem="Hx1-EO-gZE" firstAttribute="top" secondItem="r8B-A5-pDw" secondAttribute="top" constant="-90" id="v2U-bS-yVg"/>
                                             <constraint firstAttribute="trailing" secondItem="rMJ-ay-03C" secondAttribute="trailing" constant="8" id="wum-yS-hgQ"/>
                                             <constraint firstItem="tVb-IK-lzG" firstAttribute="top" secondItem="r8B-A5-pDw" secondAttribute="bottom" constant="8" id="yDa-Na-XCG"/>
