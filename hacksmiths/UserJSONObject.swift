@@ -107,8 +107,7 @@ struct UserProfileJSON: Glossy {
         self.email = email
         
         self.website = UserKeys.website <~~ json
-        
-        self.isPublic = (UserKeys.isPublic <~~ json)! ?? false
+        self.isPublic = (UserKeys.isPublic <~~ json)!
         
         let bioJSON: JSON = (UserKeys.bio <~~ json)!
         self.bio = BioJSON(json: bioJSON)
@@ -138,7 +137,7 @@ struct UserProfileJSON: Glossy {
         self.notifications = NotificationJSON(userData: userData)
         self.availability = AvailabilityJSON(userData: userData)
         self.mentoring = MentoringJSON(userData: userData)
-        self.photo = userData.avatarURL ?? ""
+        self.photo = userData.avatarURL
         self.dateUpdated = userData.dateUpdated.parseAsString()
     }
     
@@ -249,11 +248,11 @@ struct MentoringJSON: Glossy {
     let want: String?
     
     init?(json: JSON) {
-        self.available = (MentoringKeys.available <~~ json)! ?? false
-        self.needsAMentor = (MentoringKeys.needsAMentor <~~ json)! ?? false
+        self.available = (MentoringKeys.available <~~ json)!
+        self.needsAMentor = (MentoringKeys.needsAMentor <~~ json)!
         
-        self.experience = MentoringKeys.experience <~~ json ?? ""
-        self.want = MentoringKeys.want <~~ json ?? ""
+        self.experience = MentoringKeys.experience <~~ json
+        self.want = MentoringKeys.want <~~ json
     }
     
     init(userData: UserData) {

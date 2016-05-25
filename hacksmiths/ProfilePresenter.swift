@@ -34,9 +34,9 @@ class ProfilePresenter {
             self.profileView?.didUpdateUserData(false, error: GlobalErrors.BadCredentials)
             return
         }
-        
+
         let userJSON = UserJSONObject(userData: userData)
-        userProfileService.updateProfile(userJSON).then() {
+        userProfileService.updateProfile(userJSON, userID: UserService.sharedInstance().userId!).then() {
             Void in
             self.profileView?.didUpdateUserData(true, error: nil)
             }.error {
@@ -50,7 +50,8 @@ class ProfilePresenter {
             self.profileView?.didGetUserDataFromAPI(nil, error: GlobalErrors.BadCredentials)
             return
         }
-        userProfileService.getProfile().then(){
+        
+        userProfileService.getProfile(UserService.sharedInstance().userId!).then(){
             userData -> () in
             self.profileView?.didGetUserDataFromAPI(userData, error: nil)
         }.error {

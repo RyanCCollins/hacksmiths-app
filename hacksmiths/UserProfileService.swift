@@ -13,28 +13,25 @@ import Gloss
 import CoreData
 
 class UserProfileService {
-    func getProfile() -> Promise<UserData?> {
+    func getProfile(userId: String) -> Promise<UserData?> {
         return Promise{resolve, reject in
-            let router = UserProfileRouter(endpoint: .GetProfile())
+            let router = UserProfileRouter(endpoint: .GetProfile(userId: userId))
             HTTPManager.sharedManager.request(router)
                 .validate()
                 .responseJSON{
                     response in
                     switch response.result {
                     case .Success(let JSON):
-                        guard let profileDict = JSON[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile] as? JsonDict,
-                            let userJSON = UserJSONObject(userData: profileDict) else {
-                                reject(GlobalErrors.MissingData)
-                                break
+                        if let profileDict = JSON[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.dictKey] as? JsonDict {
+                            let userJSON = UserJSONObject(json: profileDict)
+                            let userData = UserData(json: userJSON!, context: GlobalStackManager.SharedManager.sharedContext)
+                            GlobalStackManager.SharedManager.sharedContext.performBlockAndWait({
+                                CoreDataStackManager.sharedInstance().saveContext()
+                            })
+                            resolve(userData)
+                        } else {
+                            reject(GlobalErrors.GenericNetworkError)
                         }
-                        
-                        let userData = UserData(json: userJSON, context: GlobalStackManager.SharedManager.sharedContext)
-                        print("Created user with data: \(userData)")
-                        GlobalStackManager.SharedManager.sharedContext.performBlockAndWait({
-                            CoreDataStackManager.sharedInstance().saveContext()
-                        })
-                        
-                        resolve(userData)
                     case .Failure(let error):
                         reject(error as NSError)
                     }
@@ -42,9 +39,9 @@ class UserProfileService {
         }
     }
     
-    func updateProfile(userJSON: UserJSONObject) -> Promise<Void> {
+    func updateProfile(userJSON: UserJSONObject, userID: String) -> Promise<Void> {
         return Promise{resolve, reject in
-            let router = UserProfileRouter(endpoint: .UpdateProfile(userJSON: userJSON))
+            let router = UserProfileRouter(endpoint: .UpdateProfile(userJSON: userJSON, userID: userID))
             HTTPManager.sharedManager.request(router)
                 .validate()
                 .responseJSON{
@@ -60,39 +57,5 @@ class UserProfileService {
         
         }
 
-    }
-}
-
-struct UserName: Decodable {
-    let name: String
-    init?(json: JSON) {
-        let firstName: String = ("name.first" <~~ json)!
-        let lastName: String = ("name.last" <~~ json)!
-        name = "\(firstName) \(lastName)"
-    }
-}
-
-struct UserJSON: Decodable {
-    let name: String
-    let bio: String?
-    let website: String?
-    let email: String?
-    let isPublic: Bool
-    let mobile: Bool
-    let needsAMentor: Bool
-    let isAvailableForEvents: Bool
-    let availabilityExplanation: String?
-    let imageURL: String
-    let isTopContributor: Bool
-    let isAvailableAsAMentor: String?
-    let mobileNotifications: Bool
-    
-    init?(json: JSON) {
-        let nam
-        "name"
-    }
-    func getFullName(json: JSON) {
-        let first = "user.first" <~~ json
-        let last = "user.last" <~~ json
     }
 }

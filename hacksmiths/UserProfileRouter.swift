@@ -10,8 +10,8 @@ import Gloss
 import Alamofire
 
 enum ProfileEndpoint {
-    case GetProfile()
-    case UpdateProfile(userJSON: UserJSONObject)
+    case GetProfile(userId: String)
+    case UpdateProfile(userJSON: UserJSONObject, userID: String)
 }
 
 class UserProfileRouter: BaseRouter {
@@ -41,12 +41,15 @@ class UserProfileRouter: BaseRouter {
     
     override var parameters: JSON? {
         switch endpoint {
-        case .UpdateProfile(let userJSON):
-            if let json = userJSON.toJSON() as! JSON {
-                return json
-            } else {
-                return nil
-            }
+        case .GetProfile(let userID):
+            let user = ["user" : userID]
+            return user
+        case .UpdateProfile(let userJSON, let userID):
+            let json = userJSON.toJSON()
+            print(json)
+            return json
+        default:
+            return nil
         }
     }
 }

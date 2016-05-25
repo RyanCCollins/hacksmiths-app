@@ -109,10 +109,18 @@ extension String {
         }
     }
     
+    /* Remove HTML and special characters from string */
     func stringByRemovingHTML() -> String {
         let noHTMLString = self.stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil)
-        return noHTMLString
+        let cleanedString = removeSpecialCharsFromString(noHTMLString)
+        return cleanedString
     }
+    
+    private func removeSpecialCharsFromString(string: String) -> String {
+        let chars = Set("abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLKMNOPQRSTUVWXYZ1234567890+-*=(),.:!_".characters)
+        return String(string.characters.filter { chars.contains($0) })
+    }
+    
 }
 
 extension NSDate {
