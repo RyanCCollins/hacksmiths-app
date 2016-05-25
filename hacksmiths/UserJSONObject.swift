@@ -103,32 +103,30 @@ struct UserProfileJSON: Glossy {
             return
         }
 
-
         self.name = NameJSON(json: name)
-        self.mentoring = MentoringJSON(json: mentoring)
-        self.availability = AvailabilityJSON(json: availability)
-        self.notifications = NotificationJSON(json: notifications)
         self.email = email
-        self.isPublic = (UserKeys.isPublic <~~ json)!
         
-        if let bio: JSON = UserKeys.bio <~~ json {
-            self.bio = BioJSON(json: bio)
-        }
+        self.website = UserKeys.website <~~ json
         
-        if let website: String = UserKeys.website <~~ json {
-            self.website = website
-        }
-        if let photo: String = UserKeys.photo <~~ json {
-            self.photo = photo
-        }
-        if let dateUpdated: String = UserKeys.dateUpdated <~~ json {
-            self.dateUpdated = dateUpdated
-        }
+        self.isPublic = (UserKeys.isPublic <~~ json)! ?? false
+        
+        let bioJSON: JSON = (UserKeys.bio <~~ json)!
+        self.bio = BioJSON(json: bioJSON)
+        
+        self.notifications = NotificationJSON(json: notifications)
+        self.availability = AvailabilityJSON(json: availability)
+        self.mentoring = MentoringJSON(json: mentoring)
+        
+        self.photo = UserKeys.photo <~~ json
+        
+        self.dateUpdated = UserKeys.dateUpdated <~~ json
     }
     
     init(userData: UserData) {
         self.bio = BioJSON(userData: userData)
-
+        
+        self.email = userData.email
+    
         if let website = userData.website {
             self.website = website
         } else {
@@ -139,6 +137,8 @@ struct UserProfileJSON: Glossy {
         self.notifications = NotificationJSON(userData: userData)
         self.availability = AvailabilityJSON(userData: userData)
         self.mentoring = MentoringJSON(userData: userData)
+        self.photo = userData.avatarURL ?? ""
+        self.dateUpdated = userData.dateUpdated.parseAsString()
     }
     
     func toJSON() -> JSON? {
@@ -171,8 +171,22 @@ struct NameJSON: Glossy {
         self.lastname = last
     }
     
-    var fullname: String {
-        return "\(firstname) \(lastname)"
+    init(userData: UserData) {
+        let name = userData.name
+        let nameArray = name.componentsSeparatedByString(" ")
+        if nameArray.count >= 2 {
+            self.firstname = nameArray[0]
+            self.lastname = nameArray[1]
+        } else {
+            self.firstname = name
+            self.lastname = ""
+        }
+    }
+    
+    var fullname: String? {
+        get {
+            return "\(firstname) \(lastname)"
+        }
     }
     
     func toJSON() -> JSON? {
@@ -194,9 +208,14 @@ struct AvailabilityJSON: Glossy {
     init?(json: JSON) {
         if let isAvailable: Bool = AvailabilityKeys.isAvailableForEvents <~~ json {
             self.isAvailableForEvents = isAvailable
+        } else {
+            isAvailableForEvents = false
         }
+        
         if let descriptionString: String = AvailabilityKeys.description <~~ json {
             self.descriptionString = descriptionString
+        } else {
+            self.descriptionString = ""
         }
     }
     
@@ -229,14 +248,11 @@ struct MentoringJSON: Glossy {
     let want: String?
     
     init?(json: JSON) {
-        self.available = (MentoringKeys.available <~~ json)!
-        self.needsAMentor = (MentoringKeys.needsAMentor <~~ json)!
-        if let experience: String = MentoringKeys.experience <~~ json {
-            self.experience = experience
-        }
-        if let want: String = MentoringKeys.want <~~ json {
-            self.want = want
-        }
+        self.available = (MentoringKeys.available <~~ json)! ?? false
+        self.needsAMentor = (MentoringKeys.needsAMentor <~~ json)! ?? false
+        
+        self.experience = MentoringKeys.experience <~~ json ?? ""
+        self.want = MentoringKeys.want <~~ json ?? ""
     }
     
     init(userData: UserData) {
@@ -276,6 +292,8 @@ struct NotificationJSON: Glossy {
     init?(json: JSON) {
         if let mobile: Bool = NotificationKeys.mobile <~~ json {
             self.mobile = mobile
+        } else {
+            self.mobile = false
         }
     }
     

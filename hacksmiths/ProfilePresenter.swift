@@ -9,12 +9,17 @@
 import UIKit
 
 protocol ProfileView {
-    func didSubmitDataForUpdate(userData: UserData, userJSON: UserJSONObject)
-    func didGetUserDataFromAPI(withData: UserData, error: NSError?)
+    func didUpdateUserData(didSucceed: Bool, error: NSError?)
+    func didGetUserDataFromAPI(userData: UserData?, error: NSError?)
 }
 
 class ProfilePresenter {
     private var profileView: ProfileView?
+    var userProfileService: UserProfileService
+    
+    init(userProfileService: UserProfileService) {
+        self.userProfileService = userProfileService
+    }
     
     func attachView(profileView: ProfileView) {
         self.profileView = profileView
@@ -24,8 +29,31 @@ class ProfilePresenter {
         self.profileView = nil
     }
     
-    func submitDataToAPI() {
+    func submitDataToAPI(userData: UserData) {
+        guard UserService.sharedInstance().authenticated == true else {
+            self.profileView?.didUpdateUserData(false, error: GlobalErrors.BadCredentials)
+            return
+        }
         
-        HacksmithsAPIClient.sharedInstance().updateProfile(<#T##body: JsonDict##JsonDict#>, completionHandler: <#T##CompletionHandler##CompletionHandler##(success: Bool, error: NSError?) -> Void#>)
+        let userJSON = UserJSONObject(userData: userData)
+        userProfileService.updateProfile(userJSON).then() {
+            Void in
+            self.profileView?.didUpdateUserData(true, error: nil)
+            }.error {
+                error in
+                self.profileView?.didUpdateUserData(false, error: error as NSError)
+        }
+    }
+    
+    func fetchUserData() {
+        if UserService.sharedInstance().authenticated == true {
+            userProfileService.getProfile().then(){
+                userData -> () in
+                self.profileView?.didGetUserDataFromAPI(userData, error: nil)
+            }.error {
+                error in
+                self.profileView?.didGetUserDataFromAPI(nil, error: error as NSError)
+            }
+        }
     }
 }

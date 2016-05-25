@@ -32,27 +32,24 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
         
         // Toggle the UI state when view appears to insure that the right elements are hidden.
         toggleEditMode(editing)
-        profilePresenter?.attachView(view)
-        
+        profilePresenter?.attachView(self)
         syncUIWithProfileData()
     }
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        profilePresenter?.detachView(view)
+        profilePresenter?.detachView(self)
     }
     
     func syncUIWithProfileData() {
         if ProfileDataFetcher.sharedInstance.requiresFetch || ProfileDataFetcher.sharedInstance.userData == nil {
             ProfileDataFetcher.sharedInstance.fetchAndUpdateData({success, error in
-                
                 if error != nil {
                     self.alertController(withTitles: ["Ok"], message: (error?.localizedDescription)!, callbackHandler: [nil])
                 } else {
                     // Recursively set the profile data once it has been updated
                     self.syncUIWithProfileData()
                 }
-                
             })
             
         } else {
@@ -118,5 +115,19 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
 }
 
 extension ProfileViewController: ProfileView {
-    func 
+
+    func didUpdateUserData(didSucceed: Bool, error: NSError?) {
+        if error != nil {
+            //TODO: Handle the error
+        } else {
+            //TODO: Reload data.
+        }
+    }
+    func didGetUserDataFromAPI(userData: UserData?, error: NSError?) {
+        if error != nil {
+            //TODO: Handle the error
+        } else {
+            self.setUIForUserData(userData!)
+        }
+    }
 }

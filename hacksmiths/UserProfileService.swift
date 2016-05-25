@@ -19,14 +19,24 @@ class UserProfileService {
             HTTPManager.sharedManager.request(router)
                 .validate()
                 .responseJSON{
+                    response in
                     switch response.result {
                     case .Success(let JSON):
-                        if let profileDict = JSON[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile] as? JsonDict{
-                            let userDict =
+                        guard let profileDict = JSON[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile] as? JsonDict,
+                            let userJSON = UserJSONObject(userData: profileDict) else {
+                                reject(GlobalErrors.MissingData)
+                                break
                         }
                         
-                    case .Failure(let error):
+                        let userData = UserData(json: userJSON, context: GlobalStackManager.SharedManager.sharedContext)
+                        print("Created user with data: \(userData)")
+                        GlobalStackManager.SharedManager.sharedContext.performBlockAndWait({
+                            CoreDataStackManager.sharedInstance().saveContext()
+                        })
                         
+                        resolve(userData)
+                    case .Failure(let error):
+                        reject(error as NSError)
                     }
             }
         }

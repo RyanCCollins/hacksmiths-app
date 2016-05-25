@@ -324,6 +324,7 @@
 		1F4F7ECD1CF4E27800325CA9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1F46B9EB1CA467250065D50D /* UserData.swift */,
 				1F4F7ECA1CF4D5A200325CA9 /* UserJSONObject.swift */,
 			);
 			name = Model;
@@ -566,7 +567,6 @@
 			children = (
 				1F4F7ECC1CF4E26E00325CA9 /* Profile */,
 				1FC6DE461C9F6DC5000E8159 /* RegistrationData.swift */,
-				1F46B9EB1CA467250065D50D /* UserData.swift */,
 				1F4B4DFE1C73A60400A75F5D /* UserService.swift */,
 			);
 			name = User;

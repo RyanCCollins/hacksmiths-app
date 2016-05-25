@@ -154,13 +154,13 @@ extension HacksmithsAPIClient {
                         if let success = result["success"] as? Bool {
                             if let profileDict = result[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.dictKey] as? [String : AnyObject] {
                                 
-                                let userDict = self.dictionaryForUserData(profileDict)
-                                let userData = UserData(dictionary: userDict, context: self.sharedContext)
-                        
-                                self.sharedContext.performBlockAndWait({
-                                    CoreDataStackManager.sharedInstance().saveContext()
-                                })
-                                
+//                                let userDict = self.dictionaryForUserData(profileDict)
+//                                let userData = UserData(dictionary: userDict, context: self.sharedContext)
+//                        
+//                                self.sharedContext.performBlockAndWait({
+//                                    CoreDataStackManager.sharedInstance().saveContext()
+//                                })
+//                                
                                 completionHandler(success: true, error: nil)
                                 
                             } else {
@@ -229,18 +229,18 @@ extension HacksmithsAPIClient {
         let method = Routes.UpdateProfile
         
         if UserService.sharedInstance().authenticated {
-        
-            HacksmithsAPIClient.sharedInstance().taskForPOSTMethod(method, JSONBody: body, completionHandler: {succeess, result, error in
-                
-                if error != nil {
-                    completionHandler(success: false, error: error)
-                } else {
-                    
-                    completionHandler(success: true, error: nil)
-                    
-                }
-                
-            })
+//        
+//            HacksmithsAPIClient.sharedInstance().taskForPOSTMethod(method, JSONBody: body, completionHandler: {succeess, result, error in
+//                
+//                if error != nil {
+//                    completionHandler(success: false, error: error)
+//                } else {
+//                    
+//                    completionHandler(success: true, error: nil)
+//                    
+//                }
+//                
+//            })
             
         } else {
             completionHandler(success: false, error: Errors.constructError(domain: "Hacksmiths API Client", userMessage: "You must log in to do that."))

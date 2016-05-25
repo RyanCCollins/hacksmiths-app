@@ -47,6 +47,9 @@ class UserData: NSManagedObject {
      * - parameters - UserJSONObject, the high level JSON from the User, serialized and deserialized from JSON from API
      */
     init(json: UserJSONObject, context: NSManagedObjectContext) {
+        let entity = NSEntityDescription.entityForName("UserData", inManagedObjectContext: context)
+        super.init(entity: entity!, insertIntoManagedObjectContext: context)
+        
         guard let name = json.user.name?.fullname else {
             return
         }
