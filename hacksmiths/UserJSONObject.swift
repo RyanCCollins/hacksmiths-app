@@ -32,7 +32,6 @@ struct NameKeys {
 }
 
 struct AvailabilityKeys {
-    
     static let isAvailableForEvents = "isAvailableForEvents"
     static let description = "description.md"
 }

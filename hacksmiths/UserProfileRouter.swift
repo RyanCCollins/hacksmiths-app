@@ -22,7 +22,7 @@ class UserProfileRouter: BaseRouter {
     }
     override var method: Alamofire.Method {
         switch endpoint {
-        case .GetProfile: return .GET
+        case .GetProfile: return .POST
         case .UpdateProfile: return .POST
         }
     }

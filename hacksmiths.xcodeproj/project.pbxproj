@@ -13,6 +13,7 @@
 		1F384A8D1CF25C3F00E15887 /* NextEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F384A8C1CF25C3F00E15887 /* NextEvent.swift */; };
 		1F44B1BA1C5DDAB9004E196D /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F44B1B91C5DDAB9004E196D /* CoreDataStackManager.swift */; };
 		1F46B9EC1CA467250065D50D /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F46B9EB1CA467250065D50D /* UserData.swift */; };
+		1F498E151CF78C93009A5AB2 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F498E141CF78C93009A5AB2 /* SettingsPresenter.swift */; };
 		1F4B4DF71C72574700A75F5D /* 1Password.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F4B4DF41C72574700A75F5D /* 1Password.xcassets */; };
 		1F4B4DF81C72574700A75F5D /* OnePasswordExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4B4DF61C72574700A75F5D /* OnePasswordExtension.m */; };
 		1F4B4DFF1C73A60400A75F5D /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4B4DFE1C73A60400A75F5D /* UserService.swift */; };
@@ -131,6 +132,7 @@
 		1F384A8C1CF25C3F00E15887 /* NextEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextEvent.swift; sourceTree = "<group>"; };
 		1F44B1B91C5DDAB9004E196D /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
 		1F46B9EB1CA467250065D50D /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		1F498E141CF78C93009A5AB2 /* SettingsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
 		1F4B4DF31C72574600A75F5D /* hacksmiths-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "hacksmiths-Bridging-Header.h"; sourceTree = "<group>"; };
 		1F4B4DF41C72574700A75F5D /* 1Password.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = 1Password.xcassets; sourceTree = "<group>"; };
 		1F4B4DF51C72574700A75F5D /* OnePasswordExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnePasswordExtension.h; sourceTree = "<group>"; };
@@ -297,6 +299,22 @@
 				1FA2E5641C6802B30085FC7D /* HacksmithsAPI */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		1F498E131CF78C76009A5AB2 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				1F498E141CF78C93009A5AB2 /* SettingsPresenter.swift */,
+			);
+			name = Presenter;
+			sourceTree = "<group>";
+		};
+		1F498E161CF78F61009A5AB2 /* SettingsView */ = {
+			isa = PBXGroup;
+			children = (
+				1FA5A4E71C53585500722E55 /* SettingsViewController.swift */,
+			);
+			name = SettingsView;
 			sourceTree = "<group>";
 		};
 		1F4E31571CF0E1980013F56E /* ProjectIdea */ = {
@@ -643,7 +661,8 @@
 		1FAD7DB71CEE5F8E0044BD94 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				1FA5A4E71C53585500722E55 /* SettingsViewController.swift */,
+				1F498E161CF78F61009A5AB2 /* SettingsView */,
+				1F498E131CF78C76009A5AB2 /* Presenter */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -1100,6 +1119,7 @@
 				1FF998971C6FAE3E003D98B2 /* Person.swift in Sources */,
 				1F4E315B1CF0E1C20013F56E /* ProjectIdeaService.swift in Sources */,
 				1F115B4A1CC0060900DC434E /* RegistrationPageViewController.swift in Sources */,
+				1F498E151CF78C93009A5AB2 /* SettingsPresenter.swift in Sources */,
 				1F384A881CF229D400E15887 /* HTTPManager.swift in Sources */,
 				1F4E31591CF0E1B10013F56E /* ProjectIdeaRouter.swift in Sources */,
 				1F846CB91CEBB4BE009166D4 /* EventRouter.swift in Sources */,

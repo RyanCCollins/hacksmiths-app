@@ -9,8 +9,13 @@
 import UIKit
 
 protocol ProfileView {
+    func showLoading()
+    func hideLoading()
+    func setActivityIndicator(withMessage message: String?)
     func didUpdateUserData(didSucceed: Bool, error: NSError?)
     func didGetUserDataFromAPI(userData: UserData?, error: NSError?)
+    func unsubscribeToNotifications(sender: AnyObject)
+    func subscribeToNotifications(sender: AnyObject)
 }
 
 class ProfilePresenter {
@@ -23,18 +28,23 @@ class ProfilePresenter {
     
     func attachView(profileView: ProfileView) {
         self.profileView = profileView
+        self.profileView?.subscribeToNotifications(self)
+        self.profileView?.setActivityIndicator(withMessage: "Synching")
     }
     
     func detachView(profileView: ProfileView) {
+        self.profileView?.unsubscribeToNotifications(self)
         self.profileView = nil
     }
     
     func submitDataToAPI(userData: UserData) {
+        
         guard UserService.sharedInstance().authenticated == true else {
             self.profileView?.didUpdateUserData(false, error: GlobalErrors.BadCredentials)
             return
         }
 
+        profileView?.showLoading()
         let userJSON = UserJSONObject(userData: userData)
         userProfileService.updateProfile(userJSON, userID: UserService.sharedInstance().userId!).then() {
             Void in
@@ -45,11 +55,26 @@ class ProfilePresenter {
         }
     }
     
+    func fetchOrGetUserData() -> UserData? {
+        var returnData: UserData?
+        userProfileService.fetchSavedUserData().then() {
+            userData -> () in
+            if userData != nil {
+                returnData = userData
+            } else {
+                self.fetchUserData()
+            }
+        }
+        return returnData
+    }
+    
     func fetchUserData() {
+        
         guard UserService.sharedInstance().authenticated == true else {
             self.profileView?.didGetUserDataFromAPI(nil, error: GlobalErrors.BadCredentials)
             return
         }
+        profileView?.showLoading()
         
         userProfileService.getProfile(UserService.sharedInstance().userId!).then(){
             userData -> () in

@@ -20,11 +20,28 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var publicProfileToggle: UISwitch!
     
+    private let settingPresenter = SettingsPresenter(profileService: UserProfileService())
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         modalView.transform = CGAffineTransformMakeTranslation(-300, 0)
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        setUIForUserData()
+        settingPresenter.attachView(self)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        settingPresenter.detachView(self)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(true)
+        modalView.animate()
+        presentingViewController!.view.transformOut(self)
+    }
     
     @IBAction func didTapPushNotificationsToggle(sender: UISwitch) {
         if ProfileDataFetcher.sharedInstance.userData != nil {
@@ -50,6 +67,7 @@ class SettingsViewController: UIViewController {
     }
     
     func setUIForUserData(){
+        
         if ProfileDataFetcher.sharedInstance.userData != nil {
             
             let notificationsIsOn = ProfileDataFetcher.sharedInstance.userData?.mobileNotifications
@@ -62,16 +80,24 @@ class SettingsViewController: UIViewController {
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        setUIForUserData()
+    @IBAction func didTapToggle(sender: UISwitch) {
+        let toggle = Toggle(rawValue: sender.tag)
+        switch toggle! {
+        case .PushNotifications:
+            let newValue = sender.on
+            break
+        default:
+            break
+//        case .AvailableForEvents:
+//        case .PublicProfile:
+//        case .AvailableAsAMenter:
+//        case .LookingForAMentor:
+            
+        }
     }
+    
+    
 
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(true)
-        modalView.animate()
-        presentingViewController!.view.transformOut(self)
-    }
     
     @IBAction func closeButtonPressed(sender: AnyObject) {
         presentingViewController!.view.transformIn(self)
@@ -84,5 +110,24 @@ class SettingsViewController: UIViewController {
     }
     
     
+}
+
+extension SettingsViewController: SettingsView {
+    func didChangeSettings(value: Bool) {
+        print(value)
+    }
+}
+
+enum Toggle: Int {
+    case PushNotifications = 1, AvailableForEvents,
+    PublicProfile, AvailableAsAMentor, LookingForAMentor
+}
+
+enum ToggleValue {
+    case PushNotifications(newValue: Bool)
+    case AvailableForEvents(newValue: Bool)
+    case PublicProfile(newValue: Bool)
+    case AvailableAsAMentor(newValue: Bool)
+    case LookingForAMentor(newValue: Bool)
 }
 

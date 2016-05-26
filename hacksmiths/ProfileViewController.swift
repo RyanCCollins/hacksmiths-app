@@ -8,12 +8,16 @@
 
 import UIKit
 import CoreData
+import TextFieldEffects
 
 protocol ProfileUserDataDelegate {
     func didSetUserData(userData: UserData)
 }
 
 class ProfileViewController: UIViewController, UINavigationControllerDelegate {
+    @IBOutlet weak var mentoringFieldsView: UIView!
+    @IBOutlet weak var haveExperience: IsaoTextField!
+    @IBOutlet weak var wantExperience: IsaoTextField!
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var editButton: UIBarButtonItem!
@@ -23,7 +27,11 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
 
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var noDataFoundLabel: UILabel!
-    @IBOutlet weak var websiteTextView: UITextView!
+    @IBOutlet weak var websiteTextField: IsaoTextField!
+    
+    var activityIndicator: IGActivityIndicatorView!
+    var shouldShowWantExperienceField = false
+    var shouldShowHasExperienceField = false
     
     private var profilePresenter = ProfilePresenter(userProfileService: UserProfileService())
     
@@ -32,9 +40,16 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
         
         // Toggle the UI state when view appears to insure that the right elements are hidden.
         toggleEditMode(editing)
+        setTextFieldDelegate()
         profilePresenter.attachView(self)
         profilePresenter.fetchUserData()
-//        syncUIWithProfileData()
+    }
+    
+    func setTextFieldDelegate() {
+        haveExperience.delegate = self
+        wantExperience.delegate = self
+        websiteTextField.delegate = self
+        descriptionTextField.delegate = self
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -42,32 +57,44 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
         profilePresenter.detachView(self)
     }
     
-//    func syncUIWithProfileData() {
-//        if ProfileDataFetcher.sharedInstance.requiresFetch || ProfileDataFetcher.sharedInstance.userData == nil {
-//            ProfileDataFetcher.sharedInstance.fetchAndUpdateData({success, error in
-//                if error != nil {
-//                    self.alertController(withTitles: ["Ok"], message: (error?.localizedDescription)!, callbackHandler: [nil])
-//                } else {
-//                    // Recursively set the profile data once it has been updated
-//                    self.syncUIWithProfileData()
-//                }
-//            })
-//            
-//        } else {
-//            setUIForUserData(ProfileDataFetcher.sharedInstance.userData!)
-//        }
-//    }
-    
     func setUIForUserData(userData: UserData) {
         dispatch_async(GlobalMainQueue, {
             self.nameLabel.text = userData.name
             self.descriptionTextField.text = userData.bio
             self.profileImageView.userImage = userData.image
             
-            if let website = userData.website {
-                self.websiteTextView.text = website
-            }
+            self.setupWebsiteField(userData)
+            self.setupMentoringFields(userData)
         })
+    }
+    
+    func setupMentoringFields(userData: UserData){
+        if userData.isAvailableAsAMentor == false && userData.needsAMentor == false {
+            mentoringFieldsView.hidden = true
+        } else {
+            mentoringFieldsView.hidden = false
+        }
+        
+        shouldShowHasExperienceField = userData.isAvailableAsAMentor
+        if shouldShowHasExperienceField {
+
+            if let haveExperienceText = userData.hasExperience {
+                haveExperience.text = haveExperienceText
+            }
+        }
+        shouldShowHasExperienceField = userData.needsAMentor
+        if shouldShowHasExperienceField {
+            wantExperience.hidden = false
+            if let wantExperienceText = userData.wantsExperience {
+                wantExperience.text = wantExperienceText
+            }
+        }
+    }
+    
+    func setupWebsiteField(userData: UserData) {
+        if let website = userData.website {
+            websiteTextField.text = website
+        }
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -87,12 +114,12 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
     }
 
     @IBAction func didTapCancelUpInside(sender: AnyObject) {
-        if editing {
-            toggleEditMode(false)
-            
-        }
+        toggleEditMode(!editing)
     }
     
+    @IBAction func didTapRefreshUpInside(sender: AnyObject) {
+        profilePresenter.fetchUserData()
+    }
     
     func toggleEditMode(editing: Bool) {
         self.editing = editing
@@ -101,12 +128,12 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
         cancelButton.enabled = editing
         nameLabel.hidden = editing
         descriptionTextField.editable = editing
-        if editing {
-            let borderColor = UIColor.redColor()
-            descriptionTextField.layer.borderColor = borderColor.CGColor
-        } else {
-            descriptionTextField.layer.borderColor = UIColor.clearColor().CGColor
-        }
+        
+        websiteTextField.hidden = !editing
+        
+        wantExperience.hidden = !editing
+
+        haveExperience.hidden = !editing
     }
     
     func commitChangesToProfile() {
@@ -115,20 +142,90 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
     }
 }
 
+/* Profile View Delegate methods */
 extension ProfileViewController: ProfileView {
-
+    
     func didUpdateUserData(didSucceed: Bool, error: NSError?) {
+        hideLoading()
         if error != nil {
-            //TODO: Handle the error
+            alertController(withTitles: ["OK", "Retry"], message: (error?.localizedDescription)!, callbackHandler: [nil, {Void in
+                self.profilePresenter.fetchUserData()
+                }])
         } else {
-            //TODO: Reload data.
+            editing = false
+            
         }
     }
+    
     func didGetUserDataFromAPI(userData: UserData?, error: NSError?) {
+        hideLoading()
         if error != nil {
-            //TODO: Handle the error
+            alertController(withTitles: ["OK", "Retry"], message: (error?.localizedDescription)!, callbackHandler: [nil, {Void in
+                self.profilePresenter.fetchUserData()
+            }])
         } else {
             self.setUIForUserData(userData!)
         }
+    }
+    
+    func showLoading() {
+        activityIndicator.startAnimating()
+    }
+    
+    func hideLoading() {
+        activityIndicator.stopAnimating()
+    }
+    
+    func setActivityIndicator(withMessage message: String?) {
+        let activityMessage = message ?? "Loading"
+        activityIndicator = IGActivityIndicatorView(inview: self.view, messsage: activityMessage)
+    }
+    
+    func unsubscribeToNotifications(sender: AnyObject) {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
+    func subscribeToNotifications(sender: AnyObject) {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ProfileViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ProfileViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+    }
+}
+
+extension ProfileViewController: UITextViewDelegate, UITextFieldDelegate {
+    /* Configure and deselect text fields when return is pressed */
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        if(text == "\n") {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
+    }
+    
+    /* Hide keyboard when view is tapped */
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        /* slide the view up when keyboard appears, using notifications */
+        view.frame.origin.y = -getKeyboardHeight(notification)
+    }
+    
+    /* Reset view origin when keyboard hides */
+    func keyboardWillHide(notification: NSNotification) {
+        view.frame.origin.y = 0
+    }
+    
+    /* Get the height of the keyboard from the user info dictionary */
+    func getKeyboardHeight(notification: NSNotification) -> CGFloat {
+        let userInfo = notification.userInfo
+        let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue
+        return keyboardSize.CGRectValue().height
     }
 }

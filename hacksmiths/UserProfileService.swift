@@ -31,10 +31,13 @@ class UserProfileService {
                         if let profileDict = JSON[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.dictKey] as? JsonDict {
                             print("Creating profile with \(profileDict)")
                             let userJSON = UserJSONObject(json: profileDict)
+                            
                             let userData = UserData(json: userJSON!, context: GlobalStackManager.SharedManager.sharedContext)
                             GlobalStackManager.SharedManager.sharedContext.performBlockAndWait({
                                 CoreDataStackManager.sharedInstance().saveContext()
                             })
+                            /* Delete all the past user data records */
+                            self.deleteUserDataRecords()
                             resolve(userData)
                         } else {
                             reject(GlobalErrors.GenericNetworkError)
@@ -68,5 +71,63 @@ class UserProfileService {
         
         }
 
+    }
+    
+    func fetchSavedUserData() -> Promise<UserData?> {
+        return Promise{resolve, reject in
+            performUserFetch({success, userData, error in
+                if error != nil {
+                    reject(error! as NSError)
+                } else {
+                    resolve(userData)
+                }
+            })
+        }
+    }
+    
+    private func deleteUserDataRecords() -> Promise<Void> {
+        return Promise{ resolve, reject in
+            let fetchRequest = NSFetchRequest(entityName: "UserData")
+            let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+            do {
+                try CoreDataStackManager.sharedInstance().persistentStoreCoordinator?.executeRequest(deleteRequest, withContext: GlobalStackManager.SharedManager.sharedContext)
+                resolve()
+            } catch let error as NSError {
+                print("An error occured while deleting all event data")
+                reject(error)
+            }
+        }
+    }
+    
+    private lazy var fetchedResultsController: NSFetchedResultsController = {
+        let sortPriority = NSSortDescriptor(key: "dateUpdated", ascending: false)
+        let userDataFetch = NSFetchRequest(entityName: "UserData")
+        userDataFetch.sortDescriptors = [sortPriority]
+        
+        let fetchResultsController = NSFetchedResultsController(fetchRequest: userDataFetch, managedObjectContext: GlobalStackManager.SharedManager.sharedContext, sectionNameKeyPath: nil, cacheName: nil)
+        
+        do {
+            try fetchResultsController.performFetch()
+        } catch let error {
+            print(error)
+        }
+        
+        return fetchResultsController
+    }()
+    
+    private func performUserFetch(completionHandlerWithUserData: CompletionHandlerWithUserData) {
+        do {
+            
+            try fetchedResultsController.performFetch()
+            
+        } catch let error as NSError {
+            completionHandlerWithUserData(success: false, userData: nil, error: error)
+        }
+        
+        if let userData = fetchedResultsController.fetchedObjects![0] as? UserData {
+            completionHandlerWithUserData(success: true, userData: userData, error: nil)
+        } else {
+            completionHandlerWithUserData(success: false, userData: nil, error: Errors.constructError(domain: "ProfileData", userMessage: "An error occured while retrieving your user data.  If the error continues, please sign out and sign back in."))
+        }
     }
 }
