@@ -1366,7 +1366,7 @@
                                                 <real key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="autostart" value="YES"/>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="animation" value="fadeInDown"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="animation" value="pop"/>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9ik-Q5-lj8">
@@ -1484,7 +1484,7 @@
                                             <constraint firstAttribute="height" constant="24" id="9qh-ce-eEO"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="animation" value="fadeInDown"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="animation" value="pop"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="delay">
                                                 <real key="value" value="1.5"/>
                                             </userDefinedRuntimeAttribute>
@@ -1712,73 +1712,73 @@
         <!--About-->
         <scene sceneID="Q7F-Mn-C5v">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9On-3n-OD7" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="About" id="BPJ-uo-Azq" customClass="AboutViewController" customModule="hacksmiths" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iRe-QO-pMl"/>
                         <viewControllerLayoutGuide type="bottom" id="Xvp-Md-Mee"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="qgG-uU-pRt">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="1000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="2200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2qr-qb-aSc">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="1000"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2qr-qb-aSc">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="2151"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ls6-oc-wlg" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="1000"/>
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ls6-oc-wlg" userLabel="Content View">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="2151"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="Hx1-EO-gZE">
-                                                <rect key="frame" x="0.0" y="0.0" width="600" height="1000"/>
-                                            </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About the Founders" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nwl-Wl-H4N">
-                                                <rect key="frame" x="164" y="655" width="273" height="37"/>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hacksmiths-bg" translatesAutoresizingMaskIntoConstraints="NO" id="Hx1-EO-gZE">
+                                                <rect key="frame" x="0.0" y="0.0" width="600" height="649"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="273" id="sir-X5-Xvf"/>
+                                                    <constraint firstAttribute="width" constant="600" id="Bgw-tV-ho4"/>
+                                                    <constraint firstAttribute="height" constant="649" id="vUy-Aw-Dd9"/>
                                                 </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="About the Hacksmiths" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CHP-c2-JrW">
+                                                <rect key="frame" x="148" y="756" width="304" height="37"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="31"/>
                                                 <color key="textColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rMJ-ay-03C">
-                                                <rect key="frame" x="8" y="700" width="584" height="142"/>
+                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rMJ-ay-03C">
+                                                <rect key="frame" x="8" y="1413" width="584" height="365"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ryan" translatesAutoresizingMaskIntoConstraints="NO" id="GAs-1g-ZAE">
-                                                        <rect key="frame" x="8" y="8" width="125" height="125"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="125" id="0VL-Da-YSc"/>
-                                                            <constraint firstAttribute="width" constant="125" id="TSN-L3-Z3q"/>
-                                                        </constraints>
-                                                    </imageView>
-                                                    <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kaq-7e-5wU">
-                                                        <rect key="frame" x="141" y="53" width="433" height="100"/>
+                                                    <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kaq-7e-5wU">
+                                                        <rect key="frame" x="8" y="252" width="568" height="105"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="100" id="7KP-ai-rzn"/>
-                                                        </constraints>
                                                         <string key="text">Ryan built the Hacksmiths platform from the ground up.  He has nearly 8 years experience architecting large-scale web applications and data systems.  You can find him spending his free time contributing to open source projects and leading the Hacksmiths' development team.</string>
                                                         <color key="textColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                         <dataDetectorType key="dataDetectorTypes" link="YES"/>
                                                     </textView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="e1m-Jd-Ln5">
-                                                        <rect key="frame" x="141" y="13" width="369" height="27"/>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="ryan" translatesAutoresizingMaskIntoConstraints="NO" id="GAs-1g-ZAE">
+                                                        <rect key="frame" x="230" y="8" width="125" height="125"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="125" id="0VL-Da-YSc"/>
+                                                            <constraint firstAttribute="width" constant="125" id="TSN-L3-Z3q"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Ryan Collins" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="loB-gb-tX5">
+                                                        <rect key="frame" x="245" y="141" width="94" height="27"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="27" id="Ba8-aX-Afi"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="bb9-S2-uJ1">
+                                                        <rect key="frame" x="165" y="176" width="255" height="27"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ryan Collins" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="loB-gb-tX5">
-                                                                <rect key="frame" x="0.0" y="0.0" width="94" height="27"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <color key="textColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1c6-KT-qor">
-                                                                <rect key="frame" x="114" y="0.0" width="109" height="27"/>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Po5-Ig-vaC">
+                                                                <rect key="frame" x="0.0" y="0.0" width="109" height="27"/>
                                                                 <subviews>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fku-iu-OYo">
+                                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fku-iu-OYo">
                                                                         <rect key="frame" x="0.0" y="0.0" width="27" height="27"/>
                                                                         <state key="normal" image="github"/>
                                                                     </button>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ldR-hN-t3Q">
+                                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ldR-hN-t3Q">
                                                                         <rect key="frame" x="27" y="0.0" width="82" height="27"/>
                                                                         <state key="normal" title="ryanccollins"/>
                                                                         <connections>
@@ -1787,17 +1787,17 @@
                                                                     </button>
                                                                 </subviews>
                                                             </stackView>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GjK-aT-WHp">
-                                                                <rect key="frame" x="243" y="0.0" width="126" height="27"/>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GjK-aT-WHp">
+                                                                <rect key="frame" x="129" y="0.0" width="126" height="27"/>
                                                                 <subviews>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="twitter-logo" translatesAutoresizingMaskIntoConstraints="NO" id="09e-je-A8w">
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="twitter-logo" translatesAutoresizingMaskIntoConstraints="NO" id="09e-je-A8w">
                                                                         <rect key="frame" x="0.0" y="0.0" width="27" height="27"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="27" id="dbJ-JY-l0a"/>
                                                                             <constraint firstAttribute="width" secondItem="09e-je-A8w" secondAttribute="height" multiplier="1:1" id="kIj-Lm-qtY"/>
                                                                         </constraints>
                                                                     </imageView>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YV1-Qk-URP">
+                                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YV1-Qk-URP">
                                                                         <rect key="frame" x="27" y="0.0" width="99" height="27"/>
                                                                         <state key="normal" title="@ryancollinsio"/>
                                                                         <connections>
@@ -1811,58 +1811,86 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstItem="e1m-Jd-Ln5" firstAttribute="top" secondItem="rMJ-ay-03C" secondAttribute="top" constant="13" id="9hc-8f-mKL"/>
-                                                    <constraint firstItem="e1m-Jd-Ln5" firstAttribute="leading" secondItem="GAs-1g-ZAE" secondAttribute="trailing" constant="8" id="G1s-y4-vbe"/>
-                                                    <constraint firstItem="GAs-1g-ZAE" firstAttribute="centerY" secondItem="rMJ-ay-03C" secondAttribute="centerY" id="Ihd-Se-s1T"/>
-                                                    <constraint firstItem="GAs-1g-ZAE" firstAttribute="leading" secondItem="rMJ-ay-03C" secondAttribute="leadingMargin" id="Nmw-8R-RaQ"/>
-                                                    <constraint firstItem="e1m-Jd-Ln5" firstAttribute="leading" secondItem="kaq-7e-5wU" secondAttribute="leading" id="TZX-Fb-2bs"/>
-                                                    <constraint firstAttribute="trailing" secondItem="kaq-7e-5wU" secondAttribute="trailing" constant="10" id="Tma-Se-LgE"/>
-                                                    <constraint firstItem="kaq-7e-5wU" firstAttribute="top" secondItem="loB-gb-tX5" secondAttribute="bottom" constant="13" id="X96-Hj-IjM"/>
-                                                    <constraint firstItem="GAs-1g-ZAE" firstAttribute="top" secondItem="rMJ-ay-03C" secondAttribute="topMargin" id="p4P-gL-hcn"/>
+                                                    <constraint firstAttribute="height" constant="365" id="4TM-f2-YcE"/>
+                                                    <constraint firstItem="bb9-S2-uJ1" firstAttribute="centerX" secondItem="rMJ-ay-03C" secondAttribute="centerX" id="AUd-pi-Xeg"/>
+                                                    <constraint firstItem="GAs-1g-ZAE" firstAttribute="top" secondItem="rMJ-ay-03C" secondAttribute="top" constant="8" id="B5k-32-vc7"/>
+                                                    <constraint firstItem="kaq-7e-5wU" firstAttribute="centerX" secondItem="rMJ-ay-03C" secondAttribute="centerX" id="IUR-Cv-O6h"/>
+                                                    <constraint firstItem="bb9-S2-uJ1" firstAttribute="top" secondItem="loB-gb-tX5" secondAttribute="bottom" constant="8" id="Tl6-Jn-8qH"/>
+                                                    <constraint firstAttribute="bottom" secondItem="kaq-7e-5wU" secondAttribute="bottom" constant="8" id="aVN-gh-koW"/>
+                                                    <constraint firstItem="GAs-1g-ZAE" firstAttribute="centerX" secondItem="rMJ-ay-03C" secondAttribute="centerX" id="iGy-be-9Dk"/>
+                                                    <constraint firstItem="loB-gb-tX5" firstAttribute="top" secondItem="GAs-1g-ZAE" secondAttribute="bottom" constant="8" id="odT-uc-fv4"/>
+                                                    <constraint firstItem="kaq-7e-5wU" firstAttribute="leading" secondItem="rMJ-ay-03C" secondAttribute="leading" constant="8" id="prf-Dq-ZsN"/>
+                                                    <constraint firstItem="loB-gb-tX5" firstAttribute="centerX" secondItem="rMJ-ay-03C" secondAttribute="centerX" id="sJN-fw-4Gm"/>
+                                                    <constraint firstAttribute="trailing" secondItem="kaq-7e-5wU" secondAttribute="trailing" constant="8" id="tJz-yY-AmC"/>
+                                                    <constraint firstAttribute="bottom" secondItem="kaq-7e-5wU" secondAttribute="bottom" constant="8" id="waM-9q-0Rq"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jxB-Jc-hIE">
-                                                <rect key="frame" x="8" y="850" width="584" height="142"/>
+                                            <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dwS-47-bF3">
+                                                <rect key="frame" x="8" y="860" width="584" height="316"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <string key="text">The Hacksmiths are a group of software professionals working collaboratively in a virtual environment in an effort to solve real world problems through the development of software.
+
+We build tools designed to help non-profit organizations streamline their philanthropic efforts, utilizing industry best practices and advanced software development methodologies.</string>
+                                                <color key="textColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                            <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hacksmiths-logo" translatesAutoresizingMaskIntoConstraints="NO" id="r8B-A5-pDw" customClass="SpringImageView" customModule="Spring">
+                                                <rect key="frame" x="250" y="274" width="100" height="100"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="100" id="GDC-LA-UmP"/>
+                                                    <constraint firstAttribute="width" secondItem="r8B-A5-pDw" secondAttribute="height" multiplier="1:1" id="Qfw-9V-MY7"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="animation" value="fadeInDown"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="delay">
+                                                        <real key="value" value="0.5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="duration">
+                                                        <real key="value" value="0.5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autostart" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gEv-02-xgF" customClass="SpringButton" customModule="Spring">
+                                                <rect key="frame" x="232" y="417" width="137" height="30"/>
+                                                <state key="normal" title="http://hacksmiths.io"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="animation" value="fadeInDown"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="delay">
+                                                        <real key="value" value="1.5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="duration">
+                                                        <real key="value" value="0.5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autostart" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="didTapHacksmithsUpInside:" destination="BPJ-uo-Azq" eventType="touchUpInside" id="FxN-aa-gPg"/>
+                                                </connections>
+                                            </button>
+                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jxB-Jc-hIE">
+                                                <rect key="frame" x="8" y="1786" width="584" height="365"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sean" translatesAutoresizingMaskIntoConstraints="NO" id="uMb-Ix-6gM">
-                                                        <rect key="frame" x="8" y="8" width="125" height="125"/>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="sean" translatesAutoresizingMaskIntoConstraints="NO" id="uMb-Ix-6gM">
+                                                        <rect key="frame" x="230" y="8" width="125" height="125"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="125" id="NnR-Ce-fNQ"/>
+                                                            <constraint firstAttribute="height" constant="125" id="ce8-Cg-8Zn"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zNP-eO-i1X">
-                                                        <rect key="frame" x="141" y="47" width="435" height="86"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="86" id="k1j-Tr-C29"/>
-                                                        </constraints>
-                                                        <string key="text">Sean is a professional User Experience and Interface Designer with years of experience in the industry.  He runs the product design team here at the Hacksmiths project, donating his time to making his vision a reality.  </string>
-                                                        <color key="textColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                        <dataDetectorType key="dataDetectorTypes" link="YES"/>
-                                                    </textView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="QsH-CE-hqL">
-                                                        <rect key="frame" x="141" y="7" width="354" height="32"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="QsH-CE-hqL">
+                                                        <rect key="frame" x="170" y="184" width="245" height="27"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sean Craig" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7aZ-d4-rXy">
-                                                                <rect key="frame" x="0.0" y="0.0" width="84" height="32"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="32" id="fap-We-Qok"/>
-                                                                </constraints>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <color key="textColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WWJ-Y4-QIl">
-                                                                <rect key="frame" x="104" y="0.0" width="98" height="32"/>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WWJ-Y4-QIl">
+                                                                <rect key="frame" x="0.0" y="0.0" width="98" height="27"/>
                                                                 <subviews>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zC3-zz-Gfu">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="27" height="32"/>
+                                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zC3-zz-Gfu">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="27" height="27"/>
                                                                         <state key="normal" image="github"/>
                                                                     </button>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ir4-RF-uQQ">
-                                                                        <rect key="frame" x="27" y="0.0" width="71" height="32"/>
+                                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ir4-RF-uQQ">
+                                                                        <rect key="frame" x="27" y="0.0" width="71" height="27"/>
                                                                         <state key="normal" title="swhc1066"/>
                                                                         <connections>
                                                                             <action selector="didTapSeanGithub:" destination="BPJ-uo-Azq" eventType="touchUpInside" id="tck-Rb-Yn3"/>
@@ -1870,18 +1898,18 @@
                                                                     </button>
                                                                 </subviews>
                                                             </stackView>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mww-Pa-dpJ">
-                                                                <rect key="frame" x="222" y="0.0" width="132" height="32"/>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mww-Pa-dpJ">
+                                                                <rect key="frame" x="118" y="0.0" width="127" height="27"/>
                                                                 <subviews>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="twitter-logo" translatesAutoresizingMaskIntoConstraints="NO" id="3ha-yd-9bp">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="twitter-logo" translatesAutoresizingMaskIntoConstraints="NO" id="3ha-yd-9bp">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="27" height="27"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="3ha-yd-9bp" secondAttribute="height" multiplier="1:1" id="6vH-Yy-aDc"/>
                                                                             <constraint firstAttribute="height" constant="27" id="qfv-1V-TYq"/>
                                                                         </constraints>
                                                                     </imageView>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g9Z-K5-Ygy">
-                                                                        <rect key="frame" x="32" y="0.0" width="100" height="32"/>
+                                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g9Z-K5-Ygy">
+                                                                        <rect key="frame" x="27" y="0.0" width="100" height="27"/>
                                                                         <state key="normal" title="@seanwhcraig"/>
                                                                         <connections>
                                                                             <action selector="didTapSeanTwitter:" destination="BPJ-uo-Azq" eventType="touchUpInside" id="snx-xW-AWp"/>
@@ -1891,21 +1919,38 @@
                                                             </stackView>
                                                         </subviews>
                                                     </stackView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Sean Craig" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7aZ-d4-rXy">
+                                                        <rect key="frame" x="250" y="141" width="84" height="32"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="32" id="fap-We-Qok"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zNP-eO-i1X">
+                                                        <rect key="frame" x="8" y="253" width="568" height="100"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <string key="text">Sean is a professional User Experience and Interface Designer with years of experience in the industry.  He runs the product design team here at the Hacksmiths project, donating his time to making his vision a reality.  </string>
+                                                        <color key="textColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                        <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                                    </textView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="142" id="7CH-5P-Kfm"/>
-                                                    <constraint firstItem="uMb-Ix-6gM" firstAttribute="centerY" secondItem="jxB-Jc-hIE" secondAttribute="centerY" id="9LD-aG-1rQ"/>
-                                                    <constraint firstItem="QsH-CE-hqL" firstAttribute="leading" secondItem="uMb-Ix-6gM" secondAttribute="trailing" constant="8" id="DrY-w9-FXY"/>
-                                                    <constraint firstAttribute="trailing" secondItem="zNP-eO-i1X" secondAttribute="trailing" constant="8" id="TmO-CA-hLJ"/>
-                                                    <constraint firstItem="uMb-Ix-6gM" firstAttribute="leading" secondItem="jxB-Jc-hIE" secondAttribute="leadingMargin" id="YVD-Rf-snm"/>
-                                                    <constraint firstItem="uMb-Ix-6gM" firstAttribute="top" secondItem="jxB-Jc-hIE" secondAttribute="topMargin" id="cH4-Wm-SQu"/>
-                                                    <constraint firstItem="zNP-eO-i1X" firstAttribute="top" secondItem="QsH-CE-hqL" secondAttribute="bottom" constant="8" id="u03-Ut-3Wa"/>
-                                                    <constraint firstItem="uMb-Ix-6gM" firstAttribute="bottom" secondItem="zNP-eO-i1X" secondAttribute="bottom" id="uci-QS-p9c"/>
+                                                    <constraint firstItem="QsH-CE-hqL" firstAttribute="centerX" secondItem="jxB-Jc-hIE" secondAttribute="centerX" id="UYZ-wU-glJ"/>
+                                                    <constraint firstAttribute="trailing" secondItem="zNP-eO-i1X" secondAttribute="trailing" constant="8" id="XHp-OT-hsW"/>
+                                                    <constraint firstItem="7aZ-d4-rXy" firstAttribute="centerX" secondItem="jxB-Jc-hIE" secondAttribute="centerX" id="e4M-wt-h9F"/>
+                                                    <constraint firstItem="zNP-eO-i1X" firstAttribute="centerX" secondItem="jxB-Jc-hIE" secondAttribute="centerX" id="f6e-el-wB6"/>
+                                                    <constraint firstItem="uMb-Ix-6gM" firstAttribute="centerX" secondItem="jxB-Jc-hIE" secondAttribute="centerX" id="hHm-KH-m19"/>
+                                                    <constraint firstItem="zNP-eO-i1X" firstAttribute="leading" secondItem="jxB-Jc-hIE" secondAttribute="leading" constant="8" id="xP8-uG-eA2"/>
+                                                    <constraint firstAttribute="bottom" secondItem="zNP-eO-i1X" secondAttribute="bottom" constant="8" id="zaa-Ri-tof"/>
                                                 </constraints>
                                             </view>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hacksmiths-logo-text" translatesAutoresizingMaskIntoConstraints="NO" id="tVb-IK-lzG" customClass="SpringImageView" customModule="Spring">
-                                                <rect key="frame" x="172" y="198" width="257" height="27"/>
+                                                <rect key="frame" x="172" y="382" width="257" height="27"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="27" id="5A6-q6-cD4"/>
                                                     <constraint firstAttribute="width" constant="257" id="R1G-d0-Pt6"/>
@@ -1917,71 +1962,42 @@
                                                     <userDefinedRuntimeAttribute type="number" keyPath="duration">
                                                         <real key="value" value="0.5"/>
                                                     </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="animation" value="fadeIn"/>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="animation" value="fadeInDown"/>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autostart" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                             </imageView>
-                                            <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hacksmiths-logo" translatesAutoresizingMaskIntoConstraints="NO" id="r8B-A5-pDw" customClass="SpringImageView" customModule="Spring">
-                                                <rect key="frame" x="250" y="90" width="100" height="100"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="About the Founders" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nwl-Wl-H4N">
+                                                <rect key="frame" x="164" y="1296" width="273" height="37"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="100" id="GDC-LA-UmP"/>
-                                                    <constraint firstAttribute="width" secondItem="r8B-A5-pDw" secondAttribute="height" multiplier="1:1" id="Qfw-9V-MY7"/>
+                                                    <constraint firstAttribute="width" constant="273" id="sir-X5-Xvf"/>
                                                 </constraints>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="animation" value="fadeIn"/>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="delay">
-                                                        <real key="value" value="0.5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="duration">
-                                                        <real key="value" value="0.5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gEv-02-xgF">
-                                                <rect key="frame" x="232" y="233" width="137" height="30"/>
-                                                <state key="normal" title="http://hacksmiths.io"/>
-                                                <connections>
-                                                    <action selector="didTapHacksmithsUpInside:" destination="BPJ-uo-Azq" eventType="touchUpInside" id="FxN-aa-gPg"/>
-                                                </connections>
-                                            </button>
-                                            <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dwS-47-bF3">
-                                                <rect key="frame" x="8" y="311" width="584" height="160"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <string key="text">The Hacksmiths are a group of software professionals working collaboratively in a virtual environment in an effort to solve real world problems through the development of software.
-
-We build tools designed to help non-profit organizations streamline their philanthropic efforts, utilizing industry best practices and advanced software development methodologies.</string>
+                                                <fontDescription key="fontDescription" type="system" pointSize="31"/>
                                                 <color key="textColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                            </textView>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="0.19215686269999999" green="0.1960784314" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstItem="jxB-Jc-hIE" firstAttribute="leading" secondItem="ls6-oc-wlg" secondAttribute="leading" constant="8" id="3if-KE-Lx0"/>
+                                            <constraint firstItem="r8B-A5-pDw" firstAttribute="centerY" secondItem="Hx1-EO-gZE" secondAttribute="centerY" id="26u-Fr-rRw"/>
                                             <constraint firstItem="r8B-A5-pDw" firstAttribute="width" secondItem="r8B-A5-pDw" secondAttribute="height" multiplier="1:1" id="4E1-Cp-GuY"/>
-                                            <constraint firstItem="rMJ-ay-03C" firstAttribute="centerX" secondItem="Hx1-EO-gZE" secondAttribute="centerX" id="78p-9r-Hke"/>
-                                            <constraint firstItem="dwS-47-bF3" firstAttribute="top" secondItem="gEv-02-xgF" secondAttribute="bottom" constant="48" id="8ug-kl-Q80"/>
                                             <constraint firstAttribute="trailing" secondItem="dwS-47-bF3" secondAttribute="trailing" constant="8" id="BcG-iL-vBC"/>
-                                            <constraint firstItem="dwS-47-bF3" firstAttribute="top" secondItem="tVb-IK-lzG" secondAttribute="bottom" constant="86" id="HmC-sW-9rK"/>
+                                            <constraint firstAttribute="bottom" secondItem="jxB-Jc-hIE" secondAttribute="bottom" constant="8" id="Fmo-oc-QeQ"/>
+                                            <constraint firstItem="jxB-Jc-hIE" firstAttribute="leading" secondItem="ls6-oc-wlg" secondAttribute="leading" constant="8" id="Lep-vw-JGo"/>
                                             <constraint firstItem="gEv-02-xgF" firstAttribute="top" secondItem="tVb-IK-lzG" secondAttribute="bottom" constant="8" id="Lyv-pH-wsH"/>
                                             <constraint firstItem="Hx1-EO-gZE" firstAttribute="top" secondItem="ls6-oc-wlg" secondAttribute="top" id="Mjn-wX-fJh"/>
-                                            <constraint firstAttribute="bottom" secondItem="jxB-Jc-hIE" secondAttribute="bottom" constant="8" id="Q3I-Nb-Yyq"/>
-                                            <constraint firstItem="rMJ-ay-03C" firstAttribute="top" secondItem="nwl-Wl-H4N" secondAttribute="bottom" constant="8" id="Qfy-Am-w4P"/>
+                                            <constraint firstAttribute="trailing" secondItem="jxB-Jc-hIE" secondAttribute="trailing" constant="8" id="Pre-5A-bVu"/>
                                             <constraint firstItem="Hx1-EO-gZE" firstAttribute="leading" secondItem="ls6-oc-wlg" secondAttribute="leading" id="Vm2-nt-uSV"/>
                                             <constraint firstAttribute="trailing" secondItem="Hx1-EO-gZE" secondAttribute="trailing" id="WDQ-VN-wO0"/>
-                                            <constraint firstAttribute="trailing" secondItem="jxB-Jc-hIE" secondAttribute="trailing" constant="8" id="WyY-qZ-O69"/>
-                                            <constraint firstItem="nwl-Wl-H4N" firstAttribute="top" secondItem="dwS-47-bF3" secondAttribute="bottom" constant="184" id="XNP-Vy-D7f"/>
                                             <constraint firstItem="dwS-47-bF3" firstAttribute="leading" secondItem="ls6-oc-wlg" secondAttribute="leading" constant="8" id="YDA-E3-i26"/>
                                             <constraint firstItem="gEv-02-xgF" firstAttribute="centerX" secondItem="Hx1-EO-gZE" secondAttribute="centerX" id="YK6-hR-Uxh"/>
+                                            <constraint firstAttribute="trailing" secondItem="rMJ-ay-03C" secondAttribute="trailing" constant="8" id="Zpr-tO-Ffb"/>
                                             <constraint firstItem="dwS-47-bF3" firstAttribute="centerX" secondItem="Hx1-EO-gZE" secondAttribute="centerX" id="a6Y-ZU-lXh"/>
+                                            <constraint firstItem="CHP-c2-JrW" firstAttribute="centerX" secondItem="ls6-oc-wlg" secondAttribute="centerX" id="aHo-xb-U6g"/>
+                                            <constraint firstItem="jxB-Jc-hIE" firstAttribute="top" secondItem="rMJ-ay-03C" secondAttribute="bottom" constant="8" id="bFh-T4-LtD"/>
                                             <constraint firstItem="r8B-A5-pDw" firstAttribute="centerX" secondItem="Hx1-EO-gZE" secondAttribute="centerX" id="hoZ-Fz-Dqh"/>
                                             <constraint firstItem="nwl-Wl-H4N" firstAttribute="centerX" secondItem="Hx1-EO-gZE" secondAttribute="centerX" id="i8v-oU-C1f"/>
-                                            <constraint firstAttribute="bottom" secondItem="Hx1-EO-gZE" secondAttribute="bottom" id="jBM-jG-FUN"/>
-                                            <constraint firstItem="rMJ-ay-03C" firstAttribute="leading" secondItem="ls6-oc-wlg" secondAttribute="leading" constant="8" id="k19-fW-7h6"/>
-                                            <constraint firstItem="jxB-Jc-hIE" firstAttribute="centerX" secondItem="Hx1-EO-gZE" secondAttribute="centerX" id="kZR-Zy-Tpk"/>
-                                            <constraint firstItem="jxB-Jc-hIE" firstAttribute="top" secondItem="rMJ-ay-03C" secondAttribute="bottom" constant="8" id="nXl-MB-EI7"/>
                                             <constraint firstItem="tVb-IK-lzG" firstAttribute="centerX" secondItem="Hx1-EO-gZE" secondAttribute="centerX" id="nYf-cs-dTW"/>
-                                            <constraint firstItem="Hx1-EO-gZE" firstAttribute="top" secondItem="r8B-A5-pDw" secondAttribute="top" constant="-90" id="v2U-bS-yVg"/>
-                                            <constraint firstAttribute="trailing" secondItem="rMJ-ay-03C" secondAttribute="trailing" constant="8" id="wum-yS-hgQ"/>
+                                            <constraint firstItem="rMJ-ay-03C" firstAttribute="leading" secondItem="ls6-oc-wlg" secondAttribute="leading" constant="8" id="sri-uw-Cpj"/>
                                             <constraint firstItem="tVb-IK-lzG" firstAttribute="top" secondItem="r8B-A5-pDw" secondAttribute="bottom" constant="8" id="yDa-Na-XCG"/>
                                         </constraints>
                                     </view>
@@ -2001,19 +2017,20 @@ We build tools designed to help non-profit organizations streamline their philan
                             <constraint firstItem="2qr-qb-aSc" firstAttribute="bottom" secondItem="Xvp-Md-Mee" secondAttribute="top" id="Qvx-lt-2Dz"/>
                             <constraint firstItem="ls6-oc-wlg" firstAttribute="width" secondItem="qgG-uU-pRt" secondAttribute="width" id="bxl-HE-Prb"/>
                             <constraint firstItem="2qr-qb-aSc" firstAttribute="top" secondItem="qgG-uU-pRt" secondAttribute="top" id="fq0-k7-B5I"/>
-                            <constraint firstItem="ls6-oc-wlg" firstAttribute="height" secondItem="qgG-uU-pRt" secondAttribute="height" id="z2Y-KD-RQb"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="About" image="info-icon" id="Z7q-qQ-4xK"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="600" height="1000"/>
+                    <size key="freeformSize" width="600" height="2200"/>
                     <connections>
                         <outlet property="ryanImageView" destination="GAs-1g-ZAE" id="uYO-B2-0hS"/>
                         <outlet property="seanImageView" destination="uMb-Ix-6gM" id="DOP-Eb-Qrq"/>
+                        <outlet property="splashView" destination="Hx1-EO-gZE" id="e4j-9p-mMt"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9On-3n-OD7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="250" y="-1254"/>
+            <point key="canvasLocation" x="248" y="-2535"/>
         </scene>
         <!--Me-->
         <scene sceneID="Dps-ic-vlC">
@@ -2171,6 +2188,7 @@ We build tools designed to help non-profit organizations streamline their philan
         <image name="gear" width="30" height="30"/>
         <image name="github" width="27" height="27"/>
         <image name="globe-white" width="32" height="32"/>
+        <image name="hacksmiths-bg" width="1920" height="1080"/>
         <image name="hacksmiths-logo" width="510" height="510"/>
         <image name="hacksmiths-logo-text" width="486" height="58"/>
         <image name="imac-white" width="31" height="32"/>

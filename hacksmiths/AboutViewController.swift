@@ -12,6 +12,7 @@ class AboutViewController: UIViewController {
     
     @IBOutlet weak var ryanImageView: UIImageView!
 
+    @IBOutlet weak var splashView: UIImageView!
     @IBOutlet weak var seanImageView: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +20,11 @@ class AboutViewController: UIViewController {
         // Set the image views to be circular
         setCircularImageView(ryanImageView)
         setCircularImageView(seanImageView)
-        
+        setupView()
+    }
+    
+    func setupView() {
+        splashView.frame = view.bounds
     }
     
     // Open the hacksmiths.io about page
