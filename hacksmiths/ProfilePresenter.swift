@@ -15,7 +15,7 @@ protocol ProfileView {
 
 class ProfilePresenter {
     private var profileView: ProfileView?
-    var userProfileService: UserProfileService
+    private var userProfileService: UserProfileService
     
     init(userProfileService: UserProfileService) {
         self.userProfileService = userProfileService

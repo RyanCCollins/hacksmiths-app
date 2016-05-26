@@ -12,7 +12,13 @@ import PromiseKit
 import Gloss
 import CoreData
 
+
 class UserProfileService {
+    
+    /* - Get the profile data for the currently signed in user
+     * - parameters - The user's Id
+     * - return - Promise of UserData, core data model
+     */
     func getProfile(userId: String) -> Promise<UserData?> {
         return Promise{resolve, reject in
             let router = UserProfileRouter(endpoint: .GetProfile(userId: userId))
@@ -40,6 +46,10 @@ class UserProfileService {
         }
     }
     
+    /* - Update the user's profile information
+     * - parameters - UserJSONObject containing updated profile information and the user's Id
+     * - return - Promise of Void (i.e. resolve or reject with no return value.
+     */
     func updateProfile(userJSON: UserJSONObject, userID: String) -> Promise<Void> {
         return Promise{resolve, reject in
             let router = UserProfileRouter(endpoint: .UpdateProfile(userJSON: userJSON, userID: userID))
