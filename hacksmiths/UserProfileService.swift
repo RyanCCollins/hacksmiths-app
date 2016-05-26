@@ -23,6 +23,7 @@ class UserProfileService {
                     switch response.result {
                     case .Success(let JSON):
                         if let profileDict = JSON[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.dictKey] as? JsonDict {
+                            print("Creating profile with \(profileDict)")
                             let userJSON = UserJSONObject(json: profileDict)
                             let userData = UserData(json: userJSON!, context: GlobalStackManager.SharedManager.sharedContext)
                             GlobalStackManager.SharedManager.sharedContext.performBlockAndWait({

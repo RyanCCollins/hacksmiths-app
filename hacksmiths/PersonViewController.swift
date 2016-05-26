@@ -15,10 +15,17 @@ class PersonViewController: UIViewController {
     @IBOutlet weak var avatarView: RCCircularImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var twitterLabel: UILabel!
-    @IBOutlet weak var githubLabel: UILabel!
-    @IBOutlet weak var websiteLabel: UILabel!
     @IBOutlet weak var debugLabel: UILabel!
+    @IBOutlet weak var twitterButton: UIButton!
+    @IBOutlet weak var twitterStackView: UIStackView!
+    @IBOutlet weak var githubStackView: UIStackView!
+    @IBOutlet weak var websiteStackView: UIStackView!
+    @IBOutlet weak var websiteButton: UIButton!
+    @IBOutlet weak var githubButton: UIButton!
+    
+    var websiteUrl: NSURL?
+    var twitterUrl: NSURL?
+    var githubUrl: NSURL?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +46,36 @@ class PersonViewController: UIViewController {
         personPresenter.detachView(self)
     }
     
+    @IBAction func didTapButtonUpInside(sender: AnyObject) {
+        switch sender.tag {
+        case 1:
+            if let url = twitterUrl {
+                handleOpenURL(url)
+            }
+        case 2:
+            if let url = githubUrl {
+                handleOpenURL(url)
+            }
+        case 3:
+            if let url = websiteUrl {
+                handleOpenURL(url)
+            }
+        default:
+            break
+        }
+    }
     
+    func handleOpenURL(url: NSURL) {
+        UIApplication.sharedApplication().openURL(url)
+    }
+
+    
+}
+
+enum Button {
+    case Twitter(url: NSURL?, title:String, hidden: Bool, tag: Int)
+    case Github(url: NSURL?, title: String?, hidden: Bool, tag: Int)
+    case Website(url: NSURL?, title: String?, hidden: Bool, tag: Int)
 }
 
 /* MARK: Presenter protocol */
@@ -62,16 +98,24 @@ extension PersonViewController: PersonView {
         }
         
         if let twitterUsername = person.twitterUsername {
-            twitterLabel.text = twitterUsername
-            twitterLabel.hidden = false
+            twitterUrl = person.twitterURL
+            let title = "@\(twitterUsername)"
+            twitterButton.setTitle(title, forState: .Normal)
+            twitterStackView.hidden = false
         }
         if let githubUsername = person.githubUsername {
-            githubLabel.text = githubUsername
-            githubLabel.hidden = false
+            githubUrl = person.githubURL
+            githubButton.setTitle(githubUsername, forState: .Normal)
+            githubStackView.hidden = false
         }
+        
         if let website = person.website {
-            websiteLabel.text = website
-            websiteLabel.hidden = false
+            websiteStackView.hidden = false
+            websiteButton.setTitle(website, forState: .Normal)
+            let websiteURL = NSURL(string: website)
+            if websiteURL != nil {
+                self.websiteUrl = websiteURL
+            }
         }
         
     }

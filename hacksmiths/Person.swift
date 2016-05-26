@@ -77,21 +77,39 @@ class Person: NSManagedObject {
         isTopContributor = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Meta.isTopContributor] as! Bool
         sortPriority = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Meta.sortPriority] as? NSNumber
         
-        /* Services, i.e. Github and Twitter usernames if shared */
-        if let services = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Services.key] as? JsonDict {
-            let twitter = services[HacksmithsAPIClient.JSONResponseKeys.MemberData.Services.twitter] as! JsonDict
-            let github = services[HacksmithsAPIClient.JSONResponseKeys.MemberData.Services.github] as! JsonDict
-            if let twitterUsername = twitter["username"] as? String {
-                self.twitterUsername = twitterUsername
-            }
-            if let githubUsername = github["username"] as? String {
-                self.githubUsername = githubUsername
-            }
+        if let twitterUsername = parseTwitterUsername(dictionary) {
+            self.twitterUsername = twitterUsername
+        }
+        
+        if let githubUsername = parseGithubUsername(dictionary) {
+            self.githubUsername = githubUsername
         }
 
         if let website = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.website] as? String {
             self.website = website
         }
+    }
+    
+    private func parseTwitterUsername(jsonDict: JsonDict) -> String? {
+        if let services = jsonDict[HacksmithsAPIClient.JSONResponseKeys.MemberData.Services.key] as? JsonDict {
+            if let twitter = services[HacksmithsAPIClient.JSONResponseKeys.MemberData.Services.twitter] as? JsonDict {
+                if let twitterUsername = twitter[HacksmithsAPIClient.JSONResponseKeys.MemberData.Services.Twitter.username] as? String {
+                    return twitterUsername
+                }
+            }
+        }
+        return nil
+    }
+    
+    private func parseGithubUsername(jsonDict: JsonDict) -> String? {
+        if let services = jsonDict[HacksmithsAPIClient.JSONResponseKeys.MemberData.Services.key] as? JsonDict {
+            if let github = services[HacksmithsAPIClient.JSONResponseKeys.MemberData.Services.github] as? JsonDict {
+                if let githubUsername = github[HacksmithsAPIClient.JSONResponseKeys.MemberData.Services.Github.username] as? String {
+                    return githubUsername
+                }
+            }
+        }
+        return nil
     }
     
     func fetchImages(completionHandler: CompletionHandler) {
