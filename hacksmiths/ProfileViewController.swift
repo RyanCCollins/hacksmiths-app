@@ -84,7 +84,6 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
         }
         shouldShowHasExperienceField = userData.needsAMentor
         if shouldShowHasExperienceField {
-            wantExperience.hidden = false
             if let wantExperienceText = userData.wantsExperience {
                 wantExperience.text = wantExperienceText
             }
@@ -130,9 +129,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
         descriptionTextField.editable = editing
         
         websiteTextField.hidden = !editing
-        
         wantExperience.hidden = !editing
-
         haveExperience.hidden = !editing
     }
     
