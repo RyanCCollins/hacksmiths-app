@@ -172,6 +172,7 @@ class RegistrationPageViewController: UIViewController {
                 emailTextField.hidden = true
                 passwordTextField.hidden = true
                 fullNameTextField.hidden = false
+                headerLabel.text = "What should we call you?"
                 setupTextField(fullNameTextField)
             case .Email:
                 view.backgroundColor = UIColor.flatRedColor()
@@ -184,6 +185,7 @@ class RegistrationPageViewController: UIViewController {
                 view.backgroundColor = UIColor.flatMintColorDark()
                 fullNameTextField.hidden = true
                 emailTextField.hidden = true
+                headerLabel.text = "Set your password."
                 passwordTextField.hidden = false
                 setupTextField(passwordTextField)
             default:

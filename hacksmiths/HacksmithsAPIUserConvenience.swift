@@ -200,18 +200,13 @@ extension HacksmithsAPIClient {
                         
                         /* Fetch the images and then save the context again at the end.  Return an error if there is one. */
                         person.fetchImages({success, error in
-                            
                             if error != nil {
-                                
                                 completionHandler(success: false, error: error)
-                            
                             }
-                            
                         })
                     }
-
                 }
-                
+
                 self.sharedContext.performBlockAndWait({
                     CoreDataStackManager.sharedInstance().saveContext()
                 })

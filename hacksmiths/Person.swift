@@ -77,6 +77,21 @@ class Person: NSManagedObject {
         isTopContributor = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Meta.isTopContributor] as! Bool
         sortPriority = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Meta.sortPriority] as? NSNumber
         
+        /* Services, i.e. Github and Twitter usernames if shared */
+        if let services = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Services.key] as? JsonDict {
+            let twitter = services[HacksmithsAPIClient.JSONResponseKeys.MemberData.Services.twitter] as! JsonDict
+            let github = services[HacksmithsAPIClient.JSONResponseKeys.MemberData.Services.github] as! JsonDict
+            if let twitterUsername = twitter["username"] as? String {
+                self.twitterUsername = twitterUsername
+            }
+            if let githubUsername = github["username"] as? String {
+                self.githubUsername = githubUsername
+            }
+        }
+
+        if let website = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.website] as? String {
+            self.website = website
+        }
     }
     
     func fetchImages(completionHandler: CompletionHandler) {
@@ -89,11 +104,8 @@ class Person: NSManagedObject {
             if error != nil {
                 completionHandler(success: false, error: error)
             } else {
-                
                 self.image = image
-            
             }
-            
         })
     }
     

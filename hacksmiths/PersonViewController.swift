@@ -60,6 +60,7 @@ extension PersonViewController: PersonView {
             descriptionLabel.text = bio
             descriptionLabel.hidden = false
         }
+        
         if let twitterUsername = person.twitterUsername {
             twitterLabel.text = twitterUsername
             twitterLabel.hidden = false
