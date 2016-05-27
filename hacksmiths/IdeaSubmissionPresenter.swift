@@ -9,6 +9,8 @@
 import UIKit
 
 protocol IdeaSubmissionView {
+    func showLoading()
+    func hideLoading()
     func didSubmitIdeaToAPI(sender: IdeaSubmissionPresenter, didSucceed: Bool, didFail: NSError?)
     func cancelSubmission(sender: AnyObject)
     func subscribeToNotifications(sender: AnyObject)

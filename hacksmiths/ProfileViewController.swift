@@ -45,6 +45,19 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         setScrollView()
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // We check that the user is authenticated and enable the edit button
+        // Based on their status.
+        editButton.enabled = UserService.sharedInstance().authenticated
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        activityIndicator = IGActivityIndicatorView(inview: view, messsage: "Synching")
+    }
+    
     func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
         return UIBarPosition.TopAttached
     }
@@ -115,15 +128,6 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         if let website = userData.website {
             websiteTextField.text = website
         }
-    }
-
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        // We check that the user is authenticated and enable the edit button
-        // Based on their status.
-        editButton.enabled = UserService.sharedInstance().authenticated
-
     }
     
     @IBAction func didTapEditButtonUpInside(sender: AnyObject) {
@@ -199,10 +203,16 @@ extension ProfileViewController: ProfileView {
     }
     
     func showLoading() {
+        guard activityIndicator != nil else {
+            return
+        }
         activityIndicator.startAnimating()
     }
     
     func hideLoading() {
+        guard activityIndicator != nil else {
+            return
+        }
         activityIndicator.stopAnimating()
     }
     

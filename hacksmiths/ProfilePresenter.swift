@@ -82,13 +82,11 @@ class ProfilePresenter {
     }
     
     func fetchUserData() {
-        
         guard UserService.sharedInstance().authenticated == true else {
             self.profileView?.didGetUserDataFromAPI(nil, error: GlobalErrors.BadCredentials)
             return
         }
-        
-        self.profileView?.showLoading()
+        profileView?.showLoading()
         userProfileService.getProfile(UserService.sharedInstance().userId!).then(){
             userData -> () in
             self.fetchImage(userData!)

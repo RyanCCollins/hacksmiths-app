@@ -15,8 +15,9 @@ class IdeaSubmissionViewController: UIViewController {
     @IBOutlet weak var ideaDescriptionTextView: UITextView!
     @IBOutlet weak var ideaTitleTextField: IsaoTextField!
     @IBOutlet weak var additionalInformationTextField: IsaoTextField!
+    var activityIndicator: IGActivityIndicatorView!
     
-    var ideaSubmissionPresenter: IdeaSubmissionPresenter?
+    var ideaSubmissionPresenter: IdeaSubmissionPresenter!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,7 @@ class IdeaSubmissionViewController: UIViewController {
         ideaTitleTextField.delegate = self
         additionalInformationTextField.delegate = self
         ideaDescriptionTextView.clearsOnInsertion = true
+        activityIndicator = IGActivityIndicatorView(inview: view, messsage: "Loading")
     }
     
     func setBorderForTextView() {
@@ -35,9 +37,11 @@ class IdeaSubmissionViewController: UIViewController {
     
     @IBAction func didTapSubmissionButton(sender: AnyObject) {
         if validateSubmission() == true {
+            let additionalInformationText = additionalInformationTextField.text ?? ""
             let ideaSubmission: JsonDict = [
                 "title": ideaTitleTextField.text!,
-                "description": ideaDescriptionTextView.text
+                "description": ideaDescriptionTextView.text,
+                "additionalInformation" : additionalInformationText
             ]
             ideaSubmissionPresenter?.submitIdeaToAPI(ideaSubmission)
         } else {
@@ -124,5 +128,13 @@ extension IdeaSubmissionViewController: IdeaSubmissionView {
     func subscribeToNotifications(sender: AnyObject) {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(IdeaSubmissionViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(IdeaSubmissionViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
+    func showLoading() {
+        activityIndicator.showLoading()
+    }
+    
+    func hideLoading() {
+        activityIndicator.hideLoading()
     }
 }
