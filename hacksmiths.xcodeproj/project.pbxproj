@@ -89,7 +89,6 @@
 		1FAD7DB91CEE64EB0044BD94 /* NextEventJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAD7DB81CEE64EB0044BD94 /* NextEventJSON.swift */; };
 		1FC6DE3E1C9F36BF000E8159 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC6DE3D1C9F36BF000E8159 /* ProfileViewController.swift */; };
 		1FC6DE471C9F6DC5000E8159 /* RegistrationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC6DE461C9F6DC5000E8159 /* RegistrationData.swift */; };
-		1FE1668A1CD9053C0052B0A8 /* ProfileDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE166891CD9053C0052B0A8 /* ProfileDataFetcher.swift */; };
 		1FE4B30D1C6ADAC10011ECAE /* octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1FE4B30C1C6ADAC10011ECAE /* octicons.ttf */; };
 		1FE4B3131C6ADE050011ECAE /* PersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE4B3121C6ADE050011ECAE /* PersonViewController.swift */; };
 		1FE5F91B1CD8288800487CA8 /* RCCircularImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE5F91A1CD8288800487CA8 /* RCCircularImageView.swift */; };
@@ -216,7 +215,6 @@
 		1FAD7DB81CEE64EB0044BD94 /* NextEventJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextEventJSON.swift; sourceTree = "<group>"; };
 		1FC6DE3D1C9F36BF000E8159 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		1FC6DE461C9F6DC5000E8159 /* RegistrationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationData.swift; sourceTree = "<group>"; };
-		1FE166891CD9053C0052B0A8 /* ProfileDataFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDataFetcher.swift; sourceTree = "<group>"; };
 		1FE4B30C1C6ADAC10011ECAE /* octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = octicons.ttf; path = hacksmiths/octicons.ttf; sourceTree = "<group>"; };
 		1FE4B3121C6ADE050011ECAE /* PersonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonViewController.swift; sourceTree = "<group>"; };
 		1FE5F91A1CD8288800487CA8 /* RCCircularImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RCCircularImageView.swift; sourceTree = "<group>"; };
@@ -816,7 +814,6 @@
 		1FEF3FB51CED69F1007E4BF0 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				1FE166891CD9053C0052B0A8 /* ProfileDataFetcher.swift */,
 				1F4F7EC81CF4D50C00325CA9 /* ProfilePresenter.swift */,
 			);
 			name = Presenter;
@@ -1077,7 +1074,6 @@
 				1F846CD01CED259D009166D4 /* Participant.swift in Sources */,
 				1FEA07BF1CEFD22400D4BDA7 /* PersonPresenter.swift in Sources */,
 				1F846CBF1CEBF5E2009166D4 /* EventPresenter.swift in Sources */,
-				1FE1668A1CD9053C0052B0A8 /* ProfileDataFetcher.swift in Sources */,
 				1FA2E55D1C67FF550085FC7D /* HacksmithsAPIClient.swift in Sources */,
 				1F6C69E81CCC6BB700F15247 /* ParticipantCollectionViewCell.swift in Sources */,
 				1FC6DE3E1C9F36BF000E8159 /* ProfileViewController.swift in Sources */,

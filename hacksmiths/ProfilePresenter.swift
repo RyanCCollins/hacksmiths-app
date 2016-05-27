@@ -12,6 +12,7 @@ protocol ProfileView {
     func showLoading()
     func hideLoading()
     func setActivityIndicator(withMessage message: String?)
+    func didFinishFetchingImage(image: UIImage?, error: NSError?)
     func didUpdateUserData(didSucceed: Bool, error: NSError?)
     func didGetUserDataFromAPI(userData: UserData?, error: NSError?)
     func unsubscribeToNotifications(sender: AnyObject)
@@ -29,7 +30,6 @@ class ProfilePresenter {
     func attachView(profileView: ProfileView) {
         self.profileView = profileView
         self.profileView?.subscribeToNotifications(self)
-        self.profileView?.setActivityIndicator(withMessage: "Synching")
     }
     
     func detachView(profileView: ProfileView) {
@@ -55,6 +55,19 @@ class ProfilePresenter {
         }
     }
     
+    func fetchImage(userData: UserData) {
+        userData.fetchImages({success, error in
+            
+            if error != nil {
+                self.profileView?.didFinishFetchingImage(nil, error: error)
+            } else {
+                if userData.image != nil {
+                    self.profileView?.didFinishFetchingImage(userData.image, error: nil)
+                }
+            }
+        })
+    }
+    
     func fetchOrGetUserData() -> UserData? {
         var returnData: UserData?
         userProfileService.fetchSavedUserData().then() {
@@ -74,10 +87,11 @@ class ProfilePresenter {
             self.profileView?.didGetUserDataFromAPI(nil, error: GlobalErrors.BadCredentials)
             return
         }
-        profileView?.showLoading()
         
+        self.profileView?.showLoading()
         userProfileService.getProfile(UserService.sharedInstance().userId!).then(){
             userData -> () in
+            self.fetchImage(userData!)
             self.profileView?.didGetUserDataFromAPI(userData, error: nil)
         }.error {
             error in

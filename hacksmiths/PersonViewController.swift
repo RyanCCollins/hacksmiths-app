@@ -68,8 +68,6 @@ class PersonViewController: UIViewController {
     func handleOpenURL(url: NSURL) {
         UIApplication.sharedApplication().openURL(url)
     }
-
-    
 }
 
 enum Button {
@@ -110,14 +108,15 @@ extension PersonViewController: PersonView {
         }
         
         if let website = person.website {
-            websiteStackView.hidden = false
-            websiteButton.setTitle(website, forState: .Normal)
-            let websiteURL = NSURL(string: website)
-            if websiteURL != nil {
-                self.websiteUrl = websiteURL
+            if website.length > 0 {
+                websiteStackView.hidden = false
+                websiteButton.setTitle(website, forState: .Normal)
+                let websiteURL = NSURL(string: website)
+                if websiteURL != nil {
+                    self.websiteUrl = websiteURL
+                }
             }
         }
-        
     }
     
     func configureDebugView(withMessage message: String) {

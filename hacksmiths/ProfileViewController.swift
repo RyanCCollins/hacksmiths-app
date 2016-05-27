@@ -14,7 +14,7 @@ protocol ProfileUserDataDelegate {
     func didSetUserData(userData: UserData)
 }
 
-class ProfileViewController: UIViewController, UINavigationControllerDelegate {
+class ProfileViewController: UIViewController, UINavigationControllerDelegate, UIToolbarDelegate {
     @IBOutlet weak var mentoringFieldsView: UIView!
     @IBOutlet weak var haveExperience: IsaoTextField!
     @IBOutlet weak var wantExperience: IsaoTextField!
@@ -23,15 +23,14 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
     @IBOutlet weak var editButton: UIBarButtonItem!
     @IBOutlet var profileImageView: RCCircularImageView!
     @IBOutlet weak var profileTextView: UITextView!
-    @IBOutlet weak var descriptionTextField: UITextView!
 
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var noDataFoundLabel: UILabel!
     @IBOutlet weak var websiteTextField: IsaoTextField!
+    @IBOutlet weak var toolbar: UIToolbar!
     
+    @IBOutlet weak var scrollView: UIScrollView!
     var activityIndicator: IGActivityIndicatorView!
-    var shouldShowWantExperienceField = false
-    var shouldShowHasExperienceField = false
     
     private var profilePresenter = ProfilePresenter(userProfileService: UserProfileService())
     
@@ -43,13 +42,29 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
         setTextFieldDelegate()
         profilePresenter.attachView(self)
         profilePresenter.fetchUserData()
+        setScrollView()
     }
     
+    func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
+        return UIBarPosition.TopAttached
+    }
+    
+    /* Hack to get the content scrolling */
+    func setScrollView() {
+        scrollView.delegate = self
+        scrollView.contentSize.width = view.bounds.width
+        if !editing {
+            scrollView.contentSize.height = 936
+        } else {
+            scrollView.contentSize.height = view.bounds.height
+        }
+    }
+
     func setTextFieldDelegate() {
         haveExperience.delegate = self
         wantExperience.delegate = self
         websiteTextField.delegate = self
-        descriptionTextField.delegate = self
+        profileTextView.delegate = self
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -57,10 +72,18 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
         profilePresenter.detachView(self)
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "presentSettings" {
+            
+        }
+    }
+    
     func setUIForUserData(userData: UserData) {
+
         dispatch_async(GlobalMainQueue, {
             self.nameLabel.text = userData.name
-            self.descriptionTextField.text = userData.bio
+            self.profileTextView.text = userData.bio
+            
             self.profileImageView.userImage = userData.image
             
             self.setupWebsiteField(userData)
@@ -75,15 +98,13 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
             mentoringFieldsView.hidden = false
         }
         
-        shouldShowHasExperienceField = userData.isAvailableAsAMentor
-        if shouldShowHasExperienceField {
-
+        /* Set the text for mentoring fields */
+        if userData.isAvailableAsAMentor {
             if let haveExperienceText = userData.hasExperience {
                 haveExperience.text = haveExperienceText
             }
         }
-        shouldShowHasExperienceField = userData.needsAMentor
-        if shouldShowHasExperienceField {
+        if userData.needsAMentor {
             if let wantExperienceText = userData.wantsExperience {
                 wantExperience.text = wantExperienceText
             }
@@ -126,7 +147,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
         editButton.title = editing ? "Save" : "Edit"
         cancelButton.enabled = editing
         nameLabel.hidden = editing
-        descriptionTextField.editable = editing
+        profileTextView.editable = editing
         
         websiteTextField.hidden = !editing
         wantExperience.hidden = !editing
@@ -136,11 +157,23 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate {
     func commitChangesToProfile() {
         // TODO: Upload changes to the profile to the server.
         toggleEditMode(false)
+        
     }
+    
+    
 }
 
 /* Profile View Delegate methods */
 extension ProfileViewController: ProfileView {
+    func didFinishFetchingImage(image: UIImage?, error: NSError?) {
+        if error != nil{
+            alertController(withTitles: ["OK", "Retry"], message: (error?.localizedDescription)!, callbackHandler: [nil, {Void in
+                self.profilePresenter.fetchUserData()
+                }])
+        } else {
+            self.profileImageView.image = image
+        }
+    }
     
     func didUpdateUserData(didSucceed: Bool, error: NSError?) {
         hideLoading()

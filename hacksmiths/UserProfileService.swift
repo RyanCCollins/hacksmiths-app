@@ -36,6 +36,7 @@ class UserProfileService {
                             GlobalStackManager.SharedManager.sharedContext.performBlockAndWait({
                                 CoreDataStackManager.sharedInstance().saveContext()
                             })
+                            
                             /* Delete all the past user data records */
                             self.deleteUserDataRecords()
                             resolve(userData)

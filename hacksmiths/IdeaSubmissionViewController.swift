@@ -7,16 +7,30 @@
 //
 
 import UIKit
+import TextFieldEffects
 
 class IdeaSubmissionViewController: UIViewController {
     
+    @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var ideaDescriptionTextView: UITextView!
-    @IBOutlet weak var ideaTitleTextField: UITextField!
+    @IBOutlet weak var ideaTitleTextField: IsaoTextField!
+    @IBOutlet weak var additionalInformationTextField: IsaoTextField!
+    
     var ideaSubmissionPresenter: IdeaSubmissionPresenter?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         ideaSubmissionPresenter?.attachView(self)
+        setBorderForTextView()
+        ideaTitleTextField.delegate = self
+        additionalInformationTextField.delegate = self
+        ideaDescriptionTextView.clearsOnInsertion = true
+    }
+    
+    func setBorderForTextView() {
+        ideaDescriptionTextView.layer.cornerRadius = 5
+        ideaDescriptionTextView.layer.borderColor = UIColor.whiteColor().CGColor
+        ideaDescriptionTextView.layer.borderWidth = 1
     }
     
     @IBAction func didTapSubmissionButton(sender: AnyObject) {
@@ -57,7 +71,6 @@ class IdeaSubmissionViewController: UIViewController {
 extension IdeaSubmissionViewController: UITextViewDelegate, UITextFieldDelegate {
     /* Configure and deselect text fields when return is pressed */
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        
         textField.resignFirstResponder()
         return true
     }
@@ -69,14 +82,15 @@ extension IdeaSubmissionViewController: UITextViewDelegate, UITextFieldDelegate 
     
     func keyboardWillShow(notification: NSNotification) {
         /* slide the view up when keyboard appears, using notifications */
+        contentView.frame.origin.y = -getKeyboardHeight(notification)
+        let visibleRect = self.view.frame
         
-        view.frame.origin.y = -getKeyboardHeight(notification)
         
     }
     
     /* Reset view origin when keyboard hides */
     func keyboardWillHide(notification: NSNotification) {
-        view.frame.origin.y = 0
+        contentView.frame.origin.y = 0
     }
     
     /* Get the height of the keyboard from the user info dictionary */
@@ -85,6 +99,7 @@ extension IdeaSubmissionViewController: UITextViewDelegate, UITextFieldDelegate 
         let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue
         return keyboardSize.CGRectValue().height
     }
+    
 }
 
 extension IdeaSubmissionViewController: IdeaSubmissionView {
@@ -98,7 +113,6 @@ extension IdeaSubmissionViewController: IdeaSubmissionView {
     }
     
     func cancelSubmission(sender: AnyObject) {
-        print("Here")
         presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
     
