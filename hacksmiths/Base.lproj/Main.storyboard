@@ -1758,7 +1758,7 @@
                                         <color key="onTintColor" red="0.16862745100000001" green="0.56470588239999997" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="thumbTintColor" red="0.28728589415550232" green="0.1402067244052887" blue="0.30659055709838867" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
-                                            <action selector="didTapAvailableForEvents:" destination="KDc-3l-D2d" eventType="valueChanged" id="oB5-XK-heq"/>
+                                            <action selector="didTapToggle:" destination="KDc-3l-D2d" eventType="valueChanged" id="mhP-ZD-srM"/>
                                         </connections>
                                     </switch>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PPm-Z7-K1e">
@@ -1785,7 +1785,7 @@
                                         <color key="onTintColor" red="0.16862745100000001" green="0.56470588239999997" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="thumbTintColor" red="0.28728589415550232" green="0.1402067244052887" blue="0.30659055709838867" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
-                                            <action selector="didTapPublicProfile:" destination="KDc-3l-D2d" eventType="valueChanged" id="0SU-z4-hxU"/>
+                                            <action selector="didTapToggle:" destination="KDc-3l-D2d" eventType="valueChanged" id="CAB-6R-KPp"/>
                                         </connections>
                                     </switch>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Public Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wPz-np-gkZ">
@@ -1817,11 +1817,9 @@
                                         <rect key="frame" x="206" y="387" width="51" height="31"/>
                                         <color key="onTintColor" red="0.16862745100000001" green="0.56470588239999997" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="thumbTintColor" red="0.2872858942" green="0.14020672440000001" blue="0.30659055709999999" alpha="1" colorSpace="calibratedRGB"/>
-                                    </switch>
-                                    <switch opaque="NO" tag="5" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7DI-17-Bpa">
-                                        <rect key="frame" x="206" y="460" width="51" height="31"/>
-                                        <color key="onTintColor" red="0.16862745100000001" green="0.56470588239999997" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        <color key="thumbTintColor" red="0.2872858942" green="0.14020672440000001" blue="0.30659055709999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="didTapToggle:" destination="KDc-3l-D2d" eventType="valueChanged" id="HWj-JR-tfW"/>
+                                        </connections>
                                     </switch>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Looking for a Mentor" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AD3-8K-7SF">
                                         <rect key="frame" x="37" y="460" width="163" height="31"/>
@@ -1844,7 +1842,15 @@
                                         <color key="onTintColor" red="0.16862745100000001" green="0.56470588239999997" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="thumbTintColor" red="0.28728589415550232" green="0.1402067244052887" blue="0.30659055709838867" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
-                                            <action selector="didTapPushNotificationsToggle:" destination="KDc-3l-D2d" eventType="valueChanged" id="eHX-ww-pQP"/>
+                                            <action selector="didTapToggle:" destination="KDc-3l-D2d" eventType="valueChanged" id="4IO-Gl-Kcm"/>
+                                        </connections>
+                                    </switch>
+                                    <switch opaque="NO" tag="5" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7DI-17-Bpa">
+                                        <rect key="frame" x="206" y="460" width="51" height="31"/>
+                                        <color key="onTintColor" red="0.16862745100000001" green="0.56470588239999997" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="thumbTintColor" red="0.2872858942" green="0.14020672440000001" blue="0.30659055709999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="didTapToggle:" destination="KDc-3l-D2d" eventType="valueChanged" id="4f0-CZ-Vcy"/>
                                         </connections>
                                     </switch>
                                 </subviews>
@@ -1911,7 +1917,9 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="availableAsMentorToggle" destination="EAf-Xi-WIn" id="h47-Q1-TWu"/>
                         <outlet property="availableForEvents" destination="fcS-Uw-KyU" id="M44-oV-ZX7"/>
+                        <outlet property="lookingForMentorToggle" destination="7DI-17-Bpa" id="Ti1-51-JhZ"/>
                         <outlet property="modalView" destination="fWz-r7-eRN" id="r6R-Bf-NMK"/>
                         <outlet property="publicProfileToggle" destination="rfv-Rx-rVn" id="gYa-VS-VT4"/>
                         <outlet property="pushNotificationsSwitch" destination="5zp-Pz-hHN" id="E7o-lZ-cKY"/>
@@ -2309,7 +2317,7 @@ We build tools designed to help non-profit organizations streamline their philan
                                 <rect key="frame" x="0.0" y="64" width="600" height="936"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WaT-Qf-zzh" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="-1" width="600" height="937"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="936"/>
                                         <subviews>
                                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hqh-H5-abc">
                                                 <rect key="frame" x="91" y="315" width="417" height="47"/>
@@ -2339,7 +2347,7 @@ We build tools designed to help non-profit organizations streamline their philan
                                                     <userDefinedRuntimeAttribute type="image" keyPath="image" value="avatar-missing"/>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="SfU-lV-Vsa" customClass="AutoTextView" customModule="Spring">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="SfU-lV-Vsa" customClass="AutoTextView" customModule="Spring">
                                                 <rect key="frame" x="20" y="228" width="560" height="130"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
@@ -2349,7 +2357,7 @@ We build tools designed to help non-profit organizations streamline their philan
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                             </textView>
-                                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Website" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bsU-zS-rsN" customClass="IsaoTextField" customModule="TextFieldEffects">
+                                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Website" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bsU-zS-rsN" customClass="IsaoTextField" customModule="TextFieldEffects">
                                                 <rect key="frame" x="20" y="352" width="560" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="LXE-f6-4o5"/>
@@ -2366,13 +2374,13 @@ We build tools designed to help non-profit organizations streamline their philan
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DLM-wc-pBL" userLabel="TextFieldView">
-                                                <rect key="frame" x="20" y="410" width="560" height="128"/>
+                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DLM-wc-pBL" userLabel="TextFieldView">
+                                                <rect key="frame" x="20" y="410" width="560" height="150"/>
                                                 <subviews>
-                                                    <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Want Experience" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="B6E-82-NdU" customClass="IsaoTextField" customModule="TextFieldEffects">
-                                                        <rect key="frame" x="0.0" y="70" width="560" height="50"/>
+                                                    <textField hidden="YES" opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Have Experience" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QF9-1U-dSr" customClass="IsaoTextField" customModule="TextFieldEffects">
+                                                        <rect key="frame" x="0.0" y="34" width="560" height="50"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="50" id="fsN-HP-ZOE"/>
+                                                            <constraint firstAttribute="height" constant="50" id="6Zl-95-qb3"/>
                                                         </constraints>
                                                         <color key="textColor" red="0.12637259066104889" green="0.12639245390892029" blue="0.12636536359786987" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -2386,10 +2394,23 @@ We build tools designed to help non-profit organizations streamline their philan
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </textField>
-                                                    <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Have Experience" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QF9-1U-dSr" customClass="IsaoTextField" customModule="TextFieldEffects">
-                                                        <rect key="frame" x="0.0" y="8" width="560" height="50"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jCZ-cm-TkP">
+                                                        <rect key="frame" x="540" y="0.0" width="20" height="22"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="50" id="6Zl-95-qb3"/>
+                                                            <constraint firstAttribute="height" constant="22" id="7nV-QR-WNh"/>
+                                                            <constraint firstAttribute="width" constant="20" id="khD-n2-vUV"/>
+                                                        </constraints>
+                                                        <state key="normal" image="question-mark"/>
+                                                        <connections>
+                                                            <segue destination="GLi-3p-vmB" kind="popoverPresentation" popoverAnchorView="jCZ-cm-TkP" id="hOD-Rm-WU3">
+                                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                                            </segue>
+                                                        </connections>
+                                                    </button>
+                                                    <textField hidden="YES" opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Want Experience" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="B6E-82-NdU" customClass="IsaoTextField" customModule="TextFieldEffects">
+                                                        <rect key="frame" x="0.0" y="92" width="560" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="fsN-HP-ZOE"/>
                                                         </constraints>
                                                         <color key="textColor" red="0.12637259066104889" green="0.12639245390892029" blue="0.12636536359786987" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -2406,12 +2427,14 @@ We build tools designed to help non-profit organizations streamline their philan
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="bottom" secondItem="B6E-82-NdU" secondAttribute="bottom" constant="8" id="1E3-s7-ph4"/>
                                                     <constraint firstItem="B6E-82-NdU" firstAttribute="top" secondItem="QF9-1U-dSr" secondAttribute="bottom" constant="12" id="2dp-Fc-V7M"/>
                                                     <constraint firstItem="QF9-1U-dSr" firstAttribute="leading" secondItem="DLM-wc-pBL" secondAttribute="leading" id="39b-Jm-XG9"/>
+                                                    <constraint firstItem="jCZ-cm-TkP" firstAttribute="top" secondItem="DLM-wc-pBL" secondAttribute="top" id="40k-lI-iQK"/>
+                                                    <constraint firstAttribute="bottom" secondItem="B6E-82-NdU" secondAttribute="bottom" constant="8" id="8cs-Xy-ci1"/>
                                                     <constraint firstItem="B6E-82-NdU" firstAttribute="leading" secondItem="DLM-wc-pBL" secondAttribute="leading" id="9mR-OC-1p9"/>
-                                                    <constraint firstItem="QF9-1U-dSr" firstAttribute="top" secondItem="DLM-wc-pBL" secondAttribute="top" constant="8" id="JD9-oq-sfw"/>
                                                     <constraint firstAttribute="trailing" secondItem="B6E-82-NdU" secondAttribute="trailing" id="LFb-O5-U8N"/>
+                                                    <constraint firstItem="QF9-1U-dSr" firstAttribute="top" secondItem="jCZ-cm-TkP" secondAttribute="bottom" constant="12" id="Mo5-ID-p1E"/>
+                                                    <constraint firstAttribute="trailing" secondItem="jCZ-cm-TkP" secondAttribute="trailing" id="gXj-fE-Nh1"/>
                                                     <constraint firstAttribute="trailing" secondItem="QF9-1U-dSr" secondAttribute="trailing" id="t8w-oL-T8I"/>
                                                 </constraints>
                                             </view>
@@ -2424,19 +2447,64 @@ We build tools designed to help non-profit organizations streamline their philan
                                                 <color key="textColor" red="0.12637259066104889" green="0.12639245390892029" blue="0.12636536359786987" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vAc-ca-jBi">
-                                                <rect key="frame" x="20" y="546" width="560" height="128"/>
+                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vAc-ca-jBi">
+                                                <rect key="frame" x="20" y="568" width="560" height="92"/>
+                                                <subviews>
+                                                    <textField opaque="NO" clipsSubviews="YES" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Availability Explanation" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AqR-7w-95i" customClass="IsaoTextField" customModule="TextFieldEffects">
+                                                        <rect key="frame" x="0.0" y="34" width="560" height="50"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="vrr-2e-sFx"/>
+                                                        </constraints>
+                                                        <color key="textColor" red="0.12637259070000001" green="0.12639245390000001" blue="0.1263653636" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="inactiveColor">
+                                                                <color key="value" red="0.1647058824" green="0.1647058824" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="activeColor">
+                                                                <color key="value" red="0.16862745100000001" green="0.56470588239999997" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="handleFormUpdate:" destination="c6C-P6-K3H" eventType="editingChanged" id="j4S-MW-64c"/>
+                                                        </connections>
+                                                    </textField>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bHg-wg-66g">
+                                                        <rect key="frame" x="540" y="0.0" width="20" height="22"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="22" id="vkK-d5-Xgj"/>
+                                                            <constraint firstAttribute="width" constant="20" id="wXx-Kd-cdo"/>
+                                                        </constraints>
+                                                        <state key="normal" image="question-mark"/>
+                                                        <connections>
+                                                            <segue destination="yrv-Cg-RPU" kind="popoverPresentation" popoverAnchorView="bHg-wg-66g" id="jPJ-yG-5k2">
+                                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                                            </segue>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstItem="AqR-7w-95i" firstAttribute="leading" secondItem="vAc-ca-jBi" secondAttribute="leading" id="8QT-Rg-ipr"/>
+                                                    <constraint firstAttribute="trailing" secondItem="bHg-wg-66g" secondAttribute="trailing" id="CRX-ac-Qfd"/>
+                                                    <constraint firstAttribute="trailing" secondItem="AqR-7w-95i" secondAttribute="trailing" id="JUF-A8-0Rq"/>
+                                                    <constraint firstItem="bHg-wg-66g" firstAttribute="top" secondItem="vAc-ca-jBi" secondAttribute="top" id="TtM-0b-WiN"/>
+                                                    <constraint firstAttribute="bottom" secondItem="AqR-7w-95i" secondAttribute="bottom" constant="8" id="rdF-rW-DpS"/>
+                                                    <constraint firstItem="AqR-7w-95i" firstAttribute="top" secondItem="bHg-wg-66g" secondAttribute="bottom" constant="12" id="vvC-6a-WSd"/>
+                                                </constraints>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="t4f-gb-Ibm" firstAttribute="centerX" secondItem="WaT-Qf-zzh" secondAttribute="centerX" id="3PX-IE-ufc"/>
                                             <constraint firstItem="bsU-zS-rsN" firstAttribute="leading" secondItem="WaT-Qf-zzh" secondAttribute="leading" constant="20" id="54i-lq-G5z"/>
+                                            <constraint firstItem="vAc-ca-jBi" firstAttribute="top" secondItem="DLM-wc-pBL" secondAttribute="bottom" constant="8" id="8Uj-wV-Zsb"/>
                                             <constraint firstItem="t4f-gb-Ibm" firstAttribute="leading" secondItem="WaT-Qf-zzh" secondAttribute="leading" constant="20" id="D3L-RK-Rkf"/>
                                             <constraint firstItem="bsU-zS-rsN" firstAttribute="top" secondItem="SfU-lV-Vsa" secondAttribute="bottom" constant="-6" id="Fh3-As-GFG"/>
                                             <constraint firstItem="FPx-Ny-ISx" firstAttribute="centerX" secondItem="WaT-Qf-zzh" secondAttribute="centerX" id="Ij9-yR-gJz"/>
                                             <constraint firstItem="FPx-Ny-ISx" firstAttribute="centerX" secondItem="WaT-Qf-zzh" secondAttribute="centerX" id="M4E-Sv-Je0"/>
+                                            <constraint firstItem="vAc-ca-jBi" firstAttribute="centerX" secondItem="hqh-H5-abc" secondAttribute="centerX" id="NHc-Va-3Qy"/>
                                             <constraint firstAttribute="trailing" secondItem="t4f-gb-Ibm" secondAttribute="trailing" constant="20" id="Phv-X7-JX6"/>
                                             <constraint firstAttribute="trailing" secondItem="bsU-zS-rsN" secondAttribute="trailing" constant="20" id="RBq-nS-9Ku"/>
                                             <constraint firstItem="t4f-gb-Ibm" firstAttribute="centerX" secondItem="WaT-Qf-zzh" secondAttribute="centerX" id="Vrd-lO-xbS"/>
@@ -2446,10 +2514,12 @@ We build tools designed to help non-profit organizations streamline their philan
                                             <constraint firstItem="DLM-wc-pBL" firstAttribute="top" secondItem="bsU-zS-rsN" secondAttribute="bottom" constant="8" id="cyL-bY-zxn"/>
                                             <constraint firstAttribute="trailing" secondItem="DLM-wc-pBL" secondAttribute="trailing" constant="20" id="hvM-1J-HZp"/>
                                             <constraint firstItem="DLM-wc-pBL" firstAttribute="leading" secondItem="WaT-Qf-zzh" secondAttribute="leading" constant="20" id="iBN-SC-gKW"/>
+                                            <constraint firstItem="vAc-ca-jBi" firstAttribute="leading" secondItem="WaT-Qf-zzh" secondAttribute="leading" constant="20" id="kOx-w4-tm0"/>
                                             <constraint firstItem="SfU-lV-Vsa" firstAttribute="centerX" secondItem="WaT-Qf-zzh" secondAttribute="centerX" id="nWO-jr-lzb"/>
                                             <constraint firstItem="SfU-lV-Vsa" firstAttribute="centerX" secondItem="WaT-Qf-zzh" secondAttribute="centerX" id="qB2-Aq-gc0"/>
                                             <constraint firstItem="FPx-Ny-ISx" firstAttribute="top" secondItem="WaT-Qf-zzh" secondAttribute="top" constant="20" id="qs0-0B-xml"/>
                                             <constraint firstItem="SfU-lV-Vsa" firstAttribute="top" secondItem="t4f-gb-Ibm" secondAttribute="bottom" constant="8" id="slA-ls-E2i"/>
+                                            <constraint firstAttribute="trailing" secondItem="vAc-ca-jBi" secondAttribute="trailing" constant="20" id="yyX-SN-u4h"/>
                                         </constraints>
                                         <variation key="default">
                                             <mask key="constraints">
@@ -2462,10 +2532,17 @@ We build tools designed to help non-profit organizations streamline their philan
                                 </subviews>
                                 <color key="backgroundColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="WaT-Qf-zzh" firstAttribute="top" secondItem="Wv5-zA-FdI" secondAttribute="top" constant="-1" id="6cb-iP-knu"/>
+                                    <constraint firstItem="WaT-Qf-zzh" firstAttribute="top" secondItem="Wv5-zA-FdI" secondAttribute="top" id="6cb-iP-knu"/>
                                     <constraint firstAttribute="trailing" secondItem="WaT-Qf-zzh" secondAttribute="trailing" id="AjT-jx-MPr"/>
                                     <constraint firstItem="WaT-Qf-zzh" firstAttribute="leading" secondItem="Wv5-zA-FdI" secondAttribute="leading" id="Y88-Jk-h25"/>
                                     <constraint firstAttribute="bottom" secondItem="WaT-Qf-zzh" secondAttribute="bottom" id="Z8Y-aj-cnu"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KR9-MX-0Uc">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="20"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="bQO-xu-aqP"/>
                                 </constraints>
                             </view>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yBi-Tx-dP5">
@@ -2500,13 +2577,6 @@ We build tools designed to help non-profit organizations streamline their philan
                                 </items>
                                 <color key="barTintColor" red="0.2156862745" green="0.2156862745" blue="0.21960784310000001" alpha="1" colorSpace="calibratedRGB"/>
                             </toolbar>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KR9-MX-0Uc">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="20"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="bQO-xu-aqP"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -2535,9 +2605,12 @@ We build tools designed to help non-profit organizations streamline their philan
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="1000"/>
                     <connections>
+                        <outlet property="availabilityDescription" destination="AqR-7w-95i" id="H1M-eO-vuM"/>
                         <outlet property="cancelButton" destination="szd-3J-jgD" id="43g-Ed-KwO"/>
                         <outlet property="editButton" destination="S1L-KC-4jr" id="faS-6w-RIw"/>
+                        <outlet property="eventAvailabilityView" destination="vAc-ca-jBi" id="WIg-7m-dhP"/>
                         <outlet property="haveExperience" destination="QF9-1U-dSr" id="I1N-jE-SYt"/>
+                        <outlet property="helpButton" destination="jCZ-cm-TkP" id="JbZ-0C-IAW"/>
                         <outlet property="mentoringFieldsView" destination="DLM-wc-pBL" id="IAF-Y4-bGB"/>
                         <outlet property="nameLabel" destination="t4f-gb-Ibm" id="g64-4b-hja"/>
                         <outlet property="noDataFoundLabel" destination="hqh-H5-abc" id="zrw-lb-PrU"/>
@@ -2551,7 +2624,78 @@ We build tools designed to help non-profit organizations streamline their philan
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6cp-8K-Nz0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="126" y="-564"/>
+            <point key="canvasLocation" x="114" y="-564"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="A2I-HL-go5">
+            <objects>
+                <viewController id="GLi-3p-vmB" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xqz-dQ-Dor"/>
+                        <viewControllerLayoutGuide type="bottom" id="eEH-Q4-bzp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jyh-RV-aeZ">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="100"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cPb-Xh-vTs">
+                                <rect key="frame" x="0.0" y="0.0" width="300" height="100"/>
+                                <string key="text">Explanation of the skills you can offer as a mentor, or skills you are looking for from a mentor. See: http://hacksmiths.io/mentoring</string>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="eEH-Q4-bzp" firstAttribute="top" secondItem="cPb-Xh-vTs" secondAttribute="bottom" id="IC5-Oc-fzV"/>
+                            <constraint firstAttribute="trailing" secondItem="cPb-Xh-vTs" secondAttribute="trailing" id="QdB-hG-CUo"/>
+                            <constraint firstItem="cPb-Xh-vTs" firstAttribute="leading" secondItem="jyh-RV-aeZ" secondAttribute="leading" id="ZcQ-AS-Pvr"/>
+                            <constraint firstItem="cPb-Xh-vTs" firstAttribute="top" secondItem="xqz-dQ-Dor" secondAttribute="bottom" id="dAJ-9j-7Mc"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="300" height="100"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KER-xu-eoK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="715" y="-796"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="2Ux-k1-HpO">
+            <objects>
+                <viewController id="yrv-Cg-RPU" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tPR-YC-8NW"/>
+                        <viewControllerLayoutGuide type="bottom" id="vbb-tT-Prw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="oAZ-hB-RaY">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="100"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To participate in our Events, we ask that you provide us with a brief explanation / estimation of your availability" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="15O-M5-Eyf">
+                                <rect key="frame" x="0.0" y="0.0" width="300" height="100"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="15O-M5-Eyf" secondAttribute="trailing" id="45r-BM-HUy"/>
+                            <constraint firstItem="vbb-tT-Prw" firstAttribute="top" secondItem="15O-M5-Eyf" secondAttribute="bottom" id="9oU-Nk-vqf"/>
+                            <constraint firstItem="15O-M5-Eyf" firstAttribute="top" secondItem="tPR-YC-8NW" secondAttribute="bottom" id="FsM-R0-1hp"/>
+                            <constraint firstItem="15O-M5-Eyf" firstAttribute="leading" secondItem="oAZ-hB-RaY" secondAttribute="leading" id="LxS-1B-fuu"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="300" height="100"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6SB-Di-4Yq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="732" y="-494"/>
         </scene>
     </scenes>
     <resources>
@@ -2574,6 +2718,7 @@ We build tools designed to help non-profit organizations streamline their philan
         <image name="onepassword-extension-light" width="44" height="44"/>
         <image name="pencil-paper-white" width="32" height="32"/>
         <image name="person" width="22" height="32"/>
+        <image name="question-mark" width="20" height="20"/>
         <image name="refresh-control" width="32" height="32"/>
         <image name="ryan" width="359" height="359"/>
         <image name="sean" width="321" height="321"/>

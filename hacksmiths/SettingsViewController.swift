@@ -12,15 +12,23 @@
 import UIKit
 import Spring
 
+protocol SettingsPickerDelegate {
+    func didUpdateSettings(userData: UserData)
+}
+
 class SettingsViewController: UIViewController {
     @IBOutlet weak var pushNotificationsSwitch: UISwitch!
     @IBOutlet weak var availableForEvents: UISwitch!
-
+    var delegate: SettingsPickerDelegate?
+    @IBOutlet weak var availableAsMentorToggle: UISwitch!
+    @IBOutlet weak var lookingForMentorToggle: UISwitch!
+    
     @IBOutlet weak var modalView: SpringView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var publicProfileToggle: UISwitch!
-    
+    var dataChanged: Bool = false
     private let settingPresenter = SettingsPresenter(profileService: UserProfileService())
+    var currentUserData: UserData?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,41 +57,43 @@ class SettingsViewController: UIViewController {
     }
     
     func setUIForUserData(){
-        
-//        if ProfileDataFetcher.sharedInstance.userData != nil {
-//            
-//            let notificationsIsOn = ProfileDataFetcher.sharedInstance.userData?.mobileNotifications
-//            let isAvailableForEvents = ProfileDataFetcher.sharedInstance.userData?.isAvailableForEvents
-//            let publicProfile = ProfileDataFetcher.sharedInstance.userData?.isPublic
-//            
-//            pushNotificationsSwitch.setOn(notificationsIsOn!, animated: false)
-//            availableForEvents.setOn(isAvailableForEvents!, animated: false)
-//            publicProfileToggle.setOn(publicProfile!, animated: false)
-//        }
+        if let userData = currentUserData {
+            pushNotificationsSwitch.on = userData.mobileNotifications
+            lookingForMentorToggle.on = userData.needsAMentor
+            availableForEvents.on = userData.isAvailableForEvents
+            availableAsMentorToggle.on = userData.isAvailableAsAMentor
+            publicProfileToggle.on = userData.isPublic
+            pushNotificationsSwitch.on = userData.mobileNotifications
+        }
     }
     
     @IBAction func didTapToggle(sender: UISwitch) {
+        guard currentUserData != nil else {
+            return
+        }
         let toggle = Toggle(rawValue: sender.tag)
+        let newValue = sender.on
+        dataChanged = true
         switch toggle! {
         case .PushNotifications:
-            let newValue = sender.on
-            break
-        default:
-            break
-//        case .AvailableForEvents:
-//        case .PublicProfile:
-//        case .AvailableAsAMenter:
-//        case .LookingForAMentor:
-            
+            currentUserData?.mobileNotifications = newValue
+        case .AvailableForEvents:
+            currentUserData?.isAvailableForEvents = newValue
+        case .PublicProfile:
+            currentUserData?.isPublic = newValue
+        case .AvailableAsAMentor:
+            currentUserData?.isAvailableAsAMentor = newValue
+        case .LookingForAMentor:
+            currentUserData?.needsAMentor = newValue
         }
     }
     
     
-
-    
     @IBAction func closeButtonPressed(sender: AnyObject) {
         presentingViewController!.view.transformIn(self)
-        
+        if dataChanged {
+            delegate?.didUpdateSettings(currentUserData!)
+        }
         modalView.animation = "slideRight"
         modalView.animateFrom = false
         modalView.animateToNext({
@@ -96,7 +106,7 @@ class SettingsViewController: UIViewController {
 
 extension SettingsViewController: SettingsView {
     func didChangeSettings(value: Bool) {
-        print(value)
+        
     }
 }
 
@@ -105,11 +115,4 @@ enum Toggle: Int {
     PublicProfile, AvailableAsAMentor, LookingForAMentor
 }
 
-enum ToggleValue {
-    case PushNotifications(newValue: Bool)
-    case AvailableForEvents(newValue: Bool)
-    case PublicProfile(newValue: Bool)
-    case AvailableAsAMentor(newValue: Bool)
-    case LookingForAMentor(newValue: Bool)
-}
 

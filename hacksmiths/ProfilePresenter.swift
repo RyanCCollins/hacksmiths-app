@@ -57,7 +57,6 @@ class ProfilePresenter {
     
     func fetchImage(userData: UserData) {
         userData.fetchImages({success, error in
-            
             if error != nil {
                 self.profileView?.didFinishFetchingImage(nil, error: error)
             } else {

@@ -14,7 +14,7 @@ protocol ProfileUserDataDelegate {
     func didSetUserData(userData: UserData)
 }
 
-class ProfileViewController: UIViewController, UINavigationControllerDelegate, UIToolbarDelegate {
+class ProfileViewController: UIViewController, UINavigationControllerDelegate, UIToolbarDelegate, SettingsPickerDelegate {
     @IBOutlet weak var mentoringFieldsView: UIView!
     @IBOutlet weak var haveExperience: IsaoTextField!
     @IBOutlet weak var wantExperience: IsaoTextField!
@@ -28,10 +28,14 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     @IBOutlet weak var noDataFoundLabel: UILabel!
     @IBOutlet weak var websiteTextField: IsaoTextField!
     @IBOutlet weak var toolbar: UIToolbar!
+    @IBOutlet weak var availabilityDescription: IsaoTextField!
+    @IBOutlet weak var helpButton: UIButton!
     
+    @IBOutlet weak var eventAvailabilityView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
-    var activityIndicator: IGActivityIndicatorView!
+    var currentUserData: UserData?
     
+    var activityIndicator: IGActivityIndicatorView!
     private var profilePresenter = ProfilePresenter(userProfileService: UserProfileService())
     
     override func viewWillAppear(animated: Bool) {
@@ -44,6 +48,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         profilePresenter.fetchUserData()
         setScrollView()
     }
+
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
@@ -66,11 +71,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     func setScrollView() {
         scrollView.delegate = self
         scrollView.contentSize.width = view.bounds.width
-        if !editing {
-            scrollView.contentSize.height = 936
-        } else {
-            scrollView.contentSize.height = view.bounds.height
-        }
+        scrollView.contentSize.height = 936
     }
 
     func setTextFieldDelegate() {
@@ -87,20 +88,24 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "presentSettings" {
-            
+            let settingsVC = segue.destinationViewController as! SettingsViewController
+            settingsVC.currentUserData = self.currentUserData
+            settingsVC.delegate = self
         }
     }
     
-    func setUIForUserData(userData: UserData) {
-
+    func setUIForCurrentUserData() {
+        guard let userData = currentUserData else {
+            return
+        }
         dispatch_async(GlobalMainQueue, {
             self.nameLabel.text = userData.name
             self.profileTextView.text = userData.bio
-            
             self.profileImageView.userImage = userData.image
-            
             self.setupWebsiteField(userData)
             self.setupMentoringFields(userData)
+            self.setupAvailabilityFields(userData)
+            self.toggleEditMode(false)
         })
     }
     
@@ -130,11 +135,17 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         }
     }
     
+    func setupAvailabilityFields(userData: UserData) {
+        if let availabilityExplanation = userData.availabilityExplanation {
+            availabilityDescription.text = availabilityExplanation
+        }
+    }
+    
     @IBAction func didTapEditButtonUpInside(sender: AnyObject) {
-        // Switch the editing toggle
-        editing = !editing
-        // Toggle the editing mode
-        toggleEditMode(editing)
+        if editing {
+            committChangesToProfile()
+        }
+        toggleEditMode(!editing)
     }
 
     @IBAction func didTapCancelUpInside(sender: AnyObject) {
@@ -143,6 +154,12 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     
     @IBAction func didTapRefreshUpInside(sender: AnyObject) {
         profilePresenter.fetchUserData()
+    }
+    
+    /* Settings delegate method for updating userData. */
+    func didUpdateSettings(userData: UserData) {
+        currentUserData = userData
+        profilePresenter.submitDataToAPI(currentUserData!)
     }
     
     func toggleEditMode(editing: Bool) {
@@ -156,14 +173,52 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         websiteTextField.hidden = !editing
         wantExperience.hidden = !editing
         haveExperience.hidden = !editing
-    }
-    
-    func commitChangesToProfile() {
-        // TODO: Upload changes to the profile to the server.
-        toggleEditMode(false)
+        helpButton.hidden = true
+        eventAvailabilityView.hidden = true
         
+        if editing {
+            profileTextView.becomeFirstResponder()
+        }
+        
+        if let userData = currentUserData {
+            if userData.isAvailableForEvents {
+                eventAvailabilityView.hidden = !editing
+            }
+        }
     }
     
+    func committChangesToProfile() {
+        if currentUserData != nil {
+            profilePresenter.submitDataToAPI(currentUserData!)
+        }
+    }
+    
+    @IBAction func handleFormUpdate(sender: IsaoTextField) {
+        let textField = ProfileTextFields(rawValue: sender.tag)
+        let newValue = sender.text
+        if textField != nil {
+            switch textField! {
+            case .Bio:
+                currentUserData?.bio = newValue
+            case .Website:
+                currentUserData?.website = newValue
+            case .HaveExperience:
+                currentUserData?.hasExperience = newValue
+            case .WantExperience:
+                currentUserData?.wantsExperience = newValue
+            case .AvailabilityExplanation:
+                currentUserData?.availabilityExplanation = newValue
+            default:
+                break
+            }
+        }
+    }
+    
+    enum ProfileTextFields: Int {
+        case Bio = 0, Website,
+             HaveExperience, WantExperience,
+             AvailabilityExplanation
+    }
     
 }
 
@@ -198,7 +253,8 @@ extension ProfileViewController: ProfileView {
                 self.profilePresenter.fetchUserData()
             }])
         } else {
-            self.setUIForUserData(userData!)
+            self.currentUserData = userData
+            self.setUIForCurrentUserData()
         }
     }
     

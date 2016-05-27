@@ -84,7 +84,7 @@ class UserData: NSManagedObject {
             self.wantsExperience = wantsExperience
         }
         if let photo = json.user.photo {
-            avatarURL = photo
+            avatarURL = photo.URLString
         }
         if let dateUpdated = json.user.dateUpdated {
             if let date = dateUpdated.parseAsDate() {
