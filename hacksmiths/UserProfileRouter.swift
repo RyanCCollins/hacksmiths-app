@@ -11,7 +11,7 @@ import Alamofire
 
 enum ProfileEndpoint {
     case GetProfile(userId: String)
-    case UpdateProfile(userJSON: UserJSONObject, userID: String)
+    case UpdateProfile(userJSON: UserJSONObject)
 }
 
 class UserProfileRouter: BaseRouter {
@@ -44,9 +44,8 @@ class UserProfileRouter: BaseRouter {
         case .GetProfile(let userID):
             let user = ["user" : userID]
             return user
-        case .UpdateProfile(let userJSON, let userID):
+        case .UpdateProfile(let userJSON):
             let json = userJSON.toJSON()
-            print(json)
             return json
         default:
             return nil

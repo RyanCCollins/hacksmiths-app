@@ -37,8 +37,6 @@ class UserProfileService {
                                 CoreDataStackManager.sharedInstance().saveContext()
                             })
                             
-                            /* Delete all the past user data records */
-                            self.deleteUserDataRecords()
                             resolve(userData)
                         } else {
                             reject(GlobalErrors.GenericNetworkError)
@@ -56,7 +54,7 @@ class UserProfileService {
      */
     func updateProfile(userJSON: UserJSONObject, userID: String) -> Promise<Void> {
         return Promise{resolve, reject in
-            let router = UserProfileRouter(endpoint: .UpdateProfile(userJSON: userJSON, userID: userID))
+            let router = UserProfileRouter(endpoint: .UpdateProfile(userJSON: userJSON))
             HTTPManager.sharedManager.request(router)
                 .validate()
                 .responseJSON{

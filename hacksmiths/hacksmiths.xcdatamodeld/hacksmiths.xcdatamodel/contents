@@ -91,6 +91,7 @@
         <attribute name="dateUpdated" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="email" attributeType="String" syncable="YES"/>
         <attribute name="hasExperience" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="idString" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isAvailableAsAMentor" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="isAvailableForEvents" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="isPublic" optional="YES" attributeType="Boolean" syncable="YES"/>
@@ -109,7 +110,7 @@
         <element name="Participant" positionX="117" positionY="198" width="128" height="120"/>
         <element name="Person" positionX="358" positionY="243" width="128" height="255"/>
         <element name="ProjectIdea" positionX="126" positionY="207" width="128" height="165"/>
-        <element name="UserData" positionX="126" positionY="45" width="128" height="285"/>
         <element name="ProjectIdeaSubmission" positionX="117" positionY="198" width="128" height="150"/>
+        <element name="UserData" positionX="126" positionY="45" width="128" height="300"/>
     </elements>
 </model>

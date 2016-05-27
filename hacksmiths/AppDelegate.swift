@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     let primaryColor = UIColor.flatNavyBlueColorDark()
-    let secondary = UIColor(hex: "#7ACFF0")
+    let secondary = UIColor(hex: "#")
 
 
     func applicationWillResignActive(application: UIApplication) {

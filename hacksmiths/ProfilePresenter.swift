@@ -12,7 +12,6 @@ protocol ProfileView {
     func showLoading()
     func hideLoading()
     func setActivityIndicator(withMessage message: String?)
-    func didFinishFetchingImage(image: UIImage?, error: NSError?)
     func didUpdateUserData(didSucceed: Bool, error: NSError?)
     func didGetUserDataFromAPI(userData: UserData?, error: NSError?)
     func unsubscribeToNotifications(sender: AnyObject)
@@ -54,18 +53,7 @@ class ProfilePresenter {
                 self.profileView?.didUpdateUserData(false, error: error as NSError)
         }
     }
-    
-    func fetchImage(userData: UserData) {
-        userData.fetchImages({success, error in
-            if error != nil {
-                self.profileView?.didFinishFetchingImage(nil, error: error)
-            } else {
-                if userData.image != nil {
-                    self.profileView?.didFinishFetchingImage(userData.image, error: nil)
-                }
-            }
-        })
-    }
+
     
     func fetchOrGetUserData() -> UserData? {
         var returnData: UserData?
@@ -88,8 +76,11 @@ class ProfilePresenter {
         profileView?.showLoading()
         userProfileService.getProfile(UserService.sharedInstance().userId!).then(){
             userData -> () in
-            self.fetchImage(userData!)
-            self.profileView?.didGetUserDataFromAPI(userData, error: nil)
+            userData?.fetchImages().then() {
+                    self.profileView?.didGetUserDataFromAPI(userData, error: nil)
+                }.error{error in
+                    self.profileView?.didGetUserDataFromAPI(nil, error: error as NSError)
+                }
         }.error {
             error in
             self.profileView?.didGetUserDataFromAPI(nil, error: error as NSError)

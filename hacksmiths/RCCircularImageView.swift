@@ -59,7 +59,7 @@ class RCCircularImageView: UIView {
         }
         
     }
-    
+
     func setImage() {
         if imageLayer != nil {
             if let userPicture = userImage {

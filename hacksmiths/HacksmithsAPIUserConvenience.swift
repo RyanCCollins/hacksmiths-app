@@ -219,29 +219,6 @@ extension HacksmithsAPIClient {
     }
  
     
-    func updateProfile(body: UserJSONObject, completionHandler: CompletionHandler) {
-        
-        let method = Routes.UpdateProfile
-        
-        if UserService.sharedInstance().authenticated {
-//        
-//            HacksmithsAPIClient.sharedInstance().taskForPOSTMethod(method, JSONBody: body, completionHandler: {succeess, result, error in
-//                
-//                if error != nil {
-//                    completionHandler(success: false, error: error)
-//                } else {
-//                    
-//                    completionHandler(success: true, error: nil)
-//                    
-//                }
-//                
-//            })
-            
-        } else {
-            completionHandler(success: false, error: Errors.constructError(domain: "Hacksmiths API Client", userMessage: "You must log in to do that."))
-        }
-    }
-    
     // Unwrap all the data returned from the API, assuring that we have good data.all
     // This is starting to get out of hand, so we should likely setup the server to only return good data.
     func dictionaryForUserData(user: [String : AnyObject]) -> [String : AnyObject] {

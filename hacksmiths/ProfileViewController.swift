@@ -208,8 +208,6 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
                 currentUserData?.wantsExperience = newValue
             case .AvailabilityExplanation:
                 currentUserData?.availabilityExplanation = newValue
-            default:
-                break
             }
         }
     }
@@ -224,15 +222,6 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
 
 /* Profile View Delegate methods */
 extension ProfileViewController: ProfileView {
-    func didFinishFetchingImage(image: UIImage?, error: NSError?) {
-        if error != nil{
-            alertController(withTitles: ["OK", "Retry"], message: (error?.localizedDescription)!, callbackHandler: [nil, {Void in
-                self.profilePresenter.fetchUserData()
-                }])
-        } else {
-            self.profileImageView.image = image
-        }
-    }
     
     func didUpdateUserData(didSucceed: Bool, error: NSError?) {
         hideLoading()

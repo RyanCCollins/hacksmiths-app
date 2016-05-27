@@ -55,7 +55,6 @@ class ParticipantCollectionViewController: UICollectionViewController {
         } catch let error as NSError {
             print("Error:  \(error)")
         }
-        collectionView?.reloadData()
     }
 
     // MARK: UICollectionViewDataSource
@@ -87,6 +86,7 @@ class ParticipantCollectionViewController: UICollectionViewController {
         fetch.sortDescriptors = [sortPriority]
 
         let fetchResultsController = NSFetchedResultsController(fetchRequest: fetch, managedObjectContext: GlobalStackManager.SharedManager.sharedContext, sectionNameKeyPath: nil, cacheName: nil)
+        fetchResultsController.delegate = self
         
         do {
             try fetchResultsController.performFetch()
@@ -101,7 +101,10 @@ class ParticipantCollectionViewController: UICollectionViewController {
 
 extension ParticipantCollectionViewController: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
-        print("Called controller did change content")
+        collectionView?.reloadData()
+    }
+    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+        collectionView?.reloadData()
     }
 }
 

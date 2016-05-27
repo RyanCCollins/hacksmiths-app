@@ -8,10 +8,12 @@
 
 import Gloss
 import CoreData
+import PromiseKit
 
 @objc(UserData)
 class UserData: NSManagedObject {
     // Managed properties for one single user
+    @NSManaged var idString: String
     @NSManaged var name: String
     @NSManaged var email: String
     @NSManaged var website: String?
@@ -84,13 +86,16 @@ class UserData: NSManagedObject {
             self.wantsExperience = wantsExperience
         }
         if let photo = json.user.photo {
-            avatarURL = photo.URLString
+            avatarURL = photo
         }
+        
         if let dateUpdated = json.user.dateUpdated {
             if let date = dateUpdated.parseAsDate() {
                 self.dateUpdated = date
             }
         }
+        
+        self.idString = json.user.id
     }
     
     dynamic var avatarFilePath: String? {
@@ -101,18 +106,22 @@ class UserData: NSManagedObject {
         }
     }
     
-    func fetchImages(completionHandler: CompletionHandler) {
-        guard avatarURL != nil else {
-            return
-        }
-        
-        HacksmithsAPIClient.sharedInstance().taskForGETImageFromURL(avatarURL!, completionHandler: {image, error in
-            if error != nil {
-                completionHandler(success: false, error: error)
+    func fetchImages() -> Promise<Void> {
+        return Promise{resolve, reject in
+            if avatarURL == nil {
+                resolve()
             } else {
-                self.image = image
+                HacksmithsAPIClient.sharedInstance().taskForGETImageFromURL(avatarURL!, completionHandler: {image, error in
+                    
+                    if error != nil {
+                        reject(error! as NSError)
+                    } else {
+                        resolve()
+                    }
+                    
+                })
             }
-        })
+        }
     }
     
     var image: UIImage? {

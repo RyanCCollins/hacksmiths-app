@@ -12,7 +12,6 @@ import CoreData
 import Foundation
 
 class EventViewController: UIViewController {
-    @IBOutlet weak var organizationWebsiteStackView: UIStackView!
     @IBOutlet weak var eventImageView: UIImageView!
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var whoLabel: UILabel!
@@ -21,6 +20,7 @@ class EventViewController: UIViewController {
     @IBOutlet weak var organizationImageView: UIImageView!
     @IBOutlet weak var organizationTitleLabel: UILabel!
     @IBOutlet weak var whenLabel: UILabel!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     @IBOutlet weak var organizationWebsiteButton: UIButton!
     @IBOutlet weak var organizationDescriptionLabel: UILabel!
@@ -35,10 +35,13 @@ class EventViewController: UIViewController {
         eventPresenter.attachView(self)
         eventPresenter.loadNextEvent()
         updateUserInterface()
+
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        collectionView.delegate = self
+        collectionView.dataSource = self
         eventPresenter.fetchNextEvent()
         setActivityIndicator()
         startLoading()
@@ -96,6 +99,31 @@ class EventViewController: UIViewController {
             }
         }
     }
+    
+    lazy var fetchedResultsController: NSFetchedResultsController = {
+        let sortPriority = NSSortDescriptor(key: "name", ascending: true)
+        let fetch = NSFetchRequest(entityName: "Participant")
+        fetch.sortDescriptors = [sortPriority]
+        
+        let fetchResultsController = NSFetchedResultsController(fetchRequest: fetch, managedObjectContext: GlobalStackManager.SharedManager.sharedContext, sectionNameKeyPath: nil, cacheName: nil)
+        fetchResultsController.delegate = self
+        
+        do {
+            try fetchResultsController.performFetch()
+        } catch let error {
+            print(error)
+        }
+        
+        return fetchResultsController
+    }()
+    
+    func performParticipantFetch() {
+        do {
+            try fetchedResultsController.performFetch()
+        } catch let error as NSError {
+            print(error)
+        }
+    }
 
 }
 
@@ -124,8 +152,7 @@ extension EventViewController: EventView {
         self.currentEvent = event
         self.finishLoading()
         self.updateUserInterface()
-        let didReciveEventNotification = NSNotification(name: "DidReceiveEventUpdate", object: self)
-        NSNotificationCenter.defaultCenter().postNotification(didReciveEventNotification)
+        collectionView.reloadData()
     }
     
     func getEvent(sender: EventPresenter, didFail error: NSError) {
@@ -141,9 +168,38 @@ extension EventViewController: EventView {
         self.currentEvent = event
         self.finishLoading()
         updateUserInterface()
+        performParticipantFetch()
     }
     
     func respondToEvent(sender: EventPresenter, didFail error: NSError) {
     
     }
+}
+
+extension EventViewController: NSFetchedResultsControllerDelegate {
+    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+        collectionView.reloadData()
+    }
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        collectionView.reloadData()
+    }
+}
+
+extension EventViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return fetchedResultsController.fetchedObjects?.count ?? 0
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ParticipantCollectionViewCell", forIndexPath: indexPath) as! ParticipantCollectionViewCell
+        configureCell(cell, atIndexPath: indexPath)
+        return cell
+    }
+    
+    func configureCell(cell: ParticipantCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
+        if let participant = fetchedResultsController.objectAtIndexPath(indexPath) as? Participant {
+            cell.setCellForParticipant(participant)
+        }
+    }
+    
 }

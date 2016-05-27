@@ -88,8 +88,6 @@ extension IdeaSubmissionViewController: UITextViewDelegate, UITextFieldDelegate 
         /* slide the view up when keyboard appears, using notifications */
         contentView.frame.origin.y = -getKeyboardHeight(notification)
         let visibleRect = self.view.frame
-        
-        
     }
     
     /* Reset view origin when keyboard hides */
@@ -109,6 +107,7 @@ extension IdeaSubmissionViewController: UITextViewDelegate, UITextFieldDelegate 
 extension IdeaSubmissionViewController: IdeaSubmissionView {
     
     func didSubmitIdeaToAPI(sender: IdeaSubmissionPresenter, didSucceed: Bool, didFail: NSError?) {
+        hideLoading()
         if didFail != nil {
             alertController(withTitles: ["Ok"], message: (didFail?.localizedDescription)!, callbackHandler: [nil])
         } else {

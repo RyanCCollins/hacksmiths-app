@@ -9,8 +9,8 @@
 import UIKit
 
 class ParticipantCollectionViewCell: UICollectionViewCell {
-    var imageView: UIImageView!
-    var nameLabel: UILabel!
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
     var participant: Participant!
     
     func setCellForParticipant(participant: Participant) {

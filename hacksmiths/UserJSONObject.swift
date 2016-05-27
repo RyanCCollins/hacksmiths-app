@@ -10,6 +10,7 @@ import Gloss
 
 
 struct UserKeys {
+    static let id = "_id"
     static let bio = "bio"
     static let email = "email"
     static let website = "website"
@@ -81,6 +82,7 @@ struct UserJSONObject: Glossy {
  * - return - JSON structured exactly in the way the API is looking for it.
  */
 struct UserProfileJSON: Glossy {
+    let id: String
     let name: NameJSON?
     let email: String
     let website: String?
@@ -95,6 +97,7 @@ struct UserProfileJSON: Glossy {
     
     init?(json: JSON) {
         guard let name: JSON = UserKeys.name <~~ json,
+              let id: String = UserKeys.id <~~ json,
               let mentoring: JSON = UserKeys.mentoring <~~ json,
               let notifications: JSON = UserKeys.notifications <~~ json,
               let availability: JSON = UserKeys.availability <~~ json,
@@ -118,6 +121,7 @@ struct UserProfileJSON: Glossy {
         self.photo = UserKeys.photo <~~ json
         
         self.dateUpdated = UserKeys.dateUpdated <~~ json
+        self.id = id
     }
     
     init(userData: UserData) {
@@ -138,10 +142,12 @@ struct UserProfileJSON: Glossy {
         self.mentoring = MentoringJSON(userData: userData)
         self.photo = userData.avatarURL
         self.dateUpdated = userData.dateUpdated.parseAsString()
+        self.id = userData.idString
     }
     
     func toJSON() -> JSON? {
         return jsonify([
+            "id" ~~> self.id,
             "bio" ~~> self.bio,
             "website" ~~> self.website,
             "isPublic" ~~> self.isPublic,

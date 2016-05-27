@@ -36,12 +36,12 @@ class IdeaSubmissionPresenter {
     }
     
     func submitIdeaToAPI(ideaDictionary: JsonDict) {
+        ideaSubmissionView?.showLoading()
         if let ideaSubmission = dictionaryForSubmission(ideaDictionary) {
             let ideaSubmissionJSON = ProjectIdeaSubmissionJSON(dictionary: ideaSubmission)
             projectIdeaService.submitIdea(ideaSubmissionJSON).then() {
                 Void in
                     self.ideaSubmissionView?.didSubmitIdeaToAPI(self, didSucceed: true, didFail: nil)
-                
                 }.error { error in
                     self.ideaSubmissionView?.didSubmitIdeaToAPI(self, didSucceed: false, didFail: error as NSError)
                 }
