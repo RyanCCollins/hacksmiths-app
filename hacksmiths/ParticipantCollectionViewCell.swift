@@ -11,7 +11,6 @@ import UIKit
 class ParticipantCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
-    var participant: Participant!
     
     func setCellForParticipant(participant: Participant) {
         if let imageURL = participant.imageURLString {
@@ -21,5 +20,14 @@ class ParticipantCollectionViewCell: UICollectionViewCell {
         }
         
         self.nameLabel.text = participant.name
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Set the corner radius to make the image view circular
+        imageView.layer.cornerRadius = imageView.frame.size.width / 2
+        imageView.clipsToBounds = true
+        imageView.layer.borderWidth = 3.0
+        imageView.layer.borderColor = UIColor.whiteColor().CGColor
     }
 }

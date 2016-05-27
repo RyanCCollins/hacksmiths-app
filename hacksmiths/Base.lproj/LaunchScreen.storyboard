@@ -3,7 +3,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -18,66 +17,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" alpha="0.85000002384185791" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="E3x-ma-6Dz">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hacksmiths-bg" translatesAutoresizingMaskIntoConstraints="NO" id="nS5-K1-806">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hacksmiths-logo" translatesAutoresizingMaskIntoConstraints="NO" id="o9I-Xt-aXH">
-                                <rect key="frame" x="250" y="250" width="100" height="100"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="o9I-Xt-aXH" secondAttribute="height" multiplier="1:1" id="LaT-QL-LYO"/>
-                                    <constraint firstAttribute="height" constant="100" id="VXM-v1-0fL"/>
+                                    <constraint firstAttribute="width" constant="600" id="1QF-E6-Khj"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hacksmiths-logo-text" translatesAutoresizingMaskIntoConstraints="NO" id="rwE-Zz-j0T">
-                                <rect key="frame" x="20" y="28" width="133" height="20"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hacksmiths-logo-text" translatesAutoresizingMaskIntoConstraints="NO" id="iID-lR-9XS">
+                                <rect key="frame" x="172" y="286" width="257" height="27"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="133" id="Edg-Q7-NSZ"/>
-                                    <constraint firstAttribute="height" constant="20" id="Mm4-3U-TJm"/>
+                                    <constraint firstAttribute="height" constant="27" id="hhs-1T-ilw"/>
+                                    <constraint firstAttribute="width" constant="257" id="zEV-tL-bip"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HELPING PEOPLE HELP PEOPLE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jln-LU-CNX">
-                                <rect key="frame" x="81" y="416" width="439" height="59"/>
+                            <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hacksmiths-logo" translatesAutoresizingMaskIntoConstraints="NO" id="eU3-pa-Rhr">
+                                <rect key="frame" x="250" y="156" width="100" height="100"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="439" id="S6v-RS-cTI"/>
-                                    <constraint firstAttribute="height" constant="59" id="mOb-nu-E30"/>
+                                    <constraint firstAttribute="width" secondItem="eU3-pa-Rhr" secondAttribute="height" multiplier="1:1" id="Fak-N3-6NT"/>
+                                    <constraint firstAttribute="height" constant="100" id="Kg6-Uh-rNK"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HACKSMITHS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SnS-bC-NUh">
-                                <rect key="frame" x="81" y="358" width="439" height="59"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="439" id="LaY-sP-fPS"/>
-                                    <constraint firstAttribute="height" constant="59" id="fbS-Xl-Pcc"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="32"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.37254901959999998" green="0.6705882353" blue="0.68235294120000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="jln-LU-CNX" firstAttribute="top" secondItem="SnS-bC-NUh" secondAttribute="bottom" constant="-1" id="3IP-OF-cCF"/>
-                            <constraint firstItem="o9I-Xt-aXH" firstAttribute="width" secondItem="o9I-Xt-aXH" secondAttribute="height" multiplier="1:1" id="E8s-2x-evY"/>
-                            <constraint firstItem="E3x-ma-6Dz" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" id="InI-1g-7VM"/>
-                            <constraint firstItem="rwE-Zz-j0T" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="8" id="Ity-jo-Jx4"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="E3x-ma-6Dz" secondAttribute="trailing" constant="-20" id="Lma-nV-uPY"/>
-                            <constraint firstItem="SnS-bC-NUh" firstAttribute="centerX" secondItem="E3x-ma-6Dz" secondAttribute="centerX" id="O49-f1-0rX"/>
-                            <constraint firstItem="SnS-bC-NUh" firstAttribute="top" secondItem="o9I-Xt-aXH" secondAttribute="bottom" constant="8" id="SH8-PL-Ldo"/>
-                            <constraint firstItem="o9I-Xt-aXH" firstAttribute="centerY" secondItem="E3x-ma-6Dz" secondAttribute="centerY" id="SSR-3d-25J"/>
-                            <constraint firstItem="rwE-Zz-j0T" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" id="byx-AU-TKK"/>
-                            <constraint firstItem="E3x-ma-6Dz" firstAttribute="centerX" secondItem="o9I-Xt-aXH" secondAttribute="centerX" id="cY0-96-bcZ"/>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="E3x-ma-6Dz" secondAttribute="bottom" id="iZd-Ux-r3f"/>
-                            <constraint firstItem="E3x-ma-6Dz" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="-20" id="jVP-iz-8uu"/>
-                            <constraint firstItem="jln-LU-CNX" firstAttribute="centerX" secondItem="E3x-ma-6Dz" secondAttribute="centerX" id="t4N-0B-nfw"/>
+                            <constraint firstItem="eU3-pa-Rhr" firstAttribute="width" secondItem="eU3-pa-Rhr" secondAttribute="height" multiplier="1:1" id="5wz-LB-aui"/>
+                            <constraint firstItem="iID-lR-9XS" firstAttribute="top" secondItem="eU3-pa-Rhr" secondAttribute="bottom" constant="30" id="9OE-OT-64L"/>
+                            <constraint firstItem="nS5-K1-806" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="ARR-iK-Yo0"/>
+                            <constraint firstItem="iID-lR-9XS" firstAttribute="centerX" secondItem="nS5-K1-806" secondAttribute="centerX" id="DgL-Po-Feu"/>
+                            <constraint firstAttribute="trailing" secondItem="nS5-K1-806" secondAttribute="trailing" id="IeS-pl-Qhx"/>
+                            <constraint firstItem="iID-lR-9XS" firstAttribute="centerY" secondItem="nS5-K1-806" secondAttribute="centerY" id="L6d-6G-WF1"/>
+                            <constraint firstItem="nS5-K1-806" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="VMN-8m-szt"/>
+                            <constraint firstItem="eU3-pa-Rhr" firstAttribute="width" secondItem="eU3-pa-Rhr" secondAttribute="height" multiplier="1:1" id="i63-NQ-AKX"/>
+                            <constraint firstItem="eU3-pa-Rhr" firstAttribute="centerX" secondItem="nS5-K1-806" secondAttribute="centerX" id="lJ6-tF-rti"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="nS5-K1-806" secondAttribute="bottom" id="o0K-X3-ZKL"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="hacksmithsImageView" destination="rwE-Zz-j0T" id="5Ms-na-R0B"/>
-                        <outlet property="helpingLabel" destination="jln-LU-CNX" id="gya-jE-veV"/>
-                        <outlet property="logoImageView" destination="o9I-Xt-aXH" id="5CD-57-Ue9"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -85,7 +59,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bg" width="640" height="400"/>
+        <image name="hacksmiths-bg" width="1920" height="1080"/>
         <image name="hacksmiths-logo" width="510" height="510"/>
         <image name="hacksmiths-logo-text" width="486" height="58"/>
     </resources>

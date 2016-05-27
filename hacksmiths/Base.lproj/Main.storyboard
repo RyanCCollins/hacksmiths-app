@@ -55,7 +55,6 @@
             <string>Montserrat-Regular</string>
             <string>Montserrat-Regular</string>
             <string>Montserrat-Regular</string>
-            <string>Montserrat-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -572,7 +571,7 @@
                                                 <color key="value" red="0.16862745100000001" green="0.56470588239999997" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                <color key="value" red="0.42655369640000002" green="0.475846082" blue="0.4802647531" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="value" red="0.28728589415550232" green="0.1402067244052887" blue="0.30659055709838867" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
@@ -796,6 +795,15 @@
                                             <constraint firstAttribute="height" constant="2" id="Cgg-YS-iIU"/>
                                         </constraints>
                                     </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="About the Non Profit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Eh-Sd-FWR">
+                                        <rect key="frame" x="8" y="790" width="584" height="31"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="31" id="DOt-rL-Nki"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="16"/>
+                                        <color key="textColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SID-a8-NR0">
                                         <rect key="frame" x="40" y="780" width="520" height="2"/>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -951,8 +959,8 @@
                                     </button>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="zla-Fd-Vj8">
                                         <rect key="frame" x="40" y="1438" width="520" height="505"/>
-                                        <color key="backgroundColor" red="0.68888300657272339" green="0.71366006135940552" blue="0.73448425531387329" alpha="1" colorSpace="calibratedRGB"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="V3Q-dO-lrL">
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="5" id="V3Q-dO-lrL">
                                             <size key="itemSize" width="125" height="125"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -966,6 +974,15 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="125" height="125"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PRd-CZ-YfY">
+                                                            <rect key="frame" x="0.0" y="96" width="125" height="21"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="21" id="ZfU-x8-NQK"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GOT-MH-aHd">
                                                             <rect key="frame" x="25" y="8" width="75" height="75"/>
                                                             <constraints>
@@ -973,22 +990,13 @@
                                                                 <constraint firstAttribute="height" constant="75" id="mgw-au-84h"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PRd-CZ-YfY">
-                                                            <rect key="frame" x="8" y="96" width="109" height="21"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="21" id="ZfU-x8-NQK"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
-                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </view>
                                                 <constraints>
-                                                    <constraint firstItem="PRd-CZ-YfY" firstAttribute="trailing" secondItem="u9Z-lM-itk" secondAttribute="trailingMargin" id="JL2-z5-IJh"/>
+                                                    <constraint firstAttribute="trailing" secondItem="PRd-CZ-YfY" secondAttribute="trailing" id="6i9-ac-Rne"/>
+                                                    <constraint firstItem="PRd-CZ-YfY" firstAttribute="leading" secondItem="u9Z-lM-itk" secondAttribute="leading" id="BrU-i4-NEs"/>
                                                     <constraint firstItem="GOT-MH-aHd" firstAttribute="top" secondItem="u9Z-lM-itk" secondAttribute="topMargin" id="O3L-0S-E3G"/>
-                                                    <constraint firstItem="PRd-CZ-YfY" firstAttribute="leading" secondItem="u9Z-lM-itk" secondAttribute="leadingMargin" id="e70-MT-q5S"/>
                                                     <constraint firstItem="GOT-MH-aHd" firstAttribute="centerX" secondItem="u9Z-lM-itk" secondAttribute="centerX" id="nj8-c4-vhf"/>
                                                     <constraint firstItem="PRd-CZ-YfY" firstAttribute="bottom" secondItem="u9Z-lM-itk" secondAttribute="bottomMargin" id="prJ-uZ-nGn"/>
                                                 </constraints>
@@ -1000,15 +1008,6 @@
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="About the Non Profit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Eh-Sd-FWR">
-                                        <rect key="frame" x="8" y="790" width="584" height="31"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="31" id="DOt-rL-Nki"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="16"/>
-                                        <color key="textColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.15294117647058825" green="0.20784313725490197" blue="0.25882352941176473" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -1298,7 +1297,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="67" id="JX4-rX-AaZ"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="28"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="28"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -1329,34 +1328,6 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a5K-wp-tob" customClass="SwiftyButton" customModule="SwiftyButton">
-                                                <rect key="frame" x="220" y="658" width="161" height="47"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="47" id="XIa-7A-yfb"/>
-                                                    <constraint firstAttribute="width" constant="161" id="n7U-ZN-HMJ"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                <state key="normal" title="Submit">
-                                                    <color key="titleColor" red="0.1215686275" green="0.3294117647" blue="0.63137254899999995" alpha="1" colorSpace="calibratedRGB"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="buttonColor">
-                                                        <color key="value" red="0.66666666669999997" green="0.91764705879999997" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="20"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                        <color key="value" red="0.1215686275" green="0.3294117647" blue="0.63137254899999995" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="highlightedColor">
-                                                        <color key="value" red="0.61176470589999998" green="0.60392156860000001" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="didTapSubmissionButton:" destination="vGG-cg-V9s" eventType="touchUpInside" id="fVR-nF-NkW"/>
-                                                </connections>
-                                            </button>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Additional Information (Optional)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7dA-Hh-kUc" customClass="IsaoTextField" customModule="TextFieldEffects">
                                                 <rect key="frame" x="20" y="568" width="560" height="50"/>
                                                 <constraints>
@@ -1374,13 +1345,35 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Qz-U9-jfJ" customClass="SwiftyButton" customModule="SwiftyButton">
+                                                <rect key="frame" x="193" y="648" width="214" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="cPL-jQ-0De"/>
+                                                    <constraint firstAttribute="width" constant="214" id="pAA-TN-SSo"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="18"/>
+                                                <state key="normal" title="Submit Idea">
+                                                    <color key="titleColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="buttonColor">
+                                                        <color key="value" red="0.28728589415550232" green="0.1402067244052887" blue="0.30659055709838867" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                        <color key="value" red="0.68888300657272339" green="0.71366006135940552" blue="0.73448425531387329" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="didTapSignupButtonUpInside:" destination="8E9-ee-mxd" eventType="touchUpInside" id="zkx-8l-2Mc"/>
+                                                    <action selector="didTapSubmissionButton:" destination="vGG-cg-V9s" eventType="touchUpInside" id="bVp-K5-c8v"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.16862745100000001" green="0.56470588239999997" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstItem="dqV-2Q-iie" firstAttribute="centerX" secondItem="qX0-fD-50y" secondAttribute="centerX" id="1X7-X9-7OV"/>
                                             <constraint firstItem="AiB-zo-hjZ" firstAttribute="centerX" secondItem="qX0-fD-50y" secondAttribute="centerX" id="8Lg-c2-mHP"/>
                                             <constraint firstAttribute="height" constant="980" id="8e9-yj-fru"/>
-                                            <constraint firstItem="a5K-wp-tob" firstAttribute="centerX" secondItem="qX0-fD-50y" secondAttribute="centerX" id="9qH-hJ-eE5"/>
                                             <constraint firstAttribute="trailing" secondItem="7dA-Hh-kUc" secondAttribute="trailing" constant="20" id="C0H-mZ-sJV"/>
                                             <constraint firstItem="kBV-gE-jJC" firstAttribute="leading" secondItem="qX0-fD-50y" secondAttribute="leading" constant="20" id="CeL-P5-puN"/>
                                             <constraint firstItem="7dA-Hh-kUc" firstAttribute="centerX" secondItem="qX0-fD-50y" secondAttribute="centerX" id="DHY-Rz-EkD"/>
@@ -1394,7 +1387,6 @@
                                             <constraint firstAttribute="trailing" secondItem="dqV-2Q-iie" secondAttribute="trailing" constant="20" id="ftN-Ex-7A3"/>
                                             <constraint firstAttribute="trailing" secondItem="AiB-zo-hjZ" secondAttribute="trailing" constant="20" id="lRT-pD-uLt"/>
                                             <constraint firstItem="it3-9x-PhH" firstAttribute="top" secondItem="AiB-zo-hjZ" secondAttribute="bottom" constant="40" id="nIs-Nb-IFY"/>
-                                            <constraint firstItem="a5K-wp-tob" firstAttribute="top" secondItem="7dA-Hh-kUc" secondAttribute="bottom" constant="40" id="pbG-jW-bZn"/>
                                             <constraint firstItem="dqV-2Q-iie" firstAttribute="leading" secondItem="qX0-fD-50y" secondAttribute="leading" constant="20" id="rbA-jU-bKO"/>
                                             <constraint firstItem="it3-9x-PhH" firstAttribute="centerX" secondItem="qX0-fD-50y" secondAttribute="centerX" id="yXV-bx-doY"/>
                                             <constraint firstItem="it3-9x-PhH" firstAttribute="leading" secondItem="qX0-fD-50y" secondAttribute="leading" constant="20" id="yhP-Me-TwV"/>
@@ -2307,8 +2299,8 @@ We build tools designed to help non-profit organizations streamline their philan
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WaT-Qf-zzh" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="936"/>
                                         <subviews>
-                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hqh-H5-abc">
-                                                <rect key="frame" x="91" y="315" width="417" height="47"/>
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hqh-H5-abc">
+                                                <rect key="frame" x="92" y="315" width="417" height="47"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="47" id="MFJ-yC-evh"/>
                                                     <constraint firstAttribute="width" constant="417" id="z9W-Bj-0y3"/>
@@ -2345,87 +2337,6 @@ We build tools designed to help non-profit organizations streamline their philan
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                             </textView>
-                                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Website" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bsU-zS-rsN" customClass="IsaoTextField" customModule="TextFieldEffects">
-                                                <rect key="frame" x="20" y="352" width="560" height="50"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="LXE-f6-4o5"/>
-                                                </constraints>
-                                                <color key="textColor" red="0.12637259066104889" green="0.12639245390892029" blue="0.12636536359786987" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="inactiveColor">
-                                                        <color key="value" red="0.12637259066104889" green="0.12639245390892029" blue="0.12636536359786987" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="activeColor">
-                                                        <color key="value" red="0.40000000000000002" green="0.76862745099999996" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </textField>
-                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DLM-wc-pBL" userLabel="TextFieldView">
-                                                <rect key="frame" x="20" y="410" width="560" height="150"/>
-                                                <subviews>
-                                                    <textField hidden="YES" opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Have Experience" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QF9-1U-dSr" customClass="IsaoTextField" customModule="TextFieldEffects">
-                                                        <rect key="frame" x="0.0" y="34" width="560" height="50"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="50" id="6Zl-95-qb3"/>
-                                                        </constraints>
-                                                        <color key="textColor" red="0.12637259066104889" green="0.12639245390892029" blue="0.12636536359786987" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="color" keyPath="inactiveColor">
-                                                                <color key="value" red="0.16470588235294117" green="0.16470588235294117" blue="0.16470588235294117" alpha="1" colorSpace="calibratedRGB"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="color" keyPath="activeColor">
-                                                                <color key="value" red="0.16862745100000001" green="0.56470588239999997" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
-                                                    </textField>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jCZ-cm-TkP">
-                                                        <rect key="frame" x="540" y="0.0" width="20" height="22"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="22" id="7nV-QR-WNh"/>
-                                                            <constraint firstAttribute="width" constant="20" id="khD-n2-vUV"/>
-                                                        </constraints>
-                                                        <state key="normal" image="question-mark"/>
-                                                        <connections>
-                                                            <segue destination="GLi-3p-vmB" kind="popoverPresentation" popoverAnchorView="jCZ-cm-TkP" id="hOD-Rm-WU3">
-                                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                                            </segue>
-                                                        </connections>
-                                                    </button>
-                                                    <textField hidden="YES" opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Want Experience" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="B6E-82-NdU" customClass="IsaoTextField" customModule="TextFieldEffects">
-                                                        <rect key="frame" x="0.0" y="92" width="560" height="50"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="50" id="fsN-HP-ZOE"/>
-                                                        </constraints>
-                                                        <color key="textColor" red="0.12637259066104889" green="0.12639245390892029" blue="0.12636536359786987" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="color" keyPath="inactiveColor">
-                                                                <color key="value" red="0.16470588235294117" green="0.16470588235294117" blue="0.16470588235294117" alpha="1" colorSpace="calibratedRGB"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="color" keyPath="activeColor">
-                                                                <color key="value" red="0.16862745100000001" green="0.56470588239999997" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
-                                                    </textField>
-                                                </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstItem="B6E-82-NdU" firstAttribute="top" secondItem="QF9-1U-dSr" secondAttribute="bottom" constant="12" id="2dp-Fc-V7M"/>
-                                                    <constraint firstItem="QF9-1U-dSr" firstAttribute="leading" secondItem="DLM-wc-pBL" secondAttribute="leading" id="39b-Jm-XG9"/>
-                                                    <constraint firstItem="jCZ-cm-TkP" firstAttribute="top" secondItem="DLM-wc-pBL" secondAttribute="top" id="40k-lI-iQK"/>
-                                                    <constraint firstAttribute="bottom" secondItem="B6E-82-NdU" secondAttribute="bottom" constant="8" id="8cs-Xy-ci1"/>
-                                                    <constraint firstItem="B6E-82-NdU" firstAttribute="leading" secondItem="DLM-wc-pBL" secondAttribute="leading" id="9mR-OC-1p9"/>
-                                                    <constraint firstAttribute="trailing" secondItem="B6E-82-NdU" secondAttribute="trailing" id="LFb-O5-U8N"/>
-                                                    <constraint firstItem="QF9-1U-dSr" firstAttribute="top" secondItem="jCZ-cm-TkP" secondAttribute="bottom" constant="12" id="Mo5-ID-p1E"/>
-                                                    <constraint firstAttribute="trailing" secondItem="jCZ-cm-TkP" secondAttribute="trailing" id="gXj-fE-Nh1"/>
-                                                    <constraint firstAttribute="trailing" secondItem="QF9-1U-dSr" secondAttribute="trailing" id="t8w-oL-T8I"/>
-                                                </constraints>
-                                            </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t4f-gb-Ibm">
                                                 <rect key="frame" x="20" y="180" width="560" height="40"/>
                                                 <constraints>
@@ -2435,14 +2346,56 @@ We build tools designed to help non-profit organizations streamline their philan
                                                 <color key="textColor" red="0.12637259066104889" green="0.12639245390892029" blue="0.12636536359786987" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vAc-ca-jBi">
-                                                <rect key="frame" x="20" y="568" width="560" height="92"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillProportionally" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="2X1-97-21l">
+                                                <rect key="frame" x="8" y="370" width="584" height="250"/>
                                                 <subviews>
-                                                    <textField opaque="NO" clipsSubviews="YES" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Availability Explanation" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AqR-7w-95i" customClass="IsaoTextField" customModule="TextFieldEffects">
-                                                        <rect key="frame" x="0.0" y="34" width="560" height="50"/>
+                                                    <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Website" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bsU-zS-rsN" customClass="IsaoTextField" customModule="TextFieldEffects">
+                                                        <rect key="frame" x="0.0" y="0.0" width="584" height="50"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="50" id="vrr-2e-sFx"/>
+                                                            <constraint firstAttribute="height" constant="50" id="8Ad-5z-ErG"/>
                                                         </constraints>
+                                                        <color key="textColor" red="0.12637259066104889" green="0.12639245390892029" blue="0.12636536359786987" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="inactiveColor">
+                                                                <color key="value" red="0.12637259066104889" green="0.12639245390892029" blue="0.12636536359786987" alpha="1" colorSpace="calibratedRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="activeColor">
+                                                                <color key="value" red="0.40000000000000002" green="0.76862745099999996" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </textField>
+                                                    <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Have Experience" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QF9-1U-dSr" customClass="IsaoTextField" customModule="TextFieldEffects">
+                                                        <rect key="frame" x="0.0" y="62" width="584" height="50"/>
+                                                        <color key="textColor" red="0.12637259066104889" green="0.12639245390892029" blue="0.12636536359786987" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="inactiveColor">
+                                                                <color key="value" red="0.16470588235294117" green="0.16470588235294117" blue="0.16470588235294117" alpha="1" colorSpace="calibratedRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="activeColor">
+                                                                <color key="value" red="0.16862745100000001" green="0.56470588239999997" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </textField>
+                                                    <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Want Experience" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="B6E-82-NdU" customClass="IsaoTextField" customModule="TextFieldEffects">
+                                                        <rect key="frame" x="0.0" y="124" width="584" height="50"/>
+                                                        <color key="textColor" red="0.12637259066104889" green="0.12639245390892029" blue="0.12636536359786987" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="inactiveColor">
+                                                                <color key="value" red="0.16470588235294117" green="0.16470588235294117" blue="0.16470588235294117" alpha="1" colorSpace="calibratedRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="activeColor">
+                                                                <color key="value" red="0.16862745100000001" green="0.56470588239999997" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </textField>
+                                                    <textField opaque="NO" clipsSubviews="YES" tag="5" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Availability Explanation" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AqR-7w-95i" customClass="IsaoTextField" customModule="TextFieldEffects">
+                                                        <rect key="frame" x="0.0" y="186" width="584" height="64"/>
                                                         <color key="textColor" red="0.12637259070000001" green="0.12639245390000001" blue="0.1263653636" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
@@ -2458,56 +2411,29 @@ We build tools designed to help non-profit organizations streamline their philan
                                                             <action selector="handleFormUpdate:" destination="c6C-P6-K3H" eventType="editingChanged" id="j4S-MW-64c"/>
                                                         </connections>
                                                     </textField>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bHg-wg-66g">
-                                                        <rect key="frame" x="540" y="0.0" width="20" height="22"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="22" id="vkK-d5-Xgj"/>
-                                                            <constraint firstAttribute="width" constant="20" id="wXx-Kd-cdo"/>
-                                                        </constraints>
-                                                        <state key="normal" image="question-mark"/>
-                                                        <connections>
-                                                            <segue destination="yrv-Cg-RPU" kind="popoverPresentation" popoverAnchorView="bHg-wg-66g" id="jPJ-yG-5k2">
-                                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                                            </segue>
-                                                        </connections>
-                                                    </button>
                                                 </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstItem="AqR-7w-95i" firstAttribute="leading" secondItem="vAc-ca-jBi" secondAttribute="leading" id="8QT-Rg-ipr"/>
-                                                    <constraint firstAttribute="trailing" secondItem="bHg-wg-66g" secondAttribute="trailing" id="CRX-ac-Qfd"/>
-                                                    <constraint firstAttribute="trailing" secondItem="AqR-7w-95i" secondAttribute="trailing" id="JUF-A8-0Rq"/>
-                                                    <constraint firstItem="bHg-wg-66g" firstAttribute="top" secondItem="vAc-ca-jBi" secondAttribute="top" id="TtM-0b-WiN"/>
-                                                    <constraint firstAttribute="bottom" secondItem="AqR-7w-95i" secondAttribute="bottom" constant="8" id="rdF-rW-DpS"/>
-                                                    <constraint firstItem="AqR-7w-95i" firstAttribute="top" secondItem="bHg-wg-66g" secondAttribute="bottom" constant="12" id="vvC-6a-WSd"/>
-                                                </constraints>
-                                            </view>
+                                            </stackView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="t4f-gb-Ibm" firstAttribute="centerX" secondItem="WaT-Qf-zzh" secondAttribute="centerX" id="3PX-IE-ufc"/>
-                                            <constraint firstItem="bsU-zS-rsN" firstAttribute="leading" secondItem="WaT-Qf-zzh" secondAttribute="leading" constant="20" id="54i-lq-G5z"/>
-                                            <constraint firstItem="vAc-ca-jBi" firstAttribute="top" secondItem="DLM-wc-pBL" secondAttribute="bottom" constant="8" id="8Uj-wV-Zsb"/>
                                             <constraint firstItem="t4f-gb-Ibm" firstAttribute="leading" secondItem="WaT-Qf-zzh" secondAttribute="leading" constant="20" id="D3L-RK-Rkf"/>
-                                            <constraint firstItem="bsU-zS-rsN" firstAttribute="top" secondItem="SfU-lV-Vsa" secondAttribute="bottom" constant="-6" id="Fh3-As-GFG"/>
+                                            <constraint firstItem="2X1-97-21l" firstAttribute="top" secondItem="WaT-Qf-zzh" secondAttribute="top" constant="370" id="DOQ-bi-Hnl"/>
                                             <constraint firstItem="FPx-Ny-ISx" firstAttribute="centerX" secondItem="WaT-Qf-zzh" secondAttribute="centerX" id="Ij9-yR-gJz"/>
                                             <constraint firstItem="FPx-Ny-ISx" firstAttribute="centerX" secondItem="WaT-Qf-zzh" secondAttribute="centerX" id="M4E-Sv-Je0"/>
-                                            <constraint firstItem="vAc-ca-jBi" firstAttribute="centerX" secondItem="hqh-H5-abc" secondAttribute="centerX" id="NHc-Va-3Qy"/>
                                             <constraint firstAttribute="trailing" secondItem="t4f-gb-Ibm" secondAttribute="trailing" constant="20" id="Phv-X7-JX6"/>
-                                            <constraint firstAttribute="trailing" secondItem="bsU-zS-rsN" secondAttribute="trailing" constant="20" id="RBq-nS-9Ku"/>
+                                            <constraint firstItem="2X1-97-21l" firstAttribute="centerX" secondItem="hqh-H5-abc" secondAttribute="centerX" id="QGa-wl-73T"/>
                                             <constraint firstItem="t4f-gb-Ibm" firstAttribute="centerX" secondItem="WaT-Qf-zzh" secondAttribute="centerX" id="Vrd-lO-xbS"/>
                                             <constraint firstItem="SfU-lV-Vsa" firstAttribute="leading" secondItem="WaT-Qf-zzh" secondAttribute="leading" constant="20" id="WGd-Qz-nDX"/>
                                             <constraint firstAttribute="trailing" secondItem="SfU-lV-Vsa" secondAttribute="trailing" constant="20" id="Xf1-j5-boR"/>
                                             <constraint firstItem="t4f-gb-Ibm" firstAttribute="top" secondItem="FPx-Ny-ISx" secondAttribute="bottom" constant="10" id="ZpZ-Mb-gv1"/>
-                                            <constraint firstItem="DLM-wc-pBL" firstAttribute="top" secondItem="bsU-zS-rsN" secondAttribute="bottom" constant="8" id="cyL-bY-zxn"/>
-                                            <constraint firstAttribute="trailing" secondItem="DLM-wc-pBL" secondAttribute="trailing" constant="20" id="hvM-1J-HZp"/>
-                                            <constraint firstItem="DLM-wc-pBL" firstAttribute="leading" secondItem="WaT-Qf-zzh" secondAttribute="leading" constant="20" id="iBN-SC-gKW"/>
-                                            <constraint firstItem="vAc-ca-jBi" firstAttribute="leading" secondItem="WaT-Qf-zzh" secondAttribute="leading" constant="20" id="kOx-w4-tm0"/>
+                                            <constraint firstItem="2X1-97-21l" firstAttribute="leading" secondItem="WaT-Qf-zzh" secondAttribute="leadingMargin" id="bBF-R9-rPz"/>
+                                            <constraint firstItem="2X1-97-21l" firstAttribute="top" secondItem="hqh-H5-abc" secondAttribute="bottom" constant="8" symbolic="YES" id="dLc-SO-C93"/>
                                             <constraint firstItem="SfU-lV-Vsa" firstAttribute="centerX" secondItem="WaT-Qf-zzh" secondAttribute="centerX" id="nWO-jr-lzb"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="2X1-97-21l" secondAttribute="trailing" id="oMG-1q-9Aw"/>
                                             <constraint firstItem="SfU-lV-Vsa" firstAttribute="centerX" secondItem="WaT-Qf-zzh" secondAttribute="centerX" id="qB2-Aq-gc0"/>
                                             <constraint firstItem="FPx-Ny-ISx" firstAttribute="top" secondItem="WaT-Qf-zzh" secondAttribute="top" constant="20" id="qs0-0B-xml"/>
                                             <constraint firstItem="SfU-lV-Vsa" firstAttribute="top" secondItem="t4f-gb-Ibm" secondAttribute="bottom" constant="8" id="slA-ls-E2i"/>
-                                            <constraint firstAttribute="trailing" secondItem="vAc-ca-jBi" secondAttribute="trailing" constant="20" id="yyX-SN-u4h"/>
                                         </constraints>
                                         <variation key="default">
                                             <mask key="constraints">
@@ -2596,10 +2522,7 @@ We build tools designed to help non-profit organizations streamline their philan
                         <outlet property="availabilityDescription" destination="AqR-7w-95i" id="H1M-eO-vuM"/>
                         <outlet property="cancelButton" destination="szd-3J-jgD" id="43g-Ed-KwO"/>
                         <outlet property="editButton" destination="S1L-KC-4jr" id="faS-6w-RIw"/>
-                        <outlet property="eventAvailabilityView" destination="vAc-ca-jBi" id="WIg-7m-dhP"/>
                         <outlet property="haveExperience" destination="QF9-1U-dSr" id="I1N-jE-SYt"/>
-                        <outlet property="helpButton" destination="jCZ-cm-TkP" id="JbZ-0C-IAW"/>
-                        <outlet property="mentoringFieldsView" destination="DLM-wc-pBL" id="IAF-Y4-bGB"/>
                         <outlet property="nameLabel" destination="t4f-gb-Ibm" id="g64-4b-hja"/>
                         <outlet property="noDataFoundLabel" destination="hqh-H5-abc" id="zrw-lb-PrU"/>
                         <outlet property="profileImageView" destination="FPx-Ny-ISx" id="Owb-2h-Bdz"/>
@@ -2687,7 +2610,7 @@ We build tools designed to help non-profit organizations streamline their philan
         </scene>
     </scenes>
     <resources>
-        <image name="avatar-missing" width="108" height="130"/>
+        <image name="avatar-missing" width="216" height="260"/>
         <image name="bg" width="640" height="400"/>
         <image name="box" width="32" height="32"/>
         <image name="circle-picture" width="170" height="170"/>
@@ -2706,7 +2629,6 @@ We build tools designed to help non-profit organizations streamline their philan
         <image name="onepassword-extension-light" width="44" height="44"/>
         <image name="pencil-paper-white" width="32" height="32"/>
         <image name="person" width="22" height="32"/>
-        <image name="question-mark" width="20" height="20"/>
         <image name="refresh-control" width="32" height="32"/>
         <image name="ryan" width="359" height="359"/>
         <image name="sean" width="321" height="321"/>

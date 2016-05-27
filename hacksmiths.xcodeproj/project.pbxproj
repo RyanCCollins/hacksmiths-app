@@ -31,7 +31,6 @@
 		1F4F7ECB1CF4D5A200325CA9 /* UserJSONObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F7ECA1CF4D5A200325CA9 /* UserJSONObject.swift */; };
 		1F4F7ED01CF4E4AF00325CA9 /* UserProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F7ECF1CF4E4AF00325CA9 /* UserProfileService.swift */; };
 		1F4F7ED21CF4E4C000325CA9 /* UserProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F7ED11CF4E4C000325CA9 /* UserProfileRouter.swift */; };
-		1F6C69E61CCC627B00F15247 /* ParticipantCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6C69E51CCC627B00F15247 /* ParticipantCollectionViewController.swift */; };
 		1F6C69E81CCC6BB700F15247 /* ParticipantCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6C69E71CCC6BB700F15247 /* ParticipantCollectionViewCell.swift */; };
 		1F7701C21C84B532006FBCE0 /* Montserrat-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1F7701BC1C84B532006FBCE0 /* Montserrat-Black.otf */; };
 		1F7701C31C84B532006FBCE0 /* Montserrat-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1F7701BD1C84B532006FBCE0 /* Montserrat-Bold.otf */; };
@@ -98,7 +97,6 @@
 		1FEA07C51CEFFD4700D4BDA7 /* IdeaSubmissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEA07C41CEFFD4700D4BDA7 /* IdeaSubmissionViewController.swift */; };
 		1FEA07C81CEFFE3800D4BDA7 /* IdeaPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEA07C71CEFFE3800D4BDA7 /* IdeaPageViewController.swift */; };
 		1FEA07CE1CF00BE400D4BDA7 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEA07CD1CF00BE400D4BDA7 /* LoginPresenter.swift */; };
-		1FEF3FB11CED66F4007E4BF0 /* ParticipantPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEF3FB01CED66F4007E4BF0 /* ParticipantPresenter.swift */; };
 		1FF998921C6EB359003D98B2 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF998911C6EB359003D98B2 /* MainTabBarController.swift */; };
 		1FF998971C6FAE3E003D98B2 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF998961C6FAE3E003D98B2 /* Person.swift */; };
 		1FF998991C6FAEDE003D98B2 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF998981C6FAEDE003D98B2 /* Event.swift */; };
@@ -151,7 +149,6 @@
 		1F4F7ECA1CF4D5A200325CA9 /* UserJSONObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserJSONObject.swift; sourceTree = "<group>"; };
 		1F4F7ECF1CF4E4AF00325CA9 /* UserProfileService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileService.swift; sourceTree = "<group>"; };
 		1F4F7ED11CF4E4C000325CA9 /* UserProfileRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileRouter.swift; sourceTree = "<group>"; };
-		1F6C69E51CCC627B00F15247 /* ParticipantCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticipantCollectionViewController.swift; sourceTree = "<group>"; };
 		1F6C69E71CCC6BB700F15247 /* ParticipantCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticipantCollectionViewCell.swift; sourceTree = "<group>"; };
 		1F7701BC1C84B532006FBCE0 /* Montserrat-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Black.otf"; sourceTree = "<group>"; };
 		1F7701BD1C84B532006FBCE0 /* Montserrat-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.otf"; sourceTree = "<group>"; };
@@ -224,7 +221,6 @@
 		1FEA07C41CEFFD4700D4BDA7 /* IdeaSubmissionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdeaSubmissionViewController.swift; sourceTree = "<group>"; };
 		1FEA07C71CEFFE3800D4BDA7 /* IdeaPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdeaPageViewController.swift; sourceTree = "<group>"; };
 		1FEA07CD1CF00BE400D4BDA7 /* LoginPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
-		1FEF3FB01CED66F4007E4BF0 /* ParticipantPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticipantPresenter.swift; sourceTree = "<group>"; };
 		1FF998911C6EB359003D98B2 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		1FF998961C6FAE3E003D98B2 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		1FF998981C6FAEDE003D98B2 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
@@ -395,7 +391,6 @@
 				1FC6DE451C9F59EB000E8159 /* User & Auth */,
 				1FAD7DB31CEE5F050044BD94 /* About */,
 				1FAD7DB21CEE5EEA0044BD94 /* MainTabBar */,
-				1FEF3FAF1CED6695007E4BF0 /* Participant */,
 				1F846CBB1CEBF56A009166D4 /* Event */,
 			);
 			name = ControllerModules;
@@ -776,32 +771,6 @@
 			name = View;
 			sourceTree = "<group>";
 		};
-		1FEF3FAF1CED6695007E4BF0 /* Participant */ = {
-			isa = PBXGroup;
-			children = (
-				1FEF3FB31CED6712007E4BF0 /* View */,
-				1FEF3FB21CED6708007E4BF0 /* Presenter */,
-			);
-			name = Participant;
-			sourceTree = "<group>";
-		};
-		1FEF3FB21CED6708007E4BF0 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				1FEF3FB01CED66F4007E4BF0 /* ParticipantPresenter.swift */,
-			);
-			name = Presenter;
-			sourceTree = "<group>";
-		};
-		1FEF3FB31CED6712007E4BF0 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				1F6C69E71CCC6BB700F15247 /* ParticipantCollectionViewCell.swift */,
-				1F6C69E51CCC627B00F15247 /* ParticipantCollectionViewController.swift */,
-			);
-			name = View;
-			sourceTree = "<group>";
-		};
 		1FEF3FB41CED69E0007E4BF0 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -831,6 +800,7 @@
 			isa = PBXGroup;
 			children = (
 				1FF998A01C71387C003D98B2 /* PersonTableViewCell.swift */,
+				1F6C69E71CCC6BB700F15247 /* ParticipantCollectionViewCell.swift */,
 				1FE5F91A1CD8288800487CA8 /* RCCircularImageView.swift */,
 				1F846CC31CEC03C5009166D4 /* IGActivityIndicatorView.swift */,
 			);
@@ -1078,7 +1048,6 @@
 				1F6C69E81CCC6BB700F15247 /* ParticipantCollectionViewCell.swift in Sources */,
 				1FC6DE3E1C9F36BF000E8159 /* ProfileViewController.swift in Sources */,
 				1F846CCE1CED0190009166D4 /* OrganizationJSON.swift in Sources */,
-				1F6C69E61CCC627B00F15247 /* ParticipantCollectionViewController.swift in Sources */,
 				1F44B1BA1C5DDAB9004E196D /* CoreDataStackManager.swift in Sources */,
 				1FE5F91B1CD8288800487CA8 /* RCCircularImageView.swift in Sources */,
 				1F4B4DF81C72574700A75F5D /* OnePasswordExtension.m in Sources */,
@@ -1111,7 +1080,6 @@
 				1F4F7EC51CF4BEFC00325CA9 /* EventFetcher.swift in Sources */,
 				1F4E315F1CF1096A0013F56E /* ProjectIdea.swift in Sources */,
 				1FA5A4F01C535D6C00722E55 /* LoginViewController.swift in Sources */,
-				1FEF3FB11CED66F4007E4BF0 /* ParticipantPresenter.swift in Sources */,
 				1FF998971C6FAE3E003D98B2 /* Person.swift in Sources */,
 				1F4E315B1CF0E1C20013F56E /* ProjectIdeaService.swift in Sources */,
 				1F115B4A1CC0060900DC434E /* RegistrationPageViewController.swift in Sources */,

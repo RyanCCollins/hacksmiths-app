@@ -25,7 +25,6 @@ class EventViewController: UIViewController {
     @IBOutlet weak var organizationWebsiteButton: UIButton!
     @IBOutlet weak var organizationDescriptionLabel: UILabel!
     private let eventPresenter = EventPresenter(eventService: EventService())
-    private let participantPresenter = ParticipantPresenter()
     
     var currentEvent: Event?
     var activityIndicator: IGActivityIndicatorView!
@@ -103,6 +102,7 @@ class EventViewController: UIViewController {
     lazy var fetchedResultsController: NSFetchedResultsController = {
         let sortPriority = NSSortDescriptor(key: "name", ascending: true)
         let fetch = NSFetchRequest(entityName: "Participant")
+        
         fetch.sortDescriptors = [sortPriority]
         
         let fetchResultsController = NSFetchedResultsController(fetchRequest: fetch, managedObjectContext: GlobalStackManager.SharedManager.sharedContext, sectionNameKeyPath: nil, cacheName: nil)
@@ -152,6 +152,7 @@ extension EventViewController: EventView {
         self.currentEvent = event
         self.finishLoading()
         self.updateUserInterface()
+        performParticipantFetch()
         collectionView.reloadData()
     }
     
@@ -168,7 +169,6 @@ extension EventViewController: EventView {
         self.currentEvent = event
         self.finishLoading()
         updateUserInterface()
-        performParticipantFetch()
     }
     
     func respondToEvent(sender: EventPresenter, didFail error: NSError) {
@@ -197,9 +197,8 @@ extension EventViewController: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func configureCell(cell: ParticipantCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
-        if let participant = fetchedResultsController.objectAtIndexPath(indexPath) as? Participant {
-            cell.setCellForParticipant(participant)
-        }
+        let participant = fetchedResultsController.objectAtIndexPath(indexPath) as! Participant
+        cell.setCellForParticipant(participant)
     }
     
 }
