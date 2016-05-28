@@ -1364,7 +1364,6 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="didTapSignupButtonUpInside:" destination="8E9-ee-mxd" eventType="touchUpInside" id="zkx-8l-2Mc"/>
                                                     <action selector="didTapSubmissionButton:" destination="vGG-cg-V9s" eventType="touchUpInside" id="bVp-K5-c8v"/>
                                                 </connections>
                                             </button>
