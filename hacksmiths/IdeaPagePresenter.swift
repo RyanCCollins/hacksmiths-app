@@ -8,6 +8,8 @@
 
 protocol IdeaPageView {
     func submitAnIdea()
+    func showIdeaSubmissionView()
+    func showThanksView()
 }
 
 class IdeaPagePresenter {

@@ -11,6 +11,9 @@ import UIKit
 class IdeaPageViewController: UIViewController {
     
     private let ideaPagePresenter = IdeaPagePresenter()
+    @IBOutlet weak var ideaSubmissionView: UIView!
+    @IBOutlet weak var thanksView: UIView!
+    var ideaExists = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +23,6 @@ class IdeaPageViewController: UIViewController {
         super.viewWillAppear(animated)
         ideaPagePresenter.attachView(self)
     }
-    
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
@@ -42,11 +44,21 @@ class IdeaPageViewController: UIViewController {
 extension IdeaPageViewController: IdeaPageView {
     func submitAnIdea() {
         if UserService.sharedInstance().authenticated == true {
-            
             performSegueWithIdentifier("ShowIdeaSubmission", sender: self)
-            
         } else {
             alertController(withTitles: ["OK"], message: "You must be logged in to submit an idea.  Please sign in or register to proceed.", callbackHandler: [nil])
         }
+    }
+    
+    func editIdea() {
+        
+    }
+    
+    func showThanksView() {
+        ideaSubmissionView.removeFromSuperview()
+    }
+    
+    func showIdeaSubmissionView() {
+        thanksView.removeFromSuperview()
     }
 }

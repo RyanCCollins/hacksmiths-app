@@ -14,6 +14,57 @@ struct IdeaKeys {
     static let additionalInformation = "additionalInformation"
 }
 
+/* Provides mapping to and from JSON to Core Data Managed Object Model
+ * For project ideas.  Helps the communication of ideas to the API.
+ */
+struct ProjectIdeaJSON: Glossy {
+    let id: String
+    var createdById: String
+    var createdAt: String? = nil
+    var eventId: String
+    let idea: IdeaJSON?
+    
+    init?(json: JSON) {
+        guard let id: String = ProjectIdeaKeys.id <~~ json,
+            let createdById: String = ProjectIdeaKeys.createdBy <~~ json,
+            let eventId: String = ProjectIdeaKeys.event <~~ json else {
+                return nil
+        }
+        self.id = id
+        self.createdById = createdById
+        self.eventId = eventId
+        if let idea: IdeaJSON = ProjectIdeaKeys.idea <~~ json {
+            self.idea = idea
+        } else {
+            self.idea = nil
+        }
+        
+        if let createdAtString: String = ProjectIdeaKeys.createdAt <~~ json {
+            self.createdAt = createdAtString
+        }
+    }
+    
+    init(projectIdea: ProjectIdea) {
+        self.id = projectIdea.id
+        self.createdById = projectIdea.createdBy.id
+        self.eventId = projectIdea.event.idString
+        self.createdAt = projectIdea.createdAt.parseAsString()
+        self.idea = IdeaJSON(projectIdea: projectIdea)
+    }
+    
+    // - MARK: Encode to JSON
+    func toJSON() -> JSON? {
+        return jsonify([
+            "user" ~~> self.createdById,
+            "event" ~~> self.eventId,
+            "idea" ~~> self.idea?.toDictionary()
+            ])
+    }
+}
+
+/* Provides mapping to and from JSON to Core Data Managed Object Model
+ * For ideas.  Helps the communication of ideas to the API.
+ */
 struct IdeaJSON: Glossy {
     let title: String
     let description: String
@@ -27,6 +78,12 @@ struct IdeaJSON: Glossy {
         self.title = title
         self.description = description
         self.additionalInformation = "additionalInformation" <~~ json
+    }
+    
+    init(projectIdea: ProjectIdea) {
+        self.title = projectIdea.title
+        self.additionalInformation = projectIdea.additionalInformation ?? ""
+        self.description = projectIdea.descriptionString
     }
     
     func toJSON() -> JSON? {
@@ -56,43 +113,7 @@ struct ProjectIdeaKeys {
     static let idea = "idea"
 }
 
-struct ProjectIdeaJSON: Glossy {
-    let id: String
-    var createdById: String
-    var createdAt: String? = nil
-    var eventId: String
-    let idea: IdeaJSON?
-    
-    init?(json: JSON) {
-        guard let id: String = ProjectIdeaKeys.id <~~ json,
-              let createdById: String = ProjectIdeaKeys.createdBy <~~ json,
-              let eventId: String = ProjectIdeaKeys.event <~~ json else {
-            return nil
-        }
-        self.id = id
-        self.createdById = createdById
-        self.eventId = eventId
-        if let idea: IdeaJSON = ProjectIdeaKeys.idea <~~ json {
-            self.idea = idea
-        } else {
-            self.idea = nil
-        }
-        
-        if let createdAtString: String = ProjectIdeaKeys.createdAt <~~ json {
-            self.createdAt = createdAtString
-        }
-        
-    }
-    
-    // - MARK: Encode to JSON
-    func toJSON() -> JSON? {
-        return jsonify([
-            "user" ~~> self.createdById,
-            "event" ~~> self.eventId,
-            "idea" ~~> self.idea?.toDictionary()
-        ])
-    }
-}
+
 
 
 

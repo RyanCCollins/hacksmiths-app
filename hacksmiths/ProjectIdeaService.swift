@@ -22,6 +22,7 @@ class ProjectIdeaService {
     func submitIdea(projectIdeaSubmissionJSON: ProjectIdeaSubmissionJSON) -> Promise<ProjectIdeaSubmission?> {
         
         return Promise { resolve, reject in
+            print("Submitting idea request to API: \(projectIdeaSubmissionJSON)")
             let router = ProjectIdeaRouter(endpoint: .PostProjectIdea(projectIdeaSubmissionJSON: projectIdeaSubmissionJSON))
             manager.request(router)
                 .validate()
@@ -29,7 +30,8 @@ class ProjectIdeaService {
                     response in
                     switch response.result {
                     case .Success(let JSON):
-                        /* Save the project idea to core data */
+                        /* Reset and save the idea, only when there is a success */
+                        GlobalStackManager.SharedManager.sharedContext.reset()
                         let ideaSubmission = ProjectIdeaSubmission(ideaSubmissionJson: projectIdeaSubmissionJSON, context: GlobalStackManager.SharedManager.sharedContext)
                         
                         GlobalStackManager.SharedManager.sharedContext.performBlockAndWait({
@@ -38,7 +40,6 @@ class ProjectIdeaService {
                         
                         resolve(ideaSubmission)
                     case .Failure(let error):
-                        
                         reject(error)
                     }
             }
@@ -98,11 +99,10 @@ class ProjectIdeaService {
                     }
             }
         }
-        
-        
     }
+
     
-    func updateOneIdea(ideaId: String, ideaJSON: IdeaJSON) -> Promise<ProjectIdea?> {
+    func updateOneIdea(ideaSubmission: ProjectIdeaSubmission) -> Promise<ProjectIdea?> {
         return Promise { resolve, reject in
             resolve(nil)
         }

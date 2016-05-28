@@ -15,13 +15,37 @@ class IdeaSubmissionViewController: UIViewController {
     @IBOutlet weak var ideaDescriptionTextView: UITextView!
     @IBOutlet weak var ideaTitleTextField: IsaoTextField!
     @IBOutlet weak var additionalInformationTextField: IsaoTextField!
-    var activityIndicator: IGActivityIndicatorView!
     
-    var ideaSubmissionPresenter: IdeaSubmissionPresenter!
+    /* Activity indicator view */
+    var activityIndicator: IGActivityIndicatorView!
+    var ideaSubmissionPresenter = IdeaSubmissionPresenter(projectIdeaService: ProjectIdeaService())
+    var submissionStatus: SubmissionStatus = .New
+    var currentIdea: ProjectIdeaSubmission? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        ideaSubmissionPresenter?.attachView(self)
+        ideaSubmissionPresenter.attachView(self)
+        performViewSetup()
+        ideaSubmissionPresenter.findExistingIdea()
+        if currentIdea != nil {
+            submissionStatus = .Update
+        } else {
+            submissionStatus = .New
+        }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        ideaSubmissionPresenter.attachView(self)
+        
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        ideaSubmissionPresenter.detachView(self)
+    }
+    
+    func performViewSetup() {
         setBorderForTextView()
         ideaTitleTextField.delegate = self
         additionalInformationTextField.delegate = self
@@ -35,17 +59,30 @@ class IdeaSubmissionViewController: UIViewController {
         ideaDescriptionTextView.layer.borderWidth = 1
     }
     
+    func setViewForExistingSubmission(ideaSubmission: ProjectIdeaSubmission) {
+        ideaTitleTextField.text = ideaSubmission.title
+        ideaDescriptionTextView.text = ideaSubmission.descriptionString
+        additionalInformationTextField.text = ideaSubmission.additionalInformation
+    }
+    
     @IBAction func didTapSubmissionButton(sender: AnyObject) {
-        if validateSubmission() == true {
-            let additionalInformationText = additionalInformationTextField.text ?? ""
-            let ideaSubmission: JsonDict = [
-                "title": ideaTitleTextField.text!,
-                "description": ideaDescriptionTextView.text,
-                "additionalInformation" : additionalInformationText
-            ]
-            ideaSubmissionPresenter?.submitIdeaToAPI(ideaSubmission)
-        } else {
+        guard validateSubmission() == true else {
             alertController(withTitles: ["OK"], message: "Please fill in both text fields before submitting", callbackHandler: [nil])
+            return
+        }
+        let title = ideaTitleTextField.text
+        let description = ideaDescriptionTextView.text
+        let additionalInformation = additionalInformationTextField.text
+        
+        switch submissionStatus {
+        case .New:
+            ideaSubmissionPresenter.submitIdeaToAPI(title!, description: description!, additionalInformation: additionalInformation)
+        case .Update:
+            let newIdea = currentIdea!
+            newIdea.descriptionString = description
+            newIdea.title = title!
+            newIdea.additionalInformation = additionalInformation ?? ""
+            ideaSubmissionPresenter.updateIdeaToAPI(newIdea)
         }
     }
     
@@ -59,19 +96,11 @@ class IdeaSubmissionViewController: UIViewController {
     @IBAction func didTapCancelUpInside(sender: AnyObject) {
         cancelSubmission(self)
     }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        ideaSubmissionPresenter?.attachView(self)
-        
-    }
-
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        ideaSubmissionPresenter?.detachView(self)
-    }
 }
 
+/*
+ * Extension for UI Text field delegate and text view delegate methods
+ */
 extension IdeaSubmissionViewController: UITextViewDelegate, UITextFieldDelegate {
     /* Configure and deselect text fields when return is pressed */
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -85,9 +114,10 @@ extension IdeaSubmissionViewController: UITextViewDelegate, UITextFieldDelegate 
     }
     
     func keyboardWillShow(notification: NSNotification) {
-        /* slide the view up when keyboard appears, using notifications */
-        contentView.frame.origin.y = -getKeyboardHeight(notification)
-        let visibleRect = self.view.frame
+        /* slide the view up when keyboard appears if editing bottom text field, using notifications */
+        if additionalInformationTextField.editing {
+            contentView.frame.origin.y = -getKeyboardHeight(notification)
+        }
     }
     
     /* Reset view origin when keyboard hides */
@@ -104,6 +134,9 @@ extension IdeaSubmissionViewController: UITextViewDelegate, UITextFieldDelegate 
     
 }
 
+/*
+ * Extension for Idea Submission View Presenter delegate methods
+ */
 extension IdeaSubmissionViewController: IdeaSubmissionView {
     
     func didSubmitIdeaToAPI(sender: IdeaSubmissionPresenter, didSucceed: Bool, didFail: NSError?) {
@@ -113,6 +146,16 @@ extension IdeaSubmissionViewController: IdeaSubmissionView {
         } else {
             presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
         }
+    }
+    
+    func isNewSubmission(sender: IdeaSubmissionPresenter) {
+        submissionStatus = .New
+    }
+    
+    func didFindExistingData(sender: IdeaSubmissionPresenter, ideaSubmission: ProjectIdeaSubmission) {
+        submissionStatus = .Update
+        currentIdea = ideaSubmission
+        setViewForExistingSubmission(ideaSubmission)
     }
     
     func cancelSubmission(sender: AnyObject) {
@@ -136,4 +179,8 @@ extension IdeaSubmissionViewController: IdeaSubmissionView {
     func hideLoading() {
         activityIndicator.hideLoading()
     }
+}
+
+enum SubmissionStatus {
+    case New, Update
 }

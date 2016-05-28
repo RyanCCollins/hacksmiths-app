@@ -6,12 +6,14 @@
 //  Copyright © 2016 Tech Rapport. All rights reserved.
 //
 
-import UIKit
+import CoreData
 
 protocol IdeaSubmissionView {
     func showLoading()
     func hideLoading()
     func didSubmitIdeaToAPI(sender: IdeaSubmissionPresenter, didSucceed: Bool, didFail: NSError?)
+    func didFindExistingData(sender: IdeaSubmissionPresenter, ideaSubmission: ProjectIdeaSubmission)
+    func isNewSubmission(sender: IdeaSubmissionPresenter)
     func cancelSubmission(sender: AnyObject)
     func subscribeToNotifications(sender: AnyObject)
     func unsubscribeToNotifications(sender: AnyObject)
@@ -28,6 +30,7 @@ class IdeaSubmissionPresenter {
     func attachView(view: IdeaSubmissionView) {
         self.ideaSubmissionView = view
         ideaSubmissionView?.subscribeToNotifications(self)
+        loadExistingDataIfExists()
     }
     
     func detachView(view: IdeaSubmissionView) {
@@ -35,33 +38,67 @@ class IdeaSubmissionPresenter {
         ideaSubmissionView?.unsubscribeToNotifications(self)
     }
     
-    func submitIdeaToAPI(ideaDictionary: JsonDict) {
-        ideaSubmissionView?.showLoading()
-        if let ideaSubmission = dictionaryForSubmission(ideaDictionary) {
-            let ideaSubmissionJSON = ProjectIdeaSubmissionJSON(dictionary: ideaSubmission)
-            projectIdeaService.submitIdea(ideaSubmissionJSON).then() {
-                Void in
-                    self.ideaSubmissionView?.didSubmitIdeaToAPI(self, didSucceed: true, didFail: nil)
-                }.error { error in
-                    self.ideaSubmissionView?.didSubmitIdeaToAPI(self, didSucceed: false, didFail: error as NSError)
-                }
+    func loadExistingDataIfExists() {
+        if let ideaSubmission = findExistingIdea() {
+            self.ideaSubmissionView?.didFindExistingData(self, ideaSubmission: ideaSubmission)
         } else {
-            self.ideaSubmissionView?.didSubmitIdeaToAPI(self, didSucceed: false, didFail: GlobalErrors.MissingData)
+            self.ideaSubmissionView?.isNewSubmission(self)
         }
     }
     
-    /* Ensure that there is an event to submit ideas for and that the user is signed in,
-        otherwise, return nil for the submission */
-    func dictionaryForSubmission(idea: JsonDict) -> JsonDict? {
-        guard let event = EventFetcher.sharedFetcher.fetchCurrentEvent(),
-            user = UserService.sharedInstance().userId else {
-                return nil
+    func findExistingIdea() -> ProjectIdeaSubmission? {
+        do {
+            let ideaFetch = NSFetchRequest(entityName: "ProjectIdeaSubmission")
+            var idea: ProjectIdeaSubmission? = nil
+            if let results = try CoreDataStackManager.sharedInstance().managedObjectContext.executeFetchRequest(ideaFetch) as? [ProjectIdeaSubmission] {
+                guard results.count > 0 else {
+                    return nil
+                }
+                idea = results[0]
+            }
+            return idea
+        } catch let error as NSError {
+            print(error)
+            return nil
         }
-        let jsonDict: JsonDict = [
-            "idea" : idea,
-            "event" : event,
-            "user" : user
+    }
+    
+    func updateIdeaToAPI(projectIdea: ProjectIdeaSubmission) {
+        //projectIdeaService.updateOneIdea(<#T##ideaId: String##String#>, ideaJSON: <#T##IdeaJSON#>)
+    }
+    
+    func submitIdeaToAPI(title: String, description: String, additionalInformation: String?) {
+        ideaSubmissionView?.showLoading()
+        
+        let ideaSubmission = createIdeaSubmission(title, description: description, additionalInformation: additionalInformation)
+        
+        projectIdeaService.submitIdea(ideaSubmission).then() {Void in
+            self.ideaSubmissionView?.didSubmitIdeaToAPI(self, didSucceed: true, didFail: nil)
+        }.error {error in
+            self.ideaSubmissionView?.didSubmitIdeaToAPI(self, didSucceed: false, didFail: error as NSError)
+        }
+    }
+    
+    private func createIdeaSubmission(title: String, description: String, additionalInformation: String?) -> ProjectIdeaSubmissionJSON {
+        let idea = dictionaryForIdea(title, description: description, additionalInformation: additionalInformation)
+        let submission: JsonDict = [
+            "user" : UserService.sharedInstance().userId!,
+            "event" : "56e1e408427538030076119b",
+            "idea" : idea
         ]
-        return jsonDict
+        let ideaSubmission = ProjectIdeaSubmission(dictionary: submission, context: GlobalStackManager.SharedManager.sharedContext)
+        let ideaSubmissionJSON = ProjectIdeaSubmissionJSON(projectIdeaSubmission: ideaSubmission)
+        return ideaSubmissionJSON
+    }
+    
+    private func dictionaryForIdea(title: String, description: String, additionalInformation: String?) -> JsonDict {
+        var submission: JsonDict = [
+            "title": title,
+            "description": description
+        ]
+        if let additionalInformation = additionalInformation {
+            submission["additionalInformation"] = additionalInformation
+        }
+        return submission
     }
 }

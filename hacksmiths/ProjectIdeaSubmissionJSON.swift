@@ -8,28 +8,16 @@
 
 import Gloss
 
+
 struct ProjectIdeaSubmissionJSON: Encodable {
     let user: String
     let event: String
-    let idea: JSON
+    let idea: IdeaSubmissionJSON
     
     init(projectIdeaSubmission: ProjectIdeaSubmission) {
         self.user = projectIdeaSubmission.user
         self.event = projectIdeaSubmission.event
-        var ideaDict: JSON = [
-            "title" : projectIdeaSubmission.title,
-            "description" : projectIdeaSubmission.descriptionString,
-            ]
-        if let additionalInformation = projectIdeaSubmission.additionalInformation {
-            ideaDict["additionalInformation"] = additionalInformation
-        }
-        self.idea = ideaDict
-    }
-    
-    init(dictionary: JsonDict) {
-        self.user = dictionary["user"] as! String
-        self.event = dictionary["event"] as! String
-        self.idea = dictionary["idea"] as! JsonDict
+        self.idea = IdeaSubmissionJSON(projectIdeaSubmission: projectIdeaSubmission)
     }
     
     func toJSON() -> JSON? {
@@ -39,4 +27,30 @@ struct ProjectIdeaSubmissionJSON: Encodable {
             "idea" ~~> self.idea
         ])
     }
+}
+
+struct IdeaSubmissionJSON: Encodable {
+    let title: String
+    let description: String
+    let additionalInformation: String?
+    
+    init(projectIdeaSubmission: ProjectIdeaSubmission) {
+        title = projectIdeaSubmission.title
+        description = projectIdeaSubmission.descriptionString
+        additionalInformation = projectIdeaSubmission.additionalInformation
+    }
+    
+    func toJSON() -> JSON? {
+        return jsonify([
+            "title" ~~> self.title,
+            "description" ~~> self.description,
+            "additionalInformation" ~~> additionalInformation
+        ])
+    }
+}
+
+struct IdeaSubmissionKeys {
+    static let title = "title"
+    static let description = "description"
+    static let additionalInformation = "additionalInformation"
 }

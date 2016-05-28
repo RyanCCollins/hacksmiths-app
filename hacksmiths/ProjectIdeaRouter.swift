@@ -14,7 +14,7 @@ enum ProjectIdeaEndpoint {
     case PostProjectIdea(projectIdeaSubmissionJSON: ProjectIdeaSubmissionJSON)
     case GetAllProjectIdeas()
     case DeleteProjectIdea(ideaId: String)
-    case UpdateProjectIdea(ideaId: String, ideaJSON: ProjectIdeaJSON)
+    case UpdateProjectIdea(ideaId: String, ideaJSON: ProjectIdeaSubmissionJSON)
     case GetOneProjectIdea(ideaId: String)
 }
 
@@ -38,7 +38,7 @@ class ProjectIdeaRouter: BaseRouter {
         case .GetAllProjectIdeas: return "/api/app/project-ideas"
         case .GetOneProjectIdea(let ideaId): return "api/app/project-ideas/\(ideaId)"
         case .UpdateProjectIdea(let ideaId, let projectIdeaJSON): return "api/app/project-ideas/\(ideaId)"
-        case .PostProjectIdea(let projectIdeaJson): return "api/app/project-idea"
+        case .PostProjectIdea(let projectIdeaJson): return "api/app/project-ideas"
         case .DeleteProjectIdea(let ideaId): return "api/app/project-ideas/\(ideaId)"
         }
     }
@@ -51,8 +51,9 @@ class ProjectIdeaRouter: BaseRouter {
             } else {
                 return nil
             }
-        case .PostProjectIdea(let projectIdeaJSON):
-            if let data = projectIdeaJSON.toJSON() {
+        case .PostProjectIdea(let projectIdeaSubmissionJSON):
+            if let data = projectIdeaSubmissionJSON.toJSON() {
+                print("Submitting project idea to API: \(data)")
                 return data
             } else {
                 return nil

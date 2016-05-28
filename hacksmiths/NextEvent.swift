@@ -8,6 +8,7 @@
 
 import CoreData
 
+@objc(NextEvent)
 class NextEvent: NSManagedObject {
     @NSManaged var idString: String
     @NSManaged var active: Bool
