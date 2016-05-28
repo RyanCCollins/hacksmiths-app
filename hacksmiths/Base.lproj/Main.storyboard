@@ -2419,14 +2419,14 @@ We build tools designed to help non-profit organizations streamline their philan
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="2X1-97-21l">
                                                 <rect key="frame" x="8" y="397" width="584" height="236"/>
                                                 <subviews>
-                                                    <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Website" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bsU-zS-rsN" customClass="IsaoTextField" customModule="TextFieldEffects">
+                                                    <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Website" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="bsU-zS-rsN" customClass="IsaoTextField" customModule="TextFieldEffects">
                                                         <rect key="frame" x="0.0" y="0.0" width="584" height="50"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="50" id="8Ad-5z-ErG"/>
+                                                            <constraint firstAttribute="height" constant="50" id="asp-Dt-A8h"/>
                                                         </constraints>
                                                         <color key="textColor" red="0.12637259066104889" green="0.12639245390892029" blue="0.12636536359786987" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="URL" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="inactiveColor">
                                                                 <color key="value" red="0.12637259066104889" green="0.12639245390892029" blue="0.12636536359786987" alpha="1" colorSpace="calibratedRGB"/>
@@ -2443,7 +2443,7 @@ We build tools designed to help non-profit organizations streamline their philan
                                                         <rect key="frame" x="0.0" y="62" width="584" height="50"/>
                                                         <color key="textColor" red="0.12637259066104889" green="0.12639245390892029" blue="0.12636536359786987" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="yes" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="inactiveColor">
                                                                 <color key="value" red="0.16470588235294117" green="0.16470588235294117" blue="0.16470588235294117" alpha="1" colorSpace="calibratedRGB"/>
@@ -2460,7 +2460,7 @@ We build tools designed to help non-profit organizations streamline their philan
                                                         <rect key="frame" x="0.0" y="124" width="584" height="50"/>
                                                         <color key="textColor" red="0.12637259066104889" green="0.12639245390892029" blue="0.12636536359786987" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="yes" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="inactiveColor">
                                                                 <color key="value" red="0.16470588235294117" green="0.16470588235294117" blue="0.16470588235294117" alpha="1" colorSpace="calibratedRGB"/>
@@ -2473,11 +2473,11 @@ We build tools designed to help non-profit organizations streamline their philan
                                                             <action selector="handleFormUpdate:" destination="c6C-P6-K3H" eventType="editingChanged" id="YbX-1R-eLT"/>
                                                         </connections>
                                                     </textField>
-                                                    <textField opaque="NO" clipsSubviews="YES" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Availability Explanation" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AqR-7w-95i" customClass="IsaoTextField" customModule="TextFieldEffects">
+                                                    <textField opaque="NO" clipsSubviews="YES" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Event Availability Explanation" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AqR-7w-95i" customClass="IsaoTextField" customModule="TextFieldEffects">
                                                         <rect key="frame" x="0.0" y="186" width="584" height="50"/>
                                                         <color key="textColor" red="0.12637259070000001" green="0.12639245390000001" blue="0.1263653636" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="inactiveColor">
                                                                 <color key="value" red="0.1647058824" green="0.1647058824" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>

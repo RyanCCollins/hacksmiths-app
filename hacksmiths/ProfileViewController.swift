@@ -68,13 +68,18 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     }
     
     /* Hack to get the content scrolling */
-    func setScrollView(forEditingMode editing: Bool) {
+    func setScrollView(forEditingMode editing: Bool = false) {
         scrollView.delegate = self
         scrollView.contentSize.width = view.bounds.width
         if editing {
             scrollView.contentSize.height = 736
+            scrollView.userInteractionEnabled = true
+            scrollView.exclusiveTouch = true
+            scrollView.canCancelContentTouches = true
+            scrollView.delaysContentTouches = false
         } else {
-            scrollView.contentSize.height = view.bounds.height
+            /* Set the scrollview to be the same height as view, disabling scroll behavior. */
+            scrollView.contentSize.height = scrollView.bounds.height
         }
         
     }
@@ -176,7 +181,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         websiteTextField.hidden = !editing
         helpButton.hidden = !editing
         formFieldStackView.hidden = !editing
-        
+        setScrollView(forEditingMode: editing)
         if editing {
             profileTextView.becomeFirstResponder()
         }
@@ -309,6 +314,6 @@ extension ProfileViewController: UITextViewDelegate, UITextFieldDelegate {
     func getKeyboardHeight(notification: NSNotification) -> CGFloat {
         let userInfo = notification.userInfo
         let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue
-        return keyboardSize.CGRectValue().height
+        return keyboardSize.CGRectValue().height -  50
     }
 }
