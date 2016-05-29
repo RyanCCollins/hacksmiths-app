@@ -31,9 +31,6 @@ class EventViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        eventPresenter.attachView(self)
-        eventPresenter.loadNextEvent()
-        updateUserInterface()
 
     }
     
@@ -41,9 +38,8 @@ class EventViewController: UIViewController {
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
-        eventPresenter.fetchNextEvent()
-        setActivityIndicator()
-        startLoading()
+        eventPresenter.attachView(self)
+        eventPresenter.fetchAndCheckAPIForEvent()
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -59,35 +55,34 @@ class EventViewController: UIViewController {
         
     }
     
-    func updateUserInterface() {
-        if let event = currentEvent {
-            /* Set the UI elements on the main queue */
-            dispatch_async(GlobalMainQueue, {
-                if let imageURL = event.featureImageURL {
-                    self.eventImageView.downloadedFrom(link: imageURL, contentMode: .ScaleAspectFit)
+    func updateUserInterface(forEvent event: Event) {
+        
+        dispatch_async(GlobalMainQueue, {
+            if let imageURL = event.featureImageURL {
+                self.eventImageView.downloadedFrom(link: imageURL, contentMode: .ScaleAspectFit)
+            }
+            self.eventImageView.image = event.image
+            self.headerLabel.text = event.title
+            self.aboutTextView.text = event.descriptionString
+            self.aboutTextView.textColor = UIColor.whiteColor()
+            
+            self.whenLabel.text = event.formattedDateString
+            self.aboutTextView.text = event.descriptionString
+            
+            if let organization = self.currentEvent?.organization {
+                if let image = organization.image,
+                   let descriptionString = organization.descriptionString,
+                   let organizationWebsite = organization.website {
+                    self.organizationImageView.image = image
+                    self.organizationDescriptionLabel.text = descriptionString
+                    self.organizationTitleLabel.text = organization.name
+                    self.organizationWebsiteButton.titleLabel!.text = organizationWebsite
+                    self.organizationWebsiteButton.hidden = false
+                    self.whoLabel.text = organization.name
                 }
-                self.eventImageView.image = event.image
-                self.headerLabel.text = event.title
-                self.aboutTextView.text = event.descriptionString
-                self.aboutTextView.textColor = UIColor.whiteColor()
-                
-                self.whenLabel.text = event.formattedDateString
-                self.aboutTextView.text = event.descriptionString
-                
-                if let organization = self.currentEvent?.organization {
-                    if let image = organization.image,
-                       let descriptionString = organization.descriptionString,
-                       let organizationWebsite = organization.website {
-                        self.organizationImageView.image = image
-                        self.organizationDescriptionLabel.text = descriptionString
-                        self.organizationTitleLabel.text = organization.name
-                        self.organizationWebsiteButton.titleLabel!.text = organizationWebsite
-                        self.organizationWebsiteButton.hidden = false
-                        self.whoLabel.text = organization.name
-                    }
-                }
-            })
-        }
+            }
+            collectionView.reloadData()
+        })
     }
     
     /* Open the URL for the website if possible. */
@@ -99,10 +94,22 @@ class EventViewController: UIViewController {
         }
     }
     
+    /* Get a predicate for the current event's participants */
+    func eventPredicate() -> NSPredicate? {
+        if let event = currentEvent {
+            let predicate = NSPredicate(format: "Participant.event", event)
+            return predicate
+        } else {
+            return nil
+        }
+    }
+    
     lazy var fetchedResultsController: NSFetchedResultsController = {
         let sortPriority = NSSortDescriptor(key: "name", ascending: true)
         let fetch = NSFetchRequest(entityName: "Participant")
-        
+        if let predicate = self.eventPredicate() {
+            fetch.predicate = predicate
+        }
         fetch.sortDescriptors = [sortPriority]
         
         let fetchResultsController = NSFetchedResultsController(fetchRequest: fetch, managedObjectContext: GlobalStackManager.SharedManager.sharedContext, sectionNameKeyPath: nil, cacheName: nil)
@@ -138,41 +145,45 @@ extension EventViewController: EventView {
         self.activityIndicator.stopAnimating()
     }
     
-    func didReceiveNextEvent(sender: EventPresenter, nextEvent: NextEvent?, error: NSError?) {
-        if error != nil || nextEvent == nil {
+    func didLoadCachedEvent(event: Event) {
+        self.currentEvent = event
+        updateUserInterface(forEvent: event)
+    }
+    
+    func didReceiveNewEvent(sender: EventPresenter, newEvent: NextEvent?, error: NSError?) {
+        if error != nil || newEvent == nil {
             let message = error?.localizedDescription ?? "An unknown error occurred."
             alertController(withTitles: ["OK"], message: message, callbackHandler: [nil])
         } else {
-            let nextEventId = nextEvent?.idString
-            self.eventPresenter.getEventData(nextEventId!)
+            startLoading()
+            self.eventPresenter.getEventData(newEvent!.idString)
         }
     }
     
-    func getEvent(sender: EventPresenter, didSucceed event: Event) {
-        self.currentEvent = event
-        self.finishLoading()
-        self.updateUserInterface()
-        performParticipantFetch()
-        collectionView.reloadData()
+    func didReceiveEventData(sender: EventPresenter, didSucceed event: Event?, didFail error: NSError?) {
+        finishLoading()
+        if event != nil {
+            performParticipantFetch()
+            updateUserInterface(forEvent: event!)
+        } else if error != nil  {
+            alertController(withTitles: ["OK", "Retry"], message: error!.localizedDescription, callbackHandler: [nil, {Void in
+            return
+            }])
+        }
     }
     
-    func getEvent(sender: EventPresenter, didFail error: NSError) {
-        print("Called getEvent:didFail in EventView with error: \(error)")
-        
-        self.finishLoading()
-        alertController(withTitles: ["OK", "Retry"], message: error.localizedDescription, callbackHandler: [nil, {Void in
-            self.eventPresenter.fetchNextEvent()
-        }])
+    func handleSetDebugMessage(message: String) {
+        print("Set debug message: \(message)")
     }
+    
+
     
     func respondToEvent(sender: EventPresenter, didSucceed event: Event) {
-        self.currentEvent = event
         self.finishLoading()
-        updateUserInterface()
     }
     
     func respondToEvent(sender: EventPresenter, didFail error: NSError) {
-    
+        
     }
 }
 
@@ -201,4 +212,8 @@ extension EventViewController: UICollectionViewDelegate, UICollectionViewDataSou
         cell.setCellForParticipant(participant)
     }
     
+}
+
+enum EventStatus {
+    case Previous, Current
 }

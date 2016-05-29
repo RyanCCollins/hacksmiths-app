@@ -71,6 +71,7 @@
             <string>OpenSans</string>
             <string>OpenSans</string>
             <string>OpenSans</string>
+            <string>OpenSans</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -1140,6 +1141,44 @@
             </objects>
             <point key="canvasLocation" x="1442" y="-1461"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="b2x-JQ-INE">
+            <objects>
+                <viewController id="OF2-Z1-uhp" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fCu-Fc-SCp"/>
+                        <viewControllerLayoutGuide type="bottom" id="zg9-SZ-8pU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jHV-0q-c7v">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GjQ-Mt-XUL">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tbw-Pv-mfo">
+                                        <rect key="frame" x="144" y="210" width="313" height="74"/>
+                                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="17"/>
+                                        <color key="textColor" red="0.68888300657272339" green="0.71366006135940552" blue="0.73448425531387329" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="GjQ-Mt-XUL" firstAttribute="leading" secondItem="jHV-0q-c7v" secondAttribute="leading" id="mXa-lK-zKr"/>
+                            <constraint firstAttribute="trailing" secondItem="GjQ-Mt-XUL" secondAttribute="trailing" id="rVk-jK-D2l"/>
+                            <constraint firstItem="zg9-SZ-8pU" firstAttribute="top" secondItem="GjQ-Mt-XUL" secondAttribute="bottom" id="sv7-Qe-nxU"/>
+                            <constraint firstItem="GjQ-Mt-XUL" firstAttribute="top" secondItem="jHV-0q-c7v" secondAttribute="top" id="yvE-d6-FBQ"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XEw-73-HEp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2105" y="-1454"/>
+        </scene>
         <!--Ideas-->
         <scene sceneID="arC-qO-Enr">
             <objects>
@@ -1608,6 +1647,7 @@
                                             <constraint firstAttribute="height" constant="27" id="er9-Je-nZ2"/>
                                             <constraint firstAttribute="width" constant="27" id="nBR-N8-BcV"/>
                                         </constraints>
+                                        <color key="tintColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" image="x-in-square"/>
                                         <connections>
                                             <action selector="didTapSkipUpInside:" destination="WN5-vs-oyA" eventType="touchUpInside" id="MRd-lV-tfs"/>
@@ -2796,8 +2836,8 @@ We build tools designed to help non-profit organizations streamline their philan
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4aY-03-0fn">
-                                <rect key="frame" x="546" y="40" width="34" height="30"/>
-                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                                <rect key="frame" x="530" y="40" width="50" height="30"/>
+                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
                                 <state key="normal" title="Save">
                                     <color key="titleColor" red="0.16862745100000001" green="0.56470588239999997" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -2805,8 +2845,12 @@ We build tools designed to help non-profit organizations streamline their philan
                                     <action selector="handleSaveForm:" destination="Z2L-zr-2tR" eventType="touchUpInside" id="Idl-fN-HAg"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aA7-u6-kV3">
-                                <rect key="frame" x="20" y="39" width="32" height="32"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aA7-u6-kV3">
+                                <rect key="frame" x="20" y="40" width="27" height="27"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="27" id="QLz-Hr-0Ug"/>
+                                    <constraint firstAttribute="height" constant="27" id="bmE-6A-6Zy"/>
+                                </constraints>
                                 <color key="tintColor" red="0.16862745100000001" green="0.56470588239999997" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" image="x-in-square">
                                     <color key="titleColor" red="0.16862745100000001" green="0.56470588239999997" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -2829,6 +2873,8 @@ We build tools designed to help non-profit organizations streamline their philan
                             <constraint firstAttribute="trailingMargin" secondItem="DK1-xP-YS9" secondAttribute="trailing" constant="20" id="bPw-z2-mhX"/>
                             <constraint firstItem="DK1-xP-YS9" firstAttribute="top" secondItem="jbb-A9-9lM" secondAttribute="bottom" constant="40" id="cJt-fj-V6q"/>
                             <constraint firstItem="jbb-A9-9lM" firstAttribute="trailing" secondItem="KFW-E4-Y5A" secondAttribute="trailingMargin" id="si8-eH-vu2"/>
+                            <constraint firstItem="aA7-u6-kV3" firstAttribute="top" secondItem="hvt-53-VPE" secondAttribute="bottom" constant="20" id="wb5-vf-wN7"/>
+                            <constraint firstItem="aA7-u6-kV3" firstAttribute="leading" secondItem="KFW-E4-Y5A" secondAttribute="leadingMargin" id="yXa-8C-9b0"/>
                         </constraints>
                     </view>
                     <connections>

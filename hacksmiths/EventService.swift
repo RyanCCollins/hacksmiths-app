@@ -13,6 +13,54 @@ import Gloss
 import CoreData
 
 class EventService {
+    
+    /* Return a promise of a boolean, determining if the event status has changed and a next event
+     * The event returned from the Event Status endpoint is not the same as the event stored on the device currently
+     * - return = Promise of Boolean determining that event has changed status or not.
+     */
+    func fetchNextEventIfStatusChanged() -> Promise<NextEvent?> {
+        return Promise {resolve, reject in
+            let router = EventRouter(endpoint: .GetEventStatus())
+            HTTPManager.sharedManager.request(router)
+                .validate()
+                .responseJSON {
+                    response in
+                    
+                    switch response.result {
+                    case .Success(let JSON):
+                        if let nextEventData = JSON["event"] as? JsonDict,
+                            let nextEventJSON = NextEventJSON(json: nextEventData) {
+                            EventFetcher.sharedFetcher.performNextEventFetch().then() {
+                                nextEvent -> () in
+                                guard nextEvent != nil else {
+                                    resolve(nil)
+                                    return
+                                }
+                                if nextEventJSON.id != nextEvent!.idString {
+                                    self.deleteAllSavedNextEventEntries()
+                                    let nextEvent = NextEvent(nextEventJSON: nextEventJSON, context: GlobalStackManager.SharedManager.sharedContext)
+                                    CurrentEventService.sharedService.setFromJSON(nextEventJSON)
+                                    
+                                    /* Save the context for this next event model object */
+                                    GlobalStackManager.SharedManager.sharedContext.performBlockAndWait({
+                                        CoreDataStackManager.sharedInstance().saveContext()
+                                    })
+                                    
+                                    resolve(nextEvent)
+                                } else {
+                                    resolve(nil)
+                                }
+                            }
+                        }
+                    case .Failure(let error):
+                        reject(error)
+                }
+            }
+        }
+    }
+    
+    
+    
     func getEventStatus() -> Promise<NextEvent?> {
         return Promise {resolve, reject in
             print("Calling beginning of promise in getEventStatus")
