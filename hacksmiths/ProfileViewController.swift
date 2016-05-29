@@ -7,16 +7,14 @@
 //
 
 import UIKit
-import CoreData
-import TextFieldEffects
 
 protocol ProfileUserDataDelegate {
     func didSetUserData(userData: UserData)
 }
 
 class ProfileViewController: UIViewController, UINavigationControllerDelegate, UIToolbarDelegate, SettingsPickerDelegate {
-    @IBOutlet weak var haveExperienceTextField: IsaoTextField!
-    @IBOutlet weak var wantExperienceTextField: IsaoTextField!
+    @IBOutlet weak var haveExperienceTextField: RCNextTextField!
+    @IBOutlet weak var wantExperienceTextField: RCNextTextField!
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var editButton: UIBarButtonItem!
@@ -25,13 +23,14 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
 
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var noDataFoundLabel: UILabel!
-    @IBOutlet weak var websiteTextField: IsaoTextField!
+    @IBOutlet weak var websiteTextField: RCNextTextField!
     @IBOutlet weak var toolbar: UIToolbar!
-    @IBOutlet weak var availabilityExplanationTextField: IsaoTextField!
+    @IBOutlet weak var availabilityExplanationTextField: RCNextTextField!
 
     @IBOutlet weak var formFieldStackView: UIStackView!
     @IBOutlet weak var helpButton: UIButton!
     
+    @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     var currentUserData: UserData?
     
@@ -73,15 +72,15 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         scrollView.contentSize.width = view.bounds.width
         if editing {
             scrollView.contentSize.height = 736
-            scrollView.userInteractionEnabled = true
-            scrollView.exclusiveTouch = true
-            scrollView.canCancelContentTouches = true
-            scrollView.delaysContentTouches = false
         } else {
             /* Set the scrollview to be the same height as view, disabling scroll behavior. */
-            scrollView.contentSize.height = scrollView.bounds.height
+            scrollView.contentSize.height = view.frame.height
         }
         
+    }
+    
+    override func viewDidLayoutSubviews() {
+        contentView.frame.size = scrollView.contentSize
     }
 
     func setTextFieldDelegate() {
@@ -105,6 +104,10 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         }
     }
     
+    @IBAction func didTouchTextField(sender: RCNextTextField) {
+        print("Clicked")
+    }
+    
     func setUIForCurrentUserData() {
         guard let userData = currentUserData else {
             return
@@ -112,11 +115,14 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         dispatch_async(GlobalMainQueue, {
             self.nameLabel.text = userData.name
             self.profileTextView.text = userData.bio
-            self.profileImageView.userImage = userData.image
             self.setupWebsiteField(userData)
             self.setupMentoringFields(userData)
             self.setupAvailabilityFields(userData)
             self.toggleEditMode(false)
+            self.profileImageView.userImage = userData.image
+            if userData.image != nil {
+                self.profileImageView.setImage()
+            }
         })
     }
     
@@ -185,7 +191,6 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         if editing {
             profileTextView.becomeFirstResponder()
         }
-        
     }
     
     func commitChangesToProfile() {
@@ -194,7 +199,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         }
     }
     
-    @IBAction func handleFormUpdate(sender: IsaoTextField) {
+    @IBAction func handleFormUpdate(sender: RCNextTextField) {
         let textField = ProfileTextFields(rawValue: sender.tag)
         let newValue = sender.text
         if textField != nil {
@@ -281,7 +286,13 @@ extension ProfileViewController: ProfileView {
 extension ProfileViewController: UITextViewDelegate, UITextFieldDelegate {
     /* Configure and deselect text fields when return is pressed */
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+        let rcTextField = textField as! RCNextTextField
+        if rcTextField.nextTextField != nil {
+            rcTextField.nextTextField.becomeFirstResponder()
+        } else {
+            commitChangesToProfile()
+            textField.resignFirstResponder()
+        }
         return true
     }
     

@@ -22,6 +22,9 @@
 		1F3DF1411CFA306F0000BBC8 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1F3DF1361CFA306F0000BBC8 /* OpenSans-Regular.ttf */; };
 		1F3DF1421CFA306F0000BBC8 /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1F3DF1371CFA306F0000BBC8 /* OpenSans-Semibold.ttf */; };
 		1F3DF1431CFA306F0000BBC8 /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1F3DF1381CFA306F0000BBC8 /* OpenSans-SemiboldItalic.ttf */; };
+		1F3DF1451CFA48B50000BBC8 /* RCNextTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3DF1441CFA48B50000BBC8 /* RCNextTextField.swift */; };
+		1F3DF1491CFA795A0000BBC8 /* HelpPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3DF1481CFA795A0000BBC8 /* HelpPageViewController.swift */; };
+		1F3DF14B1CFA79DB0000BBC8 /* HelpLabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3DF14A1CFA79DB0000BBC8 /* HelpLabelViewController.swift */; };
 		1F44B1BA1C5DDAB9004E196D /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F44B1B91C5DDAB9004E196D /* CoreDataStackManager.swift */; };
 		1F46B9EC1CA467250065D50D /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F46B9EB1CA467250065D50D /* UserData.swift */; };
 		1F498E151CF78C93009A5AB2 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F498E141CF78C93009A5AB2 /* SettingsPresenter.swift */; };
@@ -129,6 +132,9 @@
 		1F3DF1361CFA306F0000BBC8 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		1F3DF1371CFA306F0000BBC8 /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
 		1F3DF1381CFA306F0000BBC8 /* OpenSans-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiboldItalic.ttf"; sourceTree = "<group>"; };
+		1F3DF1441CFA48B50000BBC8 /* RCNextTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RCNextTextField.swift; path = ../RCNextTextField.swift; sourceTree = "<group>"; };
+		1F3DF1481CFA795A0000BBC8 /* HelpPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HelpPageViewController.swift; path = ../HelpPageViewController.swift; sourceTree = "<group>"; };
+		1F3DF14A1CFA79DB0000BBC8 /* HelpLabelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HelpLabelViewController.swift; path = ../HelpLabelViewController.swift; sourceTree = "<group>"; };
 		1F44B1B91C5DDAB9004E196D /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
 		1F46B9EB1CA467250065D50D /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		1F498E141CF78C93009A5AB2 /* SettingsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
@@ -272,6 +278,15 @@
 			path = "fonts/fonts-open-sans";
 			sourceTree = "<group>";
 		};
+		1F3DF14C1CFA7BFB0000BBC8 /* HelpLabel */ = {
+			isa = PBXGroup;
+			children = (
+				1F3DF14A1CFA79DB0000BBC8 /* HelpLabelViewController.swift */,
+				1F3DF1481CFA795A0000BBC8 /* HelpPageViewController.swift */,
+			);
+			name = HelpLabel;
+			sourceTree = "<group>";
+		};
 		1F44B1BB1C5DDAC9004E196D /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -387,6 +402,7 @@
 		1F846CBA1CEBF547009166D4 /* ControllerModules */ = {
 			isa = PBXGroup;
 			children = (
+				1F3DF14C1CFA7BFB0000BBC8 /* HelpLabel */,
 				1FEA07C01CEFFCF500D4BDA7 /* IdeaSubmission */,
 				1FAD7DB61CEE5F7A0044BD94 /* Community */,
 				1FC6DE451C9F59EB000E8159 /* User & Auth */,
@@ -773,6 +789,7 @@
 		1FF998A21C713888003D98B2 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1F3DF1441CFA48B50000BBC8 /* RCNextTextField.swift */,
 				1FF998A01C71387C003D98B2 /* PersonTableViewCell.swift */,
 				1F6C69E71CCC6BB700F15247 /* ParticipantCollectionViewCell.swift */,
 				1FE5F91A1CD8288800487CA8 /* RCCircularImageView.swift */,
@@ -994,6 +1011,7 @@
 			files = (
 				1FA2E55F1C6802680085FC7D /* ImageCache.swift in Sources */,
 				1FA9FC9B1C53563700B993BC /* EventViewController.swift in Sources */,
+				1F3DF1491CFA795A0000BBC8 /* HelpPageViewController.swift in Sources */,
 				1F4F7EC71CF4D08300325CA9 /* CurrentEventService.swift in Sources */,
 				1FA5A4EC1C53586D00722E55 /* CommunityViewController.swift in Sources */,
 				1F4F7ECB1CF4D5A200325CA9 /* UserJSONObject.swift in Sources */,
@@ -1007,6 +1025,7 @@
 				1F846CC71CECF7D5009166D4 /* EventJSON.swift in Sources */,
 				1F4F7EC31CF4B67000325CA9 /* ProjectIdeaSubmissionJSON.swift in Sources */,
 				1F846CD01CED259D009166D4 /* Participant.swift in Sources */,
+				1F3DF14B1CFA79DB0000BBC8 /* HelpLabelViewController.swift in Sources */,
 				1FEA07BF1CEFD22400D4BDA7 /* PersonPresenter.swift in Sources */,
 				1F846CBF1CEBF5E2009166D4 /* EventPresenter.swift in Sources */,
 				1FA2E55D1C67FF550085FC7D /* HacksmithsAPIClient.swift in Sources */,
@@ -1019,6 +1038,7 @@
 				1FEA07BC1CEFD0F500D4BDA7 /* CommunityPresenter.swift in Sources */,
 				1FF9989D1C6FB060003D98B2 /* Organization.swift in Sources */,
 				1F846CC41CEC03C5009166D4 /* IGActivityIndicatorView.swift in Sources */,
+				1F3DF1451CFA48B50000BBC8 /* RCNextTextField.swift in Sources */,
 				1F846CCA1CED00E3009166D4 /* ParticipantJSON.swift in Sources */,
 				1FF998991C6FAEDE003D98B2 /* Event.swift in Sources */,
 				1FC6DE471C9F6DC5000E8159 /* RegistrationData.swift in Sources */,

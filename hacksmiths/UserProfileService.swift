@@ -33,6 +33,7 @@ class UserProfileService {
                             let userJSON = UserJSONObject(json: profileDict)
                             
                             let userData = UserData(json: userJSON!, context: GlobalStackManager.SharedManager.sharedContext)
+                            
                             GlobalStackManager.SharedManager.sharedContext.performBlockAndWait({
                                 CoreDataStackManager.sharedInstance().saveContext()
                             })

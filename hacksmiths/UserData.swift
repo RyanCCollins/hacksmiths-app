@@ -86,6 +86,7 @@ class UserData: NSManagedObject {
             self.wantsExperience = wantsExperience
         }
         if let photo = json.user.photo {
+            print("Saving photo: \(photo)")
             avatarURL = photo
         }
         
@@ -98,7 +99,7 @@ class UserData: NSManagedObject {
         self.idString = json.user.id
     }
     
-    dynamic var avatarFilePath: String? {
+    var avatarFilePath: String? {
         if let avatarURL = avatarURL {
             return avatarURL.lastPathComponent
         } else {
@@ -112,13 +113,12 @@ class UserData: NSManagedObject {
                 resolve()
             } else {
                 HacksmithsAPIClient.sharedInstance().taskForGETImageFromURL(avatarURL!, completionHandler: {image, error in
-                    
                     if error != nil {
                         reject(error! as NSError)
                     } else {
+                        self.image = image
                         resolve()
                     }
-                    
                 })
             }
         }
