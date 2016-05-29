@@ -70,6 +70,7 @@
             <string>OpenSans</string>
             <string>OpenSans</string>
             <string>OpenSans</string>
+            <string>OpenSans</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -2546,17 +2547,17 @@ We build tools designed to help non-profit organizations streamline their philan
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="mU8-8Q-jep"/>
-                                    <barButtonItem image="pencil-paper" id="S1L-KC-4jr">
-                                        <color key="tintColor" red="0.16862745100000001" green="0.56470588239999997" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        <connections>
-                                            <action selector="didTapEditButtonUpInside:" destination="c6C-P6-K3H" id="Zak-6T-e05"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Qt1-ET-WRf"/>
                                     <barButtonItem image="refresh-control" id="Zah-mx-NwH">
                                         <color key="tintColor" red="0.16862745100000001" green="0.56470588239999997" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <action selector="didTapRefreshUpInside:" destination="c6C-P6-K3H" id="ZuH-ca-TKm"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Qt1-ET-WRf"/>
+                                    <barButtonItem image="pencil-paper" id="S1L-KC-4jr">
+                                        <color key="tintColor" red="0.16862745100000001" green="0.56470588239999997" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="didTapEditButtonUpInside:" destination="c6C-P6-K3H" id="Zak-6T-e05"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -2618,7 +2619,7 @@ We build tools designed to help non-profit organizations streamline their philan
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="DK1-xP-YS9">
-                                <rect key="frame" x="40" y="139" width="520" height="298"/>
+                                <rect key="frame" x="40" y="151" width="520" height="298"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Bio" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="bC1-05-bHU" customClass="IsaoTextField" customModule="TextFieldEffects">
                                         <rect key="frame" x="0.0" y="0.0" width="520" height="50"/>
@@ -2794,9 +2795,26 @@ We build tools designed to help non-profit organizations streamline their philan
                                 <color key="textColor" red="0.2872858942" green="0.14020672440000001" blue="0.30659055709999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4aY-03-0fn">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4aY-03-0fn">
                                 <rect key="frame" x="546" y="40" width="34" height="30"/>
-                                <state key="normal" title="Save"/>
+                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleColor" red="0.16862745100000001" green="0.56470588239999997" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="handleSaveForm:" destination="Z2L-zr-2tR" eventType="touchUpInside" id="Idl-fN-HAg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aA7-u6-kV3">
+                                <rect key="frame" x="20" y="39" width="32" height="32"/>
+                                <color key="tintColor" red="0.16862745100000001" green="0.56470588239999997" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" image="x-in-square">
+                                    <color key="titleColor" red="0.16862745100000001" green="0.56470588239999997" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapCloseButtonUpInside:" destination="Z2L-zr-2tR" eventType="touchUpInside" id="dX6-Mf-SEe"/>
+                                    <action selector="handleSaveForm:" destination="Z2L-zr-2tR" eventType="touchUpInside" id="69R-8Y-Lig"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
@@ -2809,7 +2827,7 @@ We build tools designed to help non-profit organizations streamline their philan
                             <constraint firstItem="jbb-A9-9lM" firstAttribute="centerX" secondItem="KFW-E4-Y5A" secondAttribute="centerX" id="ZmN-zG-oAB"/>
                             <constraint firstItem="4aY-03-0fn" firstAttribute="top" secondItem="hvt-53-VPE" secondAttribute="bottom" constant="20" id="bFd-je-KyW"/>
                             <constraint firstAttribute="trailingMargin" secondItem="DK1-xP-YS9" secondAttribute="trailing" constant="20" id="bPw-z2-mhX"/>
-                            <constraint firstItem="DK1-xP-YS9" firstAttribute="top" secondItem="jbb-A9-9lM" secondAttribute="bottom" constant="28" id="cJt-fj-V6q"/>
+                            <constraint firstItem="DK1-xP-YS9" firstAttribute="top" secondItem="jbb-A9-9lM" secondAttribute="bottom" constant="40" id="cJt-fj-V6q"/>
                             <constraint firstItem="jbb-A9-9lM" firstAttribute="trailing" secondItem="KFW-E4-Y5A" secondAttribute="trailingMargin" id="si8-eH-vu2"/>
                         </constraints>
                     </view>

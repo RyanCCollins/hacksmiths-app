@@ -17,7 +17,7 @@ class EditProfileViewController: UIViewController, EditProfileView {
     @IBOutlet weak var wantExperienceTextField: IsaoTextField!
     @IBOutlet weak var websiteTextField: IsaoTextField!
     @IBOutlet weak var availabilityExplanationTextField: IsaoTextField!
-    
+    var formChanged = false
     private var presenter = EditProfilePresenter()
     
     override func viewDidLoad() {
@@ -74,6 +74,7 @@ class EditProfileViewController: UIViewController, EditProfileView {
     }
     
     @IBAction private func handleFormUpdate(sender: IsaoTextField) {
+        formChanged = true
         let textField = ProfileTextFields(rawValue: sender.tag)
         let newValue = sender.text
         if textField != nil {
@@ -92,6 +93,21 @@ class EditProfileViewController: UIViewController, EditProfileView {
         }
     }
     
+    @IBAction func didTapCloseButtonUpInside(sender: AnyObject) {
+        handleDismissForm(self)
+    }
+    
+    @IBAction func handleSaveForm(sender: AnyObject) {
+        if formChanged {
+            delegate?.didSubmitEditedData(userData!)
+        } else {
+            handleDismissForm(self)
+        }
+    }
+    
+    func handleDismissForm(sender: AnyObject) {
+        presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+    }
     private enum ProfileTextFields: Int {
         case Bio = 0, Website,
         HaveExperience, WantExperience,
