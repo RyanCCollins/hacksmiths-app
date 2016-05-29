@@ -10,15 +10,17 @@ import UIKit
 
 class HelpLabelViewController: UIViewController {
 
+    @IBOutlet weak var helpLabel: UILabel!
     var helpLabelText: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        var label = UILabel(frame: CGRectMake(0, 0, 200, 100))
-        label.center = CGPointMake(150, 100)
-        label.textAlignment = NSTextAlignment.Center
-        label.text = "I'am a test label"
-        self.view.addSubview(label)
+        helpLabel.text = helpLabelText
     }
+    
+    func setLabelText(text: String) {
+        helpLabelText = text
+    }
+    
 
 }

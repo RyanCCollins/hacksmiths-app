@@ -19,6 +19,9 @@ class HelpPageViewController: UIPageViewController, UIPageViewControllerDelegate
         
         let firstHelpPage = storyboard?.instantiateViewControllerWithIdentifier("HelpLabelViewController") as! HelpLabelViewController
         let secondHelpPage = storyboard?.instantiateViewControllerWithIdentifier("HelpLabelViewController") as! HelpLabelViewController
+        firstHelpPage.helpLabelText = "1. Pick your favorite non-profit or philanthropic organization/ \n \n 2. Submit a detailed description, linking to a Google document if need be."
+        secondHelpPage.helpLabelText = "3. Stay tuned as we process the entries and decide on the best idea. \n\n Email admin@hacksmiths.io with any questions."
+        
         pages.append(firstHelpPage)
         pages.append(secondHelpPage)
         setViewControllers([firstHelpPage], direction: .Forward, animated: false, completion: nil)

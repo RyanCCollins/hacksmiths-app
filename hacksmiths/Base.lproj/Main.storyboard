@@ -65,6 +65,7 @@
             <string>OpenSans</string>
             <string>OpenSans</string>
             <string>OpenSans</string>
+            <string>OpenSans</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -1324,7 +1325,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="300" height="200"/>
+                    <size key="freeformSize" width="200" height="200"/>
                     <connections>
                         <segue destination="a1a-1l-e5z" kind="show" id="5e6-qF-Ayg"/>
                     </connections>
@@ -1342,15 +1343,32 @@
                         <viewControllerLayoutGuide type="bottom" id="Qo1-0P-U2V"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="A6W-ss-x96">
-                        <rect key="frame" x="0.0" y="0.0" width="300" height="200"/>
+                        <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lf6-qu-P2b">
+                                <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
+                                <color key="textColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.1725741029" green="0.21834245320000001" blue="0.44677489999999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Lf6-qu-P2b" firstAttribute="top" secondItem="nsU-dS-5fA" secondAttribute="bottom" id="57x-yj-cQk"/>
+                            <constraint firstAttribute="trailing" secondItem="Lf6-qu-P2b" secondAttribute="trailing" id="CM6-8C-AhS"/>
+                            <constraint firstItem="Qo1-0P-U2V" firstAttribute="top" secondItem="Lf6-qu-P2b" secondAttribute="bottom" id="jM6-0e-Coc"/>
+                            <constraint firstItem="Lf6-qu-P2b" firstAttribute="leading" secondItem="A6W-ss-x96" secondAttribute="leading" id="oBx-Zd-5Ya"/>
+                        </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="300" height="200"/>
+                    <size key="freeformSize" width="200" height="200"/>
+                    <connections>
+                        <outlet property="helpLabel" destination="Lf6-qu-P2b" id="71i-Ye-TkO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RTA-P8-quj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
