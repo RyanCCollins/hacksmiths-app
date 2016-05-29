@@ -52,7 +52,7 @@ class EventViewController: UIViewController {
     }
     
     @IBAction func didTapRefreshUpInside(sender: AnyObject) {
-        
+        self.eventPresenter.fetchAndCheckAPIForEvent()
     }
     
     func updateUserInterface(forEvent event: Event) {
@@ -81,7 +81,7 @@ class EventViewController: UIViewController {
                     self.whoLabel.text = organization.name
                 }
             }
-            collectionView.reloadData()
+            self.collectionView.reloadData()
         })
     }
     
@@ -94,22 +94,9 @@ class EventViewController: UIViewController {
         }
     }
     
-    /* Get a predicate for the current event's participants */
-    func eventPredicate() -> NSPredicate? {
-        if let event = currentEvent {
-            let predicate = NSPredicate(format: "Participant.event", event)
-            return predicate
-        } else {
-            return nil
-        }
-    }
-    
     lazy var fetchedResultsController: NSFetchedResultsController = {
         let sortPriority = NSSortDescriptor(key: "name", ascending: true)
         let fetch = NSFetchRequest(entityName: "Participant")
-        if let predicate = self.eventPredicate() {
-            fetch.predicate = predicate
-        }
         fetch.sortDescriptors = [sortPriority]
         
         let fetchResultsController = NSFetchedResultsController(fetchRequest: fetch, managedObjectContext: GlobalStackManager.SharedManager.sharedContext, sectionNameKeyPath: nil, cacheName: nil)
@@ -140,7 +127,6 @@ extension EventViewController: EventView {
         self.activityIndicator.startAnimating()
     }
     
-    
     func finishLoading() {
         self.activityIndicator.stopAnimating()
     }
@@ -160,9 +146,11 @@ extension EventViewController: EventView {
         }
     }
     
+    
     func didReceiveEventData(sender: EventPresenter, didSucceed event: Event?, didFail error: NSError?) {
         finishLoading()
         if event != nil {
+            currentEvent = event
             performParticipantFetch()
             updateUserInterface(forEvent: event!)
         } else if error != nil  {
@@ -177,14 +165,14 @@ extension EventViewController: EventView {
     }
     
 
-    
-    func respondToEvent(sender: EventPresenter, didSucceed event: Event) {
-        self.finishLoading()
+    func didRSVPForEvent(sender: EventPresenter, success: Bool, error: NSError?) {
+        if error != nil {
+            
+        } else {
+            
+        }
     }
     
-    func respondToEvent(sender: EventPresenter, didFail error: NSError) {
-        
-    }
 }
 
 extension EventViewController: NSFetchedResultsControllerDelegate {
@@ -197,8 +185,22 @@ extension EventViewController: NSFetchedResultsControllerDelegate {
 }
 
 extension EventViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func getEventParticipants() -> [Participant]? {
+        var eventParticipants: [Participant]?
+        if let participants = fetchedResultsController.fetchedObjects as? [Participant] {
+            eventParticipants = participants.filter({participant in
+                return participant.event == currentEvent
+            })
+        }
+        return eventParticipants != nil ? eventParticipants : nil
+    }
+    
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return fetchedResultsController.fetchedObjects?.count ?? 0
+        if let participants = getEventParticipants() {
+            return participants.count > 0 ? participants.count : 0
+        } else {
+            return 0
+        }
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -208,8 +210,12 @@ extension EventViewController: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func configureCell(cell: ParticipantCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
-        let participant = fetchedResultsController.objectAtIndexPath(indexPath) as! Participant
-        cell.setCellForParticipant(participant)
+        if let eventParticipants = getEventParticipants() {
+            if eventParticipants.count >= indexPath.row {
+                let participant = eventParticipants[indexPath.row]
+                cell.setCellForParticipant(participant)
+            }
+        }
     }
     
 }

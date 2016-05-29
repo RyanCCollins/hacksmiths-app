@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15B42" minimumToolsVersion="Automatic">
+    <entity name="Enrollment" representedClassName="Enrollment" syncable="YES">
+        <attribute name="descriptionString" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="idString" attributeType="String" syncable="YES"/>
+        <attribute name="link" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="logoUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="Event" representedClassName="Event" syncable="YES">
         <attribute name="active" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="descriptionString" optional="YES" attributeType="String" syncable="YES"/>
@@ -110,5 +117,6 @@
         <element name="ProjectIdea" positionX="126" positionY="207" width="128" height="165"/>
         <element name="ProjectIdeaSubmission" positionX="117" positionY="198" width="128" height="120"/>
         <element name="UserData" positionX="126" positionY="45" width="128" height="300"/>
+        <element name="Enrollment" positionX="117" positionY="198" width="128" height="120"/>
     </elements>
 </model>

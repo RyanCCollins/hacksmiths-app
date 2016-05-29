@@ -1311,8 +1311,8 @@
                                             <action selector="didTapSubmitIdeaUpInside:" destination="Q5f-dL-Dzh" eventType="touchUpInside" id="9Sd-GB-8gp"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fbU-Fu-ejM">
-                                        <rect key="frame" x="433" y="430" width="20" height="22"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fbU-Fu-ejM">
+                                        <rect key="frame" x="433" y="450" width="20" height="22"/>
                                         <state key="normal" image="question-mark"/>
                                         <connections>
                                             <segue destination="mJI-9Q-ucZ" kind="popoverPresentation" identifier="PresentHelpSegue" popoverAnchorView="fbU-Fu-ejM" id="EBU-bY-YkR">
@@ -1326,6 +1326,7 @@
                                     <constraint firstAttribute="trailing" secondItem="DoC-to-wIV" secondAttribute="trailing" id="4hd-Ib-AIm"/>
                                     <constraint firstItem="CGx-oE-Slj" firstAttribute="top" secondItem="Eap-Fe-JDp" secondAttribute="bottom" constant="33" id="G6T-li-12j"/>
                                     <constraint firstItem="z7g-2r-f4a" firstAttribute="top" secondItem="AFy-jW-9hS" secondAttribute="bottom" constant="56" id="Hj0-gK-nhO"/>
+                                    <constraint firstItem="fbU-Fu-ejM" firstAttribute="centerY" secondItem="z7g-2r-f4a" secondAttribute="centerY" id="Tc3-5p-vt5"/>
                                     <constraint firstItem="fbU-Fu-ejM" firstAttribute="leading" secondItem="z7g-2r-f4a" secondAttribute="trailing" constant="26" id="W1b-kn-xKw"/>
                                     <constraint firstItem="AbM-ry-NXD" firstAttribute="top" secondItem="CGx-oE-Slj" secondAttribute="bottom" constant="19" id="ahP-c7-Te9"/>
                                     <constraint firstItem="CGx-oE-Slj" firstAttribute="centerX" secondItem="Xka-1z-rxW" secondAttribute="centerX" id="bJb-hp-aeY"/>

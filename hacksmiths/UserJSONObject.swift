@@ -66,7 +66,11 @@ struct UserJSONObject: Glossy {
     
     /* Map from JSON to user data. */
     init?(json: JSON) {
-        self.user = UserProfileJSON(json: json)!
+        guard let user = UserProfileJSON(json: json) else {
+            print("Unable to create user: \(json)")
+            return nil
+        }
+        self.user = user
     }
     
     func toJSON() -> JSON? {
@@ -109,7 +113,12 @@ struct UserProfileJSON: Glossy {
         self.email = email
         
         self.website = UserKeys.website <~~ json
-        self.isPublic = (UserKeys.isPublic <~~ json)!
+        
+        if let isPublic: Bool = UserKeys.isPublic <~~ json {
+            self.isPublic = isPublic
+        } else {
+            self.isPublic = false
+        }
         
         let bioJSON: JSON = (UserKeys.bio <~~ json)!
         self.bio = BioJSON(json: bioJSON)
@@ -266,13 +275,13 @@ struct MentoringJSON: Glossy {
         if let experience = userData.hasExperience {
             self.experience = experience
         } else {
-            self.experience = nil
+            self.experience = ""
         }
         
         if let wantsExperience = userData.wantsExperience {
             self.want = wantsExperience
         } else {
-            self.want = nil
+            self.want = ""
         }
     }
     
@@ -319,7 +328,7 @@ struct NotificationJSON: Glossy {
  */
 struct BioJSON: Glossy {
     
-    let md: String
+    let md: String?
     
     /* Allow initialization with userData, making bridging between core data and API seemless */
     init(userData: UserData) {

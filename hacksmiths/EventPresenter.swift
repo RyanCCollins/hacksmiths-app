@@ -19,8 +19,7 @@ protocol EventView: NSObjectProtocol {
     func handleSetDebugMessage(message: String)
 //    func getEvent(sender: EventPresenter, didSucceed event: Event)
 //    func getEvent(sender: EventPresenter, didFail error: NSError)
-    func respondToEvent(sender: EventPresenter, didSucceed event: Event)
-    func respondToEvent(sender: EventPresenter, didFail error: NSError)
+    func didRSVPForEvent(sender: EventPresenter, success: Bool, error: NSError?)
 }
 
 class EventPresenter {
@@ -37,6 +36,10 @@ class EventPresenter {
     
     func detachView() {
         eventView = nil
+    }
+    
+    func rsvpForEvent() {
+        
     }
     
     
@@ -66,17 +69,7 @@ class EventPresenter {
                 }
         }
     }
-    
-//    /* Load in the next event and return whether there is a new event or not */
-//    func loadNextEvent() {
-//        eventService.getEventStatus().then() {
-//            nextEvent -> () in
-//            self.eventView?.didReceiveNextEvent(self, nextEvent: nextEvent, error: nil)
-//        }.error { error in
-//            self.eventView?.didReceiveNextEvent(self, nextEvent: nil, error: error as NSError)
-//        }
-//    }
-    
+
 
     
     func getEventData(nextEventId: String) {
