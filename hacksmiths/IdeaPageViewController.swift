@@ -62,3 +62,16 @@ extension IdeaPageViewController: IdeaPageView {
         thanksView.removeFromSuperview()
     }
 }
+
+extension IdeaPageViewController: UIPopoverPresentationControllerDelegate {
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "PresentHelpSegue" {
+            let popoverViewController = segue.destinationViewController as! HelpPageViewController
+            popoverViewController.modalPresentationStyle = UIModalPresentationStyle.Popover
+            popoverViewController.popoverPresentationController!.delegate = self
+        }
+    }
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.None
+    }
+}

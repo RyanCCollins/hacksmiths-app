@@ -1270,7 +1270,7 @@
                                         <rect key="frame" x="433" y="430" width="20" height="22"/>
                                         <state key="normal" image="question-mark"/>
                                         <connections>
-                                            <segue destination="mJI-9Q-ucZ" kind="popoverPresentation" popoverAnchorView="fbU-Fu-ejM" id="EBU-bY-YkR">
+                                            <segue destination="mJI-9Q-ucZ" kind="popoverPresentation" identifier="PresentHelpSegue" popoverAnchorView="fbU-Fu-ejM" id="EBU-bY-YkR">
                                                 <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                             </segue>
                                         </connections>
@@ -1319,7 +1319,7 @@
         <!--Help Page View Controller-->
         <scene sceneID="ohp-jK-3ad">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="mJI-9Q-ucZ" customClass="HelpPageViewController" customModule="hacksmiths" customModuleProvider="target" sceneMemberID="viewController">
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="mJI-9Q-ucZ" customClass="HelpPageViewController" customModule="hacksmiths" customModuleProvider="target" sceneMemberID="viewController">
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>

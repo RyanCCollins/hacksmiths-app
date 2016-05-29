@@ -21,7 +21,7 @@ class HelpPageViewController: UIPageViewController, UIPageViewControllerDelegate
         let secondHelpPage = storyboard?.instantiateViewControllerWithIdentifier("HelpLabelViewController") as! HelpLabelViewController
         pages.append(firstHelpPage)
         pages.append(secondHelpPage)
-        setViewControllers(pages, direction: .Forward, animated: false, completion: nil)
+        setViewControllers([firstHelpPage], direction: .Forward, animated: false, completion: nil)
     }
 
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
