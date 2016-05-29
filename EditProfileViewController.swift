@@ -28,6 +28,7 @@ class EditProfileViewController: UIViewController {
             setupAvailabilityFields(currentUserData)
         }
     }
+
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
@@ -35,6 +36,7 @@ class EditProfileViewController: UIViewController {
     }
     
     private func setTextFieldDelegates() {
+        bioTextField.delegate = self
         haveExperienceTextField.delegate = self
         wantExperienceTextField.delegate = self
         websiteTextField.delegate = self
@@ -70,6 +72,8 @@ class EditProfileViewController: UIViewController {
             availabilityExplanationTextField.text = availabilityExplanation
         }
     }
+    
+    
     
     
     @IBAction private func handleFormUpdate(sender: RCNextTextField) {

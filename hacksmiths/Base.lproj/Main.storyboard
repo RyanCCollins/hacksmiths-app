@@ -723,7 +723,7 @@
                                                 <color key="value" red="0.16862745100000001" green="0.56470588239999997" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                <color key="value" red="0.28728589415550232" green="0.1402067244052887" blue="0.30659055709838867" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="value" red="0.25005361437797546" green="0.30566063523292542" blue="0.58369332551956177" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
@@ -1155,7 +1155,7 @@
                                 <rect key="frame" x="0.0" y="20" width="600" height="731"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We need your help!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CGx-oE-Slj">
-                                        <rect key="frame" x="167" y="173" width="266" height="67"/>
+                                        <rect key="frame" x="167" y="193" width="266" height="67"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="67" id="aoh-ac-Y9z"/>
                                             <constraint firstAttribute="width" constant="266" id="o0z-qV-7WY"/>
@@ -1222,14 +1222,14 @@
                                         </constraints>
                                     </view>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" translatesAutoresizingMaskIntoConstraints="NO" id="Eap-Fe-JDp">
-                                        <rect key="frame" x="250" y="40" width="100" height="100"/>
+                                        <rect key="frame" x="250" y="60" width="100" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="G9R-Ea-U3F"/>
                                             <constraint firstAttribute="width" secondItem="Eap-Fe-JDp" secondAttribute="height" multiplier="1:1" id="ggU-3q-xjn"/>
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="AbM-ry-NXD">
-                                        <rect key="frame" x="20" y="259" width="560" height="101"/>
+                                        <rect key="frame" x="20" y="279" width="560" height="101"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Have an idea for a project we can work on together?  Submit an idea for our next event." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AFy-jW-9hS">
                                                 <rect key="frame" x="0.0" y="0.0" width="560" height="101"/>
@@ -1244,7 +1244,7 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z7g-2r-f4a" customClass="SwiftyButton" customModule="SwiftyButton">
-                                        <rect key="frame" x="193" y="416" width="214" height="50"/>
+                                        <rect key="frame" x="193" y="436" width="214" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="214" id="fXA-Eh-any"/>
                                             <constraint firstAttribute="height" constant="50" id="tV0-lj-yvM"/>
@@ -1258,10 +1258,10 @@
                                                 <color key="value" red="0.67455112934112549" green="0.15692374110221863" blue="0.10914970934391022" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="5"/>
+                                                <real key="value" value="0.0"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                <color key="value" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="value" red="0.70196078431372544" green="0.14117647058823529" blue="0.10980392156862745" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="highlightedColor">
                                                 <color key="value" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -1292,7 +1292,7 @@
                                     <constraint firstItem="DoC-to-wIV" firstAttribute="leading" secondItem="Xka-1z-rxW" secondAttribute="leading" id="fdx-B1-C7x"/>
                                     <constraint firstItem="Eap-Fe-JDp" firstAttribute="centerX" secondItem="Xka-1z-rxW" secondAttribute="centerX" id="nhD-vz-meQ"/>
                                     <constraint firstItem="AbM-ry-NXD" firstAttribute="leading" secondItem="Xka-1z-rxW" secondAttribute="leading" constant="20" id="pN0-AG-f2N"/>
-                                    <constraint firstItem="Eap-Fe-JDp" firstAttribute="top" secondItem="Xka-1z-rxW" secondAttribute="top" constant="40" id="r7j-Dr-nLh"/>
+                                    <constraint firstItem="Eap-Fe-JDp" firstAttribute="top" secondItem="Xka-1z-rxW" secondAttribute="top" constant="60" id="r7j-Dr-nLh"/>
                                     <constraint firstItem="DoC-to-wIV" firstAttribute="top" secondItem="Xka-1z-rxW" secondAttribute="top" id="rBK-5b-yvT"/>
                                     <constraint firstItem="z7g-2r-f4a" firstAttribute="centerX" secondItem="Xka-1z-rxW" secondAttribute="centerX" id="t2B-el-4UO"/>
                                     <constraint firstAttribute="bottom" secondItem="DoC-to-wIV" secondAttribute="bottom" id="ymW-pZ-mQl"/>
@@ -1573,7 +1573,7 @@
                                     <imageView userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="Qwj-jV-UKm">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="18M-tO-Zgj">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="18M-tO-Zgj">
                                         <rect key="frame" x="135" y="518" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="18M-tO-Zgj" secondAttribute="height" multiplier="1:1" id="Hlm-gJ-6lA"/>
@@ -1612,10 +1612,10 @@
                                             <action selector="didTapSkipUpInside:" destination="WN5-vs-oyA" eventType="touchUpInside" id="MRd-lV-tfs"/>
                                         </connections>
                                     </button>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="NaY-C1-Wv6">
+                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="NaY-C1-Wv6">
                                         <rect key="frame" x="20" y="336" width="560" height="110"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rPo-c9-z7X" customClass="IsaoTextField" customModule="TextFieldEffects">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rPo-c9-z7X" customClass="IsaoTextField" customModule="TextFieldEffects">
                                                 <rect key="frame" x="0.0" y="0.0" width="560" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="Rht-XN-52L"/>
@@ -1632,7 +1632,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8yI-b7-lov" customClass="IsaoTextField" customModule="TextFieldEffects">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8yI-b7-lov" customClass="IsaoTextField" customModule="TextFieldEffects">
                                                 <rect key="frame" x="0.0" y="60" width="560" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="kiC-vl-5tK"/>
@@ -1668,7 +1668,7 @@
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="autostart" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
-                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9ik-Q5-lj8">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9ik-Q5-lj8">
                                         <rect key="frame" x="193" y="518" width="214" height="50"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -1676,28 +1676,7 @@
                                             <constraint firstAttribute="height" constant="50" id="RBQ-BO-hEn"/>
                                         </constraints>
                                     </view>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="56m-hf-bkD">
-                                        <rect key="frame" x="183" y="461" width="219" height="36"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Need an Account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bQS-jy-J3I">
-                                                <rect key="frame" x="0.0" y="0.0" width="143" height="36"/>
-                                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="17"/>
-                                                <color key="textColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kkd-ah-L8M">
-                                                <rect key="frame" x="154" y="0.0" width="65" height="36"/>
-                                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="17"/>
-                                                <state key="normal" title="Register">
-                                                    <color key="titleColor" red="0.16862745100000001" green="0.56470588239999997" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="didTapRegisterUpInside:" destination="WN5-vs-oyA" eventType="touchUpInside" id="ZSm-XT-RyX"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="79I-23-cRe" customClass="SwiftyButton" customModule="SwiftyButton">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="79I-23-cRe" customClass="SwiftyButton" customModule="SwiftyButton">
                                         <rect key="frame" x="193" y="518" width="214" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="214" id="Ngd-Oh-jrp"/>
@@ -1712,10 +1691,10 @@
                                                 <color key="value" red="0.16862745100000001" green="0.56470588239999997" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                <color key="value" red="0.28728589415550232" green="0.1402067244052887" blue="0.30659055709838867" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="value" red="0.15410047769546509" green="0.41306763887405396" blue="0.69063264131546021" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="15"/>
+                                                <real key="value" value="0.0"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
@@ -1723,24 +1702,49 @@
                                             <action selector="didTapSignupButtonUpInside:" destination="8E9-ee-mxd" eventType="touchUpInside" id="YpD-o3-xxa"/>
                                         </connections>
                                     </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="56m-hf-bkD">
+                                        <rect key="frame" x="191" y="461" width="219" height="36"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Need an Account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bQS-jy-J3I">
+                                                <rect key="frame" x="0.0" y="0.0" width="143" height="36"/>
+                                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="17"/>
+                                                <color key="textColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kkd-ah-L8M">
+                                                <rect key="frame" x="154" y="0.0" width="65" height="36"/>
+                                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="17"/>
+                                                <state key="normal" title="Register">
+                                                    <color key="titleColor" red="0.16862745100000001" green="0.56470588239999997" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="didTapRegisterUpInside:" destination="WN5-vs-oyA" eventType="touchUpInside" id="ZSm-XT-RyX"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.37254901960784315" green="0.6705882352941176" blue="0.68235294117647061" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="Qwj-jV-UKm" firstAttribute="top" secondItem="Lca-8H-5m4" secondAttribute="bottom" constant="-181" id="0DA-yU-r3e"/>
                                     <constraint firstItem="56m-hf-bkD" firstAttribute="top" secondItem="8yI-b7-lov" secondAttribute="bottom" constant="20" id="0ko-dm-ydl"/>
+                                    <constraint firstItem="79I-23-cRe" firstAttribute="top" secondItem="56m-hf-bkD" secondAttribute="bottom" constant="21" id="1RD-uJ-bRJ"/>
                                     <constraint firstItem="9ik-Q5-lj8" firstAttribute="centerY" secondItem="18M-tO-Zgj" secondAttribute="centerY" id="4QV-IF-GlW"/>
+                                    <constraint firstItem="79I-23-cRe" firstAttribute="centerX" secondItem="Qwj-jV-UKm" secondAttribute="centerX" id="63R-xl-nY0"/>
                                     <constraint firstItem="9ik-Q5-lj8" firstAttribute="leading" secondItem="18M-tO-Zgj" secondAttribute="trailing" constant="8" id="6nq-mh-doa"/>
                                     <constraint firstItem="T4a-6W-P8j" firstAttribute="top" secondItem="6ZL-5y-9Rr" secondAttribute="top" constant="30" id="CgM-Ou-W1o"/>
                                     <constraint firstAttribute="bottom" secondItem="Qwj-jV-UKm" secondAttribute="bottom" id="GH0-EC-grn"/>
                                     <constraint firstAttribute="trailing" secondItem="NaY-C1-Wv6" secondAttribute="trailing" constant="20" id="J6P-eY-EGn"/>
                                     <constraint firstAttribute="trailing" secondItem="Qwj-jV-UKm" secondAttribute="trailing" id="JXS-hy-xMc"/>
                                     <constraint firstItem="Qwj-jV-UKm" firstAttribute="centerX" secondItem="Lca-8H-5m4" secondAttribute="centerX" id="QOU-5e-1D9"/>
+                                    <constraint firstItem="79I-23-cRe" firstAttribute="top" secondItem="9ik-Q5-lj8" secondAttribute="top" id="bcO-VN-rWE"/>
                                     <constraint firstItem="56m-hf-bkD" firstAttribute="centerX" secondItem="Qwj-jV-UKm" secondAttribute="centerX" id="eSq-eE-K1m"/>
                                     <constraint firstItem="Qwj-jV-UKm" firstAttribute="leading" secondItem="6ZL-5y-9Rr" secondAttribute="leading" id="gme-3L-8lK"/>
                                     <constraint firstItem="9ik-Q5-lj8" firstAttribute="centerX" secondItem="Qwj-jV-UKm" secondAttribute="centerX" id="mVb-uY-m2b"/>
                                     <constraint firstItem="NaY-C1-Wv6" firstAttribute="leading" secondItem="6ZL-5y-9Rr" secondAttribute="leading" constant="20" id="pvX-dC-xeX"/>
                                     <constraint firstItem="T4a-6W-P8j" firstAttribute="leading" secondItem="6ZL-5y-9Rr" secondAttribute="leading" constant="20" id="ryO-7c-9fI"/>
                                     <constraint firstItem="UWu-hi-EEx" firstAttribute="centerX" secondItem="Qwj-jV-UKm" secondAttribute="centerX" id="tTB-HK-puh"/>
+                                    <constraint firstAttribute="bottom" secondItem="79I-23-cRe" secondAttribute="bottom" constant="32" id="tfR-fJ-EKY"/>
                                     <constraint firstItem="UWu-hi-EEx" firstAttribute="top" secondItem="Lca-8H-5m4" secondAttribute="bottom" constant="30" id="utF-2L-zjV"/>
                                     <constraint firstItem="Qwj-jV-UKm" firstAttribute="top" secondItem="6ZL-5y-9Rr" secondAttribute="top" id="yWd-bx-lRA"/>
                                 </constraints>
@@ -2541,14 +2545,14 @@ We build tools designed to help non-profit organizations streamline their philan
                                             <segue destination="KDc-3l-D2d" kind="presentation" identifier="presentSettings" modalPresentationStyle="overCurrentContext" id="RRb-Ow-D1T"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Qt1-ET-WRf"/>
-                                    <barButtonItem title="Edit" id="S1L-KC-4jr">
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="mU8-8Q-jep"/>
+                                    <barButtonItem image="pencil-paper" id="S1L-KC-4jr">
                                         <color key="tintColor" red="0.16862745100000001" green="0.56470588239999997" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <action selector="didTapEditButtonUpInside:" destination="c6C-P6-K3H" id="Zak-6T-e05"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="mU8-8Q-jep"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Qt1-ET-WRf"/>
                                     <barButtonItem image="refresh-control" id="Zah-mx-NwH">
                                         <color key="tintColor" red="0.16862745100000001" green="0.56470588239999997" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
@@ -2616,15 +2620,22 @@ We build tools designed to help non-profit organizations streamline their philan
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="DK1-xP-YS9">
                                 <rect key="frame" x="40" y="139" width="520" height="298"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Bio" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bC1-05-bHU" customClass="AkiraTextField" customModule="TextFieldEffects">
+                                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Bio" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bC1-05-bHU" customClass="RCNextTextField" customModule="hacksmiths" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="520" height="50"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                            <userDefinedRuntimeAttribute type="color" keyPath="activeColor">
                                                 <color key="value" red="0.16862745100000001" green="0.56470588239999997" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="inactiveColor">
+                                                <color key="value" red="0.51784205436706543" green="0.58159953355789185" blue="0.58617168664932251" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="handleFormUpdate:" destination="Z2L-zr-2tR" eventType="editingDidEnd" id="HA4-nL-L88"/>
+                                            <outlet property="nextTextField" destination="D1E-XR-vkR" id="APP-DZ-6Ij"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Website" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="D1E-XR-vkR" customClass="RCNextTextField" customModule="hacksmiths">
                                         <rect key="frame" x="0.0" y="62" width="520" height="50"/>
@@ -2643,9 +2654,8 @@ We build tools designed to help non-profit organizations streamline their philan
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="didTouchTextField:" destination="c6C-P6-K3H" eventType="touchDown" id="D1I-iR-zii"/>
-                                            <action selector="handleFormUpdate:" destination="c6C-P6-K3H" eventType="editingDidEnd" id="X7Z-yO-iJt"/>
-                                            <outlet property="nextTextField" destination="08q-Uj-shO" id="Dgl-2N-sVy"/>
+                                            <action selector="handleFormUpdate:" destination="Z2L-zr-2tR" eventType="editingDidEnd" id="XBf-8k-Lrx"/>
+                                            <outlet property="nextTextField" destination="08q-Uj-shO" id="7Ks-xv-XQu"/>
                                         </connections>
                                     </textField>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fIM-p3-mIM">
@@ -2665,7 +2675,7 @@ We build tools designed to help non-profit organizations streamline their philan
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="handleFormUpdate:" destination="c6C-P6-K3H" eventType="editingChanged" id="jec-Lf-QpU"/>
+                                                    <action selector="handleFormUpdate:" destination="Z2L-zr-2tR" eventType="editingDidEnd" id="f9l-Pb-aEh"/>
                                                     <outlet property="nextTextField" destination="9Uo-Eu-F0r" id="Ls1-R6-KZs"/>
                                                 </connections>
                                             </textField>
@@ -2708,7 +2718,7 @@ We build tools designed to help non-profit organizations streamline their philan
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="handleFormUpdate:" destination="c6C-P6-K3H" eventType="editingChanged" id="ZgO-fI-vAS"/>
+                                                    <action selector="handleFormUpdate:" destination="Z2L-zr-2tR" eventType="editingDidEnd" id="x1c-IF-XEM"/>
                                                     <outlet property="nextTextField" destination="QHX-t5-3Qp" id="LJR-f8-U1h"/>
                                                 </connections>
                                             </textField>
@@ -2751,7 +2761,7 @@ We build tools designed to help non-profit organizations streamline their philan
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="handleFormUpdate:" destination="c6C-P6-K3H" eventType="editingChanged" id="wdi-gZ-2eA"/>
+                                                    <action selector="handleFormUpdate:" destination="Z2L-zr-2tR" eventType="editingDidEnd" id="UZn-Ar-oK4"/>
                                                 </connections>
                                             </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RL5-jM-X2a">
@@ -2809,6 +2819,7 @@ We build tools designed to help non-profit organizations streamline their philan
                     </view>
                     <connections>
                         <outlet property="availabilityExplanationTextField" destination="QHX-t5-3Qp" id="7ub-NU-R7R"/>
+                        <outlet property="bioTextField" destination="bC1-05-bHU" id="A3M-vv-yXe"/>
                         <outlet property="haveExperienceTextField" destination="08q-Uj-shO" id="mA6-Fg-Y27"/>
                         <outlet property="wantExperienceTextField" destination="9Uo-Eu-F0r" id="MxJ-Fd-8E1"/>
                         <outlet property="websiteTextField" destination="D1E-XR-vkR" id="4CB-yL-nmA"/>
@@ -2838,6 +2849,7 @@ We build tools designed to help non-profit organizations streamline their philan
         <image name="link-white" width="31" height="31"/>
         <image name="network" width="24" height="26"/>
         <image name="onepassword-extension-light" width="44" height="44"/>
+        <image name="pencil-paper" width="32" height="32"/>
         <image name="pencil-paper-white" width="32" height="32"/>
         <image name="person" width="22" height="32"/>
         <image name="question-mark" width="20" height="20"/>
