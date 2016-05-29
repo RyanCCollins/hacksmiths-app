@@ -8,14 +8,12 @@
 
 import UIKit
 
-protocol ProfileView {
+protocol ProfileView: NSObjectProtocol {
     func showLoading()
     func hideLoading()
     func setActivityIndicator(withMessage message: String?)
     func didUpdateUserData(didSucceed: Bool, error: NSError?)
     func didGetUserDataFromAPI(userData: UserData?, error: NSError?)
-    func unsubscribeToNotifications(sender: AnyObject)
-    func subscribeToNotifications(sender: AnyObject)
 }
 
 class ProfilePresenter {
@@ -28,11 +26,9 @@ class ProfilePresenter {
     
     func attachView(profileView: ProfileView) {
         self.profileView = profileView
-        self.profileView?.subscribeToNotifications(self)
     }
     
     func detachView(profileView: ProfileView) {
-        self.profileView?.unsubscribeToNotifications(self)
         self.profileView = nil
     }
     

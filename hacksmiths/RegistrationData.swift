@@ -46,15 +46,8 @@ class RegistrationData: RegistrationDelegate {
         }
     }
     
-    // Useful for decrementing the current field if the user needs to go back.
-    func decrementCurrentField() {
-        if currentField?.rawValue > 0 {
-            currentField = Field.init(rawValue: (currentField?.rawValue)! - 1)
-        }
-    }
-    
+    /* Submit registration data to the API */
     func submitRegistrationData(completionHandler: CompletionHandler) {
-        
         HacksmithsAPIClient.sharedInstance().registerWithEmail(bodyForRegistrationData(), completionHandler: {success, error in
             if error != nil {
                 completionHandler(success: false, error: error)
@@ -63,6 +56,13 @@ class RegistrationData: RegistrationDelegate {
             }
             
         })
+    }
+    
+    // Useful for decrementing the current field if the user needs to go back.
+    func decrementCurrentField() {
+        if currentField?.rawValue > 0 {
+            currentField = Field.init(rawValue: (currentField?.rawValue)! - 1)
+        }
     }
     
     private func bodyForRegistrationData() -> JsonDict {
@@ -76,7 +76,7 @@ class RegistrationData: RegistrationDelegate {
     }
 }
 
-//MARK: Enumerations for stats and next Field values
+//MARK: Enumerations for states and next Field values
 extension RegistrationData {
     enum ValidityState {
         case NotValid
@@ -86,9 +86,9 @@ extension RegistrationData {
     
     // Enumeration that holds the current field for determining what data is not yet filled in
     enum Field: Int {
-        case FullName = 0
-        case Email = 1
-        case Password = 2
-        case None = 3
+        case FullName = 0,
+             Email,
+             Password,
+             None
     }
 }

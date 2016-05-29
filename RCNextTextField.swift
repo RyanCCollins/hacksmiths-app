@@ -9,6 +9,8 @@
 import UIKit
 import TextFieldEffects
 
-class RCNextTextField: IsaoTextField {
+class RyanTextField: AkiraTextField {}
+
+class RCNextTextField: RyanTextField {
     @IBOutlet weak var nextTextField: IsaoTextField!
 }

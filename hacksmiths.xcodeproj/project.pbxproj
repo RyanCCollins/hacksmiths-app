@@ -25,6 +25,8 @@
 		1F3DF1451CFA48B50000BBC8 /* RCNextTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3DF1441CFA48B50000BBC8 /* RCNextTextField.swift */; };
 		1F3DF1491CFA795A0000BBC8 /* HelpPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3DF1481CFA795A0000BBC8 /* HelpPageViewController.swift */; };
 		1F3DF14B1CFA79DB0000BBC8 /* HelpLabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3DF14A1CFA79DB0000BBC8 /* HelpLabelViewController.swift */; };
+		1F3DF1511CFABE0E0000BBC8 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3DF1501CFABE0E0000BBC8 /* EditProfileViewController.swift */; };
+		1F3DF1531CFB083E0000BBC8 /* EditProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3DF1521CFB083E0000BBC8 /* EditProfilePresenter.swift */; };
 		1F44B1BA1C5DDAB9004E196D /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F44B1B91C5DDAB9004E196D /* CoreDataStackManager.swift */; };
 		1F46B9EC1CA467250065D50D /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F46B9EB1CA467250065D50D /* UserData.swift */; };
 		1F498E151CF78C93009A5AB2 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F498E141CF78C93009A5AB2 /* SettingsPresenter.swift */; };
@@ -135,6 +137,8 @@
 		1F3DF1441CFA48B50000BBC8 /* RCNextTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RCNextTextField.swift; path = ../RCNextTextField.swift; sourceTree = "<group>"; };
 		1F3DF1481CFA795A0000BBC8 /* HelpPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HelpPageViewController.swift; path = ../HelpPageViewController.swift; sourceTree = "<group>"; };
 		1F3DF14A1CFA79DB0000BBC8 /* HelpLabelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HelpLabelViewController.swift; path = ../HelpLabelViewController.swift; sourceTree = "<group>"; };
+		1F3DF1501CFABE0E0000BBC8 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProfileViewController.swift; path = ../EditProfileViewController.swift; sourceTree = "<group>"; };
+		1F3DF1521CFB083E0000BBC8 /* EditProfilePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfilePresenter.swift; sourceTree = "<group>"; };
 		1F44B1B91C5DDAB9004E196D /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
 		1F46B9EB1CA467250065D50D /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		1F498E141CF78C93009A5AB2 /* SettingsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
@@ -773,6 +777,7 @@
 		1FEF3FB51CED69F1007E4BF0 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				1F3DF1521CFB083E0000BBC8 /* EditProfilePresenter.swift */,
 				1F4F7EC81CF4D50C00325CA9 /* ProfilePresenter.swift */,
 			);
 			name = Presenter;
@@ -781,6 +786,7 @@
 		1FEF3FB61CED69FA007E4BF0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1F3DF1501CFABE0E0000BBC8 /* EditProfileViewController.swift */,
 				1FC6DE3D1C9F36BF000E8159 /* ProfileViewController.swift */,
 			);
 			name = View;
@@ -1031,6 +1037,7 @@
 				1FA2E55D1C67FF550085FC7D /* HacksmithsAPIClient.swift in Sources */,
 				1F6C69E81CCC6BB700F15247 /* ParticipantCollectionViewCell.swift in Sources */,
 				1FC6DE3E1C9F36BF000E8159 /* ProfileViewController.swift in Sources */,
+				1F3DF1531CFB083E0000BBC8 /* EditProfilePresenter.swift in Sources */,
 				1F846CCE1CED0190009166D4 /* OrganizationJSON.swift in Sources */,
 				1F44B1BA1C5DDAB9004E196D /* CoreDataStackManager.swift in Sources */,
 				1FE5F91B1CD8288800487CA8 /* RCCircularImageView.swift in Sources */,
@@ -1053,6 +1060,7 @@
 				1FEA07C81CEFFE3800D4BDA7 /* IdeaPageViewController.swift in Sources */,
 				1F846CC11CEBFA5C009166D4 /* HTTPStatusCodes.swift in Sources */,
 				1FA2E5631C6802AC0085FC7D /* HacksmithsAPIUserConvenience.swift in Sources */,
+				1F3DF1511CFABE0E0000BBC8 /* EditProfileViewController.swift in Sources */,
 				1F4F7EC11CF4B4A800325CA9 /* ProjectIdeaSubmission.swift in Sources */,
 				1F384A8D1CF25C3F00E15887 /* NextEvent.swift in Sources */,
 				1FAD7DB91CEE64EB0044BD94 /* NextEventJSON.swift in Sources */,

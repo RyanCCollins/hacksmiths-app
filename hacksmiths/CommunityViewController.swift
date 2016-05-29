@@ -13,6 +13,8 @@ class CommunityViewController: UITableViewController, NSFetchedResultsController
     
     private var activityIndicator: IGActivityIndicatorView!
     private let communityPresenter = CommunityPresenter()
+    let searchController = UISearchController(searchResultsController: nil)
+    var searchFilter: Bool = false
     var messageLabel = UILabel()
         
     override func viewDidLoad() {
@@ -23,6 +25,14 @@ class CommunityViewController: UITableViewController, NSFetchedResultsController
         configureRefreshControl()
         self.communityPresenter.attachView(self)
         self.communityPresenter.fetchCommunityMembers()
+        setupSearchContoller()
+    }
+    
+    func setupSearchContoller() {
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = false
+        tableView.tableHeaderView = searchController.searchBar
     }
     
     func configureRefreshControl() {
@@ -63,10 +73,17 @@ class CommunityViewController: UITableViewController, NSFetchedResultsController
         
         // Leader fetch for getting team leaders
         // Set predicate to equal isPublic and isLeader both true
+//        if searchFilter == true {
+//            let predicate = NSPredicate(format: "name == %@", <#T##args: CVarArgType...##CVarArgType#>)
+//        } else {
+//            
+//        }
         let isLeaderPredicate = NSPredicate(format: "isLeader == %@ && isPublic == %@", NSNumber(bool: true), NSNumber(bool: true))
         let leaderFetch = NSFetchRequest(entityName: "Person")
         leaderFetch.predicate = isLeaderPredicate
         leaderFetch.sortDescriptors = [sortPriority]
+        
+        
 
         let fetchResultsController = NSFetchedResultsController(fetchRequest: leaderFetch, managedObjectContext: self.sharedContext, sectionNameKeyPath: nil, cacheName: nil)
 
@@ -152,20 +169,22 @@ extension CommunityViewController {
             }
         }
         
-        if person != nil {
-            cell.person = person
-            
-            // Set the default image if the user is missing an image
-            if person!.image == nil {
-                cell.personImageView.image = UIImage(named: "avatar-missing")
-            } else {
-              cell.personImageView.image = person!.image
-            }
-            
-            cell.nameLabel.text = person?.fullName
-            cell.aboutLabel.text = person!.bio
+        let configuredCell = configureCell(cell, withPerson: person)
+        
+        /* If configuredCell is nil for whatever reason, return the cell, otherwise return cell configured */
+        return configuredCell == nil ? cell : configuredCell!
+    }
+    
+    func configureCell(cell: PersonTableViewCell, withPerson person: Person?) -> PersonTableViewCell? {
+        guard person != nil else {
+            return nil
         }
         
+        if person!.image != nil {
+            cell.personImageView.image = person!.image
+        }
+        cell.nameLabel.text = person!.fullName
+        cell.aboutLabel.text = person!.bio
         return cell
     }
     
@@ -239,6 +258,20 @@ extension CommunityViewController: CommunityView {
         }
     }
     
+    func filterResultsForSearch(searchText: String, scope: String = "All") {
+        
+    }
+    
+}
+
+extension CommunityViewController: UISearchResultsUpdating {
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        let isFiltering = true
+        searchFilter = isFiltering
+        if isFiltering {
+            filterResultsForSearch(searchController.searchBar.text!)
+        }
+    }
 }
 
 enum SectionTitle: Int {
