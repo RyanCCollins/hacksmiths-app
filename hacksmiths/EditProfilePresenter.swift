@@ -14,8 +14,7 @@ protocol EditProfileDelegate {
 
 /* Following the Model View Presenter Pattern in case complexity grows */
 protocol EditProfileView: NSObjectProtocol {
-    func subscribeToNotifications(sender: AnyObject)
-    func unsubscribeToNotifications(sender: AnyObject)
+    /* Blank protocol placeholder for the case that complexity grows */
 }
 
 class EditProfilePresenter {
@@ -23,12 +22,10 @@ class EditProfilePresenter {
     
     func attachView(view: EditProfileView) {
         self.editProfileView = view
-        editProfileView?.subscribeToNotifications(self)
     }
     
     func detachView(view: EditProfileView) {
         self.editProfileView = nil
-        editProfileView?.unsubscribeToNotifications(self)
     }
     
 }

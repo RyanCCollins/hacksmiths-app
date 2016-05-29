@@ -13,7 +13,7 @@ class MainTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tabBar.tintColor = UIColor(hex: "#7ACFF0")
+        self.tabBar.tintColor = UIColor(hex: "#3291c9")
         
         // Call the swap views for authenticated state when first loaded to avoid any situation where the
         // View would not show.

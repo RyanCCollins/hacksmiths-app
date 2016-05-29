@@ -7,25 +7,27 @@
 //
 
 import UIKit
+import TextFieldEffects
 
-class EditProfileViewController: UIViewController {
+class EditProfileViewController: UIViewController, EditProfileView {
     var userData: UserData?
     var delegate: EditProfileDelegate?
-    @IBOutlet weak var bioTextField: RCNextTextField!
-    @IBOutlet weak var haveExperienceTextField: RCNextTextField!
-    @IBOutlet weak var wantExperienceTextField: RCNextTextField!
-    @IBOutlet weak var websiteTextField: RCNextTextField!
-    @IBOutlet weak var availabilityExplanationTextField: RCNextTextField!
+    @IBOutlet weak var bioTextField: IsaoTextField!
+    @IBOutlet weak var haveExperienceTextField: IsaoTextField!
+    @IBOutlet weak var wantExperienceTextField: IsaoTextField!
+    @IBOutlet weak var websiteTextField: IsaoTextField!
+    @IBOutlet weak var availabilityExplanationTextField: IsaoTextField!
+    
     private var presenter = EditProfilePresenter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setTextFieldDelegates()
         presenter.attachView(self)
         
         if let currentUserData = userData {
             setupMentoringFields(currentUserData)
             setupAvailabilityFields(currentUserData)
+            setupBioField(currentUserData)
         }
     }
 
@@ -33,14 +35,6 @@ class EditProfileViewController: UIViewController {
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         presenter.detachView(self)
-    }
-    
-    private func setTextFieldDelegates() {
-        bioTextField.delegate = self
-        haveExperienceTextField.delegate = self
-        wantExperienceTextField.delegate = self
-        websiteTextField.delegate = self
-        availabilityExplanationTextField.delegate = self
     }
     
     private func setupMentoringFields(userData: UserData){
@@ -60,9 +54,15 @@ class EditProfileViewController: UIViewController {
         }
     }
     
-    func setupWebsiteField(userData: UserData) {
+    private func setupWebsiteField(userData: UserData) {
         if let website = userData.website {
             websiteTextField.text = website
+        }
+    }
+    
+    private func setupBioField(userData: UserData) {
+        if let bio = userData.bio {
+            bioTextField.text = bio
         }
     }
     
@@ -73,10 +73,7 @@ class EditProfileViewController: UIViewController {
         }
     }
     
-    
-    
-    
-    @IBAction private func handleFormUpdate(sender: RCNextTextField) {
+    @IBAction private func handleFormUpdate(sender: IsaoTextField) {
         let textField = ProfileTextFields(rawValue: sender.tag)
         let newValue = sender.text
         if textField != nil {
@@ -101,53 +98,6 @@ class EditProfileViewController: UIViewController {
         AvailabilityExplanation
     }
     
-}
-
-extension EditProfileViewController: UITextFieldDelegate {
-    /* Configure and deselect text fields when return is pressed */
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        let rcTextField = textField as! RCNextTextField
-        if rcTextField.nextTextField != nil {
-            rcTextField.nextTextField.becomeFirstResponder()
-        } else {
-            textField.resignFirstResponder()
-        }
-        return true
-    }
-    /* Hide keyboard when view is tapped */
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        view.endEditing(true)
-    }
-    
-    func keyboardWillShow(notification: NSNotification) {
-        /* slide the view up when keyboard appears, using notifications */
-        view.frame.origin.y = -getKeyboardHeight(notification)
-    }
-    
-    /* Reset view origin when keyboard hides */
-    func keyboardWillHide(notification: NSNotification) {
-        view.frame.origin.y = 0
-    }
-    
-    /* Get the height of the keyboard from the user info dictionary */
-    func getKeyboardHeight(notification: NSNotification) -> CGFloat {
-        let userInfo = notification.userInfo
-        let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue
-        return keyboardSize.CGRectValue().height -  50
-    }
-    
-}
-
-extension EditProfileViewController: EditProfileView {
-    func unsubscribeToNotifications(sender: AnyObject) {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
-    }
-    
-    func subscribeToNotifications(sender: AnyObject) {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditProfileViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditProfileViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
-    }
 }
 
 

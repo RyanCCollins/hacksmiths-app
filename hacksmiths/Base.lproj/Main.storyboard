@@ -2620,10 +2620,10 @@ We build tools designed to help non-profit organizations streamline their philan
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="DK1-xP-YS9">
                                 <rect key="frame" x="40" y="139" width="520" height="298"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Bio" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bC1-05-bHU" customClass="RCNextTextField" customModule="hacksmiths" customModuleProvider="target">
+                                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Bio" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="bC1-05-bHU" customClass="IsaoTextField" customModule="TextFieldEffects">
                                         <rect key="frame" x="0.0" y="0.0" width="520" height="50"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="activeColor">
                                                 <color key="value" red="0.16862745100000001" green="0.56470588239999997" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -2634,10 +2634,9 @@ We build tools designed to help non-profit organizations streamline their philan
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="handleFormUpdate:" destination="Z2L-zr-2tR" eventType="editingDidEnd" id="HA4-nL-L88"/>
-                                            <outlet property="nextTextField" destination="D1E-XR-vkR" id="APP-DZ-6Ij"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Website" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="D1E-XR-vkR" customClass="RCNextTextField" customModule="hacksmiths">
+                                    <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Website" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="D1E-XR-vkR" customClass="IsaoTextField" customModule="TextFieldEffects">
                                         <rect key="frame" x="0.0" y="62" width="520" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="3yO-Tp-777"/>
@@ -2655,17 +2654,16 @@ We build tools designed to help non-profit organizations streamline their philan
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="handleFormUpdate:" destination="Z2L-zr-2tR" eventType="editingDidEnd" id="XBf-8k-Lrx"/>
-                                            <outlet property="nextTextField" destination="08q-Uj-shO" id="7Ks-xv-XQu"/>
                                         </connections>
                                     </textField>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fIM-p3-mIM">
                                         <rect key="frame" x="0.0" y="124" width="520" height="50"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Have Experience" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="08q-Uj-shO" customClass="RCNextTextField" customModule="hacksmiths">
-                                                <rect key="frame" x="0.0" y="0.0" width="470" height="50"/>
+                                            <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Have Experience" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="08q-Uj-shO" customClass="IsaoTextField" customModule="TextFieldEffects">
+                                                <rect key="frame" x="0.0" y="0.0" width="482" height="50"/>
                                                 <color key="textColor" red="0.12637259070000001" green="0.12639245390000001" blue="0.1263653636" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="yes" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="yes" enablesReturnKeyAutomatically="YES"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="inactiveColor">
                                                         <color key="value" red="0.51784205436706543" green="0.58159953355789185" blue="0.58617168664932251" alpha="1" colorSpace="calibratedRGB"/>
@@ -2676,11 +2674,10 @@ We build tools designed to help non-profit organizations streamline their philan
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="handleFormUpdate:" destination="Z2L-zr-2tR" eventType="editingDidEnd" id="f9l-Pb-aEh"/>
-                                                    <outlet property="nextTextField" destination="9Uo-Eu-F0r" id="Ls1-R6-KZs"/>
                                                 </connections>
                                             </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IVX-4q-6ku">
-                                                <rect key="frame" x="470" y="0.0" width="50" height="50"/>
+                                                <rect key="frame" x="482" y="0.0" width="38" height="50"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LSp-IR-NQl">
                                                         <rect key="frame" x="13" y="12" width="25" height="25"/>
@@ -2695,8 +2692,8 @@ We build tools designed to help non-profit organizations streamline their philan
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="0ln-xE-yq1"/>
                                                     <constraint firstItem="LSp-IR-NQl" firstAttribute="centerY" secondItem="IVX-4q-6ku" secondAttribute="centerY" id="6en-X5-qvh"/>
-                                                    <constraint firstAttribute="width" constant="50" id="Vx2-fX-z9Y"/>
-                                                    <constraint firstItem="LSp-IR-NQl" firstAttribute="centerX" secondItem="IVX-4q-6ku" secondAttribute="centerX" id="vIq-jj-6Vr"/>
+                                                    <constraint firstAttribute="trailing" secondItem="LSp-IR-NQl" secondAttribute="trailing" id="Uk2-Co-1HY"/>
+                                                    <constraint firstAttribute="width" constant="38" id="Vx2-fX-z9Y"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -2704,11 +2701,11 @@ We build tools designed to help non-profit organizations streamline their philan
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="heu-Sv-kA9">
                                         <rect key="frame" x="0.0" y="186" width="520" height="50"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Want Experience" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Uo-Eu-F0r" customClass="RCNextTextField" customModule="hacksmiths">
-                                                <rect key="frame" x="0.0" y="0.0" width="470" height="50"/>
+                                            <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Want Experience" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Uo-Eu-F0r" customClass="IsaoTextField" customModule="TextFieldEffects">
+                                                <rect key="frame" x="0.0" y="0.0" width="482" height="50"/>
                                                 <color key="textColor" red="0.12637259070000001" green="0.12639245390000001" blue="0.1263653636" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="yes" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="yes" enablesReturnKeyAutomatically="YES"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="inactiveColor">
                                                         <color key="value" red="0.51784205436706543" green="0.58159953355789185" blue="0.58617168664932251" alpha="1" colorSpace="calibratedRGB"/>
@@ -2719,11 +2716,10 @@ We build tools designed to help non-profit organizations streamline their philan
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="handleFormUpdate:" destination="Z2L-zr-2tR" eventType="editingDidEnd" id="x1c-IF-XEM"/>
-                                                    <outlet property="nextTextField" destination="QHX-t5-3Qp" id="LJR-f8-U1h"/>
                                                 </connections>
                                             </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b9R-PJ-AQD">
-                                                <rect key="frame" x="470" y="0.0" width="50" height="50"/>
+                                                <rect key="frame" x="482" y="0.0" width="38" height="50"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fPL-es-z5Y">
                                                         <rect key="frame" x="13" y="12" width="25" height="25"/>
@@ -2736,10 +2732,10 @@ We build tools designed to help non-profit organizations streamline their philan
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstItem="fPL-es-z5Y" firstAttribute="centerX" secondItem="b9R-PJ-AQD" secondAttribute="centerX" id="ARj-xe-K1x"/>
                                                     <constraint firstAttribute="height" constant="50" id="OoO-j3-l7Y"/>
                                                     <constraint firstItem="fPL-es-z5Y" firstAttribute="centerY" secondItem="b9R-PJ-AQD" secondAttribute="centerY" id="UnT-so-Ag1"/>
-                                                    <constraint firstAttribute="width" constant="50" id="t5D-xH-4XI"/>
+                                                    <constraint firstAttribute="trailing" secondItem="fPL-es-z5Y" secondAttribute="trailing" id="oaz-Aq-Heb"/>
+                                                    <constraint firstAttribute="width" constant="38" id="t5D-xH-4XI"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -2747,11 +2743,11 @@ We build tools designed to help non-profit organizations streamline their philan
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x6e-tP-PzW">
                                         <rect key="frame" x="0.0" y="248" width="520" height="50"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Event Availability Explanation" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QHX-t5-3Qp" customClass="RCNextTextField" customModule="hacksmiths">
-                                                <rect key="frame" x="0.0" y="0.0" width="470" height="50"/>
+                                            <textField opaque="NO" clipsSubviews="YES" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Event Availability Explanation" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QHX-t5-3Qp" customClass="IsaoTextField" customModule="TextFieldEffects">
+                                                <rect key="frame" x="0.0" y="0.0" width="482" height="50"/>
                                                 <color key="textColor" red="0.12637259070000001" green="0.12639245390000001" blue="0.1263653636" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="inactiveColor">
                                                         <color key="value" red="0.51784205436706543" green="0.58159953355789185" blue="0.58617168664932251" alpha="1" colorSpace="calibratedRGB"/>
@@ -2765,23 +2761,23 @@ We build tools designed to help non-profit organizations streamline their philan
                                                 </connections>
                                             </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RL5-jM-X2a">
-                                                <rect key="frame" x="470" y="0.0" width="50" height="50"/>
+                                                <rect key="frame" x="482" y="0.0" width="38" height="50"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NVR-Sn-hPe">
                                                         <rect key="frame" x="13" y="12" width="25" height="25"/>
                                                         <constraints>
+                                                            <constraint firstAttribute="height" constant="25" id="nkX-Uk-lag"/>
                                                             <constraint firstAttribute="width" constant="25" id="uCm-an-NS5"/>
-                                                            <constraint firstAttribute="height" constant="25" id="xsh-9F-cLy"/>
                                                         </constraints>
                                                         <state key="normal" image="question-mark"/>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstItem="NVR-Sn-hPe" firstAttribute="centerX" secondItem="RL5-jM-X2a" secondAttribute="centerX" id="EaL-fu-fMr"/>
-                                                    <constraint firstAttribute="width" constant="50" id="Gst-44-zBk"/>
+                                                    <constraint firstAttribute="width" constant="38" id="Gst-44-zBk"/>
                                                     <constraint firstItem="NVR-Sn-hPe" firstAttribute="centerY" secondItem="RL5-jM-X2a" secondAttribute="centerY" id="Hgd-hm-CBy"/>
                                                     <constraint firstAttribute="height" constant="50" id="aCP-gi-K3b"/>
+                                                    <constraint firstAttribute="trailing" secondItem="NVR-Sn-hPe" secondAttribute="trailing" id="pNq-qJ-ajp"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
