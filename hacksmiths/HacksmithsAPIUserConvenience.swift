@@ -41,10 +41,10 @@ extension HacksmithsAPIClient {
         })
     }
     
-    func registerWithEmail(body: [String : AnyObject], completionHandler: CompletionHandler) {
+    func registerWithEmail(registrationJSON: RegistrationJSON, completionHandler: CompletionHandler) {
         let method = Routes.SignupEmail
-        
-        taskForPOSTMethod(method, JSONBody: body, completionHandler: {success, result, error in
+        let body = registrationJSON.toJSON()
+        taskForPOSTMethod(method, JSONBody: body!, completionHandler: {success, result, error in
             if error != nil {
                 
                 completionHandler(success: false, error: error)

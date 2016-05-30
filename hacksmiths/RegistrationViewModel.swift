@@ -7,34 +7,36 @@
 //
 
 protocol RegistrationDelegate {
-    func didFinishRegistering(withField field: RegistrationData.RegistrationField, value: String)
+    func didFinishRegistering(withField field: RegistrationViewModel.RegistrationField, value: String)
 }
 
-// Temporary class for storing registration data.  Will get wiped out after registration
-class RegistrationData: RegistrationDelegate {
-    var fullName: String?
-    var email: String?
-    var password: String?
+/* Exploring Model View / View Model paradigm for Registration 
+ * This class takes care of talking with the model and talking to the view
+ */
+class RegistrationViewModel: RegistrationDelegate {
+    
+    /* Initialize the JSON object with empty values */
+    var registrationJSON = RegistrationJSON(fullname: "", email: "", password: "")
     
     var currentField = RegistrationField(rawValue: 0)
-    static let sharedInstance = RegistrationData()
+    static let sharedInstance = RegistrationViewModel()
     
     // Coordinate setting of the various fields to make this class handle the collection of the data
     // The delegate method will collect the data and also set the next field that needs to be collected
     // Based off of the raw Int value.
     func didFinishRegistering(withField field: RegistrationField, value: String) {
-            
+        
         // Work through the various fields and set the value for the submitted field.
         // Then, set current field to the next field.
         switch field {
         case .FullName:
-            fullName = value
+            registrationJSON.fullname = value
             currentField = .Email
         case .Email:
-            email = value
+            registrationJSON.email = value
             currentField = .Password
         case .Password:
-            password = value
+            registrationJSON.password = value
             currentField = .None
         case .None:
             break
@@ -43,7 +45,7 @@ class RegistrationData: RegistrationDelegate {
     
     /* Submit registration data to the API */
     func submitRegistrationData(completionHandler: CompletionHandler) {
-        HacksmithsAPIClient.sharedInstance().registerWithEmail(bodyForRegistrationData(), completionHandler: {success, error in
+        HacksmithsAPIClient.sharedInstance().registerWithEmail(registrationJSON, completionHandler: {success, error in
             if error != nil {
                 completionHandler(success: false, error: error)
             } else {
@@ -59,19 +61,15 @@ class RegistrationData: RegistrationDelegate {
         }
     }
     
-    private func bodyForRegistrationData() -> JsonDict {
-        let body: JsonDict = [
-            "fullname": fullName!,
-            "email": email!,
-            "password" : password!
-        ]
-        
-        return body
+    func incrementCurrentField() {
+        if let field = currentField {
+            currentField = RegistrationField.init(rawValue: (field.rawValue) + 1)
+        }
     }
 }
 
 //MARK: Enumerations for states and next Field values
-extension RegistrationData {
+extension RegistrationViewModel {
     enum ValidityState {
         case NotValid
         case Custom(String, String)

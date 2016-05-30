@@ -37,7 +37,7 @@ class RegistrationPageViewController: UIViewController {
     }
     
     func didChangeTextInTextField(sender: IsaoTextField) {
-        if validateField(RegistrationData.sharedInstance.currentField!, withValue: sender.text) {
+        if validateField(RegistrationViewModel.sharedInstance.currentField!, withValue: sender.text) {
             navigationItem.rightBarButtonItem?.enabled = true
         } else {
             navigationItem.rightBarButtonItem?.enabled = false
@@ -49,10 +49,10 @@ class RegistrationPageViewController: UIViewController {
         rightBarButtonItem.tintColor = UIColor.whiteColor()
         
         // Set the right bar button title to Done if we are on the last text field.
-        if RegistrationData.sharedInstance.currentField == .None {
+        if RegistrationViewModel.sharedInstance.currentField == .None {
             rightBarButtonItem.title = "Done"
         }
-        let itemButtonImage = buttonItemImage(forField: RegistrationData.sharedInstance.currentField!)
+        let itemButtonImage = buttonItemImage(forField: RegistrationViewModel.sharedInstance.currentField!)
         let leftBarButtonItem = UIBarButtonItem(image: itemButtonImage, style: .Plain, target: self, action: #selector(RegistrationPageViewController.proceedBackwards(_:)))
         leftBarButtonItem.tintColor = UIColor.whiteColor()
         
@@ -61,7 +61,7 @@ class RegistrationPageViewController: UIViewController {
         navigationItem.leftBarButtonItem = leftBarButtonItem
     }
     
-    func buttonItemImage(forField field: RegistrationData.RegistrationField) -> UIImage {
+    func buttonItemImage(forField field: RegistrationViewModel.RegistrationField) -> UIImage {
         switch field {
         case .FullName:
             return xInSquareImage!
@@ -77,9 +77,7 @@ class RegistrationPageViewController: UIViewController {
     }
 
     
-
-    
-    func debugMessage(forField field: RegistrationData.RegistrationField) -> String {
+    func debugMessage(forField field: RegistrationViewModel.RegistrationField) -> String {
         switch field {
         case .Email:
             return "Please enter a valid email address"
@@ -92,7 +90,7 @@ class RegistrationPageViewController: UIViewController {
         }
     }
     
-    func dataValue(forField field: RegistrationData.RegistrationField) -> String? {
+    func dataValue(forField field: RegistrationViewModel.RegistrationField) -> String? {
         switch field {
         case .FullName: return fullNameTextField.text
         case .Email: return emailTextField.text
@@ -102,7 +100,7 @@ class RegistrationPageViewController: UIViewController {
         
     }
     
-    private func validateField(field: RegistrationData.RegistrationField, withValue value: String?) -> Bool {
+    private func validateField(field: RegistrationViewModel.RegistrationField, withValue value: String?) -> Bool {
         guard value != nil else {
             return false
         }
@@ -131,29 +129,35 @@ class RegistrationPageViewController: UIViewController {
     // Responsible for making changes to the UI that rely specifically
     // On the value of the next field
     func setupViewForNextField() {
-        if let currentField = RegistrationData.sharedInstance.currentField {
+        if let currentField = RegistrationViewModel.sharedInstance.currentField {
             switch currentField {
             case .FullName:
-                view.backgroundColor = UIColor.flatSkyBlueColor()
-                emailTextField.hidden = true
-                passwordTextField.hidden = true
-                fullNameTextField.hidden = false
-                headerLabel.text = "What should we call you?"
-                setupTextField(fullNameTextField)
+                dispatch_async(GlobalMainQueue, {
+                    self.view.backgroundColor = UIColor.flatSkyBlueColor()
+                    self.emailTextField.hidden = true
+                    self.passwordTextField.hidden = true
+                    self.fullNameTextField.hidden = false
+                    self.headerLabel.text = "What should we call you?"
+                    self.setupTextField(self.fullNameTextField)
+                })
             case .Email:
-                view.backgroundColor = UIColor.flatRedColor()
-                fullNameTextField.hidden = true
-                passwordTextField.hidden = true
-                emailTextField.hidden = false
-                headerLabel.text = "What is your email?"
-                setupTextField(emailTextField)
+                dispatch_async(GlobalMainQueue, {
+                    self.view.backgroundColor = UIColor.flatRedColor()
+                    self.fullNameTextField.hidden = true
+                    self.passwordTextField.hidden = true
+                    self.emailTextField.hidden = false
+                    self.headerLabel.text = "What is your email?"
+                    self.setupTextField(self.emailTextField)
+                })
             case .Password:
-                view.backgroundColor = UIColor.flatMintColorDark()
-                fullNameTextField.hidden = true
-                emailTextField.hidden = true
-                headerLabel.text = "Set your password."
-                passwordTextField.hidden = false
-                setupTextField(passwordTextField)
+                dispatch_async(GlobalMainQueue, {
+                    self.view.backgroundColor = UIColor.flatMintColorDark()
+                    self.fullNameTextField.hidden = true
+                    self.emailTextField.hidden = true
+                    self.headerLabel.text = "Set your password."
+                    self.passwordTextField.hidden = false
+                    self.setupTextField(self.passwordTextField)
+                })
             default:
                 break
             }
@@ -161,7 +165,25 @@ class RegistrationPageViewController: UIViewController {
     
     }
     
-    func proceedOrCompleteRegistration(forField field: RegistrationData.RegistrationField){
+    /* Method called by view controller to make logic decisions for how to
+     * Submit data and continue with the registration process.
+     * Called from the Next button in the view.  Calling other
+     * methods (the ones below here) will skip steps and the registration will
+     * fail.
+     */
+    func processSubmission(sender: AnyObject) {
+        let currentField = RegistrationViewModel.sharedInstance.currentField
+        let currentValue = dataValue(forField: currentField!)
+        
+        if validateField(currentField!, withValue: currentValue) {
+            RegistrationViewModel.sharedInstance.didFinishRegistering(withField: currentField!, value: currentValue!)
+            proceedOrCompleteRegistration(forField: RegistrationViewModel.sharedInstance.currentField!)
+        } else {
+            showDebugLabel(withText: debugMessage(forField: currentField!))
+        }
+    }
+    
+    func proceedOrCompleteRegistration(forField field: RegistrationViewModel.RegistrationField){
         switch field {
         case .Password:
             submitRegistration()
@@ -170,25 +192,16 @@ class RegistrationPageViewController: UIViewController {
         }
     }
     
-    func processSubmission(sender: AnyObject) {
-        let currentField = RegistrationData.sharedInstance.currentField
-        let currentValue = dataValue(forField: currentField!)
-        
-        if validateField(currentField!, withValue: currentValue) {
-            RegistrationData.sharedInstance.didFinishRegistering(withField: currentField!, value: currentValue!)
-        } else {
-            showDebugLabel(withText: debugMessage(forField: currentField!))
-        }
-    }
-    
-    
     /* Continue forwards in registration process
      * By pushing the next view controller onto the stack.
      */
     func proceedForwards(sender: AnyObject) {
-        let nextViewController = storyboard?.instantiateViewControllerWithIdentifier("RegistrationPageViewController") as! RegistrationPageViewController
+        let nextViewController = storyboard?.instantiateViewControllerWithIdentifier("RegistrationPageViewController")
+            as! RegistrationPageViewController
+        dispatch_async(GlobalMainQueue, {
+            self.navigationController?.pushViewController(nextViewController, animated: true)
+        })
         
-        navigationController?.pushViewController(nextViewController, animated: true)
     }
     
     /* Either backs up the process of registration, or dismisses the process
@@ -196,10 +209,14 @@ class RegistrationPageViewController: UIViewController {
      */
     func proceedBackwards(sender: AnyObject) {
         if navigationController?.viewControllers.count > 1 {
-            RegistrationData.sharedInstance.decrementCurrentField()
-            navigationController?.popViewControllerAnimated(true)
+            RegistrationViewModel.sharedInstance.decrementCurrentField()
+            dispatch_async(GlobalMainQueue, {
+                self.navigationController?.popViewControllerAnimated(true)
+            })
         } else {
-            dismissViewControllerAnimated(true, completion: nil)
+            dispatch_async(GlobalMainQueue, {
+                self.dismissViewControllerAnimated(true, completion: nil)
+            })
         }
     }
     
@@ -207,11 +224,13 @@ class RegistrationPageViewController: UIViewController {
      * All together, leading back to presenting view.
      */
     func submitRegistration() {
-        RegistrationData.sharedInstance.submitRegistrationData({success, error in
+        RegistrationViewModel.sharedInstance.submitRegistrationData({success, error in
             if error != nil {
                 self.alertController(withTitles: ["Ok"], message: (error?.localizedDescription)!, callbackHandler: [nil])
             } else {
-                self.dismissViewControllerAnimated(true, completion: {void in
+                dispatch_async(GlobalMainQueue, {
+                    self.dismissViewControllerAnimated(true, completion: {void in
+                })
                 })
             }
         })
@@ -225,8 +244,8 @@ extension RegistrationPageViewController: UITextFieldDelegate {
      * @return - Bool - Determination of whether the registration process can continue or not.
      */
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        if validateField(RegistrationData.sharedInstance.currentField!, withValue: textField.text) {
-            proceedOrCompleteRegistration(forField: RegistrationData.sharedInstance.currentField!)
+        if validateField(RegistrationViewModel.sharedInstance.currentField!, withValue: textField.text) {
+            processSubmission(self)
             return true
         } else {
             return false
