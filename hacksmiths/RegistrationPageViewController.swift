@@ -132,32 +132,26 @@ class RegistrationPageViewController: UIViewController {
         if let currentField = RegistrationViewModel.sharedInstance.currentField {
             switch currentField {
             case .FullName:
-                dispatch_async(GlobalMainQueue, {
-                    self.view.backgroundColor = UIColor.flatSkyBlueColor()
-                    self.emailTextField.hidden = true
-                    self.passwordTextField.hidden = true
-                    self.fullNameTextField.hidden = false
-                    self.headerLabel.text = "What should we call you?"
-                    self.setupTextField(self.fullNameTextField)
-                })
+                self.view.backgroundColor = UIColor.flatSkyBlueColor()
+                self.emailTextField.hidden = true
+                self.passwordTextField.hidden = true
+                self.fullNameTextField.hidden = false
+                self.headerLabel.text = "What should we call you?"
+                self.setupTextField(self.fullNameTextField)
             case .Email:
-                dispatch_async(GlobalMainQueue, {
-                    self.view.backgroundColor = UIColor.flatRedColor()
-                    self.fullNameTextField.hidden = true
-                    self.passwordTextField.hidden = true
-                    self.emailTextField.hidden = false
-                    self.headerLabel.text = "What is your email?"
-                    self.setupTextField(self.emailTextField)
-                })
+                self.view.backgroundColor = UIColor.flatRedColor()
+                self.fullNameTextField.hidden = true
+                self.passwordTextField.hidden = true
+                self.emailTextField.hidden = false
+                self.headerLabel.text = "What is your email?"
+                self.setupTextField(self.emailTextField)
             case .Password:
-                dispatch_async(GlobalMainQueue, {
-                    self.view.backgroundColor = UIColor.flatMintColorDark()
-                    self.fullNameTextField.hidden = true
-                    self.emailTextField.hidden = true
-                    self.headerLabel.text = "Set your password."
-                    self.passwordTextField.hidden = false
-                    self.setupTextField(self.passwordTextField)
-                })
+                self.view.backgroundColor = UIColor.flatMintColorDark()
+                self.fullNameTextField.hidden = true
+                self.emailTextField.hidden = true
+                self.headerLabel.text = "Set your password."
+                self.passwordTextField.hidden = false
+                self.setupTextField(self.passwordTextField)
             default:
                 break
             }
@@ -177,7 +171,7 @@ class RegistrationPageViewController: UIViewController {
         
         if validateField(currentField!, withValue: currentValue) {
             RegistrationViewModel.sharedInstance.didFinishRegistering(withField: currentField!, value: currentValue!)
-            proceedOrCompleteRegistration(forField: RegistrationViewModel.sharedInstance.currentField!)
+            proceedOrCompleteRegistration(forField: currentField!)
         } else {
             showDebugLabel(withText: debugMessage(forField: currentField!))
         }
@@ -226,7 +220,9 @@ class RegistrationPageViewController: UIViewController {
     func submitRegistration() {
         RegistrationViewModel.sharedInstance.submitRegistrationData({success, error in
             if error != nil {
-                self.alertController(withTitles: ["Ok"], message: (error?.localizedDescription)!, callbackHandler: [nil])
+                dispatch_async(GlobalMainQueue, {
+                    self.alertController(withTitles: ["Ok"], message: (error?.localizedDescription)!, callbackHandler: [nil])
+                })
             } else {
                 dispatch_async(GlobalMainQueue, {
                     self.dismissViewControllerAnimated(true, completion: {void in
