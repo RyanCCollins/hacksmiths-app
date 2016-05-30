@@ -30,13 +30,9 @@ class CommunityPresenter {
     func fetchCommunityMembers() {
         let body = [String : AnyObject]()
         HacksmithsAPIClient.sharedInstance().getMemberList(body, completionHandler: {result, error in
-            
             if error != nil {
-                
                 self.communityView?.fetchCommunity(self, didSucceed: false, didFailWithError: error)
-                
             } else {
-                
                 self.communityView?.fetchCommunity(self, didSucceed: true, didFailWithError: nil)
             }
         })

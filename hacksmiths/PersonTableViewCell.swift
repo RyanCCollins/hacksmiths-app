@@ -22,6 +22,14 @@ class PersonTableViewCell: UITableViewCell {
         personImageView?.clipsToBounds = true
         personImageView?.layer.borderWidth = 3.0
         personImageView.layer.borderColor = UIColor.whiteColor().CGColor
+        personImageView.image = UIImage(named: "avatar-missing")
+    }
+    
+    func showImage(image: UIImage?) {
+        guard image != nil else {
+            return
+        }
+        personImageView.image = image
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

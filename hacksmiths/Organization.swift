@@ -9,7 +9,6 @@
 import CoreData
 
 @objc(Organization)
-
 class Organization: NSManagedObject {
     @NSManaged var idString: String
     @NSManaged var name: String

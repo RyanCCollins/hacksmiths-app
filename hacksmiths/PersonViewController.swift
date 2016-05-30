@@ -22,11 +22,14 @@ class PersonViewController: UIViewController {
     @IBOutlet weak var websiteStackView: UIStackView!
     @IBOutlet weak var websiteButton: UIButton!
     @IBOutlet weak var githubButton: UIButton!
-    
+    @IBOutlet weak var starButton: UIButton!
+
     var websiteUrl: NSURL?
     var twitterUrl: NSURL?
     var githubUrl: NSURL?
     
+    /** Life cycle methods
+     */
     override func viewDidLoad() {
         super.viewDidLoad()
         personPresenter.attachView(self)
@@ -44,6 +47,16 @@ class PersonViewController: UIViewController {
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         personPresenter.detachView(self)
+    }
+    
+    func setupStar(forPerson: Person) {
+        if UserService.sharedInstance().authenticated == false {
+            alertController(withTitles: ["Ok"], message: "You must be signed in to do that!", callbackHandler: [nil])
+        }
+    }
+    
+    @IBAction func didTapStarUpInside(sender: AnyObject) {
+        
     }
     
     @IBAction func didTapButtonUpInside(sender: AnyObject) {
@@ -119,9 +132,20 @@ extension PersonViewController: PersonView {
         }
     }
     
+    func setStar(starred: Bool) {
+        if starred == true {
+           
+        }
+    }
+    
     func configureDebugView(withMessage message: String) {
         self.debugLabel.text = message
         self.debugLabel.hidden = false
     }
     
+}
+
+enum StarState {
+    case Starred
+    case Unstarred
 }
