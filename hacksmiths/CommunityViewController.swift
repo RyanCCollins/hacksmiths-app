@@ -154,7 +154,7 @@ extension CommunityViewController {
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         var title = "Community Members"
-        if searchPredicate != nil {
+        if searchPredicate == nil {
             title = (SectionTitle(rawValue: section)?.getTitle())!
         }
         return title
@@ -205,9 +205,8 @@ extension CommunityViewController {
             return nil
         }
         
-        if person!.image != nil {
-            cell.personImageView.image = person!.image
-        }
+        let image = person!.image == nil ? UIImage(named: "avatar-missing") : person!.image
+        cell.personImageView.image = image
         cell.nameLabel.text = person!.fullName
         cell.aboutLabel.text = person!.bio
         return cell
