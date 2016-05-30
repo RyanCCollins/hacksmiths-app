@@ -7,7 +7,7 @@
 //
 
 protocol RegistrationDelegate {
-    func didFinishRegistering(withFieldRawValue fieldRawValue: Int, value: String)
+    func didFinishRegistering(withField field: RegistrationData.RegistrationField, value: String)
 }
 
 // Temporary class for storing registration data.  Will get wiped out after registration
@@ -16,33 +16,28 @@ class RegistrationData: RegistrationDelegate {
     var email: String?
     var password: String?
     
-    var currentField = Field(rawValue: 0)
+    var currentField = RegistrationField(rawValue: 0)
     static let sharedInstance = RegistrationData()
     
     // Coordinate setting of the various fields to make this class handle the collection of the data
     // The delegate method will collect the data and also set the next field that needs to be collected
     // Based off of the raw Int value.
-    func didFinishRegistering(withFieldRawValue fieldRawValue: Int, value: String) {
-        
-        if let theField = Field.init(rawValue: fieldRawValue) {
-            //Set our class variable for current field
-            currentField = theField
+    func didFinishRegistering(withField field: RegistrationField, value: String) {
             
-            // Work through the various fields and set the value for the submitted field.
-            // Then, set current field to the next field.
-            switch theField {
-            case .FullName:
-                fullName = value
-                currentField = .Email
-            case .Email:
-                email = value
-                currentField = .Password
-            case .Password:
-                password = value
-                currentField = .None
-            case .None:
-                break
-            }
+        // Work through the various fields and set the value for the submitted field.
+        // Then, set current field to the next field.
+        switch field {
+        case .FullName:
+            fullName = value
+            currentField = .Email
+        case .Email:
+            email = value
+            currentField = .Password
+        case .Password:
+            password = value
+            currentField = .None
+        case .None:
+            break
         }
     }
     
@@ -54,14 +49,13 @@ class RegistrationData: RegistrationDelegate {
             } else {
                 completionHandler(success: true, error: nil)
             }
-            
         })
     }
     
     // Useful for decrementing the current field if the user needs to go back.
     func decrementCurrentField() {
         if currentField?.rawValue > 0 {
-            currentField = Field.init(rawValue: (currentField?.rawValue)! - 1)
+            currentField = RegistrationField.init(rawValue: (currentField?.rawValue)! - 1)
         }
     }
     
@@ -85,7 +79,7 @@ extension RegistrationData {
     }
     
     // Enumeration that holds the current field for determining what data is not yet filled in
-    enum Field: Int {
+    enum RegistrationField: Int {
         case FullName = 0,
              Email,
              Password,

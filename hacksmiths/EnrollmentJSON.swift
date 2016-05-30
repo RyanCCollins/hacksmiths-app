@@ -36,13 +36,20 @@ struct EnrollmentJSON: Decodable {
         self.description = description
         if let logo: String = EnrollmentKeys.logo <~~ json {
             self.logo = logo
+        } else {
+            self.logo = nil
         }
         if let link: String = EnrollmentKeys.link <~~ json {
             self.link = link
+        } else {
+            self.link = nil
         }
         
         if let date: String = EnrollmentKeys.updatedAt <~~ json {
             self.updatedAt = date
+        } else {
+            self.updatedAt = nil
         }
+        
     }
 }

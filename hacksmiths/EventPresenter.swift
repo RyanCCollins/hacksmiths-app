@@ -38,10 +38,21 @@ class EventPresenter {
         eventView = nil
     }
     
-    func rsvpForEvent() {
-        
+    /* Post an RSVP to the API through the eventService
+     * Sends a message to the eventView delegate upon completion
+     * @params - Event - the event being RSVP'd to
+     */
+    func rsvpForEvent(event: Event) {
+        if UserService.sharedInstance().authenticated == true {
+            eventService
+                .postRSVP(forEvent: event, userId: UserService.sharedInstance().userId!)
+                .then() { Void in
+                self.eventView?.didRSVPForEvent(self, success: true, error: nil)
+            }.error{ error in
+                self.eventView?.didRSVPForEvent(self, success: false, error: error as NSError)
+            }
+        }
     }
-    
     
     func fetchImageForEvent(event: Event) {
         event.fetchImages().then() {
@@ -56,18 +67,28 @@ class EventPresenter {
             self.eventView?.didLoadCachedEvent(event)
             
             // 2. Check the API to see if there is a new event.  If the event is the same as the fetched one, stop.
-            eventService.fetchNextEventIfStatusChanged().then() {
+            eventService.fetchNextEventIfStatusChanged(event).then() {
                 nextEvent -> () in
                 
-                if nextEvent != nil {
-                    // 3. If the event is different, then alert the view, which will handle fetching the data.
-                    self.eventView?.didReceiveNewEvent(self, newEvent: nextEvent, error: nil)
-                }
+                    if nextEvent != nil {
+                        // 3. If the event is different, then alert the view, which will handle fetching the data.
+                        self.eventView?.didReceiveNewEvent(self, newEvent: nextEvent, error: nil)
+                    }
                 }.error {error in
                     // 4. Handle the case that there is an error.
                     self.eventView?.didReceiveNewEvent(self, newEvent: nil, error: error as NSError)
                 }
+            
+        } else {
+            eventService.getEventStatus().then{
+                nextEvent -> () in
+                let eventId = nextEvent?.idString
+                self.getEventData(eventId!)
+            }.error {error in
+                self.eventView?.didReceiveEventData(self, didSucceed: nil, didFail: error as NSError)
+            }
         }
+        
     }
 
 
@@ -93,11 +114,13 @@ class EventPresenter {
     private func performEventFetch() -> Event? {
         do {
             try fetchedResultsController.performFetch()
-            if let event = fetchedResultsController.fetchedObjects![0] as? Event {
-                return event
-            } else {
-                return nil
+            var returnEvent: Event? = nil
+            if fetchedResultsController.fetchedObjects?.count > 0 {
+                if let event = fetchedResultsController.fetchedObjects![0] as? Event {
+                    returnEvent = event
+                }
             }
+            return returnEvent
         } catch let error as NSError {
             return nil
         }

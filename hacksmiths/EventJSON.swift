@@ -9,24 +9,20 @@
 import Foundation
 import Gloss
 
-struct EventKeys {
-    static let _id = "_id"
-    static let title = "title"
-    static let startDate = "startDate"
-    static let endDate = "endDate"
-    static let place = "place"
-    static let description = "description"
-    static let marketingInfo = "marketingInfo"
-    static let registrationStartDate = "registrationStartDate"
-    static let registrationEndDate = "registrationEndDate"
-    static let participants = "participants"
-    static let featureImageURL = "featureImage.url"
-    static let spotsRemaining = "spotsRemaining"
-    
-    static let organization = "organization"
-}
-
-
+/* EventJSON Struct
+ *
+ * Handles the deserialization of JSON data from the server.
+ *
+ * Initialize eith JSON from EventService
+ * creating an easy interface from API to Core Data Initialization
+ * For Event model. Can also be used to serialize the Event model
+ * at a later time if need by, utlizing the Encodable Delegate methods.
+ *
+ *========== Example
+ * let eventJSON = EventJSON(json: JSONData)
+ * let event = Event(eventJSON: eventJSON)
+ *
+ */
 struct EventJSON: Decodable {
     /* Non optional properties */
     let idString: String
@@ -43,6 +39,7 @@ struct EventJSON: Decodable {
     let registrationEndDateString: String?
     let place: String?
     let spotsRemaining: Int
+    let state: EventState?
     let organizationJSON: OrganizationJSON
     
     init?(json: JSON) {
@@ -73,6 +70,35 @@ struct EventJSON: Decodable {
         self.spotsRemaining = (EventKeys.spotsRemaining <~~ json)!
         
         self.organizationJSON = (EventKeys.organization <~~ json)!
+        
+        var eventState: EventState? = nil
+        
+        if let state: String = EventKeys.state <~~ json {
+            if let currentState = EventState(rawValue: state) {
+                eventState = currentState
+            } else {
+                eventState = nil
+            }
+        }
+        self.state = eventState
     }
 }
 
+/* Keys used in mapping data from JSON */
+struct EventKeys {
+    static let _id = "_id"
+    static let title = "title"
+    static let startDate = "startDate"
+    static let endDate = "endDate"
+    static let place = "place"
+    static let description = "description"
+    static let marketingInfo = "marketingInfo"
+    static let registrationStartDate = "registrationStartDate"
+    static let registrationEndDate = "registrationEndDate"
+    static let participants = "participants"
+    static let featureImageURL = "featureImage.url"
+    static let spotsRemaining = "spotsRemaining"
+    
+    static let organization = "organization"
+    static let state = "state"
+}

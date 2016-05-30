@@ -20,6 +20,7 @@
         <attribute name="registrationStartDateString" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="spotsRemaining" optional="YES" attributeType="Integer 16" defaultValueString="YES" syncable="YES"/>
         <attribute name="startDateString" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="organization" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Organization" syncable="YES"/>
         <relationship name="participants" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Participant" inverseName="event" inverseEntity="Participant" syncable="YES"/>
@@ -109,7 +110,7 @@
         <relationship name="events" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Event" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Event" positionX="-27" positionY="450" width="128" height="285"/>
+        <element name="Event" positionX="-27" positionY="450" width="128" height="300"/>
         <element name="NextEvent" positionX="117" positionY="198" width="128" height="75"/>
         <element name="Organization" positionX="-92" positionY="72" width="128" height="30"/>
         <element name="Participant" positionX="117" positionY="198" width="128" height="120"/>

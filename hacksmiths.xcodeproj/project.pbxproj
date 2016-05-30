@@ -30,6 +30,7 @@
 		1F3DF1581CFB6C090000BBC8 /* EnrollmentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3DF1571CFB6C090000BBC8 /* EnrollmentService.swift */; };
 		1F3DF15A1CFB6C3F0000BBC8 /* Enrollment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3DF1591CFB6C3F0000BBC8 /* Enrollment.swift */; };
 		1F3DF15C1CFB6EDD0000BBC8 /* EnrollmentJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3DF15B1CFB6EDD0000BBC8 /* EnrollmentJSON.swift */; };
+		1F3DF1601CFBCABC0000BBC8 /* EventState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3DF15F1CFBCABC0000BBC8 /* EventState.swift */; };
 		1F44B1BA1C5DDAB9004E196D /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F44B1B91C5DDAB9004E196D /* CoreDataStackManager.swift */; };
 		1F46B9EC1CA467250065D50D /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F46B9EB1CA467250065D50D /* UserData.swift */; };
 		1F498E151CF78C93009A5AB2 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F498E141CF78C93009A5AB2 /* SettingsPresenter.swift */; };
@@ -45,7 +46,6 @@
 		1F4F7EC11CF4B4A800325CA9 /* ProjectIdeaSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F7EC01CF4B4A800325CA9 /* ProjectIdeaSubmission.swift */; };
 		1F4F7EC31CF4B67000325CA9 /* ProjectIdeaSubmissionJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F7EC21CF4B67000325CA9 /* ProjectIdeaSubmissionJSON.swift */; };
 		1F4F7EC51CF4BEFC00325CA9 /* EventFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F7EC41CF4BEFC00325CA9 /* EventFetcher.swift */; };
-		1F4F7EC71CF4D08300325CA9 /* CurrentEventService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F7EC61CF4D08300325CA9 /* CurrentEventService.swift */; };
 		1F4F7EC91CF4D50C00325CA9 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F7EC81CF4D50C00325CA9 /* ProfilePresenter.swift */; };
 		1F4F7ECB1CF4D5A200325CA9 /* UserJSONObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F7ECA1CF4D5A200325CA9 /* UserJSONObject.swift */; };
 		1F4F7ED01CF4E4AF00325CA9 /* UserProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4F7ECF1CF4E4AF00325CA9 /* UserProfileService.swift */; };
@@ -145,6 +145,7 @@
 		1F3DF1571CFB6C090000BBC8 /* EnrollmentService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnrollmentService.swift; sourceTree = "<group>"; };
 		1F3DF1591CFB6C3F0000BBC8 /* Enrollment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enrollment.swift; sourceTree = "<group>"; };
 		1F3DF15B1CFB6EDD0000BBC8 /* EnrollmentJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnrollmentJSON.swift; sourceTree = "<group>"; };
+		1F3DF15F1CFBCABC0000BBC8 /* EventState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventState.swift; sourceTree = "<group>"; };
 		1F44B1B91C5DDAB9004E196D /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
 		1F46B9EB1CA467250065D50D /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		1F498E141CF78C93009A5AB2 /* SettingsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
@@ -162,7 +163,6 @@
 		1F4F7EC01CF4B4A800325CA9 /* ProjectIdeaSubmission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectIdeaSubmission.swift; sourceTree = "<group>"; };
 		1F4F7EC21CF4B67000325CA9 /* ProjectIdeaSubmissionJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectIdeaSubmissionJSON.swift; sourceTree = "<group>"; };
 		1F4F7EC41CF4BEFC00325CA9 /* EventFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventFetcher.swift; sourceTree = "<group>"; };
-		1F4F7EC61CF4D08300325CA9 /* CurrentEventService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentEventService.swift; sourceTree = "<group>"; };
 		1F4F7EC81CF4D50C00325CA9 /* ProfilePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 		1F4F7ECA1CF4D5A200325CA9 /* UserJSONObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserJSONObject.swift; sourceTree = "<group>"; };
 		1F4F7ECF1CF4E4AF00325CA9 /* UserProfileService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileService.swift; sourceTree = "<group>"; };
@@ -474,12 +474,12 @@
 			children = (
 				1F846CB81CEBB4BE009166D4 /* EventRouter.swift */,
 				1F846CAF1CEBADC7009166D4 /* EventService.swift */,
+				1F3DF15F1CFBCABC0000BBC8 /* EventState.swift */,
 				1FF998981C6FAEDE003D98B2 /* Event.swift */,
 				1F846CC61CECF7D5009166D4 /* EventJSON.swift */,
 				1FAD7DB81CEE64EB0044BD94 /* NextEventJSON.swift */,
 				1F384A8C1CF25C3F00E15887 /* NextEvent.swift */,
 				1F4F7EC41CF4BEFC00325CA9 /* EventFetcher.swift */,
-				1F4F7EC61CF4D08300325CA9 /* CurrentEventService.swift */,
 			);
 			name = Event;
 			sourceTree = "<group>";
@@ -1035,7 +1035,6 @@
 				1FA2E55F1C6802680085FC7D /* ImageCache.swift in Sources */,
 				1FA9FC9B1C53563700B993BC /* EventViewController.swift in Sources */,
 				1F3DF1491CFA795A0000BBC8 /* HelpPageViewController.swift in Sources */,
-				1F4F7EC71CF4D08300325CA9 /* CurrentEventService.swift in Sources */,
 				1FA5A4EC1C53586D00722E55 /* CommunityViewController.swift in Sources */,
 				1F4F7ECB1CF4D5A200325CA9 /* UserJSONObject.swift in Sources */,
 				1F4F7EC91CF4D50C00325CA9 /* ProfilePresenter.swift in Sources */,
@@ -1059,6 +1058,7 @@
 				1F44B1BA1C5DDAB9004E196D /* CoreDataStackManager.swift in Sources */,
 				1FE5F91B1CD8288800487CA8 /* RCCircularImageView.swift in Sources */,
 				1F4B4DF81C72574700A75F5D /* OnePasswordExtension.m in Sources */,
+				1F3DF1601CFBCABC0000BBC8 /* EventState.swift in Sources */,
 				1FEA07BC1CEFD0F500D4BDA7 /* CommunityPresenter.swift in Sources */,
 				1FF9989D1C6FB060003D98B2 /* Organization.swift in Sources */,
 				1F846CC41CEC03C5009166D4 /* IGActivityIndicatorView.swift in Sources */,

@@ -20,15 +20,14 @@ class EnrollmentService: NSObject {
                     
                     switch response.result {
                     case .Success(let JSON):
-                        if let nanodegreeArray = JSON["nanodegrees"] as! [JSON] {
-                            let enrollmentArry = EnrollmentJSON(json: nanodegreeArray)
-                            let enrollments = createEnrollmentModel(enrollmentArry)
-                        }
-
+                        
+                        let nanodegreeArray = JSON["nanodegrees"] as! [JsonDict]
+                        let enrollmentJSONArray = [EnrollmentJSON].fromJSONArray(nanodegreeArray)
+                        let enrollments = self.createEnrollmentModel(enrollmentJSONArray)
+                        resolve(enrollments)
                     case .Failure(let error):
                         reject(error)
                     }
-                    
                 }
         }
     }

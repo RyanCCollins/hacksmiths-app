@@ -31,7 +31,7 @@ class EventViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-
+        
     }
     
     override func viewDidLoad() {
@@ -39,6 +39,7 @@ class EventViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         eventPresenter.attachView(self)
+        setActivityIndicator()
         eventPresenter.fetchAndCheckAPIForEvent()
     }
     
@@ -52,6 +53,7 @@ class EventViewController: UIViewController {
     }
     
     @IBAction func didTapRefreshUpInside(sender: AnyObject) {
+        startLoading()
         self.eventPresenter.fetchAndCheckAPIForEvent()
     }
     
@@ -118,7 +120,14 @@ class EventViewController: UIViewController {
             print(error)
         }
     }
-
+    
+    @IBAction func didTapRegisterUpInside(sender: AnyObject) {
+        if UserService.sharedInstance().authenticated == true {
+            if let currentEvent = currentEvent {
+                eventPresenter.rsvpForEvent(currentEvent)
+            }
+        }
+    }
 }
 
 extension EventViewController: EventView {
@@ -132,11 +141,13 @@ extension EventViewController: EventView {
     }
     
     func didLoadCachedEvent(event: Event) {
+        finishLoading()
         self.currentEvent = event
         updateUserInterface(forEvent: event)
     }
     
     func didReceiveNewEvent(sender: EventPresenter, newEvent: NextEvent?, error: NSError?) {
+        finishLoading()
         if error != nil || newEvent == nil {
             let message = error?.localizedDescription ?? "An unknown error occurred."
             alertController(withTitles: ["OK"], message: message, callbackHandler: [nil])

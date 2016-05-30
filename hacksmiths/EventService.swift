@@ -14,11 +14,11 @@ import CoreData
 
 class EventService {
     
-    /* Return a promise of a boolean, determining if the event status has changed and a next event
+    /* Return a promise of an optional NextEvent, determining if the event status has changed and a next event
      * The event returned from the Event Status endpoint is not the same as the event stored on the device currently
-     * - return = Promise of Boolean determining that event has changed status or not.
+     * - return = Promise of Optional NextEvent determining that event has changed status or not.
      */
-    func fetchNextEventIfStatusChanged() -> Promise<NextEvent?> {
+    func fetchNextEventIfStatusChanged(currentEvent: Event) -> Promise<NextEvent?> {
         return Promise {resolve, reject in
             let router = EventRouter(endpoint: .GetEventStatus())
             HTTPManager.sharedManager.request(router)
@@ -30,28 +30,22 @@ class EventService {
                     case .Success(let JSON):
                         if let nextEventData = JSON["event"] as? JsonDict,
                             let nextEventJSON = NextEventJSON(json: nextEventData) {
-                            EventFetcher.sharedFetcher.performNextEventFetch().then() {
-                                nextEvent -> () in
-                                guard nextEvent != nil else {
-                                    resolve(nil)
-                                    return
-                                }
-                                if nextEventJSON.id != nextEvent!.idString {
-                                    self.deleteAllSavedNextEventEntries()
-                                    let nextEvent = NextEvent(nextEventJSON: nextEventJSON, context: GlobalStackManager.SharedManager.sharedContext)
-                                    CurrentEventService.sharedService.setFromJSON(nextEventJSON)
-                                    
-                                    /* Save the context for this next event model object */
-                                    GlobalStackManager.SharedManager.sharedContext.performBlockAndWait({
-                                        CoreDataStackManager.sharedInstance().saveContext()
-                                    })
-                                    
-                                    resolve(nextEvent)
-                                } else {
-                                    resolve(nil)
-                                }
+                            
+                            /* If our event has not changed resolve with no new next event */
+                            if currentEvent.idString == nextEventJSON.id {
+                                resolve(nil)
+                            } else {
+                                self.deleteAllSavedNextEventEntries()
+                                let nextEvent = NextEvent(nextEventJSON: nextEventJSON, context: GlobalStackManager.SharedManager.sharedContext)
+                                
+                                GlobalStackManager.SharedManager.sharedContext.performBlockAndWait({
+                                    CoreDataStackManager.sharedInstance().saveContext()
+                                })
+                                resolve(nextEvent)
                             }
+                            
                         }
+                        
                     case .Failure(let error):
                         reject(error)
                 }
@@ -77,8 +71,6 @@ class EventService {
                             
                             self.deleteAllSavedNextEventEntries()
                             let nextEvent = NextEvent(nextEventJSON: nextEventJSON, context: GlobalStackManager.SharedManager.sharedContext)
-                            CurrentEventService.sharedService.setFromJSON(nextEventJSON)
-                            
                             /* Save the context for this next event model object */
                             GlobalStackManager.SharedManager.sharedContext.performBlockAndWait({
                                 CoreDataStackManager.sharedInstance().saveContext()
@@ -95,6 +87,10 @@ class EventService {
         }
     }
     
+    /* Get an event from the API by ID
+     * @params - Event ID - the event ID being fetched, which is received from the next event cache
+     * @return - Promise<Event?> - A promise of optional Event
+     */
     func getEvent(eventID: String) -> Promise<Event?> {
         return Promise {fullfill, reject in
             let router = EventRouter(endpoint: .GetEvent(eventID: eventID))
@@ -139,6 +135,29 @@ class EventService {
                         reject(error)
                     }
             }
+        }
+    }
+    
+    /* Post an RSVP to the API
+     * @params - Event - the event being RSVP'd to
+     * @params - User Id - the user posting (requires authentication)
+     * @return - Promise<Void> - A promise of type Void.
+     */
+    func postRSVP(forEvent event: Event, userId: String) -> Promise<Void> {
+        return Promise{resolve, reject in
+            let router = EventRouter(endpoint: .RSVPForEvent(userID: userId, event: event, participating: true, cancel: false))
+            HTTPManager.sharedManager.request(router)
+                .validate()
+                .responseJSON{
+                    response in
+                    switch response.result {
+                    case .Success:
+                        resolve()
+                    case .Failure(let error):
+                        reject(error as NSError)
+                    }
+            }
+            
         }
     }
     

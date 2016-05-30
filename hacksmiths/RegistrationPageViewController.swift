@@ -16,13 +16,12 @@ class RegistrationPageViewController: UIViewController {
     @IBOutlet weak var emailTextField: IsaoTextField!
     @IBOutlet weak var passwordTextField: IsaoTextField!
     @IBOutlet weak var debugLabel: UILabel!
+    let xInSquareImage = UIImage(named: "x-in-square")
+    let backwardArrowImage = UIImage(named: "backward-arrow")
     
     // Mark: Regular expression for email
     static private let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -37,28 +36,24 @@ class RegistrationPageViewController: UIViewController {
         navigationController?.navigationBar.backgroundColor = UIColor.clearColor();
     }
     
-    func setNavigationControllerItems() {
-        
-        let rightBarButtonItem = UIBarButtonItem(title: "Next", style: .Plain, target: self, action: #selector(RegistrationPageViewController.submitAndContinue(_:)))
-        rightBarButtonItem.tintColor = UIColor.whiteColor()
-        
-        var image: UIImage!
-        //Set the image to the x in square if it's the first field, otherwise, the back button.
-        if RegistrationData.sharedInstance.currentField == .FullName {
-        
-            image = UIImage(named: "x-in-square")
-            
+    func didChangeTextInTextField(sender: IsaoTextField) {
+        if validateField(RegistrationData.sharedInstance.currentField!, withValue: sender.text) {
+            navigationItem.rightBarButtonItem?.enabled = true
         } else {
-            
-            image = UIImage(named: "backward-arrow")
+            navigationItem.rightBarButtonItem?.enabled = false
         }
+    }
+    
+    func setNavigationControllerItems() {
+        let rightBarButtonItem = UIBarButtonItem(title: "Next", style: .Plain, target: self, action: #selector(RegistrationPageViewController.processSubmission(_:)))
+        rightBarButtonItem.tintColor = UIColor.whiteColor()
         
         // Set the right bar button title to Done if we are on the last text field.
         if RegistrationData.sharedInstance.currentField == .None {
             rightBarButtonItem.title = "Done"
         }
-        
-        let leftBarButtonItem = UIBarButtonItem(image: image, style: .Plain, target: self, action: #selector(RegistrationPageViewController.dismissViewController(_:)))
+        let itemButtonImage = buttonItemImage(forField: RegistrationData.sharedInstance.currentField!)
+        let leftBarButtonItem = UIBarButtonItem(image: itemButtonImage, style: .Plain, target: self, action: #selector(RegistrationPageViewController.proceedBackwards(_:)))
         leftBarButtonItem.tintColor = UIColor.whiteColor()
         
         navigationItem.rightBarButtonItem = rightBarButtonItem
@@ -66,101 +61,72 @@ class RegistrationPageViewController: UIViewController {
         navigationItem.leftBarButtonItem = leftBarButtonItem
     }
     
+    func buttonItemImage(forField field: RegistrationData.RegistrationField) -> UIImage {
+        switch field {
+        case .FullName:
+            return xInSquareImage!
+        default:
+            return backwardArrowImage!
+        }
+    }
+    
     func setupTextField(textField: IsaoTextField){
-        textField.addTarget(self, action: #selector(RegistrationPageViewController.validateTextEntry), forControlEvents: UIControlEvents.EditingChanged)
+        textField.addTarget(self, action: #selector(RegistrationPageViewController.didChangeTextInTextField), forControlEvents: UIControlEvents.EditingChanged)
         textField.becomeFirstResponder()
         textField.delegate = self
     }
 
     
-    func validateTextEntry() -> Bool {
-        return true
-    }
+
     
-    func submitAndContinue(sender: AnyObject) {
-        
-        if RegistrationData.sharedInstance.currentField == .FullName {
-            
-            let fullname = fullNameTextField.text!
-            
-            if isValidFullname(fullname) {
-                
-                RegistrationData.sharedInstance.didFinishRegistering(withFieldRawValue: 0, value: fullname)
-                goToNextView(self)
-            } else {
-                showDebugLabel(withText: "Please enter your full name, both first and last")
-                
-            }
-        } else if RegistrationData.sharedInstance.currentField == .Email {
-            
-            let email = emailTextField.text
-            if isValidEmail(email!) {
-                RegistrationData.sharedInstance.didFinishRegistering(withFieldRawValue: 1, value: email!)
-                goToNextView(self)
-            } else {
-                showDebugLabel(withText: "Please enter a valid email address")
-            }
-        
-        } else if RegistrationData.sharedInstance.currentField == .Password {
-            let password = passwordTextField.text ?? ""
-            if isValidPassword(password) {
-                RegistrationData.sharedInstance.didFinishRegistering(withFieldRawValue: 2, value: passwordTextField.text!)
-               completeRegistration()
-            } else {
-                showDebugLabel(withText: "Please ensure that your password is at least 8 characters.")
-            }
+    func debugMessage(forField field: RegistrationData.RegistrationField) -> String {
+        switch field {
+        case .Email:
+            return "Please enter a valid email address"
+        case .FullName:
+            return "Please enter your full name, both first and last"
+        case .Password:
+            return "Please ensure that your password is at least 8 characters."
+        default:
+            return ""
         }
     }
     
-    private func isValidPassword(thePassword: String)-> Bool {
+    func dataValue(forField field: RegistrationData.RegistrationField) -> String? {
+        switch field {
+        case .FullName: return fullNameTextField.text
+        case .Email: return emailTextField.text
+        case .Password: return passwordTextField.text
+        default: return nil
+        }
         
-        // Get the simple checks out of the way, such as password length
-        if thePassword.length < 8 {
+    }
+    
+    private func validateField(field: RegistrationData.RegistrationField, withValue value: String?) -> Bool {
+        guard value != nil else {
             return false
-        } else {
-            return true
         }
         
-    }
-    
-    // From an open source project I worked on by Ian Gristock & Ivan Lares
-    // https://github.com/teamhacksmiths/food-drivr-ios/blob/b4571b58894be2ed29dbb1e32d1eacd587740ad5/hackathon-for-hunger/VSUserInfoViewController.swift
-    private func isValidEmail(theEmail: String) -> Bool {
-        let emailTest = NSPredicate(format: "SELF MATCHES %@", RegistrationPageViewController.emailRegEx)
-        return emailTest.evaluateWithObject(theEmail)
-    }
-    
-    private func isValidFullname(theName: String) -> Bool {
-        
-        // If the length is greater than 3, return true, otherwise return false.
-        if theName.rangeOfString(" ") != nil {
-            return true
-        } else {
+        switch field {
+        case .FullName:
+            return value?.rangeOfString(" ") != nil
+        case .Email:
+            let emailTest = NSPredicate(format: "SELF MATCHES %@", RegistrationPageViewController.emailRegEx)
+            return emailTest.evaluateWithObject(value!)
+        case .Password:
+            return value!.length > 8
+        default:
             return false
         }
     }
+    
     
     func showDebugLabel(withText text: String) {
         debugLabel.text = text
         debugLabel.fadeIn()
     }
     
-    
-    func completeRegistration() {
-        RegistrationData.sharedInstance.submitRegistrationData({success, error in
-            if error != nil {
-                
-                self.alertController(withTitles: ["Ok"], message: (error?.localizedDescription)!, callbackHandler: [nil])
-                
-            } else {
-                
-                self.dismissViewControllerAnimated(true, completion: {void in
-                    
-                })
-            }
-        })
 
-    }
     
     // Responsible for making changes to the UI that rely specifically
     // On the value of the next field
@@ -195,33 +161,75 @@ class RegistrationPageViewController: UIViewController {
     
     }
     
-    func goToNextView(sender: AnyObject) {
-        
-        if validateTextEntry() == true {
-            let nextViewController = storyboard?.instantiateViewControllerWithIdentifier("RegistrationPageViewController") as! RegistrationPageViewController
-            
-            navigationController?.pushViewController(nextViewController, animated: true)
+    func proceedOrCompleteRegistration(forField field: RegistrationData.RegistrationField){
+        switch field {
+        case .Password:
+            submitRegistration()
+        default:
+            proceedForwards(self)
         }
     }
     
-    func dismissViewController(sender: AnyObject) {
+    func processSubmission(sender: AnyObject) {
+        let currentField = RegistrationData.sharedInstance.currentField
+        let currentValue = dataValue(forField: currentField!)
+        
+        if validateField(currentField!, withValue: currentValue) {
+            RegistrationData.sharedInstance.didFinishRegistering(withField: currentField!, value: currentValue!)
+        } else {
+            showDebugLabel(withText: debugMessage(forField: currentField!))
+        }
+    }
+    
+    
+    /* Continue forwards in registration process
+     * By pushing the next view controller onto the stack.
+     */
+    func proceedForwards(sender: AnyObject) {
+        let nextViewController = storyboard?.instantiateViewControllerWithIdentifier("RegistrationPageViewController") as! RegistrationPageViewController
+        
+        navigationController?.pushViewController(nextViewController, animated: true)
+    }
+    
+    /* Either backs up the process of registration, or dismisses the process
+     * All together, leading back to presenting view.
+     */
+    func proceedBackwards(sender: AnyObject) {
         if navigationController?.viewControllers.count > 1 {
-            
             RegistrationData.sharedInstance.decrementCurrentField()
             navigationController?.popViewControllerAnimated(true)
         } else {
             dismissViewControllerAnimated(true, completion: nil)
         }
     }
+    
+    /* Either backs up the process of registration, or dismisses the process
+     * All together, leading back to presenting view.
+     */
+    func submitRegistration() {
+        RegistrationData.sharedInstance.submitRegistrationData({success, error in
+            if error != nil {
+                self.alertController(withTitles: ["Ok"], message: (error?.localizedDescription)!, callbackHandler: [nil])
+            } else {
+                self.dismissViewControllerAnimated(true, completion: {void in
+                })
+            }
+        })
+        
+    }
 }
 
 extension RegistrationPageViewController: UITextFieldDelegate {
+    /* Delegate callback for text field should return.
+     * Validates entry and then returns true if valid.
+     * @return - Bool - Determination of whether the registration process can continue or not.
+     */
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        if textField.text == nil || textField.text == "" {
-            
+        if validateField(RegistrationData.sharedInstance.currentField!, withValue: textField.text) {
+            proceedOrCompleteRegistration(forField: RegistrationData.sharedInstance.currentField!)
+            return true
+        } else {
             return false
         }
-        submitAndContinue(self)
-        return true
     }
 }

@@ -35,7 +35,7 @@ class Event: NSManagedObject {
     @NSManaged var active: Bool
     
     @NSManaged var organization : Organization?
-    
+    var eventState: EventState?
     
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
@@ -71,9 +71,11 @@ class Event: NSManagedObject {
         if let marketingInfo = eventJson.marketingInfo {
             self.marketingInfo = marketingInfo
         }
-        
+        if let eventState = eventJson.state {
+            self.eventState = eventState
+        }
     }
-
+    
     
     /* MARK: Computed properties */
     dynamic var spotsAvailable: Bool {

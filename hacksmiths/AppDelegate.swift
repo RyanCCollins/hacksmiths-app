@@ -19,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         IQKeyboardManager.sharedManager().enable = true
+        IQKeyboardManager.sharedManager().disableDistanceHandlingInViewControllerClass(RegistrationPageViewController)
+        
         return true
     }
     
@@ -26,9 +28,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let showRegistration = NSUserDefaults.standardUserDefaults().valueForKey("showRegistration")
         if showRegistration == nil {
           NSUserDefaults.standardUserDefaults().setValue(false, forKey: "showRegistration")
-            
         }
     }
+    
     
     let primaryColor = UIColor.flatNavyBlueColorDark()
     let secondary = UIColor(hex: "#3291c9")
