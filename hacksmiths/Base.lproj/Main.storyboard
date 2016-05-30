@@ -2845,9 +2845,12 @@ We build tools designed to help non-profit organizations streamline their philan
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="availabilityExplanationHelpView" destination="RL5-jM-X2a" id="2FZ-7B-ev5"/>
                         <outlet property="availabilityExplanationTextField" destination="QHX-t5-3Qp" id="7ub-NU-R7R"/>
                         <outlet property="bioTextField" destination="bC1-05-bHU" id="A3M-vv-yXe"/>
+                        <outlet property="haveExperienceHelpView" destination="IVX-4q-6ku" id="Mg7-sa-hjV"/>
                         <outlet property="haveExperienceTextField" destination="08q-Uj-shO" id="mA6-Fg-Y27"/>
+                        <outlet property="wantExperienceHelpView" destination="b9R-PJ-AQD" id="5Yz-ou-Rek"/>
                         <outlet property="wantExperienceTextField" destination="9Uo-Eu-F0r" id="MxJ-Fd-8E1"/>
                         <outlet property="websiteTextField" destination="D1E-XR-vkR" id="4CB-yL-nmA"/>
                     </connections>

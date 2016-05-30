@@ -10,6 +10,9 @@ import UIKit
 import TextFieldEffects
 
 class EditProfileViewController: UIViewController, EditProfileView {
+    @IBOutlet weak var wantExperienceHelpView: UIView!
+    @IBOutlet weak var haveExperienceHelpView: UIView!
+    @IBOutlet weak var availabilityExplanationHelpView: UIView!
     var userData: UserData?
     var delegate: EditProfileDelegate?
     @IBOutlet weak var bioTextField: IsaoTextField!
@@ -40,6 +43,8 @@ class EditProfileViewController: UIViewController, EditProfileView {
     private func setupMentoringFields(userData: UserData){
         haveExperienceTextField.hidden = !userData.isAvailableAsAMentor
         wantExperienceTextField.hidden = !userData.needsAMentor
+        haveExperienceHelpView.hidden = !userData.isAvailableAsAMentor
+        wantExperienceHelpView.hidden = !userData.needsAMentor
         
         /* Set the text for mentoring fields */
         if userData.isAvailableAsAMentor {
@@ -68,6 +73,8 @@ class EditProfileViewController: UIViewController, EditProfileView {
     
     private func setupAvailabilityFields(userData: UserData) {
         availabilityExplanationTextField.hidden = !userData.isAvailableForEvents
+        availabilityExplanationHelpView.hidden = !userData.isAvailableForEvents
+        
         if let availabilityExplanation = userData.availabilityExplanation {
             availabilityExplanationTextField.text = availabilityExplanation
         }
@@ -109,7 +116,7 @@ class EditProfileViewController: UIViewController, EditProfileView {
         presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
     private enum ProfileTextFields: Int {
-        case Bio = 0, Website,
+        case Bio = 1, Website,
         HaveExperience, WantExperience,
         AvailabilityExplanation
     }
