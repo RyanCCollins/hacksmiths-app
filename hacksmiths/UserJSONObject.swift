@@ -120,8 +120,11 @@ struct UserProfileJSON: Glossy {
             self.isPublic = false
         }
         
-        let bioJSON: JSON = (UserKeys.bio <~~ json)!
-        self.bio = BioJSON(json: bioJSON)
+        if let bio: JSON = UserKeys.bio <~~ json {
+            self.bio = BioJSON(json: bio)
+        } else {
+            self.bio = nil
+        }
         
         self.notifications = NotificationJSON(json: notifications)
         self.availability = AvailabilityJSON(json: availability)
