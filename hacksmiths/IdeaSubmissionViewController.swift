@@ -15,6 +15,7 @@ class IdeaSubmissionViewController: UIViewController {
     @IBOutlet weak var ideaDescriptionTextView: UITextView!
     @IBOutlet weak var ideaTitleTextField: IsaoTextField!
     @IBOutlet weak var additionalInformationTextField: IsaoTextField!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     /* Activity indicator view */
     var activityIndicator: IGActivityIndicatorView!
@@ -32,6 +33,10 @@ class IdeaSubmissionViewController: UIViewController {
         } else {
             submissionStatus = .New
         }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        scrollView.contentSize.height = 700
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -70,6 +75,9 @@ class IdeaSubmissionViewController: UIViewController {
             alertController(withTitles: ["OK"], message: "Please fill in both text fields before submitting", callbackHandler: [nil])
             return
         }
+        /* Show the loading indicator */
+        showLoading()
+        
         let title = ideaTitleTextField.text
         let description = ideaDescriptionTextView.text
         let additionalInformation = additionalInformationTextField.text
@@ -105,6 +113,17 @@ extension IdeaSubmissionViewController: UITextViewDelegate, UITextFieldDelegate 
     /* Configure and deselect text fields when return is pressed */
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        let field = IdeaSubmissionTextField(rawValue: textField.tag)
+        switch field! {
+        case .Description:
+            ideaTitleTextField.becomeFirstResponder()
+        case .Name:
+            additionalInformationTextField.becomeFirstResponder()
+        case .AdditionalInformation:
+            textField.resignFirstResponder()
+        default:
+            textField.resignFirstResponder()
+        }
         return true
     }
     
@@ -179,6 +198,14 @@ extension IdeaSubmissionViewController: IdeaSubmissionView {
     func hideLoading() {
         activityIndicator.hideLoading()
     }
+}
+
+enum IdeaSubmissionTextField: Int {
+    case None = 0,
+         Description,
+         Name,
+         AdditionalInformation
+    
 }
 
 enum SubmissionStatus {
