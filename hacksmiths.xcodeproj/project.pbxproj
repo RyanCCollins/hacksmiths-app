@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1F115B4A1CC0060900DC434E /* RegistrationPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F115B491CC0060900DC434E /* RegistrationPageViewController.swift */; };
+		1F115B4A1CC0060900DC434E /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F115B491CC0060900DC434E /* RegistrationViewController.swift */; };
 		1F26C3F71CA0B232001596D2 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F26C3F61CA0B232001596D2 /* AboutViewController.swift */; };
 		1F384A881CF229D400E15887 /* HTTPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F384A871CF229D400E15887 /* HTTPManager.swift */; };
 		1F384A8D1CF25C3F00E15887 /* NextEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F384A8C1CF25C3F00E15887 /* NextEvent.swift */; };
@@ -123,7 +123,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1F115B491CC0060900DC434E /* RegistrationPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationPageViewController.swift; sourceTree = "<group>"; };
+		1F115B491CC0060900DC434E /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		1F26C3F61CA0B232001596D2 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		1F384A871CF229D400E15887 /* HTTPManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPManager.swift; sourceTree = "<group>"; };
 		1F384A8C1CF25C3F00E15887 /* NextEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextEvent.swift; sourceTree = "<group>"; };
@@ -644,7 +644,7 @@
 		1FAD7DB11CEE5ED70044BD94 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				1F115B491CC0060900DC434E /* RegistrationPageViewController.swift */,
+				1F115B491CC0060900DC434E /* RegistrationViewController.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1121,7 +1121,7 @@
 				1FA5A4F01C535D6C00722E55 /* LoginViewController.swift in Sources */,
 				1FF998971C6FAE3E003D98B2 /* Person.swift in Sources */,
 				1F4E315B1CF0E1C20013F56E /* ProjectIdeaService.swift in Sources */,
-				1F115B4A1CC0060900DC434E /* RegistrationPageViewController.swift in Sources */,
+				1F115B4A1CC0060900DC434E /* RegistrationViewController.swift in Sources */,
 				1F498E151CF78C93009A5AB2 /* SettingsPresenter.swift in Sources */,
 				1F384A881CF229D400E15887 /* HTTPManager.swift in Sources */,
 				1F4E31591CF0E1B10013F56E /* ProjectIdeaRouter.swift in Sources */,

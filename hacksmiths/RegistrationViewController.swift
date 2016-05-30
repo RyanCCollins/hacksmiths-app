@@ -1,5 +1,5 @@
 //
-//  RegistrationPageViewController.swift
+//  RegistrationViewController.swift
 //  hacksmiths
 //
 //  Created by Ryan Collins on 4/14/16.
@@ -10,7 +10,7 @@ import UIKit
 import TextFieldEffects
 import ChameleonFramework
 
-class RegistrationPageViewController: UIViewController {
+class RegistrationViewController: UIViewController {
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var fullNameTextField: IsaoTextField!
     @IBOutlet weak var emailTextField: IsaoTextField!
@@ -30,6 +30,7 @@ class RegistrationPageViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         activityIndicator = IGActivityIndicatorView(inview: view, messsage: "Registering")
     }
     
@@ -58,7 +59,7 @@ class RegistrationPageViewController: UIViewController {
     }
     
     func setNavigationControllerItems() {
-        let rightBarButtonItem = UIBarButtonItem(title: "Next", style: .Plain, target: self, action: #selector(RegistrationPageViewController.processSubmission(_:)))
+        let rightBarButtonItem = UIBarButtonItem(title: "Next", style: .Plain, target: self, action: #selector(RegistrationViewController.processSubmission(_:)))
         rightBarButtonItem.tintColor = UIColor.whiteColor()
         
         // Set the right bar button title to Done if we are on the last text field.
@@ -66,7 +67,7 @@ class RegistrationPageViewController: UIViewController {
             rightBarButtonItem.title = "Done"
         }
         let itemButtonImage = buttonItemImage(forField: RegistrationViewModel.sharedInstance.currentField!)
-        let leftBarButtonItem = UIBarButtonItem(image: itemButtonImage, style: .Plain, target: self, action: #selector(RegistrationPageViewController.proceedBackwards(_:)))
+        let leftBarButtonItem = UIBarButtonItem(image: itemButtonImage, style: .Plain, target: self, action: #selector(RegistrationViewController.proceedBackwards(_:)))
         leftBarButtonItem.tintColor = UIColor.whiteColor()
         
         navigationItem.rightBarButtonItem = rightBarButtonItem
@@ -84,7 +85,7 @@ class RegistrationPageViewController: UIViewController {
     }
     
     func setupTextField(textField: IsaoTextField){
-        textField.addTarget(self, action: #selector(RegistrationPageViewController.didChangeTextInTextField), forControlEvents: UIControlEvents.EditingChanged)
+        textField.addTarget(self, action: #selector(RegistrationViewController.didChangeTextInTextField), forControlEvents: UIControlEvents.EditingChanged)
         textField.becomeFirstResponder()
         textField.delegate = self
     }
@@ -97,7 +98,7 @@ class RegistrationPageViewController: UIViewController {
         case .FullName:
             return "Please enter your full name, both first and last"
         case .Password:
-            return "Please ensure that your password is at least 8 characters."
+            return "Password must be at least 8 characters"
         default:
             return ""
         }
@@ -122,7 +123,7 @@ class RegistrationPageViewController: UIViewController {
         case .FullName:
             return value?.rangeOfString(" ") != nil
         case .Email:
-            let emailTest = NSPredicate(format: "SELF MATCHES %@", RegistrationPageViewController.emailRegEx)
+            let emailTest = NSPredicate(format: "SELF MATCHES %@", RegistrationViewController.emailRegEx)
             return emailTest.evaluateWithObject(value!)
         case .Password:
             return value!.length > 8
@@ -201,8 +202,8 @@ class RegistrationPageViewController: UIViewController {
      * By pushing the next view controller onto the stack.
      */
     func proceedForwards(sender: AnyObject) {
-        let nextViewController = storyboard?.instantiateViewControllerWithIdentifier("RegistrationPageViewController")
-            as! RegistrationPageViewController
+        let nextViewController = storyboard?.instantiateViewControllerWithIdentifier("RegistrationViewController")
+            as! RegistrationViewController
         dispatch_async(GlobalMainQueue, {
             self.navigationController?.pushViewController(nextViewController, animated: true)
         })
@@ -247,16 +248,20 @@ class RegistrationPageViewController: UIViewController {
     }
 }
 
-extension RegistrationPageViewController: UITextFieldDelegate {
+extension RegistrationViewController: UITextFieldDelegate {
     /* Delegate callback for text field should return.
      * Validates entry and then returns true if valid.
      * @return - Bool - Determination of whether the registration process can continue or not.
      */
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        if validateField(RegistrationViewModel.sharedInstance.currentField!, withValue: textField.text) {
+        /* Process the submission by validating */
+        let currentField = RegistrationViewModel.sharedInstance.currentField!
+        
+        if validateField(currentField, withValue: textField.text) {
             processSubmission(self)
             return true
         } else {
+            showDebugLabel(withText: debugMessage(forField: currentField))
             return false
         }
     }
