@@ -22,10 +22,23 @@ class RegistrationPageViewController: UIViewController {
     // Mark: Regular expression for email
     static private let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
     
+    private var activityIndicator: IGActivityIndicatorView!
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         setupView()
+    }
+    
+    override func viewDidLoad() {
+        activityIndicator = IGActivityIndicatorView(inview: view, messsage: "Registering")
+    }
+    
+    func hideLoading() {
+        activityIndicator.hideLoading()
+    }
+    
+    func showLoading() {
+        activityIndicator.showLoading()
     }
     
     func setupView() {
@@ -49,7 +62,7 @@ class RegistrationPageViewController: UIViewController {
         rightBarButtonItem.tintColor = UIColor.whiteColor()
         
         // Set the right bar button title to Done if we are on the last text field.
-        if RegistrationViewModel.sharedInstance.currentField == .None {
+        if RegistrationViewModel.sharedInstance.currentField == .Password || RegistrationViewModel.sharedInstance.currentField == .None {
             rightBarButtonItem.title = "Done"
         }
         let itemButtonImage = buttonItemImage(forField: RegistrationViewModel.sharedInstance.currentField!)
@@ -121,10 +134,8 @@ class RegistrationPageViewController: UIViewController {
     
     func showDebugLabel(withText text: String) {
         debugLabel.text = text
-        debugLabel.fadeIn()
+        debugLabel.fadeIn(0.5, delay: 0.0, alpha: 1.0, completion: nil)
     }
-    
-
     
     // Responsible for making changes to the UI that rely specifically
     // On the value of the next field
@@ -218,19 +229,21 @@ class RegistrationPageViewController: UIViewController {
      * All together, leading back to presenting view.
      */
     func submitRegistration() {
+        showLoading()
         RegistrationViewModel.sharedInstance.submitRegistrationData({success, error in
             if error != nil {
                 dispatch_async(GlobalMainQueue, {
+                    self.hideLoading()
                     self.alertController(withTitles: ["Ok"], message: (error?.localizedDescription)!, callbackHandler: [nil])
                 })
             } else {
                 dispatch_async(GlobalMainQueue, {
+                    self.hideLoading()
                     self.dismissViewControllerAnimated(true, completion: {void in
                 })
                 })
             }
         })
-        
     }
 }
 
@@ -248,3 +261,4 @@ extension RegistrationPageViewController: UITextFieldDelegate {
         }
     }
 }
+

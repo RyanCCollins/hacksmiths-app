@@ -43,12 +43,17 @@ class RegistrationViewModel: RegistrationDelegate {
         }
     }
     
+    func resetRegistration() {
+        currentField = RegistrationField(rawValue: 0)
+    }
+    
     /* Submit registration data to the API */
     func submitRegistrationData(completionHandler: CompletionHandler) {
         HacksmithsAPIClient.sharedInstance().registerWithEmail(registrationJSON, completionHandler: {success, error in
             if error != nil {
                 completionHandler(success: false, error: error)
             } else {
+                self.resetRegistration()
                 completionHandler(success: true, error: nil)
             }
         })

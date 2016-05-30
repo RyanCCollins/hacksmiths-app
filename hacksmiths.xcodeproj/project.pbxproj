@@ -326,6 +326,13 @@
 			name = Registration;
 			sourceTree = "<group>";
 		};
+		1F3DF1A71CFCA3C20000BBC8 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Presenter;
+			sourceTree = "<group>";
+		};
 		1F44B1BB1C5DDAC9004E196D /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -627,6 +634,7 @@
 		1FAD7DB01CEE5ECE0044BD94 /* Registration */ = {
 			isa = PBXGroup;
 			children = (
+				1F3DF1A71CFCA3C20000BBC8 /* Presenter */,
 				1F3DF1A31CFC908F0000BBC8 /* ViewModel */,
 				1FAD7DB11CEE5ED70044BD94 /* View */,
 			);
