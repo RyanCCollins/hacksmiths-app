@@ -25,6 +25,7 @@ class EventViewController: UIViewController {
     @IBOutlet weak var aboutEventStackView: UIStackView!
     @IBOutlet weak var eventInfoStackView: UIStackView!
     @IBOutlet weak var eventOrganizationHeaderStackView: UIStackView!
+    @IBOutlet weak var eventOrganizationNotFoundLabel: UILabel!
     @IBOutlet weak var organizationWebsiteButton: UIButton!
     @IBOutlet weak var organizationDescriptionLabel: UILabel!
     @IBOutlet weak var marketingInfoTextView: UITextView!
@@ -106,15 +107,18 @@ class EventViewController: UIViewController {
     
     func setupOrganization(forEvent event: Event) {
         if let organization = event.organization {
-            if let image = organization.image,
-                let descriptionString = organization.descriptionString,
-                let organizationWebsite = organization.website {
-                self.organizationImageView.image = image
-                self.organizationDescriptionLabel.text = descriptionString
-                self.organizationTitleLabel.text = organization.name
-                self.organizationWebsiteButton.titleLabel!.text = organizationWebsite
-                self.showOrganizationUI(forEvent: event)
+            if organization.image == nil && organization.logoUrl != nil {
+                self.organizationImageView.downloadedFrom(link: organization.logoUrl!, contentMode: .Center)
+            } else if organization.image != nil {
+                self.organizationImageView.image = organization.image
             }
+            
+            self.organizationTitleLabel.text = organization.name
+            self.organizationWebsiteButton.titleLabel!.text = organization.website ?? ""
+            self.showOrganizationUI(forEvent: event)
+        } else {
+            self.eventOrganizationNotFoundLabel.hidden = false
+            self.eventOrganizationNotFoundLabel.fadeIn()
         }
     }
     
@@ -164,10 +168,14 @@ class EventViewController: UIViewController {
     
     func setupParticipant(forEvent event: Event) {
         dispatch_async(GlobalMainQueue, {
-            if event.active == true {
-                
-            }
             self.participantHeaderStackView.fadeIn()
+        })
+    }
+    
+    func fadeOutUIElements() {
+        dispatch_async(GlobalMainQueue, {
+            self.eventInfoStackView.fadeOut()
+            
         })
     }
     

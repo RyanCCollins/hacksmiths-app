@@ -73,6 +73,7 @@
             <string>OpenSans</string>
             <string>OpenSans</string>
             <string>OpenSans</string>
+            <string>OpenSans</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -853,32 +854,6 @@
                                             </textView>
                                         </subviews>
                                     </stackView>
-                                    <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C3o-5y-gCb" customClass="SwiftyButton" customModule="SwiftyButton">
-                                        <rect key="frame" x="193" y="821" width="214" height="50"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="214" id="N6k-Oc-qcg"/>
-                                            <constraint firstAttribute="height" constant="50" id="zrD-ut-i60"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="22"/>
-                                        <state key="normal" title="SIGN ME UP!">
-                                            <color key="titleColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="buttonColor">
-                                                <color key="value" red="0.16862745100000001" green="0.56470588239999997" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                <color key="value" red="0.15410047769546509" green="0.41306763887405396" blue="0.69063264131546021" alpha="1" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowHeight">
-                                                <real key="value" value="0.0"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="didTapRegisterUpInside:" destination="DC3-eH-eDa" eventType="touchUpInside" id="L5M-JO-jmD"/>
-                                            <action selector="didTapSignupButtonUpInside:" destination="8E9-ee-mxd" eventType="touchUpInside" id="XkW-py-H4c"/>
-                                        </connections>
-                                    </button>
                                     <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="7xb-iV-E0f">
                                         <rect key="frame" x="133" y="1395" width="335" height="150"/>
                                         <constraints>
@@ -999,6 +974,24 @@
                                         <color key="textColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No information available about the Non-Profit at this time.  Please check back later." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RjL-u3-rE6">
+                                        <rect key="frame" x="8" y="1346" width="584" height="41"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="41" id="KFb-CZ-5hF"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="20"/>
+                                        <color key="textColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HfK-rW-YbI">
+                                        <rect key="frame" x="8" y="308" width="584" height="77"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="77" id="4Fy-1X-FCW"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="31"/>
+                                        <color key="textColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="eLU-gK-jmN" userLabel="MarketingInfoStackView">
                                         <rect key="frame" x="40" y="911" width="520" height="324"/>
                                         <subviews>
@@ -1098,23 +1091,42 @@
                                             </view>
                                         </subviews>
                                     </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HfK-rW-YbI">
-                                        <rect key="frame" x="8" y="308" width="584" height="77"/>
+                                    <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C3o-5y-gCb" customClass="SwiftyButton" customModule="SwiftyButton">
+                                        <rect key="frame" x="193" y="821" width="214" height="50"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="77" id="4Fy-1X-FCW"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="214" id="N6k-Oc-qcg"/>
+                                            <constraint firstAttribute="height" constant="50" id="zrD-ut-i60"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="31"/>
-                                        <color key="textColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="22"/>
+                                        <state key="normal" title="SIGN ME UP!">
+                                            <color key="titleColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="buttonColor">
+                                                <color key="value" red="0.16862745100000001" green="0.56470588239999997" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                <color key="value" red="0.15410047769546509" green="0.41306763887405396" blue="0.69063264131546021" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowHeight">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="didTapRegisterUpInside:" destination="DC3-eH-eDa" eventType="touchUpInside" id="L5M-JO-jmD"/>
+                                            <action selector="didTapSignupButtonUpInside:" destination="8E9-ee-mxd" eventType="touchUpInside" id="XkW-py-H4c"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.15294117647058825" green="0.20784313725490197" blue="0.25882352941176473" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="dz8-oS-DrK" secondAttribute="trailing" constant="8" id="15g-vO-t9E"/>
                                     <constraint firstAttribute="trailing" secondItem="Vn8-e6-SfX" secondAttribute="trailing" constant="8" id="169-9r-fg8"/>
+                                    <constraint firstItem="RjL-u3-rE6" firstAttribute="top" secondItem="e5F-hY-ZD7" secondAttribute="bottom" constant="20" id="22l-hz-naJ"/>
                                     <constraint firstItem="Src-aF-bz5" firstAttribute="leading" secondItem="VHh-Hr-Cdd" secondAttribute="leading" id="2UT-Ew-FaD"/>
                                     <constraint firstItem="ib4-5D-bEd" firstAttribute="centerX" secondItem="8By-sE-1by" secondAttribute="centerX" id="2zq-3n-Kmn"/>
                                     <constraint firstItem="8By-sE-1by" firstAttribute="centerX" secondItem="VHh-Hr-Cdd" secondAttribute="centerX" id="4Z9-FD-ths"/>
+                                    <constraint firstAttribute="trailing" secondItem="RjL-u3-rE6" secondAttribute="trailing" constant="8" id="54D-e7-h8y"/>
                                     <constraint firstAttribute="trailing" secondItem="zla-Fd-Vj8" secondAttribute="trailing" constant="40" id="56v-Rm-8vQ"/>
                                     <constraint firstItem="KfG-hw-pTC" firstAttribute="leading" secondItem="VHh-Hr-Cdd" secondAttribute="leading" constant="40" id="5EM-Hs-ZEi"/>
                                     <constraint firstAttribute="trailing" secondItem="HfK-rW-YbI" secondAttribute="trailing" constant="8" id="6tP-0o-tgg"/>
@@ -1133,7 +1145,9 @@
                                     <constraint firstAttribute="trailing" secondItem="c4K-DV-Gja" secondAttribute="trailing" constant="40" id="MUq-Rz-XnK"/>
                                     <constraint firstItem="ib4-5D-bEd" firstAttribute="top" secondItem="8By-sE-1by" secondAttribute="bottom" constant="8" id="MbT-VC-b7r"/>
                                     <constraint firstItem="Vn8-e6-SfX" firstAttribute="leading" secondItem="VHh-Hr-Cdd" secondAttribute="leading" constant="8" id="NVu-LR-zLe"/>
+                                    <constraint firstItem="7xb-iV-E0f" firstAttribute="top" secondItem="RjL-u3-rE6" secondAttribute="bottom" constant="8" id="OM1-dV-rr2"/>
                                     <constraint firstItem="8By-sE-1by" firstAttribute="top" secondItem="7xb-iV-E0f" secondAttribute="bottom" constant="8" id="R0Y-V0-YCL"/>
+                                    <constraint firstItem="RjL-u3-rE6" firstAttribute="leading" secondItem="VHh-Hr-Cdd" secondAttribute="leading" constant="8" id="S9M-DQ-NFs"/>
                                     <constraint firstItem="HfK-rW-YbI" firstAttribute="top" secondItem="Src-aF-bz5" secondAttribute="bottom" constant="8" id="W85-3p-bTi"/>
                                     <constraint firstItem="KfG-hw-pTC" firstAttribute="top" secondItem="ib4-5D-bEd" secondAttribute="bottom" constant="40" id="WPh-VN-MZV"/>
                                     <constraint firstItem="HfK-rW-YbI" firstAttribute="leading" secondItem="VHh-Hr-Cdd" secondAttribute="leading" constant="8" id="WQP-5t-k7V"/>
@@ -1190,6 +1204,7 @@
                         <outlet property="eventImageView" destination="Src-aF-bz5" id="CKR-SS-uqV"/>
                         <outlet property="eventInfoStackView" destination="Vn8-e6-SfX" id="ZYa-Gu-Hri"/>
                         <outlet property="eventOrganizationHeaderStackView" destination="e5F-hY-ZD7" id="1HL-dP-uPj"/>
+                        <outlet property="eventOrganizationNotFoundLabel" destination="RjL-u3-rE6" id="69K-Wc-dMZ"/>
                         <outlet property="headerLabel" destination="HfK-rW-YbI" id="ef4-i2-5ea"/>
                         <outlet property="marketingInfoStackView" destination="eLU-gK-jmN" id="scE-Zi-z6L"/>
                         <outlet property="marketingInfoTextView" destination="9t0-hn-pvx" id="Pci-uy-mu4"/>
