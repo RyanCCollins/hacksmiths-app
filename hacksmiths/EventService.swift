@@ -70,12 +70,17 @@ class EventService {
                             let nextEventJSON = NextEventJSON(json: nextEventData) {
                             
                             self.deleteAllSavedNextEventEntries()
-                            let nextEvent = NextEvent(nextEventJSON: nextEventJSON, context: GlobalStackManager.SharedManager.sharedContext)
+                            var nextEvent: NextEvent? = nil
                             /* Save the context for this next event model object */
                             GlobalStackManager.SharedManager.sharedContext.performBlockAndWait({
+                                nextEvent = NextEvent(nextEventJSON: nextEventJSON, context: GlobalStackManager.SharedManager.sharedContext)
                                 CoreDataStackManager.sharedInstance().saveContext()
                             })
-                            resolve(nextEvent)
+                            if let nextEvent = nextEvent {
+                                resolve(nextEvent)
+                            } else {
+                                reject(GlobalErrors.MissingData)
+                            }
                         } else {
                             reject(GlobalErrors.MissingData)
                         }

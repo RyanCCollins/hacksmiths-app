@@ -904,7 +904,7 @@
                                                 <color key="textColor" red="0.42655369640000002" green="0.475846082" blue="0.4802647531" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zx4-zt-d46">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zx4-zt-d46" userLabel="Where Label">
                                                 <rect key="frame" x="0.0" y="17" width="584" height="17"/>
                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
                                                 <color key="textColor" red="0.42655369640000002" green="0.475846082" blue="0.4802647531" alpha="1" colorSpace="calibratedRGB"/>
@@ -1200,7 +1200,8 @@
                         <outlet property="participantHeaderStackView" destination="KfG-hw-pTC" id="FOt-2w-zUt"/>
                         <outlet property="registerSignupButton" destination="C3o-5y-gCb" id="3JF-7m-BZr"/>
                         <outlet property="whenLabel" destination="tBE-aP-qdy" id="H2a-Ht-2Nr"/>
-                        <outlet property="whoLabel" destination="zx4-zt-d46" id="Pya-iN-cDl"/>
+                        <outlet property="whereLabel" destination="zx4-zt-d46" id="5Gf-DL-cOD"/>
+                        <segue destination="WN5-vs-oyA" kind="presentation" identifier="ShowSignupToRegisterForEvent" id="Hdj-kS-PrG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tmi-6e-Sx0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3007,4 +3008,7 @@ We build tools designed to help non-profit organizations streamline their philan
         <image name="twitter-logo" width="170" height="139"/>
         <image name="x-in-square" width="32" height="32"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Hdj-kS-PrG"/>
+    </inferredMetricsTieBreakers>
 </document>

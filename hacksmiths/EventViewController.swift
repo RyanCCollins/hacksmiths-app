@@ -14,7 +14,7 @@ import Foundation
 class EventViewController: UIViewController {
     @IBOutlet weak var eventImageView: UIImageView!
     @IBOutlet weak var headerLabel: UILabel!
-    @IBOutlet weak var whoLabel: UILabel!
+    @IBOutlet weak var whereLabel: UILabel!
     @IBOutlet weak var aboutTextView: UITextView!
     @IBOutlet weak var registerSignupButton: SwiftyButton!
     @IBOutlet weak var organizationImageView: UIImageView!
@@ -36,11 +36,6 @@ class EventViewController: UIViewController {
     var currentEvent: Event?
     var activityIndicator: IGActivityIndicatorView!
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.delegate = self
@@ -48,6 +43,11 @@ class EventViewController: UIViewController {
         eventPresenter.attachView(self)
         setActivityIndicator()
         eventPresenter.fetchAndCheckAPIForEvent()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        toggleButtonTitle(forAuthenticatedState: UserService.sharedInstance().authenticated)
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -75,12 +75,16 @@ class EventViewController: UIViewController {
             self.aboutTextView.text = event.descriptionString
             self.whenLabel.text = event.formattedDateString
             
+            if let place = event.place {
+                self.whereLabel.text = place
+            }
             self.collectionView.reloadData()
         })
         setupSectionOne(forEvent: event)
         setupOrganization(forEvent: event)
         setupMarketingInfo(forEvent: event)
         setupButton(forEvent: event)
+        setButtonState(forEvent: event)
         setupParticipant(forEvent: event)
     }
     
@@ -109,7 +113,6 @@ class EventViewController: UIViewController {
                 self.organizationDescriptionLabel.text = descriptionString
                 self.organizationTitleLabel.text = organization.name
                 self.organizationWebsiteButton.titleLabel!.text = organizationWebsite
-                self.whoLabel.text = organization.name
                 self.showOrganizationUI(forEvent: event)
             }
         }
@@ -143,6 +146,22 @@ class EventViewController: UIViewController {
         })
     }
     
+    func setButtonState(forEvent event: Event) {
+        if event.active && event.spotsAvailable {
+            registerSignupButton.enabled = true
+        } else {
+            registerSignupButton.enabled = false
+        }
+    }
+    
+    func toggleButtonTitle(forAuthenticatedState authenticated: Bool){
+        if authenticated {
+            registerSignupButton.titleLabel!.text = "I WANT TO HELP!"
+        } else {
+             registerSignupButton.titleLabel!.text = "SIGN IN TO HELP!"
+        }
+    }
+    
     func setupParticipant(forEvent event: Event) {
         dispatch_async(GlobalMainQueue, {
             if event.active == true {
@@ -150,10 +169,6 @@ class EventViewController: UIViewController {
             }
             self.participantHeaderStackView.fadeIn()
         })
-    }
-    
-    func setParticipantHeader(forEvent: Event) {
-        
     }
     
     /* Open the URL for the website if possible. */
@@ -195,6 +210,8 @@ class EventViewController: UIViewController {
             if let currentEvent = currentEvent {
                 eventPresenter.rsvpForEvent(currentEvent)
             }
+        } else {
+            performSegueWithIdentifier("ShowSignupToRegisterForEvent", sender: self)
         }
     }
 }
@@ -221,11 +238,9 @@ extension EventViewController: EventView {
             let message = error?.localizedDescription ?? "An unknown error occurred."
             alertController(withTitles: ["OK"], message: message, callbackHandler: [nil])
         } else {
-            startLoading()
             self.eventPresenter.getEventData(newEvent!.idString)
         }
     }
-    
     
     func didReceiveEventData(sender: EventPresenter, didSucceed event: Event?, didFail error: NSError?) {
         finishLoading()
@@ -244,13 +259,20 @@ extension EventViewController: EventView {
         print("Set debug message: \(message)")
     }
     
-
     func didRSVPForEvent(sender: EventPresenter, success: Bool, error: NSError?) {
         if error != nil {
             self.alertController(withTitles: ["OK"], message: (error?.localizedDescription)!, callbackHandler: [nil])
         } else {
-            
+            self.alertController(withTitles: ["I'll do it later", "Sign up for Slack"], message: "Thanks for helping!  Join us on slack and we'll see if we can find a place for you!", callbackHandler: [nil, {Void in
+                    self.openSlackNow()
+            }])
         }
+    }
+    
+    func openSlackNow() {
+        let urlString = "https://hacksmiths-slack-invite.herokuapp.com/"
+        let slackUrl = NSURL(string: urlString)
+        UIApplication.sharedApplication().openURL(slackUrl!)
     }
     
 }

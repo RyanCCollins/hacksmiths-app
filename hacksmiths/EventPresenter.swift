@@ -89,8 +89,6 @@ class EventPresenter {
         
     }
 
-
-    
     func getEventData(nextEventId: String) {
         eventService.getEvent(nextEventId).then() {
             event -> () in

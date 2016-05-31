@@ -59,8 +59,11 @@ struct EventJSON: Decodable {
         self.startDateString = startDateString
         self.endDateString = endDateString
         
-        let marketingData: String = (EventKeys.marketingInfo <~~ json)!
-        self.marketingInfo = marketingData.stringByRemovingHTML()
+        if let marketingData: String? = EventKeys.marketingInfo <~~ json {
+            self.marketingInfo = marketingData!.stringByRemovingHTML()
+        } else {
+            self.marketingInfo = ""
+        }
         
         self.featureImageURL = EventKeys.featureImageURL <~~ json
         self.registrationStartDateString = EventKeys.registrationStartDate <~~ json
