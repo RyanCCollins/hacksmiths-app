@@ -11,12 +11,13 @@ import UIKit
 class ParticipantCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
+    let missingImage = UIImage(named: "avatar-missing")
     
     func setCellForParticipant(participant: Participant) {
         if let imageURL = participant.imageURLString {
             self.imageView.downloadedFrom(link: imageURL, contentMode: .Center)
         } else {
-            imageView.image = UIImage(named: "avatar-missing")
+            imageView.image = missingImage
         }
         
         self.nameLabel.text = participant.name
@@ -29,5 +30,6 @@ class ParticipantCollectionViewCell: UICollectionViewCell {
         imageView.clipsToBounds = true
         imageView.layer.borderWidth = 3.0
         imageView.layer.borderColor = UIColor.whiteColor().CGColor
+        imageView.image = missingImage
     }
 }

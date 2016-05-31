@@ -14,6 +14,7 @@ class PersonTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var aboutLabel: UILabel!
     @IBOutlet weak var personImageView: UIImageView!
+    let personImage = UIImage(named: "avatar-missing")
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,14 +23,15 @@ class PersonTableViewCell: UITableViewCell {
         personImageView?.clipsToBounds = true
         personImageView?.layer.borderWidth = 3.0
         personImageView.layer.borderColor = UIColor.whiteColor().CGColor
-        personImageView.image = UIImage(named: "avatar-missing")
+        personImageView.image = personImage
     }
     
     func showImage(image: UIImage?) {
-        guard image != nil else {
-            return
+        if image == nil {
+            personImageView.image = personImage
+        } else {
+            personImageView.image = image
         }
-        personImageView.image = image
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

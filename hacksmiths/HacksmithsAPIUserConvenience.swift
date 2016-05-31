@@ -147,7 +147,7 @@ extension HacksmithsAPIClient {
                         /* Create a person and save the context */
                         let person = Person(dictionary: member, context: self.sharedContext)
                         
-                        self.sharedContext.performBlockAndWait({
+                        GlobalStackManager.SharedManager.sharedContext.performBlockAndWait({
                             CoreDataStackManager.sharedInstance().saveContext()
                         })
                         
@@ -160,7 +160,7 @@ extension HacksmithsAPIClient {
                     }
                 }
 
-                self.sharedContext.performBlockAndWait({
+                GlobalStackManager.SharedManager.sharedContext.performBlockAndWait({
                     CoreDataStackManager.sharedInstance().saveContext()
                 })
                 self.syncInProgress = false

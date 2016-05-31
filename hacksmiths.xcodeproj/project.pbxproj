@@ -34,6 +34,7 @@
 		1F3DF1A61CFC922B0000BBC8 /* RegistrationJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3DF1A51CFC922B0000BBC8 /* RegistrationJSON.swift */; };
 		1F3DF1AA1CFCEEB70000BBC8 /* Star.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3DF1A91CFCEEB70000BBC8 /* Star.swift */; };
 		1F3DF1B01CFCF58A0000BBC8 /* StarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3DF1AF1CFCF58A0000BBC8 /* StarViewModel.swift */; };
+		1F3DF1B21CFD07120000BBC8 /* ProfileHelpPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3DF1B11CFD07120000BBC8 /* ProfileHelpPopoverViewController.swift */; };
 		1F44B1BA1C5DDAB9004E196D /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F44B1B91C5DDAB9004E196D /* CoreDataStackManager.swift */; };
 		1F46B9EC1CA467250065D50D /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F46B9EB1CA467250065D50D /* UserData.swift */; };
 		1F498E151CF78C93009A5AB2 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F498E141CF78C93009A5AB2 /* SettingsPresenter.swift */; };
@@ -152,6 +153,7 @@
 		1F3DF1A51CFC922B0000BBC8 /* RegistrationJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationJSON.swift; sourceTree = "<group>"; };
 		1F3DF1A91CFCEEB70000BBC8 /* Star.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Star.swift; sourceTree = "<group>"; };
 		1F3DF1AF1CFCF58A0000BBC8 /* StarViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarViewModel.swift; sourceTree = "<group>"; };
+		1F3DF1B11CFD07120000BBC8 /* ProfileHelpPopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileHelpPopoverViewController.swift; sourceTree = "<group>"; };
 		1F44B1B91C5DDAB9004E196D /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
 		1F46B9EB1CA467250065D50D /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		1F498E141CF78C93009A5AB2 /* SettingsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
@@ -879,6 +881,7 @@
 			children = (
 				1F3DF1501CFABE0E0000BBC8 /* EditProfileViewController.swift */,
 				1FC6DE3D1C9F36BF000E8159 /* ProfileViewController.swift */,
+				1F3DF1B11CFD07120000BBC8 /* ProfileHelpPopoverViewController.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1116,6 +1119,7 @@
 				1FA2E55B1C67FF020085FC7D /* GlobalConstants.swift in Sources */,
 				1F846CB31CEBAF3C009166D4 /* BaseRouter.swift in Sources */,
 				1F846CB01CEBADC8009166D4 /* EventService.swift in Sources */,
+				1F3DF1B21CFD07120000BBC8 /* ProfileHelpPopoverViewController.swift in Sources */,
 				1FEA07CE1CF00BE400D4BDA7 /* LoginPresenter.swift in Sources */,
 				1FE4B3131C6ADE050011ECAE /* PersonViewController.swift in Sources */,
 				1F846CC71CECF7D5009166D4 /* EventJSON.swift in Sources */,

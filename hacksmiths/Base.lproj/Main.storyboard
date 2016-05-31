@@ -36,6 +36,7 @@
             <string>OpenSans-Light</string>
             <string>OpenSans-Light</string>
             <string>OpenSans-Light</string>
+            <string>OpenSans-Light</string>
         </mutableArray>
         <mutableArray key="OpenSans-Regular.ttf">
             <string>OpenSans</string>
@@ -473,7 +474,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What should we call you?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M1j-0s-Q07">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What should we call you?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M1j-0s-Q07" customClass="SpringLabel" customModule="Spring">
                                 <rect key="frame" x="20" y="72" width="560" height="71"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="71" id="kru-Oy-yDo"/>
@@ -481,6 +482,13 @@
                                 <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="28"/>
                                 <color key="textColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="animation" value="fadeIn"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autostart" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="duration">
+                                        <real key="value" value="0.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </label>
                             <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6e6-Kv-zoI" customClass="IsaoTextField" customModule="TextFieldEffects">
                                 <rect key="frame" x="20" y="273" width="560" height="50"/>
@@ -736,7 +744,7 @@
                                             <constraint firstAttribute="height" constant="46" id="AOd-Z3-xCw"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="24"/>
-                                        <color key="textColor" red="0.85043728351593018" green="0.21816034615039825" blue="0.15920260548591614" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.67455112934112549" green="0.15692374110221863" blue="0.10914970934391022" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -1669,12 +1677,12 @@
                                             <constraint firstAttribute="height" constant="24" id="9qh-ce-eEO"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="animation" value="wiggle"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="animation" value="squeezeLeft"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="delay">
                                                 <real key="value" value="1.5"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="duration">
-                                                <real key="value" value="1"/>
+                                                <real key="value" value="0.5"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="autostart" value="YES"/>
                                         </userDefinedRuntimeAttributes>
@@ -1745,10 +1753,10 @@
                                                 <real key="value" value="0.5"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="duration">
-                                                <real key="value" value="1"/>
+                                                <real key="value" value="0.5"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="autostart" value="YES"/>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="animation" value="fall"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="animation" value="squeezeRight"/>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
                                 </subviews>
@@ -2214,12 +2222,12 @@ We build tools designed to help non-profit organizations streamline their philan
                                                     <constraint firstAttribute="width" secondItem="r8B-A5-pDw" secondAttribute="height" multiplier="1:1" id="Qfw-9V-MY7"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="animation" value="fadeInDown"/>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="animation" value="squeezeRight"/>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="delay">
-                                                        <real key="value" value="0.5"/>
+                                                        <real key="value" value="0.0"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="duration">
-                                                        <real key="value" value="1"/>
+                                                        <real key="value" value="0.5"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="autostart" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
@@ -2318,12 +2326,12 @@ We build tools designed to help non-profit organizations streamline their philan
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="delay">
-                                                        <real key="value" value="0.5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="duration">
                                                         <real key="value" value="1"/>
                                                     </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="animation" value="fadeInUp"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="duration">
+                                                        <real key="value" value="0.5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="animation" value="squeezeLeft"/>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="autostart" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                             </imageView>
@@ -2423,6 +2431,44 @@ We build tools designed to help non-profit organizations streamline their philan
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9On-3n-OD7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="248" y="-2535"/>
+        </scene>
+        <!--Profile Help Popover View Controller-->
+        <scene sceneID="5IW-2S-aAM">
+            <objects>
+                <viewController id="o1I-FK-JJl" customClass="ProfileHelpPopoverViewController" customModule="hacksmiths" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oc0-bt-qzD"/>
+                        <viewControllerLayoutGuide type="bottom" id="mJu-Av-glf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pRD-gN-pbi">
+                        <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vrm-W9-vvj">
+                                <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="17"/>
+                                <color key="textColor" red="0.85043728351593018" green="0.21816034615039825" blue="0.15920260548591614" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.15868747234344482" green="0.21822044253349304" blue="0.30320093035697937" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="vrm-W9-vvj" firstAttribute="top" secondItem="oc0-bt-qzD" secondAttribute="bottom" id="2Xu-N0-Qc0"/>
+                            <constraint firstItem="vrm-W9-vvj" firstAttribute="leading" secondItem="pRD-gN-pbi" secondAttribute="leading" id="Mfk-99-Yg9"/>
+                            <constraint firstAttribute="trailing" secondItem="vrm-W9-vvj" secondAttribute="trailing" id="ctl-9T-Doq"/>
+                            <constraint firstItem="mJu-Av-glf" firstAttribute="top" secondItem="vrm-W9-vvj" secondAttribute="bottom" id="ic6-Uf-m8N"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="200" height="200"/>
+                    <connections>
+                        <outlet property="helpTextLabel" destination="vrm-W9-vvj" id="hsS-qM-8co"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XHq-iT-2qb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-155" y="-1106"/>
         </scene>
         <!--Me-->
         <scene sceneID="TfA-Ip-Ls4">
@@ -2688,13 +2734,19 @@ We build tools designed to help non-profit organizations streamline their philan
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IVX-4q-6ku">
                                                 <rect key="frame" x="482" y="0.0" width="38" height="50"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LSp-IR-NQl">
+                                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LSp-IR-NQl">
                                                         <rect key="frame" x="13" y="12" width="25" height="25"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="25" id="YlT-HS-xpb"/>
                                                             <constraint firstAttribute="width" constant="25" id="cD7-n4-ffd"/>
                                                         </constraints>
                                                         <state key="normal" image="question-mark"/>
+                                                        <connections>
+                                                            <action selector="didTapHelpButtonUpInside:" destination="Z2L-zr-2tR" eventType="touchUpInside" id="eTl-H1-IKM"/>
+                                                            <segue destination="o1I-FK-JJl" kind="popoverPresentation" identifier="ShowProfileHelpPopover" popoverAnchorView="LSp-IR-NQl" id="1JY-Eu-gtZ">
+                                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                                            </segue>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -2730,13 +2782,16 @@ We build tools designed to help non-profit organizations streamline their philan
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b9R-PJ-AQD">
                                                 <rect key="frame" x="482" y="0.0" width="38" height="50"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fPL-es-z5Y">
+                                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fPL-es-z5Y">
                                                         <rect key="frame" x="13" y="12" width="25" height="25"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="25" id="Kqg-sp-6Tg"/>
                                                             <constraint firstAttribute="width" constant="25" id="igp-t4-hKC"/>
                                                         </constraints>
                                                         <state key="normal" image="question-mark"/>
+                                                        <connections>
+                                                            <action selector="didTapHelpButtonUpInside:" destination="Z2L-zr-2tR" eventType="touchUpInside" id="LGm-tl-Oek"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -2772,13 +2827,16 @@ We build tools designed to help non-profit organizations streamline their philan
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RL5-jM-X2a">
                                                 <rect key="frame" x="482" y="0.0" width="38" height="50"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NVR-Sn-hPe">
+                                                    <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NVR-Sn-hPe">
                                                         <rect key="frame" x="13" y="12" width="25" height="25"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="25" id="nkX-Uk-lag"/>
                                                             <constraint firstAttribute="width" constant="25" id="uCm-an-NS5"/>
                                                         </constraints>
                                                         <state key="normal" image="question-mark"/>
+                                                        <connections>
+                                                            <action selector="didTapHelpButtonUpInside:" destination="Z2L-zr-2tR" eventType="touchUpInside" id="zHv-38-2Gs"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

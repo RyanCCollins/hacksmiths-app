@@ -22,6 +22,8 @@ class EditProfileViewController: UIViewController, EditProfileView {
     @IBOutlet weak var availabilityExplanationTextField: IsaoTextField!
     var formChanged = false
     private var presenter = EditProfilePresenter()
+    /* Edge case where it's actually better to use a global for a value outside the scope*/
+    private var helpLabelText = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,6 +82,21 @@ class EditProfileViewController: UIViewController, EditProfileView {
         }
     }
     
+    @IBAction func didTapHelpButtonUpInside(sender: AnyObject) {
+        let textField = ProfileTextFields(rawValue: sender.tag)
+        helpLabelText = helpText(forField: textField!)
+        performSegueWithIdentifier("ShowProfileHelpPopover", sender: sender)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ShowProfileHelpPopover" {
+            let profileHelpViewController = segue.destinationViewController as! ProfileHelpPopoverViewController
+            profileHelpViewController.helpText = helpLabelText
+            profileHelpViewController.modalPresentationStyle = .Popover
+            profileHelpViewController.popoverPresentationController!.delegate = self
+        }
+    }
+    
     @IBAction private func handleFormUpdate(sender: IsaoTextField) {
         formChanged = true
         let textField = ProfileTextFields(rawValue: sender.tag)
@@ -121,6 +138,27 @@ class EditProfileViewController: UIViewController, EditProfileView {
         AvailabilityExplanation
     }
     
+    private func helpText(forField field: ProfileTextFields) -> String {
+        switch field {
+        case .HaveExperience:
+            return "You checked off that you are available as a mentor.  What experience do you have to offer?"
+        case .WantExperience:
+            return "You checked off that you are looking for a mentor.  What experience are you looking for?"
+        case .AvailabilityExplanation:
+            return "You checked off that you are available for events.  Write a brief description of your availability."
+        default:
+            return ""
+        }
+    }
+    
+}
+
+/** Show popover view for help text
+ */
+extension EditProfileViewController: UIPopoverPresentationControllerDelegate {
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .None
+    }
 }
 
 
