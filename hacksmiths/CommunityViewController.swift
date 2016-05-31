@@ -52,6 +52,10 @@ class CommunityViewController: UITableViewController {
         self.activityIndicator = IGActivityIndicatorView(inview: view)
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        searchController.active = false
+    }
+    
     /** Convenience for fetching the data from pull to refresh control
      */
     func fetchNetworkData() {

@@ -22,8 +22,15 @@ class EventViewController: UIViewController {
     @IBOutlet weak var whenLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var aboutEventStackView: UIStackView!
+    @IBOutlet weak var eventInfoStackView: UIStackView!
+    @IBOutlet weak var eventOrganizationHeaderStackView: UIStackView!
     @IBOutlet weak var organizationWebsiteButton: UIButton!
     @IBOutlet weak var organizationDescriptionLabel: UILabel!
+    @IBOutlet weak var marketingInfoTextView: UITextView!
+    @IBOutlet weak var marketingInfoStackView: UIStackView!
+    @IBOutlet weak var participantHeaderStackView: UIStackView!
+    
     private let eventPresenter = EventPresenter(eventService: EventService())
     
     var currentEvent: Event?
@@ -60,31 +67,90 @@ class EventViewController: UIViewController {
     func updateUserInterface(forEvent event: Event) {
         
         dispatch_async(GlobalMainQueue, {
-            if let imageURL = event.featureImageURL {
-                self.eventImageView.downloadedFrom(link: imageURL, contentMode: .ScaleAspectFit)
-            }
+
             self.eventImageView.image = event.image
             self.headerLabel.text = event.title
-            self.aboutTextView.text = event.descriptionString
-            self.aboutTextView.textColor = UIColor.whiteColor()
             
+            self.aboutTextView.text = event.descriptionString
             self.whenLabel.text = event.formattedDateString
-            self.aboutTextView.text = event.descriptionString
             
-            if let organization = self.currentEvent?.organization {
-                if let image = organization.image,
-                   let descriptionString = organization.descriptionString,
-                   let organizationWebsite = organization.website {
-                    self.organizationImageView.image = image
-                    self.organizationDescriptionLabel.text = descriptionString
-                    self.organizationTitleLabel.text = organization.name
-                    self.organizationWebsiteButton.titleLabel!.text = organizationWebsite
-                    self.organizationWebsiteButton.hidden = false
-                    self.whoLabel.text = organization.name
-                }
-            }
             self.collectionView.reloadData()
         })
+        setupSectionOne(forEvent: event)
+        setupOrganization(forEvent: event)
+        setupMarketingInfo(forEvent: event)
+        setupButton(forEvent: event)
+        setupParticipant(forEvent: event)
+    }
+    
+    func setupSectionOne(forEvent event: Event) {
+        dispatch_async(GlobalMainQueue, {
+            if let imageURL = event.featureImageURL {
+                self.eventImageView.downloadedFrom(link: imageURL, contentMode: .ScaleAspectFit)
+                self.eventImageView.fadeIn()
+            }
+            
+            self.headerLabel.fadeIn()
+            self.eventInfoStackView.fadeIn()
+            self.aboutEventStackView.fadeIn()
+            
+        })
+    }
+    
+    func setupOrganization(forEvent event: Event) {
+        if let organization = event.organization {
+            if let image = organization.image,
+                let descriptionString = organization.descriptionString,
+                let organizationWebsite = organization.website {
+                self.organizationImageView.image = image
+                self.organizationDescriptionLabel.text = descriptionString
+                self.organizationTitleLabel.text = organization.name
+                self.organizationWebsiteButton.titleLabel!.text = organizationWebsite
+                self.whoLabel.text = organization.name
+                self.showOrganizationUI(forEvent: event)
+            }
+        }
+    }
+    
+    func showOrganizationUI(forEvent event: Event) {
+        dispatch_async(GlobalMainQueue, {
+            self.eventOrganizationHeaderStackView.fadeIn()
+            self.organizationTitleLabel.fadeIn()
+            self.organizationImageView.fadeIn()
+            self.organizationDescriptionLabel.fadeIn()
+            if event.organization?.website != nil {
+                self.organizationWebsiteButton.hidden = false
+            }
+        })
+    }
+    
+    func setupMarketingInfo(forEvent event: Event) {
+        if let marketingInfo = event.marketingInfo {
+            self.marketingInfoStackView.hidden = marketingInfo.isEmpty
+            self.marketingInfoTextView.text = marketingInfo
+            dispatch_async(GlobalMainQueue, {
+                self.marketingInfoStackView.fadeIn()
+            })
+        }
+    }
+    
+    func setupButton(forEvent event: Event) {
+        dispatch_async(GlobalMainQueue, {
+            self.registerSignupButton.fadeIn()
+        })
+    }
+    
+    func setupParticipant(forEvent event: Event) {
+        dispatch_async(GlobalMainQueue, {
+            if event.active == true {
+                
+            }
+            self.participantHeaderStackView.fadeIn()
+        })
+    }
+    
+    func setParticipantHeader(forEvent: Event) {
+    
     }
     
     /* Open the URL for the website if possible. */
@@ -178,7 +244,7 @@ extension EventViewController: EventView {
 
     func didRSVPForEvent(sender: EventPresenter, success: Bool, error: NSError?) {
         if error != nil {
-            
+            self.alertController(withTitles: ["OK"], message: (error?.localizedDescription)!, callbackHandler: [nil])
         } else {
             
         }

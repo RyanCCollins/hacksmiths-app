@@ -489,14 +489,12 @@
 				1F846CB41CEBB153009166D4 /* APIKeys.plist */,
 			);
 			name = Support;
-			path = ..;
 			sourceTree = "<group>";
 		};
 		1F846CBA1CEBF547009166D4 /* ControllerModules */ = {
 			isa = PBXGroup;
 			children = (
 				1F3DF1AB1CFCF54C0000BBC8 /* Person */,
-				1F3DF14C1CFA7BFB0000BBC8 /* HelpLabel */,
 				1FEA07C01CEFFCF500D4BDA7 /* IdeaSubmission */,
 				1FAD7DB61CEE5F7A0044BD94 /* Community */,
 				1FC6DE451C9F59EB000E8159 /* User & Auth */,
@@ -587,6 +585,7 @@
 		1FA5A53C1C53610300722E55 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1F846CB61CEBB170009166D4 /* Support */,
 				1FAD7DBD1CEE69C20044BD94 /* Storyboard & Assets */,
 				1FAD7DBC1CEE69A10044BD94 /* App Configuration Files */,
 				1FAD7DBB1CEE69870044BD94 /* Libraries */,
@@ -624,7 +623,6 @@
 			isa = PBXGroup;
 			children = (
 				1FAD7DAF1CEE5DFC0044BD94 /* Global */,
-				1F846CB61CEBB170009166D4 /* Support */,
 				1F44B1BC1C5DDB35004E196D /* Model */,
 				1FF998A21C713888003D98B2 /* View */,
 				1F846CBA1CEBF547009166D4 /* ControllerModules */,
@@ -818,6 +816,7 @@
 		1FEA07C01CEFFCF500D4BDA7 /* IdeaSubmission */ = {
 			isa = PBXGroup;
 			children = (
+				1F3DF14C1CFA7BFB0000BBC8 /* HelpLabel */,
 				1FEA07C61CEFFD4D00D4BDA7 /* View */,
 				1FEA07C31CEFFD3500D4BDA7 /* Presenter */,
 			);

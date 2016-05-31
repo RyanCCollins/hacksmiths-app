@@ -16,7 +16,6 @@ class HelpLabelViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         helpLabel.text = helpLabelText
-        self.preferredContentSize = CGSizeMake(300, 200)
     }
     
     func setLabelText(text: String) {

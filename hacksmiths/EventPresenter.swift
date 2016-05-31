@@ -17,8 +17,6 @@ protocol EventView: NSObjectProtocol {
     func didLoadCachedEvent(event: Event)
     func didReceiveEventData(sender: EventPresenter, didSucceed event: Event?, didFail error: NSError?)
     func handleSetDebugMessage(message: String)
-//    func getEvent(sender: EventPresenter, didSucceed event: Event)
-//    func getEvent(sender: EventPresenter, didFail error: NSError)
     func didRSVPForEvent(sender: EventPresenter, success: Bool, error: NSError?)
 }
 
@@ -122,6 +120,7 @@ class EventPresenter {
             }
             return returnEvent
         } catch let error as NSError {
+            print("An error occured in performEvent \(error)")
             return nil
         }
     }
