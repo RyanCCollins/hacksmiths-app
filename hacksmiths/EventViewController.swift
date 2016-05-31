@@ -64,8 +64,9 @@ class EventViewController: UIViewController {
         self.eventPresenter.fetchAndCheckAPIForEvent()
     }
     
+    /** Logic for setting event information UI
+     */
     func updateUserInterface(forEvent event: Event) {
-        
         dispatch_async(GlobalMainQueue, {
 
             self.eventImageView.image = event.image
@@ -83,6 +84,8 @@ class EventViewController: UIViewController {
         setupParticipant(forEvent: event)
     }
     
+    /** Setup the first section of the event page
+     */
     func setupSectionOne(forEvent event: Event) {
         dispatch_async(GlobalMainQueue, {
             if let imageURL = event.featureImageURL {
@@ -150,7 +153,7 @@ class EventViewController: UIViewController {
     }
     
     func setParticipantHeader(forEvent: Event) {
-    
+        
     }
     
     /* Open the URL for the website if possible. */
