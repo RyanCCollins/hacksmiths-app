@@ -14,44 +14,44 @@ import CoreData
 
 class EventService {
     
-    /* Return a promise of an optional NextEvent, determining if the event status has changed and a next event
-     * The event returned from the Event Status endpoint is not the same as the event stored on the device currently
-     * - return = Promise of Optional NextEvent determining that event has changed status or not.
-     */
-    func fetchNextEventIfStatusChanged(currentEvent: Event) -> Promise<NextEvent?> {
-        return Promise {resolve, reject in
-            let router = EventRouter(endpoint: .GetEventStatus())
-            HTTPManager.sharedManager.request(router)
-                .validate()
-                .responseJSON {
-                    response in
-                    
-                    switch response.result {
-                    case .Success(let JSON):
-                        if let nextEventData = JSON["event"] as? JsonDict,
-                            let nextEventJSON = NextEventJSON(json: nextEventData) {
-                            
-                            /* If our event has not changed resolve with no new next event */
-                            if currentEvent.idString == nextEventJSON.id {
-                                resolve(nil)
-                            } else {
-                                self.deleteAllSavedNextEventEntries()
-                                let nextEvent = NextEvent(nextEventJSON: nextEventJSON, context: GlobalStackManager.SharedManager.sharedContext)
-                                
-                                GlobalStackManager.SharedManager.sharedContext.performBlockAndWait({
-                                    CoreDataStackManager.sharedInstance().saveContext()
-                                })
-                                resolve(nextEvent)
-                            }
-                            
-                        }
-                        
-                    case .Failure(let error):
-                        reject(error)
-                }
-            }
-        }
-    }
+//    /* Return a promise of an optional NextEvent, determining if the event status has changed and a next event
+//     * The event returned from the Event Status endpoint is not the same as the event stored on the device currently
+//     * - return = Promise of Optional NextEvent determining that event has changed status or not.
+//     */
+//    func fetchNextEventIfStatusChanged(currentEvent: Event) -> Promise<NextEvent?> {
+//        return Promise {resolve, reject in
+//            let router = EventRouter(endpoint: .GetEventStatus())
+//            HTTPManager.sharedManager.request(router)
+//                .validate()
+//                .responseJSON {
+//                    response in
+//                    
+//                    switch response.result {
+//                    case .Success(let JSON):
+//                        if let nextEventData = JSON["event"] as? JsonDict,
+//                            let nextEventJSON = NextEventJSON(json: nextEventData) {
+//                            
+//                            /* If our event has not changed resolve with no new next event */
+//                            if currentEvent.idString == nextEventJSON.id {
+//                                resolve(nil)
+//                            } else {
+//                                
+//                                let nextEvent = NextEvent(nextEventJSON: nextEventJSON, context: GlobalStackManager.SharedManager.sharedContext)
+//                                
+//                                GlobalStackManager.SharedManager.sharedContext.performBlockAndWait({
+//                                    CoreDataStackManager.sharedInstance().saveContext()
+//                                })
+//                                resolve(nextEvent)
+//                            }
+//                            
+//                        }
+//                        
+//                    case .Failure(let error):
+//                        reject(error)
+//                }
+//            }
+//        }
+//    }
     
     
     
@@ -69,7 +69,6 @@ class EventService {
                         if let nextEventData = JSON["event"] as? JsonDict,
                             let nextEventJSON = NextEventJSON(json: nextEventData) {
                             
-                            self.deleteAllSavedNextEventEntries()
                             var nextEvent: NextEvent? = nil
                             /* Save the context for this next event model object */
                             GlobalStackManager.SharedManager.sharedContext.performBlockAndWait({
@@ -114,7 +113,7 @@ class EventService {
                                 /* Handle parsing the participant array and create the event model */
                                 /* BOOM */
                                 GlobalStackManager.SharedManager.sharedContext.performBlockAndWait({
-                                    self.deleteAllEventEntries()
+
                                     let participantJSON = JSON["participants"] as! [JsonDict]
                                     let participantJSONArray = [ParticipantJSON].fromJSONArray(participantJSON)
                                     let event = Event(eventJson: eventJSON, context: GlobalStackManager.SharedManager.sharedContext)
@@ -192,31 +191,6 @@ class EventService {
         })
         
         return organization
-    }
-    
-    /* Next event should only hold a reference to the next event, so
-     Using this convenience, all saved next event entries should be deleted when
-     Creating a new one.
-     */
-    private func deleteAllSavedNextEventEntries() {
-        let fetchRequest = NSFetchRequest(entityName: "NextEvent")
-        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-        do {
-            try CoreDataStackManager.sharedInstance().persistentStoreCoordinator?.executeRequest(deleteRequest, withContext: GlobalStackManager.SharedManager.sharedContext)
-        } catch let error as NSError {
-            print("An error occured while deleting all next event items.  Whoops!")
-        }
-    }
-    
-    private func deleteAllEventEntries() {
-        let fetchRequest = NSFetchRequest(entityName: "Event")
-        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-        do {
-            try CoreDataStackManager.sharedInstance().persistentStoreCoordinator?.executeRequest(deleteRequest, withContext: GlobalStackManager.SharedManager.sharedContext)
-            
-        } catch let error as NSError {
-            print("An error occured while deleting all event data")
-        }
     }
 }
 

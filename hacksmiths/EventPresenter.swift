@@ -13,10 +13,9 @@ import PromiseKit
 protocol EventView: NSObjectProtocol {
     func startLoading()
     func finishLoading()
-    func didReceiveNewEvent(sender: EventPresenter, newEvent: NextEvent?, error: NSError?)
-    func didLoadCachedEvent(event: Event)
+    func didReceiveNewEvent(sender: EventPresenter, didSucceed event: NextEvent?, error: NSError?)
+    func didLoadCachedEvent(sender: EventPresenter, didSucceed event: Event?, error: NSError?)
     func didReceiveEventData(sender: EventPresenter, didSucceed event: Event?, didFail error: NSError?)
-    func handleSetDebugMessage(message: String)
     func didRSVPForEvent(sender: EventPresenter, success: Bool, error: NSError?)
 }
 
@@ -59,83 +58,45 @@ class EventPresenter {
         }
     }
     
-    func fetchAndCheckAPIForEvent() {
-        // 1. Check if there is a fetched event and load it.
-        if let event = performEventFetch() {
-            self.eventView?.didLoadCachedEvent(event)
-            
-            // 2. Check the API to see if there is a new event.  If the event is the same as the fetched one, stop.
-            eventService.fetchNextEventIfStatusChanged(event).then() {
-                nextEvent -> () in
-                
-                    if nextEvent != nil {
-                        // 3. If the event is different, then alert the view, which will handle fetching the data.
-                        self.eventView?.didReceiveNewEvent(self, newEvent: nextEvent, error: nil)
-                    }
-                }.error {error in
-                    // 4. Handle the case that there is an error.
-                    self.eventView?.didReceiveNewEvent(self, newEvent: nil, error: error as NSError)
-                }
-            
-        } else {
-            eventService.getEventStatus().then{
-                nextEvent -> () in
-                let eventId = nextEvent?.idString
-                self.getEventData(eventId!)
-            }.error {error in
-                self.eventView?.didReceiveEventData(self, didSucceed: nil, didFail: error as NSError)
-            }
-        }
-        
-    }
-
-    func getEventData(nextEventId: String) {
-        eventService.getEvent(nextEventId).then() {
+    func fetchCachedEvent() {
+        EventFetcher.sharedFetcher.getCachedEvent().then() {
             event -> () in
-            guard event != nil else {
-                throw GlobalErrors.MissingData
-            }
-            if let event = self.performEventFetch() {
-                self.fetchImageForEvent(event)
-                self.eventView?.didReceiveEventData(self, didSucceed: event, didFail: nil)
+            if event != nil {
+                self.eventView?.didLoadCachedEvent(self, didSucceed: event!, error: nil)
             } else {
-                self.eventView?.didReceiveEventData(self, didSucceed: nil, didFail: GlobalErrors.MissingData)
+                self.eventView?.didLoadCachedEvent(self, didSucceed: nil, error: nil)
             }
-            }.error { error in
-                self.eventView?.didReceiveEventData(self, didSucceed: nil, didFail: error as NSError)
+            }.error {error in
+                self.eventView?.didLoadCachedEvent(self, didSucceed: nil, error: error as NSError)
             }
     }
     
+    func fetchNextEvent() {
+        eventView?.startLoading()
+        EventFetcher.sharedFetcher.deleteEvents().then() {
+            self.eventService.getEventStatus().then() {
+                nextEvent -> () in
+                if nextEvent != nil {
+                    self.eventView?.didReceiveNewEvent(self, didSucceed: nextEvent, error: nil)
+                } else {
+                    self.eventView?.didReceiveNewEvent(self, didSucceed: nil, error: nil)
+                }
+                }.error {error in
+                    self.eventView?.didReceiveNewEvent(self, didSucceed: nil, error: error as NSError?)
+            }
+        }
+    }
     
-    private func performEventFetch() -> Event? {
-        do {
-            try fetchedResultsController.performFetch()
-            var returnEvent: Event? = nil
-            if fetchedResultsController.fetchedObjects?.count > 0 {
-                if let event = fetchedResultsController.fetchedObjects![0] as? Event {
-                    returnEvent = event
+    func fetchEventData(eventId: String) {
+        eventView?.startLoading()
+        self.eventService.getEvent(eventId).then() {
+            event -> () in
+                if event != nil {
+                    self.fetchImageForEvent(event!)
+                    self.eventView?.didReceiveEventData(self, didSucceed: event, didFail: nil)
+                } else {
+                    self.eventView?.didReceiveEventData(self, didSucceed: nil, didFail: nil)
                 }
             }
-            return returnEvent
-        } catch let error as NSError {
-            print("An error occured in performEvent \(error)")
-            return nil
-        }
     }
-    
-    private lazy var fetchedResultsController: NSFetchedResultsController = {
-        let sortPriority = NSSortDescriptor(key: "startDateString", ascending: false)
-        let nextEventFetch = NSFetchRequest(entityName: "Event")
-        nextEventFetch.sortDescriptors = [sortPriority]
-        
-        let fetchResultsController = NSFetchedResultsController(fetchRequest: nextEventFetch, managedObjectContext: GlobalStackManager.SharedManager.sharedContext, sectionNameKeyPath: nil, cacheName: nil)
-        
-        do {
-            try fetchResultsController.performFetch()
-        } catch let error {
-            print(error)
-        }
-        
-        return fetchResultsController
-    }()
 }

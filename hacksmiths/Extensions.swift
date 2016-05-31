@@ -45,27 +45,18 @@ extension UIViewController {
      
      */
     func alertController(withTitles titles: [String], message: String, callbackHandler: [((UIAlertAction)->Void)?]) {
-        
         let alertController = UIAlertController(title: "Alert", message: message, preferredStyle: .ActionSheet)
-        
         for title in titles.enumerate() {
-            
             if let callbackHandler = callbackHandler[title.index] {
                 let action = UIAlertAction(title: title.element, style: .Default, handler: callbackHandler)
                 alertController.addAction(action)
-                
             } else {
                 let action = UIAlertAction(title: title.element, style: .Default, handler: nil)
                 alertController.addAction(action)
-                
             }
-            
         }
-        
         self.presentViewController(alertController, animated: true, completion: nil)
-        
     }
-    
 }
 
 extension UIView {
@@ -113,7 +104,13 @@ extension String {
     func stringByRemovingHTML() -> String {
         let noHTMLString = self.stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil)
         let cleanedString = removeSpecialCharsFromString(noHTMLString)
-        return cleanedString
+        let returnString = removeNBSP(cleanedString)
+        return returnString
+    }
+    
+    private func removeNBSP(string: String) -> String {
+        let noNBSPString = string.stringByReplacingOccurrencesOfString("nbsp", withString: "")
+        return noNBSPString
     }
     
     private func removeSpecialCharsFromString(string: String) -> String {

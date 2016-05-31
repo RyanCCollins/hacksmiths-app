@@ -31,6 +31,7 @@ class EventViewController: UIViewController {
     @IBOutlet weak var marketingInfoTextView: UITextView!
     @IBOutlet weak var marketingInfoStackView: UIStackView!
     @IBOutlet weak var participantHeaderStackView: UIStackView!
+    @IBOutlet weak var noParticipantsLabel: UILabel!
     
     private let eventPresenter = EventPresenter(eventService: EventService())
     
@@ -43,7 +44,9 @@ class EventViewController: UIViewController {
         collectionView.dataSource = self
         eventPresenter.attachView(self)
         setActivityIndicator()
-        eventPresenter.fetchAndCheckAPIForEvent()
+        if currentEvent == nil {
+            eventPresenter.fetchCachedEvent()
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -62,12 +65,12 @@ class EventViewController: UIViewController {
     
     @IBAction func didTapRefreshUpInside(sender: AnyObject) {
         startLoading()
-        self.eventPresenter.fetchAndCheckAPIForEvent()
+        eventPresenter.fetchNextEvent()
     }
     
     /** Logic for setting event information UI
      */
-    func updateUserInterface(forEvent event: Event) {
+    func setupUserInterface(forEvent event: Event) {
         dispatch_async(GlobalMainQueue, {
 
             self.eventImageView.image = event.image
@@ -108,17 +111,23 @@ class EventViewController: UIViewController {
     func setupOrganization(forEvent event: Event) {
         if let organization = event.organization {
             if organization.image == nil && organization.logoUrl != nil {
-                self.organizationImageView.downloadedFrom(link: organization.logoUrl!, contentMode: .Center)
+                self.organizationImageView.downloadedFrom(link: organization.logoUrl!, contentMode: .ScaleAspectFit)
             } else if organization.image != nil {
                 self.organizationImageView.image = organization.image
             }
+            dispatch_async(GlobalMainQueue, {
+                self.organizationTitleLabel.text = organization.name
+                self.organizationDescriptionLabel.text = organization.descriptionString ?? ""
+                self.organizationWebsiteButton.titleLabel!.text = organization.website ?? ""
+            })
             
-            self.organizationTitleLabel.text = organization.name
-            self.organizationWebsiteButton.titleLabel!.text = organization.website ?? ""
             self.showOrganizationUI(forEvent: event)
+            
         } else {
-            self.eventOrganizationNotFoundLabel.hidden = false
-            self.eventOrganizationNotFoundLabel.fadeIn()
+            dispatch_async(GlobalMainQueue, {
+                self.eventOrganizationNotFoundLabel.hidden = false
+                self.eventOrganizationNotFoundLabel.fadeIn()
+            })
         }
     }
     
@@ -172,9 +181,26 @@ class EventViewController: UIViewController {
         })
     }
     
-    func fadeOutUIElements() {
+    func resetUserInterface() {
         dispatch_async(GlobalMainQueue, {
+            self.eventImageView.fadeOut()
+            self.headerLabel.fadeOut()
             self.eventInfoStackView.fadeOut()
+
+            self.participantHeaderStackView.fadeOut()
+            self.aboutEventStackView.fadeOut()
+            self.registerSignupButton.fadeOut()
+            self.marketingInfoStackView.fadeOut()
+            self.eventOrganizationHeaderStackView.fadeOut()
+            
+            self.eventOrganizationNotFoundLabel.fadeOut()
+            
+            self.organizationDescriptionLabel.fadeOut()
+            self.organizationTitleLabel.fadeOut()
+            self.organizationImageView.fadeOut()
+            
+            self.organizationWebsiteButton.fadeOut()
+            self.participantHeaderStackView.fadeOut()
             
         })
     }
@@ -234,31 +260,48 @@ extension EventViewController: EventView {
         self.activityIndicator.stopAnimating()
     }
     
-    func didLoadCachedEvent(event: Event) {
-        finishLoading()
-        self.currentEvent = event
-        updateUserInterface(forEvent: event)
+    func didLoadCachedEvent(sender: EventPresenter, didSucceed event: Event?, error: NSError?) {
+        if error != nil {
+            // Handle the error
+            alertController(withTitles: ["OK", "Retry"], message: (error?.localizedDescription)!, callbackHandler: [nil, { Void in
+                self.eventPresenter.fetchCachedEvent()
+            }])
+        } else if event != nil {
+            resetUserInterface()
+            setupUserInterface(forEvent: event!)
+            currentEvent = event
+            finishLoading()
+        } else {
+            /** No Change.  Carry on.
+             */
+            finishLoading()
+        }
     }
     
-    func didReceiveNewEvent(sender: EventPresenter, newEvent: NextEvent?, error: NSError?) {
+    func didReceiveNewEvent(sender: EventPresenter, didSucceed event: NextEvent?, error: NSError?) {
         finishLoading()
-        if error != nil || newEvent == nil {
+        if error != nil {
             let message = error?.localizedDescription ?? "An unknown error occurred."
             alertController(withTitles: ["OK"], message: message, callbackHandler: [nil])
+        } else if event != nil{
+            self.eventPresenter.fetchEventData(event!.idString)
         } else {
-            self.eventPresenter.getEventData(newEvent!.idString)
+            /* No change */
+            finishLoading()
         }
     }
     
     func didReceiveEventData(sender: EventPresenter, didSucceed event: Event?, didFail error: NSError?) {
         finishLoading()
         if event != nil {
+            resetUserInterface()
             currentEvent = event
             performParticipantFetch()
-            updateUserInterface(forEvent: event!)
+            setupUserInterface(forEvent: event!)
         } else if error != nil  {
             alertController(withTitles: ["OK", "Retry"], message: error!.localizedDescription, callbackHandler: [nil, {Void in
-            return
+                /* Retry fetching the next event if error received*/
+                self.eventPresenter.fetchNextEvent()
             }])
         }
     }
@@ -271,7 +314,7 @@ extension EventViewController: EventView {
         if error != nil {
             self.alertController(withTitles: ["OK"], message: (error?.localizedDescription)!, callbackHandler: [nil])
         } else {
-            self.alertController(withTitles: ["I'll do it later", "Sign up for Slack"], message: "Thanks for helping!  Join us on slack and we'll see if we can find a place for you!", callbackHandler: [nil, {Void in
+            self.alertController(withTitles: ["No thanks", "Sign up for Slack"], message: "Thanks for helping!  Join us on slack and we'll see if we can find a place for you!", callbackHandler: [nil, {Void in
                     self.openSlackNow()
             }])
         }
@@ -327,7 +370,6 @@ extension EventViewController: UICollectionViewDelegate, UICollectionViewDataSou
             }
         }
     }
-    
 }
 
 enum EventStatus {
