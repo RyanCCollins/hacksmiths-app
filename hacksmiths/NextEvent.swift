@@ -11,7 +11,7 @@ import CoreData
 @objc(NextEvent)
 class NextEvent: NSManagedObject {
     @NSManaged var idString: String
-    @NSManaged var active: Bool
+    @NSManaged var active: NSNumber
     
     required override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
@@ -20,6 +20,6 @@ class NextEvent: NSManagedObject {
         let entity = NSEntityDescription.entityForName("NextEvent", inManagedObjectContext: context)
         super.init(entity: entity!, insertIntoManagedObjectContext: context)
         self.idString = nextEventJSON.id
-        self.active = nextEventJSON.active
+        self.active = NSNumber(bool: nextEventJSON.active)
     }
 }

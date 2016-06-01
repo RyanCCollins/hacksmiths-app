@@ -13,7 +13,7 @@ class EditProfileViewController: UIViewController, EditProfileView {
     @IBOutlet weak var wantExperienceHelpView: UIView!
     @IBOutlet weak var haveExperienceHelpView: UIView!
     @IBOutlet weak var availabilityExplanationHelpView: UIView!
-    var userData: UserData?
+    var userData: UserData!
     var delegate: EditProfileDelegate?
     @IBOutlet weak var bioTextField: IsaoTextField!
     @IBOutlet weak var haveExperienceTextField: IsaoTextField!

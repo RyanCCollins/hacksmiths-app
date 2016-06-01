@@ -13,48 +13,10 @@ import Gloss
 import CoreData
 
 class EventService {
-    
-//    /* Return a promise of an optional NextEvent, determining if the event status has changed and a next event
-//     * The event returned from the Event Status endpoint is not the same as the event stored on the device currently
-//     * - return = Promise of Optional NextEvent determining that event has changed status or not.
-//     */
-//    func fetchNextEventIfStatusChanged(currentEvent: Event) -> Promise<NextEvent?> {
-//        return Promise {resolve, reject in
-//            let router = EventRouter(endpoint: .GetEventStatus())
-//            HTTPManager.sharedManager.request(router)
-//                .validate()
-//                .responseJSON {
-//                    response in
-//                    
-//                    switch response.result {
-//                    case .Success(let JSON):
-//                        if let nextEventData = JSON["event"] as? JsonDict,
-//                            let nextEventJSON = NextEventJSON(json: nextEventData) {
-//                            
-//                            /* If our event has not changed resolve with no new next event */
-//                            if currentEvent.idString == nextEventJSON.id {
-//                                resolve(nil)
-//                            } else {
-//                                
-//                                let nextEvent = NextEvent(nextEventJSON: nextEventJSON, context: GlobalStackManager.SharedManager.sharedContext)
-//                                
-//                                GlobalStackManager.SharedManager.sharedContext.performBlockAndWait({
-//                                    CoreDataStackManager.sharedInstance().saveContext()
-//                                })
-//                                resolve(nextEvent)
-//                            }
-//                            
-//                        }
-//                        
-//                    case .Failure(let error):
-//                        reject(error)
-//                }
-//            }
-//        }
-//    }
-    
-    
-    
+    /* Get Event status, checking the API for a new event
+     * @params - None
+     * @return - Promise<NextEvent?> - A promise of optional Next Event (temporary description of the next event stored to Core Data.)
+     */
     func getEventStatus() -> Promise<NextEvent?> {
         return Promise {resolve, reject in
             print("Calling beginning of promise in getEventStatus")
@@ -110,8 +72,9 @@ class EventService {
                             
                             if let eventJSON = EventJSON(json: eventJSONDict as! [String : AnyObject]) {
                                 
-                                /* Handle parsing the participant array and create the event model */
-                                /* BOOM */
+                                /** Handle parsing the participant array and create the event model. Careful, this may explode
+                                 *
+                                 */
                                 GlobalStackManager.SharedManager.sharedContext.performBlockAndWait({
 
                                     let participantJSON = JSON["participants"] as! [JsonDict]
@@ -161,7 +124,6 @@ class EventService {
                         reject(error as NSError)
                     }
             }
-            
         }
     }
     

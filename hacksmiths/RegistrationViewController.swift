@@ -246,6 +246,48 @@ class RegistrationViewController: UIViewController {
             }
         })
     }
+    
+//    /*FINISH ME */
+//    func saveLoginTo1Password(sender: AnyObject) {
+//        /* Create a login dictionary to save to onepassword */
+//        let newLoginDictionary : [String: AnyObject] = [
+//            AppExtensionTitleKey: "Hacksmiths",
+//            AppExtensionUsernameKey: self.usernameTextField.text!,
+//            AppExtensionPasswordKey: self.passwordTextField.text!,
+//            AppExtensionNotesKey: "Saved with the Hacksmiths app",
+//            AppExtensionSectionTitleKey: "Hacksmiths App",
+//            ]
+//        
+//        /* Create a passwordDetail dictionary to define password characteristics for onepassword */
+//        let passwordDetailsDictionary : [String: AnyObject] = [
+//            AppExtensionGeneratedPasswordMinLengthKey: 6,
+//            AppExtensionGeneratedPasswordMaxLengthKey: 50
+//        ]
+//        
+//        /** Handle storing login to one password
+//         */
+//        OnePasswordExtension.sharedExtension().storeLoginForURLString(HacksmithsAPIClient.Constants.BaseURL, loginDetails: newLoginDictionary, passwordGenerationOptions: passwordDetailsDictionary, forViewController: self, sender: sender, completion: {(loginDictionary, error) -> Void in
+//            
+//            if loginDictionary == nil {
+//                if (error!.code != Int(AppExtensionErrorCodeCancelledByUser))  {
+//                    print("Error invoking 1Password App Extension for find login: \(error)")
+//                }
+//                return
+//            }
+//            
+//            let foundUsername = loginDictionary!["username"] as! String
+//            let foundPassword = loginDictionary!["password"] as! String
+//            
+//            HacksmithsAPIClient.sharedInstance().authenticateWithCredentials(foundUsername, password: foundPassword, completionHandler: {success, error in
+//                
+//                if error != nil {
+//                    self.alertController(withTitles: ["OK"], message: "We were unable to authenticate your account.  Please check your password and try again.", callbackHandler: [nil])
+//                } else {
+//                    self.dismissLoginView(true)
+//                }
+//            })
+//        })
+//    }
 }
 
 extension RegistrationViewController: UITextFieldDelegate {

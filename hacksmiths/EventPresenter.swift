@@ -51,6 +51,12 @@ class EventPresenter {
         }
     }
     
+    /** Fetch images for the event
+     *
+     *  @params event: Event - the event that is current
+     *
+     *  @return None
+     */
     func fetchImageForEvent(event: Event) {
         event.fetchImages().then() {
             image -> () in
@@ -58,6 +64,11 @@ class EventPresenter {
         }
     }
     
+    /** Fetch a cached event from Core Data
+     *
+     *  @param - None
+     *  @return - None
+     */
     func fetchCachedEvent() {
         EventFetcher.sharedFetcher.getCachedEvent().then() {
             event -> () in
@@ -71,14 +82,23 @@ class EventPresenter {
             }
     }
     
+    /** Fetch the next event, calling the API to load the next event by
+     *  and determine if the event is active or now
+     *
+     *  @param None
+     *
+     *  @return None
+     */
     func fetchNextEvent() {
         eventView?.startLoading()
         EventFetcher.sharedFetcher.deleteEvents().then() {
             self.eventService.getEventStatus().then() {
                 nextEvent -> () in
                 if nextEvent != nil {
+                    print("Called did receive next event succeed")
                     self.eventView?.didReceiveNewEvent(self, didSucceed: nextEvent, error: nil)
                 } else {
+                    print("Called did receive next event succeed with nil")
                     self.eventView?.didReceiveNewEvent(self, didSucceed: nil, error: nil)
                 }
                 }.error {error in
@@ -87,6 +107,11 @@ class EventPresenter {
         }
     }
     
+    /** Fetch the data for the event from the API
+     *
+     *  @param eventId:String - Id of the current event
+     *  @return None
+     */
     func fetchEventData(eventId: String) {
         eventView?.startLoading()
         self.eventService.getEvent(eventId).then() {
@@ -97,6 +122,8 @@ class EventPresenter {
                 } else {
                     self.eventView?.didReceiveEventData(self, didSucceed: nil, didFail: nil)
                 }
+            }.error{error in
+                self.eventView?.didReceiveEventData(self, didSucceed: nil, didFail: error as NSError)
             }
     }
 }

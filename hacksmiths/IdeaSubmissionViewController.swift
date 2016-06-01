@@ -16,8 +16,6 @@ class IdeaSubmissionViewController: UIViewController {
     @IBOutlet weak var ideaTitleTextField: IsaoTextField!
     @IBOutlet weak var additionalInformationTextField: IsaoTextField!
     @IBOutlet weak var scrollView: UIScrollView!
-    
-    /* Activity indicator view */
     var activityIndicator: IGActivityIndicatorView!
     var ideaSubmissionPresenter = IdeaSubmissionPresenter(projectIdeaService: ProjectIdeaService())
     var submissionStatus: SubmissionStatus = .New
@@ -72,7 +70,7 @@ class IdeaSubmissionViewController: UIViewController {
     
     @IBAction func didTapSubmissionButton(sender: AnyObject) {
         guard validateSubmission() == true else {
-            alertController(withTitles: ["OK"], message: "Please fill in both text fields before submitting", callbackHandler: [nil])
+            alertController(withTitles: ["OK"], message: "Please fill in both required text fields before submitting", callbackHandler: [nil])
             return
         }
         /* Show the loading indicator */

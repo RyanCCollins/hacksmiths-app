@@ -9,8 +9,9 @@
 import UIKit
 import SwiftyButton
 import CoreData
-import Foundation
-
+/** Event View Controller
+ *  Handles showing the current event and loading of a new event when there is one.
+ */
 class EventViewController: UIViewController {
     @IBOutlet weak var eventImageView: UIImageView!
     @IBOutlet weak var headerLabel: UILabel!
@@ -38,19 +39,25 @@ class EventViewController: UIViewController {
     var currentEvent: Event?
     var activityIndicator: IGActivityIndicatorView!
     
+    /** MARK: Life cycle methods
+     */
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
-        eventPresenter.attachView(self)
         setActivityIndicator()
+        fetchedResultsController.delegate = self
+        
         if currentEvent == nil {
             eventPresenter.fetchCachedEvent()
+        } else {
+            setupUserInterface(forEvent: currentEvent!)
         }
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        eventPresenter.attachView(self)
         toggleButtonTitle(forAuthenticatedState: UserService.sharedInstance().authenticated)
     }
     
@@ -63,12 +70,17 @@ class EventViewController: UIViewController {
         activityIndicator = IGActivityIndicatorView(inview: self.view)
     }
     
+    /** When tapping refresh, start refreshing and check the API for new event data
+     */
     @IBAction func didTapRefreshUpInside(sender: AnyObject) {
         startLoading()
         eventPresenter.fetchNextEvent()
     }
     
     /** Logic for setting event information UI
+     *
+     *  @params event: Event - the event that is loaded
+     *  @return None
      */
     func setupUserInterface(forEvent event: Event) {
         dispatch_async(GlobalMainQueue, {
@@ -93,6 +105,9 @@ class EventViewController: UIViewController {
     }
     
     /** Setup the first section of the event page
+     *
+     *  @params event: Event - the event that is loaded
+     *  @return None
      */
     func setupSectionOne(forEvent event: Event) {
         dispatch_async(GlobalMainQueue, {
@@ -108,6 +123,11 @@ class EventViewController: UIViewController {
         })
     }
     
+    /** Setup the UI for the organization
+     *
+     *  @params event: Event - the event that is loaded
+     *  @return None
+     */
     func setupOrganization(forEvent event: Event) {
         if let organization = event.organization {
             if organization.image == nil && organization.logoUrl != nil {
@@ -169,9 +189,9 @@ class EventViewController: UIViewController {
     
     func toggleButtonTitle(forAuthenticatedState authenticated: Bool){
         if authenticated {
-            registerSignupButton.titleLabel!.text = "I WANT TO HELP!"
+            registerSignupButton.titleLabel!.text = "I CAN HELP!"
         } else {
-             registerSignupButton.titleLabel!.text = "SIGN IN TO HELP!"
+             registerSignupButton.titleLabel!.text = "SIGN IN!"
         }
     }
     
@@ -194,7 +214,6 @@ class EventViewController: UIViewController {
             self.eventOrganizationHeaderStackView.fadeOut()
             
             self.eventOrganizationNotFoundLabel.fadeOut()
-            
             self.organizationDescriptionLabel.fadeOut()
             self.organizationTitleLabel.fadeOut()
             self.organizationImageView.fadeOut()
@@ -250,17 +269,31 @@ class EventViewController: UIViewController {
     }
 }
 
+extension EventViewController: NSFetchedResultsControllerDelegate {
+    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+        collectionView.reloadData()
+    }
+    
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        collectionView.reloadData()
+    }
+}
+
 extension EventViewController: EventView {
 
     func startLoading() {
+        print("Called start loading")
         self.activityIndicator.startAnimating()
     }
     
     func finishLoading() {
+        print("Called stop loading")
         self.activityIndicator.stopAnimating()
     }
     
     func didLoadCachedEvent(sender: EventPresenter, didSucceed event: Event?, error: NSError?) {
+        print("Did load cached event")
+        finishLoading()
         if error != nil {
             // Handle the error
             alertController(withTitles: ["OK", "Retry"], message: (error?.localizedDescription)!, callbackHandler: [nil, { Void in
@@ -269,16 +302,16 @@ extension EventViewController: EventView {
         } else if event != nil {
             resetUserInterface()
             setupUserInterface(forEvent: event!)
+            performParticipantFetch()
             currentEvent = event
-            finishLoading()
         } else {
-            /** No Change.  Carry on.
-             */
-            finishLoading()
+            /** No Event cached.  Fetch the event. */
+            self.eventPresenter.fetchNextEvent()
         }
     }
     
     func didReceiveNewEvent(sender: EventPresenter, didSucceed event: NextEvent?, error: NSError?) {
+        print("Did receive new event")
         finishLoading()
         if error != nil {
             let message = error?.localizedDescription ?? "An unknown error occurred."
@@ -287,11 +320,11 @@ extension EventViewController: EventView {
             self.eventPresenter.fetchEventData(event!.idString)
         } else {
             /* No change */
-            finishLoading()
         }
     }
     
     func didReceiveEventData(sender: EventPresenter, didSucceed event: Event?, didFail error: NSError?) {
+        print("Did receive event data")
         finishLoading()
         if event != nil {
             resetUserInterface()
@@ -326,15 +359,6 @@ extension EventViewController: EventView {
         UIApplication.sharedApplication().openURL(slackUrl!)
     }
     
-}
-
-extension EventViewController: NSFetchedResultsControllerDelegate {
-    func controllerWillChangeContent(controller: NSFetchedResultsController) {
-        collectionView.reloadData()
-    }
-    func controllerDidChangeContent(controller: NSFetchedResultsController) {
-        collectionView.reloadData()
-    }
 }
 
 extension EventViewController: UICollectionViewDelegate, UICollectionViewDataSource {

@@ -8,8 +8,6 @@
 
 import UIKit
 import CoreData
-import ChameleonFramework
-import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,10 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         return true
     }
-    
-    /* Colors to be accessed in views */
-    let primaryColor = UIColor.flatNavyBlueColorDark()
-    let secondary = UIColor(hex: "#3291c9")
 
 
     func applicationWillResignActive(application: UIApplication) {

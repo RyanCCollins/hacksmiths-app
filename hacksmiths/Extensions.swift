@@ -59,7 +59,17 @@ extension UIViewController {
     }
 }
 
+/** Commonly used UIView extensions
+ *
+ *
+ */
 extension UIView {
+    /** Fade In an view
+     *
+     *  @params Duration: NSTimeInterval, Delay: NSTimeInterval, Alpha: Float, Completion Handler
+     *
+     *  @return None - Uses a completion handler to define when the 
+     */
     func fadeIn(duration: NSTimeInterval = 0.1, delay: NSTimeInterval = 0.0, alpha: CGFloat = 1.0, completion: ((Bool) -> Void)? = {(finished: Bool) -> Void in}) {
         UIView.animateWithDuration(duration, delay: delay, options: .CurveEaseIn, animations: {
             self.alpha = alpha

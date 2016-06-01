@@ -145,7 +145,7 @@ extension HacksmithsAPIClient {
                     for member in membersArray {
                         
                         /* Create a person and save the context */
-                        let person = Person(dictionary: member, context: self.sharedContext)
+                        let person = Person(dictionary: member, context: GlobalStackManager.SharedManager.sharedContext)
                         
                         GlobalStackManager.SharedManager.sharedContext.performBlockAndWait({
                             CoreDataStackManager.sharedInstance().saveContext()

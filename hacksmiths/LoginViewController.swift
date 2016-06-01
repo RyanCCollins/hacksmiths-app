@@ -22,24 +22,26 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var touchIDButton: UIButton!
     @IBOutlet weak var onepasswordButton: UIButton!
     var loginPresenter: LoginPresenter?
-
     let loginButton = SwiftyCustomContentButton()
-    
     var has1PasswordLogin: Bool = false
+    var activityIndicator: IGActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         /* Configure buttons based on availability */
         configureLoginButtons()
         configureOnePasswordButton()
+        configureActivityIndicator()
     }
     
-
+    func configureActivityIndicator() {
+        activityIndicator = IGActivityIndicatorView(inview: view, messsage: "Signing in")
+    }
+    
     func configureLoginButtons() {
         onepasswordButton.enabled = true
     }
     
-
     @IBAction func didTapSkipUpInside(sender: AnyObject) {
         dismissLoginView(false)
     }
@@ -74,7 +76,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func didTapLoginButtonUpInside(sender: AnyObject) {
-        if !credentialsAreValid() {
+        if !credentialsAreNotEmpty() {
             alertController(withTitles: ["OK"], message: "Please enter a valid username and password", callbackHandler: [nil])
             return
         }
@@ -101,7 +103,6 @@ class LoginViewController: UIViewController {
         OnePasswordExtension.sharedExtension().findLoginForURLString("http://hacksmiths.io", forViewController: self, sender: sender, completion: { (loginDictionary, error) -> Void in
             if loginDictionary == nil {
                 if error!.code != Int(AppExtensionErrorCodeCancelledByUser) {
-                    
                     print("Error invoking 1Password App Extension for find login: \(error)")
                 }
                 return
@@ -118,55 +119,8 @@ class LoginViewController: UIViewController {
         })
     }
     
-    func saveLoginTo1Password(sender: AnyObject) {
-        /* Create a login dictionary to save to onepassword */
-        let newLoginDictionary : [String: AnyObject] = [
-            AppExtensionTitleKey: "Hacksmiths",
-            AppExtensionUsernameKey: self.usernameTextField.text!,
-            AppExtensionPasswordKey: self.passwordTextField.text!,
-            AppExtensionNotesKey: "Saved with the Hacksmiths app",
-            AppExtensionSectionTitleKey: "Hacksmiths App",
-        ]
-        
-        /* Create a passwordDetail dictionary to define password characteristics for onepassword */
-        let passwordDetailsDictionary : [String: AnyObject] = [
-            AppExtensionGeneratedPasswordMinLengthKey: 6,
-            AppExtensionGeneratedPasswordMaxLengthKey: 50
-        ]
-        
-        // 3.
-        OnePasswordExtension.sharedExtension().storeLoginForURLString(HacksmithsAPIClient.Constants.BaseURL, loginDetails: newLoginDictionary, passwordGenerationOptions: passwordDetailsDictionary, forViewController: self, sender: sender, completion: {(loginDictionary, error) -> Void in
-            
-            if loginDictionary == nil {
-                if (error!.code != Int(AppExtensionErrorCodeCancelledByUser))  {
-                    print("Error invoking 1Password App Extension for find login: \(error)")
-                }
-                return
-            }
-            
-            let foundUsername = loginDictionary!["username"] as! String
-            let foundPassword = loginDictionary!["password"] as! String
-            
-            HacksmithsAPIClient.sharedInstance().authenticateWithCredentials(foundUsername, password: foundPassword, completionHandler: {success, error in
-                
-                if error != nil {
-
-                    self.alertController(withTitles: ["OK"], message: "We were unable to authenticate your account.  Please check your password and try again.", callbackHandler: [nil])
-
-                }
-                
-                if success {
-                    
-                    self.dismissLoginView(true)
-
-                }
-                
-            })
-        })
-    }
     
-    
-    func credentialsAreValid() -> Bool{
+    func credentialsAreNotEmpty() -> Bool{
         if (usernameTextField.text == "" || passwordTextField.text == "") {
             return false
         } else {
@@ -177,11 +131,14 @@ class LoginViewController: UIViewController {
 }
 
 extension LoginViewController: LoginView {
+    /** Show / Hide loading indicator through Presenter Protocol
+     */
     func showLoading() {
-        
+        activityIndicator.showLoading()
     }
+    
     func hideLoading() {
-        
+        activityIndicator.hideLoading()
     }
     
     private func findSavedCredentials(sender: AnyObject){

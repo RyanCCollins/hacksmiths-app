@@ -141,9 +141,9 @@
 		1F3DF1361CFA306F0000BBC8 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		1F3DF1371CFA306F0000BBC8 /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
 		1F3DF1381CFA306F0000BBC8 /* OpenSans-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiboldItalic.ttf"; sourceTree = "<group>"; };
-		1F3DF1481CFA795A0000BBC8 /* HelpPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HelpPageViewController.swift; path = ../HelpPageViewController.swift; sourceTree = "<group>"; };
-		1F3DF14A1CFA79DB0000BBC8 /* HelpLabelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HelpLabelViewController.swift; path = ../HelpLabelViewController.swift; sourceTree = "<group>"; };
-		1F3DF1501CFABE0E0000BBC8 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditProfileViewController.swift; path = ../EditProfileViewController.swift; sourceTree = "<group>"; };
+		1F3DF1481CFA795A0000BBC8 /* HelpPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpPageViewController.swift; sourceTree = "<group>"; };
+		1F3DF14A1CFA79DB0000BBC8 /* HelpLabelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpLabelViewController.swift; sourceTree = "<group>"; };
+		1F3DF1501CFABE0E0000BBC8 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		1F3DF1521CFB083E0000BBC8 /* EditProfilePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfilePresenter.swift; sourceTree = "<group>"; };
 		1F3DF1551CFB6A620000BBC8 /* EnrollmentRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnrollmentRouter.swift; sourceTree = "<group>"; };
 		1F3DF1571CFB6C090000BBC8 /* EnrollmentService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnrollmentService.swift; sourceTree = "<group>"; };
@@ -483,14 +483,6 @@
 			name = Services;
 			sourceTree = "<group>";
 		};
-		1F846CB61CEBB170009166D4 /* Support */ = {
-			isa = PBXGroup;
-			children = (
-				1F846CB41CEBB153009166D4 /* APIKeys.plist */,
-			);
-			name = Support;
-			sourceTree = "<group>";
-		};
 		1F846CBA1CEBF547009166D4 /* ControllerModules */ = {
 			isa = PBXGroup;
 			children = (
@@ -585,9 +577,9 @@
 		1FA5A53C1C53610300722E55 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				1F846CB61CEBB170009166D4 /* Support */,
+				1FB2F0781CFE887300E295DF /* CoreData */,
 				1FAD7DBD1CEE69C20044BD94 /* Storyboard & Assets */,
-				1FAD7DBC1CEE69A10044BD94 /* App Configuration Files */,
+				1FAD7DBC1CEE69A10044BD94 /* Plists */,
 				1FAD7DBB1CEE69870044BD94 /* Libraries */,
 				1FAD7DBA1CEE696C0044BD94 /* Fonts */,
 				1F4B4DF41C72574700A75F5D /* 1Password.xcassets */,
@@ -764,13 +756,13 @@
 			name = Libraries;
 			sourceTree = "<group>";
 		};
-		1FAD7DBC1CEE69A10044BD94 /* App Configuration Files */ = {
+		1FAD7DBC1CEE69A10044BD94 /* Plists */ = {
 			isa = PBXGroup;
 			children = (
+				1F846CB41CEBB153009166D4 /* APIKeys.plist */,
 				1FA9FC781C534E5A00B993BC /* Info.plist */,
-				1FA9FC701C534E5A00B993BC /* hacksmiths.xcdatamodeld */,
 			);
-			name = "App Configuration Files";
+			name = Plists;
 			sourceTree = "<group>";
 		};
 		1FAD7DBD1CEE69C20044BD94 /* Storyboard & Assets */ = {
@@ -781,6 +773,14 @@
 				1FA9FC751C534E5A00B993BC /* LaunchScreen.storyboard */,
 			);
 			name = "Storyboard & Assets";
+			sourceTree = "<group>";
+		};
+		1FB2F0781CFE887300E295DF /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				1FA9FC701C534E5A00B993BC /* hacksmiths.xcdatamodeld */,
+			);
+			name = CoreData;
 			sourceTree = "<group>";
 		};
 		1FC6DE451C9F59EB000E8159 /* User & Auth */ = {
