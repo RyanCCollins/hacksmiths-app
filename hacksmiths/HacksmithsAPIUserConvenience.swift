@@ -135,15 +135,19 @@ extension HacksmithsAPIClient {
      */
     private func deleteMemberList() -> Promise<Void> {
         return Promise{resolve, reject in
-            let fetchRequest = NSFetchRequest(entityName: "Person")
-            let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-            do {
-                try CoreDataStackManager.sharedInstance().persistentStoreCoordinator?.executeRequest(deleteRequest, withContext: GlobalStackManager.SharedManager.sharedContext)
-                resolve()
-            } catch let error as NSError {
-                print("An error occured while deleting all event data")
-                reject(error as NSError)
-            }
+            resolve()
+            /** Note: having some issues with core data in saving the community when a member is deleted from API
+             *  I would like to handle this more eloquently
+             */
+//            let fetchRequest = NSFetchRequest(entityName: "Person")
+//            let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+//            do {
+//                try CoreDataStackManager.sharedInstance().persistentStoreCoordinator?.executeRequest(deleteRequest, withContext: GlobalStackManager.SharedManager.sharedContext)
+//                resolve()
+//            } catch let error as NSError {
+//                print("An error occured while deleting all event data")
+//                reject(error as NSError)
+//            }
         }
     }
     
