@@ -23,17 +23,22 @@ class EditProfileViewController: UIViewController {
     var formChanged = false
     private var presenter = EditProfilePresenter()
     var activityIndicator: IGActivityIndicatorView!
+    var activeField: IsaoTextField!
+    
     /* Edge case where it's actually better to use a global for a value outside the scope*/
     private var helpLabelText = ""
     
+    /** MARK: Life cycle methods
+     */
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.attachView(self)
-        
+        setTextFieldDelegates()
         if let currentUserData = userData {
             setupMentoringFields(currentUserData)
             setupAvailabilityFields(currentUserData)
             setupBioField(currentUserData)
+            setupWebsiteField(currentUserData)
         }
         activityIndicator = IGActivityIndicatorView(inview: view, messsage: "Saving")
     }
@@ -41,6 +46,14 @@ class EditProfileViewController: UIViewController {
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         presenter.detachView(self)
+    }
+    
+    private func setTextFieldDelegates() {
+        bioTextField.delegate = self
+        haveExperienceTextField.delegate = self
+        wantExperienceTextField.delegate = self
+        availabilityExplanationTextField.delegate = self
+        websiteTextField.delegate = self
     }
     
     private func setupMentoringFields(userData: UserData){
@@ -129,9 +142,8 @@ class EditProfileViewController: UIViewController {
     @IBAction func handleSaveForm(sender: AnyObject) {
         if formChanged {
             delegate?.didSubmitEditedData(userData!)
-        } else {
-            handleDismissForm(self)
         }
+        handleDismissForm(self)
     }
     
     func handleDismissForm(sender: AnyObject) {
@@ -159,11 +171,26 @@ class EditProfileViewController: UIViewController {
 }
 
 extension EditProfileViewController: EditProfileView {
+    /** Standard Show and Hide loading
+     *  Not being used in current iteration, but since we are following
+     *  The presenter pattern for the rest of the app, this is set up to
+     *  deal with growing complexity
+     */
     func showLoading() {
         activityIndicator.showLoading()
     }
     func hideLoading() {
         activityIndicator.hideLoading()
+    }
+    
+    func unsubscribeToNotifications(sender: EditProfilePresenter) {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
+    func subscribeToNotifications(sender: EditProfilePresenter) {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditProfileViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditProfileViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
     }
 }
 
@@ -175,5 +202,71 @@ extension EditProfileViewController: UIPopoverPresentationControllerDelegate {
     }
 }
 
+extension EditProfileViewController: UITextFieldDelegate {
+
+    /* Configure and deselect text fields when return is pressed */
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        let field = ProfileTextFields(rawValue: textField.tag)
+        switch field! {
+        case .Bio:
+            websiteTextField.becomeFirstResponder()
+        case .Website:
+            /* Walk through the remaining text fields, determining if they are active
+             * and set the next one as the active text field if so.
+             */
+            if haveExperienceTextField.hidden == false {
+                haveExperienceTextField.becomeFirstResponder()
+            } else if wantExperienceTextField.hidden == false {
+                wantExperienceTextField.becomeFirstResponder()
+            } else if availabilityExplanationTextField.hidden == false {
+                availabilityExplanationTextField.becomeFirstResponder()
+            } else {
+                textField.resignFirstResponder()
+            }
+        case .HaveExperience:
+            if wantExperienceTextField.hidden == false {
+                wantExperienceTextField.becomeFirstResponder()
+            } else if availabilityExplanationTextField.hidden == false {
+                availabilityExplanationTextField.becomeFirstResponder()
+            } else {
+                textField.resignFirstResponder()
+            }
+        case .WantExperience:
+            if availabilityExplanationTextField.hidden == false {
+                availabilityExplanationTextField.becomeFirstResponder()
+            } else {
+                textField.resignFirstResponder()
+            }
+        default:
+            textField.resignFirstResponder()
+        }
+        return true
+    }
+    
+    /* Hide keyboard when view is tapped */
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        /* Slide the view up when keyboard appears if editing bottom text field, using notifications */
+        if wantExperienceTextField.editing == true || availabilityExplanationTextField.editing == true {
+            view.frame.origin.y = -getKeyboardHeight(notification)
+        }
+    }
+    
+    /* Reset view origin when keyboard hides */
+    func keyboardWillHide(notification: NSNotification) {
+        view.frame.origin.y = 0
+    }
+    
+    /* Get the height of the keyboard from the user info dictionary */
+    func getKeyboardHeight(notification: NSNotification) -> CGFloat {
+        let userInfo = notification.userInfo
+        let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue
+        return keyboardSize.CGRectValue().height
+    }
+}
 
 

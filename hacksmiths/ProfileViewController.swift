@@ -49,12 +49,6 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         UIApplication.sharedApplication().statusBarStyle = .Default
     }
     
-    /**
-     */
-    func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
-        return UIBarPosition.TopAttached
-    }
-    
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         profilePresenter.detachView(self)
