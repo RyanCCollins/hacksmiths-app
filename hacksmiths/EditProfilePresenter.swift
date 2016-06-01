@@ -14,7 +14,8 @@ protocol EditProfileDelegate {
 
 /* Following the Model View Presenter Pattern in case complexity grows */
 protocol EditProfileView: NSObjectProtocol {
-    /* Blank protocol placeholder for the case that complexity grows */
+    func showLoading()
+    func hideLoading()
 }
 
 class EditProfilePresenter {

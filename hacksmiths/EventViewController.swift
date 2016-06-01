@@ -33,6 +33,7 @@ class EventViewController: UIViewController {
     @IBOutlet weak var marketingInfoStackView: UIStackView!
     @IBOutlet weak var participantHeaderStackView: UIStackView!
     @IBOutlet weak var noParticipantsLabel: UILabel!
+    @IBOutlet weak var helpButtonView: UIView!
     
     private let eventPresenter = EventPresenter(eventService: EventService())
     
@@ -233,6 +234,17 @@ class EventViewController: UIViewController {
         }
     }
     
+    /** Show Help text in a popover view
+     */
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ShowEventHelpPopover" {
+            let eventHelpViewController = segue.destinationViewController as? EventHelpPopoverViewController
+            eventHelpViewController?.helpText = "During an active event, you can RSVP to help us.  We will contact you to talk about your role in the project."
+            eventHelpViewController?.popoverPresentationController?.delegate = self
+            eventHelpViewController?.modalPresentationStyle = .Popover
+        }
+    }
+    
     lazy var fetchedResultsController: NSFetchedResultsController = {
         let sortPriority = NSSortDescriptor(key: "name", ascending: true)
         let fetch = NSFetchRequest(entityName: "Participant")
@@ -398,4 +410,10 @@ extension EventViewController: UICollectionViewDelegate, UICollectionViewDataSou
 
 enum EventStatus {
     case Previous, Current
+}
+
+extension EventViewController: UIPopoverPresentationControllerDelegate {
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .None
+    }
 }

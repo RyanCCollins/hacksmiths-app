@@ -22,6 +22,7 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var availabilityExplanationTextField: IsaoTextField!
     var formChanged = false
     private var presenter = EditProfilePresenter()
+    var activityIndicator: IGActivityIndicatorView!
     /* Edge case where it's actually better to use a global for a value outside the scope*/
     private var helpLabelText = ""
     
@@ -34,6 +35,7 @@ class EditProfileViewController: UIViewController {
             setupAvailabilityFields(currentUserData)
             setupBioField(currentUserData)
         }
+        activityIndicator = IGActivityIndicatorView(inview: view, messsage: "Saving")
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -93,6 +95,9 @@ class EditProfileViewController: UIViewController {
             profileHelpViewController.helpText = helpLabelText
             profileHelpViewController.modalPresentationStyle = .Popover
             profileHelpViewController.popoverPresentationController!.delegate = self
+            let popover = profileHelpViewController.popoverPresentationController
+            popover!.sourceView = sender as! UIButton
+            popover!.sourceRect = CGRectMake(0, 0, sender!.bounds.width, sender!.bounds.height)
         }
     }
     
@@ -154,7 +159,12 @@ class EditProfileViewController: UIViewController {
 }
 
 extension EditProfileViewController: EditProfileView {
-    
+    func showLoading() {
+        activityIndicator.showLoading()
+    }
+    func hideLoading() {
+        activityIndicator.hideLoading()
+    }
 }
 
 /** Show popover view for help text

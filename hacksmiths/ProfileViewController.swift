@@ -41,6 +41,12 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         super.viewDidAppear(animated)
         // We check that the user is authenticated and enable the edit button based on their status.
         editButton.enabled = UserService.sharedInstance().authenticated
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        UIApplication.sharedApplication().statusBarStyle = .Default
     }
     
     /**
