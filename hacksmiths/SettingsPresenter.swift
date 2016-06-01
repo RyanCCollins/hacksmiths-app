@@ -9,9 +9,14 @@
 import UIKit
 
 protocol SettingsView: NSObjectProtocol {
-    func didChangeSettings(value: Bool)
+    /** Empty protocol in case complexity grows
+     */
 }
 
+/** Settings presenter class, not yet being utilized
+ *  But is here in case of growing complexity since
+ *  The rest of the app implements MVP
+ */
 class SettingsPresenter {
     private var settingsView: SettingsView?
     private let profileService: UserProfileService?
@@ -26,31 +31,5 @@ class SettingsPresenter {
     
     func detachView(view: SettingsView) {
         self.settingsView = nil
-    }
-    
-    func updateSettings(value: Bool) {
-        guard let userId = UserService.sharedInstance().userId else {
-            return
-        }
-        
-    }
-    
-    func setSettings(userData: UserData) {
-        
-    }
-}
-
-struct Settings {
-    let pushNotifications: Bool
-    let isAvailableForEvents: Bool
-    let publicProfile: Bool
-    let availableAsAMentor: Bool
-    let lookingForAMentor: Bool
-    init(userData: UserData) {
-        self.publicProfile = userData.isPublic
-        self.isAvailableForEvents = userData.isAvailableForEvents
-        self.lookingForAMentor = userData.needsAMentor
-        self.availableAsAMentor = userData.isAvailableAsAMentor
-        self.pushNotifications = userData.mobileNotifications
     }
 }

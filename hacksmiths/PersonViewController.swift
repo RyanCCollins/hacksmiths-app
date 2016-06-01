@@ -49,6 +49,8 @@ class PersonViewController: UIViewController {
         personPresenter.detachView(self)
     }
     
+    /** Set star
+     */
     func setupStar(forPerson: Person) {
         if UserService.sharedInstance().authenticated == false {
             alertController(withTitles: ["Ok"], message: "You must be signed in to do that!", callbackHandler: [nil])
@@ -134,7 +136,7 @@ extension PersonViewController: PersonView {
     
     func setStar(starred: Bool) {
         if starred == true {
-           
+            
         }
     }
     

@@ -26,7 +26,9 @@ class Organization: NSManagedObject {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
     }
     
-    /* Custom init */
+    /** Custom init 
+     *
+     */
     init(organizationJSON: OrganizationJSON, eventID: String, context: NSManagedObjectContext) {
         
         /* Get associated entity from our context */

@@ -30,6 +30,8 @@ class SettingsViewController: UIViewController {
     private let settingPresenter = SettingsPresenter(profileService: UserProfileService())
     var currentUserData: UserData?
     
+    /** MARK: Lifecycle methods
+     */
     override func viewDidLoad() {
         super.viewDidLoad()
         modalView.transform = CGAffineTransformMakeTranslation(-300, 0)
@@ -50,12 +52,18 @@ class SettingsViewController: UIViewController {
         modalView.animate()
         presentingViewController!.view.transformOut(self)
     }
-
+    
+    /** Perform logout segue when button is tapped.
+     */
     @IBAction func performLogoutSegue(sender: AnyObject) {
         UserService.sharedInstance().performLogout()
         performSegueWithIdentifier("LogoutSegue", sender: self)
     }
     
+    /** Translate user data into UI for settings
+     * @params - NONE
+     * @return - NONE
+     */
     func setUIForUserData(){
         if let userData = currentUserData {
             pushNotificationsSwitch.on = userData.mobileNotifications
@@ -67,6 +75,9 @@ class SettingsViewController: UIViewController {
         }
     }
     
+    /** When toggle is tapped, translate to the value stored in user data.
+     *  @params - Sender: UISwitch - the sending toggle, which corresponds to the Enum Toggle value.
+     */
     @IBAction func didTapToggle(sender: UISwitch) {
         guard currentUserData != nil else {
             return
@@ -88,7 +99,10 @@ class SettingsViewController: UIViewController {
         }
     }
     
-    
+    /** Perform segue back to presenting view, sending current data
+     *  If it has changed.
+     *  @params - Sender: AnyObject - The IBAction from storyboard
+     */
     @IBAction func closeButtonPressed(sender: AnyObject) {
         presentingViewController!.view.transformIn(self)
         if dataChanged {
@@ -100,16 +114,17 @@ class SettingsViewController: UIViewController {
             self.dismissViewControllerAnimated(false, completion: nil)
         })
     }
-    
-    
 }
 
 extension SettingsViewController: SettingsView {
-    func didChangeSettings(value: Bool) {
-        
-    }
+    /** Empty protocol to be utilized if complexity grows since the rest of the app
+     *  Is now implementing the MVP pattern.
+     */
 }
 
+/** Toggle enumeration for the settings toggle types
+ *
+ */
 enum Toggle: Int {
     case PushNotifications = 1, AvailableForEvents,
     PublicProfile, AvailableAsAMentor, LookingForAMentor
