@@ -97,6 +97,8 @@ class EventPresenter {
                 } else {
                     self.eventView?.didReceiveEventData(self, didSucceed: nil, didFail: nil)
                 }
+            }.error{error in
+                self.eventView?.didReceiveEventData(self, didSucceed: nil, didFail: error as NSError)
             }
     }
 }

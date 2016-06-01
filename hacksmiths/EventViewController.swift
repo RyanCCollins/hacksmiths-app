@@ -46,6 +46,8 @@ class EventViewController: UIViewController {
         setActivityIndicator()
         if currentEvent == nil {
             eventPresenter.fetchCachedEvent()
+        } else {
+            setupUserInterface(forEvent: currentEvent!)
         }
     }
     
@@ -253,14 +255,17 @@ class EventViewController: UIViewController {
 extension EventViewController: EventView {
 
     func startLoading() {
+        print("Called start loading")
         self.activityIndicator.startAnimating()
     }
     
     func finishLoading() {
+        print("Called stop loading")
         self.activityIndicator.stopAnimating()
     }
     
     func didLoadCachedEvent(sender: EventPresenter, didSucceed event: Event?, error: NSError?) {
+        finishLoading()
         if error != nil {
             // Handle the error
             alertController(withTitles: ["OK", "Retry"], message: (error?.localizedDescription)!, callbackHandler: [nil, { Void in
@@ -272,9 +277,8 @@ extension EventViewController: EventView {
             currentEvent = event
             finishLoading()
         } else {
-            /** No Change.  Carry on.
-             */
-            finishLoading()
+            /** No Event cached.  Fetch the event. */
+            self.eventPresenter.fetchNextEvent()
         }
     }
     

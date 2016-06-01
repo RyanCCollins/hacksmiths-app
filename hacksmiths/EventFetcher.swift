@@ -38,9 +38,13 @@ class EventFetcher {
                 let sortPriority = NSSortDescriptor(key: "startDateString", ascending: false)
                 let nextEventFetch = NSFetchRequest(entityName: "Event")
                 nextEventFetch.sortDescriptors = [sortPriority]
-                if let results = try? CoreDataStackManager.sharedInstance().managedObjectContext.executeFetchRequest(nextEventFetch),
-                    let event = results[0] as? Event {
-                    resolve(event)
+                if let results = try? CoreDataStackManager.sharedInstance().managedObjectContext.executeFetchRequest(nextEventFetch) {
+                    if results.count > 0 {
+                        let event = results[0] as! Event
+                        resolve(event)
+                    } else {
+                        resolve(nil)
+                    }
                 } else {
                     resolve(nil)
                 }

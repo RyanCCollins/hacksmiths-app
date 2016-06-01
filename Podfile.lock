@@ -7,7 +7,6 @@ PODS:
     - Fabric (~> 1.6.3)
   - Fabric (1.6.6)
   - Gloss (0.7.3)
-  - IQKeyboardManagerSwift (4.0.3)
   - NVActivityIndicatorView (2.5)
   - OMGHTTPURLRQ (3.1.1):
     - OMGHTTPURLRQ/RQ (= 3.1.1)
@@ -45,7 +44,6 @@ DEPENDENCIES:
   - Crashlytics
   - Fabric
   - Gloss (~> 0.7)
-  - IQKeyboardManagerSwift
   - NVActivityIndicatorView (~> 2.5)
   - PromiseKit
   - Spring (from `https://github.com/MengTo/Spring.git`, branch `swift2`)
@@ -77,7 +75,6 @@ SPEC CHECKSUMS:
   Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
   Fabric: 1abc1e59f11fa39ede6f690ef7309d8563e3ec59
   Gloss: c97a95d6279821f35fa0138700bce0391bce87c1
-  IQKeyboardManagerSwift: b6883b720b0e76473692fdc80828442566e1075f
   NVActivityIndicatorView: 18e82784c9cb2d5f3df3129a3e4754eb075ebca0
   OMGHTTPURLRQ: 633f98ee745aeda02345935a52eec1784cddb589
   PromiseKit: 4e8127c22a9b29d1b44958ab2ec762ea6115cbfb
