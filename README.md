@@ -13,8 +13,13 @@ The app also spotlights the main contributors of the project.  Team leaders and 
 ### Mentoring
 As our platform grows, we hope to be able to take on new people, even those that are not experienced.  Through the [Hacksmiths.io Mentoring Program](http://hacksmiths.io/mentoring), we can match newcomers with a suitable mentor who can help show them the ropes on a real collaborative project.
 
-## App Architecure
-The app utilizes mostly the Model View Presenter pattern in an effort to make View Controllers lighter.  It utilizes Promises via PromiseKit to make asyncrhonous work much more elegant.  It was built using XCode 7.3.1 for the iOS9+ plus platform.
+### User sign up
+The application allows for a user to sign up to be a member of our community.  Please note that signing to be a member of the community does not mean that you will participate in a project.  We will have to get to know you a bit first :D.  That said, we encourage anyone to signup.  Please read the [Privacy Policy](http://hacksmiths.io/privacy) policy if you have any concerns.  We will do our best to keep your information private, but please keep in mind that the point of the app and website is to connect people.  If you do not specifically set your profile to public, some of your information will be available through the app and website.
+
+## App Architecture
+The app utilizes the Model View Presenter pattern in an effort to make View Controllers lighter.  It utilizes Promises via PromiseKit to make asyncrhonous work much more elegant.  It uses Core Data to persist data to the device  It was built using XCode 7.3.1 for the iOS9+ plus platform.
+
+The Application coordinates with a Node.js API that was written specifically for this project and is hosted at [Hacksmiths.io].  Most of the data for this project lives on the database server, although all models are persisted to disk to enable usage offline.
 
 ## Getting Started (If you care to install the app that is!)
 This app utilizes Cocoapods to load a number of framework dependencies.
