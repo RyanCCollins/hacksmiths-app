@@ -15,9 +15,9 @@ import CoreData
 
 class UserProfileService {
     
-    /* - Get the profile data for the currently signed in user
-     * - parameters - The user's Id
-     * - return - Promise of UserData, core data model
+    /* Get the profile data for the currently signed in user
+     * @params - userId: String - The user's ID Token
+     * @return - Promise: UserData,  a promise of user data the core data model
      */
     func getProfile(userId: String) -> Promise<UserData?> {
         return Promise{resolve, reject in

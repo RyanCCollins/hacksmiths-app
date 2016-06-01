@@ -14,6 +14,7 @@ protocol ProfileView: NSObjectProtocol {
     func setActivityIndicator(withMessage message: String?)
     func didUpdateUserData(didSucceed: Bool, error: NSError?)
     func didGetUserDataFromAPI(userData: UserData?, error: NSError?)
+    func didLoadCachedUserData(userData: UserData?, error: NSError?)
 }
 
 class ProfilePresenter {
@@ -26,6 +27,7 @@ class ProfilePresenter {
     
     func attachView(profileView: ProfileView) {
         self.profileView = profileView
+        profileView.setActivityIndicator(withMessage: "Synching")
     }
     
     func detachView(profileView: ProfileView) {
@@ -33,7 +35,6 @@ class ProfilePresenter {
     }
     
     func submitDataToAPI(userData: UserData) {
-        
         guard UserService.sharedInstance().authenticated == true else {
             self.profileView?.didUpdateUserData(false, error: GlobalErrors.BadCredentials)
             return
@@ -49,22 +50,21 @@ class ProfilePresenter {
                 self.profileView?.didUpdateUserData(false, error: error as NSError)
         }
     }
-
     
-    func fetchOrGetUserData() -> UserData? {
-        var returnData: UserData?
+    func fetchCachedData() {
         userProfileService.fetchSavedUserData().then() {
             userData -> () in
             if userData != nil {
-                returnData = userData
+                self.profileView?.didLoadCachedUserData(userData, error: nil)
             } else {
-                self.fetchUserData()
+                self.profileView?.didLoadCachedUserData(nil, error: nil)
             }
-        }
-        return returnData
+            }.error {error in
+                self.profileView?.didLoadCachedUserData(nil, error: error as NSError)
+            }
     }
     
-    func fetchUserData() {
+    func fetchUserDataFromAPI() {
         guard UserService.sharedInstance().authenticated == true else {
             self.profileView?.didGetUserDataFromAPI(nil, error: GlobalErrors.BadCredentials)
             return

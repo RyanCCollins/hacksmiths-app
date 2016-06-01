@@ -27,5 +27,4 @@ class EditProfilePresenter {
     func detachView(view: EditProfileView) {
         self.editProfileView = nil
     }
-    
 }

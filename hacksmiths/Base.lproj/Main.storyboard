@@ -2606,6 +2606,7 @@ We build tools designed to help non-profit organizations streamline their philan
         <!--Me-->
         <scene sceneID="TfA-Ip-Ls4">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6cp-8K-Nz0" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="ProfileViewController" automaticallyAdjustsScrollViewInsets="NO" id="c6C-P6-K3H" customClass="ProfileViewController" customModule="hacksmiths" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pxn-GU-PNK"/>
@@ -2789,7 +2790,6 @@ We build tools designed to help non-profit organizations streamline their philan
                         <segue destination="Z2L-zr-2tR" kind="presentation" identifier="ShowProfileEditing" id="34C-nu-Y2n"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6cp-8K-Nz0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="114" y="-564"/>
         </scene>

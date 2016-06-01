@@ -9,7 +9,7 @@
 import UIKit
 import TextFieldEffects
 
-class EditProfileViewController: UIViewController, EditProfileView {
+class EditProfileViewController: UIViewController {
     @IBOutlet weak var wantExperienceHelpView: UIView!
     @IBOutlet weak var haveExperienceHelpView: UIView!
     @IBOutlet weak var availabilityExplanationHelpView: UIView!
@@ -35,7 +35,6 @@ class EditProfileViewController: UIViewController, EditProfileView {
             setupBioField(currentUserData)
         }
     }
-
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
@@ -98,6 +97,7 @@ class EditProfileViewController: UIViewController, EditProfileView {
     }
     
     @IBAction private func handleFormUpdate(sender: IsaoTextField) {
+        print("Calling form changed")
         formChanged = true
         let textField = ProfileTextFields(rawValue: sender.tag)
         let newValue = sender.text
@@ -132,6 +132,7 @@ class EditProfileViewController: UIViewController, EditProfileView {
     func handleDismissForm(sender: AnyObject) {
         presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
+    
     private enum ProfileTextFields: Int {
         case Bio = 1, Website,
         HaveExperience, WantExperience,
@@ -150,6 +151,9 @@ class EditProfileViewController: UIViewController, EditProfileView {
             return ""
         }
     }
+}
+
+extension EditProfileViewController: EditProfileView {
     
 }
 
