@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import PromiseKit
 
 extension HacksmithsAPIClient {
     
@@ -127,48 +128,73 @@ extension HacksmithsAPIClient {
         
     }
     
+    /** Clear the member list from Core Data before fetching
+     *
+     *  @param None
+     *  @return Promise of Void (no type) - A Promise that we have deleted the member list.
+     */
+    private func deleteMemberList() -> Promise<Void> {
+        return Promise{resolve, reject in
+            let fetchRequest = NSFetchRequest(entityName: "Person")
+            let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+            do {
+                try CoreDataStackManager.sharedInstance().persistentStoreCoordinator?.executeRequest(deleteRequest, withContext: GlobalStackManager.SharedManager.sharedContext)
+                resolve()
+            } catch let error as NSError {
+                print("An error occured while deleting all event data")
+                reject(error as NSError)
+            }
+        }
+    }
     
+    /** Get the member list from the API.  This is legacy from implementation before promises and Gloss JSON library.
+     *
+     *  @param body - an empty object
+     *  @param - CompletionHandler - the completion handler with error and success.
+     */
     func getMemberList(body: [String :AnyObject], completionHandler: CompletionHandler) {
         let method = Routes.Members
-        
         syncInProgress = true
         
-        taskForGETMethod(method, parameters: body, completionHandler: {success, result, error in
-            
-            if error != nil {
-                self.syncInProgress = false
-                completionHandler(success: false, error: error)
+        deleteMemberList().then() {
+            Void in
+            self.taskForGETMethod(method, parameters: body, completionHandler: {success, result, error in
                 
-            } else {
-                
-                if let membersArray = result["members"] as? [[String : AnyObject]] {
-                    for member in membersArray {
-                        
-                        /* Create a person and save the context */
-                        let person = Person(dictionary: member, context: GlobalStackManager.SharedManager.sharedContext)
-                        
-                        GlobalStackManager.SharedManager.sharedContext.performBlockAndWait({
-                            CoreDataStackManager.sharedInstance().saveContext()
-                        })
-                        
-                        /* Fetch the images and then save the context again at the end.  Return an error if there is one. */
-                        person.fetchImages({success, error in
-                            if error != nil {
-                                completionHandler(success: false, error: error)
-                            }
-                        })
+                if error != nil {
+                    self.syncInProgress = false
+                    completionHandler(success: false, error: error)
+                } else {
+                    
+                    if let membersArray = result["members"] as? [[String : AnyObject]] {
+                        for member in membersArray {
+                            
+                            /* Create a person and save the context */
+                            let person = Person(dictionary: member, context: GlobalStackManager.SharedManager.sharedContext)
+                            
+                            GlobalStackManager.SharedManager.sharedContext.performBlockAndWait({
+                                CoreDataStackManager.sharedInstance().saveContext()
+                            })
+                            
+                            /* Fetch the images and then save the context again at the end.  Return an error if there is one. */
+                            person.fetchImages({success, error in
+                                if error != nil {
+                                    completionHandler(success: false, error: error)
+                                }
+                            })
+                        }
                     }
+                    
+                    GlobalStackManager.SharedManager.sharedContext.performBlockAndWait({
+                        CoreDataStackManager.sharedInstance().saveContext()
+                    })
+                    self.syncInProgress = false
+                    completionHandler(success: true, error: nil)
                 }
+            })
 
-                GlobalStackManager.SharedManager.sharedContext.performBlockAndWait({
-                    CoreDataStackManager.sharedInstance().saveContext()
-                })
-                self.syncInProgress = false
-                completionHandler(success: true, error: nil)
-                
+            }.error {
+                error in
+                completionHandler(success: false, error: error as NSError)
             }
-            
-        })
     }
- 
  }

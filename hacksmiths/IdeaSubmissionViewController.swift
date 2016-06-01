@@ -26,6 +26,7 @@ class IdeaSubmissionViewController: UIViewController {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
+        activityIndicator = IGActivityIndicatorView(inview: view, messsage: "Loading")
         ideaSubmissionPresenter.attachView(self)
         performViewSetup()
     }
@@ -49,11 +50,12 @@ class IdeaSubmissionViewController: UIViewController {
     /** Perform view setup, setting delegate and creating the activity indicator
      */
     func performViewSetup() {
-        setBorderForTextView()
+        dispatch_async(GlobalMainQueue, {
+            self.setBorderForTextView()
+        })
         ideaTitleTextField.delegate = self
         additionalInformationTextField.delegate = self
         ideaDescriptionTextView.clearsOnInsertion = true
-        activityIndicator = IGActivityIndicatorView(inview: view, messsage: "Loading")
     }
     
     /** Set a border around the text view
@@ -67,9 +69,14 @@ class IdeaSubmissionViewController: UIViewController {
     /** Set the view to show the existing submission if there is one.
      */
     func setViewForExistingSubmission(ideaSubmission: ProjectIdeaSubmission) {
-        ideaTitleTextField.text = ideaSubmission.title
-        ideaDescriptionTextView.text = ideaSubmission.descriptionString
-        additionalInformationTextField.text = ideaSubmission.additionalInformation
+        alertController(withTitles: ["Edit", "No Thanks"], message: "Only one submission per person per event.  You can edit your submission if you want!", callbackHandler: [nil, {Void in
+            self.cancelSubmission(self)
+        }])
+        dispatch_async(GlobalMainQueue, {
+            self.ideaTitleTextField.text = ideaSubmission.title
+            self.ideaDescriptionTextView.text = ideaSubmission.descriptionString
+            self.additionalInformationTextField.text = ideaSubmission.additionalInformation
+        })
     }
     
     /** When the submission button is tapped, call this method.
@@ -191,13 +198,18 @@ extension IdeaSubmissionViewController: IdeaSubmissionView {
         hideLoading()
         if didFail != nil {
             alertController(withTitles: ["Ok"], message: (didFail?.localizedDescription)!, callbackHandler: [nil])
-        } else if didSucceed {
+        } else if didSucceed == true {
             presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
         } else {
             alertController(withTitles: ["Ok"], message: "An unknown error occured when communicating with the network.  Please try again.", callbackHandler: [nil])
         }
     }
     
+    /** When the submission is new, set the status to .New
+     *
+     *  @param sender - the presenter that sent the message
+     *  @return None
+     */
     func isNewSubmission(sender: IdeaSubmissionPresenter) {
         hideLoading()
         submissionStatus = .New
@@ -213,7 +225,8 @@ extension IdeaSubmissionViewController: IdeaSubmissionView {
             submissionStatus = .New
         }
     }
-    
+    /** Cancel the submission from the presenter
+     */
     func cancelSubmission(sender: AnyObject) {
         presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
