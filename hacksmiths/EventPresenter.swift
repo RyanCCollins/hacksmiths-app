@@ -51,6 +51,12 @@ class EventPresenter {
         }
     }
     
+    /** Fetch images for the event
+     *
+     *  @params event: Event - the event that is current
+     *
+     *  @return None
+     */
     func fetchImageForEvent(event: Event) {
         event.fetchImages().then() {
             image -> () in
@@ -58,6 +64,11 @@ class EventPresenter {
         }
     }
     
+    /** Fetch a cached event from Core Data
+     *
+     *  @param - None
+     *  @return - None
+     */
     func fetchCachedEvent() {
         EventFetcher.sharedFetcher.getCachedEvent().then() {
             event -> () in
@@ -71,6 +82,13 @@ class EventPresenter {
             }
     }
     
+    /** Fetch the next event, calling the API to load the next event by
+     *  and determine if the event is active or now
+     *
+     *  @param None
+     *
+     *  @return None
+     */
     func fetchNextEvent() {
         eventView?.startLoading()
         EventFetcher.sharedFetcher.deleteEvents().then() {
@@ -87,6 +105,11 @@ class EventPresenter {
         }
     }
     
+    /** Fetch the data for the event from the API
+     *
+     *  @param eventId:String - Id of the current event
+     *  @return None
+     */
     func fetchEventData(eventId: String) {
         eventView?.startLoading()
         self.eventService.getEvent(eventId).then() {

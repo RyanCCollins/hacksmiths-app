@@ -265,6 +265,7 @@ extension EventViewController: EventView {
     }
     
     func didLoadCachedEvent(sender: EventPresenter, didSucceed event: Event?, error: NSError?) {
+        print("Did load cached event")
         finishLoading()
         if error != nil {
             // Handle the error
@@ -274,8 +275,8 @@ extension EventViewController: EventView {
         } else if event != nil {
             resetUserInterface()
             setupUserInterface(forEvent: event!)
+            performParticipantFetch()
             currentEvent = event
-            finishLoading()
         } else {
             /** No Event cached.  Fetch the event. */
             self.eventPresenter.fetchNextEvent()
@@ -283,6 +284,7 @@ extension EventViewController: EventView {
     }
     
     func didReceiveNewEvent(sender: EventPresenter, didSucceed event: NextEvent?, error: NSError?) {
+        print("Did receive new event")
         finishLoading()
         if error != nil {
             let message = error?.localizedDescription ?? "An unknown error occurred."
@@ -291,11 +293,11 @@ extension EventViewController: EventView {
             self.eventPresenter.fetchEventData(event!.idString)
         } else {
             /* No change */
-            finishLoading()
         }
     }
     
     func didReceiveEventData(sender: EventPresenter, didSucceed event: Event?, didFail error: NSError?) {
+        print("Did receive event data")
         finishLoading()
         if event != nil {
             resetUserInterface()
