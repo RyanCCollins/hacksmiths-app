@@ -12,23 +12,22 @@ import UIKit
 import Foundation
 import NVActivityIndicatorView
 
-class IGActivityIndicatorView: UIView {
+public class IGActivityIndicatorView: UIView {
     var messageFrame = UIView()
     var activityIndicator: NVActivityIndicatorView!
     var title: String!
     var indicatorColor: UIColor!
     var loadingViewColor: UIColor!
     var inview: UIView!
+    private var tapHandler: (()->())?
     
     init(inview:UIView, loadingViewColor:UIColor, indicatorColor:UIColor, msg:String){
-        
         self.indicatorColor = indicatorColor
         self.loadingViewColor = loadingViewColor
         self.title = msg
         super.init(frame: CGRectMake(inview.frame.midX - 100, inview.frame.midY - 25 , 200, 50))
         self.inview = inview
         initalize()
-        
     }
     
     func initalize(){
@@ -41,10 +40,28 @@ class IGActivityIndicatorView: UIView {
         messageFrame.layer.cornerRadius = 10
         messageFrame.backgroundColor = loadingViewColor
         messageFrame.alpha = 0.8
+        messageFrame.autoresizesSubviews = true
         messageFrame.addSubview(activityIndicator)
         messageFrame.addSubview(strLabel)
         self.addSubview(messageFrame)
+    }
+    
+    public func addTapHandler(tap:() -> ()) {
+        tapHandler = tap
+    }
+    
+    public override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        if tapHandler != nil {
+            stopAnimating()
+        }
+    }
+    
+    func delay(seconds seconds: Double, completion: () -> ()) {
+        let popTime = dispatch_time(DISPATCH_TIME_NOW, Int64( Double(NSEC_PER_SEC) * seconds ))
         
+        dispatch_after(popTime, dispatch_get_main_queue()) {
+            completion()
+        }
     }
     
     convenience init(inview:UIView) {
@@ -54,8 +71,7 @@ class IGActivityIndicatorView: UIView {
         self.init(inview: inview,loadingViewColor: UIColor.blackColor(),indicatorColor:UIColor.whiteColor(), msg: messsage)
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -64,7 +80,7 @@ class IGActivityIndicatorView: UIView {
         if !inview.subviews.contains(self){
             activityIndicator.startAnimation()
             inview.addSubview(self)
-            UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+            //UIApplication.sharedApplication().beginIgnoringInteractionEvents()
         }
     }
     
@@ -73,7 +89,7 @@ class IGActivityIndicatorView: UIView {
         if inview.subviews.contains(self){
             activityIndicator.stopAnimation()
             self.removeFromSuperview()
-            UIApplication.sharedApplication().endIgnoringInteractionEvents()
+            //UIApplication.sharedApplication().endIgnoringInteractionEvents()
             
         }
     }

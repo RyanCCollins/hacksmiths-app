@@ -13,7 +13,10 @@ import Gloss
 import CoreData
 
 class EventService {
-    
+    /* Get Event status, checking the API for a new event
+     * @params - None
+     * @return - Promise<NextEvent?> - A promise of optional Next Event (temporary description of the next event stored to Core Data.)
+     */
     func getEventStatus() -> Promise<NextEvent?> {
         return Promise {resolve, reject in
             print("Calling beginning of promise in getEventStatus")

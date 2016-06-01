@@ -19,7 +19,6 @@
             <string>Montserrat-Regular</string>
             <string>Montserrat-Regular</string>
             <string>Montserrat-Regular</string>
-            <string>Montserrat-Regular</string>
         </mutableArray>
         <mutableArray key="OpenSans-Bold.ttf">
             <string>OpenSans-Bold</string>
@@ -38,6 +37,7 @@
             <string>OpenSans-Light</string>
         </mutableArray>
         <mutableArray key="OpenSans-Regular.ttf">
+            <string>OpenSans</string>
             <string>OpenSans</string>
             <string>OpenSans</string>
             <string>OpenSans</string>
@@ -205,8 +205,8 @@
                                                 </attributedString>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="u5O-D3-8Y1" userLabel="github-stackview">
-                                                <rect key="frame" x="214" y="361" width="159" height="30"/>
+                                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="u5O-D3-8Y1" userLabel="github-stackview">
+                                                <rect key="frame" x="214" y="361" width="173" height="30"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z6o-BF-H4S">
                                                         <rect key="frame" x="0.0" y="0.0" width="27" height="30"/>
@@ -216,8 +216,8 @@
                                                         </constraints>
                                                         <state key="normal" image="github"/>
                                                     </button>
-                                                    <button opaque="NO" tag="2" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9LO-z8-Epz">
-                                                        <rect key="frame" x="32" y="0.0" width="127" height="30"/>
+                                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9LO-z8-Epz">
+                                                        <rect key="frame" x="32" y="0.0" width="141" height="30"/>
                                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
                                                         <state key="normal" title="github">
                                                             <color key="titleColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
@@ -231,8 +231,8 @@
                                                     <constraint firstAttribute="height" constant="30" id="MDv-dF-X4h"/>
                                                 </constraints>
                                             </stackView>
-                                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="AvM-xL-Gpk" userLabel="twitter-stackview">
-                                                <rect key="frame" x="214" y="322" width="159" height="27"/>
+                                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="AvM-xL-Gpk" userLabel="twitter-stackview">
+                                                <rect key="frame" x="214" y="322" width="173" height="27"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="twitter-logo" translatesAutoresizingMaskIntoConstraints="NO" id="Coo-CK-aJJ">
                                                         <rect key="frame" x="0.0" y="0.0" width="27" height="27"/>
@@ -242,8 +242,8 @@
                                                             <constraint firstAttribute="width" secondItem="Coo-CK-aJJ" secondAttribute="height" multiplier="1:1" id="o8h-3R-iPw"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rC1-xa-MYj">
-                                                        <rect key="frame" x="32" y="0.0" width="127" height="27"/>
+                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rC1-xa-MYj">
+                                                        <rect key="frame" x="32" y="0.0" width="141" height="27"/>
                                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
                                                         <state key="normal" title="twitter">
                                                             <color key="titleColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
@@ -268,8 +268,8 @@
                                                     <action selector="didTapStarUpInside:" destination="tSP-Xd-Jd2" eventType="touchUpInside" id="kAd-AT-AWA"/>
                                                 </connections>
                                             </button>
-                                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="EYC-I0-rnm" userLabel="website-stackview">
-                                                <rect key="frame" x="214" y="403" width="159" height="27"/>
+                                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="EYC-I0-rnm" userLabel="website-stackview">
+                                                <rect key="frame" x="214" y="403" width="173" height="27"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NxO-Sw-65f">
                                                         <rect key="frame" x="0.0" y="0.0" width="27" height="27"/>
@@ -279,8 +279,8 @@
                                                         </constraints>
                                                         <state key="normal" image="link-white"/>
                                                     </button>
-                                                    <button opaque="NO" tag="3" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nPT-Zm-NrP">
-                                                        <rect key="frame" x="32" y="0.0" width="127" height="27"/>
+                                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nPT-Zm-NrP">
+                                                        <rect key="frame" x="32" y="0.0" width="141" height="27"/>
                                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
                                                         <state key="normal" title="http://website.com">
                                                             <color key="titleColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
@@ -911,7 +911,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="255" id="cbp-HU-nG4"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
+                                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="17"/>
                                         <color key="textColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -946,8 +946,8 @@
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ib4-5D-bEd">
-                                        <rect key="frame" x="40" y="1816" width="520" height="30"/>
-                                        <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
+                                        <rect key="frame" x="40" y="1816" width="520" height="33"/>
+                                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="15"/>
                                         <state key="normal" title=" ">
                                             <color key="titleColor" red="0.16862745100000001" green="0.56470588239999997" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -956,7 +956,7 @@
                                             <action selector="didTapVisitSiteUpInside:" destination="8E9-ee-mxd" eventType="touchUpInside" id="WQ2-1t-gdn"/>
                                         </connections>
                                     </button>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="zla-Fd-Vj8">
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="zla-Fd-Vj8">
                                         <rect key="frame" x="40" y="1957" width="520" height="686"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -1108,7 +1108,7 @@
                                             </view>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="KfG-hw-pTC" userLabel="ParticipantsHeaderStackView">
+                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="KfG-hw-pTC" userLabel="ParticipantsHeaderStackView">
                                         <rect key="frame" x="40" y="1886" width="520" height="51"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J0G-ii-NI6">
@@ -3085,6 +3085,6 @@ We build tools designed to help non-profit organizations streamline their philan
         <image name="x-in-square" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="idI-gn-l6U"/>
+        <segue reference="Hdj-kS-PrG"/>
     </inferredMetricsTieBreakers>
 </document>

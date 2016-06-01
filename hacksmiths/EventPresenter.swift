@@ -95,8 +95,10 @@ class EventPresenter {
             self.eventService.getEventStatus().then() {
                 nextEvent -> () in
                 if nextEvent != nil {
+                    print("Called did receive next event succeed")
                     self.eventView?.didReceiveNewEvent(self, didSucceed: nextEvent, error: nil)
                 } else {
+                    print("Called did receive next event succeed with nil")
                     self.eventView?.didReceiveNewEvent(self, didSucceed: nil, error: nil)
                 }
                 }.error {error in

@@ -9,8 +9,9 @@
 import UIKit
 import SwiftyButton
 import CoreData
-import Foundation
-
+/** Event View Controller
+ *  Handles showing the current event and loading of a new event when there is one.
+ */
 class EventViewController: UIViewController {
     @IBOutlet weak var eventImageView: UIImageView!
     @IBOutlet weak var headerLabel: UILabel!
@@ -38,11 +39,12 @@ class EventViewController: UIViewController {
     var currentEvent: Event?
     var activityIndicator: IGActivityIndicatorView!
     
+    /** MARK: Life cycle methods
+     */
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
-        eventPresenter.attachView(self)
         setActivityIndicator()
         fetchedResultsController.delegate = self
         
@@ -55,6 +57,7 @@ class EventViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        eventPresenter.attachView(self)
         toggleButtonTitle(forAuthenticatedState: UserService.sharedInstance().authenticated)
     }
     
@@ -67,12 +70,17 @@ class EventViewController: UIViewController {
         activityIndicator = IGActivityIndicatorView(inview: self.view)
     }
     
+    /** When tapping refresh, start refreshing and check the API for new event data
+     */
     @IBAction func didTapRefreshUpInside(sender: AnyObject) {
         startLoading()
         eventPresenter.fetchNextEvent()
     }
     
     /** Logic for setting event information UI
+     *
+     *  @params event: Event - the event that is loaded
+     *  @return None
      */
     func setupUserInterface(forEvent event: Event) {
         dispatch_async(GlobalMainQueue, {
@@ -97,6 +105,9 @@ class EventViewController: UIViewController {
     }
     
     /** Setup the first section of the event page
+     *
+     *  @params event: Event - the event that is loaded
+     *  @return None
      */
     func setupSectionOne(forEvent event: Event) {
         dispatch_async(GlobalMainQueue, {
@@ -112,6 +123,11 @@ class EventViewController: UIViewController {
         })
     }
     
+    /** Setup the UI for the organization
+     *
+     *  @params event: Event - the event that is loaded
+     *  @return None
+     */
     func setupOrganization(forEvent event: Event) {
         if let organization = event.organization {
             if organization.image == nil && organization.logoUrl != nil {
@@ -173,9 +189,9 @@ class EventViewController: UIViewController {
     
     func toggleButtonTitle(forAuthenticatedState authenticated: Bool){
         if authenticated {
-            registerSignupButton.titleLabel!.text = "I WANT TO HELP!"
+            registerSignupButton.titleLabel!.text = "I CAN HELP!"
         } else {
-             registerSignupButton.titleLabel!.text = "SIGN IN TO HELP!"
+             registerSignupButton.titleLabel!.text = "SIGN IN!"
         }
     }
     
