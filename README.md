@@ -1,6 +1,8 @@
 ![Hacksmiths Logo](https://rawgit.com/teamhacksmiths/food-drivr-backend/master/.github/assets/hacksmiths-logo.png)
 
-# Hackmiths Mobile App - Made with ❤️ by Ryan Collins - Founder of [Hacksmith.io](http://hacksmiths.io)
+# Hackmiths Mobile App
+### Made with ❤️ by Ryan Collins - Founder of [Hacksmith.io](http://hacksmiths.io)
+
 Hacksmiths was built to provide a platform for Udacity students to collaborate on meaningful projects for social good.  Our debut project, the [Food Drivr App](https://github.com/teamhacksmiths/food-drivr), a web and mobile application designed to make the process of donating edible food, is nearing public release as of late May 2016.
 
 The Hacksmiths.io website and ios mobile application serve to make it simple for people to learn about the work that we are doing.  It was designed to share the amazing work that we are doing with the world and to make it simple for newcomers to get onboard to help with future projects.
@@ -11,7 +13,7 @@ The main feature of the app is to keep people updated with our events and projec
 The app also spotlights the main contributors of the project.  Team leaders and top contributors show up on the top of the list in the community section.  
 
 ### Mentoring
-As our platform grows, we hope to be able to take on new people, even those that are not experienced.  Through the [Hacksmiths.io Mentoring Program](http://hacksmiths.io/mentoring), we can match newcomers with a suitable mentor who can help show them the ropes on a real collaborative project.
+As our platform grows, we hope that new people will join us to help with our projects. We encourage people of any experience level to join us. Through the [Hacksmiths.io Mentoring Program](http://hacksmiths.io/mentoring), we can match newcomers with a suitable mentor who can help show them the ropes on a real collaborative project.  Please stay tuned for announcements on how this will work.  For now, if you have a profile, check off that you are looking for a mentor and what experience you'd like to gain.
 
 ### User sign up
 The application allows for a user to sign up to be a member of our community.  Please note that signing to be a member of the community does not mean that you will participate in a project.  We will have to get to know you a bit first :D.  That said, we encourage anyone to signup.  Please read the [Privacy Policy](http://hacksmiths.io/privacy) policy if you have any concerns.  We will do our best to keep your information private, but please keep in mind that the point of the app and website is to connect people.  If you do not specifically set your profile to public, some of your information will be available through the app and website.
@@ -61,7 +63,7 @@ This app is setup to utilize fastlane to automate the App Store Submission.  The
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
-Thanks to all of the wonder people in the [Hacksmiths]() and Udacity communities for making this project possible!  A special thanks to the wonderful employees of Udacity.  You are all such amazing people and the Hacksmiths would not be possible without you!
+Thanks to all of the wonder people in the [Hacksmiths](https://hacksmiths.io) and [Udacity](https://udacity.com) communities for making this project possible!  A special thanks to the wonderful employees of Udacity.  You are all such amazing people and the Hacksmiths would not be possible without you!
 
 <div>Icon made by <a href="http://www.icomoon.io" title="Icomoon">Icomoon</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed under <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a></div>
 
