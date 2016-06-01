@@ -44,6 +44,8 @@ class EventViewController: UIViewController {
         collectionView.dataSource = self
         eventPresenter.attachView(self)
         setActivityIndicator()
+        fetchedResultsController.delegate = self
+        
         if currentEvent == nil {
             eventPresenter.fetchCachedEvent()
         } else {
@@ -196,7 +198,6 @@ class EventViewController: UIViewController {
             self.eventOrganizationHeaderStackView.fadeOut()
             
             self.eventOrganizationNotFoundLabel.fadeOut()
-            
             self.organizationDescriptionLabel.fadeOut()
             self.organizationTitleLabel.fadeOut()
             self.organizationImageView.fadeOut()
@@ -249,6 +250,16 @@ class EventViewController: UIViewController {
         } else {
             performSegueWithIdentifier("ShowSignupToRegisterForEvent", sender: self)
         }
+    }
+}
+
+extension EventViewController: NSFetchedResultsControllerDelegate {
+    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+        collectionView.reloadData()
+    }
+    
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        collectionView.reloadData()
     }
 }
 
@@ -332,15 +343,6 @@ extension EventViewController: EventView {
         UIApplication.sharedApplication().openURL(slackUrl!)
     }
     
-}
-
-extension EventViewController: NSFetchedResultsControllerDelegate {
-    func controllerWillChangeContent(controller: NSFetchedResultsController) {
-        collectionView.reloadData()
-    }
-    func controllerDidChangeContent(controller: NSFetchedResultsController) {
-        collectionView.reloadData()
-    }
 }
 
 extension EventViewController: UICollectionViewDelegate, UICollectionViewDataSource {

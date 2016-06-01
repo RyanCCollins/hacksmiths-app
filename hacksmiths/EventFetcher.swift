@@ -12,8 +12,8 @@ import PromiseKit
 class EventFetcher {
     static let sharedFetcher = EventFetcher()
     
-    /* - Return a promise of a fetched event, based on passed in currentEvent reference
-     * - return - Promise of optional Event
+    /** Return a promise of a fetched event, based on passed in currentEvent reference
+     * @return - Promise of optional Event
      */
     func getCachedEvent(byId idString: String) -> Promise<Event?> {
         return Promise{resolve, reject in
@@ -22,16 +22,24 @@ class EventFetcher {
                 let eventPredicate = NSPredicate(format: "idString = %@", idString)
                 eventFetch.predicate = eventPredicate
                 
-                if let results = try? CoreDataStackManager.sharedInstance().managedObjectContext.executeFetchRequest(eventFetch),
-                    event = results[0] as? Event {
-                    resolve(event)
+                if let results = try? CoreDataStackManager.sharedInstance().managedObjectContext.executeFetchRequest(eventFetch) {
+                    if results.count > 0 {
+                        let event = results[0] as! Event
+                        resolve(event)
+                    } else {
+                        resolve(nil)
+                    }
                 } else {
                     resolve(nil)
                 }
             }
         }
     }
-    
+    /** Get a cached event out of core data, rather than checking the API
+     *
+     *  @param None
+     *  @return Promise: Event? - A promise of an optional Event
+     */
     func getCachedEvent() -> Promise<Event?> {
         return Promise{ resolve, reject in
             do {
@@ -52,6 +60,11 @@ class EventFetcher {
         }
     }
     
+    /** Delete all events in core data
+     *
+     *  @param None
+     *  @return Promise: Void - A promise with no type
+     */
     func deleteEvents() -> Promise<Void> {
         return Promise{resolve, reject in
             deleteAllSavedNextEventEntries().then() {
@@ -64,9 +77,10 @@ class EventFetcher {
         }
     }
     
-    /* Next event should only hold a reference to the next event, so
-     Using this convenience, all saved next event entries should be deleted when
-     Creating a new one.
+    /** Next event should only hold a reference to the next event, so
+     *  Using this convenience, all saved next event entries should be deleted when Creating a new one.
+     *  @params None
+     *  @return Promise<Void> - A Promise of type Void
      */
     private func deleteAllSavedNextEventEntries() -> Promise<Void> {
         return Promise{resolve, reject in
@@ -82,13 +96,18 @@ class EventFetcher {
         }
     }
     
-    private func deleteAllEventEntries() -> Promise<Void> {
+    /** Delete all event entries from the manage object context
+     *
+     *  @param - None
+     *  @return - Promise: Void - A promise of type Bool.
+     */
+    private func deleteAllEventEntries() -> Promise<Bool> {
         return Promise{resolve, reject in
             let fetchRequest = NSFetchRequest(entityName: "Event")
             let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
             do {
                 try CoreDataStackManager.sharedInstance().persistentStoreCoordinator?.executeRequest(deleteRequest, withContext: GlobalStackManager.SharedManager.sharedContext)
-                resolve()
+                resolve(true)
             } catch let error as NSError {
                 print("An error occured while deleting all event data")
                 reject(error as NSError)
@@ -96,8 +115,9 @@ class EventFetcher {
         }
     }
     
-    /* - Return a promise of the next (currently save) Event
-     * - return - Promise of optional NextEvent
+    /** Return a promise of the next (currently save) Event
+     *  @param None
+     *  @return - Promise of optional NextEvent
      */
     func performNextEventFetch() -> Promise<NextEvent?> {
         return Promise{resolve, reject in
@@ -111,8 +131,10 @@ class EventFetcher {
                         return
                     }
                     returnEvent = results[0]
+                    resolve(returnEvent)
+                } else {
+                    throw GlobalErrors.MissingData
                 }
-                resolve(returnEvent)
             } catch let error as NSError {
                 reject(error)
             }
