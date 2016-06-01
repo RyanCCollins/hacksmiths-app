@@ -114,6 +114,7 @@ class EditProfileViewController: UIViewController {
         }
     }
     
+    
     @IBAction private func handleFormUpdate(sender: IsaoTextField) {
         print("Calling form changed")
         formChanged = true

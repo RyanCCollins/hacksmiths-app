@@ -2903,8 +2903,8 @@ We build tools designed to help non-profit organizations streamline their philan
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IVX-4q-6ku">
                                                 <rect key="frame" x="482" y="0.0" width="38" height="53"/>
                                                 <subviews>
-                                                    <button opaque="NO" tag="3" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LSp-IR-NQl">
-                                                        <rect key="frame" x="13" y="15" width="25" height="25"/>
+                                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LSp-IR-NQl">
+                                                        <rect key="frame" x="13" y="14" width="25" height="25"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="25" id="YlT-HS-xpb"/>
                                                             <constraint firstAttribute="width" constant="25" id="cD7-n4-ffd"/>
@@ -2925,6 +2925,11 @@ We build tools designed to help non-profit organizations streamline their philan
                                                     <constraint firstAttribute="trailing" secondItem="LSp-IR-NQl" secondAttribute="trailing" id="Uk2-Co-1HY"/>
                                                     <constraint firstAttribute="width" constant="38" id="Vx2-fX-z9Y"/>
                                                 </constraints>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="0ln-xE-yq1"/>
+                                                    </mask>
+                                                </variation>
                                             </view>
                                         </subviews>
                                     </stackView>
@@ -2951,8 +2956,8 @@ We build tools designed to help non-profit organizations streamline their philan
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b9R-PJ-AQD">
                                                 <rect key="frame" x="482" y="0.0" width="38" height="53"/>
                                                 <subviews>
-                                                    <button opaque="NO" tag="4" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fPL-es-z5Y">
-                                                        <rect key="frame" x="13" y="15" width="25" height="25"/>
+                                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fPL-es-z5Y">
+                                                        <rect key="frame" x="13" y="14" width="25" height="25"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="25" id="Kqg-sp-6Tg"/>
                                                             <constraint firstAttribute="width" constant="25" id="igp-t4-hKC"/>
@@ -2970,6 +2975,11 @@ We build tools designed to help non-profit organizations streamline their philan
                                                     <constraint firstAttribute="trailing" secondItem="fPL-es-z5Y" secondAttribute="trailing" id="oaz-Aq-Heb"/>
                                                     <constraint firstAttribute="width" constant="38" id="t5D-xH-4XI"/>
                                                 </constraints>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="OoO-j3-l7Y"/>
+                                                    </mask>
+                                                </variation>
                                             </view>
                                         </subviews>
                                     </stackView>
@@ -2996,8 +3006,8 @@ We build tools designed to help non-profit organizations streamline their philan
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RL5-jM-X2a">
                                                 <rect key="frame" x="482" y="0.0" width="38" height="53"/>
                                                 <subviews>
-                                                    <button opaque="NO" tag="5" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NVR-Sn-hPe">
-                                                        <rect key="frame" x="13" y="15" width="25" height="25"/>
+                                                    <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NVR-Sn-hPe">
+                                                        <rect key="frame" x="13" y="14" width="25" height="25"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="25" id="nkX-Uk-lag"/>
                                                             <constraint firstAttribute="width" constant="25" id="uCm-an-NS5"/>
@@ -3015,6 +3025,11 @@ We build tools designed to help non-profit organizations streamline their philan
                                                     <constraint firstAttribute="height" constant="50" id="aCP-gi-K3b"/>
                                                     <constraint firstAttribute="trailing" secondItem="NVR-Sn-hPe" secondAttribute="trailing" id="pNq-qJ-ajp"/>
                                                 </constraints>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="aCP-gi-K3b"/>
+                                                    </mask>
+                                                </variation>
                                             </view>
                                         </subviews>
                                     </stackView>
@@ -3030,8 +3045,8 @@ We build tools designed to help non-profit organizations streamline their philan
                                 <color key="textColor" red="0.2872858942" green="0.14020672440000001" blue="0.30659055709999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4aY-03-0fn">
-                                <rect key="frame" x="530" y="40" width="50" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4aY-03-0fn">
+                                <rect key="frame" x="545" y="40" width="35" height="34"/>
                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
                                 <state key="normal" title="Save">
                                     <color key="titleColor" red="0.16862745100000001" green="0.56470588239999997" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>

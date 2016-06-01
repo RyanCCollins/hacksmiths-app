@@ -3,11 +3,14 @@
 //  hacksmiths
 //
 //  Created by Ryan Collins on 5/20/16.
-//  Copyright © 2016 Tech Rapport. All rights reserved.
+//  Copyright © 2016 Ryan Collins. All rights reserved.
 //
 
 import CoreData
+import PromiseKit
 
+/** Protocol to follow the MVP pattern for Idea Submission.
+ */
 protocol IdeaSubmissionView {
     func showLoading()
     func hideLoading()
@@ -19,6 +22,8 @@ protocol IdeaSubmissionView {
     func unsubscribeToNotifications(sender: AnyObject)
 }
 
+/** Idea Submission Presenter - Handles communicating with model layer for view
+ */
 class IdeaSubmissionPresenter {
     var ideaSubmissionView: IdeaSubmissionView?
     private let projectIdeaService: ProjectIdeaService
@@ -27,50 +32,87 @@ class IdeaSubmissionPresenter {
         self.projectIdeaService = projectIdeaService
     }
     
+    /** Attach the view to the presenter and perform the setup
+     */
     func attachView(view: IdeaSubmissionView) {
         self.ideaSubmissionView = view
         ideaSubmissionView?.subscribeToNotifications(self)
         loadExistingDataIfExists()
     }
     
+    /** Detach the view from the presenter and do any breakdown needed
+     */
     func detachView(view: IdeaSubmissionView) {
         self.ideaSubmissionView = nil
         ideaSubmissionView?.unsubscribeToNotifications(self)
     }
     
+    /** Load an existing idea from core data if it exists
+     *
+     *  @param None
+     *  @return None
+     */
     func loadExistingDataIfExists() {
-        if let ideaSubmission = findExistingIdea() {
-            self.ideaSubmissionView?.didFindExistingData(self, ideaSubmission: ideaSubmission)
-        } else {
-            self.ideaSubmissionView?.isNewSubmission(self)
-        }
-    }
-    
-    func findExistingIdea() -> ProjectIdeaSubmission? {
-        do {
-            let ideaFetch = NSFetchRequest(entityName: "ProjectIdeaSubmission")
-            var idea: ProjectIdeaSubmission? = nil
-            if let results = try CoreDataStackManager.sharedInstance().managedObjectContext.executeFetchRequest(ideaFetch) as? [ProjectIdeaSubmission] {
-                guard results.count > 0 else {
-                    return nil
-                }
-                idea = results[0]
+        ideaSubmissionView?.showLoading()
+        findExistingIdea().then() {
+            idea -> () in
+            if idea != nil {
+                self.ideaSubmissionView?.didFindExistingData(self, ideaSubmission: idea!)
+            } else {
+                self.ideaSubmissionView?.isNewSubmission(self)
             }
-            return idea
-        } catch let error as NSError {
-            print(error)
-            return nil
         }
     }
     
-    func updateIdeaToAPI(projectIdea: ProjectIdeaSubmission) {
-        //projectIdeaService.updateOneIdea(<#T##ideaId: String##String#>, ideaJSON: <#T##IdeaJSON#>)
+    /** Find an existing Idea that the user has submitted
+     *
+     *  @param None
+     *  @return Promise<ProjectIdeaSubmission?> -  An optional idea submission record.
+     */
+    private func findExistingIdea() -> Promise<ProjectIdeaSubmission?> {
+        return Promise{resolve, reject in
+            do {
+                let ideaFetch = NSFetchRequest(entityName: "ProjectIdeaSubmission")
+                var idea: ProjectIdeaSubmission? = nil
+                if let results = try CoreDataStackManager.sharedInstance().managedObjectContext.executeFetchRequest(ideaFetch) as? [ProjectIdeaSubmission] {
+                    guard results.count > 0 else {
+                        resolve(nil)
+                        return
+                    }
+                    idea = results[0]
+                }
+                resolve(idea)
+            } catch let error as NSError {
+                reject(error)
+            }
+        }
     }
     
-    func submitIdeaToAPI(title: String, description: String, additionalInformation: String?) {
+    /** Update one idea to the API.
+     *
+     *  @param projectIdea: ProjectIdeaSubmission - Core data model for the submission
+     *  @return - None
+     */
+    func updateIdeaToAPI(projectIdea: ProjectIdeaSubmission) {
+        projectIdeaService.updateOneIdea(projectIdea).then() {projectIdeaSubmission in
+            self.ideaSubmissionView?.didSubmitIdeaToAPI(self, didSucceed: true, didFail: nil)
+        }.error {error in
+            self.ideaSubmissionView?.didSubmitIdeaToAPI(self, didSucceed: false, didFail: error as NSError)
+        }
+    }
+    
+    /** Submit an idea to the API
+     *
+     *  @param title: String - the title of the idea (Organization Name)
+     *  @param description: String - A textual description of the idea.
+     *  @param additionalInformation: String - An optional description or whatever of the idea
+     *  @param currentEvent: NextEvent - the event that the idea will be submitted for. Usually will be the next / upcoming event
+     *  @return None
+     */
+    func submitIdeaToAPI(title: String, description: String, additionalInformation: String?, currentEvent: NextEvent) {
         ideaSubmissionView?.showLoading()
         
-        let ideaSubmission = createIdeaSubmission(title, description: description, additionalInformation: additionalInformation)
+        let ideaSubmission = createIdeaSubmission(title, description: description, additionalInformation: additionalInformation, eventId: currentEvent.idString)
         
         projectIdeaService.submitIdea(ideaSubmission).then() {Void in
             self.ideaSubmissionView?.didSubmitIdeaToAPI(self, didSucceed: true, didFail: nil)
@@ -79,11 +121,18 @@ class IdeaSubmissionPresenter {
         }
     }
     
-    private func createIdeaSubmission(title: String, description: String, additionalInformation: String?) -> ProjectIdeaSubmissionJSON {
+    /** Create the model for the idea submission.
+     *
+     *  @param title: String - the title of the idea (Usually will be the organization's name)
+     *  @param description: String - a textual description of the idea to be submitted
+     *  @param additionalInformation - An optional string holding additional information for the submission
+     *  @return ProjectIdeaSubmissionJSON - An object that can be posted to the API.
+     */
+    private func createIdeaSubmission(title: String, description: String, additionalInformation: String?, eventId: String) -> ProjectIdeaSubmissionJSON {
         let idea = dictionaryForIdea(title, description: description, additionalInformation: additionalInformation)
         let submission: JsonDict = [
             "user" : UserService.sharedInstance().userId!,
-            "event" : "56e1e408427538030076119b",
+            "event" : eventId,
             "idea" : idea
         ]
         let ideaSubmission = ProjectIdeaSubmission(dictionary: submission, context: GlobalStackManager.SharedManager.sharedContext)
@@ -91,6 +140,13 @@ class IdeaSubmissionPresenter {
         return ideaSubmissionJSON
     }
     
+    /** Dictionary for Idea - Returns a dictionary to be turned into JSON
+     *
+     *  @param title: String - the title for the idea
+     *  @param description: String - a textual description of the idea
+     *  @param additionalInformation - an optional string containing additional information for the idea
+     *  @return JsonDict - A dictionary [String : AnyObject] containing the data
+     */
     private func dictionaryForIdea(title: String, description: String, additionalInformation: String?) -> JsonDict {
         var submission: JsonDict = [
             "title": title,

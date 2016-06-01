@@ -12,7 +12,7 @@ import CoreData
 class ProjectIdeaSubmission: NSManagedObject {
     @NSManaged var event: String
     @NSManaged var user: String
-    
+    @NSManaged var idString: String
     @NSManaged var title: String
     @NSManaged var descriptionString: String
     @NSManaged var additionalInformation: String?
@@ -22,9 +22,10 @@ class ProjectIdeaSubmission: NSManagedObject {
     }
     
     
-    init(ideaSubmissionJson: ProjectIdeaSubmissionJSON, context: NSManagedObjectContext) {
+    init(ideaSubmissionJson: ProjectIdeaSubmissionJSON, idString: String, context: NSManagedObjectContext) {
         let entity = NSEntityDescription.entityForName("ProjectIdeaSubmission", inManagedObjectContext: context)
         super.init(entity: entity!, insertIntoManagedObjectContext: context)
+        self.idString = idString
         self.user = ideaSubmissionJson.user
         self.event = ideaSubmissionJson.event
         self.descriptionString = ideaSubmissionJson.idea.description

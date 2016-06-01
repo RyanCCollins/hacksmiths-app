@@ -37,15 +37,15 @@ class ProjectIdeaRouter: BaseRouter {
         switch endpoint {
         case .GetAllProjectIdeas: return "/api/app/project-ideas"
         case .GetOneProjectIdea(let ideaId): return "api/app/project-ideas/\(ideaId)"
-        case .UpdateProjectIdea(let ideaId, let projectIdeaJSON): return "api/app/project-ideas/\(ideaId)"
-        case .PostProjectIdea(let projectIdeaJson): return "api/app/project-ideas"
+        case .UpdateProjectIdea(let ideaId): return "api/app/project-ideas/\(ideaId)"
+        case .PostProjectIdea: return "api/app/project-ideas"
         case .DeleteProjectIdea(let ideaId): return "api/app/project-ideas/\(ideaId)"
         }
     }
     
     override var parameters: JsonDict? {
         switch endpoint {
-        case .UpdateProjectIdea(let ideaId, let ideaJSON):
+        case .UpdateProjectIdea( _,let ideaJSON):
             if let ideaJSONDict = ideaJSON.toJSON() {
                 return ideaJSONDict
             } else {

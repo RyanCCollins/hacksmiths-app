@@ -87,6 +87,7 @@
         <attribute name="additionalInformation" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="descriptionString" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="event" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="idString" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="user" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
@@ -110,14 +111,14 @@
         <relationship name="events" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Event" syncable="YES"/>
     </entity>
     <elements>
+        <element name="Enrollment" positionX="117" positionY="198" width="128" height="120"/>
         <element name="Event" positionX="-27" positionY="450" width="128" height="300"/>
         <element name="NextEvent" positionX="117" positionY="198" width="128" height="75"/>
         <element name="Organization" positionX="-92" positionY="72" width="128" height="30"/>
         <element name="Participant" positionX="117" positionY="198" width="128" height="120"/>
         <element name="Person" positionX="358" positionY="243" width="128" height="255"/>
         <element name="ProjectIdea" positionX="126" positionY="207" width="128" height="165"/>
-        <element name="ProjectIdeaSubmission" positionX="117" positionY="198" width="128" height="120"/>
+        <element name="ProjectIdeaSubmission" positionX="117" positionY="198" width="128" height="135"/>
         <element name="UserData" positionX="126" positionY="45" width="128" height="300"/>
-        <element name="Enrollment" positionX="117" positionY="198" width="128" height="120"/>
     </elements>
 </model>
