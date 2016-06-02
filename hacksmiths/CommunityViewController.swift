@@ -26,6 +26,7 @@ class CommunityViewController: UITableViewController {
 
         // Set this view to be the fetchedResultsControllerDelegate
         fetchedResultsController.delegate = self
+        self.activityIndicator = IGActivityIndicatorView(inview: view, messsage: "Loading")
         configureRefreshControl()
         self.communityPresenter.attachView(self)
         self.communityPresenter.fetchCommunityMembers()
@@ -49,7 +50,6 @@ class CommunityViewController: UITableViewController {
         refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl?.addTarget(self, action: #selector(fetchNetworkData), forControlEvents: .ValueChanged)
         tableView.addSubview(refreshControl!)
-        self.activityIndicator = IGActivityIndicatorView(inview: view)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -269,7 +269,7 @@ extension CommunityViewController: CommunityView {
     }
     
     func fetchCommunity(sender: CommunityPresenter, didSucceed: Bool, didFailWithError error: NSError?) {
-        startLoading()
+        finishLoading()
         if error != nil {
             self.finishLoading()
             self.alertController(withTitles: ["Ok"], message: (error?.localizedDescription)!, callbackHandler: [nil])
