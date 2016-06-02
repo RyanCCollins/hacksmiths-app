@@ -27,11 +27,23 @@ platform :ios do
     scan
   end
 
+  desc "Create a code signing certificate and provisioning profile"
+  lane :provision do
+    produce(
+      app_name: 'Hacksmiths',
+      language: 'English',
+      app_version: '0.0.1',
+      sku: '1464745230'
+    )
+    cert
+    sigh(force: true)
+  end
+
   desc "Submit a new Beta Build to Apple TestFlight"
   desc "This will also make sure the profile is up to date"
   lane :beta do
     # match(type: "appstore") # more information: https://codesigning.guide
-    gym(scheme: "https://hacksmiths.io") # Build your app - more options available
+    gym(scheme: "hacksmiths") # Build your app - more options available
     pilot
 
     # sh "your_script.sh"

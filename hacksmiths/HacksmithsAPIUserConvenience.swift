@@ -179,6 +179,8 @@ extension HacksmithsAPIClient {
                             person.fetchImages({success, error in
                                 if error != nil {
                                     completionHandler(success: false, error: error)
+                                } else {
+                                    
                                 }
                             })
                             

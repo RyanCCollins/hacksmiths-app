@@ -15,4 +15,5 @@ target 'hacksmiths' do
     pod 'PromiseKit'
     pod 'Gloss', '~> 0.7'
     pod 'Timberjack'
+    pod 'ChameleonFramework'
 end

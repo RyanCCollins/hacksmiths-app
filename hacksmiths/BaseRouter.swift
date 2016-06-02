@@ -16,7 +16,9 @@ protocol APIConfig {
     var parameters: JsonDict? { get }
 }
 
-
+/** Base Alamo Fire Router - Overriden when utilizing the router for communication
+ *  With the API
+ */
 class BaseRouter: URLRequestConvertible, APIConfig {
     
     init() {}
