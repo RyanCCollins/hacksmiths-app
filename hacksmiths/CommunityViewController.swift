@@ -271,7 +271,10 @@ extension CommunityViewController {
     }
 }
 
+/** Extension for following the MVP pattern for the Community view
+ */
 extension CommunityViewController: CommunityView {
+    
     func startLoading() {
         activityIndicator.startAnimating()
     }
@@ -279,6 +282,13 @@ extension CommunityViewController: CommunityView {
         activityIndicator.stopAnimating()
     }
     
+    /** Fetch the community members - Protocol method for updating the view when the people are fetched
+     *
+     *  @param sender - the sender of the method
+     *  @param didSucceed - Bool whether the fetch succeeded or not
+     *  @param didFailWithError: NSError - an error if it failed
+     *  @return None
+     */
     func fetchCommunity(sender: CommunityPresenter, didSucceed: Bool, didFailWithError error: NSError?) {
         finishLoading()
         if error != nil {
@@ -314,6 +324,12 @@ extension CommunityViewController: CommunityView {
         }
     }
     
+    /** Filter the search results for the given search text
+     *
+     *  @param searchText: String - the text entered into the search bar
+     *  @param scope - Defaults to ALl - the scope of the search
+     *  @return None
+     */
     func filterResultsForSearch(searchText: String, scope: String = "All") {
         if searchText.length > 0 {
             /* Hack: Search by either first name or both first and last */

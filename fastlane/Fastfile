@@ -42,8 +42,11 @@ platform :ios do
   desc "Submit a new Beta Build to Apple TestFlight"
   desc "This will also make sure the profile is up to date"
   lane :beta do
-    # match(type: "appstore") # more information: https://codesigning.guide
-    gym(scheme: "hacksmiths") # Build your app - more options available
+    increment_build_number
+    match(type: "adhoc") # more information: https://codesigning.guide
+    gym(
+      scheme: "hacksmiths",
+    ) # Build your app - more options available
     pilot
 
     # sh "your_script.sh"
@@ -52,7 +55,9 @@ platform :ios do
 
   desc "Deploy a new version to the App Store"
   lane :appstore do
-    # match(type: "appstore")
+    match(type: "appstore")
+    commit_version_bump
+    push_to_git_remote
     # snapshot
     gym(scheme: "https://hacksmiths.io") # Build your app - more options available
     deliver(force: true)

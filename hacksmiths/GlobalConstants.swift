@@ -6,7 +6,9 @@
 //  Copyright © 2015 Ryan Collins. All rights reserved.
 //
 
-/* Global constants.  Note, although not all are being used, we are preserving them for a later time */
+/** Global constants.  Note, although not all are being used, we are preserving them for a later time
+ *  Since many are very handy for use and save time having to dig them out of other projects.
+ */
 
 import Foundation
 import CoreData
@@ -83,7 +85,7 @@ struct ErrorMessages {
     
 }
 
-/* Our notifications for when the pin is finished loading */
+/* Our notifications for when the login was successful for the main tab bar */
 struct Notifications {
     static let LoginWasSuccessful = "LoginWasSuccessful"
 }

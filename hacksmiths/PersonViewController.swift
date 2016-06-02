@@ -28,7 +28,7 @@ class PersonViewController: UIViewController {
     var twitterUrl: NSURL?
     var githubUrl: NSURL?
     
-    /** Life cycle methods
+    /** MARK: Life cycle methods
      */
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,19 +48,12 @@ class PersonViewController: UIViewController {
         super.viewWillDisappear(animated)
         personPresenter.detachView(self)
     }
-    
-    /** Set star
+
+    /** Method called when one of the person buttons is tapped.
+     *
+     *  @param sender - the sender of the event
+     *  @return None
      */
-    func setupStar(forPerson: Person) {
-        if UserService.sharedInstance().authenticated == false {
-            alertController(withTitles: ["Ok"], message: "You must be signed in to do that!", callbackHandler: [nil])
-        }
-    }
-    
-    @IBAction func didTapStarUpInside(sender: AnyObject) {
-        
-    }
-    
     @IBAction func didTapButtonUpInside(sender: AnyObject) {
         switch sender.tag {
         case 1:
@@ -80,19 +73,20 @@ class PersonViewController: UIViewController {
         }
     }
     
+    /** Handle opening a URL by the app delegate when a button is tapped.
+     */
     func handleOpenURL(url: NSURL) {
         UIApplication.sharedApplication().openURL(url)
     }
 }
 
-enum Button {
-    case Twitter(url: NSURL?, title:String, hidden: Bool, tag: Int)
-    case Github(url: NSURL?, title: String?, hidden: Bool, tag: Int)
-    case Website(url: NSURL?, title: String?, hidden: Bool, tag: Int)
-}
-
 /* MARK: Presenter protocol */
 extension PersonViewController: PersonView {
+    /** Configure view for the current person
+     *
+     *  @param person - the Person for whom the view is being configured.
+     *  @return None
+     */
     func configureView(forPerson person: Person) {
         
         if person.image != nil {
@@ -134,20 +128,9 @@ extension PersonViewController: PersonView {
         }
     }
     
-    func setStar(starred: Bool) {
-        if starred == true {
-            
-        }
-    }
-    
     func configureDebugView(withMessage message: String) {
         self.debugLabel.text = message
         self.debugLabel.hidden = false
     }
     
-}
-
-enum StarState {
-    case Starred
-    case Unstarred
 }

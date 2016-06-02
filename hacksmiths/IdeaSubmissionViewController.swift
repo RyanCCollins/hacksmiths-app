@@ -231,11 +231,15 @@ extension IdeaSubmissionViewController: IdeaSubmissionView {
         presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    /** Unsubscribe from the notifications for keyboard showing / hiding
+     */
     func unsubscribeToNotifications(sender: AnyObject) {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
     }
     
+    /** Subscribe to the notifications for keyboard showing / hiding
+     */
     func subscribeToNotifications(sender: AnyObject) {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(IdeaSubmissionViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(IdeaSubmissionViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)

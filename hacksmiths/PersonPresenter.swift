@@ -11,7 +11,6 @@ import UIKit
 protocol PersonView {
     func configureView(forPerson person: Person)
     func configureDebugView(withMessage message: String)
-    func setStar(starred: Bool)
 }
 
 class PersonPresenter: NSObject {
@@ -31,9 +30,5 @@ class PersonPresenter: NSObject {
     
     func setDebugMessage(message: String) {
         personView?.configureDebugView(withMessage: message)
-    }
-    
-    func fetchPersonStar() -> Bool {
-        return true
     }
 }
