@@ -24,8 +24,7 @@ class Enrollment: NSManagedObject {
     @NSManaged var link: String?
     
     
-    /* 
-     *  Standard required init for the entity
+    /**  Standard required init for the entity
      */
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
@@ -57,20 +56,21 @@ class Enrollment: NSManagedObject {
         }
     }
     
-    /** 
-        Computed Property for getting logo image
-        @return logo: UIImage? - An image if the filepath is set, or nil if not
+    /** Computed Property for getting logo image
+     *   
+     *  @param - None
+     *  @return logo: UIImage? - An image if the filepath is set, or nil if not
      */
     var logo: UIImage? {
         get {
-            guard logoFilePath != nil else {
+            guard let filePath = self.logoFilePath where self.logoFilePath != nil else {
                 return nil
             }
             
-            return HacksmithsAPIClient.Caches.imageCache.imageWithIdentifier(logoFilePath!)
+            return HacksmithsAPIClient.Caches.imageCache.imageWithIdentifier(filePath)
         }
         set {
-            guard let filePath = self.logoFilePath else {
+            guard let filePath = self.logoFilePath where self.logoFilePath != nil else {
                 return
             }
             HacksmithsAPIClient.Caches.imageCache.storeImage(newValue, withIdentifier: filePath)
@@ -78,9 +78,10 @@ class Enrollment: NSManagedObject {
     }
     
 
-    /**
-        Computed Property for updatedDate
-        @return returnDate: NSDate - A date if the date is properly parsed from a string.
+    /** Computed Property for updatedDate
+     *
+     *  @param - None
+     *  @return returnDate: NSDate - A date if the date is properly parsed from a string.
      */
     var updatedDate: NSDate? {
         var returnDate: NSDate? = nil
@@ -94,9 +95,10 @@ class Enrollment: NSManagedObject {
     
     
 
-    /**
-        Computed Property for logo file path
-        @return logoFilePath: String - The filepath to the logo if one exists
+    /** Computed Property for logo file path
+     *
+     *  @param - None
+     *  @return logoFilePath: String - The filepath to the logo if one exists
      */
     var logoFilePath: String? {
         return logoUrl != nil ? logoUrl!.lastPathComponent : nil

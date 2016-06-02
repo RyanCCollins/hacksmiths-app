@@ -8,15 +8,8 @@
 
 import Gloss
 
-struct EnrollmentKeys {
-    static let id = "id"
-    static let title = "title"
-    static let description = "description"
-    static let logo = "logo"
-    static let link = "link"
-    static let updatedAt = "updatedAt"
-}
-
+/** Enrollment JSON model for translating API data into core data.
+ */
 struct EnrollmentJSON: Decodable {
     let id: String
     let title: String
@@ -52,4 +45,13 @@ struct EnrollmentJSON: Decodable {
         }
         
     }
+}
+
+struct EnrollmentKeys {
+    static let id = "id"
+    static let title = "title"
+    static let description = "description"
+    static let logo = "logo"
+    static let link = "link"
+    static let updatedAt = "updatedAt"
 }

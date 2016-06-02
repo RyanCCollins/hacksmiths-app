@@ -25,6 +25,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Save the final context before exiting.
         CoreDataStackManager.sharedInstance().saveContext()
     }
+    
+    func registerForPushNotifications(application: UIApplication) {
+        let notificationSettings = UIUserNotificationSettings(
+            forTypes: [.Badge, .Sound, .Alert], categories: nil)
+        application.registerUserNotificationSettings(notificationSettings)
+    }
 
 }
 

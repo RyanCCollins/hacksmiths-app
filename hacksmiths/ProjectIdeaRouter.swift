@@ -7,8 +7,6 @@
 //
 
 import Alamofire
-import Gloss
-
 
 enum ProjectIdeaEndpoint {
     case PostProjectIdea(projectIdeaSubmissionJSON: ProjectIdeaSubmissionJSON)
@@ -18,11 +16,19 @@ enum ProjectIdeaEndpoint {
     case GetOneProjectIdea(ideaId: String)
 }
 
+/** Handle API routing for the project idea endpoint
+ *  taking care of submission of project ideas and also
+ *  Will take care of voting for submissions in the next version.
+ *
+ *  Inherits from the BaseRouter class and implements the AlamoFire Networking API.
+ */
 class ProjectIdeaRouter: BaseRouter {
     var endpoint: ProjectIdeaEndpoint
+    
     init(endpoint: ProjectIdeaEndpoint) {
         self.endpoint = endpoint
     }
+    
     override var method: Alamofire.Method {
         switch endpoint {
         case .GetAllProjectIdeas: return .GET

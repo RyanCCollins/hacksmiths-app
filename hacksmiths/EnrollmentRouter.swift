@@ -13,6 +13,10 @@ enum EnrollmentEndpoint {
     case GetOneNanodegree(id: String)
 }
 
+/** Enrollment router - Not used in v1, but left here for next version
+ *  Will take care of loading a person's Udacity Enrollments from the server
+ *  So that we can do a better job of matching people based on interests and skill level.
+ */
 class EnrollmentRouter: BaseRouter {
     var endpoint: EnrollmentEndpoint
     

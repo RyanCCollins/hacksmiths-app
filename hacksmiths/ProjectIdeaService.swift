@@ -26,7 +26,6 @@ class ProjectIdeaService {
      */
     func submitIdea(projectIdeaSubmissionJSON: ProjectIdeaSubmissionJSON) -> Promise<ProjectIdeaSubmission?> {
         return Promise { resolve, reject in
-            print("Submitting idea request to API: \(projectIdeaSubmissionJSON)")
             let router = ProjectIdeaRouter(endpoint: .PostProjectIdea(projectIdeaSubmissionJSON: projectIdeaSubmissionJSON))
             manager.request(router)
                 .validate()
@@ -94,7 +93,7 @@ class ProjectIdeaService {
         }
     }
     
-    /** Get one idea from the API by ID
+    /** Get one idea from the API by ID.  Will be implemented in next version and is here for completeness sake.
      *
      *  @param ideaId: String - the id of the Idea to get
      *  @return Promise<ProjectIdea> a Promise of the core data model for Ideas
@@ -124,7 +123,7 @@ class ProjectIdeaService {
         }
     }
     
-    /** Update one idea on the API
+    /** Update one idea on the API, allowing a user to edit their idea after it has been submitted.
      *
      *  @param ideaSubmission: ProjectIdeaSubmission - the idea submission core data model.
      *  @return Promise<ProjectIdea?> - A promise of a project idea model

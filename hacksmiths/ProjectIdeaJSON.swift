@@ -24,6 +24,11 @@ struct ProjectIdeaJSON: Glossy {
     var eventId: String
     let idea: IdeaJSON?
     
+    /** Initialize the JSON object for a project idea.  Will be used when downloading project
+     *
+     *  @param json: JSON - the JSON object returned from the API
+     *  @return None
+     */
     init?(json: JSON) {
         guard let id: String = ProjectIdeaKeys.id <~~ json,
             let createdById: String = ProjectIdeaKeys.createdBy <~~ json,
@@ -44,6 +49,11 @@ struct ProjectIdeaJSON: Glossy {
         }
     }
     
+    /** Initialize the project idea from the Core Data Managed Object into JSON
+     *
+     *  @param projectIdea: ProjectIdea - The project Idea core data managed object
+     *  @return None
+     */
     init(projectIdea: ProjectIdea) {
         self.id = projectIdea.id
         self.createdById = projectIdea.createdBy.id
@@ -52,13 +62,17 @@ struct ProjectIdeaJSON: Glossy {
         self.idea = IdeaJSON(projectIdea: projectIdea)
     }
     
-    // - MARK: Encode to JSON
+    /** Standard Gloss toJSON method for encoding the model object to JSON to communicate with API
+     *
+     *  @param None
+     *  @return JSON? - Optional JSON object for the idea.
+     */
     func toJSON() -> JSON? {
         return jsonify([
             "user" ~~> self.createdById,
             "event" ~~> self.eventId,
-            "idea" ~~> self.idea?.toDictionary()
-            ])
+            "idea" ~~> self.idea!.toJSON
+        ])
     }
 }
 

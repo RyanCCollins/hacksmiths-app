@@ -7,10 +7,17 @@
 //
 
 import PromiseKit
-import Gloss
 import CoreData
 
+/** Enrollment Service handles getting a payload of enrollments from API.
+ *  This is not used in version 1, at least in the User Interface, but is needed for V2 and thus will stay.
+ */
 class EnrollmentService: NSObject {
+    /** Get all nanodegrees from the API
+     *
+     *  @param None
+     *  @return Promise<[Enrollment]?> - Promise of type array of core data managed enrollments (optional)
+     */
     func getAllNanodegrees() -> Promise<[Enrollment]?> {
         return Promise{resolve, reject in
             let router = EnrollmentRouter(endpoint: .GetAllNanodegrees())
@@ -32,6 +39,11 @@ class EnrollmentService: NSObject {
         }
     }
     
+    /** Create the model for saving enrollments to core data
+     *
+     *  @param enrollmentJSONArray: [EnrollmentJSON] - An array returned from the server
+     *  @return [Enrollment] - an array of the enrollment model saved to core data
+     */
     func createEnrollmentModel(enrollmentJSONArray: [EnrollmentJSON]) -> [Enrollment]  {
         cleanupEnrollments()
         let enrollments = enrollmentJSONArray.map({enrollmentJSON in
@@ -43,6 +55,11 @@ class EnrollmentService: NSObject {
         return enrollments
     }
     
+    /** Cleanup enrollments - Takes care of deleting the managed object for Enrollment
+     *
+     *  @param None
+     *  @return None
+     */
     func cleanupEnrollments() {
         let fetchRequest = NSFetchRequest(entityName: "Enrollment")
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
