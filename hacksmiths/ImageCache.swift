@@ -23,7 +23,7 @@ class ImageCache {
         
         // If the identifier is nil, or empty, return nil
         if identifier == nil || identifier! == "" {
-            return UIImage(named: "missing-resource")
+            return UIImage(named: "avatar-missing")
         }
         
         let path = pathForIdentifier(identifier!)

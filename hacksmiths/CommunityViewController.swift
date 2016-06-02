@@ -23,7 +23,7 @@ class CommunityViewController: UITableViewController {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Set this view to be the fetchedResultsControllerDelegate
         fetchedResultsController.delegate = self
         self.activityIndicator = IGActivityIndicatorView(inview: view, messsage: "Loading")
@@ -38,7 +38,7 @@ class CommunityViewController: UITableViewController {
     func setupSearchContoller() {
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
-        definesPresentationContext = false
+        definesPresentationContext = true
         tableView.tableHeaderView = searchController.searchBar
         searchController.searchBar.delegate = self
     }
@@ -51,6 +51,7 @@ class CommunityViewController: UITableViewController {
         refreshControl?.addTarget(self, action: #selector(fetchNetworkData), forControlEvents: .ValueChanged)
         tableView.addSubview(refreshControl!)
     }
+    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         searchController.active = false

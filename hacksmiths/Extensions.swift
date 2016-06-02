@@ -159,3 +159,16 @@ extension UIImageView {
         }).resume()
     }
 }
+
+/* Added to help bridge the gap for finding the last path component in Swift
+ Reference are here: https://forums.developer.apple.com/thread/13580 */
+
+extension String {
+    
+    var lastPathComponent: String {
+        
+        get {
+            return (self as NSString).lastPathComponent
+        }
+    }
+}

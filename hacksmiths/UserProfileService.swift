@@ -124,7 +124,12 @@ class UserProfileService {
             completionHandlerWithUserData(success: false, userData: nil, error: error)
         }
         
-        if let userData = fetchedResultsController.fetchedObjects![0] as? UserData {
+        /* Guard against user data being not fetched for whatever reason*/
+        guard fetchedResultsController.fetchedObjects?.count > 0 else {
+            return
+        }
+        
+        if let userData = fetchedResultsController.fetchedObjects?[0] as? UserData {
             completionHandlerWithUserData(success: true, userData: userData, error: nil)
         } else {
             completionHandlerWithUserData(success: false, userData: nil, error: Errors.constructError(domain: "ProfileData", userMessage: "An error occured while retrieving your user data.  If the error continues, please sign out and sign back in."))

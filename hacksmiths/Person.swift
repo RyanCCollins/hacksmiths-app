@@ -142,6 +142,9 @@ class Person: NSManagedObject {
             return HacksmithsAPIClient.Caches.imageCache.imageWithIdentifier(avatarFilePath!)
         }
         set {
+            guard avatarFilePath != nil else {
+                return
+            }
             HacksmithsAPIClient.Caches.imageCache.storeImage(newValue, withIdentifier: avatarFilePath!)
         }
     }
@@ -165,19 +168,6 @@ class Person: NSManagedObject {
             
             let URLString = "http://twitter.com/" + twitterUsername!
             return NSURL(string: URLString)
-        }
-    }
-}
-
-/* Added to help bridge the gap for finding the last path component in Swift
-Reference are here: https://forums.developer.apple.com/thread/13580 */
-
-extension String {
-    
-    var lastPathComponent: String {
-        
-        get {
-            return (self as NSString).lastPathComponent
         }
     }
 }
