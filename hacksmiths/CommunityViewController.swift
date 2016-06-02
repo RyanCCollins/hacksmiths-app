@@ -28,8 +28,7 @@ class CommunityViewController: UITableViewController {
         fetchedResultsController.delegate = self
         self.activityIndicator = IGActivityIndicatorView(inview: view, messsage: "Loading")
         configureRefreshControl()
-        person
-        self.communityPresenter.attachView(self, personService: personService)
+        self.communityPresenter.attachView(self, personService: person)
         self.communityPresenter.fetchCommunityMembers()
         setupSearchContoller()
     }
