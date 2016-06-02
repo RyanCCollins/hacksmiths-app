@@ -32,8 +32,6 @@
 		1F3DF15C1CFB6EDD0000BBC8 /* EnrollmentJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3DF15B1CFB6EDD0000BBC8 /* EnrollmentJSON.swift */; };
 		1F3DF1601CFBCABC0000BBC8 /* EventState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3DF15F1CFBCABC0000BBC8 /* EventState.swift */; };
 		1F3DF1A61CFC922B0000BBC8 /* RegistrationJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3DF1A51CFC922B0000BBC8 /* RegistrationJSON.swift */; };
-		1F3DF1AA1CFCEEB70000BBC8 /* Star.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3DF1A91CFCEEB70000BBC8 /* Star.swift */; };
-		1F3DF1B01CFCF58A0000BBC8 /* StarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3DF1AF1CFCF58A0000BBC8 /* StarViewModel.swift */; };
 		1F3DF1B21CFD07120000BBC8 /* ProfileHelpPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3DF1B11CFD07120000BBC8 /* ProfileHelpPopoverViewController.swift */; };
 		1F44B1BA1C5DDAB9004E196D /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F44B1B91C5DDAB9004E196D /* CoreDataStackManager.swift */; };
 		1F46B9EC1CA467250065D50D /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F46B9EB1CA467250065D50D /* UserData.swift */; };
@@ -107,7 +105,7 @@
 		1FF998991C6FAEDE003D98B2 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF998981C6FAEDE003D98B2 /* Event.swift */; };
 		1FF9989D1C6FB060003D98B2 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF9989C1C6FB060003D98B2 /* Organization.swift */; };
 		1FF998A11C71387C003D98B2 /* PersonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FF998A01C71387C003D98B2 /* PersonTableViewCell.swift */; };
-		C58E59D483E8892A72D82C88 /* Pods_hacksmiths.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7449E53C06F1D7AF5E45E567 /* Pods_hacksmiths.framework */; };
+		CB73DF2A154BA09299B62CFF /* Pods_hacksmiths.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B49F383D05F455E4F426578 /* Pods_hacksmiths.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -153,8 +151,6 @@
 		1F3DF15B1CFB6EDD0000BBC8 /* EnrollmentJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnrollmentJSON.swift; sourceTree = "<group>"; };
 		1F3DF15F1CFBCABC0000BBC8 /* EventState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventState.swift; sourceTree = "<group>"; };
 		1F3DF1A51CFC922B0000BBC8 /* RegistrationJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationJSON.swift; sourceTree = "<group>"; };
-		1F3DF1A91CFCEEB70000BBC8 /* Star.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Star.swift; sourceTree = "<group>"; };
-		1F3DF1AF1CFCF58A0000BBC8 /* StarViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarViewModel.swift; sourceTree = "<group>"; };
 		1F3DF1B11CFD07120000BBC8 /* ProfileHelpPopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileHelpPopoverViewController.swift; sourceTree = "<group>"; };
 		1F44B1B91C5DDAB9004E196D /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
 		1F46B9EB1CA467250065D50D /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
@@ -237,9 +233,9 @@
 		1FF9989C1C6FB060003D98B2 /* Organization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
 		1FF998A01C71387C003D98B2 /* PersonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonTableViewCell.swift; sourceTree = "<group>"; };
 		2F01D804491290ED3ADAFE2E /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7449E53C06F1D7AF5E45E567 /* Pods_hacksmiths.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hacksmiths.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9C7E5D717B6BAF342833A058 /* Pods-hacksmiths.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hacksmiths.release.xcconfig"; path = "Pods/Target Support Files/Pods-hacksmiths/Pods-hacksmiths.release.xcconfig"; sourceTree = "<group>"; };
-		FE6B2BF520B4142DA9BE286B /* Pods-hacksmiths.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hacksmiths.debug.xcconfig"; path = "Pods/Target Support Files/Pods-hacksmiths/Pods-hacksmiths.debug.xcconfig"; sourceTree = "<group>"; };
+		79246BDB3C1322544A86C269 /* Pods-hacksmiths.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hacksmiths.release.xcconfig"; path = "Pods/Target Support Files/Pods-hacksmiths/Pods-hacksmiths.release.xcconfig"; sourceTree = "<group>"; };
+		7B49F383D05F455E4F426578 /* Pods_hacksmiths.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hacksmiths.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0657DE1C9F63AA4A430AB4E /* Pods-hacksmiths.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hacksmiths.debug.xcconfig"; path = "Pods/Target Support Files/Pods-hacksmiths/Pods-hacksmiths.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,7 +243,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C58E59D483E8892A72D82C88 /* Pods_hacksmiths.framework in Frameworks */,
+				CB73DF2A154BA09299B62CFF /* Pods_hacksmiths.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,46 +324,6 @@
 			children = (
 			);
 			name = Presenter;
-			sourceTree = "<group>";
-		};
-		1F3DF1A81CFCEE8E0000BBC8 /* PersonStars */ = {
-			isa = PBXGroup;
-			children = (
-				1F3DF1A91CFCEEB70000BBC8 /* Star.swift */,
-			);
-			name = PersonStars;
-			sourceTree = "<group>";
-		};
-		1F3DF1AB1CFCF54C0000BBC8 /* Person */ = {
-			isa = PBXGroup;
-			children = (
-				1F3DF1AE1CFCF5640000BBC8 /* ViewModel */,
-				1F3DF1AD1CFCF55C0000BBC8 /* View */,
-				1F3DF1AC1CFCF5520000BBC8 /* Presenter */,
-			);
-			name = Person;
-			sourceTree = "<group>";
-		};
-		1F3DF1AC1CFCF5520000BBC8 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Presenter;
-			sourceTree = "<group>";
-		};
-		1F3DF1AD1CFCF55C0000BBC8 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = View;
-			sourceTree = "<group>";
-		};
-		1F3DF1AE1CFCF5640000BBC8 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				1F3DF1AF1CFCF58A0000BBC8 /* StarViewModel.swift */,
-			);
-			name = ViewModel;
 			sourceTree = "<group>";
 		};
 		1F44B1BB1C5DDAC9004E196D /* Extensions */ = {
@@ -477,7 +433,6 @@
 		1F846CBA1CEBF547009166D4 /* ControllerModules */ = {
 			isa = PBXGroup;
 			children = (
-				1F3DF1AB1CFCF54C0000BBC8 /* Person */,
 				1FEA07C01CEFFCF500D4BDA7 /* IdeaSubmission */,
 				1FAD7DB61CEE5F7A0044BD94 /* Community */,
 				1FC6DE451C9F59EB000E8159 /* User & Auth */,
@@ -589,7 +544,7 @@
 				1FA9FC8B1C534E5B00B993BC /* hacksmithsUITests */,
 				1FA9FC671C534E5800B993BC /* Products */,
 				5CE27C4E7B61BD7247A81BCC /* Frameworks */,
-				2D7222F996BE4D4AD8020A97 /* Pods */,
+				84E56AACF45526FF378CD4E9 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -644,7 +599,6 @@
 		1FAD7DAE1CEE5DAC0044BD94 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				1F3DF1A81CFCEE8E0000BBC8 /* PersonStars */,
 				1F3DF1A41CFC92150000BBC8 /* Registration */,
 				1F4F7ECC1CF4E26E00325CA9 /* Profile */,
 				1F4B4DFE1C73A60400A75F5D /* UserService.swift */,
@@ -889,22 +843,22 @@
 			name = View;
 			sourceTree = "<group>";
 		};
-		2D7222F996BE4D4AD8020A97 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				FE6B2BF520B4142DA9BE286B /* Pods-hacksmiths.debug.xcconfig */,
-				9C7E5D717B6BAF342833A058 /* Pods-hacksmiths.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		5CE27C4E7B61BD7247A81BCC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				2F01D804491290ED3ADAFE2E /* Pods.framework */,
-				7449E53C06F1D7AF5E45E567 /* Pods_hacksmiths.framework */,
+				7B49F383D05F455E4F426578 /* Pods_hacksmiths.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		84E56AACF45526FF378CD4E9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A0657DE1C9F63AA4A430AB4E /* Pods-hacksmiths.debug.xcconfig */,
+				79246BDB3C1322544A86C269 /* Pods-hacksmiths.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1116,7 +1070,6 @@
 				1F4F7ECB1CF4D5A200325CA9 /* UserJSONObject.swift in Sources */,
 				1F4F7EC91CF4D50C00325CA9 /* ProfilePresenter.swift in Sources */,
 				1FA5A4E81C53585500722E55 /* SettingsViewController.swift in Sources */,
-				1F3DF1B01CFCF58A0000BBC8 /* StarViewModel.swift in Sources */,
 				1FA2E55B1C67FF020085FC7D /* GlobalConstants.swift in Sources */,
 				1F846CB31CEBAF3C009166D4 /* BaseRouter.swift in Sources */,
 				1F846CB01CEBADC8009166D4 /* EventService.swift in Sources */,
@@ -1176,7 +1129,6 @@
 				1FF998971C6FAE3E003D98B2 /* Person.swift in Sources */,
 				1F4E315B1CF0E1C20013F56E /* ProjectIdeaService.swift in Sources */,
 				1F115B4A1CC0060900DC434E /* RegistrationViewController.swift in Sources */,
-				1F3DF1AA1CFCEEB70000BBC8 /* Star.swift in Sources */,
 				1F498E151CF78C93009A5AB2 /* SettingsPresenter.swift in Sources */,
 				1F384A881CF229D400E15887 /* HTTPManager.swift in Sources */,
 				1F4E31591CF0E1B10013F56E /* ProjectIdeaRouter.swift in Sources */,
@@ -1324,7 +1276,7 @@
 		};
 		1FA9FC921C534E5B00B993BC /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FE6B2BF520B4142DA9BE286B /* Pods-hacksmiths.debug.xcconfig */;
+			baseConfigurationReference = A0657DE1C9F63AA4A430AB4E /* Pods-hacksmiths.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1335,7 +1287,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.hacksiths.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "7e0a2df4-2fdf-4b87-a982-d30817f9e12d";
 				SWIFT_OBJC_BRIDGING_HEADER = "hacksmiths-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1343,7 +1295,7 @@
 		};
 		1FA9FC931C534E5B00B993BC /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9C7E5D717B6BAF342833A058 /* Pods-hacksmiths.release.xcconfig */;
+			baseConfigurationReference = 79246BDB3C1322544A86C269 /* Pods-hacksmiths.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1354,7 +1306,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.hacksiths.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "7e0a2df4-2fdf-4b87-a982-d30817f9e12d";
 				SWIFT_OBJC_BRIDGING_HEADER = "hacksmiths-Bridging-Header.h";
 			};
 			name = Release;

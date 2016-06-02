@@ -17,3 +17,12 @@ target 'hacksmiths' do
     pod 'Timberjack'
     pod 'ChameleonFramework'
 end
+
+post_install do |installer|
+    installer.pods_project.targets.each do |target|
+        next unless (target.name == 'PromiseKit')
+        target.build_configurations.each do |config|
+            config.build_settings['SWIFT_OPTIMIZATION_LEVEL'] = '-Onone'
+        end
+    end
+end

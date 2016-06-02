@@ -14,45 +14,41 @@ class PersonService {
     
     /** Get the member list from the API
      *
-     *  @param None
-     *  @return Promise<[Person?]> - a Promise of an array of person managed object
+     *  @param - None
+     *  @return - Promise<Void> - a Promise that the core data model has been saved
      */
-    func getMemberList() -> Promise<[Person?]> {
+    func getMemberList() -> Promise<Void> {
         return Promise{resolve, reject in
-            let method = Routes.Members
-            syncInProgress = true
-            HacksmithsAPIClient.taskForGETMethod(method, parameters: [:], completionHandler:CompletionHandler) {success, result, error in
+            let method = HacksmithsAPIClient.Routes.Members
+            HacksmithsAPIClient.sharedInstance().taskForGETMethod(method, parameters: [:]) {success, result, error in
                 if error != nil {
-                    reject(error)
+                    reject(error!)
                 } else {
-                    
                     if let membersArray = result["members"] as? [JsonDict] {
                         self.parseMemberArray(membersArray).then() {
-                            people in
-                            if people != nil {
+                            people -> () in
+
                                 /* Save the core data context finally */
                                 GlobalStackManager.SharedManager.sharedContext.performBlockAndWait({
                                     CoreDataStackManager.sharedInstance().saveContext()
                                 })
-                                resolve(people)
-                            } else {
-                                reject()
+                                resolve()
                             }
                         }
                     }
                 }
             }
         }
-    }
+    
     
     /** Parse the member array returned from the API
      *
      *  @param memberArray - A dictionary containing the member data
      *  @return Promise<[Person]> - A promise of an array for the managed object model for person.
      */
-    private func parseMemberArray(memberArray: [JsonDict]) -> Promise<[Person]> {
+    func parseMemberArray(memberArray: [JsonDict]) -> Promise<[Person]> {
         return Promise{resolve, reject in
-            let error: NSError? = nil
+            var error: NSError? = nil
             let members: [Person] = memberArray.map{member in
                 let person = Person(dictionary: member, context: GlobalStackManager.SharedManager.sharedContext)
                 return person
@@ -61,17 +57,17 @@ class PersonService {
                 person.fetchImages().then() {
                     Void in
                     print("Successfully fetched images for all people.")
-                    }.error {
-                        error = error
+                }.error{error in
+                    reject(error)
                 }
             }
             /* Determine if an error was thrown and resolve or reject the promise */
             if error != nil {
-                reject(error)
+                reject(error!)
             } else {
                 resolve(members)
             }
         }
     }
-    
+
 }

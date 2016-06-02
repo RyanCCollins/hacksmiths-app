@@ -130,14 +130,15 @@ class Person: NSManagedObject {
      *  @return Promise<Void> - A promise of a saved image
      */
     func fetchImages() -> Promise<Void> {
-        guard avatarURL != nil else {
-            return
-        }
         return Promise{resolve, reject in
+            guard avatarURL != nil else {
+                resolve()
+                return
+            }
             HacksmithsAPIClient.sharedInstance().taskForGETImageFromURL(avatarURL!, completionHandler: {image, error in
             
                 if error != nil {
-                    reject(error)
+                    reject(error!)
                 } else {
                     self.image = image
                     resolve()

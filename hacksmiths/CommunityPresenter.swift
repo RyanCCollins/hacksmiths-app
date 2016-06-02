@@ -17,7 +17,7 @@ protocol CommunityView {
 
 class CommunityPresenter {
     private var communityView: CommunityView?
-    private var personService: PersonService
+    private var personService: PersonService?
     
     init(){}
     func attachView(view: CommunityView, personService: PersonService) {
@@ -37,13 +37,14 @@ class CommunityPresenter {
      *  @return None
      */
     func fetchCommunityMembers() {
-        self.personService.getMemberList.then() {
-            members -> () in
-            if members != nil {
+        /* Safely unwrap the person service */
+        guard let personService = personService where self.personService != nil else {
+            return
+        }
+        /* Get the member list from the person service*/
+        personService.getMemberList().then() {
+            Void in
                 self.communityView?.fetchCommunity(self, didSucceed: true, didFailWithError: nil)
-            } else {
-                throw GlobalErrors.GenericNetworkError
-            }
             }.error{error in
                 self.communityView?.fetchCommunity(self, didSucceed: false, didFailWithError: error as NSError)
             }

@@ -28,7 +28,7 @@ class CommunityViewController: UITableViewController {
         fetchedResultsController.delegate = self
         self.activityIndicator = IGActivityIndicatorView(inview: view, messsage: "Loading")
         configureRefreshControl()
-        self.communityPresenter.attachView(self, personService: person)
+        self.communityPresenter.attachView(self, personService: personService)
         self.communityPresenter.fetchCommunityMembers()
         setupSearchContoller()
     }
@@ -38,7 +38,8 @@ class CommunityViewController: UITableViewController {
     func setupSearchContoller() {
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
-        definesPresentationContext = true
+        definesPresentationContext = false
+        searchController.hidesNavigationBarDuringPresentation = false
         tableView.tableHeaderView = searchController.searchBar
         searchController.searchBar.delegate = self
     }
@@ -170,10 +171,13 @@ extension CommunityViewController {
     /** Title for headers in table view
      */
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        var title = "Community Members"
+        var title: String!
         if searchPredicate == nil {
             /* If the predicate is nil, then set the title based on which section we are in */
             title = (SectionTitle(rawValue: section)?.getTitle())!
+        } else {
+            /* If there is a predicate, then select the All Members header no matter what */
+            title = (SectionTitle(rawValue: 3)?.getTitle())!
         }
         return title
     }
@@ -185,17 +189,15 @@ extension CommunityViewController {
             
             switch sectionTitle! {
             case .Leaders:
-                return fetchedResultsController.fetchedObjects!.count
+                return searchPredicate == nil ? fetchedResultsController.fetchedObjects!.count : 0
                 
             case .Community:
                 /* If the search predicate is not nil, then we are only concerned with the one section
                  * So return 0, otherwise return the community fetch
                  */
-                if searchPredicate != nil {
-                    return 0
-                } else {
-                    return communityFetchResultsController.fetchedObjects!.count
-                }
+                return searchPredicate == nil ? communityFetchResultsController.fetchedObjects!.count : 0
+            case .AllMembers:
+                return searchPredicate != nil ? (fetchedResultsController.fetchedObjects?.count)! : 0
         }
     }
     
@@ -216,6 +218,10 @@ extension CommunityViewController {
                 }
             case .Community:
                 if let thePerson = communityFetchResultsController.fetchedObjects![indexPath.row] as? Person {
+                    person = thePerson
+                }
+            case .AllMembers:
+                if let thePerson = fetchedResultsController.fetchedObjects![indexPath.row] as? Person {
                     person = thePerson
                 }
             }
@@ -246,6 +252,10 @@ extension CommunityViewController {
             }
         case .Community:
             if let thePerson = communityFetchResultsController.fetchedObjects![indexPath.row] as? Person {
+                person = thePerson
+            }
+        case .AllMembers:
+            if let thePerson = fetchedResultsController.fetchedObjects![indexPath.row] as? Person {
                 person = thePerson
             }
         }
@@ -329,7 +339,14 @@ extension CommunityViewController: CommunityView {
     
 }
 
+/** Community View Controller extension for UISearchBar Delegation
+ */
 extension CommunityViewController: UISearchResultsUpdating, UISearchBarDelegate {
+    /** Update the search results from the search results controller
+     *
+     *  @param searchController - the controller sending the message
+     *  @return None
+     */
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         let searchText = searchController.searchBar.text
         if let searchText = searchText {
@@ -353,15 +370,24 @@ extension CommunityViewController: UISearchResultsUpdating, UISearchBarDelegate 
     }
 }
 
+/** Enumeration for the section titles for each section
+ */
 enum SectionTitle: Int {
-    case Leaders = 0, Community = 1
+    case Leaders = 0, Community, AllMembers
     
+    /** Get the title for the section in string format
+     *
+     *  @param None
+     *  @return - String - the string represenation for the section title.
+     */
     func getTitle() -> String {
         switch self {
         case .Leaders:
             return "Leaders"
         case .Community:
             return "Community"
+        case .AllMembers:
+            return "All Members"
         }
     }
 }

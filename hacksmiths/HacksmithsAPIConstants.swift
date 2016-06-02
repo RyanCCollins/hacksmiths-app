@@ -11,15 +11,15 @@ import Foundation
 
 extension HacksmithsAPIClient {
     
-        struct Constants {
-            static let BaseURL = "https://hacksmiths.io/"
-            static let APIURL = "\(BaseURL)api/"
-            static let App = "app/"
-            static let Me = "me/"
-            // Right now, this will direct to the plain `ol baseurl/homepage,
-            // But we can alter it in order to go to an about us page
-            static let InfoPage = BaseURL
-        }
+    struct Constants {
+        static let BaseURL = "https://hacksmiths.io/"
+        static let APIURL = "\(BaseURL)api/"
+        static let App = "app/"
+        static let Me = "me/"
+        // Right now, this will direct to the plain `ol baseurl/homepage,
+        // But we can alter it in order to go to an about us page
+        static let InfoPage = BaseURL
+    }
     
     struct Secrets {
         static let Session = "vxEH19I80ZgnieRQXYeue6KHYqmj3L2l"
