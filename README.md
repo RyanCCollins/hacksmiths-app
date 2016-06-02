@@ -8,7 +8,7 @@ Hacksmiths was built to provide a platform for Udacity students to collaborate o
 The Hacksmiths.io website and ios mobile application serve to make it simple for people to learn about the work that we are doing.  It was designed to share the amazing work that we are doing with the world and to make it simple for newcomers to get onboard to help with future projects.
 
 ## V1 Features
-The main feature of the app is to keep people updated with our events and projects.  When a new event is posted, users of the app will be updated with information about the event and will have an opportunity to RSVP for it.  They will also be able to submit ideas for future projects, which we can vote on at a later time.
+The main feature of the app is to keep people updated with our events and projects.  When a new event is posted, users of the app will be updated with information about the event and will have an opportunity to RSVP to participate in the event.  They will also be able to submit ideas for future projects, which we can vote on at a later time.
 
 The app also spotlights the main contributors of the project.  Team leaders and top contributors show up on the top of the list in the community section.  
 
@@ -63,7 +63,7 @@ This app is setup to utilize fastlane to automate the App Store Submission.  The
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
-Thanks to all of the wonder people in the [Hacksmiths](https://hacksmiths.io) and [Udacity](https://udacity.com) communities for making this project possible!  A special thanks to the wonderful employees of Udacity.  You are all such amazing people and the Hacksmiths would not be possible without you!
+Thanks to all of the wonderful people in the [Hacksmiths](https://hacksmiths.io) and [Udacity](https://udacity.com) communities for making this project possible!  A special thanks to the wonderful employees of Udacity.  You are all such amazing people and the Hacksmiths would not be possible without you!
 
 <div>Icon made by <a href="http://www.icomoon.io" title="Icomoon">Icomoon</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed under <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a></div>
 
@@ -72,6 +72,6 @@ v0.0.1-Beta - As of May 2016, the Hacksmiths.io app is being beta tested, pendin
 v1.0 - Stay tuned for announcements regarding version 1.0!
 
 ## Troubleshooting
-If for some reason, you run into issues installing, it's likely due to cocoapods.  What cocoapods does is it manages package dependencies for the project.  You need to make sure that you upen the .xcworkspace project because that is a requirement of cocoapods.
+If for some reason, you run into issues installing, it's likely due to cocoapods.  What cocoapods does is it manages package dependencies for the project.  You need to make sure that you open the .xcworkspace project because that is a requirement of cocoapods.
 
 If you still have difficulties, please see the [CocoaPods troubleshooting guide](https://guides.cocoapods.org/using/troubleshooting.html)
