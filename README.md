@@ -5,7 +5,7 @@
 
 Hacksmiths was built to provide a platform for Udacity students to collaborate on meaningful projects for social good.  Our debut project, the [Food Drivr App](https://github.com/teamhacksmiths/food-drivr), a web and mobile application designed to make the process of donating edible food as easy as pushing a button, is nearing public release as of late May 2016.
 
-The Hacksmiths.io website and ios mobile application serve to make it simple for people to learn about the work that we are doing.  It was designed to share the amazing work that we are doing with the world and to make it simple for newcomers to get onboard to help with future projects.
+The Hacksmiths.io website and iOS mobile application was designed to give the members of the Hacksmiths an opportunity to connect with other Hacksmiths from around the world.  Through the app and website, people can learn about the projects we are working on, connect with the main contributors, join the community on Slack and more.  It has lead people from all over the world to come on to help us and this is just the beginning!
 
 ## V1 Features
 The main feature of the app is to keep people updated with our events and projects.  When a new event is posted, users of the app will be updated with information about the event and will have an opportunity to RSVP to participate in the event.  They will also be able to submit ideas for future projects, which we can vote on at a later time.
