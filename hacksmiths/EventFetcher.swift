@@ -132,7 +132,7 @@ class EventFetcher {
                     returnEvent = results[0]
                     resolve(returnEvent)
                 } else {
-                    throw GlobalErrors.MissingData
+                    resolve(nil)
                 }
             } catch let error as NSError {
                 reject(error)

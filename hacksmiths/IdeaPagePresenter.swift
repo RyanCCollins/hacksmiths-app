@@ -29,10 +29,6 @@ class IdeaPagePresenter {
         self.eventService = nil
     }
     
-    func submitAnIdea() {
-        
-    }
-    
     /** Load the current event from the cache
      *
      *  @param None
