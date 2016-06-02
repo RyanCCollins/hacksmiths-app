@@ -9,8 +9,18 @@ import UIKit
 import CoreData
 import PromiseKit
 
+/** Extension for the API Client for user / member taskForPOSTMethod
+ *  This is leftover from the refactor to utilizing seperate services with Alamo
+ *  And eventually will be refactored to be more elegant, but is working fine now.
+ */
 extension HacksmithsAPIClient {
     
+    /** Check the service (API) to ensure that all is well.
+     *
+     *  @param body - A body to submit to the API
+     *  @param completionHandler - the completion handler to use when the task is complete.
+     *  @return None
+     */
     func checkService(body: [String : AnyObject], completionHandler: CompletionHandler) {
         let method = Routes.SigninServiceCheck
         
@@ -32,24 +42,27 @@ extension HacksmithsAPIClient {
                         var message = result[JSONResponseKeys.Auth.message] as? String
                         
                         if message == nil {
-                            message = "Unable to register due to unknown reasons.  Please try again."
+                            message = "An unknown error occured while checking the API.  Please try again."
                         }
                         completionHandler(success: false, error: Errors.constructError(domain: "HacksmithsAPIClient", userMessage: message!))
-                    
                     }
                 }
             }
         })
     }
     
+    /** Register for an account with an email address.
+     *
+     *  @param registrationJSON - a JSON object for registration
+     *  @param completionHandler - the completion handler to run when request has finished
+     *  @return None
+     */
     func registerWithEmail(registrationJSON: RegistrationJSON, completionHandler: CompletionHandler) {
         let method = Routes.SignupEmail
         let body = registrationJSON.toJSON()
         taskForPOSTMethod(method, JSONBody: body!, completionHandler: {success, result, error in
             if error != nil {
-                
                 completionHandler(success: false, error: error)
-                
             } else {
                 
                 if let success = result["success"] as? Int, session = result["session"] as? Int {
@@ -70,16 +83,19 @@ extension HacksmithsAPIClient {
                             message = "Unable to register due to unknown reasons.  Please try again."
                         }
                         completionHandler(success: false, error: Errors.constructError(domain: "HacksmithsAPIClient", userMessage: message!))
-                        
-                        
                     }
                 }
-                
             }
-
         })
     }
-
+    
+    /** Authenticate with the API, creating a session and storing to NSUserDefaults
+     *
+     *  @param username: String The username used to sign in
+     *  @param password: String - the password used to sign in
+     *  @param completionHandler - A block to run on completion of the request.
+     *  @return None
+     */
     func authenticateWithCredentials(username: String, password: String, completionHandler: CompletionHandler) {
         let method = Routes.SigninEmail
         let body = [Keys.Username: username, Keys.Password: password]
@@ -95,8 +111,6 @@ extension HacksmithsAPIClient {
                     if success == false {
                         completionHandler(success: false, error: Errors.constructError(domain: "HacksmithsAPIClient", userMessage: "Sorry, but we were unable to sign you in.  Please check your password and try again."))
                     } else {
-
-                        
                         if let success = result["success"] as? Int, session = result["session"] as? Int {
                             if success ==  1 && session == 1 {
                                 
@@ -114,93 +128,11 @@ extension HacksmithsAPIClient {
                                     message = "Unable to login due to unknown reasons.  Please try again."
                                 }
                                 completionHandler(success: false, error: Errors.constructError(domain: "HacksmithsAPIClient", userMessage: message!))
-                                
-                                
                             }
                         }
-                    
                     }
                 }
-                
             }
-            
         })
-        
-    }
-    
-    /** Clear the member list from Core Data before fetching
-     *
-     *  @param None
-     *  @return Promise of Void (no type) - A Promise that we have deleted the member list.
-     */
-    private func deleteMemberList() -> Promise<Void> {
-        return Promise{resolve, reject in
-            resolve()
-            /** Note: having some issues with core data in saving the community when a member is deleted from API
-             *  I would like to handle this more eloquently
-             */
-//            let fetchRequest = NSFetchRequest(entityName: "Person")
-//            let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-//            do {
-//                try CoreDataStackManager.sharedInstance().persistentStoreCoordinator?.executeRequest(deleteRequest, withContext: GlobalStackManager.SharedManager.sharedContext)
-//                resolve()
-//            } catch let error as NSError {
-//                print("An error occured while deleting all event data")
-//                reject(error as NSError)
-//            }
-        }
-    }
-    
-    /** Get the member list from the API.  This is legacy from implementation before promises and Gloss JSON library.
-     *
-     *  @param body - an empty object
-     *  @param - CompletionHandler - the completion handler with error and success.
-     */
-    func getMemberList(body: [String :AnyObject], completionHandler: CompletionHandler) {
-        let method = Routes.Members
-        syncInProgress = true
-        
-        deleteMemberList().then() {
-            Void in
-            self.taskForGETMethod(method, parameters: body, completionHandler: {success, result, error in
-                
-                if error != nil {
-                    self.syncInProgress = false
-                    completionHandler(success: false, error: error)
-                } else {
-                    
-                    if let membersArray = result["members"] as? [[String : AnyObject]] {
-                        for member in membersArray {
-                            
-                            /* Create a person and save the context */
-                            let person = Person(dictionary: member, context: GlobalStackManager.SharedManager.sharedContext)
-                            
-                            /* Fetch the images and then save the context again at the end.  Return an error if there is one. */
-                            person.fetchImages({success, error in
-                                if error != nil {
-                                    completionHandler(success: false, error: error)
-                                } else {
-                                    
-                                }
-                            })
-                            
-                            GlobalStackManager.SharedManager.sharedContext.performBlockAndWait({
-                                CoreDataStackManager.sharedInstance().saveContext()
-                            })
-                        }
-                    }
-                    
-                    GlobalStackManager.SharedManager.sharedContext.performBlockAndWait({
-                        CoreDataStackManager.sharedInstance().saveContext()
-                    })
-                    self.syncInProgress = false
-                    completionHandler(success: true, error: nil)
-                }
-            })
-
-            }.error {
-                error in
-                completionHandler(success: false, error: error as NSError)
-            }
     }
  }

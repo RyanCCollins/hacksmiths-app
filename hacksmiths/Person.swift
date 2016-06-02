@@ -7,7 +7,10 @@
 //
 
 import CoreData
+import PromiseKit
 
+/** Person managed object - Used to store people's information returned from the API
+ */
 @objc(Person)
 class Person: NSManagedObject {
     @NSManaged var id: String
@@ -24,7 +27,6 @@ class Person: NSManagedObject {
     @NSManaged var githubUsername: String?
     @NSManaged var twitterUsername: String?
     @NSManaged var sortPriority: NSNumber?
-    //@NSManaged var rank: NSNumber?
     
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
@@ -90,6 +92,11 @@ class Person: NSManagedObject {
         }
     }
     
+    /** Parse the person's twitter username from the API data
+     *
+     *  @param jsonDict: JsonDict -  A dictionary containing the user's API data
+     *  @return String? - An optional twitter username string
+     */
     private func parseTwitterUsername(jsonDict: JsonDict) -> String? {
         if let services = jsonDict[HacksmithsAPIClient.JSONResponseKeys.MemberData.Services.key] as? JsonDict {
             if let twitter = services[HacksmithsAPIClient.JSONResponseKeys.MemberData.Services.twitter] as? JsonDict {
@@ -101,6 +108,11 @@ class Person: NSManagedObject {
         return nil
     }
     
+    /** Parse the user's github user name from the API data
+     *
+     *  @param jsonDict: JsonDict - A dictionary containing the data from API
+     *  @return String? - An optional string of the person's github username
+     */
     private func parseGithubUsername(jsonDict: JsonDict) -> String? {
         if let services = jsonDict[HacksmithsAPIClient.JSONResponseKeys.MemberData.Services.key] as? JsonDict {
             if let github = services[HacksmithsAPIClient.JSONResponseKeys.MemberData.Services.github] as? JsonDict {
@@ -112,19 +124,26 @@ class Person: NSManagedObject {
         return nil
     }
     
-    func fetchImages(completionHandler: CompletionHandler) {
+    /** Fetch images for a person returning a Void promise saying that the image was saved
+     *
+     *  @param None
+     *  @return Promise<Void> - A promise of a saved image
+     */
+    func fetchImages() -> Promise<Void> {
         guard avatarURL != nil else {
             return
         }
-        
-        HacksmithsAPIClient.sharedInstance().taskForGETImageFromURL(avatarURL!, completionHandler: {image, error in
+        return Promise{resolve, reject in
+            HacksmithsAPIClient.sharedInstance().taskForGETImageFromURL(avatarURL!, completionHandler: {image, error in
             
-            if error != nil {
-                completionHandler(success: false, error: error)
-            } else {
-                self.image = image
-            }
-        })
+                if error != nil {
+                    reject(error)
+                } else {
+                    self.image = image
+                    resolve()
+                }
+            })
+        }
     }
     
     var fullName: String? {

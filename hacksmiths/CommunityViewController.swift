@@ -17,7 +17,7 @@ class CommunityViewController: UITableViewController {
     var searchPredicate: NSPredicate? = nil
     let isLeaderPredicate = NSPredicate(format: "isLeader == %@ && isPublic == %@", NSNumber(bool: true), NSNumber(bool: true))
     var messageLabel = UILabel()
-    
+    private let personService = PersonService()
     
     /** MARK: Lifecycle
      */
@@ -28,7 +28,8 @@ class CommunityViewController: UITableViewController {
         fetchedResultsController.delegate = self
         self.activityIndicator = IGActivityIndicatorView(inview: view, messsage: "Loading")
         configureRefreshControl()
-        self.communityPresenter.attachView(self)
+        person
+        self.communityPresenter.attachView(self, personService: personService)
         self.communityPresenter.fetchCommunityMembers()
         setupSearchContoller()
     }

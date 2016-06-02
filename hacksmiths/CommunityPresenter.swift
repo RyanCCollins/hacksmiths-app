@@ -17,24 +17,35 @@ protocol CommunityView {
 
 class CommunityPresenter {
     private var communityView: CommunityView?
+    private var personService: PersonService
     
     init(){}
-    func attachView(view: CommunityView) {
+    func attachView(view: CommunityView, personService: PersonService) {
         communityView = view
+        self.personService = personService
     }
     
     func detachView(view: CommunityView) {
         communityView = nil
+        self.personService = nil
     }
     
+    /** Get the member list from the API and store to core data
+     *  Will send messages through the presenter to update the view.
+     *
+     *  @param None
+     *  @return None
+     */
     func fetchCommunityMembers() {
-        let body = [String : AnyObject]()
-        HacksmithsAPIClient.sharedInstance().getMemberList(body, completionHandler: {result, error in
-            if error != nil {
-                self.communityView?.fetchCommunity(self, didSucceed: false, didFailWithError: error)
-            } else {
+        self.personService.getMemberList.then() {
+            members -> () in
+            if members != nil {
                 self.communityView?.fetchCommunity(self, didSucceed: true, didFailWithError: nil)
+            } else {
+                throw GlobalErrors.GenericNetworkError
             }
-        })
+            }.error{error in
+                self.communityView?.fetchCommunity(self, didSucceed: false, didFailWithError: error as NSError)
+            }
     }
 }
