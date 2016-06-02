@@ -3,7 +3,7 @@
 # Hackmiths Mobile App
 ### Made with ❤️ by Ryan Collins - Founder of [Hacksmith.io](http://hacksmiths.io)
 
-Hacksmiths was built to provide a platform for Udacity students to collaborate on meaningful projects for social good.  Our debut project, the [Food Drivr App](https://github.com/teamhacksmiths/food-drivr), a web and mobile application designed to make the process of donating edible food, is nearing public release as of late May 2016.
+Hacksmiths was built to provide a platform for Udacity students to collaborate on meaningful projects for social good.  Our debut project, the [Food Drivr App](https://github.com/teamhacksmiths/food-drivr), a web and mobile application designed to make the process of donating edible food as easy as pushing a button, is nearing public release as of late May 2016.
 
 The Hacksmiths.io website and ios mobile application serve to make it simple for people to learn about the work that we are doing.  It was designed to share the amazing work that we are doing with the world and to make it simple for newcomers to get onboard to help with future projects.
 
