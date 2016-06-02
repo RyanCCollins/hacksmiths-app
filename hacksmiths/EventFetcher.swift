@@ -123,7 +123,6 @@ class EventFetcher {
         return Promise{resolve, reject in
             do {
                 let nextEventFetch = NSFetchRequest(entityName: "NextEvent")
-                
                 var returnEvent: NextEvent? = nil
                 if let results = try CoreDataStackManager.sharedInstance().managedObjectContext.executeFetchRequest(nextEventFetch) as? [NextEvent] {
                     guard results.count > 0 else {
