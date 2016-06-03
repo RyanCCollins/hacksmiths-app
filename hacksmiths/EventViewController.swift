@@ -68,7 +68,10 @@ class EventViewController: UIViewController {
     }
     
     func setActivityIndicator() {
-        activityIndicator = IGActivityIndicatorView(inview: self.view)
+        activityIndicator = IGActivityIndicatorView(inview: view)
+        activityIndicator.addTapHandler({
+            self.finishLoading()
+        })
     }
     
     /** When tapping refresh, start refreshing and check the API for new event data
@@ -313,13 +316,15 @@ extension EventViewController: NSFetchedResultsControllerDelegate {
 extension EventViewController: EventView {
 
     func startLoading() {
-        print("Called start loading")
-        self.activityIndicator.startAnimating()
+        dispatch_async(GlobalMainQueue, {
+            self.activityIndicator.startAnimating()
+        })
     }
     
     func finishLoading() {
-        print("Called stop loading")
-        self.activityIndicator.stopAnimating()
+        dispatch_async(GlobalMainQueue, {
+            self.activityIndicator.stopAnimating()
+        })
     }
     
     func didLoadCachedEvent(sender: EventPresenter, didSucceed event: Event?, error: NSError?) {

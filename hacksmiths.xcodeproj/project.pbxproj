@@ -64,7 +64,6 @@
 		1F846CB51CEBB153009166D4 /* APIKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1F846CB41CEBB153009166D4 /* APIKeys.plist */; };
 		1F846CB91CEBB4BE009166D4 /* EventRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F846CB81CEBB4BE009166D4 /* EventRouter.swift */; };
 		1F846CBF1CEBF5E2009166D4 /* EventPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F846CBE1CEBF5E2009166D4 /* EventPresenter.swift */; };
-		1F846CC11CEBFA5C009166D4 /* HTTPStatusCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F846CC01CEBFA5C009166D4 /* HTTPStatusCodes.swift */; };
 		1F846CC41CEC03C5009166D4 /* IGActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F846CC31CEC03C5009166D4 /* IGActivityIndicatorView.swift */; };
 		1F846CC71CECF7D5009166D4 /* EventJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F846CC61CECF7D5009166D4 /* EventJSON.swift */; };
 		1F846CCA1CED00E3009166D4 /* ParticipantJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F846CC91CED00E3009166D4 /* ParticipantJSON.swift */; };
@@ -186,7 +185,6 @@
 		1F846CB41CEBB153009166D4 /* APIKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = APIKeys.plist; sourceTree = "<group>"; };
 		1F846CB81CEBB4BE009166D4 /* EventRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventRouter.swift; sourceTree = "<group>"; };
 		1F846CBE1CEBF5E2009166D4 /* EventPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventPresenter.swift; sourceTree = "<group>"; };
-		1F846CC01CEBFA5C009166D4 /* HTTPStatusCodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPStatusCodes.swift; sourceTree = "<group>"; };
 		1F846CC31CEC03C5009166D4 /* IGActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGActivityIndicatorView.swift; sourceTree = "<group>"; };
 		1F846CC61CECF7D5009166D4 /* EventJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventJSON.swift; sourceTree = "<group>"; };
 		1F846CC91CED00E3009166D4 /* ParticipantJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticipantJSON.swift; sourceTree = "<group>"; };
@@ -426,7 +424,6 @@
 			isa = PBXGroup;
 			children = (
 				1F846CB21CEBAF3C009166D4 /* BaseRouter.swift */,
-				1F846CC01CEBFA5C009166D4 /* HTTPStatusCodes.swift */,
 				1F384A871CF229D400E15887 /* HTTPManager.swift */,
 			);
 			name = Services;
@@ -1131,7 +1128,6 @@
 				1F46B9EC1CA467250065D50D /* UserData.swift in Sources */,
 				1FA9FC721C534E5A00B993BC /* hacksmiths.xcdatamodeld in Sources */,
 				1FEA07C81CEFFE3800D4BDA7 /* IdeaPageViewController.swift in Sources */,
-				1F846CC11CEBFA5C009166D4 /* HTTPStatusCodes.swift in Sources */,
 				1FB2F07A1CFF595400E295DF /* EventHelpPopoverViewController.swift in Sources */,
 				1F3DF1A61CFC922B0000BBC8 /* RegistrationJSON.swift in Sources */,
 				1FA2E5631C6802AC0085FC7D /* HacksmithsAPIUserConvenience.swift in Sources */,

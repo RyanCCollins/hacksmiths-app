@@ -37,6 +37,7 @@ class PersonViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.Default, animated: true)
         if let person = person {
             personPresenter.setPerson(person)
         } else {
@@ -47,6 +48,7 @@ class PersonViewController: UIViewController {
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         personPresenter.detachView(self)
+        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
     }
 
     /** Method called when one of the person buttons is tapped.

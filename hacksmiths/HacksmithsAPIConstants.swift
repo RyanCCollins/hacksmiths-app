@@ -8,7 +8,12 @@
 
 import Foundation
 
-
+/** Written before the entire app was refactored before using
+ *  The Gloss JSON parsing library and Alamofire.
+ *  Am keeping these here for reference, although much of this is
+ *  Not used anymore.  Also, am too afraid to cause regressions by altering something
+ *  That is still in use.  In v2, I will refactor it out.
+ */
 extension HacksmithsAPIClient {
     
     struct Constants {
@@ -43,18 +48,16 @@ extension HacksmithsAPIClient {
         
     }
     
-    
-    
-        struct Keys {
-            static let Username = "username"
-            static let Body = "body"
-            static let Password = "password"
-            static let Email = "email"
-            static let FirstName = "firstName"
-            static let LastName = "lastName"
-            static let authUser = "authUser"
-            static let user = "user"
-        }
+    struct Keys {
+        static let Username = "username"
+        static let Body = "body"
+        static let Password = "password"
+        static let Email = "email"
+        static let FirstName = "firstName"
+        static let LastName = "lastName"
+        static let authUser = "authUser"
+        static let user = "user"
+    }
     
     struct JSONResponseKeys {
         static let Status = "status"

@@ -41,12 +41,6 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         super.viewDidAppear(animated)
         // We check that the user is authenticated and enable the edit button based on their status.
         editButton.enabled = UserService.sharedInstance().authenticated
-        UIApplication.sharedApplication().statusBarStyle = .LightContent
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        UIApplication.sharedApplication().statusBarStyle = .Default
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -170,19 +164,17 @@ extension ProfileViewController: ProfileView {
     /** Show the loading indicator in the view
      */
     func startLoading() {
-        guard activityIndicator != nil else {
-            return
-        }
-        activityIndicator.startAnimating()
+        dispatch_async(GlobalMainQueue, {
+            self.activityIndicator.startAnimating()
+        })
     }
     
     /** Hide the activity indicator in the view
      */
     func finishLoading() {
-        guard activityIndicator != nil else {
-            return
-        }
-        activityIndicator.stopAnimating()
+        dispatch_async(GlobalMainQueue, {
+            self.activityIndicator.stopAnimating()
+        })
     }
     
     /** Protocol method to setup the activity indicator when attaching the view
@@ -192,6 +184,9 @@ extension ProfileViewController: ProfileView {
     func setActivityIndicator(withMessage message: String?) {
         let activityMessage = message ?? ""
         activityIndicator = IGActivityIndicatorView(inview: self.view, messsage: activityMessage)
+        activityIndicator.addTapHandler({
+            self.finishLoading()
+        })
     }
 }
 

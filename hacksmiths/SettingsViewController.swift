@@ -144,13 +144,3 @@ enum Toggle: Int {
     case PushNotifications = 1, AvailableForEvents,
     PublicProfile, AvailableAsAMentor, LookingForAMentor
 }
-
-extension SettingsViewController {
-    override func shouldAutorotate() -> Bool {
-        return false
-    }
-    
-    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-        return UIInterfaceOrientationMask.Portrait
-    }
-}

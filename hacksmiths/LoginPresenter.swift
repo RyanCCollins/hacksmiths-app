@@ -34,8 +34,10 @@ class LoginPresenter: NSObject {
         loginView?.startLoading()
         HacksmithsAPIClient.sharedInstance().authenticateWithCredentials(username, password: password, completionHandler: {success, error in
             if error != nil {
+                self.loginView?.finishLoading()
                 self.loginView?.didLogin(false, didFail: error)
             } else {
+                self.loginView?.finishLoading()
                 self.loginView?.didLogin(true, didFail: nil)
             }
         })

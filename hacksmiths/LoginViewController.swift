@@ -156,11 +156,15 @@ extension LoginViewController: LoginView {
     /** Show / Hide loading indicator through Presenter Protocol
      */
     func startLoading() {
-        activityIndicator.startAnimating()
+        dispatch_async(GlobalMainQueue, {
+            self.activityIndicator.startAnimating()
+        })
     }
     
     func finishLoading() {
-        activityIndicator.stopAnimating()
+        dispatch_async(GlobalMainQueue, {
+            self.activityIndicator.stopAnimating()
+        })
     }
     
     func didLogin(didSucceed: Bool, didFail error: NSError?) {
