@@ -134,11 +134,11 @@ extension LoginViewController: LoginView {
     /** Show / Hide loading indicator through Presenter Protocol
      */
     func showLoading() {
-        activityIndicator.showLoading()
+        activityIndicator.startAnimating()
     }
     
     func hideLoading() {
-        activityIndicator.hideLoading()
+        activityIndicator.stopAnimating()
     }
     
     private func findSavedCredentials(sender: AnyObject){

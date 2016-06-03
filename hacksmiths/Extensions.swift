@@ -119,9 +119,10 @@ extension String {
     }
     
     private func removeNBSP(string: String) -> String {
-        let noNBSPString = string.stringByReplacingOccurrencesOfString("nbsp", withString: "")
+        let noNBSPString = string.stringByReplacingOccurrencesOfString("nbsp", withString: " ")
         return noNBSPString
     }
+    
     
     private func removeSpecialCharsFromString(string: String) -> String {
         let chars = Set("abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLKMNOPQRSTUVWXYZ1234567890+-*=(),.:!_".characters)

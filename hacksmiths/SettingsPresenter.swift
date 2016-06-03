@@ -9,8 +9,7 @@
 import UIKit
 
 protocol SettingsView: NSObjectProtocol {
-    /** Empty protocol in case complexity grows
-     */
+    func didSetUserData(userData: UserData?, error: NSError?)
 }
 
 /** Settings presenter class, not yet being utilized
@@ -31,5 +30,13 @@ class SettingsPresenter {
     
     func detachView(view: SettingsView) {
         self.settingsView = nil
+    }
+    
+    func setUserData(userData: UserData?) {
+        if userData != nil {
+            settingsView?.didSetUserData(userData, error: nil)
+        } else {
+            settingsView?.didSetUserData(nil, error: GlobalErrors.GenericError)
+        }
     }
 }

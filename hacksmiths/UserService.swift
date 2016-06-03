@@ -6,6 +6,7 @@
 //  Copyright © 2016 Tech Rapport. All rights reserved.
 //
 
+import PromiseKit
 
 class UserService {
     var userData: UserData? = nil
@@ -18,13 +19,28 @@ class UserService {
         return Singleton.sharedInstance
     }
     
-    func performLogout() {
-        authenticated = false
-        authToken = nil
-        userId = nil
-        dateAuthenticated = nil
+    /** Clear the user records from Core Data, performing user logout
+     *
+     *  @param None
+     *  @return Promise<Void> - A Promise with no return type
+     */
+    func performLogout() -> Promise<Void> {
+        return Promise{resolve, reject in
+            let userProfileService = UserProfileService()
+            userProfileService.deleteUserDataRecords().then(){Void -> () in
+                self.authToken = nil
+                self.authenticated = false
+                self.dateAuthenticated = nil
+                self.userId = nil
+                resolve()
+            }.error {error in
+                reject(error)
+            }
+        }
     }
     
+    /** The User's Authentication token returned from login on server
+     */
     var authToken: String? {
         get {
             return NSUserDefaults.standardUserDefaults().valueForKey("token") as? String
@@ -45,6 +61,8 @@ class UserService {
         }
     }
     
+    /** The user's ID
+     */
     var userId: String? {
         get {
             return NSUserDefaults.standardUserDefaults().valueForKey("userId") as? String
@@ -54,6 +72,8 @@ class UserService {
         }
     }
     
+    /** The date that the user was authenticated
+     */
     var dateAuthenticated: NSDate? {
         get {
             return NSUserDefaults.standardUserDefaults().valueForKey("dateAuthenticated") as? NSDate

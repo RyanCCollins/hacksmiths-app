@@ -52,6 +52,12 @@ class ProfilePresenter {
     }
     
     func fetchCachedData() {
+        /* Ensure that user is authenticated before loading cached data*/
+        guard UserService.sharedInstance().authenticated == true else {
+            self.profileView?.didLoadCachedUserData(nil, error: nil)
+            return
+        }
+        
         userProfileService.fetchSavedUserData().then() {
             userData -> () in
             if userData != nil {

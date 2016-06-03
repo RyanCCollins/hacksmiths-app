@@ -12,10 +12,14 @@
 import UIKit
 import Spring
 
+/** Protocol for when settings are updated, letting the delegate handle submission to API.
+ */
 protocol SettingsPickerDelegate {
     func didUpdateSettings(userData: UserData)
 }
 
+/** Settings View Controller - Handles setting User Settings.
+ */
 class SettingsViewController: UIViewController {
     @IBOutlet weak var pushNotificationsSwitch: UISwitch!
     @IBOutlet weak var availableForEvents: UISwitch!
@@ -39,8 +43,8 @@ class SettingsViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        setUIForUserData()
         settingPresenter.attachView(self)
+        settingPresenter.setUserData(currentUserData)
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -53,26 +57,29 @@ class SettingsViewController: UIViewController {
         presentingViewController!.view.transformOut(self)
     }
     
-    /** Perform logout segue when button is tapped.
+    /** Perform logout segue when button is tapped.  If an error occurs, alert the user
      */
     @IBAction func performLogoutSegue(sender: AnyObject) {
-        UserService.sharedInstance().performLogout()
-        performSegueWithIdentifier("LogoutSegue", sender: self)
+        UserService.sharedInstance().performLogout().then() {
+            self.performSegueWithIdentifier("LogoutSegue", sender: self)
+        }.error{error in
+            self.alertController(withTitles: ["Ok", "Retry"], message: "Unable to log you out for some unknown reason.  Please try again", callbackHandler: [nil, {Void in
+                self.performLogoutSegue(self)
+            }])
+        }
     }
     
     /** Translate user data into UI for settings
-     * @params - NONE
+     * @params - userData: UserData - the user's data to map to the UI.
      * @return - NONE
      */
-    func setUIForUserData(){
-        if let userData = currentUserData {
-            pushNotificationsSwitch.on = userData.mobileNotifications
-            lookingForMentorToggle.on = userData.needsAMentor
-            availableForEvents.on = userData.isAvailableForEvents
-            availableAsMentorToggle.on = userData.isAvailableAsAMentor
-            publicProfileToggle.on = userData.isPublic
-            pushNotificationsSwitch.on = userData.mobileNotifications
-        }
+    func setupUserInterface(withUserData userData: UserData){
+        pushNotificationsSwitch.on = userData.mobileNotifications
+        lookingForMentorToggle.on = userData.needsAMentor
+        availableForEvents.on = userData.isAvailableForEvents
+        availableAsMentorToggle.on = userData.isAvailableAsAMentor
+        publicProfileToggle.on = userData.isPublic
+        pushNotificationsSwitch.on = userData.mobileNotifications
     }
     
     /** When toggle is tapped, translate to the value stored in user data.
@@ -107,6 +114,7 @@ class SettingsViewController: UIViewController {
         presentingViewController!.view.transformIn(self)
         if dataChanged {
             delegate?.didUpdateSettings(currentUserData!)
+            dataChanged = false
         }
         modalView.animation = "slideRight"
         modalView.animateFrom = false
@@ -116,14 +124,21 @@ class SettingsViewController: UIViewController {
     }
 }
 
+/** Set the user data to match the user interface and handle any errors.
+ *  Utilizing the model view presenter pattern.
+ */
 extension SettingsViewController: SettingsView {
-    /** Empty protocol to be utilized if complexity grows since the rest of the app
-     *  Is now implementing the MVP pattern.
-     */
+    func didSetUserData(userData: UserData?, error: NSError?) {
+        if userData != nil {
+            setupUserInterface(withUserData: userData!)
+        } else {
+            alertController(withTitles: ["Ok"], message: "An error occured while loading your data.  Please try again.", callbackHandler: [nil])
+        }
+    }
 }
 
-/** Toggle enumeration for the settings toggle types
- *
+/** Toggle enumeration for the settings toggle types.
+ *  Maps to the tag of the item in storyboard
  */
 enum Toggle: Int {
     case PushNotifications = 1, AvailableForEvents,

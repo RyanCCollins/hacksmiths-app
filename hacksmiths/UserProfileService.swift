@@ -68,9 +68,7 @@ class UserProfileService {
                         reject(error)
                     }
             }
-        
         }
-
     }
     
     func fetchSavedUserData() -> Promise<UserData?> {
@@ -85,7 +83,7 @@ class UserProfileService {
         }
     }
     
-    private func deleteUserDataRecords() -> Promise<Void> {
+    func deleteUserDataRecords() -> Promise<Void> {
         return Promise{ resolve, reject in
             let fetchRequest = NSFetchRequest(entityName: "UserData")
             let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
