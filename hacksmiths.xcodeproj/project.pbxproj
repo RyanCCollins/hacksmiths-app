@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		1F115B4A1CC0060900DC434E /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F115B491CC0060900DC434E /* RegistrationViewController.swift */; };
 		1F26C3F71CA0B232001596D2 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F26C3F61CA0B232001596D2 /* AboutViewController.swift */; };
-		1F32ACA11D0106CE008A2B38 /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F32ACA01D0106CE008A2B38 /* LoadingView.xib */; };
 		1F384A881CF229D400E15887 /* HTTPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F384A871CF229D400E15887 /* HTTPManager.swift */; };
 		1F384A8D1CF25C3F00E15887 /* NextEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F384A8C1CF25C3F00E15887 /* NextEvent.swift */; };
 		1F3DF1391CFA306F0000BBC8 /* Apache License Version 2.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1F3DF12E1CFA306F0000BBC8 /* Apache License Version 2.txt */; };
@@ -129,7 +128,6 @@
 /* Begin PBXFileReference section */
 		1F115B491CC0060900DC434E /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		1F26C3F61CA0B232001596D2 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
-		1F32ACA01D0106CE008A2B38 /* LoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
 		1F384A871CF229D400E15887 /* HTTPManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPManager.swift; sourceTree = "<group>"; };
 		1F384A8C1CF25C3F00E15887 /* NextEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextEvent.swift; sourceTree = "<group>"; };
 		1F3DF12E1CFA306F0000BBC8 /* Apache License Version 2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Apache License Version 2.txt"; sourceTree = "<group>"; };
@@ -717,7 +715,6 @@
 		1FAD7DBD1CEE69C20044BD94 /* Storyboard & Assets */ = {
 			isa = PBXGroup;
 			children = (
-				1F32ACA01D0106CE008A2B38 /* LoadingView.xib */,
 				1FA9FC6D1C534E5A00B993BC /* Main.storyboard */,
 				1FA9FC731C534E5A00B993BC /* Assets.xcassets */,
 				1FA9FC751C534E5A00B993BC /* LaunchScreen.storyboard */,
@@ -986,7 +983,6 @@
 				1F3DF1401CFA306F0000BBC8 /* OpenSans-LightItalic.ttf in Resources */,
 				1FA9FC771C534E5A00B993BC /* LaunchScreen.storyboard in Resources */,
 				1F3DF13A1CFA306F0000BBC8 /* OpenSans-Bold.ttf in Resources */,
-				1F32ACA11D0106CE008A2B38 /* LoadingView.xib in Resources */,
 				1F846CB51CEBB153009166D4 /* APIKeys.plist in Resources */,
 				1F3DF13D1CFA306F0000BBC8 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				1F7701C41C84B532006FBCE0 /* Montserrat-Hairline.otf in Resources */,

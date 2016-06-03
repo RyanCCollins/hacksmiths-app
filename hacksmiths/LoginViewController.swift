@@ -12,40 +12,56 @@ import SwiftyButton
 
 class LoginViewController: UIViewController {
     
-    let createLoginButtonTag = 0
-    let loginButtonTag = 1
-    
     @IBOutlet weak var loginButtonView: UIView!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-
-    @IBOutlet weak var touchIDButton: UIButton!
     @IBOutlet weak var onepasswordButton: UIButton!
+    
     var loginPresenter: LoginPresenter?
-    let loginButton = SwiftyCustomContentButton()
     var has1PasswordLogin: Bool = false
     var activityIndicator: IGActivityIndicatorView!
     
+    /** MARK: Lifecycle methods
+     */
     override func viewDidLoad() {
         super.viewDidLoad()
         /* Configure buttons based on availability */
         configureLoginButtons()
         configureOnePasswordButton()
         configureActivityIndicator()
+        loginPresenter = LoginPresenter()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        loginPresenter?.attachView(self)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        loginPresenter?.detachView()
+    }
+    
+    /** Setup the activity indicator within the view
+     */
     func configureActivityIndicator() {
         activityIndicator = IGActivityIndicatorView(inview: view, messsage: "Signing in")
     }
     
+    /** Configure the one password button, setting it to be showing if the extension is availabld
+     */
     func configureLoginButtons() {
-        onepasswordButton.enabled = true
+        onepasswordButton.hidden = !OnePasswordExtension.sharedExtension().isAppExtensionAvailable()
     }
     
+    /** The User tapped the cancel / Skip button, so proceed
+     */
     @IBAction func didTapSkipUpInside(sender: AnyObject) {
         dismissLoginView(false)
     }
-
+    
+    /** Configure the one password button for the user.
+     */
     func configureOnePasswordButton() {
         /* Hide 1Password Button if not installed */
         self.onepasswordButton.hidden = !OnePasswordExtension.sharedExtension().isAppExtensionAvailable()
@@ -53,16 +69,6 @@ class LoginViewController: UIViewController {
     
     @IBAction func didTapOnePasswordButtonUpInside(sender: AnyObject) {
         findLoginFrom1Password(sender)
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        subscribeToKeyboardNotification()
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        unsubsribeToKeyboardNotification()
     }
 
     func dismissLoginView(loginWasSuccessful: Bool) {
@@ -83,22 +89,9 @@ class LoginViewController: UIViewController {
         
         usernameTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
-        authenticateUser(usernameTextField.text!, password: passwordTextField.text!)
-    }
-    
-    func authenticateUser(username: String, password: String) {
-        HacksmithsAPIClient.sharedInstance().authenticateWithCredentials(username, password: password, completionHandler: {success, error in
-            if error != nil {
-                self.alertController(withTitles: ["OK"], message: "We were unable to authenticate your account.  Please check your password and try again.", callbackHandler: [nil])
-            }
-            
-            if success {
-                self.dismissLoginView(true)
-            }
-        })
+        loginPresenter?.authenticateUser(usernameTextField.text!, password: passwordTextField.text!)
     }
 
-    
     func findLoginFrom1Password(sender:AnyObject) -> Void {
         OnePasswordExtension.sharedExtension().findLoginForURLString("http://hacksmiths.io", forViewController: self, sender: sender, completion: { (loginDictionary, error) -> Void in
             if loginDictionary == nil {
@@ -113,8 +106,7 @@ class LoginViewController: UIViewController {
                 self.passwordTextField.text = foundPassword
                 self.usernameTextField.text = foundUsername
                 
-                self.authenticateUser(foundUsername, password: foundPassword)
-                
+                self.loginPresenter?.authenticateUser(foundUsername, password: foundPassword)
             }
         })
     }
@@ -127,21 +119,8 @@ class LoginViewController: UIViewController {
             return true
         }
     }
-
-}
-
-extension LoginViewController: LoginView {
-    /** Show / Hide loading indicator through Presenter Protocol
-     */
-    func showLoading() {
-        activityIndicator.startAnimating()
-    }
     
-    func hideLoading() {
-        activityIndicator.stopAnimating()
-    }
-    
-    private func findSavedCredentials(sender: AnyObject){
+    func findSavedCredentials(sender: AnyObject){
         OnePasswordExtension.sharedExtension().findLoginForURLString("http://hacksmiths.io", forViewController: self, sender: sender, completion: { (loginDictionary, error) -> Void in
             if loginDictionary == nil {
                 if error!.code != Int(AppExtensionErrorCodeCancelledByUser) {
@@ -156,10 +135,42 @@ extension LoginViewController: LoginView {
                 self.passwordTextField.text = foundPassword
                 self.usernameTextField.text = foundUsername
                 
-                self.authenticateUser(foundUsername, password: foundPassword)
+                self.loginPresenter!.authenticateUser(foundUsername, password: foundPassword)
                 
             }
         })
+    }
+
+}
+
+extension LoginViewController: LoginView {
+    /** Show / Hide loading indicator through Presenter Protocol
+     */
+    func startLoading() {
+        activityIndicator.startAnimating()
+    }
+    
+    func finishLoading() {
+        activityIndicator.stopAnimating()
+    }
+    
+    func didLogin(didSucceed: Bool, didFail error: NSError?) {
+        finishLoading()
+        if error != nil {
+            alertController(withTitles: ["OK"], message: "We were unable to authenticate your account.  Please check your password and try again.", callbackHandler: [nil])
+        } else if didSucceed {
+            dismissLoginView(true)
+        }
+    }
+    
+    func subscribeToKeyboardNotifications() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
+    func unsubscribeToKeyboardNotifications() {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
     }
 }
 
@@ -170,28 +181,14 @@ extension LoginViewController {
         textField.resignFirstResponder()
         return true
     }
-    
-    /* Suscribe the view controller to the UIKeyboardWillShowNotification */
-    func subscribeToKeyboardNotification() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
-    }
-    
-    /* Unsubscribe the view controller to the UIKeyboardWillShowNotification */
-    func unsubsribeToKeyboardNotification(){
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
-    }
+
     /* Hide keyboard when view is tapped */
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         view.endEditing(true)
-        /* Enable save button if fields are filled out  */
-        
     }
     
     func keyboardWillShow(notification: NSNotification) {
         /* slide the view up when keyboard appears, using notifications */
-        
         view.frame.origin.y = -getKeyboardHeight(notification)
         
     }
