@@ -145,4 +145,12 @@ enum Toggle: Int {
     PublicProfile, AvailableAsAMentor, LookingForAMentor
 }
 
-
+extension SettingsViewController {
+    override func shouldAutorotate() -> Bool {
+        return false
+    }
+    
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.Portrait
+    }
+}

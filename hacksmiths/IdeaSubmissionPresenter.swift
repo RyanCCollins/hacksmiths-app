@@ -94,6 +94,8 @@ class IdeaSubmissionPresenter {
      *  @return - None
      */
     func updateIdeaToAPI(projectIdea: ProjectIdeaSubmission) {
+        print("Calling update idea to API")
+        ideaSubmissionView?.startLoading()
         projectIdeaService.updateOneIdea(projectIdea).then() {projectIdeaSubmission in
             self.ideaSubmissionView?.didSubmitIdeaToAPI(self, didSucceed: true, didFail: nil)
         }.error {error in

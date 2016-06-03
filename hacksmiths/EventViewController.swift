@@ -139,7 +139,10 @@ class EventViewController: UIViewController {
             dispatch_async(GlobalMainQueue, {
                 self.organizationTitleLabel.text = organization.name
                 self.organizationDescriptionLabel.text = organization.descriptionString ?? ""
-                self.organizationWebsiteButton.titleLabel!.text = organization.website ?? ""
+                
+                if let website = organization.website {
+                    self.organizationWebsiteButton.setTitle(website, forState: .Normal)
+                }
             })
             
             self.showOrganizationUI(forEvent: event)
@@ -159,11 +162,18 @@ class EventViewController: UIViewController {
             self.organizationImageView.fadeIn()
             self.organizationDescriptionLabel.fadeIn()
             if event.organization?.website != nil {
+                print("Calling create organization button")
                 self.organizationWebsiteButton.hidden = false
+                self.organizationWebsiteButton.fadeIn()
             }
         })
     }
     
+    /** Setup the marketing section UI
+     *
+     *  @param event - the event we are currently concerned with
+     *  @return None
+     */
     func setupMarketingInfo(forEvent event: Event) {
         if let marketingInfo = event.marketingInfo {
             self.marketingInfoStackView.hidden = marketingInfo.isEmpty
@@ -174,12 +184,22 @@ class EventViewController: UIViewController {
         }
     }
     
+    /** Setup the register / sign up button based on the current event
+     *
+     *  @param event - the event we are concerned with
+     *  @return None
+     */
     func setupButton(forEvent event: Event) {
         dispatch_async(GlobalMainQueue, {
             self.registerSignupButton.fadeIn()
         })
     }
     
+    /** Set the button state for the current event
+     *
+     *  @param event - the event we are concerned with
+     *  @return None
+     */
     func setButtonState(forEvent event: Event) {
         if event.active && event.spotsAvailable {
             registerSignupButton.enabled = true
@@ -190,9 +210,9 @@ class EventViewController: UIViewController {
     
     func toggleButtonTitle(forAuthenticatedState authenticated: Bool){
         if authenticated {
-            registerSignupButton.titleLabel!.text = "I CAN HELP!"
+            registerSignupButton.setTitle("RSVP", forState: .Normal)
         } else {
-             registerSignupButton.titleLabel!.text = "SIGN IN!"
+            registerSignupButton.setTitle("SIGN IN", forState: .Normal)
         }
     }
     
@@ -221,7 +241,6 @@ class EventViewController: UIViewController {
             
             self.organizationWebsiteButton.fadeOut()
             self.participantHeaderStackView.fadeOut()
-            
         })
     }
     
@@ -323,20 +342,23 @@ extension EventViewController: EventView {
     }
     
     func didReceiveNewEvent(sender: EventPresenter, didSucceed event: NextEvent?, error: NSError?) {
-        print("Did receive new event")
         finishLoading()
-        if error != nil {
+        if error != nil || event == nil {
             let message = error?.localizedDescription ?? "An unknown error occurred."
             alertController(withTitles: ["OK"], message: message, callbackHandler: [nil])
-        } else if event != nil{
-            self.eventPresenter.fetchEventData(event!.idString)
         } else {
-            /* No change */
+            self.eventPresenter.fetchEventData(event!.idString)
         }
     }
     
+    /** Did receive event data - called when the full event's data has been loaded
+     *
+     *  @param Sender - the event presenter sending the message
+     *  @param didSucceed event - the event that was loaded if successful
+     *  @param didFail error - the error that was received if the request failed
+     *  @return None
+     */
     func didReceiveEventData(sender: EventPresenter, didSucceed event: Event?, didFail error: NSError?) {
-        print("Did receive event data")
         finishLoading()
         if event != nil {
             resetUserInterface()
@@ -349,10 +371,6 @@ extension EventViewController: EventView {
                 self.eventPresenter.fetchNextEvent()
             }])
         }
-    }
-    
-    func handleSetDebugMessage(message: String) {
-        print("Set debug message: \(message)")
     }
     
     func didRSVPForEvent(sender: EventPresenter, success: Bool, error: NSError?) {
@@ -374,32 +392,55 @@ extension EventViewController: EventView {
 }
 
 extension EventViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    func getEventParticipants() -> [Participant]? {
+    /** Get the participants for a specific event
+     *
+     *  @param None
+     *  @return [Participant] - an array optional participants for the curren event
+     */
+    func getEventParticipants(event: Event) -> [Participant]? {
         var eventParticipants: [Participant]?
         if let participants = fetchedResultsController.fetchedObjects as? [Participant] {
             eventParticipants = participants.filter({participant in
-                return participant.event == currentEvent
+                return participant.event == event
             })
         }
         return eventParticipants != nil ? eventParticipants : nil
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let participants = getEventParticipants() {
+        /* Return 0 if there is no current event for whatever reason */
+        guard let event = currentEvent else {
+            return 0
+        }
+        
+        if let participants = getEventParticipants(event) {
             return participants.count > 0 ? participants.count : 0
         } else {
             return 0
         }
     }
     
+    /** Collection view delegate method for setting cell at indexPath for participant
+     */
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ParticipantCollectionViewCell", forIndexPath: indexPath) as! ParticipantCollectionViewCell
         configureCell(cell, atIndexPath: indexPath)
         return cell
     }
     
+    /** Configure participant cell - handles configuring the cell for each participant
+     *
+     *  @param cell - the cell to configure
+     *  @param indexPath - the index path where we are setting the participant
+     *  @return None
+     */
     func configureCell(cell: ParticipantCollectionViewCell, atIndexPath indexPath: NSIndexPath) {
-        if let eventParticipants = getEventParticipants() {
+        guard let event = currentEvent else {
+            return
+        }
+        
+        if let eventParticipants = getEventParticipants(event) {
+            /* Dealing with the bug where the indexPaths were not matching count*/
             if eventParticipants.count >= indexPath.row {
                 let participant = eventParticipants[indexPath.row]
                 cell.setCellForParticipant(participant)
@@ -413,6 +454,8 @@ enum EventStatus {
 }
 
 extension EventViewController: UIPopoverPresentationControllerDelegate {
+    /** Used to create the popover view for the iPhone.
+     */
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
         return .None
     }

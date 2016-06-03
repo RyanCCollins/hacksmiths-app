@@ -202,4 +202,14 @@ extension ProfileViewController: EditProfileDelegate {
     func didSubmitEditedData(userData: UserData) {
         didUpdateSettings(userData)
     }
+    
+    /** Limit this view from auto rotating to avoid UI issues
+     */
+    override func shouldAutorotate() -> Bool {
+        return false
+    }
+    
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.Portrait
+    }
 }

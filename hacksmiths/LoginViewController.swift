@@ -45,6 +45,9 @@ class LoginViewController: UIViewController {
      */
     private func configureActivityIndicator() {
         activityIndicator = IGActivityIndicatorView(inview: view, messsage: "Signing in")
+        activityIndicator.addTapHandler({
+            self.finishLoading()
+        })
     }
     
     /** Configure the one password button, setting it to be showing if the extension is availabld
@@ -80,6 +83,11 @@ class LoginViewController: UIViewController {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    /** Handle the login button tap
+     *
+     *  @param sender - the button that sent the action
+     *  @return None
+     */
     @IBAction func didTapLoginButtonUpInside(sender: AnyObject) {
         if !credentialsAreNotEmpty() {
             alertController(withTitles: ["OK"], message: "Please enter a valid username and password", callbackHandler: [nil])
@@ -90,7 +98,12 @@ class LoginViewController: UIViewController {
         passwordTextField.resignFirstResponder()
         loginPresenter.authenticateUser(usernameTextField.text!, password: passwordTextField.text!)
     }
-
+    
+    /** Find the login from 1 Password for hacksmiths.io
+     *
+     *  @param sender - the button that sent the action
+     *  @return Void
+     */
     func findLoginFrom1Password(sender:AnyObject) -> Void {
         OnePasswordExtension.sharedExtension().findLoginForURLString("http://hacksmiths.io", forViewController: self, sender: sender, completion: { (loginDictionary, error) -> Void in
             if loginDictionary == nil {
@@ -217,5 +230,15 @@ extension LoginViewController {
     enum TextFields: Int {
         case Email = 101,
              Password
+    }
+    
+    /** Make sure the view does not rotate.
+     */
+    override func shouldAutorotate() -> Bool {
+        return false
+    }
+    
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.Portrait
     }
 }

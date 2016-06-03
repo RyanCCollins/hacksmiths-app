@@ -137,7 +137,7 @@ class ProjectIdeaService {
     func updateOneIdea(ideaSubmission: ProjectIdeaSubmission) -> Promise<ProjectIdeaSubmission?> {
         return Promise { resolve, reject in
             let ideaJSON = ProjectIdeaSubmissionJSON(projectIdeaSubmission: ideaSubmission)
-            let router = ProjectIdeaRouter.init(endpoint: .UpdateProjectIdea(ideaId: "333", ideaJSON: ideaJSON))
+            let router = ProjectIdeaRouter.init(endpoint: .UpdateProjectIdea(ideaId: ideaSubmission.idString, ideaJSON: ideaJSON))
             manager.request(router)
                 .validate()
                 .responseJSON {
