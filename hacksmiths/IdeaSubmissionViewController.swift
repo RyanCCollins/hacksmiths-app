@@ -90,8 +90,6 @@ class IdeaSubmissionViewController: UIViewController {
             alertController(withTitles: ["OK"], message: "Please fill in both required text fields before submitting", callbackHandler: [nil])
             return
         }
-        /* Show the loading indicator */
-        showLoading()
         
         let title = ideaTitleTextField.text
         let description = ideaDescriptionTextView.text
@@ -195,7 +193,7 @@ extension IdeaSubmissionViewController: IdeaSubmissionView {
      *  @return None
      */
     func didSubmitIdeaToAPI(sender: IdeaSubmissionPresenter, didSucceed: Bool, didFail: NSError?) {
-        hideLoading()
+        finishLoading()
         if didFail != nil {
             alertController(withTitles: ["Ok"], message: (didFail?.localizedDescription)!, callbackHandler: [nil])
         } else if didSucceed == true {
@@ -211,12 +209,12 @@ extension IdeaSubmissionViewController: IdeaSubmissionView {
      *  @return None
      */
     func isNewSubmission(sender: IdeaSubmissionPresenter) {
-        hideLoading()
+        finishLoading()
         submissionStatus = .New
     }
     
     func didFindExistingData(sender: IdeaSubmissionPresenter, ideaSubmission: ProjectIdeaSubmission) {
-        hideLoading()
+        finishLoading()
         if ideaSubmission.event == currentEvent?.idString {
             submissionStatus = .Update
             currentIdea = ideaSubmission
@@ -245,11 +243,11 @@ extension IdeaSubmissionViewController: IdeaSubmissionView {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(IdeaSubmissionViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
     }
     
-    func showLoading() {
+    func startLoading() {
         activityIndicator.showLoading()
     }
     
-    func hideLoading() {
+    func finishLoading() {
         activityIndicator.hideLoading()
     }
 }

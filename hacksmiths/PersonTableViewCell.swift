@@ -16,6 +16,8 @@ class PersonTableViewCell: UITableViewCell {
     @IBOutlet weak var personImageView: UIImageView!
     let personImage = UIImage(named: "avatar-missing")
     
+    /** Setup the circular image view when awaking from nib
+     */
     override func awakeFromNib() {
         super.awakeFromNib()
         // Set the corner radius to make the image view circular
@@ -26,6 +28,11 @@ class PersonTableViewCell: UITableViewCell {
         personImageView.image = personImage
     }
     
+    /** Show image for a person
+     *
+     *  @param image - the image to show
+     *  @return None
+     */
     func showImage(image: UIImage?) {
         if image == nil {
             personImageView.image = personImage
@@ -33,11 +40,4 @@ class PersonTableViewCell: UITableViewCell {
             personImageView.image = image
         }
     }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
 }

@@ -10,7 +10,6 @@ target 'hacksmiths' do
     pod 'TextFieldEffects', :inhibit_warnings => true
     pod 'SwiftValidator', '3.0.3'
     pod 'Alamofire', '~> 3.3'
-    pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
     pod 'NVActivityIndicatorView', '~> 2.5'
     pod 'PromiseKit'
     pod 'Gloss', '~> 0.7'

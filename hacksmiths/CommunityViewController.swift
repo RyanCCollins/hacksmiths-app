@@ -53,7 +53,8 @@ class CommunityViewController: UITableViewController {
         tableView.addSubview(refreshControl!)
     }
     
-    
+    /** Set the search controller to be not active when the segue occurs
+     */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         searchController.active = false
     }
@@ -162,7 +163,7 @@ extension CommunityViewController {
         }
     }
     
-    /** Avoid having the section insets for tablview
+    /** Avoid having the section insets for tableview
      */
     override func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
         return nil
@@ -176,13 +177,13 @@ extension CommunityViewController {
             /* If the predicate is nil, then set the title based on which section we are in */
             title = (SectionTitle(rawValue: section)?.getTitle())!
         } else {
-            /* If there is a predicate, then select the All Members header no matter what */
-            title = (SectionTitle(rawValue: 3)?.getTitle())!
+            title = "All Members"
         }
         return title
     }
     
-
+    /** Return the number of items in each section based on the items in the Fetched Results Controller.
+     */
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             // Initialize count with zero
             let sectionTitle = SectionTitle(rawValue: section)
@@ -196,11 +197,11 @@ extension CommunityViewController {
                  * So return 0, otherwise return the community fetch
                  */
                 return searchPredicate == nil ? communityFetchResultsController.fetchedObjects!.count : 0
-            case .AllMembers:
-                return searchPredicate != nil ? (fetchedResultsController.fetchedObjects?.count)! : 0
         }
     }
     
+    /** Match a person with the tableview and setup the cell to match the person
+     */
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("PersonTableViewCell") as! PersonTableViewCell
         var person: Person? = nil
@@ -220,16 +221,18 @@ extension CommunityViewController {
                 if let thePerson = communityFetchResultsController.fetchedObjects![indexPath.row] as? Person {
                     person = thePerson
                 }
-            case .AllMembers:
-                if let thePerson = fetchedResultsController.fetchedObjects![indexPath.row] as? Person {
-                    person = thePerson
-                }
             }
         }
         let configuredCell = configureCell(cell, withPerson: person)
         return configuredCell!
     }
     
+    /** Configure the cell for the person
+     *
+     *  @param cell: PersonTableViewCell - the cell being configured
+     *  @param person: Person? the person being used to define the data for the cell
+     *  @return PersonTableViewCell? - the tableviewcell for the person.
+     */
     func configureCell(cell: PersonTableViewCell, withPerson person: Person?) -> PersonTableViewCell? {
         guard person != nil else {
             return nil
@@ -254,16 +257,14 @@ extension CommunityViewController {
             if let thePerson = communityFetchResultsController.fetchedObjects![indexPath.row] as? Person {
                 person = thePerson
             }
-        case .AllMembers:
-            if let thePerson = fetchedResultsController.fetchedObjects![indexPath.row] as? Person {
-                person = thePerson
-            }
         }
         
         if person != nil {
             let personView = storyboard?.instantiateViewControllerWithIdentifier("PersonViewController") as! PersonViewController
             personView.person = person
             
+            /* Set the search controller to not be active*/
+            searchController.active = false
             navigationController?.pushViewController(personView, animated: true)
         } else {
             alertController(withTitles: ["OK"], message: "It looks like that person has deleted their profile.", callbackHandler: [nil])
@@ -301,7 +302,9 @@ extension CommunityViewController: CommunityView {
             self.tableView.reloadData()
         }
     }
-    
+}
+
+extension CommunityViewController {
     func showNoDataLabel() {
         if tableView.numberOfRowsInSection(0) == 0 && tableView.numberOfRowsInSection(1) == 0 {
             messageLabel = UILabel(frame: CGRectMake(0,0, self.view.bounds.width, self.view.bounds.height))
@@ -352,7 +355,6 @@ extension CommunityViewController: CommunityView {
             tableView.reloadData()
         }
     }
-    
 }
 
 /** Community View Controller extension for UISearchBar Delegation
@@ -389,7 +391,7 @@ extension CommunityViewController: UISearchResultsUpdating, UISearchBarDelegate 
 /** Enumeration for the section titles for each section
  */
 enum SectionTitle: Int {
-    case Leaders = 0, Community, AllMembers
+    case Leaders = 0, Community
     
     /** Get the title for the section in string format
      *
@@ -402,8 +404,6 @@ enum SectionTitle: Int {
             return "Leaders"
         case .Community:
             return "Community"
-        case .AllMembers:
-            return "All Members"
         }
     }
 }

@@ -12,8 +12,8 @@ import PromiseKit
 /** Protocol to follow the MVP pattern for Idea Submission.
  */
 protocol IdeaSubmissionView {
-    func showLoading()
-    func hideLoading()
+    func startLoading()
+    func finishLoading()
     func didSubmitIdeaToAPI(sender: IdeaSubmissionPresenter, didSucceed: Bool, didFail: NSError?)
     func didFindExistingData(sender: IdeaSubmissionPresenter, ideaSubmission: ProjectIdeaSubmission)
     func isNewSubmission(sender: IdeaSubmissionPresenter)
@@ -53,7 +53,7 @@ class IdeaSubmissionPresenter {
      *  @return None
      */
     func loadExistingDataIfExists() {
-        ideaSubmissionView?.showLoading()
+        ideaSubmissionView?.startLoading()
         findExistingIdea().then() {
             idea -> () in
             if idea != nil {
@@ -110,7 +110,7 @@ class IdeaSubmissionPresenter {
      *  @return None
      */
     func submitIdeaToAPI(title: String, description: String, additionalInformation: String?, currentEvent: NextEvent) {
-        ideaSubmissionView?.showLoading()
+        ideaSubmissionView?.startLoading()
         
         let ideaSubmission = createIdeaSubmission(title, description: description, additionalInformation: additionalInformation, eventId: currentEvent.idString)
         
