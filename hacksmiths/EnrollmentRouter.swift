@@ -23,6 +23,7 @@ class EnrollmentRouter: BaseRouter {
     init(endpoint: EnrollmentEndpoint) {
         self.endpoint = endpoint
     }
+    
     override var method: Alamofire.Method {
         switch endpoint {
         case .GetAllNanodegrees():
@@ -31,6 +32,7 @@ class EnrollmentRouter: BaseRouter {
             return .GET
         }
     }
+    
     override var path: String {
         switch endpoint {
         case .GetAllNanodegrees:

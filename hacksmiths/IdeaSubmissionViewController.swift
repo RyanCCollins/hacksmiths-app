@@ -223,6 +223,7 @@ extension IdeaSubmissionViewController: IdeaSubmissionView {
             submissionStatus = .New
         }
     }
+    
     /** Cancel the submission from the presenter
      */
     func cancelSubmission(sender: AnyObject) {

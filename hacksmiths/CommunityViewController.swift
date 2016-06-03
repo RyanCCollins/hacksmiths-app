@@ -263,8 +263,9 @@ extension CommunityViewController {
             let personView = storyboard?.instantiateViewControllerWithIdentifier("PersonViewController") as! PersonViewController
             personView.person = person
             
-            /* Set the search controller to not be active*/
+            /* Set the search controller to not be active and zero out the search predicate*/
             searchController.active = false
+            searchPredicate = nil
             navigationController?.pushViewController(personView, animated: true)
         } else {
             alertController(withTitles: ["OK"], message: "It looks like that person has deleted their profile.", callbackHandler: [nil])

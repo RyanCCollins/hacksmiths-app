@@ -29,6 +29,8 @@ class ProjectIdeaRouter: BaseRouter {
         self.endpoint = endpoint
     }
     
+    /** The HTTP Method to use for the request
+     */
     override var method: Alamofire.Method {
         switch endpoint {
         case .GetAllProjectIdeas: return .GET
@@ -39,6 +41,8 @@ class ProjectIdeaRouter: BaseRouter {
         }
     }
     
+    /** The Path to use for the endpoint
+     */
     override var path: String {
         switch endpoint {
         case .GetAllProjectIdeas: return "/api/app/project-ideas"
@@ -49,6 +53,8 @@ class ProjectIdeaRouter: BaseRouter {
         }
     }
     
+    /** Parameters to be sent to the API
+     */
     override var parameters: JsonDict? {
         switch endpoint {
         case .UpdateProjectIdea( _,let ideaJSON):
@@ -69,6 +75,8 @@ class ProjectIdeaRouter: BaseRouter {
         
     }
     
+    /** Encoding for the parameters.  In this case, only JSON (no URL) parameters.
+     */
     override var encoding: ParameterEncoding? {
         switch endpoint {
             default: return .JSON

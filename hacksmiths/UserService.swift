@@ -20,10 +20,22 @@ class UserService {
     
     func performLogout() {
         authenticated = false
+        authToken = nil
         userId = nil
         dateAuthenticated = nil
     }
     
+    var authToken: String? {
+        get {
+            return NSUserDefaults.standardUserDefaults().valueForKey("token") as? String
+        }
+        set {
+            NSUserDefaults.standardUserDefaults().setValue(newValue, forKey: "token")
+        }
+    }
+    
+    /** Session based authentication.  Determines whether the user has a session stored
+     */
     var authenticated: Bool {
         get {
             return NSUserDefaults.standardUserDefaults().boolForKey("authenticated")

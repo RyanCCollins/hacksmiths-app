@@ -45,6 +45,7 @@ class BaseRouter: URLRequestConvertible, APIConfig {
         if let path = NSBundle.mainBundle().pathForResource("APIKeys", ofType: "plist") {
             configuration = NSDictionary(contentsOfFile: path)
             returnURL =  configuration!["HACKSMITHS_BASE_URL"] as? String ?? ""
+            
         }
         return returnURL
     }
@@ -53,6 +54,9 @@ class BaseRouter: URLRequestConvertible, APIConfig {
         let baseAPIURL = NSURL(string: baseURL)
         let mutableURLRequest = NSMutableURLRequest(URL: baseAPIURL!.URLByAppendingPathComponent(path))
         mutableURLRequest.HTTPMethod = method.rawValue
+        if let token = UserService.sharedInstance().authToken {
+            mutableURLRequest.setValue(token, forHTTPHeaderField: "Authorization")
+        }
         if let encoding = encoding {
             return encoding.encode(mutableURLRequest, parameters: parameters).0
         }

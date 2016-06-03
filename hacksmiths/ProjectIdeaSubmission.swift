@@ -17,11 +17,23 @@ class ProjectIdeaSubmission: NSManagedObject {
     @NSManaged var descriptionString: String
     @NSManaged var additionalInformation: String?
     
+    /** Standard Core Data initializer for idea submission (submit by a user, not from API)
+     *
+     *  @param entity - the NSEntityDescription for the managed object model
+     *  @param context - the Managed object context
+     *  @return None
+     */
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
     }
     
-    
+    /** Initializer from JSON to Core Data Managed Object
+     *
+     *  @param ideaSubmissionJson - A JSON object representing one idea submission
+     *  @param idString - the idString of the idea
+     *  @param context - the Managed Object Context to save the model to
+     *  @return None
+     */
     init(ideaSubmissionJson: ProjectIdeaSubmissionJSON, idString: String, context: NSManagedObjectContext) {
         let entity = NSEntityDescription.entityForName("ProjectIdeaSubmission", inManagedObjectContext: context)
         super.init(entity: entity!, insertIntoManagedObjectContext: context)
@@ -34,7 +46,13 @@ class ProjectIdeaSubmission: NSManagedObject {
         }
     }
     
-    /* Initialize from a dictionary, since we won't always have JSON first */
+    /** Convenience initializer for creating the model with a dictionary vs. JSON since it's possible that
+     *  We will need to initalize using a dictionary rather than from JSON.
+     *
+     *  @param dictionary - [String : AnyObject] - The dictionary to initialize the data with
+     *  @param context - the managed object context to intialize from.
+     *  @return None
+     */
     init(dictionary: JsonDict, context: NSManagedObjectContext) {
         let entity = NSEntityDescription.entityForName("ProjectIdeaSubmission", inManagedObjectContext: context)
         super.init(entity: entity!, insertIntoManagedObjectContext: context)

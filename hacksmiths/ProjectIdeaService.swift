@@ -74,14 +74,20 @@ class ProjectIdeaService {
                     switch response.result {
                     case .Success(let JSON):
                         let projectIdeaArray = JSON["ideas"] as! [JsonDict]
+                        /** MAP the project idea array to JSON
+                         */
                         let ideas = projectIdeaArray.map({ idea in
                             return ProjectIdeaJSON(json: idea)
                         })
                         
+                        /** Map the idea json objects to managed objects
+                         */
                         let returnArray = ideas.map({idea in
                             return ProjectIdea(ideaJSON: idea!, context: GlobalStackManager.SharedManager.sharedContext)
                         })
                         
+                        /** Save the core data context
+                         */
                         GlobalStackManager.SharedManager.sharedContext.performBlockAndWait({
                             CoreDataStackManager.sharedInstance().saveContext()
                         })
@@ -157,9 +163,9 @@ class ProjectIdeaService {
      *
      *  @param ideaId: String - the Id of the idea on the server
      *  @param ideaJSON: IdeaJSON - the
-     *  @return
+     *  @return - Promise<Bool> - A promise of a return value indicating if the request was successful.
      */
-    func deleteOneIdea(ideaId: String) -> Promise<Bool?> {
+    func deleteOneIdea(ideaId: String) -> Promise<Bool> {
         return Promise{resolve, reject in
             let router = ProjectIdeaRouter.init(endpoint: .DeleteProjectIdea(ideaId: ideaId))
             manager.request(router)
@@ -181,5 +187,4 @@ class ProjectIdeaService {
             }
         }
     }
-
 }

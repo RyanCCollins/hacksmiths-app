@@ -65,13 +65,13 @@ extension HacksmithsAPIClient {
         struct Auth {
             static let success = "success"
             static let session = "session"
+            static let authToken = "authToken"
             static let date = "date"
             static let userId = "userId"
             static let message = "message"
         }
         
         struct MemberData {
-            
             static let _id = "_id"
             static let key = "key"
             static let name = "name"
@@ -287,30 +287,6 @@ extension HacksmithsAPIClient {
             static let OK = "ok"
             static let Fail = "fail"
         }
-        
-        struct Team {
-            static let _id = "_id"
-            static let key = "key"
-            static let title = "title"
-            static let avatar = "avatar"
-            static let avatarUrl = "avatarUrl"
-            static let website = "website"
-            static let description = "description"
-            static let leaders = "leaders"
-            static let location = "location"
-            static let spotlight = "spotlight"
-            static let roles = "roles"
-            static let members = "members"
-            static let projects = "projects"
-        }
-        
-        struct Schedule {
-            static let event = "event"
-            static let items = "items"
-            static let team = "team"
-            static let who = "who"
-        }
-
     }
     
     enum HTTPRequest {

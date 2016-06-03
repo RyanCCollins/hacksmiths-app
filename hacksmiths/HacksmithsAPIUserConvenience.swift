@@ -70,8 +70,10 @@ extension HacksmithsAPIClient {
                         
                         let userId = result[JSONResponseKeys.Auth.userId] as! String
                         UserService.sharedInstance().authenticated = true
+                        
                         UserService.sharedInstance().userId = userId
                         let date = NSDate()
+                        UserService.sharedInstance().authToken = result["authToken"] as? String
                         UserService.sharedInstance().dateAuthenticated = date
                         completionHandler(success: true, error: nil)
                         
@@ -117,6 +119,7 @@ extension HacksmithsAPIClient {
                                 let userId = result[JSONResponseKeys.Auth.userId] as! String
                                 UserService.sharedInstance().authenticated = true
                                 UserService.sharedInstance().userId = userId
+                                UserService.sharedInstance().authToken = result["authToken"] as? String
                                 UserService.sharedInstance().dateAuthenticated = NSDate()
                                 completionHandler(success: true, error: nil)
                                 

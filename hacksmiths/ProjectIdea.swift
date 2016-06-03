@@ -24,6 +24,12 @@ class ProjectIdea: NSManagedObject {
     }
     
     
+    /** Initializer for the Core Data Managed Object
+     *
+     *  @param ideaJSON - The JSON object that is created when submitting or getting from API
+     *  @param context - the managed object context
+     *  @return None
+     */
     init(ideaJSON: ProjectIdeaJSON, context: NSManagedObjectContext) {
         let entity = NSEntityDescription.entityForName("ProjectIdea", inManagedObjectContext: context)
         super.init(entity: entity!, insertIntoManagedObjectContext: context)
@@ -41,12 +47,7 @@ class ProjectIdea: NSManagedObject {
         if let createdAt = ideaJSON.createdAt {
             self.createdAt = createdAt.parseAsDate()!
         } else {
-            self.createdAt = getCurrentDate()
+            self.createdAt = NSDate()
         }
-    }
-    
-    private func getCurrentDate() -> NSDate {
-        let date = NSDate()
-        return date
     }
 }

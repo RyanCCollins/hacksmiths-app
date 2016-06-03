@@ -87,6 +87,8 @@ class EditProfileViewController: UIViewController {
         }
     }
     
+    /** Setup the availability fields to match the user data
+     */
     private func setupAvailabilityFields(userData: UserData) {
         availabilityExplanationTextField.hidden = !userData.isAvailableForEvents
         availabilityExplanationHelpView.hidden = !userData.isAvailableForEvents
@@ -140,6 +142,11 @@ class EditProfileViewController: UIViewController {
         handleDismissForm(self)
     }
     
+    /** Handle saving the form when the button is tapped
+     *
+     *  @param sender: AnyObject - the sender who sent the message
+     *  @return None
+     */
     @IBAction func handleSaveForm(sender: AnyObject) {
         if formChanged {
             delegate?.didSubmitEditedData(userData!)
@@ -147,16 +154,25 @@ class EditProfileViewController: UIViewController {
         handleDismissForm(self)
     }
     
+    /** Handle dismissing the form
+     */
     func handleDismissForm(sender: AnyObject) {
         presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    /** Profile text fields - matches the tag for profile text fields in storyboard.
+     */
     private enum ProfileTextFields: Int {
         case Bio = 1, Website,
         HaveExperience, WantExperience,
         AvailabilityExplanation
     }
     
+    /** helpText - sets the help text for each field
+     *
+     *  @param field: ProfileTextFields - the text field from the matching enumeration
+     *  @return String - the help text for the field
+     */
     private func helpText(forField field: ProfileTextFields) -> String {
         switch field {
         case .HaveExperience:

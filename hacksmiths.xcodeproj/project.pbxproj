@@ -202,7 +202,7 @@
 		1FA5A4EB1C53586D00722E55 /* CommunityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
 		1FA5A4ED1C535A9500722E55 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		1FA5A4EF1C535D6C00722E55 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		1FA9FC661C534E5800B993BC /* hacksmiths.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hacksmiths.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1FA9FC661C534E5800B993BC /* Hacksmiths.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hacksmiths.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FA9FC691C534E5900B993BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1FA9FC6E1C534E5A00B993BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1FA9FC711C534E5A00B993BC /* hacksmiths.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = hacksmiths.xcdatamodel; sourceTree = "<group>"; };
@@ -553,7 +553,7 @@
 		1FA9FC671C534E5800B993BC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1FA9FC661C534E5800B993BC /* hacksmiths.app */,
+				1FA9FC661C534E5800B993BC /* Hacksmiths.app */,
 				1FA9FC7D1C534E5B00B993BC /* hacksmithsTests.xctest */,
 				1FA9FC881C534E5B00B993BC /* hacksmithsUITests.xctest */,
 			);
@@ -885,7 +885,7 @@
 			);
 			name = hacksmiths;
 			productName = hacksmiths;
-			productReference = 1FA9FC661C534E5800B993BC /* hacksmiths.app */;
+			productReference = 1FA9FC661C534E5800B993BC /* Hacksmiths.app */;
 			productType = "com.apple.product-type.application";
 		};
 		1FA9FC7C1C534E5B00B993BC /* hacksmithsTests */ = {
@@ -1305,12 +1305,12 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				INFOPLIST_FILE = hacksmiths/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.hacksmiths.app;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Hacksmiths;
 				PROVISIONING_PROFILE = "9c53f922-8065-4f9c-8064-2e922daf5510";
 				SWIFT_OBJC_BRIDGING_HEADER = "hacksmiths-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1325,12 +1325,12 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Ryan Collins (J9WHKA9AQZ)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				INFOPLIST_FILE = hacksmiths/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.hacksmiths.app;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Hacksmiths;
 				PROVISIONING_PROFILE = "9c53f922-8065-4f9c-8064-2e922daf5510";
 				SWIFT_OBJC_BRIDGING_HEADER = "hacksmiths-Bridging-Header.h";
 			};
