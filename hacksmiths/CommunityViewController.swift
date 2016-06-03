@@ -312,7 +312,7 @@ extension CommunityViewController {
             searchPredicateCommunity = NSPredicate(format: "firstName contains[c] %@ && isPublic == %@ && isLeader == %@", firstName, NSNumber(bool: true), NSNumber(bool: false))
         }
         
-        fetchedResultsController.fetchRequest.predicate = isLeaderPredicate
+        fetchedResultsController.fetchRequest.predicate = searchPredicateLeader
         communityFetchResultsController.fetchRequest.predicate = searchPredicateCommunity
         self.performFetch()
         tableView.reloadData()
