@@ -8,7 +8,8 @@
 
 import UIKit
 import CoreData
-
+/** Show the hacksmiths community members in the table view controller
+ */
 class CommunityViewController: UITableViewController {
     
     private var activityIndicator: IGActivityIndicatorView!
@@ -26,8 +27,6 @@ class CommunityViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Set this view to be the fetchedResultsControllerDelegate
-        fetchedResultsController.delegate = self
         self.activityIndicator = IGActivityIndicatorView(inview: view, messsage: "Loading")
         configureRefreshControl()
         self.communityPresenter.attachView(self, personService: personService)
@@ -55,12 +54,6 @@ class CommunityViewController: UITableViewController {
         tableView.addSubview(refreshControl!)
     }
     
-    /** Set the search controller to be not active when the segue occurs
-     */
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        searchController.active = false
-    }
-    
     /** Convenience for fetching the data from pull to refresh control
      */
     func fetchNetworkData() {
@@ -70,9 +63,7 @@ class CommunityViewController: UITableViewController {
     /** Perform our fetch with the fetched results controllers
      */
     func performFetch() {
-        
         do {
-            
             try self.fetchedResultsController.performFetch()
             try self.communityFetchResultsController.performFetch()
         } catch let error as NSError {
@@ -122,33 +113,6 @@ class CommunityViewController: UITableViewController {
         
         return fetchResultsController
     }()
-}
-/** Core data fetched results controller delegate methods
- */
-extension CommunityViewController: NSFetchedResultsControllerDelegate {
-    func controllerWillChangeContent(controller: NSFetchedResultsController) {
-        tableView.reloadData()
-        tableView.beginUpdates()
-    }
-    
-    func controllerDidChangeContent(controller: NSFetchedResultsController) {
-        tableView.reloadData()
-        tableView.endUpdates()
-    }
-    
-    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
-        switch type {
-        case .Insert:
-            tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Automatic)
-        case .Delete:
-            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Automatic)
-        case .Update:
-            tableView.reloadRowsAtIndexPaths([indexPath!], withRowAnimation: .Automatic)
-        case .Move:
-            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Automatic)
-            tableView.insertRowsAtIndexPaths([indexPath!], withRowAnimation: .Automatic)
-        }
-    }
 }
 
 
@@ -295,7 +259,6 @@ extension CommunityViewController {
      *  @return None
      */
     func filterResultsForSearch(searchText: String, scope: String = "All") {
-
         /* Hack: Search by either first name or both first and last */
         let fullName = searchText
         var firstName = ""
