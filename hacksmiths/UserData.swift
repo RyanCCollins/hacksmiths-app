@@ -31,7 +31,6 @@ class UserData: NSManagedObject {
     @NSManaged var needsAMentor: Bool
     @NSManaged var hasExperience: String?
     @NSManaged var wantsExperience: String?
-    
     @NSManaged var avatarURL: String?
     
     

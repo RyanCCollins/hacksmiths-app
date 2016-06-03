@@ -47,8 +47,6 @@ class UserProfileRouter: BaseRouter {
         case .UpdateProfile(let userJSON):
             let json = userJSON.toJSON()
             return json
-        default:
-            return nil
         }
     }
 }

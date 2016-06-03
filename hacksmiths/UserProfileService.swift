@@ -12,7 +12,8 @@ import PromiseKit
 import Gloss
 import CoreData
 
-
+/** Handle communaction with the API for user Profile interactions
+ */
 class UserProfileService {
     
     /* Get the profile data for the currently signed in user
@@ -71,6 +72,11 @@ class UserProfileService {
         }
     }
     
+    /** Fetch saved user data from core data
+     *
+     *  @param None
+     *  @return Promise<UserData?> - A Promise of the user data managed object
+     */
     func fetchSavedUserData() -> Promise<UserData?> {
         return Promise{resolve, reject in
             performUserFetch({success, userData, error in
@@ -83,6 +89,11 @@ class UserProfileService {
         }
     }
     
+    /** Delete all of the user data records when they are no longer in use.
+     *
+     *  @param None
+     *  @return Promise<Void> - A promise that user data has been deleted
+     */
     func deleteUserDataRecords() -> Promise<Void> {
         return Promise{ resolve, reject in
             let fetchRequest = NSFetchRequest(entityName: "UserData")
@@ -97,6 +108,8 @@ class UserProfileService {
         }
     }
     
+    /** Fetched results controller - used to fetch the user's data from Core Data
+     */
     private lazy var fetchedResultsController: NSFetchedResultsController = {
         let sortPriority = NSSortDescriptor(key: "dateUpdated", ascending: false)
         let userDataFetch = NSFetchRequest(entityName: "UserData")
@@ -113,11 +126,14 @@ class UserProfileService {
         return fetchResultsController
     }()
     
+    /** Handle fetching the user's data from core data
+     *
+     *  @param completionHandlerWithUserData - the completion handler, including the User's data
+     *  @return None - handled by the completion han
+     */
     private func performUserFetch(completionHandlerWithUserData: CompletionHandlerWithUserData) {
         do {
-            
             try fetchedResultsController.performFetch()
-            
         } catch let error as NSError {
             completionHandlerWithUserData(success: false, userData: nil, error: error)
         }

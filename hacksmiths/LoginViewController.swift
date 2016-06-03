@@ -17,7 +17,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var onepasswordButton: UIButton!
     
-    var loginPresenter: LoginPresenter?
+    private let loginPresenter = LoginPresenter()
     var has1PasswordLogin: Bool = false
     var activityIndicator: IGActivityIndicatorView!
     
@@ -29,28 +29,27 @@ class LoginViewController: UIViewController {
         configureLoginButtons()
         configureOnePasswordButton()
         configureActivityIndicator()
-        loginPresenter = LoginPresenter()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        loginPresenter?.attachView(self)
+        loginPresenter.attachView(self)
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        loginPresenter?.detachView()
+        loginPresenter.detachView()
     }
     
     /** Setup the activity indicator within the view
      */
-    func configureActivityIndicator() {
+    private func configureActivityIndicator() {
         activityIndicator = IGActivityIndicatorView(inview: view, messsage: "Signing in")
     }
     
     /** Configure the one password button, setting it to be showing if the extension is availabld
      */
-    func configureLoginButtons() {
+    private func configureLoginButtons() {
         onepasswordButton.hidden = !OnePasswordExtension.sharedExtension().isAppExtensionAvailable()
     }
     
@@ -89,7 +88,7 @@ class LoginViewController: UIViewController {
         
         usernameTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
-        loginPresenter?.authenticateUser(usernameTextField.text!, password: passwordTextField.text!)
+        loginPresenter.authenticateUser(usernameTextField.text!, password: passwordTextField.text!)
     }
 
     func findLoginFrom1Password(sender:AnyObject) -> Void {
@@ -106,7 +105,7 @@ class LoginViewController: UIViewController {
                 self.passwordTextField.text = foundPassword
                 self.usernameTextField.text = foundUsername
                 
-                self.loginPresenter?.authenticateUser(foundUsername, password: foundPassword)
+                self.loginPresenter.authenticateUser(foundUsername, password: foundPassword)
             }
         })
     }
@@ -124,23 +123,20 @@ class LoginViewController: UIViewController {
         OnePasswordExtension.sharedExtension().findLoginForURLString("http://hacksmiths.io", forViewController: self, sender: sender, completion: { (loginDictionary, error) -> Void in
             if loginDictionary == nil {
                 if error!.code != Int(AppExtensionErrorCodeCancelledByUser) {
-                    
                     print("Error invoking 1Password App Extension for find login: \(error)")
                 }
                 return
             }
-            
+            /** If a username is found in the login dictionary, handle it
+             */
             if let foundUsername = loginDictionary?[AppExtensionUsernameKey] as? String, foundPassword = loginDictionary?[AppExtensionPasswordKey] as? String {
                 
                 self.passwordTextField.text = foundPassword
                 self.usernameTextField.text = foundUsername
-                
-                self.loginPresenter!.authenticateUser(foundUsername, password: foundPassword)
-                
+                self.loginPresenter.authenticateUser(foundUsername, password: foundPassword)
             }
         })
     }
-
 }
 
 extension LoginViewController: LoginView {
@@ -174,11 +170,23 @@ extension LoginViewController: LoginView {
     }
 }
 
-extension LoginViewController {
+/** Extension for text field delegate methods for login view controller
+ */
+extension LoginViewController: UITextFieldDelegate {
     /* Configure and deselect text fields when return is pressed */
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        
-        textField.resignFirstResponder()
+        let textField = TextFields(rawValue: textField.tag)
+        switch textField! {
+        case .Email:
+            /** Set the password text field as first responder.
+             */
+            passwordTextField.becomeFirstResponder()
+        case .Password:
+            /** Resign the first responder and then submit login
+             */
+            passwordTextField.resignFirstResponder()
+            didTapLoginButtonUpInside(passwordTextField)
+        }
         return true
     }
 
@@ -190,7 +198,6 @@ extension LoginViewController {
     func keyboardWillShow(notification: NSNotification) {
         /* slide the view up when keyboard appears, using notifications */
         view.frame.origin.y = -getKeyboardHeight(notification)
-        
     }
     
     /* Reset view origin when keyboard hides */
@@ -203,5 +210,12 @@ extension LoginViewController {
         let userInfo = notification.userInfo
         let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue
         return keyboardSize.CGRectValue().height
+    }
+}
+
+extension LoginViewController {
+    enum TextFields: Int {
+        case Email = 101,
+             Password
     }
 }

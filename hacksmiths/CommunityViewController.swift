@@ -14,8 +14,10 @@ class CommunityViewController: UITableViewController {
     private var activityIndicator: IGActivityIndicatorView!
     private let communityPresenter = CommunityPresenter()
     let searchController = UISearchController(searchResultsController: nil)
-    var searchPredicate: NSPredicate? = nil
+    var searchPredicateLeader: NSPredicate? = nil
+    var searchPredicateCommunity: NSPredicate? = nil
     let isLeaderPredicate = NSPredicate(format: "isLeader == %@ && isPublic == %@", NSNumber(bool: true), NSNumber(bool: true))
+    let isNotLeaderPredicate = NSPredicate(format: "isPublic == %@ && isLeader == %@", NSNumber(bool: true), NSNumber(bool: false))
     var messageLabel = UILabel()
     private let personService = PersonService()
     
@@ -73,7 +75,6 @@ class CommunityViewController: UITableViewController {
             
             try self.fetchedResultsController.performFetch()
             try self.communityFetchResultsController.performFetch()
-            
         } catch let error as NSError {
             self.alertController(withTitles: ["OK", "Retry"], message: error.localizedDescription, callbackHandler: [nil, {Void in
                 self.performFetch()
@@ -107,10 +108,9 @@ class CommunityViewController: UITableViewController {
     lazy var communityFetchResultsController: NSFetchedResultsController = {
         let sortPriority = NSSortDescriptor(key: "sortPriority", ascending: true)
         
-        let isPublicButNotLeaderPredicate = NSPredicate(format: "isPublic == %@ && isLeader == %@", NSNumber(bool: true), NSNumber(bool: false))
         let isPublicButNotLeaderFetch = NSFetchRequest(entityName: "Person")
         isPublicButNotLeaderFetch.sortDescriptors = [sortPriority]
-        isPublicButNotLeaderFetch.predicate = isPublicButNotLeaderPredicate
+        isPublicButNotLeaderFetch.predicate = self.isNotLeaderPredicate
         
         let fetchResultsController = NSFetchedResultsController(fetchRequest: isPublicButNotLeaderFetch, managedObjectContext: GlobalStackManager.SharedManager.sharedContext, sectionNameKeyPath: nil, cacheName: nil)
         
@@ -156,11 +156,7 @@ extension CommunityViewController: NSFetchedResultsControllerDelegate {
  */
 extension CommunityViewController {
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        if searchPredicate != nil {
-            return 1
-        } else {
-            return 2
-        }
+        return 2
     }
     
     /** Avoid having the section insets for tableview
@@ -172,13 +168,7 @@ extension CommunityViewController {
     /** Title for headers in table view
      */
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        var title: String!
-        if searchPredicate == nil {
-            /* If the predicate is nil, then set the title based on which section we are in */
-            title = (SectionTitle(rawValue: section)?.getTitle())!
-        } else {
-            title = "All Members"
-        }
+        let title = (SectionTitle(rawValue: section)?.getTitle())!
         return title
     }
     
@@ -190,13 +180,10 @@ extension CommunityViewController {
             
             switch sectionTitle! {
             case .Leaders:
-                return searchPredicate == nil ? fetchedResultsController.fetchedObjects!.count : 0
+                return fetchedResultsController.fetchedObjects!.count
                 
             case .Community:
-                /* If the search predicate is not nil, then we are only concerned with the one section
-                 * So return 0, otherwise return the community fetch
-                 */
-                return searchPredicate == nil ? communityFetchResultsController.fetchedObjects!.count : 0
+                return communityFetchResultsController.fetchedObjects!.count
         }
     }
     
@@ -205,22 +192,17 @@ extension CommunityViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("PersonTableViewCell") as! PersonTableViewCell
         var person: Person? = nil
-        if searchPredicate != nil {
+
+        let sectionTitle = SectionTitle(rawValue: indexPath.section)
+        
+        switch sectionTitle! {
+        case .Leaders:
             if let thePerson = fetchedResultsController.fetchedObjects![indexPath.row] as? Person {
                 person = thePerson
             }
-        } else {
-            let sectionTitle = SectionTitle(rawValue: indexPath.section)
-            
-            switch sectionTitle! {
-            case .Leaders:
-                if let thePerson = fetchedResultsController.fetchedObjects![indexPath.row] as? Person {
-                    person = thePerson
-                }
-            case .Community:
-                if let thePerson = communityFetchResultsController.fetchedObjects![indexPath.row] as? Person {
-                    person = thePerson
-                }
+        case .Community:
+            if let thePerson = communityFetchResultsController.fetchedObjects![indexPath.row] as? Person {
+                person = thePerson
             }
         }
         let configuredCell = configureCell(cell, withPerson: person)
@@ -263,9 +245,8 @@ extension CommunityViewController {
             let personView = storyboard?.instantiateViewControllerWithIdentifier("PersonViewController") as! PersonViewController
             personView.person = person
             
-            /* Set the search controller to not be active and zero out the search predicate*/
-            searchController.active = false
-            searchPredicate = nil
+            /* Clear out the search so everything looks fine when returning*/
+            cancelSearch(searchController.searchBar)
             navigationController?.pushViewController(personView, animated: true)
         } else {
             alertController(withTitles: ["OK"], message: "It looks like that person has deleted their profile.", callbackHandler: [nil])
@@ -306,27 +287,6 @@ extension CommunityViewController: CommunityView {
 }
 
 extension CommunityViewController {
-    func showNoDataLabel() {
-        if tableView.numberOfRowsInSection(0) == 0 && tableView.numberOfRowsInSection(1) == 0 {
-            messageLabel = UILabel(frame: CGRectMake(0,0, self.view.bounds.width, self.view.bounds.height))
-            
-            messageLabel.text = "No data is currently available, pull to refresh."
-            messageLabel.textColor = UIColor.blackColor()
-            messageLabel.font = UIFont(name: "Open Sans", size: 20)
-            messageLabel.sizeToFit()
-            
-            tableView.backgroundView = messageLabel
-            tableView.separatorStyle = .None
-        } else {
-            removeNoDataLabel()
-        }
-    }
-    
-    func removeNoDataLabel(){
-        if view.subviews.contains(messageLabel) {
-            messageLabel.removeFromSuperview()
-        }
-    }
     
     /** Filter the search results for the given search text
      *
@@ -335,26 +295,27 @@ extension CommunityViewController {
      *  @return None
      */
     func filterResultsForSearch(searchText: String, scope: String = "All") {
-        if searchText.length > 0 {
-            /* Hack: Search by either first name or both first and last */
-            let fullName = searchText
-            var firstName = ""
-            var lastName = ""
-            var searchPredicate: NSPredicate!
-            if searchText.rangeOfString(" ") != nil {
-                let fullNameArray = fullName.componentsSeparatedByString(" ")
-                firstName = fullNameArray.count > 0 ? fullNameArray.first! : ""
-                lastName = fullNameArray.count >= 1 ? fullNameArray.last! : ""
-                searchPredicate = NSPredicate(format: "firstName contains[c] %@ && lastName contains[c] %@ && isPublic == %@", firstName, lastName, NSNumber(bool: true))
-            } else {
-                firstName = searchText
-                searchPredicate = NSPredicate(format: "firstName contains[c] %@ && isPublic == %@", firstName, NSNumber(bool: true))
-            }
-            
-            fetchedResultsController.fetchRequest.predicate = searchPredicate
-            self.performFetch()
-            tableView.reloadData()
+
+        /* Hack: Search by either first name or both first and last */
+        let fullName = searchText
+        var firstName = ""
+        var lastName = ""
+        if searchText.rangeOfString(" ") != nil {
+            let fullNameArray = fullName.componentsSeparatedByString(" ")
+            firstName = fullNameArray.count > 0 ? fullNameArray.first! : ""
+            lastName = fullNameArray.count >= 1 ? fullNameArray.last! : ""
+            searchPredicateLeader = NSPredicate(format: "firstName contains[c] %@ && lastName contains[c] %@ && isPublic == %@ && isLeader == %@", firstName, lastName, NSNumber(bool: true), NSNumber(bool: true))
+            searchPredicateCommunity = NSPredicate(format: "firstName contains[c] %@ && lastName contains[c] %@ && isPublic == %@ && isLeader == %@", firstName, lastName, NSNumber(bool: true), NSNumber(bool: false))
+        } else {
+            firstName = searchText
+            searchPredicateLeader = NSPredicate(format: "firstName contains[c] %@ && isPublic == %@ && isLeader == %@", firstName, NSNumber(bool: true), NSNumber(bool: true))
+            searchPredicateCommunity = NSPredicate(format: "firstName contains[c] %@ && isPublic == %@ && isLeader == %@", firstName, NSNumber(bool: true), NSNumber(bool: false))
         }
+        
+        fetchedResultsController.fetchRequest.predicate = isLeaderPredicate
+        communityFetchResultsController.fetchRequest.predicate = searchPredicateCommunity
+        self.performFetch()
+        tableView.reloadData()
     }
 }
 
@@ -368,10 +329,14 @@ extension CommunityViewController: UISearchResultsUpdating, UISearchBarDelegate 
      */
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         let searchText = searchController.searchBar.text
-        if let searchText = searchText {
-            filterResultsForSearch(searchText)
-        } else {
-            cancelSearch(searchController.searchBar)
+        if searchText != nil && searchText?.characters.count > 0 {
+            filterResultsForSearch(searchText!)
+        }
+    }
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty == true {
+            cancelSearch(searchBar)
         }
     }
     
@@ -381,9 +346,12 @@ extension CommunityViewController: UISearchResultsUpdating, UISearchBarDelegate 
     
     func cancelSearch(searchbar: UISearchBar) {
         searchbar.resignFirstResponder()
+        searchController.active = false
         searchbar.text = ""
-        searchPredicate = nil
+        searchPredicateLeader = nil
+        searchPredicateCommunity = nil
         fetchedResultsController.fetchRequest.predicate = isLeaderPredicate
+        communityFetchResultsController.fetchRequest.predicate = isNotLeaderPredicate
         self.performFetch()
         tableView.reloadData()
     }

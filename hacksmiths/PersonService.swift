@@ -48,7 +48,6 @@ class PersonService {
      */
     func parseMemberArray(memberArray: [JsonDict]) -> Promise<[Person]> {
         return Promise{resolve, reject in
-            var error: NSError? = nil
             let members: [Person] = memberArray.map{member in
                 let person = Person(dictionary: member, context: GlobalStackManager.SharedManager.sharedContext)
                 return person
@@ -61,13 +60,7 @@ class PersonService {
                     reject(error)
                 }
             }
-            /* Determine if an error was thrown and resolve or reject the promise */
-            if error != nil {
-                reject(error!)
-            } else {
-                resolve(members)
-            }
+            resolve(members)
         }
     }
-
 }

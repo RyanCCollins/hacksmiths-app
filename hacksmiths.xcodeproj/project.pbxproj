@@ -90,6 +90,7 @@
 		1FAD7DB91CEE64EB0044BD94 /* NextEventJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAD7DB81CEE64EB0044BD94 /* NextEventJSON.swift */; };
 		1FB2F07A1CFF595400E295DF /* EventHelpPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB2F0791CFF595400E295DF /* EventHelpPopoverViewController.swift */; };
 		1FB2F07C1D00BCE600E295DF /* PersonService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB2F07B1D00BCE600E295DF /* PersonService.swift */; };
+		1FC34BF51D01E40A00024820 /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FC34BF41D01E40A00024820 /* LoadingView.xib */; };
 		1FC6DE3E1C9F36BF000E8159 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC6DE3D1C9F36BF000E8159 /* ProfileViewController.swift */; };
 		1FC6DE471C9F6DC5000E8159 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC6DE461C9F6DC5000E8159 /* RegistrationViewModel.swift */; };
 		1FE4B3131C6ADE050011ECAE /* PersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE4B3121C6ADE050011ECAE /* PersonViewController.swift */; };
@@ -217,6 +218,7 @@
 		1FAD7DB81CEE64EB0044BD94 /* NextEventJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextEventJSON.swift; sourceTree = "<group>"; };
 		1FB2F0791CFF595400E295DF /* EventHelpPopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventHelpPopoverViewController.swift; sourceTree = "<group>"; };
 		1FB2F07B1D00BCE600E295DF /* PersonService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonService.swift; sourceTree = "<group>"; };
+		1FC34BF41D01E40A00024820 /* LoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
 		1FC6DE3D1C9F36BF000E8159 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		1FC6DE461C9F6DC5000E8159 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		1FE4B3121C6ADE050011ECAE /* PersonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonViewController.swift; sourceTree = "<group>"; };
@@ -715,6 +717,7 @@
 		1FAD7DBD1CEE69C20044BD94 /* Storyboard & Assets */ = {
 			isa = PBXGroup;
 			children = (
+				1FC34BF41D01E40A00024820 /* LoadingView.xib */,
 				1FA9FC6D1C534E5A00B993BC /* Main.storyboard */,
 				1FA9FC731C534E5A00B993BC /* Assets.xcassets */,
 				1FA9FC751C534E5A00B993BC /* LaunchScreen.storyboard */,
@@ -983,6 +986,7 @@
 				1F3DF1401CFA306F0000BBC8 /* OpenSans-LightItalic.ttf in Resources */,
 				1FA9FC771C534E5A00B993BC /* LaunchScreen.storyboard in Resources */,
 				1F3DF13A1CFA306F0000BBC8 /* OpenSans-Bold.ttf in Resources */,
+				1FC34BF51D01E40A00024820 /* LoadingView.xib in Resources */,
 				1F846CB51CEBB153009166D4 /* APIKeys.plist in Resources */,
 				1F3DF13D1CFA306F0000BBC8 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				1F7701C41C84B532006FBCE0 /* Montserrat-Hairline.otf in Resources */,
@@ -1301,7 +1305,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 7;
 				INFOPLIST_FILE = hacksmiths/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1321,7 +1325,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Ryan Collins (J9WHKA9AQZ)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 7;
 				INFOPLIST_FILE = hacksmiths/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

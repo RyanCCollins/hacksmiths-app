@@ -214,9 +214,9 @@ struct NameJSON: Glossy {
     }
 }
 
-/* - Availability JSON creates a JSON object that the API will understand for posting profile updates
- * - parameters - UserData object, containing all required and any optional fields for availability
- * - return - JSON structured exactly in the way the API is looking for it.
+/* Availability JSON creates a JSON object that the API will understand for posting profile updates
+ * @param - UserData object, containing all required and any optional fields for availability
+ * @return - JSON structured exactly in the way the API is looking for it.
  */
 struct AvailabilityJSON: Glossy {
     let isAvailableForEvents: Bool
@@ -236,6 +236,11 @@ struct AvailabilityJSON: Glossy {
         }
     }
     
+    /** Initialize the availabi
+     *
+     *  @param
+     *  @return
+     */
     init(userData: UserData) {
         self.isAvailableForEvents = userData.isAvailableForEvents
         if let availabilityDescription = userData.availabilityExplanation {
