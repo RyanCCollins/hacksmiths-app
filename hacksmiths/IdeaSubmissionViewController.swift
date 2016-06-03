@@ -244,11 +244,11 @@ extension IdeaSubmissionViewController: IdeaSubmissionView {
     }
     
     func startLoading() {
-        activityIndicator.showLoading()
+        activityIndicator.startAnimating()
     }
     
     func finishLoading() {
-        activityIndicator.hideLoading()
+        activityIndicator.stopAnimating()
     }
 }
 
