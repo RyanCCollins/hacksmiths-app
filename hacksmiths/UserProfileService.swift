@@ -140,6 +140,7 @@ class UserProfileService {
         
         /* Guard against user data being not fetched for whatever reason*/
         guard fetchedResultsController.fetchedObjects?.count > 0 else {
+            completionHandlerWithUserData(success: false, userData: nil, error: nil)
             return
         }
         

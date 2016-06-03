@@ -9,8 +9,8 @@
 import UIKit
 
 protocol ProfileView: NSObjectProtocol {
-    func showLoading()
-    func hideLoading()
+    func startLoading()
+    func finishLoading()
     func setActivityIndicator(withMessage message: String?)
     func didUpdateUserData(didSucceed: Bool, error: NSError?)
     func didGetUserDataFromAPI(userData: UserData?, error: NSError?)
@@ -40,7 +40,7 @@ class ProfilePresenter {
             return
         }
 
-        profileView?.showLoading()
+        profileView?.startLoading()
         let userJSON = UserJSONObject(userData: userData)
         userProfileService.updateProfile(userJSON, userID: UserService.sharedInstance().userId!).then() {
             Void in
@@ -63,6 +63,7 @@ class ProfilePresenter {
             if userData != nil {
                 self.profileView?.didLoadCachedUserData(userData, error: nil)
             } else {
+                print("Called did load cached data did not succeed")
                 self.profileView?.didLoadCachedUserData(nil, error: nil)
             }
             }.error {error in
@@ -75,7 +76,7 @@ class ProfilePresenter {
             self.profileView?.didGetUserDataFromAPI(nil, error: GlobalErrors.BadCredentials)
             return
         }
-        profileView?.showLoading()
+        profileView?.startLoading()
         userProfileService.getProfile(UserService.sharedInstance().userId!).then(){
             userData -> () in
             userData?.fetchImages().then() {

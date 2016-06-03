@@ -118,7 +118,7 @@ extension ProfileViewController: ProfileView {
      *  The data in the API has resolved.
      */
     func didUpdateUserData(didSucceed: Bool, error: NSError?) {
-        hideLoading()
+        finishLoading()
         if error != nil {
             alertController(withTitles: ["OK", "Retry"], message: (error?.localizedDescription)!, callbackHandler: [nil, {Void in
                 self.profilePresenter.fetchUserDataFromAPI()
@@ -144,6 +144,7 @@ extension ProfileViewController: ProfileView {
             currentUserData = userData
             setUIForCurrentUserData(userData!)
         } else {
+            startLoading()
             profilePresenter.fetchUserDataFromAPI()
         }
     }
@@ -155,7 +156,7 @@ extension ProfileViewController: ProfileView {
      *  @return None
      */
     func didGetUserDataFromAPI(userData: UserData?, error: NSError?) {
-        hideLoading()
+        finishLoading()
         if error != nil {
             alertController(withTitles: ["OK", "Retry"], message: (error?.localizedDescription)!, callbackHandler: [nil, {Void in
                 self.profilePresenter.fetchUserDataFromAPI()
@@ -168,7 +169,7 @@ extension ProfileViewController: ProfileView {
     
     /** Show the loading indicator in the view
      */
-    func showLoading() {
+    func startLoading() {
         guard activityIndicator != nil else {
             return
         }
@@ -177,7 +178,7 @@ extension ProfileViewController: ProfileView {
     
     /** Hide the activity indicator in the view
      */
-    func hideLoading() {
+    func finishLoading() {
         guard activityIndicator != nil else {
             return
         }
