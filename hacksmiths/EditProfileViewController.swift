@@ -281,7 +281,7 @@ extension EditProfileViewController: UITextFieldDelegate {
         /* Slide the view up when keyboard appears if editing bottom text field, using notifications */
         if wantExperienceTextField.isFirstResponder() || availabilityExplanationTextField.isFirstResponder() {
             print("Get keyboard height: \(getKeyboardHeight(notification))")
-            view.frame.origin.y = -226
+            view.frame.origin.y = -getKeyboardHeight(notification)
         }
     }
     

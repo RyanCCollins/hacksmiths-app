@@ -206,6 +206,12 @@ extension CommunityViewController {
         return cell
     }
     
+    /** Tableview delegate method for selecting rows.  Selects a person and shows the person view
+     *
+     *  @param tableView - the tableview sending the message
+     *  @param indexPath - the indexPath of the row selected on the Table View
+     *  @return None
+     */
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         var person: Person? = nil
         let section = SectionTitle(rawValue: indexPath.section)
@@ -239,10 +245,14 @@ extension CommunityViewController {
 extension CommunityViewController: CommunityView {
     
     func startLoading() {
-        activityIndicator.startAnimating()
+        dispatch_async(GlobalMainQueue, {
+            self.activityIndicator.startAnimating()
+        })
     }
     func finishLoading() {
-        activityIndicator.stopAnimating()
+        dispatch_async(GlobalMainQueue, {
+            self.activityIndicator.stopAnimating()
+        })
     }
     
     /** Fetch the community members - Protocol method for updating the view when the people are fetched
@@ -313,6 +323,12 @@ extension CommunityViewController: UISearchResultsUpdating, UISearchBarDelegate 
         }
     }
     
+    /** Text did change delegate method for determining when the text has been deleted
+     *
+     *  @param searchBar - the search bar that had the text changed
+     *  @param searchText - the text in the search bar.
+     *  @return None
+     */
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty == true {
             cancelSearch(searchBar)
@@ -323,6 +339,11 @@ extension CommunityViewController: UISearchResultsUpdating, UISearchBarDelegate 
         cancelSearch(searchBar)
     }
     
+    /** Cancel the search when the cancel button is tapped or when the text is empty
+     *
+     *  @param searchBar = the search bar sending the event
+     *  @return None
+     */
     func cancelSearch(searchbar: UISearchBar) {
         searchbar.resignFirstResponder()
         searchController.active = false
