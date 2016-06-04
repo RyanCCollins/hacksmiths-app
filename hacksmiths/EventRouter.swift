@@ -7,14 +7,17 @@
 //
 
 import Alamofire
-import Foundation
 
+/** Endpoints for interacting with event on the API
+ */
 enum EventEndpoint {
     case GetEventStatus()
     case GetEvent(eventID: String)
     case RSVPForEvent(userID: String, event: Event, participating: Bool, cancel: Bool)
 }
 
+/** Router for interacting with event on the API
+ */
 class EventRouter: BaseRouter {
     var endpoint: EventEndpoint
     init(endpoint: EventEndpoint) {

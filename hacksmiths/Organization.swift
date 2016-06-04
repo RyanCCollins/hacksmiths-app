@@ -19,9 +19,6 @@ class Organization: NSManagedObject {
     @NSManaged var descriptionString: String?
     @NSManaged var logoUrl: String?
     
-    /* OTHER: i.e. not defined in initial JSON Schema */
-    @NSManaged var logoFilename: String?
-    
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
     }
@@ -58,7 +55,7 @@ class Organization: NSManagedObject {
         
     }
     
-    var logoFileName: String? {
+    var logoFilename: String? {
         if let logoUrl = logoUrl {
             return logoUrl.lastPathComponent
         } else {
