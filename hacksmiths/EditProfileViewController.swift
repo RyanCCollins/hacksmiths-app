@@ -10,6 +10,9 @@ import UIKit
 import TextFieldEffects
 
 class EditProfileViewController: UIViewController {
+    
+    @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var haveExperienceStackView: UIStackView!
     @IBOutlet weak var eventAvailabilityStackView: UIStackView!
     @IBOutlet weak var wantExperienceStackView: UIStackView!
@@ -276,20 +279,22 @@ extension EditProfileViewController: UITextFieldDelegate {
     
     /* Hide keyboard when view is tapped */
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        print("Touched began")
         view.endEditing(true)
     }
     
     func keyboardWillShow(notification: NSNotification) {
         /* Slide the view up when keyboard appears if editing bottom text field, using notifications */
         if wantExperienceTextField.isFirstResponder() || availabilityExplanationTextField.isFirstResponder() {
-            print("Get keyboard height: \(getKeyboardHeight(notification))")
-            view.frame.origin.y = -getKeyboardHeight(notification)
+            contentView.frame.origin.y = -getKeyboardHeight(notification)
+            scrollView.contentSize.height = 700
         }
     }
     
     /* Reset view origin when keyboard hides */
     func keyboardWillHide(notification: NSNotification) {
-        view.frame.origin.y = 0
+        contentView.frame.origin.y = 0
+        scrollView.contentSize.height = view.frame.height
     }
     
     /* Get the height of the keyboard from the user info dictionary */
@@ -297,16 +302,6 @@ extension EditProfileViewController: UITextFieldDelegate {
         let userInfo = notification.userInfo
         let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue
         return keyboardSize.CGRectValue().height
-    }
-}
-
-extension EditProfileViewController {
-    override func shouldAutorotate() -> Bool {
-        return false
-    }
-    
-    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-        return UIInterfaceOrientationMask.Portrait
     }
 }
 
