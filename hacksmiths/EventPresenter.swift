@@ -10,6 +10,8 @@ import Foundation
 import CoreData
 import PromiseKit
 
+/** EventView Prtocol
+ */
 protocol EventView: NSObjectProtocol {
     func startLoading()
     func finishLoading()
@@ -19,6 +21,8 @@ protocol EventView: NSObjectProtocol {
     func didRSVPForEvent(sender: EventPresenter, success: Bool, error: NSError?)
 }
 
+/** Event Presenter - following the MVP pattern to communicate between model and view
+ */
 class EventPresenter {
     private var eventView: EventView?
     private let eventService: EventService
@@ -51,14 +55,14 @@ class EventPresenter {
         }
     }
     
-    /** Fetch images for the event
+    /** Fetch image for the event
      *
      *  @params event: Event - the event that is current
      *
      *  @return None
      */
     func fetchImageForEvent(event: Event) {
-        event.fetchImages().then() {
+        event.fetchImage().then() {
             image -> () in
             event.image = image
         }

@@ -35,13 +35,17 @@ class Event: NSManagedObject {
     @NSManaged var active: Bool
     
     @NSManaged var organization : Organization?
-    var eventState: EventState?
     
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
     }
     
-    
+    /** Initialize the event core data managed object model
+     *
+     *  @param eventJson - the JSON received from the API
+     *  @param context - the NSManagedObjectContext to load the data into
+     *  @return None
+     */
     init(eventJson: EventJSON, context: NSManagedObjectContext) {
         let entity = NSEntityDescription.entityForName("Event", inManagedObjectContext: context)
         super.init(entity: entity!, insertIntoManagedObjectContext: context)
@@ -71,20 +75,21 @@ class Event: NSManagedObject {
         if let marketingInfo = eventJson.marketingInfo {
             self.marketingInfo = marketingInfo
         }
-        if let eventState = eventJson.state {
-            self.eventState = eventState
-        }
     }
     
     
     /* MARK: Computed properties */
+    
+    /** A bool determining if there are spots available for an event.
+     */
     dynamic var spotsAvailable: Bool {
         get {
             return spotsRemaining as Int > 0
         }
     }
     
-
+    /** The start date of the event, computed by parsing the string as a date
+     */
     dynamic var startDate: NSDate? {
         get {
             if let date = startDateString.parseAsDate() {
@@ -95,6 +100,8 @@ class Event: NSManagedObject {
         }
     }
     
+    /** The end date, computed by parsing the end date string
+     */
     dynamic var endDate: NSDate? {
         get {
             if let date = endDateString.parseAsDate() {
@@ -122,8 +129,12 @@ class Event: NSManagedObject {
         return "\(start) - \(end)"
     }
     
-    
-    func fetchImages() -> Promise<UIImage?> {
+    /** Fetch image for the event,
+     *
+     *  @param None
+     *  @return Promise<UIImage?> - a Promise of an UIImage to be saved and returned
+     */
+    func fetchImage() -> Promise<UIImage?> {
         return Promise{resolve, reject in
             guard featureImageURL != nil else {
                 reject(GlobalErrors.GenericNetworkError)
@@ -134,6 +145,7 @@ class Event: NSManagedObject {
                 if image != nil {
                     resolve(image)
                 } else {
+                    self.image = image
                     reject(error! as NSError)
                 }
             })

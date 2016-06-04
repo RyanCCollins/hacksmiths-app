@@ -7,18 +7,23 @@
 //
 
 import UIKit
-
+/** Community View Protocol for following MVP pattern
+ */
 protocol CommunityView {
     func startLoading()
     func finishLoading()
     func fetchCommunity(sender: CommunityPresenter, didSucceed: Bool, didFailWithError error: NSError?)
 }
 
+/** Community presenter for following MVP pattern
+ *  Communicates with the model and view, taking the logic out of the view.
+ */
 class CommunityPresenter {
     private var communityView: CommunityView?
     private var personService: PersonService?
     
     init(){}
+    
     func attachView(view: CommunityView, personService: PersonService) {
         communityView = view
         self.personService = personService

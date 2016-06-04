@@ -472,7 +472,7 @@
                                     <constraint firstAttribute="height" constant="50" id="hdH-uj-fad"/>
                                 </constraints>
                             </view>
-                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yx4-Tk-TU2" customClass="IsaoTextField" customModule="TextFieldEffects">
+                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yx4-Tk-TU2" customClass="IsaoTextField" customModule="TextFieldEffects">
                                 <rect key="frame" x="20" y="273" width="560" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Omm-gJ-fjW"/>
@@ -508,7 +508,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6e6-Kv-zoI" customClass="IsaoTextField" customModule="TextFieldEffects">
+                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6e6-Kv-zoI" customClass="IsaoTextField" customModule="TextFieldEffects">
                                 <rect key="frame" x="20" y="273" width="560" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Gja-fS-dps"/>
@@ -1532,13 +1532,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="640"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xjo-kV-vED">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xjo-kV-vED">
                                 <rect key="frame" x="0.0" y="20" width="600" height="620"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qX0-fD-50y" userLabel="Content View">
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qX0-fD-50y" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="620"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WHAT'S THE BIG IDEA?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dqV-2Q-iie">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="WHAT'S THE BIG IDEA?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dqV-2Q-iie">
                                                 <rect key="frame" x="181" y="63" width="238" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="elE-6t-tYN"/>
@@ -1732,7 +1732,7 @@
                                             <action selector="didTapSkipUpInside:" destination="WN5-vs-oyA" eventType="touchUpInside" id="MRd-lV-tfs"/>
                                         </connections>
                                     </button>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="NaY-C1-Wv6">
+                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="NaY-C1-Wv6">
                                         <rect key="frame" x="20" y="336" width="560" height="110"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rPo-c9-z7X" customClass="IsaoTextField" customModule="TextFieldEffects">
@@ -2831,161 +2831,176 @@ We build tools designed to help non-profit organizations streamline their philan
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fIM-p3-mIM">
                                         <rect key="frame" x="0.0" y="130" width="520" height="53"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Have Experience" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="08q-Uj-shO" customClass="IsaoTextField" customModule="TextFieldEffects">
-                                                <rect key="frame" x="0.0" y="0.0" width="482" height="53"/>
-                                                <color key="textColor" red="0.12637259070000001" green="0.12639245390000001" blue="0.1263653636" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="yes" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="inactiveColor">
-                                                        <color key="value" red="0.51784205436706543" green="0.58159953355789185" blue="0.58617168664932251" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="activeColor">
-                                                        <color key="value" red="0.16862745100000001" green="0.56470588239999997" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="handleFormUpdate:" destination="Z2L-zr-2tR" eventType="editingDidEnd" id="f9l-Pb-aEh"/>
-                                                    <action selector="handleFormUpdate:" destination="Z2L-zr-2tR" eventType="editingChanged" id="mxv-5H-Qk3"/>
-                                                </connections>
-                                            </textField>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IVX-4q-6ku">
-                                                <rect key="frame" x="482" y="0.0" width="38" height="53"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IdZ-dR-gBr">
+                                                <rect key="frame" x="0.0" y="0.0" width="520" height="53"/>
                                                 <subviews>
-                                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LSp-IR-NQl">
-                                                        <rect key="frame" x="13" y="14" width="25" height="25"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="25" id="YlT-HS-xpb"/>
-                                                            <constraint firstAttribute="width" constant="25" id="cD7-n4-ffd"/>
-                                                        </constraints>
-                                                        <state key="normal" image="question-mark"/>
+                                                    <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Have Experience" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="08q-Uj-shO" customClass="IsaoTextField" customModule="TextFieldEffects">
+                                                        <rect key="frame" x="0.0" y="0.0" width="482" height="53"/>
+                                                        <color key="textColor" red="0.12637259070000001" green="0.12639245390000001" blue="0.1263653636" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="yes" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="inactiveColor">
+                                                                <color key="value" red="0.51784205436706543" green="0.58159953355789185" blue="0.58617168664932251" alpha="1" colorSpace="calibratedRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="activeColor">
+                                                                <color key="value" red="0.16862745100000001" green="0.56470588239999997" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                         <connections>
-                                                            <action selector="didTapHelpButtonUpInside:" destination="Z2L-zr-2tR" eventType="touchUpInside" id="eTl-H1-IKM"/>
-                                                            <segue destination="o1I-FK-JJl" kind="popoverPresentation" identifier="ShowProfileHelpPopover" popoverAnchorView="LSp-IR-NQl" id="1JY-Eu-gtZ">
-                                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                                            </segue>
+                                                            <action selector="handleFormUpdate:" destination="Z2L-zr-2tR" eventType="editingDidEnd" id="f9l-Pb-aEh"/>
+                                                            <action selector="handleFormUpdate:" destination="Z2L-zr-2tR" eventType="editingChanged" id="mxv-5H-Qk3"/>
                                                         </connections>
-                                                    </button>
+                                                    </textField>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IVX-4q-6ku">
+                                                        <rect key="frame" x="482" y="0.0" width="38" height="53"/>
+                                                        <subviews>
+                                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LSp-IR-NQl">
+                                                                <rect key="frame" x="13" y="14" width="25" height="25"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="25" id="YlT-HS-xpb"/>
+                                                                    <constraint firstAttribute="width" constant="25" id="cD7-n4-ffd"/>
+                                                                </constraints>
+                                                                <state key="normal" image="question-mark"/>
+                                                                <connections>
+                                                                    <action selector="didTapHelpButtonUpInside:" destination="Z2L-zr-2tR" eventType="touchUpInside" id="eTl-H1-IKM"/>
+                                                                    <segue destination="o1I-FK-JJl" kind="popoverPresentation" identifier="ShowProfileHelpPopover" popoverAnchorView="LSp-IR-NQl" id="1JY-Eu-gtZ">
+                                                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                                                    </segue>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="0ln-xE-yq1"/>
+                                                            <constraint firstItem="LSp-IR-NQl" firstAttribute="centerY" secondItem="IVX-4q-6ku" secondAttribute="centerY" id="6en-X5-qvh"/>
+                                                            <constraint firstAttribute="trailing" secondItem="LSp-IR-NQl" secondAttribute="trailing" id="Uk2-Co-1HY"/>
+                                                            <constraint firstAttribute="width" constant="38" id="Vx2-fX-z9Y"/>
+                                                        </constraints>
+                                                        <variation key="default">
+                                                            <mask key="constraints">
+                                                                <exclude reference="0ln-xE-yq1"/>
+                                                            </mask>
+                                                        </variation>
+                                                    </view>
                                                 </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="0ln-xE-yq1"/>
-                                                    <constraint firstItem="LSp-IR-NQl" firstAttribute="centerY" secondItem="IVX-4q-6ku" secondAttribute="centerY" id="6en-X5-qvh"/>
-                                                    <constraint firstAttribute="trailing" secondItem="LSp-IR-NQl" secondAttribute="trailing" id="Uk2-Co-1HY"/>
-                                                    <constraint firstAttribute="width" constant="38" id="Vx2-fX-z9Y"/>
-                                                </constraints>
-                                                <variation key="default">
-                                                    <mask key="constraints">
-                                                        <exclude reference="0ln-xE-yq1"/>
-                                                    </mask>
-                                                </variation>
-                                            </view>
+                                            </stackView>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="heu-Sv-kA9">
                                         <rect key="frame" x="0.0" y="195" width="520" height="53"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Want Experience" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Uo-Eu-F0r" customClass="IsaoTextField" customModule="TextFieldEffects">
-                                                <rect key="frame" x="0.0" y="0.0" width="482" height="53"/>
-                                                <color key="textColor" red="0.12637259070000001" green="0.12639245390000001" blue="0.1263653636" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="yes" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="inactiveColor">
-                                                        <color key="value" red="0.51784205436706543" green="0.58159953355789185" blue="0.58617168664932251" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="activeColor">
-                                                        <color key="value" red="0.16862745100000001" green="0.56470588239999997" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="handleFormUpdate:" destination="Z2L-zr-2tR" eventType="editingChanged" id="7HR-qT-Kan"/>
-                                                </connections>
-                                            </textField>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b9R-PJ-AQD">
-                                                <rect key="frame" x="482" y="0.0" width="38" height="53"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cuD-UR-YMO">
+                                                <rect key="frame" x="0.0" y="0.0" width="520" height="53"/>
                                                 <subviews>
-                                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fPL-es-z5Y">
-                                                        <rect key="frame" x="13" y="14" width="25" height="25"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="25" id="Kqg-sp-6Tg"/>
-                                                            <constraint firstAttribute="width" constant="25" id="igp-t4-hKC"/>
-                                                        </constraints>
-                                                        <state key="normal" image="question-mark"/>
+                                                    <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Want Experience" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Uo-Eu-F0r" customClass="IsaoTextField" customModule="TextFieldEffects">
+                                                        <rect key="frame" x="0.0" y="0.0" width="482" height="53"/>
+                                                        <color key="textColor" red="0.12637259070000001" green="0.12639245390000001" blue="0.1263653636" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="yes" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="inactiveColor">
+                                                                <color key="value" red="0.51784205436706543" green="0.58159953355789185" blue="0.58617168664932251" alpha="1" colorSpace="calibratedRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="activeColor">
+                                                                <color key="value" red="0.16862745100000001" green="0.56470588239999997" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                         <connections>
-                                                            <action selector="didTapHelpButtonUpInside:" destination="Z2L-zr-2tR" eventType="touchUpInside" id="LGm-tl-Oek"/>
+                                                            <action selector="handleFormUpdate:" destination="Z2L-zr-2tR" eventType="editingChanged" id="7HR-qT-Kan"/>
                                                         </connections>
-                                                    </button>
+                                                    </textField>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b9R-PJ-AQD">
+                                                        <rect key="frame" x="482" y="0.0" width="38" height="53"/>
+                                                        <subviews>
+                                                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fPL-es-z5Y">
+                                                                <rect key="frame" x="13" y="14" width="25" height="25"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="25" id="Kqg-sp-6Tg"/>
+                                                                    <constraint firstAttribute="width" constant="25" id="igp-t4-hKC"/>
+                                                                </constraints>
+                                                                <state key="normal" image="question-mark"/>
+                                                                <connections>
+                                                                    <action selector="didTapHelpButtonUpInside:" destination="Z2L-zr-2tR" eventType="touchUpInside" id="LGm-tl-Oek"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="OoO-j3-l7Y"/>
+                                                            <constraint firstItem="fPL-es-z5Y" firstAttribute="centerY" secondItem="b9R-PJ-AQD" secondAttribute="centerY" id="UnT-so-Ag1"/>
+                                                            <constraint firstAttribute="trailing" secondItem="fPL-es-z5Y" secondAttribute="trailing" id="oaz-Aq-Heb"/>
+                                                            <constraint firstAttribute="width" constant="38" id="t5D-xH-4XI"/>
+                                                        </constraints>
+                                                        <variation key="default">
+                                                            <mask key="constraints">
+                                                                <exclude reference="OoO-j3-l7Y"/>
+                                                            </mask>
+                                                        </variation>
+                                                    </view>
                                                 </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="OoO-j3-l7Y"/>
-                                                    <constraint firstItem="fPL-es-z5Y" firstAttribute="centerY" secondItem="b9R-PJ-AQD" secondAttribute="centerY" id="UnT-so-Ag1"/>
-                                                    <constraint firstAttribute="trailing" secondItem="fPL-es-z5Y" secondAttribute="trailing" id="oaz-Aq-Heb"/>
-                                                    <constraint firstAttribute="width" constant="38" id="t5D-xH-4XI"/>
-                                                </constraints>
-                                                <variation key="default">
-                                                    <mask key="constraints">
-                                                        <exclude reference="OoO-j3-l7Y"/>
-                                                    </mask>
-                                                </variation>
-                                            </view>
+                                            </stackView>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x6e-tP-PzW">
                                         <rect key="frame" x="0.0" y="260" width="520" height="53"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Event Availability Explanation" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QHX-t5-3Qp" customClass="IsaoTextField" customModule="TextFieldEffects">
-                                                <rect key="frame" x="0.0" y="0.0" width="482" height="53"/>
-                                                <color key="textColor" red="0.12637259070000001" green="0.12639245390000001" blue="0.1263653636" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="inactiveColor">
-                                                        <color key="value" red="0.51784205436706543" green="0.58159953355789185" blue="0.58617168664932251" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="activeColor">
-                                                        <color key="value" red="0.16862745100000001" green="0.56470588239999997" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="handleFormUpdate:" destination="Z2L-zr-2tR" eventType="editingChanged" id="eub-U1-pZP"/>
-                                                </connections>
-                                            </textField>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RL5-jM-X2a">
-                                                <rect key="frame" x="482" y="0.0" width="38" height="53"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="slX-N2-CMh">
+                                                <rect key="frame" x="0.0" y="0.0" width="520" height="53"/>
                                                 <subviews>
-                                                    <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NVR-Sn-hPe">
-                                                        <rect key="frame" x="13" y="14" width="25" height="25"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="25" id="nkX-Uk-lag"/>
-                                                            <constraint firstAttribute="width" constant="25" id="uCm-an-NS5"/>
-                                                        </constraints>
-                                                        <state key="normal" image="question-mark"/>
+                                                    <textField opaque="NO" clipsSubviews="YES" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Event Availability Explanation" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QHX-t5-3Qp" customClass="IsaoTextField" customModule="TextFieldEffects">
+                                                        <rect key="frame" x="0.0" y="0.0" width="482" height="53"/>
+                                                        <color key="textColor" red="0.12637259070000001" green="0.12639245390000001" blue="0.1263653636" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="inactiveColor">
+                                                                <color key="value" red="0.51784205436706543" green="0.58159953355789185" blue="0.58617168664932251" alpha="1" colorSpace="calibratedRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="activeColor">
+                                                                <color key="value" red="0.16862745100000001" green="0.56470588239999997" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                         <connections>
-                                                            <action selector="didTapHelpButtonUpInside:" destination="Z2L-zr-2tR" eventType="touchUpInside" id="zHv-38-2Gs"/>
+                                                            <action selector="handleFormUpdate:" destination="Z2L-zr-2tR" eventType="editingChanged" id="eub-U1-pZP"/>
                                                         </connections>
-                                                    </button>
+                                                    </textField>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RL5-jM-X2a">
+                                                        <rect key="frame" x="482" y="0.0" width="38" height="53"/>
+                                                        <subviews>
+                                                            <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NVR-Sn-hPe">
+                                                                <rect key="frame" x="13" y="14" width="25" height="25"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="25" id="nkX-Uk-lag"/>
+                                                                    <constraint firstAttribute="width" constant="25" id="uCm-an-NS5"/>
+                                                                </constraints>
+                                                                <state key="normal" image="question-mark"/>
+                                                                <connections>
+                                                                    <action selector="didTapHelpButtonUpInside:" destination="Z2L-zr-2tR" eventType="touchUpInside" id="zHv-38-2Gs"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="38" id="Gst-44-zBk"/>
+                                                            <constraint firstItem="NVR-Sn-hPe" firstAttribute="centerY" secondItem="RL5-jM-X2a" secondAttribute="centerY" id="Hgd-hm-CBy"/>
+                                                            <constraint firstAttribute="height" constant="50" id="aCP-gi-K3b"/>
+                                                            <constraint firstAttribute="trailing" secondItem="NVR-Sn-hPe" secondAttribute="trailing" id="pNq-qJ-ajp"/>
+                                                        </constraints>
+                                                        <variation key="default">
+                                                            <mask key="constraints">
+                                                                <exclude reference="aCP-gi-K3b"/>
+                                                            </mask>
+                                                        </variation>
+                                                    </view>
                                                 </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="38" id="Gst-44-zBk"/>
-                                                    <constraint firstItem="NVR-Sn-hPe" firstAttribute="centerY" secondItem="RL5-jM-X2a" secondAttribute="centerY" id="Hgd-hm-CBy"/>
-                                                    <constraint firstAttribute="height" constant="50" id="aCP-gi-K3b"/>
-                                                    <constraint firstAttribute="trailing" secondItem="NVR-Sn-hPe" secondAttribute="trailing" id="pNq-qJ-ajp"/>
-                                                </constraints>
-                                                <variation key="default">
-                                                    <mask key="constraints">
-                                                        <exclude reference="aCP-gi-K3b"/>
-                                                    </mask>
-                                                </variation>
-                                            </view>
+                                            </stackView>
                                         </subviews>
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.29085952040000002" green="0.20994566379999999" blue="0.14615128929999999" alpha="1" colorSpace="calibratedRGB"/>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EDIT YOUR PROFILE" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jbb-A9-9lM">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="EDIT YOUR PROFILE" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jbb-A9-9lM">
                                 <rect key="frame" x="20" y="40" width="560" height="71"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="71" id="rjF-le-vYc"/>
@@ -2993,8 +3008,13 @@ We build tools designed to help non-profit organizations streamline their philan
                                 <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="20"/>
                                 <color key="textColor" red="0.2872858942" green="0.14020672440000001" blue="0.30659055709999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="rjF-le-vYc"/>
+                                    </mask>
+                                </variation>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4aY-03-0fn">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4aY-03-0fn">
                                 <rect key="frame" x="545" y="40" width="35" height="34"/>
                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
                                 <state key="normal" title="Save">
@@ -3004,7 +3024,7 @@ We build tools designed to help non-profit organizations streamline their philan
                                     <action selector="handleSaveForm:" destination="Z2L-zr-2tR" eventType="touchUpInside" id="Idl-fN-HAg"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aA7-u6-kV3">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aA7-u6-kV3">
                                 <rect key="frame" x="20" y="40" width="27" height="27"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="27" id="QLz-Hr-0Ug"/>
@@ -3031,6 +3051,7 @@ We build tools designed to help non-profit organizations streamline their philan
                             <constraint firstItem="4aY-03-0fn" firstAttribute="top" secondItem="hvt-53-VPE" secondAttribute="bottom" constant="20" id="bFd-je-KyW"/>
                             <constraint firstAttribute="trailingMargin" secondItem="DK1-xP-YS9" secondAttribute="trailing" constant="20" id="bPw-z2-mhX"/>
                             <constraint firstItem="DK1-xP-YS9" firstAttribute="top" secondItem="jbb-A9-9lM" secondAttribute="bottom" constant="40" id="cJt-fj-V6q"/>
+                            <constraint firstItem="RxI-cl-LVr" firstAttribute="top" secondItem="DK1-xP-YS9" secondAttribute="bottom" constant="136" id="fxJ-cx-LjV"/>
                             <constraint firstItem="jbb-A9-9lM" firstAttribute="trailing" secondItem="KFW-E4-Y5A" secondAttribute="trailingMargin" id="si8-eH-vu2"/>
                             <constraint firstItem="aA7-u6-kV3" firstAttribute="top" secondItem="hvt-53-VPE" secondAttribute="bottom" constant="20" id="wb5-vf-wN7"/>
                             <constraint firstItem="aA7-u6-kV3" firstAttribute="leading" secondItem="KFW-E4-Y5A" secondAttribute="leadingMargin" id="yXa-8C-9b0"/>

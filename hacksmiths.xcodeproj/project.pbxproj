@@ -68,6 +68,7 @@
 		1F846CCA1CED00E3009166D4 /* ParticipantJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F846CC91CED00E3009166D4 /* ParticipantJSON.swift */; };
 		1F846CCE1CED0190009166D4 /* OrganizationJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F846CCD1CED0190009166D4 /* OrganizationJSON.swift */; };
 		1F846CD01CED259D009166D4 /* Participant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F846CCF1CED259D009166D4 /* Participant.swift */; };
+		1F877AF21D0253FF00BD09F8 /* EventState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F877AF11D0253FF00BD09F8 /* EventState.swift */; };
 		1FA2E55B1C67FF020085FC7D /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA2E55A1C67FF020085FC7D /* GlobalConstants.swift */; };
 		1FA2E55D1C67FF550085FC7D /* HacksmithsAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA2E55C1C67FF550085FC7D /* HacksmithsAPIClient.swift */; };
 		1FA2E55F1C6802680085FC7D /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA2E55E1C6802680085FC7D /* ImageCache.swift */; };
@@ -188,6 +189,7 @@
 		1F846CC91CED00E3009166D4 /* ParticipantJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticipantJSON.swift; sourceTree = "<group>"; };
 		1F846CCD1CED0190009166D4 /* OrganizationJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationJSON.swift; sourceTree = "<group>"; };
 		1F846CCF1CED259D009166D4 /* Participant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Participant.swift; sourceTree = "<group>"; };
+		1F877AF11D0253FF00BD09F8 /* EventState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventState.swift; sourceTree = "<group>"; };
 		1FA2E55A1C67FF020085FC7D /* GlobalConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
 		1FA2E55C1C67FF550085FC7D /* HacksmithsAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HacksmithsAPIClient.swift; sourceTree = "<group>"; };
 		1FA2E55E1C6802680085FC7D /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
@@ -480,6 +482,7 @@
 			children = (
 				1F846CB81CEBB4BE009166D4 /* EventRouter.swift */,
 				1F846CAF1CEBADC7009166D4 /* EventService.swift */,
+				1F877AF11D0253FF00BD09F8 /* EventState.swift */,
 				1FF998981C6FAEDE003D98B2 /* Event.swift */,
 				1F846CC61CECF7D5009166D4 /* EventJSON.swift */,
 				1FAD7DB81CEE64EB0044BD94 /* NextEventJSON.swift */,
@@ -1127,6 +1130,7 @@
 				1FB2F07A1CFF595400E295DF /* EventHelpPopoverViewController.swift in Sources */,
 				1F3DF1A61CFC922B0000BBC8 /* RegistrationJSON.swift in Sources */,
 				1FA2E5631C6802AC0085FC7D /* HacksmithsAPIUserConvenience.swift in Sources */,
+				1F877AF21D0253FF00BD09F8 /* EventState.swift in Sources */,
 				1F3DF1511CFABE0E0000BBC8 /* EditProfileViewController.swift in Sources */,
 				1F4F7EC11CF4B4A800325CA9 /* ProjectIdeaSubmission.swift in Sources */,
 				1F384A8D1CF25C3F00E15887 /* NextEvent.swift in Sources */,

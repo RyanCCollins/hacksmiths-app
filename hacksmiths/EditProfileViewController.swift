@@ -116,7 +116,11 @@ class EditProfileViewController: UIViewController {
         }
     }
     
-    
+    /** Handle updating the form when changed, setting the userData and updating
+     *
+     *  @param sender - the text field that sent the action, which maps via the tag to a textField enum value
+     *  @return None
+     */
     @IBAction private func handleFormUpdate(sender: IsaoTextField) {
         print("Calling form changed")
         formChanged = true
@@ -138,6 +142,8 @@ class EditProfileViewController: UIViewController {
         }
     }
     
+    /** Handle closing / dismissing the form.
+     */
     @IBAction func didTapCloseButtonUpInside(sender: AnyObject) {
         handleDismissForm(self)
     }
@@ -194,10 +200,15 @@ extension EditProfileViewController: EditProfileView {
      *  deal with growing complexity
      */
     func showLoading() {
-        activityIndicator.showLoading()
+        dispatch_async(GlobalMainQueue, {
+            self.activityIndicator.startAnimating()
+        })
+        
     }
     func hideLoading() {
-        activityIndicator.hideLoading()
+        dispatch_async(GlobalMainQueue, {
+            self.activityIndicator.stopAnimating()
+        })
     }
     
     func unsubscribeToNotifications(sender: EditProfilePresenter) {
@@ -268,8 +279,9 @@ extension EditProfileViewController: UITextFieldDelegate {
     
     func keyboardWillShow(notification: NSNotification) {
         /* Slide the view up when keyboard appears if editing bottom text field, using notifications */
-        if wantExperienceTextField.editing == true || availabilityExplanationTextField.editing == true {
-            view.frame.origin.y = -getKeyboardHeight(notification)
+        if wantExperienceTextField.isFirstResponder() || availabilityExplanationTextField.isFirstResponder() {
+            print("Get keyboard height: \(getKeyboardHeight(notification))")
+            view.frame.origin.y = -226
         }
     }
     

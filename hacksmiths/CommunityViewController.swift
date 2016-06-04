@@ -15,11 +15,12 @@ class CommunityViewController: UITableViewController {
     private var activityIndicator: IGActivityIndicatorView!
     private let communityPresenter = CommunityPresenter()
     let searchController = UISearchController(searchResultsController: nil)
-    var searchPredicateLeader: NSPredicate? = nil
-    var searchPredicateCommunity: NSPredicate? = nil
-    let isLeaderPredicate = NSPredicate(format: "isLeader == %@ && isPublic == %@", NSNumber(bool: true), NSNumber(bool: true))
-    let isNotLeaderPredicate = NSPredicate(format: "isPublic == %@ && isLeader == %@", NSNumber(bool: true), NSNumber(bool: false))
-    var messageLabel = UILabel()
+    /** Variout predicates for the fetched results controller
+     */
+    private var searchPredicateLeader: NSPredicate? = nil
+    private var searchPredicateCommunity: NSPredicate? = nil
+    private let isLeaderPredicate = NSPredicate(format: "isLeader == %@ && isPublic == %@", NSNumber(bool: true), NSNumber(bool: true))
+    private let isNotLeaderPredicate = NSPredicate(format: "isPublic == %@ && isLeader == %@", NSNumber(bool: true), NSNumber(bool: false))
     private let personService = PersonService()
     
     /** MARK: Lifecycle
@@ -36,17 +37,22 @@ class CommunityViewController: UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        /** Set the status bar to default so that it shows over the light view
+         */
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.Default, animated: true)
     }
     
+    
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
+        /** Set the status bar back to white when leaving the view
+         */
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
     }
     
     /** Setup the search controller on view load
      */
-    func setupSearchContoller() {
+    private func setupSearchContoller() {
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = false
@@ -57,7 +63,7 @@ class CommunityViewController: UITableViewController {
     
     /** Configure the refresh control for pulling to refresh
      */
-    func configureRefreshControl() {
+    private func configureRefreshControl() {
         refreshControl = UIRefreshControl()
         refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl?.addTarget(self, action: #selector(fetchNetworkData), forControlEvents: .ValueChanged)
@@ -70,7 +76,7 @@ class CommunityViewController: UITableViewController {
         self.communityPresenter.fetchCommunityMembers()
     }
     
-    /** Perform our fetch with the fetched results controllers
+    /** Perform our fetch with the fetched results controllers for leaders and community
      */
     func performFetch() {
         do {
@@ -84,7 +90,7 @@ class CommunityViewController: UITableViewController {
         
     }
     
-    /** Fetched results controller number 1 for leaders, or when searching
+    /** Fetched results controller number 1 for leaders section
      */
     lazy var fetchedResultsController: NSFetchedResultsController = {
         let sortPriority = NSSortDescriptor(key: "sortPriority", ascending: true)
@@ -139,7 +145,7 @@ extension CommunityViewController {
         return nil
     }
     
-    /** Title for headers in table view
+    /** Title for headers in table view.  Maps to enumeration value for section titles
      */
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let title = (SectionTitle(rawValue: section)?.getTitle())!
