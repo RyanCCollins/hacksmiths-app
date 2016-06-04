@@ -10,6 +10,9 @@ import UIKit
 import TextFieldEffects
 
 class EditProfileViewController: UIViewController {
+    @IBOutlet weak var haveExperienceStackView: UIStackView!
+    @IBOutlet weak var eventAvailabilityStackView: UIStackView!
+    @IBOutlet weak var wantExperienceStackView: UIStackView!
     @IBOutlet weak var wantExperienceHelpView: UIView!
     @IBOutlet weak var haveExperienceHelpView: UIView!
     @IBOutlet weak var availabilityExplanationHelpView: UIView!
@@ -20,10 +23,9 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var wantExperienceTextField: IsaoTextField!
     @IBOutlet weak var websiteTextField: IsaoTextField!
     @IBOutlet weak var availabilityExplanationTextField: IsaoTextField!
-    var formChanged = false
+    private var formChanged = false
     private var presenter = EditProfilePresenter()
-    var activityIndicator: IGActivityIndicatorView!
-    var activeField: IsaoTextField!
+    private var activityIndicator: IGActivityIndicatorView!
     
     /* Edge case where it's actually better to use a global for a value outside the scope*/
     private var helpLabelText = ""
@@ -57,10 +59,10 @@ class EditProfileViewController: UIViewController {
     }
     
     private func setupMentoringFields(userData: UserData){
-        haveExperienceTextField.hidden = !userData.isAvailableAsAMentor
-        wantExperienceTextField.hidden = !userData.needsAMentor
-        haveExperienceHelpView.hidden = !userData.isAvailableAsAMentor
-        wantExperienceHelpView.hidden = !userData.needsAMentor
+
+        wantExperienceStackView.hidden = !userData.needsAMentor
+        haveExperienceStackView.hidden = !userData.isAvailableAsAMentor
+        eventAvailabilityStackView.hidden = !userData.isAvailableForEvents
         
         /* Set the text for mentoring fields */
         if userData.isAvailableAsAMentor {
