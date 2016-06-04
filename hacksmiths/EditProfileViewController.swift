@@ -48,6 +48,11 @@ class EditProfileViewController: UIViewController {
         activityIndicator = IGActivityIndicatorView(inview: view, messsage: "Saving")
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+    }
+    
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         presenter.detachView(self)

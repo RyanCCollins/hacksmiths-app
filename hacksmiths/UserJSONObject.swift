@@ -48,6 +48,7 @@ struct MentoringKeys {
 
 struct NotificationKeys {
     static let mobile = "mobile"
+    static let deviceToken = "deviceToken"
 }
 
 /* - Working with the rest of the data types here, the UserJSONObject takes user data
@@ -310,21 +311,35 @@ struct MentoringJSON: Glossy {
 
 struct NotificationJSON: Glossy {
     var mobile: Bool
+    var deviceToken: String?
     
     init?(json: JSON) {
         guard let mobileNotifications: Bool = NotificationKeys.mobile <~~ json else {
             return nil
         }
         self.mobile = mobileNotifications
+        if let deviceToken = UserService.sharedInstance().deviceToken {
+            self.deviceToken = deviceToken
+        } else if let deviceToken: String? = NotificationKeys.deviceToken <~~ json {
+            self.deviceToken = deviceToken
+        }
     }
     
     init(userData: UserData) {
         self.mobile = userData.mobileNotifications
+        
+        /* Set the device token from the user Service if possible*/
+        if let deviceToken = UserService.sharedInstance().deviceToken {
+            self.deviceToken = deviceToken
+        } else if let deviceToken = userData.deviceToken {
+            self.deviceToken = deviceToken
+        }
     }
     
     func toJSON() -> JSON? {
         return jsonify([
-            "mobile" ~~> self.mobile
+            "mobile" ~~> self.mobile,
+            "deviceToken" ~~> self.deviceToken
         ])
     }
 }

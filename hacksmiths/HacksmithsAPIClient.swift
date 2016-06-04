@@ -102,7 +102,12 @@ class HacksmithsAPIClient: NSObject {
         return task
     }
     
-    /* Task returned for POSTing data from the Parse server */
+    /** Handle posting data to the Hacksmiths API.
+     *  Was used before refactoring into seperate services and now is used by just a few methods.
+     *
+     *  @param method - the method t0 call
+     *  @return
+     */
     func taskForPOSTMethod (method: String, JSONBody: [String : AnyObject], completionHandler: CompletionHandlerWithResult) -> NSURLSessionDataTask {
         let urlString = Constants.APIURL + method
         let request = NSMutableURLRequest(URL: NSURL(string: urlString)!)

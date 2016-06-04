@@ -32,7 +32,7 @@ class UserData: NSManagedObject {
     @NSManaged var hasExperience: String?
     @NSManaged var wantsExperience: String?
     @NSManaged var avatarURL: String?
-    
+    @NSManaged var deviceToken: String?
     
     /* Not yet mapped to JSON */
     @NSManaged var isTopContributor: Bool

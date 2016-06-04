@@ -75,6 +75,14 @@ class Event: NSManagedObject {
         if let marketingInfo = eventJson.marketingInfo {
             self.marketingInfo = marketingInfo
         }
+        self.spotsRemaining = eventJson.spotsRemaining
+        if let eventState: EventState = eventJson.state {
+            if eventState == .Active {
+                self.active = true
+            } else {
+                self.active = false
+            }
+        }
     }
     
     
@@ -82,7 +90,7 @@ class Event: NSManagedObject {
     
     /** A bool determining if there are spots available for an event.
      */
-    dynamic var spotsAvailable: Bool {
+    var spotsAvailable: Bool {
         get {
             return spotsRemaining as Int > 0
         }
@@ -90,7 +98,7 @@ class Event: NSManagedObject {
     
     /** The start date of the event, computed by parsing the string as a date
      */
-    dynamic var startDate: NSDate? {
+    var startDate: NSDate? {
         get {
             if let date = startDateString.parseAsDate() {
                 return date
@@ -102,7 +110,7 @@ class Event: NSManagedObject {
     
     /** The end date, computed by parsing the end date string
      */
-    dynamic var endDate: NSDate? {
+    var endDate: NSDate? {
         get {
             if let date = endDateString.parseAsDate() {
                 return date

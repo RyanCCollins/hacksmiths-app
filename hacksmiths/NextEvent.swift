@@ -8,6 +8,8 @@
 
 import CoreData
 
+/** Store information received from the call for the Next/Current Event to API.
+ */
 @objc(NextEvent)
 class NextEvent: NSManagedObject {
     @NSManaged var idString: String
@@ -16,6 +18,7 @@ class NextEvent: NSManagedObject {
     required override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
     }
+    
     init(nextEventJSON: NextEventJSON, context: NSManagedObjectContext) {
         let entity = NSEntityDescription.entityForName("NextEvent", inManagedObjectContext: context)
         super.init(entity: entity!, insertIntoManagedObjectContext: context)

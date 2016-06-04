@@ -50,6 +50,17 @@ class UserService {
         }
     }
     
+    /** The user's device token
+     */
+    var deviceToken: String? {
+        get {
+            return NSUserDefaults.standardUserDefaults().valueForKey("deviceToken") as? String
+        }
+        set {
+            NSUserDefaults.standardUserDefaults().setValue(newValue, forKey: "deviceToken")
+        }
+    }
+    
     /** Session based authentication.  Determines whether the user has a session stored
      */
     var authenticated: Bool {

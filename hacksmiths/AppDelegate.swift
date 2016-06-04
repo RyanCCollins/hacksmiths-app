@@ -44,12 +44,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
         let aps = userInfo["aps"] as! [String: AnyObject]
-        
         /* Check for new events when they are sent */
         if (aps["new-event"] as? NSString)?.integerValue == 1 {
-            /* Open the next event page */
-            
+            print("Notification received")
         }
+    }
+    
+    func handleOpeningToNewEvent() {
+        
+    }
+    
+    /** Save the user's device token to user defaults to be used later.
+     */
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        let tokenChars = UnsafePointer<CChar>(deviceToken.bytes)
+        var tokenString = ""
+        
+        for i in 0..<deviceToken.length {
+            tokenString += String(format: "%02.2hhx", arguments: [tokenChars[i]])
+        }
+        
+        UserService.sharedInstance().deviceToken = tokenString
+    }
+    
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        print("Failed to register:", error)
     }
 }
 
