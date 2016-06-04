@@ -184,7 +184,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nwq-yW-nE0" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="1000"/>
                                         <subviews>
-                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oC5-vG-p5l">
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oC5-vG-p5l">
                                                 <rect key="frame" x="92" y="476" width="417" height="47"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="47" id="9Tm-3O-KCR"/>
@@ -317,13 +317,13 @@
                                     </mask>
                                 </variation>
                             </scrollView>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1F9-dx-ANU">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1F9-dx-ANU">
                                 <rect key="frame" x="20" y="270" width="560" height="18"/>
                                 <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="16"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c0w-gk-V1X" customClass="RCCircularImageView" customModule="Hacksmiths" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c0w-gk-V1X" customClass="RCCircularImageView" customModule="Hacksmiths" customModuleProvider="target">
                                 <rect key="frame" x="225" y="50" width="150" height="150"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -334,7 +334,7 @@
                                     <userDefinedRuntimeAttribute type="image" keyPath="image" value="avatar-missing"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vs8-tT-LOa">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vs8-tT-LOa">
                                 <rect key="frame" x="20" y="220" width="560" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="evz-NY-ZvS"/>
@@ -3016,21 +3016,11 @@ We build tools designed to help non-profit organizations streamline their philan
                                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9e0-Xd-PSY">
                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                                 <items>
-                                                    <barButtonItem image="x-in-square" style="plain" id="F3S-4m-bU7">
-                                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="U1X-Yg-swA">
-                                                            <rect key="frame" x="20" y="9" width="27" height="27"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="27" id="ZpT-iI-csZ"/>
-                                                                <constraint firstAttribute="width" constant="27" id="jJk-NX-7UI"/>
-                                                            </constraints>
-                                                            <color key="tintColor" red="0.15868747229999999" green="0.2182204425" blue="0.30320093040000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <state key="normal" image="x-in-square"/>
-                                                            <connections>
-                                                                <action selector="didTapCloseButtonUpInside:" destination="ab4-7S-4sN" eventType="touchUpInside" id="ET6-7i-SVb"/>
-                                                            </connections>
-                                                        </button>
-                                                        <color key="tintColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <barButtonItem image="x-in-square" id="SOs-IA-yRc">
+                                                        <color key="tintColor" red="0.15868747229999999" green="0.2182204425" blue="0.30320093040000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <connections>
+                                                            <action selector="didTapCloseButtonUpInside:" destination="ab4-7S-4sN" id="MJa-Ch-osD"/>
+                                                        </connections>
                                                     </barButtonItem>
                                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="25C-0o-RIE"/>
                                                     <barButtonItem title="Save" id="5kD-yf-A6l">

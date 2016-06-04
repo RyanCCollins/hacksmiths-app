@@ -62,7 +62,6 @@ class EditProfileViewController: UIViewController {
     }
     
     private func setupMentoringFields(userData: UserData){
-
         wantExperienceStackView.hidden = !userData.needsAMentor
         haveExperienceStackView.hidden = !userData.isAvailableAsAMentor
         eventAvailabilityStackView.hidden = !userData.isAvailableForEvents
@@ -127,7 +126,6 @@ class EditProfileViewController: UIViewController {
      *  @return None
      */
     @IBAction private func handleFormUpdate(sender: IsaoTextField) {
-        print("Calling form changed")
         formChanged = true
         let textField = ProfileTextFields(rawValue: sender.tag)
         let newValue = sender.text
@@ -150,7 +148,18 @@ class EditProfileViewController: UIViewController {
     /** Handle closing / dismissing the form.
      */
     @IBAction func didTapCloseButtonUpInside(sender: AnyObject) {
+        userData = nil
+        zeroOutTextFields()
+        formChanged = false
         handleDismissForm(self)
+    }
+    
+    func zeroOutTextFields(){
+        bioTextField.text = nil
+        websiteTextField.text = nil
+        haveExperienceTextField.text = nil
+        wantExperienceTextField.text = nil
+        availabilityExplanationTextField.text = nil
     }
     
     /** Handle saving the form when the button is tapped
@@ -277,16 +286,12 @@ extension EditProfileViewController: UITextFieldDelegate {
         return true
     }
     
-    /* Hide keyboard when view is tapped */
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        print("Touched began")
-        view.endEditing(true)
-    }
     
+    /* Slide the view up when keyboard appears if editing bottom text field, using notifications */
     func keyboardWillShow(notification: NSNotification) {
-        /* Slide the view up when keyboard appears if editing bottom text field, using notifications */
         if wantExperienceTextField.isFirstResponder() || availabilityExplanationTextField.isFirstResponder() {
             contentView.frame.origin.y = -getKeyboardHeight(notification)
+            /* Make the view scroll to allow easier editing. */
             scrollView.contentSize.height = 700
         }
     }
