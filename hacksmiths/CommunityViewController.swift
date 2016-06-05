@@ -15,7 +15,7 @@ class CommunityViewController: UITableViewController {
     private var activityIndicator: IGActivityIndicatorView!
     private let communityPresenter = CommunityPresenter()
     let searchController = UISearchController(searchResultsController: nil)
-    /** Variout predicates for the fetched results controller
+    /** Various predicates for the fetched results controller
      */
     private var searchPredicateLeader: NSPredicate? = nil
     private var searchPredicateCommunity: NSPredicate? = nil
@@ -73,6 +73,7 @@ class CommunityViewController: UITableViewController {
     /** Convenience for fetching the data from pull to refresh control
      */
     func fetchNetworkData() {
+        startLoading()
         self.communityPresenter.fetchCommunityMembers()
     }
     
@@ -199,10 +200,11 @@ extension CommunityViewController {
         guard person != nil else {
             return nil
         }
-        
-        cell.showImage(person!.image)
-        cell.nameLabel.text = person!.fullName
-        cell.aboutLabel.text = person!.bio
+        dispatch_async(GlobalMainQueue, {
+            cell.showImage(person!.image)
+            cell.nameLabel.text = person!.fullName
+            cell.aboutLabel.text = person!.bio
+        })
         return cell
     }
     
