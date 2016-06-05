@@ -30,13 +30,13 @@ class CommunityViewController: UITableViewController {
         
         self.activityIndicator = IGActivityIndicatorView(inview: view, messsage: "Loading")
         configureRefreshControl()
-        self.communityPresenter.fetchCommunityMembers()
         setupSearchContoller()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.communityPresenter.attachView(self, personService: personService)
+        self.communityPresenter.fetchCommunityMembers()
         /** Set the status bar to default so that it shows over the light view
          */
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.Default, animated: true)
@@ -201,7 +201,6 @@ extension CommunityViewController {
         }
         dispatch_async(GlobalMainQueue, {
             cell.showImage(person!.image)
-            cell.setNeedsLayout()
             cell.nameLabel.text = person!.fullName
             cell.aboutLabel.text = person!.bio
         })
@@ -255,6 +254,14 @@ extension CommunityViewController: CommunityView {
         dispatch_async(GlobalMainQueue, {
             self.activityIndicator.stopAnimating()
         })
+    }
+    
+    func didFetchImages(sender: CommunityPresenter, didSucceed: Bool, didFail error: NSError?) {
+        if didSucceed {
+            tableView.reloadData()
+        } else if error != nil {
+            alertController(withTitles: ["Ok"], message: (error?.localizedDescription)!, callbackHandler: [nil])
+        }
     }
     
     /** Fetch the community members - Protocol method for updating the view when the people are fetched

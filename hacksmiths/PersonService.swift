@@ -27,18 +27,18 @@ class PersonService {
                     if let membersArray = result["members"] as? [JsonDict] {
                         self.parseMemberArray(membersArray).then() {
                             people -> () in
-
-                                /* Save the core data context finally */
-                                GlobalStackManager.SharedManager.sharedContext.performBlockAndWait({
-                                    CoreDataStackManager.sharedInstance().saveContext()
-                                })
-                                resolve()
-                            }
+                            
+                            /* Save the core data context finally */
+                            GlobalStackManager.SharedManager.sharedContext.performBlockAndWait({
+                                CoreDataStackManager.sharedInstance().saveContext()
+                            })
+                            resolve()
                         }
                     }
                 }
             }
         }
+    }
     
     
     /** Parse the member array returned from the API
@@ -46,32 +46,21 @@ class PersonService {
      *  @param memberArray - A dictionary containing the member data
      *  @return Promise<[Person]> - A promise of an array for the managed object model for person.
      */
-    private func parseMemberArray(memberArray: [JsonDict]) -> Promise<[Person?]> {
-        return Promise{resolve, reject in
-            let members: [Person] = memberArray.map{member in
-                let person = Person(dictionary: member, context: GlobalStackManager.SharedManager.sharedContext)
-                return person
-            }
-            resolve(members)
+    func parseMemberArray(memberArray: [JsonDict]) -> Promise<AnyObject> {
+        let members: [Person] = memberArray.map{member in
+            let person = Person(dictionary: member, context: GlobalStackManager.SharedManager.sharedContext)
+            return person
         }
-    }
-    
-    /** Promise of image fetching for the members.
-     *
-     *  @param
-     *  @return
-     */
-    func fetchImages(forPeople people: [Person]) -> Promise<AnyObject> {
-        var promise: Promise<AnyObject> = Promise<AnyObject>("Promise")
-        for person in people {
-            promise = promise.then() {_ in
+        var imagePromise : Promise<AnyObject> = Promise<AnyObject>("promise")
+        for person in members {
+            imagePromise = imagePromise.then{ _ in
                 return Promise{resolve, reject in
-                    person.fetchImages().then(){
+                    person.fetchImages().then() {Void in
                         resolve()
                     }
                 }
             }
         }
-        return promise
+        return imagePromise
     }
 }

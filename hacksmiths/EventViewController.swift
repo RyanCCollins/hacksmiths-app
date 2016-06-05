@@ -121,6 +121,7 @@ class EventViewController: UIViewController {
                 } else {
                     self.eventImageView.downloadedFrom(link: imageURL, contentMode: .ScaleAspectFit)
                 }
+                
                 self.eventImageView.fadeIn()
             }
             
@@ -171,7 +172,6 @@ class EventViewController: UIViewController {
             self.organizationImageView.fadeIn()
             self.organizationDescriptionLabel.fadeIn()
             if event.organization?.website != nil {
-                print("Calling create organization button")
                 self.organizationWebsiteButton.hidden = false
                 self.organizationWebsiteButton.fadeIn()
             }
