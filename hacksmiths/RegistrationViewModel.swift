@@ -6,6 +6,8 @@
 //  Copyright © 2016 Tech Rapport. All rights reserved.
 //
 
+/** The registration delegate is used to communicate between the view model and view.
+ */
 protocol RegistrationDelegate {
     func didFinishRegistering(withField field: RegistrationViewModel.RegistrationField, value: String)
 }
@@ -21,13 +23,17 @@ class RegistrationViewModel: RegistrationDelegate {
     var currentField = RegistrationField(rawValue: 0)
     static let sharedInstance = RegistrationViewModel()
     
-    // Coordinate setting of the various fields to make this class handle the collection of the data
-    // The delegate method will collect the data and also set the next field that needs to be collected
-    // Based off of the raw Int value.
+    /** called when the field did finish registering with the value
+     *
+     *  @param field - the Registration Field enum value that corresponds with a text field from the view
+     *  @param value - the value that is used to finish registration.
+     *  @return None
+     */
     func didFinishRegistering(withField field: RegistrationField, value: String) {
         
-        // Work through the various fields and set the value for the submitted field.
-        // Then, set current field to the next field.
+        /* Work through the fields and set the value for the submitted field.
+         * Then, set current field to the next field.
+         */
         switch field {
         case .FullName:
             registrationJSON.fullname = value
@@ -47,7 +53,11 @@ class RegistrationViewModel: RegistrationDelegate {
         currentField = RegistrationField(rawValue: 0)
     }
     
-    /* Submit registration data to the API */
+    /** Submit registration data to the API with a completion handler
+     *
+     *  @param completionHandler - the completionHandler to be called back when complete
+     *  @return None
+     */
     func submitRegistrationData(completionHandler: CompletionHandler) {
         HacksmithsAPIClient.sharedInstance().registerWithEmail(registrationJSON, completionHandler: {success, error in
             if error != nil {
@@ -59,13 +69,16 @@ class RegistrationViewModel: RegistrationDelegate {
         })
     }
     
-    // Useful for decrementing the current field if the user needs to go back.
+    /** Decrement the current field enum value
+     */
     func decrementCurrentField() {
         if currentField?.rawValue > 0 {
             currentField = RegistrationField.init(rawValue: (currentField?.rawValue)! - 1)
         }
     }
     
+    /** Increment the current field enum value
+     */
     func incrementCurrentField() {
         if let field = currentField {
             currentField = RegistrationField.init(rawValue: (field.rawValue) + 1)
@@ -75,12 +88,7 @@ class RegistrationViewModel: RegistrationDelegate {
 
 //MARK: Enumerations for states and next Field values
 extension RegistrationViewModel {
-    enum ValidityState {
-        case NotValid
-        case Custom(String, String)
-        case None
-    }
-    
+
     // Enumeration that holds the current field for determining what data is not yet filled in
     enum RegistrationField: Int {
         case FullName = 0,

@@ -10,6 +10,8 @@ import UIKit
 import TextFieldEffects
 import ChameleonFramework
 
+/** Registration view controller handles the registration process for a user.
+ */
 class RegistrationViewController: UIViewController {
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var fullNameTextField: IsaoTextField!
@@ -35,11 +37,11 @@ class RegistrationViewController: UIViewController {
     }
     
     func hideLoading() {
-        activityIndicator.hideLoading()
+        activityIndicator.startAnimating()
     }
     
     func showLoading() {
-        activityIndicator.showLoading()
+        activityIndicator.stopAnimating()
     }
     
     func setupView() {
@@ -50,6 +52,11 @@ class RegistrationViewController: UIViewController {
         navigationController?.navigationBar.backgroundColor = UIColor.clearColor();
     }
     
+    /** Did change the text in a text field, determine if the field is valid and then set the next button enabled when appropriate.
+     *
+     *  @param sender - the text field that sent the message
+     *  @return None
+     */
     func didChangeTextInTextField(sender: IsaoTextField) {
         if validateField(RegistrationViewModel.sharedInstance.currentField!, withValue: sender.text) {
             navigationItem.rightBarButtonItem?.enabled = true
@@ -75,45 +82,23 @@ class RegistrationViewController: UIViewController {
         navigationItem.leftBarButtonItem = leftBarButtonItem
     }
     
-    func buttonItemImage(forField field: RegistrationViewModel.RegistrationField) -> UIImage {
-        switch field {
-        case .FullName:
-            return xInSquareImage!
-        default:
-            return backwardArrowImage!
-        }
-    }
-    
-    func setupTextField(textField: IsaoTextField){
+    /** Setup the view for the text field
+     *
+     *  @param textField - the text field being setup
+     *  @return None
+     */
+    private func setupTextField(textField: IsaoTextField){
         textField.addTarget(self, action: #selector(RegistrationViewController.didChangeTextInTextField), forControlEvents: UIControlEvents.EditingChanged)
         textField.becomeFirstResponder()
         textField.delegate = self
     }
 
     
-    func debugMessage(forField field: RegistrationViewModel.RegistrationField) -> String {
-        switch field {
-        case .Email:
-            return "Please enter a valid email address"
-        case .FullName:
-            return "Please enter your full name, both first and last"
-        case .Password:
-            return "Password must be at least 8 characters"
-        default:
-            return ""
-        }
-    }
-    
-    func dataValue(forField field: RegistrationViewModel.RegistrationField) -> String? {
-        switch field {
-        case .FullName: return fullNameTextField.text
-        case .Email: return emailTextField.text
-        case .Password: return passwordTextField.text
-        default: return nil
-        }
-        
-    }
-    
+    /** Validate the text field, returning false if not valid
+     *
+     *  @param field - the field being validated
+     *  @return Bool - whether the field is valid
+     */
     private func validateField(field: RegistrationViewModel.RegistrationField, withValue value: String?) -> Bool {
         guard value != nil else {
             return false
@@ -132,15 +117,23 @@ class RegistrationViewController: UIViewController {
         }
     }
     
-    
+    /** Show a debug label when there is an issue
+     */
     func showDebugLabel(withText text: String) {
         debugLabel.text = text
         debugLabel.fadeIn(0.5, delay: 0.0, alpha: 1.0, completion: nil)
     }
-    
-    // Responsible for making changes to the UI that rely specifically
-    // On the value of the next field
-    func setupViewForNextField() {
+}
+
+/** Extension for one field form processing in view controller
+ */
+extension RegistrationViewController {
+    /** Responsible for making changes to the UI that rely on the value of the next field
+     *
+     *  @param None
+     *  @return None
+     */
+    private func setupViewForNextField() {
         if let currentField = RegistrationViewModel.sharedInstance.currentField {
             switch currentField {
             case .FullName:
@@ -168,7 +161,7 @@ class RegistrationViewController: UIViewController {
                 break
             }
         }
-    
+        
     }
     
     /* Method called by view controller to make logic decisions for how to
@@ -176,6 +169,9 @@ class RegistrationViewController: UIViewController {
      * Called from the Next button in the view.  Calling other
      * methods (the ones below here) will skip steps and the registration will
      * fail.
+     *
+     *  @param sender - the sender sending the message
+     *  @return None
      */
     func processSubmission(sender: AnyObject) {
         let currentField = RegistrationViewModel.sharedInstance.currentField
@@ -189,6 +185,11 @@ class RegistrationViewController: UIViewController {
         }
     }
     
+    /** Proceed or complete the registration process
+     *
+     *  @param field - the current registration field being submitted
+     *  @return None
+     */
     func proceedOrCompleteRegistration(forField field: RegistrationViewModel.RegistrationField){
         switch field {
         case .Password:
@@ -198,8 +199,10 @@ class RegistrationViewController: UIViewController {
         }
     }
     
-    /* Continue forwards in registration process
-     * By pushing the next view controller onto the stack.
+    /** Proceed forwards in the registration process
+     *
+     *  @param Sender the sender that sent the message
+     *  @return None
      */
     func proceedForwards(sender: AnyObject) {
         let nextViewController = storyboard?.instantiateViewControllerWithIdentifier("RegistrationViewController")
@@ -210,8 +213,10 @@ class RegistrationViewController: UIViewController {
         
     }
     
-    /* Either backs up the process of registration, or dismisses the process
-     * All together, leading back to presenting view.
+    /** Proceed backwards through the registration process
+     *
+     *  @param Sender - the sender that sent the message
+     *  @return None
      */
     func proceedBackwards(sender: AnyObject) {
         if navigationController?.viewControllers.count > 1 {
@@ -226,8 +231,10 @@ class RegistrationViewController: UIViewController {
         }
     }
     
-    /* Either backs up the process of registration, or dismisses the process
-     * All together, leading back to presenting view.
+    /** Submit the registration and process it through the view model
+     *
+     *  @param None
+     *  @return None
      */
     func submitRegistration() {
         showLoading()
@@ -241,53 +248,61 @@ class RegistrationViewController: UIViewController {
                 dispatch_async(GlobalMainQueue, {
                     self.hideLoading()
                     self.dismissViewControllerAnimated(true, completion: {void in
-                })
+                    })
                 })
             }
         })
     }
+}
+
+/** Extension for abstracting away some of the view logic
+ */
+extension RegistrationViewController {
+    /** Button item image for the current registration page, which is dependant on the current field being filled out.
+     *
+     *  @param field - the field that is being evaluated
+     *  @return UIImage - the image for the field
+     */
+    private func buttonItemImage(forField field: RegistrationViewModel.RegistrationField) -> UIImage {
+        switch field {
+        case .FullName:
+            return xInSquareImage!
+        default:
+            return backwardArrowImage!
+        }
+    }
     
-//    /*FINISH ME */
-//    func saveLoginTo1Password(sender: AnyObject) {
-//        /* Create a login dictionary to save to onepassword */
-//        let newLoginDictionary : [String: AnyObject] = [
-//            AppExtensionTitleKey: "Hacksmiths",
-//            AppExtensionUsernameKey: self.usernameTextField.text!,
-//            AppExtensionPasswordKey: self.passwordTextField.text!,
-//            AppExtensionNotesKey: "Saved with the Hacksmiths app",
-//            AppExtensionSectionTitleKey: "Hacksmiths App",
-//            ]
-//        
-//        /* Create a passwordDetail dictionary to define password characteristics for onepassword */
-//        let passwordDetailsDictionary : [String: AnyObject] = [
-//            AppExtensionGeneratedPasswordMinLengthKey: 6,
-//            AppExtensionGeneratedPasswordMaxLengthKey: 50
-//        ]
-//        
-//        /** Handle storing login to one password
-//         */
-//        OnePasswordExtension.sharedExtension().storeLoginForURLString(HacksmithsAPIClient.Constants.BaseURL, loginDetails: newLoginDictionary, passwordGenerationOptions: passwordDetailsDictionary, forViewController: self, sender: sender, completion: {(loginDictionary, error) -> Void in
-//            
-//            if loginDictionary == nil {
-//                if (error!.code != Int(AppExtensionErrorCodeCancelledByUser))  {
-//                    print("Error invoking 1Password App Extension for find login: \(error)")
-//                }
-//                return
-//            }
-//            
-//            let foundUsername = loginDictionary!["username"] as! String
-//            let foundPassword = loginDictionary!["password"] as! String
-//            
-//            HacksmithsAPIClient.sharedInstance().authenticateWithCredentials(foundUsername, password: foundPassword, completionHandler: {success, error in
-//                
-//                if error != nil {
-//                    self.alertController(withTitles: ["OK"], message: "We were unable to authenticate your account.  Please check your password and try again.", callbackHandler: [nil])
-//                } else {
-//                    self.dismissLoginView(true)
-//                }
-//            })
-//        })
-//    }
+    /** The debug / validation message associated with a field
+     *
+     *  @param field - the field that the validation message is for
+     *  @return String - the string value of the validation / debug message
+     */
+    private func debugMessage(forField field: RegistrationViewModel.RegistrationField) -> String {
+        switch field {
+        case .Email:
+            return "Please enter a valid email address"
+        case .FullName:
+            return "Please enter your full name, both first and last"
+        case .Password:
+            return "Password must be at least 8 characters"
+        default:
+            return ""
+        }
+    }
+    
+    /** Get the data value for a specific field
+     *
+     *  @param field - the field enumeration value
+     *  @return String - the value of the field.
+     */
+    private func dataValue(forField field: RegistrationViewModel.RegistrationField) -> String? {
+        switch field {
+        case .FullName: return fullNameTextField.text
+        case .Email: return emailTextField.text
+        case .Password: return passwordTextField.text
+        default: return nil
+        }
+    }
 }
 
 extension RegistrationViewController: UITextFieldDelegate {

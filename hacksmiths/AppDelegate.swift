@@ -47,7 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         /* Check for new events when they are sent */
         if (aps["new-event"] as? NSString)?.integerValue == 1 {
             print("Notification received for new event")
-            
+            /* Logic for handling this has been removed for submission because I would need to setup a provisioning profile for the reviewer. */
         }
     }
     
@@ -66,6 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
         print("Failed to register:", error)
+        /* Logic for handling this has been removed for submission because I would need to setup a provisioning profile for the reviewer. */
     }
 }
 

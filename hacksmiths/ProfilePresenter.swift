@@ -6,8 +6,9 @@
 //  Copyright © 2016 Tech Rapport. All rights reserved.
 //
 
-import UIKit
 
+/** Protocol for following the MVP pattern
+ */
 protocol ProfileView: NSObjectProtocol {
     func startLoading()
     func finishLoading()
@@ -17,6 +18,8 @@ protocol ProfileView: NSObjectProtocol {
     func didLoadCachedUserData(userData: UserData?, error: NSError?)
 }
 
+/** Profile presenter - the presenter communicates with the model and updates the view
+ */
 class ProfilePresenter {
     private var profileView: ProfileView?
     private var userProfileService: UserProfileService
@@ -34,6 +37,11 @@ class ProfilePresenter {
         self.profileView = nil
     }
     
+    /** Submit User Data to the API
+     *
+     *  @param userData - the user data to be submit to the API
+     *  @return None
+     */
     func submitDataToAPI(userData: UserData) {
         guard UserService.sharedInstance().authenticated == true else {
             self.profileView?.didUpdateUserData(false, error: GlobalErrors.BadCredentials)
@@ -51,6 +59,11 @@ class ProfilePresenter {
         }
     }
     
+    /** Fetch cached data for the profile view, so that it loads faster when possible
+     *
+     *  @param None
+     *  @return None
+     */
     func fetchCachedData() {
         /* Ensure that user is authenticated before loading cached data*/
         guard UserService.sharedInstance().authenticated == true else {
@@ -71,6 +84,11 @@ class ProfilePresenter {
             }
     }
     
+    /** Fetch user data from the API and handle the model logic
+     *
+     *  @param None
+     *  @return None
+     */
     func fetchUserDataFromAPI() {
         guard UserService.sharedInstance().authenticated == true else {
             self.profileView?.didGetUserDataFromAPI(nil, error: GlobalErrors.BadCredentials)
@@ -84,8 +102,7 @@ class ProfilePresenter {
                 }.error{error in
                     self.profileView?.didGetUserDataFromAPI(nil, error: error as NSError)
                 }
-        }.error {
-            error in
+        }.error {error in
             self.profileView?.didGetUserDataFromAPI(nil, error: error as NSError)
         }
     }
