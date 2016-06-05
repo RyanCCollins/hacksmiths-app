@@ -22,18 +22,18 @@ The application allows for a user to sign up to be a member of our community.  P
 
 #### Sections of the App
 1. Signup / Register
-  The user is greeting with a signup / Registration Screen.  Clicking Sign up will take then through a three step registration process.  Clicking sign in will allow them to sign in.  Registration will create an account for the user on Hacksmiths.io and Sign in will sync the app with the user's profile on the Hacksmiths.io website.
+  The user is greeted with a signup / Registration Screen.  Clicking Sign up will take then through a three step registration process.  Clicking sign in will allow them to sign in.  Registration will create an account for the user on Hacksmiths.io and Sign in will sync the app with the user's profile on the Hacksmiths.io website.
 2. Me
-  When signed in, the user is shown a profile page, which will show the data that will be shown to the public (bio and photo).  Tapping the edit button on the top right will let the user edit a few of their profile fields.  Some of these fields only show when the a specific toggle is turned on for the user.
+  When signed in, the user is shown a profile page, which will show the data that will be shown to the public (bio and photo).  Tapping the edit button on the top right will let the user edit a few of their profile fields.  Some of these fields only show when the a specific toggle is turned on for the user from the Settings section.
 
   Settings
-  The user has a number of settings, available from the Gear button slide out menu.  Tapping these toggle them on and off both on the device and on the API.
+  The user has a number of settings, available from the Gear button slide out menu.  Tapping these will toggle them on and off both on the device and on the API.
 3. Community / People
     The Community Section is one of the highlights of this app.  It shows a list of the Leaders and Community Members of the Hacksmiths in a table view.  The table view can be searched by name using the search bar, which will momentarily reorder the top hit to the top of the list.  Clicking a person will bring you to a Person page that shows that person's public information.  Pulling down the the tableview will reload the list in case there were any changes made on the API.
 4. Event
-    The Event page shows the current event as it is stored on the API.  It shows an overview of information about the event, including the date, place, details, additional marketting information, about the non profit, and finally a list of the participants.  During an Active Event, the user of the app has an opportunity to RSVP to help for an event through the app.  They will be added as a participant when they RSVP.  The final section on the Event page is a collection view containing the participants of the current event.  These are people that RSVPed and the data comes from the API.
+    The Event page shows the current event as it is stored on the API.  It shows an overview of information about the event, including the date, place, details, additional marketing information, about the non profit, and finally a list of the participants.  During an Active Event, the user of the app has an opportunity to RSVP to help for an event through the app.  They will be added as a participant when they RSVP.  The final section on the Event page is a collection view containing the participants of the current event.  These are people that RSVPed and the data comes from the API.
 5. Ideas
-    Possibly the most simple section, the Ideas section allows signed in users to submit an idea for a project that will get sent to our API.  At a later point, the idea is to release a mechanism to have our users vote on their favorite ideas.  For now, we are just collecting them.  A user can submit one idea per event.  The idea gets sent to the API and will send out an email to the Admins of Hackmsiths.io.
+    Possibly the most simple section, the Ideas section allows signed in users to submit an idea for a project that will get sent to our API.  At a later point, we will release a mechanism to have our users vote on their favorite ideas.  For now, we are just collecting them.  A user can submit one idea per event.  The idea gets sent to the API and will send out an email to the Admins of Hackmsiths.io.
 6. About
     The About section shows some information about the Hacksmiths and the founders.  It will also show a Terms of Service when this app is released to the App Store.
 
