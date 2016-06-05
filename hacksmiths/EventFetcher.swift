@@ -32,6 +32,8 @@ class EventFetcher {
                 } else {
                     resolve(nil)
                 }
+            } catch let error as NSError {
+                reject(error)
             }
         }
     }
@@ -56,6 +58,8 @@ class EventFetcher {
                 } else {
                     resolve(nil)
                 }
+            } catch let error as NSError {
+                reject(error)
             }
         }
     }
@@ -90,7 +94,6 @@ class EventFetcher {
                 try CoreDataStackManager.sharedInstance().persistentStoreCoordinator?.executeRequest(deleteRequest, withContext: GlobalStackManager.SharedManager.sharedContext)
                 resolve()
             } catch let error as NSError {
-                print("An error occured while deleting all next event items.  Whoops!")
                 reject(error as NSError)
             }
         }

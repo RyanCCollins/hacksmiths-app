@@ -77,6 +77,7 @@ class Event: NSManagedObject {
         }
         self.spotsRemaining = eventJson.spotsRemaining
         if let eventState: EventState = eventJson.state {
+            print("Event State: \(eventState)")
             if eventState == .Active {
                 self.active = true
             } else {
@@ -151,9 +152,9 @@ class Event: NSManagedObject {
             
             HacksmithsAPIClient.sharedInstance().taskForGETImageFromURL(featureImageURL!, completionHandler: {image, error in
                 if image != nil {
+                    self.image = image
                     resolve(image)
                 } else {
-                    self.image = image
                     reject(error! as NSError)
                 }
             })

@@ -37,7 +37,6 @@ class EditProfileViewController: UIViewController {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter.attachView(self)
         setTextFieldDelegates()
         if let currentUserData = userData {
             setupMentoringFields(currentUserData)
@@ -45,17 +44,19 @@ class EditProfileViewController: UIViewController {
             setupBioField(currentUserData)
             setupWebsiteField(currentUserData)
         }
-        activityIndicator = IGActivityIndicatorView(inview: view, messsage: "Saving")
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+        UIApplication.sharedApplication().setStatusBarStyle(.Default, animated: true)
+        presenter.attachView(self)
+        activityIndicator = IGActivityIndicatorView(inview: view, messsage: "Saving")
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         presenter.detachView(self)
+        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: true)
     }
     
     private func setTextFieldDelegates() {
@@ -214,9 +215,6 @@ class EditProfileViewController: UIViewController {
 
 extension EditProfileViewController: EditProfileView {
     /** Standard Show and Hide loading
-     *  Not being used in current iteration, but since we are following
-     *  The presenter pattern for the rest of the app, this is set up to
-     *  deal with growing complexity
      */
     func showLoading() {
         dispatch_async(GlobalMainQueue, {

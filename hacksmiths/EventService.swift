@@ -126,7 +126,12 @@ class EventService {
             }
         }
     }
-    
+    /** Create the participant model from JSON array
+     *
+     *  @param participantJSONArray - an array of JSON objects for the participant
+     *  @param event - the event to store the participants for
+     *  @return None
+     */
     private func createParticipantModel(participantJSONArray: [ParticipantJSON], event: Event) {
         let participants = participantJSONArray.map({participant in
             return Participant(participantJson: participant, context: GlobalStackManager.SharedManager.sharedContext)
@@ -145,6 +150,12 @@ class EventService {
         })
     }
     
+    /** Create the participant model for the event
+     *
+     *  @param organizationJSON - the json returned for an Event's organization
+     *  @param eventID - the id of the event
+     *  @return Organization? The Orgization managed object model
+     */
     private func createOrganizationModel(organizationJSON: OrganizationJSON, eventID: String) -> Organization? {
         let organization = Organization(organizationJSON: organizationJSON, eventID: eventID, context: GlobalStackManager.SharedManager.sharedContext)
         
