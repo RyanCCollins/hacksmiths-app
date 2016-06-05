@@ -7,7 +7,8 @@
 //
 
 import Gloss
-
+/** Model for storing the participants of events
+ */
 struct ParticipantJSON: Decodable {
     let idString: String
     let profileURL: String

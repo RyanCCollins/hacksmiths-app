@@ -31,33 +31,28 @@ class Person: NSManagedObject {
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
     }
-
     
-    /* Custom init */
+    /** Initialize the core data managed object
+     *
+     *  @param dictionary - a Dictionary containing the person's information
+     *  @param context - the managed object context
+     *  @return None
+     */
     init(dictionary: [String : AnyObject], context: NSManagedObjectContext) {
         
-        /* Get associated entity from our context */
         let entity = NSEntityDescription.entityForName("Person", inManagedObjectContext: context)
-        
-        /* Super, get to work! */
         super.init(entity: entity!, insertIntoManagedObjectContext: context)
-        
-        /* Assign our properties */
         let name = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.name] as! [String : AnyObject]
         id = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData._id] as! String
-        
-        // In case the API incidentally does not have a firstname or lastname field.
-        // Protect against nil values.
         if let lname = name["last"] as? String, fname = name["first"] as? String {
             lastName = lname
             firstName = fname
         }
-    
         if let userEmail = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.email] as? String {
             email = userEmail
         }
         
-        //* Bio comes in markdown, although that should likely be changed.
+        //* Bio comes in markdown, so remove the html and save it
         if let userBio = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.bio] as? [String : AnyObject] {
             let theBio = userBio["html"] as! String
             self.bio = theBio.stringByRemovingHTML()
@@ -66,15 +61,15 @@ class Person: NSManagedObject {
         if let photoDictionary = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.photo] as? [String : AnyObject] {
             avatarURL = photoDictionary["url"] as? String
             avatarFilePath = avatarURL?.lastPathComponent
-            print(">>>Saving photo with url of \(avatarURL) with filepath of \(avatarFilePath)")
         }
+        
         if let leadershipStatus = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.isLeader] as? Bool {
             isLeader = leadershipStatus
         } else {
             isLeader = false
         }
         
-        // Will never be nil since default is set for these.
+        // Will never be nil since default is set for these on the API
         isPublic = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Profile.isPublic] as! Bool
         isTopContributor = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Meta.isTopContributor] as! Bool
         sortPriority = dictionary[HacksmithsAPIClient.JSONResponseKeys.MemberData.Meta.sortPriority] as? NSNumber
@@ -147,12 +142,16 @@ class Person: NSManagedObject {
         }
     }
     
+    /** Computed property for full name of person
+     */
     var fullName: String? {
         get {
             return "\(firstName) \(lastName)"
         }
     }
     
+    /** Computed property for the person's image
+     */
     var image: UIImage? {
         get {
             guard avatarFilePath != nil else {
@@ -169,6 +168,8 @@ class Person: NSManagedObject {
         }
     }
     
+    /** Computed property for the person's github url
+     */
     var githubURL: NSURL? {
         get {
             guard githubUsername != nil else {
@@ -180,6 +181,8 @@ class Person: NSManagedObject {
         }
     }
     
+    /** Computed property for the person's twitter url
+     */
     var twitterURL: NSURL? {
         get {
             guard twitterUsername != nil else {

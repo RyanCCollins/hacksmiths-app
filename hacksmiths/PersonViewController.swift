@@ -30,14 +30,11 @@ class PersonViewController: UIViewController {
     
     /** MARK: Life cycle methods
      */
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        personPresenter.attachView(self)
-    }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.Default, animated: true)
+        personPresenter.attachView(self)
         if let person = person {
             personPresenter.setPerson(person)
         } else {
@@ -57,21 +54,20 @@ class PersonViewController: UIViewController {
      *  @return None
      */
     @IBAction func didTapButtonUpInside(sender: AnyObject) {
-        switch sender.tag {
-        case 1:
+        let button = PersonButton(rawValue: sender.tag)
+        switch button! {
+        case .TwitterButton:
             if let url = twitterUrl {
                 handleOpenURL(url)
             }
-        case 2:
+        case .GithubButton:
             if let url = githubUrl {
                 handleOpenURL(url)
             }
-        case 3:
+        case .WebsiteButton:
             if let url = websiteUrl {
                 handleOpenURL(url)
             }
-        default:
-            break
         }
     }
     
@@ -135,4 +131,9 @@ extension PersonViewController: PersonView {
         self.debugLabel.hidden = false
     }
     
+    private enum PersonButton: Int {
+        case TwitterButton = 1,
+             GithubButton,
+             WebsiteButton
+    }
 }

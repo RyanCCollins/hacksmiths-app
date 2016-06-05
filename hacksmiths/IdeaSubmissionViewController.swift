@@ -115,6 +115,10 @@ class IdeaSubmissionViewController: UIViewController {
         guard ideaTitleTextField.text != nil && ideaDescriptionTextView.text != nil else {
             return false
         }
+        guard ideaTitleTextField.text?.length > 0 && ideaDescriptionTextView.text.length > 0 else {
+            return false
+        }
+        
         return true
     }
     
