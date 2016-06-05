@@ -6,7 +6,9 @@
 //  Copyright © 2016 Hacksmiths. All rights reserved.
 //
 
-/* As you can see above, I did not write this. The iOS Team lead of Hacksmiths, my group, did. */
+/* As you can see above, I did not write this. The iOS Team lead of Hacksmiths, my group, did. 
+ *  I added a few convenience methods and expanded upon it.  Will be submit as a cocoapod when we are done with the project.
+ */
 
 import UIKit
 import Foundation

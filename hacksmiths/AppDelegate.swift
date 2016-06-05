@@ -46,12 +46,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let aps = userInfo["aps"] as! [String: AnyObject]
         /* Check for new events when they are sent */
         if (aps["new-event"] as? NSString)?.integerValue == 1 {
-            print("Notification received")
+            print("Notification received for new event")
+            
         }
-    }
-    
-    func handleOpeningToNewEvent() {
-        
     }
     
     /** Save the user's device token to user defaults to be used later.

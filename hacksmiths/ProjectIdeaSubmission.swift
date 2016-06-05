@@ -40,6 +40,7 @@ class ProjectIdeaSubmission: NSManagedObject {
         self.idString = idString
         self.user = ideaSubmissionJson.user
         self.event = ideaSubmissionJson.event
+        self.title = ideaSubmissionJson.idea.title
         self.descriptionString = ideaSubmissionJson.idea.description
         if let additionalInformation = ideaSubmissionJson.idea.additionalInformation {
             self.additionalInformation = additionalInformation

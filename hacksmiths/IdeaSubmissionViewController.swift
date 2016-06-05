@@ -27,7 +27,6 @@ class IdeaSubmissionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         activityIndicator = IGActivityIndicatorView(inview: view, messsage: "Loading")
-        ideaSubmissionPresenter.attachView(self)
         performViewSetup()
     }
     
@@ -94,7 +93,7 @@ class IdeaSubmissionViewController: UIViewController {
         let title = ideaTitleTextField.text
         let description = ideaDescriptionTextView.text
         let additionalInformation = additionalInformationTextField.text
-        
+        print("title: \(title) description: \(description) additionalInfomration: \(additionalInformation)")
         switch submissionStatus {
         case .New:
             ideaSubmissionPresenter.submitIdeaToAPI(title!, description: description!, additionalInformation: additionalInformation, currentEvent: currentEvent!)

@@ -23,8 +23,12 @@ class Organization: NSManagedObject {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
     }
     
-    /** Custom init 
+    /** Organization managed object model initializer
      *
+     *  @param organizationJSON - the JSON object downloaded through the API
+     *  @param eventID: String - the event id
+     *  @param context - the NSManagedObjectContext
+     *  @return None
      */
     init(organizationJSON: OrganizationJSON, eventID: String, context: NSManagedObjectContext) {
         

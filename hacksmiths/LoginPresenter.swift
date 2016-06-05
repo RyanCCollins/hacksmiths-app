@@ -16,7 +16,8 @@ protocol LoginView {
     func unsubscribeToKeyboardNotifications()
 }
 
-
+/** Login presenter - following the MVP pattern for the login view.
+ */
 class LoginPresenter: NSObject {
     private var loginView: LoginView?
     

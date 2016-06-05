@@ -18,7 +18,6 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var onepasswordButton: UIButton!
     
     private let loginPresenter = LoginPresenter()
-    var has1PasswordLogin: Bool = false
     var activityIndicator: IGActivityIndicatorView!
     
     /** MARK: Lifecycle methods
@@ -32,11 +31,6 @@ class LoginViewController: UIViewController {
         setTextFieldDelegates()
     }
     
-    func setTextFieldDelegates(){
-        usernameTextField.delegate = self
-        passwordTextField.delegate = self
-    }
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         loginPresenter.attachView(self)
@@ -45,6 +39,11 @@ class LoginViewController: UIViewController {
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         loginPresenter.detachView()
+    }
+    
+    func setTextFieldDelegates(){
+        usernameTextField.delegate = self
+        passwordTextField.delegate = self
     }
     
     /** Setup the activity indicator within the view
@@ -75,14 +74,26 @@ class LoginViewController: UIViewController {
         self.onepasswordButton.hidden = !OnePasswordExtension.sharedExtension().isAppExtensionAvailable()
     }
     
+    /** When the user taps the 1 password button, find a login from 1Password
+     *
+     *  @param sender - AnyObject - the Sender that sent the message
+     *  @return None
+     */
     @IBAction func didTapOnePasswordButtonUpInside(sender: AnyObject) {
         findLoginFrom1Password(sender)
     }
-
+    
+    /** Dismiss the login view when login was successful
+     *
+     *  @param loginWasSuccessful: Bool whether the login succeeded
+     *  @return None
+     */
     func dismissLoginView(loginWasSuccessful: Bool) {
         /* If we successfully logged in, send a notification that says the login was successful */
         if loginWasSuccessful {
             let loginWasSuccessful = NSNotification(name: Notifications.LoginWasSuccessful, object: self)
+            /** In case anyone wants to know that the login was successful
+             */
             NSNotificationCenter.defaultCenter().postNotification(loginWasSuccessful)
         }
         /* Dismiss the login view with animation */
@@ -120,16 +131,15 @@ class LoginViewController: UIViewController {
             }
             
             if let foundUsername = loginDictionary?[AppExtensionUsernameKey] as? String, foundPassword = loginDictionary?[AppExtensionPasswordKey] as? String {
-                
                 self.passwordTextField.text = foundPassword
                 self.usernameTextField.text = foundUsername
-                
                 self.loginPresenter.authenticateUser(foundUsername, password: foundPassword)
             }
         })
     }
     
-    
+    /** Determine if credentials are empty or not to set the next button as active and handle login
+     */
     func credentialsAreNotEmpty() -> Bool{
         if (usernameTextField.text == "" || passwordTextField.text == "") {
             return false
@@ -138,6 +148,11 @@ class LoginViewController: UIViewController {
         }
     }
     
+    /** Find saved credentials for a user if there are any.
+     *
+     *  @param sender - the sender that sent the event
+     *  @return None
+     */
     func findSavedCredentials(sender: AnyObject){
         OnePasswordExtension.sharedExtension().findLoginForURLString("http://hacksmiths.io", forViewController: self, sender: sender, completion: { (loginDictionary, error) -> Void in
             if loginDictionary == nil {
@@ -149,7 +164,6 @@ class LoginViewController: UIViewController {
             /** If a username is found in the login dictionary, handle it
              */
             if let foundUsername = loginDictionary?[AppExtensionUsernameKey] as? String, foundPassword = loginDictionary?[AppExtensionPasswordKey] as? String {
-                
                 self.passwordTextField.text = foundPassword
                 self.usernameTextField.text = foundUsername
                 self.loginPresenter.authenticateUser(foundUsername, password: foundPassword)
@@ -173,6 +187,12 @@ extension LoginViewController: LoginView {
         })
     }
     
+    /** Presenter View method for handling login
+     *
+     *  @param didSucceed: Bool - whether the login succeede on the API
+     *  @param didFail error - An error if the login did fail on the API.
+     *  @return None
+     */
     func didLogin(didSucceed: Bool, didFail error: NSError?) {
         finishLoading()
         if error != nil {
@@ -198,7 +218,6 @@ extension LoginViewController: LoginView {
 extension LoginViewController: UITextFieldDelegate {
     /* Configure and deselect text fields when return is pressed */
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        print("Text Field: \(textField.tag)")
         let textField = TextFields(rawValue: textField.tag)
         switch textField! {
         case .Email:
