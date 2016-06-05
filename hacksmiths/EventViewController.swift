@@ -89,7 +89,7 @@ class EventViewController: UIViewController {
     func setupUserInterface(forEvent event: Event) {
         dispatch_async(GlobalMainQueue, {
 
-            self.eventImageView.image = event.image
+            
             self.headerLabel.text = event.title
             
             self.aboutTextView.text = event.descriptionString
@@ -116,14 +116,17 @@ class EventViewController: UIViewController {
     func setupSectionOne(forEvent event: Event) {
         dispatch_async(GlobalMainQueue, {
             if let imageURL = event.featureImageURL {
-                self.eventImageView.downloadedFrom(link: imageURL, contentMode: .ScaleAspectFit)
+                if event.image != nil {
+                    self.eventImageView.image = event.image
+                } else {
+                    self.eventImageView.downloadedFrom(link: imageURL, contentMode: .ScaleAspectFit)
+                }
                 self.eventImageView.fadeIn()
             }
             
             self.headerLabel.fadeIn()
             self.eventInfoStackView.fadeIn()
             self.aboutEventStackView.fadeIn()
-            
         })
     }
     
@@ -147,9 +150,7 @@ class EventViewController: UIViewController {
                     self.organizationWebsiteButton.setTitle(website, forState: .Normal)
                 }
             })
-            
             self.showOrganizationUI(forEvent: event)
-            
         } else {
             dispatch_async(GlobalMainQueue, {
                 self.eventOrganizationNotFoundLabel.hidden = false
@@ -158,6 +159,11 @@ class EventViewController: UIViewController {
         }
     }
     
+    /** Show the UI for an organization via the event
+     *
+     *  @param event - the event for which the organization is related
+     *  @return None
+     */
     func showOrganizationUI(forEvent event: Event) {
         dispatch_async(GlobalMainQueue, {
             self.eventOrganizationHeaderStackView.fadeIn()
@@ -211,6 +217,11 @@ class EventViewController: UIViewController {
         }
     }
     
+    /** toggle the button title based on the authenticated state of the user
+     *
+     *  @param authenticate - whether the user is authenticated
+     *  @return None
+     */
     func toggleButtonTitle(forAuthenticatedState authenticated: Bool){
         if authenticated {
             registerSignupButton.setTitle("RSVP", forState: .Normal)
@@ -409,7 +420,7 @@ extension EventViewController: UICollectionViewDelegate, UICollectionViewDataSou
                 return participant.event == event
             })
         }
-        return eventParticipants != nil ? eventParticipants : nil
+        return eventParticipants
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

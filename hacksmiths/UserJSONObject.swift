@@ -8,53 +8,9 @@
 
 import Gloss
 
-
-struct UserKeys {
-    static let id = "_id"
-    static let bio = "bio"
-    static let email = "email"
-    static let website = "website"
-    static let isPublic = "isPublic"
-    static let photo = "photo.url"
-    static let notifications = "notifications"
-    static let mobile = "mobile"
-    static let mentoring = "mentoring"
-    static let name = "name"
-    static let availability = "availability"
-    static let dateUpdated = "dateUpdated"
-}
-struct BioKeys {
-    static let md = "md"
-}
-
-struct NameKeys {
-    static let first = "first"
-    static let last = "last"
-}
-
-struct AvailabilityKeys {
-    static let isAvailableForEvents = "isAvailableForEvents"
-    static let description = "description.md"
-}
-
-
-struct MentoringKeys {
-
-    static let available = "available"
-    static let needsAMentor = "needsAMentor"
-    static let experience = "experience"
-    static let want = "want"
-}
-
-struct NotificationKeys {
-    static let mobile = "mobile"
-    static let deviceToken = "deviceToken"
-}
-
-/* - Working with the rest of the data types here, the UserJSONObject takes user data
- *   and returns a User object to be posted to the API for profile update.
- * - parameters - UserData object, containing all required and any optional fields
- * - return - JSON structured exactly in the way the API is looking for it.
+/*  Working with the rest of the data structures here, the UserJSONObject takes user data
+ *  and returns a User object to be posted to the API for profile update. It takes care of
+ *  Serializing and deserializing back and forth from Core Data to the API.
  */
 struct UserJSONObject: Glossy {
     let user: UserProfileJSON
@@ -82,9 +38,8 @@ struct UserJSONObject: Glossy {
 }
 
 
-/* - Encodes user's profile data as JSON for communicating with the API
- * - parameters - UserData object, containing all required and any optional fields
- * - return - JSON structured exactly in the way the API is looking for it.
+/** Encode the user data object for profile, serializing and deserializing
+ *  from JSON to core data model
  */
 struct UserProfileJSON: Glossy {
     let id: String
@@ -100,6 +55,11 @@ struct UserProfileJSON: Glossy {
     let photo: String?
     let dateUpdated: String?
     
+    /** Initialize the JSON object from json returned from API
+     *
+     *  @param json - the JSON object to deserialize
+     *  @return None
+     */
     init?(json: JSON) {
         guard let name: JSON = UserKeys.name <~~ json,
               let id: String = UserKeys.id <~~ json,
@@ -137,6 +97,11 @@ struct UserProfileJSON: Glossy {
         self.id = id
     }
     
+    /** Serialize the data from the UserData object to json to be submit to API
+     *
+     *  @param userData - the User core data model object
+     *  @return None
+     */
     init(userData: UserData) {
         self.name = NameJSON(userData: userData)
         self.bio = BioJSON(userData: userData)
@@ -172,14 +137,17 @@ struct UserProfileJSON: Glossy {
     }
 }
 
-/* - NameJSON object, represents the complexity of how the data is stored on the API
- * - parameters - JSON or UserData to provide two way serialization.
- * - return - JSON data structured for API calls.
+/** Serialize / Deserialize the Name object for a user
  */
 struct NameJSON: Glossy {
     var firstname: String
     var lastname: String
     
+    /** Initialize the name object from json
+     *
+     *  @param json - the JSON data returned from the API
+     *  @return None
+     */
     init?(json: JSON) {
         guard let first: String = NameKeys.first <~~ json,
             let last: String = NameKeys.last <~~ json else {
@@ -189,6 +157,11 @@ struct NameJSON: Glossy {
         self.lastname = last
     }
     
+    /** Serialize the User Data as JSON for the name object
+     *
+     *  @param userData - the UserData to serialize
+     *  @return None
+     */
     init(userData: UserData) {
         let name = userData.name
         let nameArray = name.componentsSeparatedByString(" ")
@@ -215,14 +188,18 @@ struct NameJSON: Glossy {
     }
 }
 
-/* Availability JSON creates a JSON object that the API will understand for posting profile updates
- * @param - UserData object, containing all required and any optional fields for availability
- * @return - JSON structured exactly in the way the API is looking for it.
+
+/** Serialize and deserialize the user's availability data from API to Core Data model
  */
 struct AvailabilityJSON: Glossy {
     let isAvailableForEvents: Bool
     let descriptionString: String?
     
+    /** Initialize the JSON object from json returned from the API
+     *
+     *  @param json - the json data returned from the API
+     *  @return None
+     */
     init?(json: JSON) {
         if let isAvailable: Bool = AvailabilityKeys.isAvailableForEvents <~~ json {
             self.isAvailableForEvents = isAvailable
@@ -237,10 +214,10 @@ struct AvailabilityJSON: Glossy {
         }
     }
     
-    /** Initialize the availabi
+    /** Initialize the availability model for user
      *
-     *  @param
-     *  @return
+     *  @param userData - the userData to serialize
+     *  @return None
      */
     init(userData: UserData) {
         self.isAvailableForEvents = userData.isAvailableForEvents
@@ -264,12 +241,20 @@ struct AvailabilityJSON: Glossy {
  * - parameters - UserData object, containing all required and any optional fields
  * - return - JSON structured exactly in the way the API is looking for it.
  */
+/** Serialize the user's profile data as JSON for communication with API.
+ *  Deserialize from JSON to core data model
+ */
 struct MentoringJSON: Glossy {
     let available: Bool
     let needsAMentor: Bool
     let experience: String?
     let want: String?
     
+    /** Desiarilize json from API
+     *
+     *  @param json - the JSON object for mentoring data from the API
+     *  @return None
+     */
     init?(json: JSON) {
         self.available = (MentoringKeys.available <~~ json)!
         self.needsAMentor = (MentoringKeys.needsAMentor <~~ json)!
@@ -278,6 +263,11 @@ struct MentoringJSON: Glossy {
         self.want = MentoringKeys.want <~~ json
     }
     
+    /** Serialize user data as JSON to communicate with the API
+     *
+     *  @param userData - the user Data to serialize
+     *  @return None
+     */
     init(userData: UserData) {
         self.available = userData.isAvailableAsAMentor
         self.needsAMentor = userData.needsAMentor
@@ -304,15 +294,17 @@ struct MentoringJSON: Glossy {
     }
 }
 
-/* - Encodes notifications to JSON for posting to API
- * - parameters - mobile, Bool telling if the user's mobile notifications are on or off.
- * - return - JSON structured exactly in the way the API is looking for it for Notifications
+/** Serialize and deserialize the notifications to JSON for posting to the API
  */
-
 struct NotificationJSON: Glossy {
     var mobile: Bool
     var deviceToken: String?
     
+    /** Initialize the JSON object
+     *
+     *  @param json - the JSON from the API
+     *  @return None
+     */
     init?(json: JSON) {
         guard let mobileNotifications: Bool = NotificationKeys.mobile <~~ json else {
             return nil
@@ -325,6 +317,11 @@ struct NotificationJSON: Glossy {
         }
     }
     
+    /** Initialize JSON from User Data
+     *
+     *  @param userData - the UserData to encode as JSON
+     *  @return None
+     */
     init(userData: UserData) {
         self.mobile = userData.mobileNotifications
         
@@ -345,12 +342,10 @@ struct NotificationJSON: Glossy {
 }
 
 
-/* - Encodes the user's bio to JSON to post to API
- * - parameters - Bio string in md format
- * - return - JSON structured exactly in the way the API is looking for it for bio.
+
+/** Encodes the user's bio to JSON to post to API
  */
 struct BioJSON: Glossy {
-    
     let md: String?
     
     /* Allow initialization with userData, making bridging between core data and API seemless */
@@ -370,4 +365,48 @@ struct BioJSON: Glossy {
             "md" ~~> self.md
         ])
     }
+}
+
+/** Keys that are used in the User JSON Object on the API. 
+ *  Maps nicely to the data stored in the UserJSONObject
+ */
+struct UserKeys {
+    static let id = "_id"
+    static let bio = "bio"
+    static let email = "email"
+    static let website = "website"
+    static let isPublic = "isPublic"
+    static let photo = "photo.url"
+    static let notifications = "notifications"
+    static let mobile = "mobile"
+    static let mentoring = "mentoring"
+    static let name = "name"
+    static let availability = "availability"
+    static let dateUpdated = "dateUpdated"
+}
+
+struct BioKeys {
+    static let md = "md"
+}
+
+struct NameKeys {
+    static let first = "first"
+    static let last = "last"
+}
+
+struct AvailabilityKeys {
+    static let isAvailableForEvents = "isAvailableForEvents"
+    static let description = "description.md"
+}
+
+struct MentoringKeys {
+    static let available = "available"
+    static let needsAMentor = "needsAMentor"
+    static let experience = "experience"
+    static let want = "want"
+}
+
+struct NotificationKeys {
+    static let mobile = "mobile"
+    static let deviceToken = "deviceToken"
 }

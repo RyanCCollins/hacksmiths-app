@@ -32,8 +32,6 @@ class EventFetcher {
                 } else {
                     resolve(nil)
                 }
-            } catch let error as NSError {
-                reject(error)
             }
         }
     }
@@ -58,8 +56,6 @@ class EventFetcher {
                 } else {
                     resolve(nil)
                 }
-            } catch let error as NSError {
-                reject(error)
             }
         }
     }

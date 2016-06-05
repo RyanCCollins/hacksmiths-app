@@ -30,13 +30,13 @@ class CommunityViewController: UITableViewController {
         
         self.activityIndicator = IGActivityIndicatorView(inview: view, messsage: "Loading")
         configureRefreshControl()
-        self.communityPresenter.attachView(self, personService: personService)
         self.communityPresenter.fetchCommunityMembers()
         setupSearchContoller()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        self.communityPresenter.attachView(self, personService: personService)
         /** Set the status bar to default so that it shows over the light view
          */
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.Default, animated: true)
@@ -47,6 +47,7 @@ class CommunityViewController: UITableViewController {
         super.viewWillDisappear(animated)
         /** Set the status bar back to white when leaving the view
          */
+        self.communityPresenter.detachView(self)
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
     }
     
@@ -86,7 +87,7 @@ class CommunityViewController: UITableViewController {
         } catch let error as NSError {
             self.alertController(withTitles: ["OK", "Retry"], message: error.localizedDescription, callbackHandler: [nil, {Void in
                 self.performFetch()
-                }])
+            }])
         }
         
     }
@@ -156,13 +157,11 @@ extension CommunityViewController {
     /** Return the number of items in each section based on the items in the Fetched Results Controller.
      */
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            // Initialize count with zero
+            // Initialize the section title based on the section number passed in
             let sectionTitle = SectionTitle(rawValue: section)
-            
             switch sectionTitle! {
             case .Leaders:
                 return fetchedResultsController.fetchedObjects!.count
-                
             case .Community:
                 return communityFetchResultsController.fetchedObjects!.count
         }
@@ -202,6 +201,7 @@ extension CommunityViewController {
         }
         dispatch_async(GlobalMainQueue, {
             cell.showImage(person!.image)
+            cell.setNeedsLayout()
             cell.nameLabel.text = person!.fullName
             cell.aboutLabel.text = person!.bio
         })

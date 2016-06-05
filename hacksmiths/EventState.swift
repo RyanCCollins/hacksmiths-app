@@ -6,7 +6,7 @@
 //  Copyright © 2016 Tech Rapport. All rights reserved.
 //
 
-/* Determination of Event state from API values */
+/* Determination of Event state from API values. API also returns a Bool active key */
 enum EventState: String {
     case Draft = "draft"
     case Past = "past"

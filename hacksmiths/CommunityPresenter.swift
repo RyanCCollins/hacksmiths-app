@@ -13,6 +13,7 @@ protocol CommunityView {
     func startLoading()
     func finishLoading()
     func fetchCommunity(sender: CommunityPresenter, didSucceed: Bool, didFailWithError error: NSError?)
+    func didFetchImages(sender: CommunityPresenter, didSucceed: Bool, didFail error: NSError?)
 }
 
 /** Community presenter for following MVP pattern
@@ -52,5 +53,13 @@ class CommunityPresenter {
             }.error{error in
                 self.communityView?.fetchCommunity(self, didSucceed: false, didFailWithError: error as NSError)
             }
+    }
+    
+    private func fetchCommunityImages(people: [Person]) {
+        personService?.fetchImages(forPeople: people).then() { _ in
+            self.communityView?.didFetchImages(self, didSucceed: true, didFail: nil)
+        }.error {error in
+            self.communityView?.didFetchImages(self, didSucceed: false, didFail: error as NSError)
+        }
     }
 }

@@ -46,21 +46,32 @@ class PersonService {
      *  @param memberArray - A dictionary containing the member data
      *  @return Promise<[Person]> - A promise of an array for the managed object model for person.
      */
-    func parseMemberArray(memberArray: [JsonDict]) -> Promise<AnyObject> {
+    private func parseMemberArray(memberArray: [JsonDict]) -> Promise<[Person?]> {
+        return Promise{resolve, reject in
             let members: [Person] = memberArray.map{member in
                 let person = Person(dictionary: member, context: GlobalStackManager.SharedManager.sharedContext)
                 return person
             }
-            var imagePromise : Promise<AnyObject> = Promise<AnyObject>("promise")
-            for person in members {
-                imagePromise = imagePromise.then{ _ in
-                    return Promise{resolve, reject in
-                        person.fetchImages().then() {Void in
-                            resolve()
-                        }
+            resolve(members)
+        }
+    }
+    
+    /** Promise of image fetching for the members.
+     *
+     *  @param
+     *  @return
+     */
+    func fetchImages(forPeople people: [Person]) -> Promise<AnyObject> {
+        var promise: Promise<AnyObject> = Promise<AnyObject>("Promise")
+        for person in people {
+            promise = promise.then() {_ in
+                return Promise{resolve, reject in
+                    person.fetchImages().then(){
+                        resolve()
                     }
                 }
             }
-        return imagePromise
+        }
+        return promise
     }
 }
