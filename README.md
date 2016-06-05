@@ -67,7 +67,10 @@ Once installed, open the hacksmiths.xcworkspace file, select your device and bui
 NOTE: opening the .xcodeproj file will NOT work because it will not load the Cocoapod dependencies.
 
 ### API Keys
-The app contains a Plist file with API Keys.  For obvious reasons, I cannot distribute these.  Please reference the included ApiKeysDist.plist file.  Copying this to ApiKeys.plist will likely allow the app to be run, although some API functions will not work.
+The app contains a Plist file with API Keys.  For obvious reasons, I cannot distribute these.  Please reference the included ApiKeysDist.plist file.  Copying this to ApiKeys.plist will likely allow the app to be run, although some API functions will not work.  To copy the file, run the following command from the root directory of the project.
+```
+cp APIKeysDist.plist APIKeys.plist
+```
 
 ## Fastlane
 This app is setup to utilize fastlane to automate the App Store Submission.  There are fastlane configuration files included with the repository.
