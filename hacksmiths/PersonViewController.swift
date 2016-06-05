@@ -71,6 +71,7 @@ class PersonViewController: UIViewController {
         }
     }
     
+    
     /** Handle opening a URL by the app delegate when a button is tapped.
      */
     func handleOpenURL(url: NSURL) {
@@ -78,42 +79,15 @@ class PersonViewController: UIViewController {
     }
 }
 
-/* MARK: Presenter protocol */
-extension PersonViewController: PersonView {
-    /** Configure view for the current person
+/** An extension for setting the views for the view controller
+ */
+extension PersonViewController {
+    /** Set website button for a person
      *
-     *  @param person - the Person for whom the view is being configured.
+     *  @param person - the person to set the website for
      *  @return None
      */
-    func configureView(forPerson person: Person) {
-        
-        if person.image != nil {
-            avatarView.userImage = person.image
-            avatarView.hidden = false
-        }
-        
-        if person.fullName != nil {
-            nameLabel.text = person.fullName
-            nameLabel.hidden = false
-        }
-        
-        if let bio = person.bio {
-            descriptionLabel.text = bio
-            descriptionLabel.hidden = false
-        }
-        
-        if let twitterUsername = person.twitterUsername {
-            twitterUrl = person.twitterURL
-            let title = "@\(twitterUsername)"
-            twitterButton.setTitle(title, forState: .Normal)
-            twitterStackView.hidden = false
-        }
-        if let githubUsername = person.githubUsername {
-            githubUrl = person.githubURL
-            githubButton.setTitle(githubUsername, forState: .Normal)
-            githubStackView.hidden = false
-        }
-        
+    func setWebsite(forPerson person: Person) {
         if let website = person.website {
             if website.length > 0 {
                 websiteStackView.hidden = false
@@ -126,6 +100,91 @@ extension PersonViewController: PersonView {
         }
     }
     
+    /** Setup the github button for a person
+     *
+     *  @param person - the person to set the github button up for
+     *  @return None
+     */
+    func setGithub(forPerson person : Person) {
+        if let githubUsername = person.githubUsername {
+            githubUrl = person.githubURL
+            githubButton.setTitle(githubUsername, forState: .Normal)
+            githubStackView.hidden = false
+        }
+    }
+    
+    /** Set the twitter button for the person
+     *
+     *  @param person - the person to set the button for
+     *  @return None
+     */
+    func setTwitter(forPerson person : Person) {
+        if let twitterUsername = person.twitterUsername {
+            twitterUrl = person.twitterURL
+            let title = "@\(twitterUsername)"
+            twitterButton.setTitle(title, forState: .Normal)
+            twitterStackView.hidden = false
+        }
+    }
+    
+    /** Set the bio up for the person
+     *
+     *  @param person - the person to setup the bio for.
+     *  @return None
+     */
+    func setBio(forPerson person: Person) {
+        if let bio = person.bio {
+            descriptionLabel.text = bio
+            descriptionLabel.hidden = false
+        }
+    }
+    
+    /** Set the name for the person
+     *
+     *  @param person - the person to set the name for
+     *  @return None
+     */
+    func setName(forPerson person : Person) {
+        if person.fullName != nil {
+            nameLabel.text = person.fullName
+            nameLabel.hidden = false
+        }
+    }
+    
+    /** Set the image for the person
+     *
+     *  @param person - the person to set the image for
+     *  @return None
+     */
+    func setImage(forPerson person : Person) {
+        if person.image != nil {
+            avatarView.userImage = person.image
+            avatarView.hidden = false
+        }
+    }
+}
+
+/* MARK: Presenter protocol */
+extension PersonViewController: PersonView {
+    /** Configure view for the current person
+     *
+     *  @param person - the Person for whom the view is being configured.
+     *  @return None
+     */
+    func configureView(forPerson person: Person) {
+        setImage(forPerson: person)
+        setName(forPerson: person)
+        setBio(forPerson: person)
+        setTwitter(forPerson: person)
+        setGithub(forPerson: person)
+        setWebsite(forPerson: person)
+    }
+    
+    /** Set a debug message in case something bad happend
+     *
+     *  @param message - the message to set
+     *  @return None
+     */
     func configureDebugView(withMessage message: String) {
         self.debugLabel.text = message
         self.debugLabel.hidden = false
