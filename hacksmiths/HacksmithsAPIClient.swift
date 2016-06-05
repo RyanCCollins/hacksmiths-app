@@ -14,7 +14,9 @@ class HacksmithsAPIClient: NSObject {
     var syncInProgress: Bool = false
     
     /* The HacksmithsAPIClient class totally abstracts away all logic for connecting to the HACKSMITHS API for the purposes of
-    * downloading data
+    *  downloading data
+    *  NOTE: At an earlier point in time, this file was used for mose API calls.  That got messy fast, so I implemented a much more elegant solution
+    *  Using alamofire, Gloss for JSON parsing, etc.  All of this is totally abstracted out into various model classes and structs throughout the project.
     */
     
     /* Task returned for GETting data from the server */
@@ -115,91 +117,35 @@ class HacksmithsAPIClient: NSObject {
         print(urlString)
         
         request.HTTPMethod = HTTPRequest.POST
-    
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
         do {
-            
             request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(JSONBody, options: .PrettyPrinted)
         } catch {
-            
             request.HTTPBody = nil
             completionHandler(success: false, result: nil, error: Errors.constructError(domain: "HacksmithsAPI", userMessage: ErrorMessages.JSONSerialization))
-            
         }
-        
         /* Create a session and then a task.  Parse results if no error. */
         let session = NSURLSession.sharedSession()
         
         let task = session.dataTaskWithRequest(request) { data, response, error in
-            
             if error != nil {
-                
                 completionHandler(success: false, result: nil, error: Errors.constructError(domain: "HacksmithsAPI", userMessage: ErrorMessages.Status.Network))
-                
             } else {
-                
                 /* GUARD: Did we get a successful response code in the realm of 2XX? */
                 self.guardForHTTPResponses(response as? NSHTTPURLResponse) {proceed, error in
                     if error != nil {
-                        
                         completionHandler(success: false, result: nil, error: error)
-                        
                     }
                 }
-                
                 /* Parse the results and return in the completion handler with an error if there is one. */
                 HacksmithsAPIClient.parseJSONDataWithCompletionHandler(data!, completionHandler: completionHandler)
-                
             }
         }
         task.resume()
         return task
     }
-    
-    
-    /* Update a user's location */
-    func taskForPUTMethod(method: String, objectId: String, JSONBody : [String : AnyObject], completionHandler: CompletionHandlerWithResult) -> NSURLSessionDataTask {
-        
-        let urlString = Constants.APIURL + method + "/" + objectId
-        let request = NSMutableURLRequest(URL: NSURL(string: urlString)!)
-        request.HTTPMethod = HTTPRequest.PUT
-
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        
-        do {
-            request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(JSONBody, options: .PrettyPrinted)
-        } catch {
-            request.HTTPBody = nil
-            completionHandler(success: false, result: nil, error: Errors.constructError(domain: "HacksmithsAPIClient", userMessage: ErrorMessages.JSONSerialization))
-            
-        }
-        
-        /*Create a session and then a task.  Parse results if no error. */
-        let session = NSURLSession.sharedSession()
-        let task = session.dataTaskWithRequest(request) { data, response, error in
-            if error != nil {
-                completionHandler(success: false, result: nil, error: Errors.constructError(domain: "HacksmithsAPIClient", userMessage: ErrorMessages.Status.Network))
-            } else {
-                /* GUARD: Did we get a successful response code of 2XX? */
-                self.guardForHTTPResponses(response as? NSHTTPURLResponse) {proceed, error in
-                    if error != nil {
-                        completionHandler(success: false, result: nil, error: error)
-                    }
-                }
-                
-                /* Parse the results and return in the completion handler with an error if there is one. */
-                HacksmithsAPIClient.parseJSONDataWithCompletionHandler(data!, completionHandler: completionHandler)
-                
-            }
-        }
-        task.resume()
-        return task
-        
-    }
-    
     
     /* Helper Function: Convert JSON to a Foundation object */
     class func parseJSONDataWithCompletionHandler(data: NSData, completionHandler: CompletionHandlerWithResult) {
@@ -305,10 +251,4 @@ class HacksmithsAPIClient: NSObject {
     struct Caches {
         static let imageCache = ImageCache()
     }
-    
-    var sharedContext: NSManagedObjectContext {
-        
-        return CoreDataStackManager.sharedInstance().managedObjectContext
-    }
-
 }

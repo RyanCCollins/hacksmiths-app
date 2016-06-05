@@ -29,6 +29,12 @@ class LoginViewController: UIViewController {
         configureLoginButtons()
         configureOnePasswordButton()
         configureActivityIndicator()
+        setTextFieldDelegates()
+    }
+    
+    func setTextFieldDelegates(){
+        usernameTextField.delegate = self
+        passwordTextField.delegate = self
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -192,6 +198,7 @@ extension LoginViewController: LoginView {
 extension LoginViewController: UITextFieldDelegate {
     /* Configure and deselect text fields when return is pressed */
     func textFieldShouldReturn(textField: UITextField) -> Bool {
+        print("Text Field: \(textField.tag)")
         let textField = TextFields(rawValue: textField.tag)
         switch textField! {
         case .Email:

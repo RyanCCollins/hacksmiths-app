@@ -24,6 +24,8 @@ class EventRouter: BaseRouter {
         self.endpoint = endpoint
     }
     
+    /** The HTTP method for the request.
+     */
     override var method: Alamofire.Method {
         switch endpoint {
         case .GetEventStatus: return .GET
@@ -32,6 +34,8 @@ class EventRouter: BaseRouter {
         }
     }
     
+    /** The path for the specific endpoint
+     */
     override var path: String {
         switch endpoint {
         case .GetEventStatus: return "api/app/event-status"
@@ -41,6 +45,8 @@ class EventRouter: BaseRouter {
         }
     }
     
+    /** The parameters to include in the request
+     */
     override var parameters: JsonDict? {
         switch endpoint {
         case .RSVPForEvent(let userID, let event, let participating, let cancel):
@@ -57,6 +63,8 @@ class EventRouter: BaseRouter {
         }
     }
     
+    /** Get and save the current date time for the event
+     */
     var currentDateTime: String {
         let todaysDate:NSDate = NSDate()
         let dateFormatter:NSDateFormatter = NSDateFormatter()
@@ -66,6 +74,8 @@ class EventRouter: BaseRouter {
         return currentDateTimeString
     }
     
+    /** The encoding for the requests.
+     */
     override var encoding: Alamofire.ParameterEncoding? {
         switch endpoint {
         case .GetEvent: return .URL
