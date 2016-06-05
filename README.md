@@ -23,13 +23,17 @@ The app also spotlights the main contributors of the project.  Team leaders and 
   Settings
   The user has a number of settings, available from the Gear button slide out menu.  Tapping these will toggle them on and off both on the device and on the API.
 3. Community / People
+
     The Community Section is one of the highlights of this app.  It shows a list of the Leaders and Community Members of the Hacksmiths in a table view.  The table view can be searched by name using the search bar, which will momentarily reorder the top hit to the top of the list.  Clicking a person will bring you to a Person page that shows that person's public information.  Pulling down the the tableview will reload the list in case there were any changes made on the API.
 4. Event
-    The Event page shows the current event as it is stored on the API.  It shows an overview of information about the event, including the date, place, details, additional marketing information, about the non profit, and finally a list of the participants.  During an Active Event, the user of the app has an opportunity to RSVP to help for an event through the app.  They will be added as a participant when they RSVP.  The final section on the Event page is a collection view containing the participants of the current event.  These are people that RSVPed and the data comes from the API.
+    
+The Event page shows the current event as it is stored on the API.  It shows an overview of information about the event, including the date, place, details, additional marketing information, about the non profit, and finally a list of the participants.  During an Active Event, the user of the app has an opportunity to RSVP to help for an event through the app.  They will be added as a participant when they RSVP.  The final section on the Event page is a collection view containing the participants of the current event.  These are people that RSVPed and the data comes from the API.
 5. Ideas
-    Possibly the most simple section, the Ideas section allows signed in users to submit an idea for a project that will get sent to our API.  At a later point, we will release a mechanism to have our users vote on their favorite ideas.  For now, we are just collecting them.  A user can submit one idea per event.  The idea gets sent to the API and will send out an email to the Admins of Hackmsiths.io.
+    
+Possibly the most simple section, the Ideas section allows signed in users to submit an idea for a project that will get sent to our API.  At a later point, we will release a mechanism to have our users vote on their favorite ideas.  For now, we are just collecting them.  A user can submit one idea per event.  The idea gets sent to the API and will send out an email to the Admins of Hackmsiths.io.
 6. About
-    The About section shows some information about the Hacksmiths and the founders.  It will also show a Terms of Service when this app is released to the App Store.
+    
+The About section shows some information about the Hacksmiths and the founders.  It will also show a Terms of Service when this app is released to the App Store.
 
 #### Mentoring
 As our platform grows, we hope that new people will join us to help with our projects. We encourage people of any experience level to join us. Through the [Hacksmiths.io Mentoring Program](http://hacksmiths.io/mentoring), we can match newcomers with a suitable mentor who can help show them the ropes on a real collaborative project.  Please stay tuned for announcements on how this will work.  For now, if you have a profile, check off that you are looking for a mentor and what experience you'd like to gain.
