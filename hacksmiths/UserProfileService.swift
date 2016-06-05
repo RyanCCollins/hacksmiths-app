@@ -6,7 +6,6 @@
 //  Copyright © 2016 Tech Rapport. All rights reserved.
 //
 
-import Foundation
 import Alamofire
 import PromiseKit
 import Gloss

@@ -85,7 +85,6 @@ class UserData: NSManagedObject {
             self.wantsExperience = wantsExperience
         }
         if let photo = json.user.photo {
-            print("Saving photo: \(photo)")
             avatarURL = photo
         }
         
@@ -106,6 +105,11 @@ class UserData: NSManagedObject {
         }
     }
     
+    /** Fetch the image for the person, returning a promise of <Void>
+     *
+     *  @param None
+     *  @return Promise<Void> An empty promise (haha)
+     */
     func fetchImages() -> Promise<Void> {
         return Promise{resolve, reject in
             if avatarURL == nil {
@@ -128,14 +132,10 @@ class UserData: NSManagedObject {
             guard avatarFilePath != nil else {
                 return nil
             }
-            
             return HacksmithsAPIClient.Caches.imageCache.imageWithIdentifier(avatarFilePath!)
         }
         set {
             HacksmithsAPIClient.Caches.imageCache.storeImage(newValue, withIdentifier: avatarFilePath!)
         }
     }
-    
 }
-
-
