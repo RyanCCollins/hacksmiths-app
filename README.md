@@ -106,5 +106,6 @@ If for some reason, you run into issues installing, it's likely due to cocoapods
 If you still have difficulties, please see the [CocoaPods troubleshooting guide](https://guides.cocoapods.org/using/troubleshooting.html)
 
 ## Screenshots
-![Hacksmiths app](https://raw.githubusercontent.com/RyanCCollins/hacksmiths-app/master/IMG_0405_iphone6plus_gold_side2.png)
 ![Hacksmiths landing](https://raw.githubusercontent.com/RyanCCollins/hacksmiths-app/master/IMG_0408%202_iphone6plus_gold_side2.png)
+![Hacksmiths app](https://raw.githubusercontent.com/RyanCCollins/hacksmiths-app/master/IMG_0405_iphone6plus_gold_side2.png)
+![Hacksmiths event](https://raw.githubusercontent.com/RyanCCollins/hacksmiths-app/master/IMG_0406_iphone6plus_gold_side2.png)
