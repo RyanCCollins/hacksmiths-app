@@ -14,13 +14,7 @@ The main feature of the app is to keep people updated with our events and projec
 
 The app also spotlights the main contributors of the project.  Team leaders and top contributors show up on the top of the list in the community section.
 
-### Mentoring
-As our platform grows, we hope that new people will join us to help with our projects. We encourage people of any experience level to join us. Through the [Hacksmiths.io Mentoring Program](http://hacksmiths.io/mentoring), we can match newcomers with a suitable mentor who can help show them the ropes on a real collaborative project.  Please stay tuned for announcements on how this will work.  For now, if you have a profile, check off that you are looking for a mentor and what experience you'd like to gain.
-
-### User sign up
-The application allows for a user to sign up to be a member of our community.  Please note that signing to be a member of the community does not mean that you will participate in a project.  We will have to get to know you a bit first :D.  That said, we encourage anyone to signup.  Please read the [Privacy Policy](http://hacksmiths.io/privacy) policy if you have any concerns.  We will do our best to keep your information private, but please keep in mind that the point of the app and website is to connect people.  If you do not specifically set your profile to public, some of your information will be available through the app and website.
-
-#### Sections of the App
+### Sections of the App
 1. Signup / Register
   The user is greeted with a signup / Registration Screen.  Clicking Sign up will take then through a three step registration process.  Clicking sign in will allow them to sign in.  Registration will create an account for the user on Hacksmiths.io and Sign in will sync the app with the user's profile on the Hacksmiths.io website.
 2. Me
@@ -36,6 +30,12 @@ The application allows for a user to sign up to be a member of our community.  P
     Possibly the most simple section, the Ideas section allows signed in users to submit an idea for a project that will get sent to our API.  At a later point, we will release a mechanism to have our users vote on their favorite ideas.  For now, we are just collecting them.  A user can submit one idea per event.  The idea gets sent to the API and will send out an email to the Admins of Hackmsiths.io.
 6. About
     The About section shows some information about the Hacksmiths and the founders.  It will also show a Terms of Service when this app is released to the App Store.
+
+#### Mentoring
+As our platform grows, we hope that new people will join us to help with our projects. We encourage people of any experience level to join us. Through the [Hacksmiths.io Mentoring Program](http://hacksmiths.io/mentoring), we can match newcomers with a suitable mentor who can help show them the ropes on a real collaborative project.  Please stay tuned for announcements on how this will work.  For now, if you have a profile, check off that you are looking for a mentor and what experience you'd like to gain.
+
+#### User sign up
+The application allows for a user to sign up to be a member of our community.  Please note that signing to be a member of the community does not mean that you will participate in a project.  We will have to get to know you a bit first :D.  That said, we encourage anyone to signup.  Please read the [Privacy Policy](http://hacksmiths.io/privacy) policy if you have any concerns.  We will do our best to keep your information private, but please keep in mind that the point of the app and website is to connect people.  If you do not specifically set your profile to public, some of your information will be available through the app and website.
 
 ## App Architecture
 The app utilizes the Model View Presenter pattern in an effort to make View Controllers lighter.  It utilizes Promises via PromiseKit to make asyncrhonous work much more elegant.  It uses Core Data to persist data to the device  It was built using XCode 7.3.1 for the iOS9+ plus platform.
