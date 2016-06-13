@@ -50,7 +50,7 @@ The app utilizes the Model View Presenter pattern in an effort to make View Cont
 The Application coordinates with a Node.js API that was written specifically for this project and is hosted at [Hacksmiths.io].  Most of the data for this project lives on the database server, although all models are persisted to disk to enable usage offline.
 
 ### Technical Review
-This app was code reviewed by an expert iOS Developer / Reviewer, who had this to say: "https://review.udacity.com/#!/reviews/159729".  [Read the review](https://review.udacity.com/#!/reviews/159729).
+This app was code reviewed by an expert iOS Developer / Reviewer, who had this to say: "This is one of the best apps I've reviewed. Your coding style is amazing and reading the code was a breeze. Also the design was especially professional and reminded me a few popular apps.".  [Read the review](https://review.udacity.com/#!/reviews/159729).
 
 ## Getting Started (If you care to install the app that is!)
 This app utilizes Cocoapods to load a number of framework dependencies.
