@@ -112,3 +112,7 @@ If you still have difficulties, please see the [CocoaPods troubleshooting guide]
 ![Hacksmiths landing](https://raw.githubusercontent.com/RyanCCollins/hacksmiths-app/master/IMG_0408%202_iphone6plus_gold_side2.png)
 ![Hacksmiths app](https://raw.githubusercontent.com/RyanCCollins/hacksmiths-app/master/IMG_0405_iphone6plus_gold_side2.png)
 ![Hacksmiths event](https://raw.githubusercontent.com/RyanCCollins/hacksmiths-app/master/IMG_0406_iphone6plus_gold_side2.png)
+
+## Timeline / Todos
+* [ ] Release to App Store
+* [ ] Update to unidirectional Data Flow
